@@ -159,20 +159,6 @@ def _fuzzy_team(normalized_target, candidate_raw):
 
 
 def match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims):
-    """
-    SharpAPI team names don't always match exactly (mascots, abbreviations,
-    etc.), so fuzzy-match once per unique team pair and cache the result.
-
-    `row_claims` is a shared {sharpapi_row_id: (home_team, away_team)} dict
-    used across ALL games in this run. If a given SharpAPI row ever gets
-    claimed by two different (home, away) pairs, that's proof the matching
-    was too loose for that row (a real odds row belongs to exactly one
-    game) -- we drop it from both instead of silently duplicating it.
-    """
-    # Log raw teams available in odds_rows on the first lookup
-    if not team_cache:
-        log(f"DEBUG: First 3 SharpAPI rows in payload: {[ (r.get('home_team'), r.get('away_team')) for r in odds_rows[:3] ]}")
-        
     cache_key = (home_team, away_team)
     if cache_key in team_cache:
         return team_cache[cache_key]
@@ -180,10 +166,19 @@ def match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
     home_norm = _normalize(home_team)
     away_norm = _normalize(away_team)
 
-    candidates = [
-        r for r in odds_rows
-        if _fuzzy_team(home_norm, r.get("home_team", "")) and _fuzzy_team(away_norm, r.get("away_team", ""))
-    ]
+    # 1. Match candidates checking both straight and flipped home/away
+    candidates = []
+    for r in odds_rows:
+        r_home = r.get("home_team", "")
+        r_away = r.get("away_team", "")
+        
+        # Check standard orientation
+        straight_match = _fuzzy_team(home_norm, r_home) and _fuzzy_team(away_norm, r_away)
+        # Check flipped neutral-site orientation
+        flipped_match = _fuzzy_team(home_norm, r_away) and _fuzzy_team(away_norm, r_home)
+        
+        if straight_match or flipped_match:
+            candidates.append(r)
 
     result = {"draftkings": {"spread": {}, "moneyline": {}}, "fanduel": {"spread": {}, "moneyline": {}}}
     rejected = 0
@@ -193,11 +188,7 @@ def match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
         if row_id is not None:
             prior_claim = row_claims.get(row_id)
             if prior_claim is not None and prior_claim != cache_key:
-                # Same SharpAPI row already attached to a different game --
-                # the match was ambiguous for at least one of them. Don't
-                # trust it for either.
-                log(f"  WARNING: odds row {row_id} matched both {prior_claim} and "
-                    f"{cache_key} -- dropping as ambiguous")
+                log(f"  WARNING: odds row {row_id} matched both {prior_claim} and {cache_key} -- dropping")
                 rejected += 1
                 continue
             row_claims[row_id] = cache_key
@@ -206,19 +197,28 @@ def match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
         market = row.get("market_type")
         if book not in result or market not in ("spread", "moneyline"):
             continue
+            
         team_part, line_val = _parse_selection(row.get("selection", ""), market)
+        
+        # Determine side dynamically
         side = "home" if _fuzzy_team(home_norm, team_part) else (
             "away" if _fuzzy_team(away_norm, team_part) else None
         )
         if side is None:
             continue
+            
+        # Invert spread sign if the sportsbook's home team is flipped relative to ESPN
+        r_home = row.get("home_team", "")
+        is_flipped = _fuzzy_team(away_norm, r_home)
+        
+        final_line = line_val
+        if market == "spread" and line_val is not None and is_flipped:
+            final_line = -line_val  # Flip spread direction to match ESPN's home team
+
         result[book][market][side] = {
-            "line": line_val,
+            "line": final_line,
             "american": row.get("odds_american"),
         }
-
-    if rejected:
-        log(f"  {cache_key}: rejected {rejected} ambiguous odds row(s)")
 
     team_cache[cache_key] = result
     return result
