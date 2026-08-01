@@ -322,6 +322,17 @@ def parse_args():
     p.add_argument("--out", default=None, help="Output path (default: data/nfl_dashboard.json)")
     return p.parse_args()
 
+def autodetect_season(year):
+    for season_type in (1, 2, 3):
+        for week in range(1, 25):
+            try:
+                sb = get_scoreboard(year, week, season_type)
+                if sb.get("events"):
+                    return season_type, week
+            except requests.HTTPError:
+                pass
+
+    raise RuntimeError("No NFL schedule found.")
 
 def main():
     args = parse_args()
