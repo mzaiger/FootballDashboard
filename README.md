@@ -11,12 +11,42 @@ attached to each game.
 - **Automation**: `.github/workflows/update-dashboard.yml` — runs the script daily via GitHub Actions and commits the refreshed JSON
 - **Front-end**: `index.html` — static page that reads `data/dashboard.json`, no build step
 
-## How matchup ranking works
+# CFB Betting Dashboard
 
-For every game on a main channel, `matchup_score = home_team_AP_rank + away_team_AP_rank`
-(unranked teams count as 26). **Lower score = more marquee matchup**, so a
-#1 vs #2 game (score 3) sorts above a #15 vs unranked game (score 41).
-Games are grouped by day, then sorted by this score within each day.
+A daily-refreshed college football dashboard: this week's games on **main TV
+channels**, grouped by day and then by kickoff window (Morning / Noon /
+Afternoon / Evening / Late Night), ranked within each window by best matchup
+(combined AP rank of both teams), with **DraftKings** and **FanDuel**
+spreads + moneylines attached to each game.
+
+- **Schedule, TV outlet, and AP rankings** → [CollegeFootballData.com](https://collegefootballdata.com/key) (CFBD)
+- **Spreads & moneylines** → [SharpAPI](https://sharpapi.io) (DraftKings + FanDuel)
+- **Backend**: `scripts/build_dashboard.py` — pulls both APIs, ranks matchups, writes `data/dashboard.json`
+- **Automation**: `.github/workflows/update-dashboard.yml` — runs the script daily via GitHub Actions and commits the refreshed JSON
+- **Front-end**: `index.html` — static page that reads `data/dashboard.json`, no build step
+
+## How grouping and ranking work
+
+Games are grouped **by day**, then **by kickoff window**:
+
+| Window | Range (Central) |
+|---|---|
+| Morning | before 12:00 PM |
+| Noon | 12:00 PM – 2:59 PM |
+| Afternoon | 3:00 PM – 5:59 PM |
+| Evening | 6:00 PM – 8:59 PM |
+| Late Night | 9:00 PM and later |
+| Time TBD | kickoff not yet announced |
+
+Windows are bucketed in **US/Central**. Change `DISPLAY_TIMEZONE` near the
+top of `scripts/build_dashboard.py` (e.g. to `"America/New_York"`) if you'd
+rather bucket by Eastern or another zone. A window only shows up in the
+output if it actually has a game in it — no empty sections.
+
+Within each window, games are sorted by `matchup_score = home_team_AP_rank +
+away_team_AP_rank` (unranked teams count as 26). **Lower score = more
+marquee matchup**, so a #1 vs #2 game (score 3) leads a #15-vs-unranked game
+(score 41) within the same window.
 
 "Main channels" is currently `ABC, CBS, NBC, FOX, ESPN, ESPN2, FS1` — edit
 the `MAIN_CHANNELS` set near the top of `scripts/build_dashboard.py` to add
