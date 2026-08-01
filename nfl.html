@@ -19,6 +19,7 @@
     --dk-green: #53d337;
     --fd-blue: #1493ff;
     --loss-red: #e2584a;
+    --pick-yellow: #ffd60a;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -150,6 +151,18 @@
   }
   .card:hover{border-color:#39424b; transform:translateY(-1px);}
   .card.close-game{border-color:rgba(224,166,60,0.55); box-shadow:0 0 0 1px rgba(224,166,60,0.12), 0 8px 24px -12px rgba(224,166,60,0.25);}
+  .card.slot-pick{
+    border:2px solid var(--pick-yellow);
+    box-shadow:0 0 0 1px rgba(255,214,10,0.25), 0 10px 26px -12px rgba(255,214,10,0.4);
+    padding-top:2.4rem;
+  }
+  .pick-banner{
+    position:absolute; top:0; left:0; right:0;
+    background:var(--pick-yellow); color:#1a1400;
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:0.7rem;
+    text-transform:uppercase; letter-spacing:0.1em; text-align:center;
+    padding:0.3rem 0.5rem; border-radius:9px 9px 0 0;
+  }
 
   .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;}
   .score-badge{
@@ -243,6 +256,7 @@
 
 <footer>
   Matchup score = the smaller of DraftKings/FanDuel's point spread (closer game = more marquee, sorts first).
+  &#11088; Slot Pick = the game with the closest spread in that time window.
   Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule &amp; broadcast network via ESPN's public scoreboard API.
   <br><br>
   <strong>Omaha/Lincoln regional pick is an unofficial estimate</strong> — when a network window has more than one
@@ -291,6 +305,7 @@ function kickoffTime(iso, tbd) {
 
 function renderGame(g) {
   const closeGame = g.matchup_score !== null && g.matchup_score !== undefined && g.matchup_score <= 3;
+  const isPick = !!g.is_slot_pick;
   const books = ['draftkings', 'fanduel'];
   const bookLabel = { draftkings: 'DK', fanduel: 'FD' };
   const bookCls = { draftkings: 'dk', fanduel: 'fd' };
@@ -325,7 +340,8 @@ function renderGame(g) {
     : `Spread ${g.matchup_score}`;
 
   return `
-  <div class="card ${closeGame ? 'close-game' : ''}">
+  <div class="card ${closeGame ? 'close-game' : ''} ${isPick ? 'slot-pick' : ''}">
+    ${isPick ? '<div class="pick-banner">\u2b50 Slot Pick</div>' : ''}
     <div class="card-top">
       <span class="score-badge">${scoreLabel}</span>
       <span class="channel-pill">${g.channel}</span>
