@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01T04:50:40.313723+00:00",
+  "generated_at": "2026-08-01T09:38:02.255831+00:00",
   "season": 2026,
   "week": 1,
   "main_channels": [
@@ -11,761 +11,804 @@
     "FS1",
     "NBC"
   ],
+  "display_timezone": "America/Chicago",
   "total_games": 27,
   "days": [
     {
       "date": "2026-08-29",
       "weekday": "Saturday",
-      "games": [
+      "game_count": 4,
+      "time_slots": [
         {
-          "id": 401856766,
-          "start_time": "2026-08-29T16:00:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "TCU",
-          "home_conference": "Big 12",
-          "home_rank": null,
-          "away_team": "North Carolina",
-          "away_conference": "ACC",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "ESPN",
-          "venue": "Aviva Stadium",
-          "neutral_site": true,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
+          "slot": "Morning",
+          "best_matchup_score": 52,
+          "games": [
+            {
+              "id": 401856766,
+              "start_time": "2026-08-29T16:00:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "TCU",
+              "home_conference": "Big 12",
+              "home_rank": null,
+              "away_team": "North Carolina",
+              "away_conference": "ACC",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "ESPN",
+              "venue": "Aviva Stadium",
+              "neutral_site": true,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             }
-          }
+          ]
         },
         {
-          "id": 401864494,
-          "start_time": "2026-08-29T19:00:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "USC",
-          "home_conference": "Big Ten",
-          "home_rank": null,
-          "away_team": "San Jos\u00e9 State",
-          "away_conference": "Mountain West",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "NBC",
-          "venue": "Los Angeles Memorial Coliseum",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {
-                "home": {
-                  "line": null,
-                  "american": 250
+          "slot": "Noon",
+          "best_matchup_score": 52,
+          "games": [
+            {
+              "id": 401864494,
+              "start_time": "2026-08-29T19:00:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "USC",
+              "home_conference": "Big Ten",
+              "home_rank": null,
+              "away_team": "San Jos\u00e9 State",
+              "away_conference": "Mountain West",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "NBC",
+              "venue": "Los Angeles Memorial Coliseum",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
                 },
-                "away": {
-                  "line": null,
-                  "american": -310
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
                 }
               }
             },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
+            {
+              "id": 401858202,
+              "start_time": "2026-08-29T19:30:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Virginia",
+              "home_conference": "ACC",
+              "home_rank": null,
+              "away_team": "NC State",
+              "away_conference": "ACC",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "ESPN",
+              "venue": "Scott Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             }
-          }
+          ]
         },
         {
-          "id": 401858202,
-          "start_time": "2026-08-29T19:30:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Virginia",
-          "home_conference": "ACC",
-          "home_rank": null,
-          "away_team": "NC State",
-          "away_conference": "ACC",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "ESPN",
-          "venue": "Scott Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
+          "slot": "Late Night",
+          "best_matchup_score": 52,
+          "games": [
+            {
+              "id": 401862693,
+              "start_time": "2026-08-30T02:00:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "UNLV",
+              "home_conference": "Mountain West",
+              "home_rank": null,
+              "away_team": "Memphis",
+              "away_conference": "American Athletic",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "FOX",
+              "venue": "Allegiant Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             }
-          }
+          ]
         }
       ]
     },
     {
-      "date": "2026-08-30",
-      "weekday": "Sunday",
-      "games": [
+      "date": "2026-09-03",
+      "weekday": "Thursday",
+      "game_count": 1,
+      "time_slots": [
         {
-          "id": 401862693,
-          "start_time": "2026-08-30T02:00:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "UNLV",
-          "home_conference": "Mountain West",
-          "home_rank": null,
-          "away_team": "Memphis",
-          "away_conference": "American Athletic",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "FOX",
-          "venue": "Allegiant Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
+          "slot": "Evening",
+          "best_matchup_score": 52,
+          "games": [
+            {
+              "id": 401856776,
+              "start_time": "2026-09-04T00:00:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Georgia Tech",
+              "home_conference": "ACC",
+              "home_rank": null,
+              "away_team": "Colorado",
+              "away_conference": "Big 12",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "ESPN",
+              "venue": "Bobby Dodd Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             }
-          }
+          ]
         }
       ]
     },
     {
       "date": "2026-09-04",
       "weekday": "Friday",
-      "games": [
+      "game_count": 3,
+      "time_slots": [
         {
-          "id": 401856776,
-          "start_time": "2026-09-04T00:00:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Georgia Tech",
-          "home_conference": "ACC",
-          "home_rank": null,
-          "away_team": "Colorado",
-          "away_conference": "Big 12",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "ESPN",
-          "venue": "Bobby Dodd Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
+          "slot": "Evening",
+          "best_matchup_score": 52,
+          "games": [
+            {
+              "id": 401858429,
+              "start_time": "2026-09-05T00:00:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Michigan State",
+              "home_conference": "Big Ten",
+              "home_rank": null,
+              "away_team": "Toledo",
+              "away_conference": "Mid-American",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "FS1",
+              "venue": "Spartan Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
+            {
+              "id": 401858206,
+              "start_time": "2026-09-05T01:00:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Stanford",
+              "home_conference": "ACC",
+              "home_rank": null,
+              "away_team": "Miami",
+              "away_conference": "ACC",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "ESPN",
+              "venue": "Stanford Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
+            },
+            {
+              "id": 401858436,
+              "start_time": "2026-09-05T01:00:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "USC",
+              "home_conference": "Big Ten",
+              "home_rank": null,
+              "away_team": "Fresno State",
+              "away_conference": "Pac-12",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "FOX",
+              "venue": "Los Angeles Memorial Coliseum",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             }
-          }
+          ]
         }
       ]
     },
     {
       "date": "2026-09-05",
       "weekday": "Saturday",
-      "games": [
+      "game_count": 15,
+      "time_slots": [
         {
-          "id": 401858429,
-          "start_time": "2026-09-05T00:00:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Michigan State",
-          "home_conference": "Big Ten",
-          "home_rank": null,
-          "away_team": "Toledo",
-          "away_conference": "Mid-American",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "FS1",
-          "venue": "Spartan Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
-            }
-          }
-        },
-        {
-          "id": 401858206,
-          "start_time": "2026-09-05T01:00:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Stanford",
-          "home_conference": "ACC",
-          "home_rank": null,
-          "away_team": "Miami",
-          "away_conference": "ACC",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "ESPN",
-          "venue": "Stanford Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
-            }
-          }
-        },
-        {
-          "id": 401858436,
-          "start_time": "2026-09-05T01:00:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "USC",
-          "home_conference": "Big Ten",
-          "home_rank": null,
-          "away_team": "Fresno State",
-          "away_conference": "Pac-12",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "FOX",
-          "venue": "Los Angeles Memorial Coliseum",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {
-                "home": {
-                  "line": null,
-                  "american": 250
+          "slot": "Morning",
+          "best_matchup_score": 52,
+          "games": [
+            {
+              "id": 401856778,
+              "start_time": "2026-09-05T16:00:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Houston",
+              "home_conference": "Big 12",
+              "home_rank": null,
+              "away_team": "Oregon State",
+              "away_conference": "Pac-12",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "ESPN",
+              "venue": "TDECU Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
                 },
-                "away": {
-                  "line": null,
-                  "american": -310
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
                 }
               }
             },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
-            }
-          }
-        },
-        {
-          "id": 401856778,
-          "start_time": "2026-09-05T16:00:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Houston",
-          "home_conference": "Big 12",
-          "home_rank": null,
-          "away_team": "Oregon State",
-          "away_conference": "Pac-12",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "ESPN",
-          "venue": "TDECU Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {
-                "home": {
-                  "line": null,
-                  "american": -1200
+            {
+              "id": 401858425,
+              "start_time": "2026-09-05T16:00:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Indiana",
+              "home_conference": "Big Ten",
+              "home_rank": null,
+              "away_team": "North Texas",
+              "away_conference": "American Athletic",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "FOX",
+              "venue": "Memorial Stadium (Bloomington, IN)",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
                 },
-                "away": {
-                  "line": null,
-                  "american": 750
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
                 }
               }
             },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
-            }
-          }
-        },
-        {
-          "id": 401858425,
-          "start_time": "2026-09-05T16:00:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Indiana",
-          "home_conference": "Big Ten",
-          "home_rank": null,
-          "away_team": "North Texas",
-          "away_conference": "American Athletic",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "FOX",
-          "venue": "Memorial Stadium (Bloomington, IN)",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
-            }
-          }
-        },
-        {
-          "id": 401858430,
-          "start_time": "2026-09-05T16:00:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Nebraska",
-          "home_conference": "Big Ten",
-          "home_rank": null,
-          "away_team": "Ohio",
-          "away_conference": "Mid-American",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "FS1",
-          "venue": "Memorial Stadium (Lincoln, NE)",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
-            }
-          }
-        },
-        {
-          "id": 401856634,
-          "start_time": "2026-09-05T16:00:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Alabama",
-          "home_conference": "SEC",
-          "home_rank": null,
-          "away_team": "East Carolina",
-          "away_conference": "American Athletic",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "ABC",
-          "venue": "Bryant-Denny Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
-            }
-          }
-        },
-        {
-          "id": 401858434,
-          "start_time": "2026-09-05T19:30:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Penn State",
-          "home_conference": "Big Ten",
-          "home_rank": null,
-          "away_team": "Marshall",
-          "away_conference": "Sun Belt",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "FS1",
-          "venue": "Beaver Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {
-                "away": {
-                  "line": null,
-                  "american": 1400
+            {
+              "id": 401858430,
+              "start_time": "2026-09-05T16:00:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Nebraska",
+              "home_conference": "Big Ten",
+              "home_rank": null,
+              "away_team": "Ohio",
+              "away_conference": "Mid-American",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "FS1",
+              "venue": "Memorial Stadium (Lincoln, NE)",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
                 },
-                "home": {
-                  "line": null,
-                  "american": -3200
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
                 }
               }
             },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
+            {
+              "id": 401856634,
+              "start_time": "2026-09-05T16:00:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Alabama",
+              "home_conference": "SEC",
+              "home_rank": null,
+              "away_team": "East Carolina",
+              "away_conference": "American Athletic",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "ABC",
+              "venue": "Bryant-Denny Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             }
-          }
+          ]
         },
         {
-          "id": 401856777,
-          "start_time": "2026-09-05T19:30:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Cincinnati",
-          "home_conference": "Big 12",
-          "home_rank": null,
-          "away_team": "Boston College",
-          "away_conference": "ACC",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "FOX",
-          "venue": "Nippert Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {
-                "home": {
-                  "line": null,
-                  "american": -258
+          "slot": "Noon",
+          "best_matchup_score": 52,
+          "games": [
+            {
+              "id": 401858434,
+              "start_time": "2026-09-05T19:30:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Penn State",
+              "home_conference": "Big Ten",
+              "home_rank": null,
+              "away_team": "Marshall",
+              "away_conference": "Sun Belt",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "FS1",
+              "venue": "Beaver Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {
+                    "away": {
+                      "line": null,
+                      "american": 1400
+                    },
+                    "home": {
+                      "line": null,
+                      "american": -3200
+                    }
+                  }
                 },
-                "away": {
-                  "line": null,
-                  "american": 210
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
                 }
               }
             },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
+            {
+              "id": 401856777,
+              "start_time": "2026-09-05T19:30:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Cincinnati",
+              "home_conference": "Big 12",
+              "home_rank": null,
+              "away_team": "Boston College",
+              "away_conference": "ACC",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "FOX",
+              "venue": "Nippert Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
+            },
+            {
+              "id": 401858433,
+              "start_time": "2026-09-05T19:30:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Oregon",
+              "home_conference": "Big Ten",
+              "home_rank": null,
+              "away_team": "Boise State",
+              "away_conference": "Pac-12",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "CBS",
+              "venue": "Autzen Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
+            },
+            {
+              "id": 401856636,
+              "start_time": "2026-09-05T19:30:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Auburn",
+              "home_conference": "SEC",
+              "home_rank": null,
+              "away_team": "Baylor",
+              "away_conference": "Big 12",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "ABC",
+              "venue": "Mercedes-Benz Stadium",
+              "neutral_site": true,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
+            },
+            {
+              "id": 401856667,
+              "start_time": "2026-09-05T19:30:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Texas",
+              "home_conference": "SEC",
+              "home_rank": null,
+              "away_team": "Texas State",
+              "away_conference": "Pac-12",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "ESPN",
+              "venue": "DKR-Texas Memorial Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             }
-          }
+          ]
         },
         {
-          "id": 401858433,
-          "start_time": "2026-09-05T19:30:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Oregon",
-          "home_conference": "Big Ten",
-          "home_rank": null,
-          "away_team": "Boise State",
-          "away_conference": "Pac-12",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "CBS",
-          "venue": "Autzen Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
+          "slot": "Evening",
+          "best_matchup_score": 52,
+          "games": [
+            {
+              "id": 401856770,
+              "start_time": "2026-09-05T23:00:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Texas Tech",
+              "home_conference": "Big 12",
+              "home_rank": null,
+              "away_team": "Abilene Christian",
+              "away_conference": "UAC",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "FS1",
+              "venue": "Jones AT&T Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
+            {
+              "id": 401856668,
+              "start_time": "2026-09-05T23:00:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Texas A&M",
+              "home_conference": "SEC",
+              "home_rank": null,
+              "away_team": "Missouri State",
+              "away_conference": "Conference USA",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "ESPN",
+              "venue": "Kyle Field",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
+            },
+            {
+              "id": 401858428,
+              "start_time": "2026-09-05T23:30:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Michigan",
+              "home_conference": "Big Ten",
+              "home_rank": null,
+              "away_team": "Western Michigan",
+              "away_conference": "Mid-American",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "NBC",
+              "venue": "Michigan Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
+            },
+            {
+              "id": 401856660,
+              "start_time": "2026-09-05T23:30:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "LSU",
+              "home_conference": "SEC",
+              "home_rank": null,
+              "away_team": "Clemson",
+              "away_conference": "ACC",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "ABC",
+              "venue": "Tiger Stadium (LA)",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             }
-          }
+          ]
         },
         {
-          "id": 401856636,
-          "start_time": "2026-09-05T19:30:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Auburn",
-          "home_conference": "SEC",
-          "home_rank": null,
-          "away_team": "Baylor",
-          "away_conference": "Big 12",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "ABC",
-          "venue": "Mercedes-Benz Stadium",
-          "neutral_site": true,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
+          "slot": "Late Night",
+          "best_matchup_score": 52,
+          "games": [
+            {
+              "id": 401864498,
+              "start_time": "2026-09-06T02:00:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "New Mexico",
+              "home_conference": "Mountain West",
+              "home_rank": null,
+              "away_team": "Central Michigan",
+              "away_conference": "Mid-American",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "FS1",
+              "venue": "University Stadium (NM)",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
+            {
+              "id": 401858210,
+              "start_time": "2026-09-06T02:30:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "California",
+              "home_conference": "ACC",
+              "home_rank": null,
+              "away_team": "UCLA",
+              "away_conference": "Big Ten",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "ESPN",
+              "venue": "California Memorial Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             }
-          }
-        },
-        {
-          "id": 401856667,
-          "start_time": "2026-09-05T19:30:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Texas",
-          "home_conference": "SEC",
-          "home_rank": null,
-          "away_team": "Texas State",
-          "away_conference": "Pac-12",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "ESPN",
-          "venue": "DKR-Texas Memorial Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
-            }
-          }
-        },
-        {
-          "id": 401856770,
-          "start_time": "2026-09-05T23:00:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Texas Tech",
-          "home_conference": "Big 12",
-          "home_rank": null,
-          "away_team": "Abilene Christian",
-          "away_conference": "UAC",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "FS1",
-          "venue": "Jones AT&T Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
-            }
-          }
-        },
-        {
-          "id": 401856668,
-          "start_time": "2026-09-05T23:00:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Texas A&M",
-          "home_conference": "SEC",
-          "home_rank": null,
-          "away_team": "Missouri State",
-          "away_conference": "Conference USA",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "ESPN",
-          "venue": "Kyle Field",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
-            }
-          }
-        },
-        {
-          "id": 401858428,
-          "start_time": "2026-09-05T23:30:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Michigan",
-          "home_conference": "Big Ten",
-          "home_rank": null,
-          "away_team": "Western Michigan",
-          "away_conference": "Mid-American",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "NBC",
-          "venue": "Michigan Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
-            }
-          }
-        },
-        {
-          "id": 401856660,
-          "start_time": "2026-09-05T23:30:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "LSU",
-          "home_conference": "SEC",
-          "home_rank": null,
-          "away_team": "Clemson",
-          "away_conference": "ACC",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "ABC",
-          "venue": "Tiger Stadium (LA)",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
-            }
-          }
+          ]
         }
       ]
     },
     {
       "date": "2026-09-06",
       "weekday": "Sunday",
-      "games": [
+      "game_count": 3,
+      "time_slots": [
         {
-          "id": 401864498,
-          "start_time": "2026-09-06T02:00:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "New Mexico",
-          "home_conference": "Mountain West",
-          "home_rank": null,
-          "away_team": "Central Michigan",
-          "away_conference": "Mid-American",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "FS1",
-          "venue": "University Stadium (NM)",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
+          "slot": "Afternoon",
+          "best_matchup_score": 52,
+          "games": [
+            {
+              "id": 401858437,
+              "start_time": "2026-09-06T20:00:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Washington",
+              "home_conference": "Big Ten",
+              "home_rank": null,
+              "away_team": "Washington State",
+              "away_conference": "Pac-12",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "NBC",
+              "venue": "Husky Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             }
-          }
+          ]
         },
         {
-          "id": 401858210,
-          "start_time": "2026-09-06T02:30:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "California",
-          "home_conference": "ACC",
-          "home_rank": null,
-          "away_team": "UCLA",
-          "away_conference": "Big Ten",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "ESPN",
-          "venue": "California Memorial Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
+          "slot": "Evening",
+          "best_matchup_score": 52,
+          "games": [
+            {
+              "id": 401858438,
+              "start_time": "2026-09-06T23:30:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Notre Dame",
+              "home_conference": "FBS Independents",
+              "home_rank": null,
+              "away_team": "Wisconsin",
+              "away_conference": "Big Ten",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "NBC",
+              "venue": "Lambeau Field",
+              "neutral_site": true,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
+            {
+              "id": 401856661,
+              "start_time": "2026-09-06T23:30:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Ole Miss",
+              "home_conference": "SEC",
+              "home_rank": null,
+              "away_team": "Louisville",
+              "away_conference": "ACC",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "ABC",
+              "venue": "Nissan Stadium",
+              "neutral_site": true,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             }
-          }
-        },
-        {
-          "id": 401858437,
-          "start_time": "2026-09-06T20:00:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Washington",
-          "home_conference": "Big Ten",
-          "home_rank": null,
-          "away_team": "Washington State",
-          "away_conference": "Pac-12",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "NBC",
-          "venue": "Husky Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
-            }
-          }
-        },
-        {
-          "id": 401858438,
-          "start_time": "2026-09-06T23:30:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Notre Dame",
-          "home_conference": "FBS Independents",
-          "home_rank": null,
-          "away_team": "Wisconsin",
-          "away_conference": "Big Ten",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "NBC",
-          "venue": "Lambeau Field",
-          "neutral_site": true,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
-            }
-          }
-        },
-        {
-          "id": 401856661,
-          "start_time": "2026-09-06T23:30:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Ole Miss",
-          "home_conference": "SEC",
-          "home_rank": null,
-          "away_team": "Louisville",
-          "away_conference": "ACC",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "ABC",
-          "venue": "Nissan Stadium",
-          "neutral_site": true,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
-            }
-          }
+          ]
         }
       ]
     },
     {
       "date": "2026-09-07",
       "weekday": "Monday",
-      "games": [
+      "game_count": 1,
+      "time_slots": [
         {
-          "id": 401858212,
-          "start_time": "2026-09-07T23:30:00.000Z",
-          "start_time_tbd": false,
-          "home_team": "Florida State",
-          "home_conference": "ACC",
-          "home_rank": null,
-          "away_team": "SMU",
-          "away_conference": "ACC",
-          "away_rank": null,
-          "matchup_score": 52,
-          "channel": "ESPN",
-          "venue": "Doak Campbell Stadium",
-          "neutral_site": false,
-          "odds": {
-            "draftkings": {
-              "spread": {},
-              "moneyline": {}
-            },
-            "fanduel": {
-              "spread": {},
-              "moneyline": {}
+          "slot": "Evening",
+          "best_matchup_score": 52,
+          "games": [
+            {
+              "id": 401858212,
+              "start_time": "2026-09-07T23:30:00.000Z",
+              "start_time_tbd": false,
+              "home_team": "Florida State",
+              "home_conference": "ACC",
+              "home_rank": null,
+              "away_team": "SMU",
+              "away_conference": "ACC",
+              "away_rank": null,
+              "matchup_score": 52,
+              "channel": "ESPN",
+              "venue": "Doak Campbell Stadium",
+              "neutral_site": false,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
             }
-          }
+          ]
         }
       ]
     }
