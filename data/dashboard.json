@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01T17:07:15.574173+00:00",
+  "generated_at": "2026-08-01T21:19:32.969950+00:00",
   "season": 2026,
   "week": 1,
   "main_channels": [
@@ -22,6 +22,7 @@
         {
           "slot": "Morning",
           "best_matchup_score": 52,
+          "pick_reason": "ap_rank",
           "games": [
             {
               "id": 401856766,
@@ -40,19 +41,31 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {}
+                  "moneyline": {
+                    "away": {
+                      "line": null,
+                      "american": 210
+                    },
+                    "home": {
+                      "line": null,
+                      "american": -258
+                    }
+                  }
                 },
                 "fanduel": {
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": true
             }
           ]
         },
         {
           "slot": "Noon",
           "best_matchup_score": 52,
+          "pick_reason": "ap_rank",
           "games": [
             {
               "id": 401864494,
@@ -77,7 +90,9 @@
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": true
             },
             {
               "id": 401858202,
@@ -96,19 +111,31 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {}
+                  "moneyline": {
+                    "home": {
+                      "line": null,
+                      "american": -205
+                    },
+                    "away": {
+                      "line": null,
+                      "american": 170
+                    }
+                  }
                 },
                 "fanduel": {
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": false
             }
           ]
         },
         {
           "slot": "Late Night",
           "best_matchup_score": 52,
+          "pick_reason": "ap_rank",
           "games": [
             {
               "id": 401862693,
@@ -127,22 +154,15 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {
-                    "home": {
-                      "line": null,
-                      "american": -198
-                    },
-                    "away": {
-                      "line": null,
-                      "american": 164
-                    }
-                  }
+                  "moneyline": {}
                 },
                 "fanduel": {
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": true
             }
           ]
         }
@@ -156,6 +176,7 @@
         {
           "slot": "Evening",
           "best_matchup_score": 52,
+          "pick_reason": "ap_rank",
           "games": [
             {
               "id": 401856776,
@@ -174,13 +195,24 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {}
+                  "moneyline": {
+                    "away": {
+                      "line": null,
+                      "american": 210
+                    },
+                    "home": {
+                      "line": null,
+                      "american": -258
+                    }
+                  }
                 },
                 "fanduel": {
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": true
             }
           ]
         }
@@ -194,6 +226,7 @@
         {
           "slot": "Evening",
           "best_matchup_score": 52,
+          "pick_reason": "ap_rank",
           "games": [
             {
               "id": 401858429,
@@ -212,13 +245,24 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {}
+                  "moneyline": {
+                    "home": {
+                      "line": null,
+                      "american": -395
+                    },
+                    "away": {
+                      "line": null,
+                      "american": 310
+                    }
+                  }
                 },
                 "fanduel": {
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": true
             },
             {
               "id": 401858206,
@@ -237,13 +281,24 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {}
+                  "moneyline": {
+                    "home": {
+                      "line": null,
+                      "american": 1300
+                    },
+                    "away": {
+                      "line": null,
+                      "american": -2800
+                    }
+                  }
                 },
                 "fanduel": {
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": false
             },
             {
               "id": 401858436,
@@ -277,7 +332,9 @@
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": false
             }
           ]
         }
@@ -291,6 +348,7 @@
         {
           "slot": "Morning",
           "best_matchup_score": 52,
+          "pick_reason": "nebraska",
           "games": [
             {
               "id": 401856778,
@@ -309,13 +367,24 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {}
+                  "moneyline": {
+                    "home": {
+                      "line": null,
+                      "american": -1200
+                    },
+                    "away": {
+                      "line": null,
+                      "american": 750
+                    }
+                  }
                 },
                 "fanduel": {
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": false
             },
             {
               "id": 401858425,
@@ -340,7 +409,9 @@
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": false
             },
             {
               "id": 401858430,
@@ -374,7 +445,9 @@
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": true,
+              "is_slot_pick": true
             },
             {
               "id": 401856634,
@@ -393,19 +466,27 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {}
+                  "moneyline": {
+                    "away": {
+                      "line": null,
+                      "american": 2000
+                    }
+                  }
                 },
                 "fanduel": {
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": false
             }
           ]
         },
         {
           "slot": "Noon",
           "best_matchup_score": 52,
+          "pick_reason": "ap_rank",
           "games": [
             {
               "id": 401858434,
@@ -424,13 +505,24 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {}
+                  "moneyline": {
+                    "away": {
+                      "line": null,
+                      "american": 1400
+                    },
+                    "home": {
+                      "line": null,
+                      "american": -3200
+                    }
+                  }
                 },
                 "fanduel": {
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": true
             },
             {
               "id": 401856777,
@@ -449,22 +541,15 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {
-                    "home": {
-                      "line": null,
-                      "american": -258
-                    },
-                    "away": {
-                      "line": null,
-                      "american": 210
-                    }
-                  }
+                  "moneyline": {}
                 },
                 "fanduel": {
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": false
             },
             {
               "id": 401858433,
@@ -486,11 +571,11 @@
                   "moneyline": {
                     "away": {
                       "line": null,
-                      "american": -238
+                      "american": 1500
                     },
                     "home": {
                       "line": null,
-                      "american": 195
+                      "american": -3600
                     }
                   }
                 },
@@ -498,7 +583,9 @@
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": false
             },
             {
               "id": 401856636,
@@ -517,13 +604,24 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {}
+                  "moneyline": {
+                    "home": {
+                      "line": null,
+                      "american": -278
+                    },
+                    "away": {
+                      "line": null,
+                      "american": 225
+                    }
+                  }
                 },
                 "fanduel": {
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": false
             },
             {
               "id": 401856667,
@@ -542,24 +640,22 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {
-                    "away": {
-                      "line": null,
-                      "american": 2500
-                    }
-                  }
+                  "moneyline": {}
                 },
                 "fanduel": {
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": false
             }
           ]
         },
         {
           "slot": "Evening",
           "best_matchup_score": 52,
+          "pick_reason": "ap_rank",
           "games": [
             {
               "id": 401856770,
@@ -584,7 +680,9 @@
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": true
             },
             {
               "id": 401856668,
@@ -609,7 +707,9 @@
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": false
             },
             {
               "id": 401858428,
@@ -631,7 +731,7 @@
                   "moneyline": {
                     "home": {
                       "line": null,
-                      "american": 625
+                      "american": 2000
                     }
                   }
                 },
@@ -639,7 +739,9 @@
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": false
             },
             {
               "id": 401856660,
@@ -673,13 +775,16 @@
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": false
             }
           ]
         },
         {
           "slot": "Late Night",
           "best_matchup_score": 52,
+          "pick_reason": "ap_rank",
           "games": [
             {
               "id": 401864498,
@@ -713,7 +818,9 @@
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": true
             },
             {
               "id": 401858210,
@@ -732,13 +839,24 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {}
+                  "moneyline": {
+                    "home": {
+                      "line": null,
+                      "american": -112
+                    },
+                    "away": {
+                      "line": null,
+                      "american": -108
+                    }
+                  }
                 },
                 "fanduel": {
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": false
             }
           ]
         }
@@ -752,6 +870,7 @@
         {
           "slot": "Afternoon",
           "best_matchup_score": 52,
+          "pick_reason": "ap_rank",
           "games": [
             {
               "id": 401858437,
@@ -781,13 +900,16 @@
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": true
             }
           ]
         },
         {
           "slot": "Evening",
           "best_matchup_score": 52,
+          "pick_reason": "ap_rank",
           "games": [
             {
               "id": 401858438,
@@ -821,7 +943,9 @@
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": true
             },
             {
               "id": 401856661,
@@ -855,7 +979,9 @@
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": false
             }
           ]
         }
@@ -869,6 +995,7 @@
         {
           "slot": "Evening",
           "best_matchup_score": 52,
+          "pick_reason": "ap_rank",
           "games": [
             {
               "id": 401858212,
@@ -887,13 +1014,24 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {}
+                  "moneyline": {
+                    "away": {
+                      "line": null,
+                      "american": -130
+                    },
+                    "home": {
+                      "line": null,
+                      "american": 110
+                    }
+                  }
                 },
                 "fanduel": {
                   "spread": {},
                   "moneyline": {}
                 }
-              }
+              },
+              "is_nebraska": false,
+              "is_slot_pick": true
             }
           ]
         }
