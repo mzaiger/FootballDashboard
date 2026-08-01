@@ -177,12 +177,6 @@ def build(year, week, season_type, sharp_key):
 
     log("Fetching DraftKings/FanDuel NFL odds from SharpAPI...")
     odds_rows = fetch_all_odds(sharp_key, league="nfl")
-    if season_type == 1:
-        try:
-            preseason_rows = fetch_all_odds(sharp_key, league="nfl-preseason")
-            odds_rows.extend(preseason_rows)
-        except Exception as e:
-            log(f"  Note: league='nfl-preseason' fetch skipped: {e}")
     log(f"  {len(odds_rows)} odds rows returned")
     team_cache = {}
     row_claims = {}
