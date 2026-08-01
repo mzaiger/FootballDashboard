@@ -18,12 +18,13 @@ Usage:
 
 import argparse
 import difflib
-import re
 import json
 import os
+import re
 import sys
 import time
 from datetime import datetime, timezone, date
+from zoneinfo import ZoneInfo
 
 import requests
 
@@ -47,6 +48,21 @@ MAIN_CHANNELS = {"ABC", "CBS", "NBC", "FOX", "ESPN", "ESPN2", "FS1"}
 # Unranked teams get this rank value for matchup-score purposes so ranked-vs-
 # unranked and unranked-vs-unranked games still sort sensibly (worst last).
 UNRANKED_VALUE = 26
+
+# Timezone used to bucket games into Morning/Noon/Afternoon/Evening/Late
+# Night windows. Set to Central per your preference.
+DISPLAY_TIMEZONE = "America/Chicago"
+
+# Slot boundaries are the hour (in DISPLAY_TIMEZONE) each window ends at.
+# A game exactly on a boundary falls into the earlier window.
+TIME_SLOT_BOUNDARIES = [
+    ("Morning", 12),
+    ("Noon", 15),
+    ("Afternoon", 18),
+    ("Evening", 21),
+    ("Late Night", 24),
+]
+TIME_SLOT_ORDER = [name for name, _ in TIME_SLOT_BOUNDARIES] + ["Time TBD"]
 
 REQUEST_TIMEOUT = 20
 SHARPAPI_PAGE_LIMIT = 200  # ask for big pages; we still follow pagination
@@ -178,11 +194,17 @@ def _parse_selection(selection, market):
     return selection, None
 
 
-def match_odds_for_game(home_team, away_team, odds_rows, team_cache):
+def match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims):
     """
     SharpAPI team names don't always match CFBD team names exactly
     (mascots, abbreviations, etc.), so fuzzy-match once per unique
     team pair and cache the result.
+
+    `row_claims` is a shared {sharpapi_row_id: (home_team, away_team)} dict
+    used across ALL games in this run. If a given SharpAPI row ever gets
+    claimed by two different (home, away) pairs, that's proof the matching
+    was too loose for that row (a real odds row belongs to exactly one
+    game) -- we drop it from both instead of silently duplicating it.
     """
     cache_key = (home_team, away_team)
     if cache_key in team_cache:
@@ -197,8 +219,22 @@ def match_odds_for_game(home_team, away_team, odds_rows, team_cache):
     ]
 
     result = {"draftkings": {"spread": {}, "moneyline": {}}, "fanduel": {"spread": {}, "moneyline": {}}}
+    rejected = 0
 
     for row in candidates:
+        row_id = row.get("id")
+        if row_id is not None:
+            prior_claim = row_claims.get(row_id)
+            if prior_claim is not None and prior_claim != cache_key:
+                # Same SharpAPI row already attached to a different game --
+                # the match was ambiguous for at least one of them. Don't
+                # trust it for either.
+                log(f"  WARNING: odds row {row_id} matched both {prior_claim} and "
+                    f"{cache_key} -- dropping as ambiguous")
+                rejected += 1
+                continue
+            row_claims[row_id] = cache_key
+
         book = row.get("sportsbook")
         market = row.get("market_type")
         if book not in result or market not in ("spread", "moneyline"):
@@ -214,17 +250,50 @@ def match_odds_for_game(home_team, away_team, odds_rows, team_cache):
             "american": row.get("odds_american"),
         }
 
+    if rejected:
+        log(f"  {cache_key}: rejected {rejected} ambiguous odds row(s)")
+
     team_cache[cache_key] = result
     return result
 
 
+def _tokens(name):
+    return set(re.findall(r"[a-z0-9]+", _normalize(name)))
+
+
 def _fuzzy_team(normalized_target, candidate_raw):
+    """
+    True if `candidate_raw` (a SharpAPI team string) plausibly refers to the
+    same team as `normalized_target` (an already-normalized CFBD team string).
+
+    Compares whole words, not raw substrings. A raw substring check (e.g.
+    "st" in "state") lets short tokens on either side false-match inside
+    unrelated longer names -- that's what let one SharpAPI odds row get
+    attached to two different games earlier. Whole-word containment fixes
+    that while still matching short real names like "USC" or "TCU" against
+    their fuller SharpAPI form ("USC Trojans", "TCU Horned Frogs").
+    """
     if not candidate_raw:
         return False
-    candidate = _normalize(candidate_raw)
-    if normalized_target in candidate or candidate in normalized_target:
-        return True
-    return difflib.SequenceMatcher(None, normalized_target, candidate).ratio() > 0.55
+    target_words = set(re.findall(r"[a-z0-9]+", normalized_target))
+    candidate_words = _tokens(candidate_raw)
+    if not target_words or not candidate_words:
+        return False
+    shorter, longer = (target_words, candidate_words) if len(target_words) <= len(candidate_words) else (candidate_words, target_words)
+    if shorter and shorter.issubset(longer):
+        extra = longer - shorter
+        # Words that turn one school into a genuinely different one, not a
+        # mascot: "State" (Ohio vs Ohio State), "Tech" (Texas vs Texas
+        # Tech), and short 1-2 letter tokens, which catch things like the
+        # "A"/"M" split out of "A&M" (Texas vs Texas A&M) or a state code
+        # like "OH" (Miami vs Miami (OH)). Mascots -- however many words,
+        # e.g. "Horned Frogs", "Fighting Irish" -- are never this short.
+        disqualifying = {"state", "tech", "international", "commonwealth"}
+        if not any(w in disqualifying or len(w) <= 2 for w in extra):
+            return True
+    a = " ".join(sorted(target_words))
+    b = " ".join(sorted(candidate_words))
+    return difflib.SequenceMatcher(None, a, b).ratio() > 0.72
 
 
 # ---------------------------------------------------------------------------
@@ -243,6 +312,17 @@ def derive_week(today, year):
         return 1, True  # preseason: default to week 1, flag it
     days_since = (today - WEEK1_START).days
     return (days_since // 7) + 1, False
+
+
+def time_slot_for(local_dt, is_tbd):
+    """Bucket a timezone-aware local datetime into a named kickoff window."""
+    if is_tbd or local_dt is None:
+        return "Time TBD"
+    hour_frac = local_dt.hour + local_dt.minute / 60
+    for name, upper_bound in TIME_SLOT_BOUNDARIES:
+        if hour_frac < upper_bound:
+            return name
+    return "Late Night"
 
 
 # ---------------------------------------------------------------------------
@@ -267,6 +347,7 @@ def build(year, week, cfbd_key, sharp_key, channels):
     odds_rows = fetch_all_ncaaf_odds(sharp_key)
     log(f"  {len(odds_rows)} odds rows returned")
     team_cache = {}
+    row_claims = {}
 
     days = {}
     skipped_no_tv = 0
@@ -281,21 +362,24 @@ def build(year, week, cfbd_key, sharp_key, channels):
 
         start_raw = g.get("startDate")
         try:
-            start_dt = datetime.fromisoformat(start_raw.replace("Z", "+00:00"))
+            start_dt_utc = datetime.fromisoformat(start_raw.replace("Z", "+00:00"))
         except (TypeError, ValueError):
             continue
-        day_key = start_dt.date().isoformat()
+        is_tbd = g.get("startTimeTBD", False)
+        local_dt = start_dt_utc.astimezone(ZoneInfo(DISPLAY_TIMEZONE))
+        day_key = local_dt.date().isoformat()
+        slot = time_slot_for(local_dt, is_tbd)
 
         home_team, away_team = g.get("homeTeam"), g.get("awayTeam")
         home_rank = rank_lookup.get(home_team)
         away_rank = rank_lookup.get(away_team)
 
-        odds = match_odds_for_game(home_team, away_team, odds_rows, team_cache)
+        odds = match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
 
         game_entry = {
             "id": game_id,
             "start_time": start_raw,
-            "start_time_tbd": g.get("startTimeTBD", False),
+            "start_time_tbd": is_tbd,
             "home_team": home_team,
             "home_conference": g.get("homeConference"),
             "home_rank": home_rank,
@@ -308,22 +392,43 @@ def build(year, week, cfbd_key, sharp_key, channels):
             "neutral_site": g.get("neutralSite", False),
             "odds": odds,
         }
-        days.setdefault(day_key, []).append(game_entry)
+        days.setdefault(day_key, {}).setdefault(slot, []).append(game_entry)
 
     log(f"  {skipped_no_tv} games skipped (not on a main channel)")
 
     day_list = []
     for day_key in sorted(days.keys()):
-        games_for_day = sorted(days[day_key], key=lambda x: x["matchup_score"])
-        weekday_name = datetime.fromisoformat(day_key).strftime("%A")
-        day_list.append({"date": day_key, "weekday": weekday_name, "games": games_for_day})
+        slots_for_day = days[day_key]
+        time_slots = []
+        for slot_name in TIME_SLOT_ORDER:
+            if slot_name not in slots_for_day:
+                continue
+            # "Best ranking of each group": sort each window's games by
+            # matchup_score ascending, so the most marquee game in that
+            # window (lowest combined AP rank) leads.
+            games_sorted = sorted(slots_for_day[slot_name], key=lambda x: x["matchup_score"])
+            best_score = games_sorted[0]["matchup_score"] if games_sorted else None
+            time_slots.append({
+                "slot": slot_name,
+                "best_matchup_score": best_score,
+                "games": games_sorted,
+            })
+        weekday_name = date.fromisoformat(day_key).strftime("%A")
+        day_game_count = sum(len(ts["games"]) for ts in time_slots)
+        day_list.append({
+            "date": day_key,
+            "weekday": weekday_name,
+            "game_count": day_game_count,
+            "time_slots": time_slots,
+        })
 
     output = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "season": year,
         "week": week,
         "main_channels": sorted(channels),
-        "total_games": sum(len(d["games"]) for d in day_list),
+        "display_timezone": DISPLAY_TIMEZONE,
+        "total_games": sum(d["game_count"] for d in day_list),
         "days": day_list,
     }
     return output
