@@ -55,6 +55,10 @@ MAIN_CHANNELS = {"ABC", "CBS", "NBC", "FOX", "ESPN", "ESPN2", "FS1"}
 # unranked and unranked-vs-unranked games still sort sensibly (worst last).
 UNRANKED_VALUE = 26
 
+# Nebraska always gets pulled onto the board and always wins its time slot's
+# "Slot Pick", no matter the AP rank or spread of anything else in that window.
+NEBRASKA_TEAM = "Nebraska"
+
 REQUEST_TIMEOUT = 20
 
 
@@ -130,6 +134,59 @@ def derive_week(today, year):
     return (days_since // 7) + 1, False
 
 
+def _closest_spread_abs(game_entry):
+    """Smallest absolute spread line found across books/sides for this game,
+    or None if no spread has been posted anywhere yet."""
+    best = None
+    odds = game_entry.get("odds") or {}
+    for book in ("draftkings", "fanduel"):
+        spread = odds.get(book, {}).get("spread", {})
+        for side in ("home", "away"):
+            entry = spread.get(side)
+            line = entry.get("line") if entry else None
+            if line is None:
+                continue
+            val = abs(line)
+            if best is None or val < best:
+                best = val
+    return best
+
+
+def choose_slot_pick(games_sorted):
+    """Pick the marquee game for a time slot.
+
+    Priority:
+      1. Nebraska is in this slot -> Nebraska is the pick, always.
+      2. Otherwise the best combined-AP-rank matchup (games_sorted is already
+         sorted ascending by matchup_score, so that's index 0) -- unless
+         every game in the slot is unranked-vs-unranked (score == 52), in
+         which case fall back to whichever game has the closest spread.
+
+    Returns (index_into_games_sorted, reason) or (None, None) if empty.
+    """
+    if not games_sorted:
+        return None, None
+
+    for i, g in enumerate(games_sorted):
+        if g.get("is_nebraska"):
+            return i, "nebraska"
+
+    best_score = games_sorted[0]["matchup_score"]
+    if best_score < UNRANKED_VALUE * 2:
+        return 0, "ap_rank"
+
+    # Nobody in this slot is ranked -- fall back to the closest (most
+    # competitive) spread instead.
+    scored = [(i, _closest_spread_abs(g)) for i, g in enumerate(games_sorted)]
+    available = [(i, v) for i, v in scored if v is not None]
+    if available:
+        idx = min(available, key=lambda t: t[1])[0]
+        return idx, "closest_spread"
+
+    # No spreads posted anywhere either -- just default to the first game.
+    return 0, "ap_rank"
+
+
 # ---------------------------------------------------------------------------
 # Main build
 # ---------------------------------------------------------------------------
@@ -161,7 +218,14 @@ def build(year, week, cfbd_key, sharp_key, channels):
         game_id = g.get("id")
         media_info = media_by_game.get(game_id)
         outlet = (media_info or {}).get("outlet")
-        if not outlet or outlet not in channels:
+        home_team, away_team = g.get("homeTeam"), g.get("awayTeam")
+        is_nebraska = NEBRASKA_TEAM in (home_team, away_team)
+
+        on_main_channel = bool(outlet) and outlet in channels
+        # Nebraska always makes the board, even if it's on a non-main
+        # channel (or nothing found in the media feed at all) -- everything
+        # else still requires a main-channel broadcast.
+        if not on_main_channel and not is_nebraska:
             skipped_no_tv += 1
             continue
 
@@ -175,7 +239,6 @@ def build(year, week, cfbd_key, sharp_key, channels):
         day_key = local_dt.date().isoformat()
         slot = time_slot_for(local_dt, is_tbd)
 
-        home_team, away_team = g.get("homeTeam"), g.get("awayTeam")
         home_rank = rank_lookup.get(home_team)
         away_rank = rank_lookup.get(away_team)
 
@@ -192,10 +255,11 @@ def build(year, week, cfbd_key, sharp_key, channels):
             "away_conference": g.get("awayConference"),
             "away_rank": away_rank,
             "matchup_score": matchup_score(home_rank, away_rank),
-            "channel": outlet,
+            "channel": outlet or "Not on Main TV",
             "venue": g.get("venue"),
             "neutral_site": g.get("neutralSite", False),
             "odds": odds,
+            "is_nebraska": is_nebraska,
         }
         days.setdefault(day_key, {}).setdefault(slot, []).append(game_entry)
 
@@ -213,9 +277,13 @@ def build(year, week, cfbd_key, sharp_key, channels):
             # window (lowest combined AP rank) leads.
             games_sorted = sorted(slots_for_day[slot_name], key=lambda x: x["matchup_score"])
             best_score = games_sorted[0]["matchup_score"] if games_sorted else None
+            pick_idx, pick_reason = choose_slot_pick(games_sorted)
+            for i, g in enumerate(games_sorted):
+                g["is_slot_pick"] = (i == pick_idx)
             time_slots.append({
                 "slot": slot_name,
                 "best_matchup_score": best_score,
+                "pick_reason": pick_reason,
                 "games": games_sorted,
             })
         weekday_name = date.fromisoformat(day_key).strftime("%A")
