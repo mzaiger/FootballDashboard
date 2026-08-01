@@ -89,6 +89,22 @@
     margin-left:auto; color:var(--dim); font-size:0.78rem;
   }
 
+  .slot-block{margin-bottom:1.75rem;}
+  .slot-block:last-child{margin-bottom:0;}
+  .slot-heading{
+    display:flex; align-items:baseline; gap:0.6rem;
+    margin-bottom:0.7rem;
+  }
+  .slot-heading .slot-name{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.95rem;
+    text-transform:uppercase; letter-spacing:0.08em; color:var(--turf-bright);
+  }
+  .slot-heading .slot-icon{font-size:0.9rem;}
+  .slot-heading::after{
+    content:""; flex:1; height:1px; background:var(--line);
+  }
+  .slot-heading .slot-count{color:var(--dim); font-size:0.72rem;}
+
   .grid{
     display:grid;
     grid-template-columns:repeat(auto-fill, minmax(340px, 1fr));
@@ -293,6 +309,29 @@ function renderGame(g) {
   </div>`;
 }
 
+const SLOT_ICON = {
+  'Morning': '\u{1F305}',
+  'Noon': '\u2600\uFE0F',
+  'Afternoon': '\u{1F324}\uFE0F',
+  'Evening': '\u{1F306}',
+  'Late Night': '\u{1F319}',
+  'Time TBD': '\u2753'
+};
+
+function renderSlot(slot) {
+  return `
+  <div class="slot-block">
+    <div class="slot-heading">
+      <span class="slot-icon">${SLOT_ICON[slot.slot] || ''}</span>
+      <span class="slot-name">${slot.slot}</span>
+      <span class="slot-count">${slot.games.length} game${slot.games.length === 1 ? '' : 's'}</span>
+    </div>
+    <div class="grid">
+      ${slot.games.map(renderGame).join('')}
+    </div>
+  </div>`;
+}
+
 function renderDay(day) {
   const d = new Date(day.date + 'T00:00:00');
   const dateStr = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
@@ -301,11 +340,9 @@ function renderDay(day) {
     <div class="day-heading">
       <span class="weekday">${day.weekday}</span>
       <span class="date">${dateStr}</span>
-      <span class="count">${day.games.length} game${day.games.length === 1 ? '' : 's'}</span>
+      <span class="count">${day.game_count} game${day.game_count === 1 ? '' : 's'}</span>
     </div>
-    <div class="grid">
-      ${day.games.map(renderGame).join('')}
-    </div>
+    ${day.time_slots.map(renderSlot).join('')}
   </section>`;
 }
 
