@@ -67,7 +67,7 @@ SEASON_YEAR_DEFAULT = 2026
 # behavior, and doesn't reliably map onto Week 1 during the real calendar
 # gap between now and the season (we're not even into preseason yet as of
 # this writing). Mirrors build_dashboard.py's WEEK1_START/derive_week for CFB.
-WEEK1_START = date(2026, 9, 9)
+WEEK1_START = date(2026, 8, 6)
 
 # Regional-pick heuristic priority for the Omaha/Lincoln, NE market (no home
 # NFL team). Checked in order; first match in a multi-game window wins.
@@ -157,6 +157,8 @@ def derive_week(today, season_type):
     for regular season (seasontype 2) -- preseason/postseason callers should
     pass --week explicitly.
     """
+    if season_type != SEASON_TYPE_DEFAULT:
+        return 1, False
     if today < WEEK1_START:
         return 1, True  # before the season starts: default to week 1, flag it
     days_since = (today - WEEK1_START).days
@@ -320,18 +322,6 @@ def parse_args():
     p.add_argument("--out", default=None, help="Output path (default: data/nfl_dashboard.json)")
     return p.parse_args()
 
-
-def autodetect_season(year):
-    for season_type in (1, 2, 3):
-        for week in range(1, 25):
-            try:
-                sb = get_scoreboard(year, week, season_type)
-                if sb.get("events"):
-                    return season_type, week
-            except requests.HTTPError:
-                pass
-
-    raise RuntimeError("No NFL schedule found.")
 
 def main():
     args = parse_args()
