@@ -57,7 +57,7 @@ ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nf
 REQUEST_TIMEOUT = 20
 
 # seasontype: 1=preseason, 2=regular season, 3=postseason
-SEASON_TYPE_DEFAULT = 2
+SEASON_TYPE_DEFAULT = 1
 SEASON_YEAR_DEFAULT = 2026
 
 # 2026 regular-season Week 1 runs Sept 9-15 (confirmed against ESPN's own
