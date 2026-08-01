@@ -120,18 +120,29 @@
     padding:0.2rem 0.5rem; letter-spacing:0.02em;
   }
 
-  .matchup{margin:0.85rem 0 0.6rem;}
-  .team-row{
-    display:flex; align-items:center; gap:0.5rem;
-    font-family:'Oswald',sans-serif; font-size:1.08rem; font-weight:600;
-    padding:0.15rem 0;
+  .matchup{
+    margin:0.85rem 0 0.6rem;
+    display:flex; align-items:center; flex-wrap:nowrap; gap:0.45rem;
+    font-family:'Oswald',sans-serif; font-size:1.05rem; font-weight:600;
+    white-space:nowrap; overflow-x:auto; scrollbar-width:none;
   }
+  .matchup::-webkit-scrollbar{display:none;}
+  .team{display:inline-flex; align-items:center; gap:0.4rem;}
   .rank{
     font-size:0.68rem; color:var(--gold); border:1px solid rgba(224,166,60,0.4);
     border-radius:4px; padding:0.05rem 0.3rem; min-width:1.6rem; text-align:center;
+    flex-shrink:0;
   }
   .rank.unranked{visibility:hidden;}
-  .at{color:var(--dim); font-size:0.72rem; font-family:'JetBrains Mono',monospace; padding-left:0.1rem;}
+  .at{color:var(--dim); font-size:0.72rem; font-family:'JetBrains Mono',monospace; flex-shrink:0;}
+
+  @media (max-width: 480px){
+    .matchup{
+      flex-wrap:wrap; white-space:normal; overflow-x:visible;
+      font-size:1rem;
+    }
+    .at{margin:0 0.1rem;}
+  }
 
   .subline{
     color:var(--dim); font-size:0.75rem; display:flex; gap:1rem; flex-wrap:wrap;
@@ -270,9 +281,9 @@ function renderGame(g) {
       <span class="channel-pill">${g.channel}</span>
     </div>
     <div class="matchup">
-      <div class="team-row">${rankBadge(g.away_rank)} ${g.away_team}</div>
-      <div class="at">@</div>
-      <div class="team-row">${rankBadge(g.home_rank)} ${g.home_team}</div>
+      <span class="team">${rankBadge(g.away_rank)} ${g.away_team}</span>
+      <span class="at">@</span>
+      <span class="team">${rankBadge(g.home_rank)} ${g.home_team}</span>
     </div>
     <div class="subline">
       <span>${kickoffTime(g.start_time, g.start_time_tbd)}</span>
