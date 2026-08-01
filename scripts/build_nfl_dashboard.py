@@ -28,7 +28,7 @@ Env vars required:
 
 Usage:
     python scripts/build_nfl_dashboard.py
-    python scripts/build_nfl_dashboard.py --week 1 --year 2026 --season-type 2
+    python scripts/build_nfl_dashboard.py --week 1 --year 2026 --season-type 1
 """
 
 import argparse
@@ -57,26 +57,12 @@ ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nf
 REQUEST_TIMEOUT = 20
 
 # seasontype: 1=preseason, 2=regular season, 3=postseason
-SEASON_TYPE_DEFAULT = 1
+SEASON_TYPE_DEFAULT = 1  # Updated to default to preseason
 SEASON_YEAR_DEFAULT = 2026
-
-# 2026 regular-season Week 1 runs Sept 9-15 (confirmed against ESPN's own
-# calendar). Used to deterministically default --week to 1 whenever this
-# script is run before the season starts, rather than asking ESPN to infer
-# "the current week" with no date given -- that inference is undocumented
-# behavior, and doesn't reliably map onto Week 1 during the real calendar
-# gap between now and the season (we're not even into preseason yet as of
-# this writing). Mirrors build_dashboard.py's WEEK1_START/derive_week for CFB.
-WEEK1_START = date(2026, 8, 6)
 
 # Regional-pick heuristic priority for the Omaha/Lincoln, NE market (no home
 # NFL team). Checked in order; first match in a multi-game window wins.
 REGIONAL_TEAM_PRIORITY = ["Kansas City Chiefs", "Denver Broncos"]
-
-# "Main channels" here just means "has a national broadcast at all" -- ESPN's
-# API already only returns games with a real network/streaming assignment
-# (CBS, FOX, NBC, ESPN, ABC, Amazon, Netflix, NFL Network, Peacock), so
-# there's no separate filter needed the way CFB needed one for ESPNU/ACCN/etc.
 
 
 # ---------------------------------------------------------------------------
@@ -107,7 +93,7 @@ def broadcast_label(event):
         short = gb.get("media", {}).get("shortName")
         if short and short not in names:
             names.append(short)
-    return "/".join(names) if names else None
+    return "/".join(names) if names else "TBD"
 
 
 # ---------------------------------------------------------------------------
@@ -150,21 +136,6 @@ def _fd_home_spread(odds):
 # Regional pick heuristic (Omaha / Lincoln, NE)
 # ---------------------------------------------------------------------------
 
-def derive_week(today, season_type):
-    """
-    Deterministically pick a week when --week isn't given, instead of
-    trusting ESPN's undocumented "current week" inference. Only meaningful
-    for regular season (seasontype 2) -- preseason/postseason callers should
-    pass --week explicitly.
-    """
-    if season_type != SEASON_TYPE_DEFAULT:
-        return 1, False
-    if today < WEEK1_START:
-        return 1, True  # before the season starts: default to week 1, flag it
-    days_since = (today - WEEK1_START).days
-    return (days_since // 7) + 1, False
-
-
 def pick_regional_game(games_in_window):
     """
     Given all games sharing one network + kickoff window, guess which one
@@ -199,7 +170,6 @@ def build(year, week, season_type, sharp_key):
 
     # days[date_key][slot] -> list of game entries
     days = {}
-    skipped_no_broadcast = 0
 
     for event in events:
         competitions = event.get("competitions", [])
@@ -213,9 +183,6 @@ def build(year, week, season_type, sharp_key):
             continue
 
         outlet = broadcast_label(event)
-        if not outlet:
-            skipped_no_broadcast += 1
-            continue
 
         start_raw = event.get("date")
         try:
@@ -251,8 +218,6 @@ def build(year, week, season_type, sharp_key):
         }
         days.setdefault(day_key, {}).setdefault(slot, []).append(game_entry)
 
-    log(f"  {skipped_no_broadcast} games skipped (no broadcast info yet)")
-
     day_list = []
     for day_key in sorted(days.keys()):
         slots_for_day = days[day_key]
@@ -264,8 +229,6 @@ def build(year, week, season_type, sharp_key):
             best_score = games_sorted[0]["matchup_score"] if games_sorted else None
 
             # Regional pick heuristic: group this window's games by channel
-            # (a "CBS" window and a "FOX" window are simultaneous but
-            # separate -- Omaha gets one game from each, not one overall).
             by_channel = {}
             for g in games_sorted:
                 by_channel.setdefault(g["channel"], []).append(g)
@@ -315,24 +278,12 @@ def build(year, week, season_type, sharp_key):
 def parse_args():
     p = argparse.ArgumentParser(description="Build the NFL betting dashboard JSON.")
     p.add_argument("--year", type=int, default=SEASON_YEAR_DEFAULT, help="Season year")
-    p.add_argument("--week", type=int, required=False,
-                    help="NFL week number (default: auto from Sept 9, 2026 Week 1 start)")
+    p.add_argument("--week", type=int, required=False, help="NFL week number (default: ESPN's current week)")
     p.add_argument("--season-type", type=int, default=SEASON_TYPE_DEFAULT,
                     help="1=preseason, 2=regular season, 3=postseason")
     p.add_argument("--out", default=None, help="Output path (default: data/nfl_dashboard.json)")
     return p.parse_args()
 
-def autodetect_season(year):
-    for season_type in (1, 2, 3):
-        for week in range(1, 25):
-            try:
-                sb = get_scoreboard(year, week, season_type)
-                if sb.get("events"):
-                    return season_type, week
-            except requests.HTTPError:
-                pass
-
-    raise RuntimeError("No NFL schedule found.")
 
 def main():
     args = parse_args()
@@ -341,13 +292,19 @@ def main():
     if not sharp_key:
         sys.exit("Missing SHARPAPI_KEY environment variable (get one at sharpapi.io)")
 
-    if args.week is None:
-        season_type, week = autodetect_season(args.year)
-    else:
-        season_type = args.season_type
-        week = args.week
+    week = args.week
+    if week is None:
+        # ESPN infers "current week" fine with no week param at all.
+        resp = requests.get(
+            ESPN_SCOREBOARD_URL,
+            params={"seasontype": args.season_type},
+            timeout=REQUEST_TIMEOUT,
+        )
+        resp.raise_for_status()
+        week = resp.json().get("week", {}).get("number", 1)
+        log(f"No --week given; ESPN reports current week as {week}.")
 
-    output = build(args.year, week, season_type, sharp_key)
+    output = build(args.year, week, args.season_type, sharp_key)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "nfl_dashboard.json")
