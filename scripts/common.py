@@ -169,6 +169,10 @@ def match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
     was too loose for that row (a real odds row belongs to exactly one
     game) -- we drop it from both instead of silently duplicating it.
     """
+    # Log raw teams available in odds_rows on the first lookup
+    if not team_cache:
+        log(f"DEBUG: First 3 SharpAPI rows in payload: {[ (r.get('home_team'), r.get('away_team')) for r in odds_rows[:3] ]}")
+        
     cache_key = (home_team, away_team)
     if cache_key in team_cache:
         return team_cache[cache_key]
