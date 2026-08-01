@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01T16:28:56.960637+00:00",
+  "generated_at": "2026-08-01T16:34:33.193869+00:00",
   "season": 2026,
   "week": 1,
   "season_type": 1,
@@ -26,7 +26,7 @@
               "away_team": "Carolina Panthers",
               "away_abbr": "CAR",
               "matchup_score": 999,
-              "channel": "TBD",
+              "channel": "NBC",
               "venue": "Tom Benson Hall of Fame Stadium",
               "neutral_site": true,
               "odds": {
