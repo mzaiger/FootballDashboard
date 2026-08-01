@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01T09:38:02.255831+00:00",
+  "generated_at": "2026-08-01T11:15:11.289739+00:00",
   "season": 2026,
   "week": 1,
   "main_channels": [
@@ -397,16 +397,7 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {
-                    "away": {
-                      "line": null,
-                      "american": 1400
-                    },
-                    "home": {
-                      "line": null,
-                      "american": -3200
-                    }
-                  }
+                  "moneyline": {}
                 },
                 "fanduel": {
                   "spread": {},
