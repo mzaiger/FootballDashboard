@@ -157,8 +157,6 @@ def derive_week(today, season_type):
     for regular season (seasontype 2) -- preseason/postseason callers should
     pass --week explicitly.
     """
-    if season_type != SEASON_TYPE_DEFAULT:
-        return 1, False
     if today < WEEK1_START:
         return 1, True  # before the season starts: default to week 1, flag it
     days_since = (today - WEEK1_START).days
