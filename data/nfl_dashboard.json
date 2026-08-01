@@ -1,10 +1,48 @@
 {
-  "generated_at": "2026-08-01T16:21:18.760342+00:00",
+  "generated_at": "2026-08-01T16:28:56.960637+00:00",
   "season": 2026,
   "week": 1,
   "season_type": 1,
   "display_timezone": "America/Chicago",
-  "total_games": 0,
+  "total_games": 1,
   "regional_market_note": "regional_picks_omaha_lincoln is an UNOFFICIAL heuristic guess (Kansas City Chiefs, then Denver Broncos, when a network window has multiple games) -- not scraped from an actual coverage map. Verify at https://506sports.com/nfl.php before relying on it.",
-  "days": []
+  "days": [
+    {
+      "date": "2026-08-06",
+      "weekday": "Thursday",
+      "game_count": 1,
+      "time_slots": [
+        {
+          "slot": "Evening",
+          "best_matchup_score": null,
+          "regional_picks_omaha_lincoln": [],
+          "games": [
+            {
+              "id": "401873271",
+              "start_time": "2026-08-07T00:00Z",
+              "start_time_tbd": false,
+              "home_team": "Arizona Cardinals",
+              "home_abbr": "ARI",
+              "away_team": "Carolina Panthers",
+              "away_abbr": "CAR",
+              "matchup_score": 999,
+              "channel": "TBD",
+              "venue": "Tom Benson Hall of Fame Stadium",
+              "neutral_site": true,
+              "odds": {
+                "draftkings": {
+                  "spread": {},
+                  "moneyline": {}
+                },
+                "fanduel": {
+                  "spread": {},
+                  "moneyline": {}
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
