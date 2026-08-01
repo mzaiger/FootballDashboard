@@ -241,6 +241,13 @@ def build(year, week, season_type, sharp_key):
             games_sorted = sorted(slots_for_day[slot_name], key=lambda x: x["matchup_score"])
             best_score = games_sorted[0]["matchup_score"] if games_sorted else None
 
+            # Slot Pick: NFL doesn't have AP rankings to fall back on, so the
+            # pick is simply the game with the closest (most competitive)
+            # spread in this window -- games_sorted is already sorted that
+            # way, so index 0 is it.
+            for i, g in enumerate(games_sorted):
+                g["is_slot_pick"] = (i == 0)
+
             # Regional pick heuristic: group this window's games by channel
             by_channel = {}
             for g in games_sorted:
@@ -258,6 +265,7 @@ def build(year, week, season_type, sharp_key):
             time_slots.append({
                 "slot": slot_name,
                 "best_matchup_score": best_score if best_score != 999 else None,
+                "pick_reason": "closest_spread" if games_sorted else None,
                 "regional_picks_omaha_lincoln": regional_picks,
                 "games": games_sorted,
             })
