@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-07-31T00:00:00+00:00",
+  "season": 2026,
+  "week": 1,
+  "main_channels": ["ABC", "CBS", "ESPN", "ESPN2", "FOX", "FS1", "NBC"],
+  "total_games": 2,
+  "days": [
+    {
+      "date": "2026-08-22",
+      "weekday": "Saturday",
+      "games": [
+        {
+          "id": 0,
+          "start_time": "2026-08-22T19:30:00Z",
+          "start_time_tbd": false,
+          "home_team": "SAMPLE Home Team",
+          "home_conference": "Sample Conference",
+          "home_rank": 3,
+          "away_team": "SAMPLE Away Team",
+          "away_conference": "Sample Conference",
+          "away_rank": 7,
+          "matchup_score": 10,
+          "channel": "ABC",
+          "venue": "Sample Stadium",
+          "neutral_site": false,
+          "odds": {
+            "draftkings": {
+              "spread": {
+                "home": { "line": -3.5, "american": -110 },
+                "away": { "line": 3.5, "american": -110 }
+              },
+              "moneyline": {
+                "home": { "american": -170 },
+                "away": { "american": 145 }
+              }
+            },
+            "fanduel": {
+              "spread": {
+                "home": { "line": -3, "american": -115 },
+                "away": { "line": 3, "american": -105 }
+              },
+              "moneyline": {
+                "home": { "american": -165 },
+                "away": { "american": 140 }
+              }
+            }
+          }
+        },
+        {
+          "id": 1,
+          "start_time": "2026-08-22T23:00:00Z",
+          "start_time_tbd": false,
+          "home_team": "SAMPLE Unranked Home",
+          "home_conference": "Sample Conference",
+          "home_rank": null,
+          "away_team": "SAMPLE Unranked Away",
+          "away_conference": "Sample Conference",
+          "away_rank": null,
+          "matchup_score": 52,
+          "channel": "ESPN2",
+          "venue": "Sample Field",
+          "neutral_site": false,
+          "odds": {
+            "draftkings": { "spread": {}, "moneyline": {} },
+            "fanduel": { "spread": {}, "moneyline": {} }
+          }
+        }
+      ]
+    }
+  ],
+  "_note": "This is placeholder sample data. Run `python scripts/build_dashboard.py` with your CFBD_API_KEY and SHARPAPI_KEY set to replace this with the real week's schedule and odds."
+}
