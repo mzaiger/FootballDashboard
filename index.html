@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFB Week Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0d10;
+    --bg-panel: #12161b;
+    --line: #232a31;
+    --turf: #2f8f5b;
+    --turf-bright: #43c179;
+    --chalk: #e8ecef;
+    --dim: #8a95a1;
+    --gold: #e0a63c;
+    --dk-green: #53d337;
+    --fd-blue: #1493ff;
+    --loss-red: #e2584a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse at top, #131a1f 0%, var(--bg) 55%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0 1px, transparent 1px 64px);
+    color:var(--chalk);
+    font-family:'JetBrains Mono', monospace;
+    min-height:100vh;
+    padding-bottom:4rem;
+  }
+  .hero{
+    padding:2.5rem 1.5rem 1.75rem;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(120deg, rgba(47,143,91,0.16), transparent 55%);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:1180px;margin:0 auto;position:relative;}
+  .eyebrow{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.22em;
+    font-size:0.72rem;
+    color:var(--turf-bright);
+    font-weight:600;
+  }
+  h1{
+    font-family:'Oswald',sans-serif;
+    font-weight:700;
+    font-size:clamp(2rem, 5vw, 3.1rem);
+    margin:0.35rem 0 0.5rem;
+    letter-spacing:-0.01em;
+  }
+  .meta-row{
+    display:flex; flex-wrap:wrap; gap:1.25rem;
+    color:var(--dim); font-size:0.82rem; margin-top:0.5rem;
+  }
+  .meta-row b{color:var(--chalk); font-weight:600;}
+  .channels{
+    display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.9rem;
+  }
+  .chan-pill{
+    border:1px solid var(--line); border-radius:999px;
+    padding:0.15rem 0.65rem; font-size:0.72rem; color:var(--dim);
+  }
+
+  main{max-width:1180px;margin:0 auto; padding:0 1.5rem;}
+
+  .day-block{margin-top:2.5rem;}
+  .day-heading{
+    display:flex; align-items:baseline; gap:0.75rem;
+    padding-bottom:0.6rem; margin-bottom:1.1rem;
+    border-bottom:2px solid var(--turf);
+  }
+  .day-heading .weekday{
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:1.5rem;
+    text-transform:uppercase; letter-spacing:0.02em;
+  }
+  .day-heading .date{color:var(--dim); font-size:0.85rem;}
+  .day-heading .count{
+    margin-left:auto; color:var(--dim); font-size:0.78rem;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(340px, 1fr));
+    gap:1rem;
+  }
+
+  .card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:1.1rem 1.2rem 1.2rem;
+    position:relative;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .card:hover{border-color:#39424b; transform:translateY(-1px);}
+  .card.marquee{border-color:rgba(224,166,60,0.55); box-shadow:0 0 0 1px rgba(224,166,60,0.12), 0 8px 24px -12px rgba(224,166,60,0.25);}
+
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;}
+  .score-badge{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.68rem;
+    text-transform:uppercase; letter-spacing:0.08em; color:var(--turf-bright);
+    border:1px solid rgba(67,193,121,0.35); border-radius:999px;
+    padding:0.2rem 0.55rem; white-space:nowrap;
+  }
+  .marquee .score-badge{color:var(--gold); border-color:rgba(224,166,60,0.45);}
+  .channel-pill{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
+    background:var(--turf); color:#04140a; border-radius:5px;
+    padding:0.2rem 0.5rem; letter-spacing:0.02em;
+  }
+
+  .matchup{margin:0.85rem 0 0.6rem;}
+  .team-row{
+    display:flex; align-items:center; gap:0.5rem;
+    font-family:'Oswald',sans-serif; font-size:1.08rem; font-weight:600;
+    padding:0.15rem 0;
+  }
+  .rank{
+    font-size:0.68rem; color:var(--gold); border:1px solid rgba(224,166,60,0.4);
+    border-radius:4px; padding:0.05rem 0.3rem; min-width:1.6rem; text-align:center;
+  }
+  .rank.unranked{visibility:hidden;}
+  .at{color:var(--dim); font-size:0.72rem; font-family:'JetBrains Mono',monospace; padding-left:0.1rem;}
+
+  .subline{
+    color:var(--dim); font-size:0.75rem; display:flex; gap:1rem; flex-wrap:wrap;
+    margin-bottom:0.9rem;
+  }
+
+  table.odds{
+    width:100%; border-collapse:collapse; font-size:0.78rem;
+  }
+  table.odds th{
+    text-align:right; color:var(--dim); font-weight:500;
+    font-size:0.66rem; text-transform:uppercase; letter-spacing:0.05em;
+    padding-bottom:0.35rem;
+  }
+  table.odds th:first-child, table.odds td:first-child{text-align:left;}
+  table.odds td{
+    text-align:right; padding:0.3rem 0; border-top:1px solid var(--line);
+  }
+  .book{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
+  }
+  .book.dk{color:var(--dk-green);}
+  .book.fd{color:var(--fd-blue);}
+  .num.neg{color:var(--loss-red);}
+  .empty-cell{color:#3d454d;}
+
+  .no-odds{color:var(--dim); font-size:0.75rem; padding:0.4rem 0;}
+
+  footer{
+    max-width:1180px; margin:3rem auto 0; padding:0 1.5rem;
+    color:var(--dim); font-size:0.75rem; border-top:1px solid var(--line); padding-top:1rem;
+  }
+  .status{max-width:1180px;margin:2rem auto;padding:0 1.5rem;color:var(--dim);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">College Football &middot; TV Schedule + Odds Board</div>
+    <h1 id="pageTitle">Loading week&hellip;</h1>
+    <div class="meta-row">
+      <span>Last updated: <b id="generatedAt">—</b></span>
+      <span><b id="totalGames">—</b> games on main channels</span>
+    </div>
+    <div class="channels" id="channelList"></div>
+  </div>
+</div>
+
+<main id="days"></main>
+
+<div class="status" id="statusMsg" style="display:none;"></div>
+
+<footer>
+  Matchup rank = combined AP Top 25 rank of both teams (lower is more marquee, unranked teams score 26).
+  Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule &amp; rankings via CollegeFootballData.com.
+</footer>
+
+<script>
+const DATA_URL = 'data/dashboard.json';
+
+function fmtAmerican(n) {
+  if (n === null || n === undefined || n === '') return null;
+  const num = Number(n);
+  if (Number.isNaN(num)) return null;
+  return num > 0 ? `+${num}` : `${num}`;
+}
+
+function fmtLine(n) {
+  if (n === null || n === undefined || n === '') return null;
+  const num = Number(n);
+  if (Number.isNaN(num)) return null;
+  return num > 0 ? `+${num}` : `${num}`;
+}
+
+function oddsCell(entry) {
+  if (!entry || (entry.line === undefined && entry.american === undefined)) {
+    return '<span class="empty-cell">—</span>';
+  }
+  const line = fmtLine(entry.line);
+  const am = fmtAmerican(entry.american);
+  const amCls = (typeof entry.american === 'number' && entry.american < 0) ? 'num neg' : 'num';
+  if (line !== null && am !== null) return `${line} <span class="${amCls}">(${am})</span>`;
+  if (am !== null) return `<span class="${amCls}">${am}</span>`;
+  if (line !== null) return line;
+  return '<span class="empty-cell">—</span>';
+}
+
+function rankBadge(rank) {
+  return rank ? `<span class="rank">#${rank}</span>` : `<span class="rank unranked">#--</span>`;
+}
+
+function kickoffTime(iso, tbd) {
+  if (tbd) return 'Time TBD';
+  try {
+    const d = new Date(iso);
+    return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+  } catch (e) { return ''; }
+}
+
+function renderGame(g) {
+  const marquee = g.home_rank && g.away_rank;
+  const books = ['draftkings', 'fanduel'];
+  const bookLabel = { draftkings: 'DK', fanduel: 'FD' };
+  const bookCls = { draftkings: 'dk', fanduel: 'fd' };
+
+  const hasAnyOdds = books.some(b =>
+    Object.keys((g.odds?.[b]?.spread) || {}).length ||
+    Object.keys((g.odds?.[b]?.moneyline) || {}).length
+  );
+
+  let rows = '';
+  books.forEach(b => {
+    const spread = g.odds?.[b]?.spread || {};
+    const ml = g.odds?.[b]?.moneyline || {};
+    rows += `<tr>
+      <td class="book ${bookCls[b]}">${bookLabel[b]}</td>
+      <td>${oddsCell(spread.away)}</td>
+      <td>${oddsCell(spread.home)}</td>
+      <td>${oddsCell(ml.away)}</td>
+      <td>${oddsCell(ml.home)}</td>
+    </tr>`;
+  });
+
+  const oddsBlock = hasAnyOdds
+    ? `<table class="odds">
+        <thead><tr><th></th><th>Away Spd</th><th>Home Spd</th><th>Away ML</th><th>Home ML</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`
+    : `<div class="no-odds">Odds not yet posted</div>`;
+
+  return `
+  <div class="card ${marquee ? 'marquee' : ''}">
+    <div class="card-top">
+      <span class="score-badge">Rank Sum ${g.matchup_score}</span>
+      <span class="channel-pill">${g.channel}</span>
+    </div>
+    <div class="matchup">
+      <div class="team-row">${rankBadge(g.away_rank)} ${g.away_team}</div>
+      <div class="at">@</div>
+      <div class="team-row">${rankBadge(g.home_rank)} ${g.home_team}</div>
+    </div>
+    <div class="subline">
+      <span>${kickoffTime(g.start_time, g.start_time_tbd)}</span>
+      <span>${g.venue || ''}</span>
+    </div>
+    ${oddsBlock}
+  </div>`;
+}
+
+function renderDay(day) {
+  const d = new Date(day.date + 'T00:00:00');
+  const dateStr = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+  return `
+  <section class="day-block">
+    <div class="day-heading">
+      <span class="weekday">${day.weekday}</span>
+      <span class="date">${dateStr}</span>
+      <span class="count">${day.games.length} game${day.games.length === 1 ? '' : 's'}</span>
+    </div>
+    <div class="grid">
+      ${day.games.map(renderGame).join('')}
+    </div>
+  </section>`;
+}
+
+async function init() {
+  const statusEl = document.getElementById('statusMsg');
+  try {
+    const res = await fetch(DATA_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    document.getElementById('pageTitle').textContent = `Week ${data.week} \u2014 ${data.season}`;
+    document.getElementById('generatedAt').textContent = new Date(data.generated_at).toLocaleString();
+    document.getElementById('totalGames').textContent = data.total_games;
+    document.getElementById('channelList').innerHTML =
+      data.main_channels.map(c => `<span class="chan-pill">${c}</span>`).join('');
+
+    const daysEl = document.getElementById('days');
+    if (!data.days.length) {
+      statusEl.style.display = 'block';
+      statusEl.textContent = 'No main-channel games found for this week yet — check back closer to kickoff.';
+      return;
+    }
+    daysEl.innerHTML = data.days.map(renderDay).join('');
+  } catch (err) {
+    statusEl.style.display = 'block';
+    statusEl.textContent = `Couldn't load data/dashboard.json (${err.message}). Run scripts/build_dashboard.py first.`;
+  }
+}
+
+init();
+</script>
+</body>
+</html>
