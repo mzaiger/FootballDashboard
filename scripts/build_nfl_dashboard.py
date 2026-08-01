@@ -80,21 +80,34 @@ def get_scoreboard(year, week, season_type):
 
 
 def broadcast_label(event):
-    """Join all national broadcast names for a game, e.g. 'CBS' or 'FOX/CBS'."""
+    """Join all national broadcast names for a game across all ESPN payload structures."""
     names = []
+    
+    # 1. Top-level event broadcasts
     for b in event.get("broadcasts", []):
         for n in b.get("names", []):
-            if n not in names:
+            if n and n not in names:
                 names.append(n)
-    if names:
-        return "/".join(names)
-    # geoBroadcasts is the fallback some events use instead of broadcasts[]
+                
+    # 2. Nested competition broadcasts (often populated when top-level is empty)
+    for comp in event.get("competitions", []):
+        for b in comp.get("broadcasts", []):
+            for n in b.get("names", []):
+                if n and n not in names:
+                    names.append(n)
+            # Check market/media type shortNames
+            market = b.get("market")
+            media_name = b.get("media", {}).get("shortName")
+            if media_name and media_name not in names:
+                names.append(media_name)
+
+    # 3. geoBroadcasts fallback
     for gb in event.get("geoBroadcasts", []):
         short = gb.get("media", {}).get("shortName")
         if short and short not in names:
             names.append(short)
-    return "/".join(names) if names else "TBD"
 
+    return "/".join(names) if names else "TBD"
 
 # ---------------------------------------------------------------------------
 # Matchup ranking
