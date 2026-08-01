@@ -18,6 +18,7 @@ Usage:
 
 import argparse
 import difflib
+import re
 import json
 import os
 import sys
@@ -159,6 +160,24 @@ def _normalize(name):
     )
 
 
+# SharpAPI does not return the spread number as its own field. For
+# market_type "spread", the line is embedded in the `selection` string
+# itself, e.g. "Georgia Bulldogs -7" or "Ohio State Buckeyes +3.5".
+# Moneyline `selection` is just the team name with no trailing number.
+# See https://sharpapi.io/odds/ncaaf (sample response) and the
+# opportunities/ev example in the SharpAPI quickstart docs.
+_SPREAD_SELECTION_RE = re.compile(r"^(.*?)\s([+-]\d+(?:\.\d+)?)$")
+
+
+def _parse_selection(selection, market):
+    """Split a selection string into (team_name_part, line_or_None)."""
+    if market == "spread":
+        m = _SPREAD_SELECTION_RE.match(selection.strip())
+        if m:
+            return m.group(1), float(m.group(2))
+    return selection, None
+
+
 def match_odds_for_game(home_team, away_team, odds_rows, team_cache):
     """
     SharpAPI team names don't always match CFBD team names exactly
@@ -184,14 +203,14 @@ def match_odds_for_game(home_team, away_team, odds_rows, team_cache):
         market = row.get("market_type")
         if book not in result or market not in ("spread", "moneyline"):
             continue
-        selection = row.get("selection", "")
-        side = "home" if _fuzzy_team(home_norm, selection) else (
-            "away" if _fuzzy_team(away_norm, selection) else None
+        team_part, line_val = _parse_selection(row.get("selection", ""), market)
+        side = "home" if _fuzzy_team(home_norm, team_part) else (
+            "away" if _fuzzy_team(away_norm, team_part) else None
         )
         if side is None:
             continue
         result[book][market][side] = {
-            "line": row.get("point", row.get("odds_point")),
+            "line": line_val,
             "american": row.get("odds_american"),
         }
 
