@@ -134,9 +134,13 @@ python scripts/build_nfl_dashboard.py --season-type 1        # 1=preseason, 2=re
 python scripts/build_dashboard.py --out /tmp/test.json       # write somewhere else
 ```
 
-If no `--week` is given: CFB auto-derives the current week from the
-season-1 kickoff date (`WEEK1_START = Aug 22, 2026` in
-`scripts/build_dashboard.py`); NFL just asks ESPN what week it currently is.
+If no `--week` is given, both scripts default deterministically to week 1
+before their season starts, rather than relying on an API's implicit
+"current week" behavior: CFB from `WEEK1_START = Aug 22, 2026` in
+`scripts/build_dashboard.py`, NFL from `WEEK1_START = Sept 9, 2026` in
+`scripts/build_nfl_dashboard.py`. Run it any time before kickoff and you'll
+still get the real Week 1 schedule and broadcast info — odds will just be
+sparse until DraftKings/FanDuel post lines closer to game day.
 
 ## 3. Deploy: GitHub Pages + daily Actions run
 
