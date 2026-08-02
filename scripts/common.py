@@ -19,7 +19,7 @@ SHARPAPI_BASE = "https://api.sharpapi.io/api/v1"
 REQUEST_TIMEOUT = 20
 SHARPAPI_PAGE_LIMIT = 200  # ask for big pages; we still follow pagination
 
-# Timezone used to bucket games into Morning/Noon/Afternoon/Evening/Late
+# Timezone used to bucket games into Morning/Noon/Afternoon/Prime Time/Late
 # Night windows. Central, per your preference. Change to e.g.
 # "America/New_York" if you'd rather bucket by Eastern.
 DISPLAY_TIMEZONE = "America/Chicago"
@@ -27,10 +27,10 @@ DISPLAY_TIMEZONE = "America/Chicago"
 # Slot boundaries are the hour (in DISPLAY_TIMEZONE) each window ends at.
 # A game exactly on a boundary falls into the earlier window.
 TIME_SLOT_BOUNDARIES = [
-    ("Morning", 12),
-    ("Noon", 15),
+    ("Morning", 11),
+    ("Noon", 14),
     ("Afternoon", 18),
-    ("Evening", 21),
+    ("Prime Time", 21),
     ("Late Night", 24),
 ]
 TIME_SLOT_ORDER = [name for name, _ in TIME_SLOT_BOUNDARIES] + ["Time TBD"]
