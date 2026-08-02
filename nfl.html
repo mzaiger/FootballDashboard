@@ -158,7 +158,8 @@
      of wrapping onto a second line. */
   @media (max-width: 1400px){
     body.row-view .grid{overflow-x:visible;}
-    body.row-view .card{overflow-x:auto; scrollbar-width:thin;}
+    body.row-view .card{overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none;}
+    body.row-view .card::-webkit-scrollbar{display:none;}
   }
   @media (max-width: 900px){
     body.row-view main{padding:0 1.5rem;}
