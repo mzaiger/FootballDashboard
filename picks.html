@@ -110,7 +110,7 @@
     padding:0.45rem 0.9rem;
     position:relative;
   }
-  body.row-view .card.your-pick{padding-top:1rem;}
+  body.row-view .card.slot-banner{padding-top:1rem;}
   body.row-view .pick-banner{
     position:absolute; top:-0.35rem; left:0.9rem;
     width:188px;
@@ -126,14 +126,12 @@
   body.row-view .card-top .channel-pill{
     grid-column:2; grid-row:1 / 3; justify-self:start; align-self:center;
   }
-  /* Slot Pick / Nebraska flags float in the top-right corner like the pick
-     banner does in the top-left, instead of taking up a grid track. */
-  body.row-view .tag-pill{
-    position:absolute; top:-0.6rem; font-size:0.58rem;
-    padding:0.14rem 0.4rem; white-space:nowrap; z-index:1;
+  /* Nebraska flag sits inline with the matchup text, not pinned to the
+     right edge of the card. */
+  body.row-view .matchup .tag-pill{
+    font-size:0.58rem; padding:0.14rem 0.4rem; white-space:nowrap;
+    vertical-align:middle; margin-left:0.4rem;
   }
-  body.row-view .tag-pill.neb{right:0.9rem;}
-  body.row-view .tag-pill.slot{right:6.4rem;}
   body.row-view .matchup{
     grid-column:3; grid-row:1;
     margin:0; overflow-x:visible; white-space:normal;
@@ -177,7 +175,6 @@
     body.row-view .card-top{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; width:auto;}
     body.row-view .card-top .score-badge,
     body.row-view .card-top .channel-pill{grid-column:auto; grid-row:auto;}
-    body.row-view .tag-pill{position:static; top:auto; right:auto;}
     body.row-view .matchup,
     body.row-view .subline,
     body.row-view table.odds,
@@ -280,8 +277,8 @@
   .card.your-pick{
     border:2px solid var(--pick-yellow);
     box-shadow:0 0 0 1px rgba(255,214,10,0.25), 0 10px 26px -12px rgba(255,214,10,0.4);
-    padding-top:2.4rem;
   }
+  .card.slot-banner{padding-top:2.4rem;}
   .pick-banner{
     position:absolute; top:0; left:0; right:0;
     background:var(--pick-yellow); color:#1a1400;
@@ -306,8 +303,8 @@
     font-family:'Oswald',sans-serif; font-weight:600; font-size:0.66rem;
     text-transform:uppercase; letter-spacing:0.06em;
     border-radius:5px; padding:0.2rem 0.5rem;
+    vertical-align:middle; margin-left:0.5rem;
   }
-  .tag-pill.slot{background:rgba(255,214,10,0.16); color:var(--pick-yellow); border:1px solid rgba(255,214,10,0.4);}
   .tag-pill.neb{background:rgba(224,166,60,0.16); color:var(--gold); border:1px solid rgba(224,166,60,0.4);}
 
   .rank{
@@ -544,23 +541,21 @@ function renderGame(sport, g) {
   const awayLabel = sport === 'cfb' ? `${rankBadge(g.away_rank)} ${g.away_team}` : g.away_team;
   const homeLabel = sport === 'cfb' ? `${rankBadge(g.home_rank)} ${g.home_team}` : g.home_team;
 
-  const tags = [
-    isSlotPick ? '<span class="tag-pill slot">\u2b50 Slot Pick</span>' : '',
-    isNebraska ? '<span class="tag-pill neb">Nebraska</span>' : '',
-  ].filter(Boolean).join(' ');
+  const nebTag = isNebraska ? '<span class="tag-pill neb">Nebraska</span>' : '';
+  const cardClasses = [hasPick ? 'your-pick' : '', isSlotPick ? 'slot-banner' : ''].filter(Boolean).join(' ');
 
   return `
-  <div class="card ${hasPick ? 'your-pick' : ''}">
-    ${hasPick ? '<div class="pick-banner">\u2b50 My Pick</div>' : ''}
+  <div class="card ${cardClasses}">
+    ${isSlotPick ? '<div class="pick-banner">\u2b50 Slot Pick</div>' : ''}
     <div class="card-top">
       <span class="score-badge">${scoreLabel}</span>
-      ${tags}
       <span class="channel-pill">${g.channel}</span>
     </div>
     <div class="matchup">
       <span class="team">${awayLabel}</span>
       <span class="at">@</span>
       <span class="team">${homeLabel}</span>
+      ${nebTag}
     </div>
     <div class="subline">
       <span>${kickoffTime(g.start_time, g.start_time_tbd)}</span>
