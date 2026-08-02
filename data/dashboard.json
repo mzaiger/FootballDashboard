@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01T21:19:32.969950+00:00",
+  "generated_at": "2026-08-02T02:56:26.682409+00:00",
   "season": 2026,
   "week": 1,
   "main_channels": [
@@ -154,7 +154,16 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {}
+                  "moneyline": {
+                    "home": {
+                      "line": null,
+                      "american": -198
+                    },
+                    "away": {
+                      "line": null,
+                      "american": 164
+                    }
+                  }
                 },
                 "fanduel": {
                   "spread": {},
@@ -541,7 +550,16 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {}
+                  "moneyline": {
+                    "home": {
+                      "line": null,
+                      "american": -258
+                    },
+                    "away": {
+                      "line": null,
+                      "american": 210
+                    }
+                  }
                 },
                 "fanduel": {
                   "spread": {},
@@ -640,7 +658,12 @@
               "odds": {
                 "draftkings": {
                   "spread": {},
-                  "moneyline": {}
+                  "moneyline": {
+                    "away": {
+                      "line": null,
+                      "american": 2500
+                    }
+                  }
                 },
                 "fanduel": {
                   "spread": {},
@@ -891,6 +914,10 @@
                   "spread": {},
                   "moneyline": {
                     "home": {
+                      "line": null,
+                      "american": -1800
+                    },
+                    "away": {
                       "line": null,
                       "american": 1000
                     }
