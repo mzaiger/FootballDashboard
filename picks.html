@@ -126,12 +126,6 @@
   body.row-view .card-top .channel-pill{
     grid-column:2; grid-row:1 / 3; justify-self:start; align-self:center;
   }
-  /* Nebraska flag sits inline with the matchup text, not pinned to the
-     right edge of the card. */
-  body.row-view .matchup .tag-pill{
-    font-size:0.58rem; padding:0.14rem 0.4rem; white-space:nowrap;
-    vertical-align:middle; margin-left:0.4rem;
-  }
   body.row-view .matchup{
     grid-column:3; grid-row:1;
     margin:0; overflow-x:visible; white-space:normal;
@@ -299,13 +293,6 @@
     background:var(--turf); color:#04140a; border-radius:5px;
     padding:0.2rem 0.5rem; letter-spacing:0.02em;
   }
-  .tag-pill{
-    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.66rem;
-    text-transform:uppercase; letter-spacing:0.06em;
-    border-radius:5px; padding:0.2rem 0.5rem;
-    vertical-align:middle; margin-left:0.5rem;
-  }
-  .tag-pill.neb{background:rgba(224,166,60,0.16); color:var(--gold); border:1px solid rgba(224,166,60,0.4);}
 
   .rank{
     font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--gold);
@@ -501,10 +488,7 @@ function filterDataset(sport, data) {
 }
 
 function renderGame(sport, g) {
-  const pick = getPick(sport, g.id);
-  const hasPick = !!pick;
   const isSlotPick = !!g.is_slot_pick;
-  const isNebraska = sport === 'cfb' && !!g.is_nebraska;
   const books = ['draftkings', 'fanduel'];
   const bookLabel = { draftkings: 'DK', fanduel: 'FD' };
   const bookCls = { draftkings: 'dk', fanduel: 'fd' };
@@ -541,8 +525,7 @@ function renderGame(sport, g) {
   const awayLabel = sport === 'cfb' ? `${rankBadge(g.away_rank)} ${g.away_team}` : g.away_team;
   const homeLabel = sport === 'cfb' ? `${rankBadge(g.home_rank)} ${g.home_team}` : g.home_team;
 
-  const nebTag = isNebraska ? '<span class="tag-pill neb">Nebraska</span>' : '';
-  const cardClasses = [hasPick ? 'your-pick' : '', isSlotPick ? 'slot-banner' : ''].filter(Boolean).join(' ');
+  const cardClasses = isSlotPick ? 'your-pick slot-banner' : '';
 
   return `
   <div class="card ${cardClasses}">
@@ -555,7 +538,6 @@ function renderGame(sport, g) {
       <span class="team">${awayLabel}</span>
       <span class="at">@</span>
       <span class="team">${homeLabel}</span>
-      ${nebTag}
     </div>
     <div class="subline">
       <span>${kickoffTime(g.start_time, g.start_time_tbd)}</span>
