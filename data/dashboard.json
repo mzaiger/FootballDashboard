@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-02T02:56:26.682409+00:00",
+  "generated_at": "2026-08-02T03:12:02.960969+00:00",
   "season": 2026,
   "week": 1,
   "main_channels": [
@@ -752,7 +752,7 @@
                 "draftkings": {
                   "spread": {},
                   "moneyline": {
-                    "home": {
+                    "away": {
                       "line": null,
                       "american": 2000
                     }
