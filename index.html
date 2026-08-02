@@ -134,6 +134,16 @@
     text-transform:uppercase; letter-spacing:0.1em; text-align:center;
     padding:0.3rem 0.5rem; border-radius:9px 9px 0 0;
   }
+  .odds td.picked{background:rgba(255,214,10,0.16); color:var(--pick-yellow); font-weight:700; border-radius:4px;}
+  .pick-toolbar{display:grid; grid-template-columns:repeat(4,1fr); gap:0.35rem; margin-top:0.6rem;}
+  .pick-btn{
+    font-family:'Inter',sans-serif; font-size:0.68rem; font-weight:600;
+    color:var(--dim); background:#161b20; border:1px solid var(--line);
+    border-radius:6px; padding:0.4rem 0.2rem; cursor:pointer;
+    text-align:center; line-height:1.15; transition:all 0.12s ease;
+  }
+  .pick-btn:hover{border-color:var(--pick-yellow); color:var(--chalk);}
+  .pick-btn.active{background:var(--pick-yellow); border-color:var(--pick-yellow); color:#1a1400;}
 
   .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;}
   .score-badge{
@@ -231,6 +241,7 @@
   <span class="brand">Betting Boards</span>
   <a href="index.html" class="active">College Football</a>
   <a href="nfl.html">NFL</a>
+  <a href="picks.html">Picks</a>
 </nav>
 
 
@@ -256,7 +267,9 @@
   Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule &amp; rankings via CollegeFootballData.com.
 </footer>
 
+<script src="picks-store.js"></script>
 <script>
+const SPORT = 'cfb';
 const DATA_URL = 'data/dashboard.json';
 
 function fmtAmerican(n) {
@@ -316,10 +329,10 @@ function renderGame(g) {
     const ml = g.odds?.[b]?.moneyline || {};
     rows += `<tr>
       <td class="book ${bookCls[b]}">${bookLabel[b]}</td>
-      <td>${oddsCell(spread.away)}</td>
-      <td>${oddsCell(spread.home)}</td>
-      <td>${oddsCell(ml.away)}</td>
-      <td>${oddsCell(ml.home)}</td>
+      <td class="${pickCellClass(SPORT, g, 'spread', 'away')}">${oddsCell(spread.away)}</td>
+      <td class="${pickCellClass(SPORT, g, 'spread', 'home')}">${oddsCell(spread.home)}</td>
+      <td class="${pickCellClass(SPORT, g, 'moneyline', 'away')}">${oddsCell(ml.away)}</td>
+      <td class="${pickCellClass(SPORT, g, 'moneyline', 'home')}">${oddsCell(ml.home)}</td>
     </tr>`;
   });
 
@@ -347,6 +360,7 @@ function renderGame(g) {
       <span>${g.venue || ''}</span>
     </div>
     ${oddsBlock}
+    ${renderPickToolbar(SPORT, g)}
   </div>`;
 }
 
@@ -406,7 +420,9 @@ async function init() {
       statusEl.textContent = 'No main-channel games found for this week yet — check back closer to kickoff.';
       return;
     }
-    daysEl.innerHTML = data.days.map(renderDay).join('');
+    const renderBoard = () => { daysEl.innerHTML = data.days.map(renderDay).join(''); };
+    renderBoard();
+    attachPickHandlers(daysEl, renderBoard);
   } catch (err) {
     statusEl.style.display = 'block';
     statusEl.textContent = `Couldn't load data/dashboard.json (${err.message}). Run scripts/build_dashboard.py first.`;
