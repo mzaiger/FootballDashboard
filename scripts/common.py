@@ -88,7 +88,32 @@ def fetch_all_odds(sharp_key, league, sportsbooks=("draftkings", "fanduel"),
             break
         offset = pagination.get("next_offset", offset + SHARPAPI_PAGE_LIMIT)
         time.sleep(0.3)  # be polite to the free tier (12 req/min)
+
+    _log_odds_breakdown(rows)
     return rows
+
+
+def _log_odds_breakdown(rows):
+    """Print a (sportsbook, market_type) row-count table to stderr.
+
+    This is the fastest way to tell "SharpAPI genuinely hasn't posted these
+    lines yet" apart from "we're getting rows back but dropping them during
+    matching" -- if a combination is missing here, it never reached us in
+    the first place, so nothing downstream can be at fault.
+    """
+    from collections import Counter
+    counts = Counter((r.get("sportsbook"), r.get("market_type")) for r in rows)
+    if not counts:
+        log("  SharpAPI returned 0 odds rows total")
+        return
+    log(f"  odds rows by (sportsbook, market): {dict(counts)}")
+    for book in ("draftkings", "fanduel"):
+        for market in ("spread", "moneyline"):
+            if counts.get((book, market), 0) == 0:
+                log(f"  NOTE: 0 rows for ({book}, {market}) -- SharpAPI hasn't posted these yet, "
+                    f"or (book, market) label differs from what we expect. Not a matching bug if "
+                    f"the count is 0 here; something to check upstream if it's nonzero but games "
+                    f"still show no data for it.")
 
 
 def _normalize(name):
@@ -107,15 +132,26 @@ def _normalize(name):
 # Moneyline `selection` is just the team name with no trailing number.
 # See https://sharpapi.io/odds/ncaaf (sample response) and the
 # opportunities/ev example in the SharpAPI quickstart docs.
-_SPREAD_SELECTION_RE = re.compile(r"^(.*?)\s([+-]\d+(?:\.\d+)?)$")
+#
+# Tolerant of: a unicode minus sign (some feeds use \u2212 instead of a
+# plain hyphen), extra/odd whitespace, and "PK"/"PICK" for a pick'em game
+# (treated as a 0 line) since none of those are guaranteed to show up but
+# cost nothing to handle if they do.
+_SPREAD_SELECTION_RE = re.compile(r"^(.*?)\s+([+-]\d+(?:\.\d+)?)$")
+_SPREAD_PICKEM_RE = re.compile(r"^(.*?)\s+(?:PK|PICK)$", re.IGNORECASE)
 
 
 def _parse_selection(selection, market):
     """Split a selection string into (team_name_part, line_or_None)."""
     if market == "spread":
-        m = _SPREAD_SELECTION_RE.match(selection.strip())
+        cleaned = selection.strip().replace("\u2212", "-")  # unicode minus -> ASCII hyphen
+        m = _SPREAD_SELECTION_RE.match(cleaned)
         if m:
             return m.group(1), float(m.group(2))
+        m = _SPREAD_PICKEM_RE.match(cleaned)
+        if m:
+            return m.group(1), 0.0
+        log(f"  WARNING: couldn't parse spread selection {selection!r} -- treating as team name only, no line")
     return selection, None
 
 
@@ -141,6 +177,9 @@ def _fuzzy_team(normalized_target, candidate_raw):
     candidate_words = _tokens(candidate_raw)
     if not target_words or not candidate_words:
         return False
+
+    disqualifying = {"state", "tech", "international", "commonwealth"}
+
     shorter, longer = (target_words, candidate_words) if len(target_words) <= len(candidate_words) else (candidate_words, target_words)
     if shorter and shorter.issubset(longer):
         extra = longer - shorter
@@ -150,9 +189,27 @@ def _fuzzy_team(normalized_target, candidate_raw):
         # the "A"/"M" split out of "A&M" (Texas vs Texas A&M) or a state
         # code like "OH" (Miami vs Miami (OH)). Mascots -- however many
         # words, e.g. "Horned Frogs", "Fighting Irish" -- are never this short.
-        disqualifying = {"state", "tech", "international", "commonwealth"}
         if not any(w in disqualifying or len(w) <= 2 for w in extra):
             return True
+        # Falls through to the ratio check below only if not disqualified;
+        # a disqualified containment match (e.g. Washington vs Washington
+        # State) must not be rescued by the fuzzy ratio either -- see the
+        # symmetric-difference guard just below, which covers this case
+        # since "state" would show up there too.
+
+    # Non-subset comparison (different word sets entirely, e.g. a genuine
+    # spelling variation). A high raw character-overlap ratio can still
+    # false-positive here purely because two DIFFERENT schools share a
+    # word, e.g. "Washington State" vs "Washington Huskies" -- both contain
+    # "washington" and are similar length, so the ratio alone clears 0.72.
+    # If the words that AREN'T shared between the two sides include a
+    # disqualifying word, that's a strong signal they're different schools
+    # no matter how high the character-overlap ratio comes out -- skip the
+    # ratio fallback entirely in that case.
+    symmetric_diff = target_words ^ candidate_words
+    if any(w in disqualifying for w in symmetric_diff):
+        return False
+
     a = " ".join(sorted(target_words))
     b = " ".join(sorted(candidate_words))
     return difflib.SequenceMatcher(None, a, b).ratio() > 0.72
