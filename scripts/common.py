@@ -29,7 +29,7 @@ DISPLAY_TIMEZONE = "America/Chicago"
 TIME_SLOT_BOUNDARIES = [
     ("Morning", 11),
     ("Noon", 14),
-    ("Afternoon", 18),
+    ("Afternoon", 17),
     ("Prime Time", 21),
     ("Late Night", 24),
 ]
