@@ -73,34 +73,50 @@
   .week-heading .week-count{margin-left:auto; color:var(--dim); font-size:0.78rem;}
   .week-empty{color:var(--dim); font-size:0.85rem; padding:0.5rem 0 1.5rem;}
 
-  /* Rows view: same card markup, laid out horizontally instead of in a tile grid */
+  /* Rows view: same card markup, laid out horizontally instead of in a tile grid.
+     Rows need more horizontal room than the tile grid did, so widen the whole
+     page's content column while this mode is active. */
+  body.row-view .site-nav,
+  body.row-view .hero-inner,
+  body.row-view main,
+  body.row-view footer,
+  body.row-view .status{
+    max-width:1760px;
+  }
   body.row-view .grid{
     display:flex; flex-direction:column; gap:0.5rem;
   }
   body.row-view .card{
-    display:flex; align-items:center; flex-wrap:wrap; gap:1.1rem;
+    display:flex; align-items:center; flex-wrap:nowrap; gap:0.85rem;
     padding:0.6rem 1rem;
   }
   body.row-view .card.slot-pick{padding-top:0.6rem;}
   body.row-view .pick-banner{
-    position:static; width:auto; border-radius:6px;
-    padding:0.3rem 0.6rem; margin-right:-0.5rem;
+    position:static; width:auto; flex-shrink:0; border-radius:6px;
+    padding:0.3rem 0.6rem; margin-right:-0.3rem; white-space:nowrap;
   }
   body.row-view .card-top{
     flex-direction:column; align-items:flex-start; gap:0.3rem;
-    width:110px; flex-shrink:0;
+    width:100px; flex-shrink:0;
   }
   body.row-view .matchup{
-    flex:1 1 220px; margin:0; overflow-x:visible; white-space:normal;
+    flex:1 1 200px; min-width:180px; margin:0; overflow-x:visible; white-space:normal;
   }
   body.row-view .subline{
-    margin:0; flex-direction:column; gap:0.15rem; width:150px; flex-shrink:0;
+    margin:0; flex-direction:column; gap:0.15rem; width:130px; flex-shrink:0;
   }
   body.row-view table.odds{width:auto; flex:0 0 auto;}
-  body.row-view .no-odds{width:150px; flex-shrink:0;}
-  body.row-view .pick-toolbar{margin:0; width:230px; flex-shrink:0;}
+  body.row-view .no-odds{width:130px; flex-shrink:0; white-space:nowrap;}
+  body.row-view .pick-toolbar{margin:0; width:210px; flex-shrink:0;}
+  /* Below this width there isn't enough room for a true single-line row even
+     with the wider container, so let each row scroll horizontally instead
+     of wrapping onto a second line. */
+  @media (max-width: 1400px){
+    body.row-view .grid{overflow-x:visible;}
+    body.row-view .card{overflow-x:auto; scrollbar-width:thin;}
+  }
   @media (max-width: 900px){
-    body.row-view .card{flex-direction:column; align-items:stretch;}
+    body.row-view .card{flex-direction:column; align-items:stretch; overflow-x:visible;}
     body.row-view .card-top,
     body.row-view .subline,
     body.row-view table.odds,
