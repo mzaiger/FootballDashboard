@@ -104,3 +104,53 @@ function attachPickHandlers(containerEl, onPick) {
     if (typeof onPick === 'function') onPick();
   });
 }
+
+/*
+ * Tiles / Rows view toggle, shared across all three pages.
+ *
+ * If the person has never picked a mode, it auto-picks Rows on wider
+ * (desktop-ish) screens and Tiles on narrow (mobile) screens. Once they
+ * click a toggle button, that explicit choice is remembered in
+ * localStorage and wins from then on, on every page, until they change it
+ * again or clear site data.
+ */
+
+const VIEW_MODE_KEY = 'fb_view_mode';
+const VIEW_MODE_DESKTOP_BREAKPOINT = '(min-width: 860px)';
+
+function getStoredViewMode() {
+  const stored = localStorage.getItem(VIEW_MODE_KEY);
+  return (stored === 'tiles' || stored === 'rows') ? stored : null;
+}
+
+function getEffectiveViewMode() {
+  const stored = getStoredViewMode();
+  if (stored) return stored;
+  return window.matchMedia(VIEW_MODE_DESKTOP_BREAKPOINT).matches ? 'rows' : 'tiles';
+}
+
+function applyViewMode(mode) {
+  document.body.classList.toggle('row-view', mode === 'rows');
+  document.querySelectorAll('.view-toggle .view-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.mode === mode);
+  });
+}
+
+function setViewMode(mode) {
+  localStorage.setItem(VIEW_MODE_KEY, mode);
+  applyViewMode(mode);
+}
+
+// Call once per page, after the nav (with its .view-toggle buttons) is in
+// the DOM. Doesn't depend on board data having loaded.
+function initViewToggle() {
+  applyViewMode(getEffectiveViewMode());
+  document.querySelectorAll('.view-toggle .view-btn').forEach(btn => {
+    btn.addEventListener('click', () => setViewMode(btn.dataset.mode));
+  });
+  // If the person never explicitly chose a mode, keep following the
+  // desktop/mobile default as the window is resized.
+  window.matchMedia(VIEW_MODE_DESKTOP_BREAKPOINT).addEventListener('change', () => {
+    if (!getStoredViewMode()) applyViewMode(getEffectiveViewMode());
+  });
+}

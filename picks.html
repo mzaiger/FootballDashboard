@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Picks</title>
+<title>Football Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -38,11 +38,6 @@
     max-width:1180px; margin:0 auto; padding:0.9rem 1.5rem 0;
     display:flex; gap:1.25rem; align-items:center;
   }
-  .site-nav .brand{
-    font-family:'Oswald',sans-serif; font-weight:700; font-size:0.85rem;
-    text-transform:uppercase; letter-spacing:0.1em; color:var(--dim);
-    margin-right:0.5rem;
-  }
   .site-nav a{
     font-family:'Oswald',sans-serif; font-weight:600; font-size:0.82rem;
     text-transform:uppercase; letter-spacing:0.04em;
@@ -51,6 +46,65 @@
   }
   .site-nav a:hover{color:var(--chalk);}
   .site-nav a.active{color:var(--gold); border-bottom-color:var(--gold);}
+  .nav-spacer{flex:1;}
+  .view-toggle{
+    display:flex; gap:0.25rem; background:var(--bg-panel);
+    border:1px solid var(--line); border-radius:8px; padding:0.2rem;
+  }
+  .view-toggle .view-btn{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.04em;
+    color:var(--dim); background:transparent; border:none; border-radius:6px;
+    padding:0.3rem 0.7rem; cursor:pointer; transition:all 0.12s ease;
+  }
+  .view-toggle .view-btn:hover{color:var(--chalk);}
+  .view-toggle .view-btn.active{background:var(--gold); color:#1a1400;}
+
+  .week-block{margin-top:1.75rem;}
+  .week-block:first-child{margin-top:1rem;}
+  .week-heading{
+    display:flex; align-items:baseline; gap:0.75rem;
+    padding-bottom:0.4rem; margin-bottom:0.25rem;
+    border-bottom:1px dashed var(--line);
+  }
+  .week-heading .week-name{
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:1rem;
+    text-transform:uppercase; letter-spacing:0.05em; color:var(--gold);
+  }
+
+  /* Rows view: same card markup, laid out horizontally instead of in a tile grid */
+  body.row-view .grid{
+    display:flex; flex-direction:column; gap:0.5rem;
+  }
+  body.row-view .card{
+    display:flex; align-items:center; flex-wrap:wrap; gap:1.1rem;
+    padding:0.6rem 1rem;
+  }
+  body.row-view .card.your-pick{padding-top:0.6rem;}
+  body.row-view .pick-banner{
+    position:static; width:auto; border-radius:6px;
+    padding:0.3rem 0.6rem; margin-right:-0.5rem;
+  }
+  body.row-view .card-top{
+    flex-direction:column; align-items:flex-start; gap:0.3rem;
+    width:130px; flex-shrink:0;
+  }
+  body.row-view .matchup{
+    flex:1 1 220px; margin:0; overflow-x:visible; white-space:normal;
+  }
+  body.row-view .subline{
+    margin:0; flex-direction:column; gap:0.15rem; width:150px; flex-shrink:0;
+  }
+  body.row-view table.odds{width:auto; flex:0 0 auto;}
+  body.row-view .no-odds{width:150px; flex-shrink:0;}
+  body.row-view .pick-toolbar{margin:0; width:230px; flex-shrink:0;}
+  @media (max-width: 900px){
+    body.row-view .card{flex-direction:column; align-items:stretch;}
+    body.row-view .card-top,
+    body.row-view .subline,
+    body.row-view table.odds,
+    body.row-view .pick-toolbar{width:auto;}
+  }
 
   .hero{
     padding:2.5rem 1.5rem 1.75rem;
@@ -245,10 +299,14 @@
 <body>
 
 <nav class="site-nav">
-  <span class="brand">Betting Boards</span>
-  <a href="index.html">College Football</a>
+  <a href="index.html">College</a>
   <a href="nfl.html">NFL</a>
   <a href="picks.html" class="active">Picks</a>
+  <span class="nav-spacer"></span>
+  <div class="view-toggle">
+    <button type="button" class="view-btn" data-mode="tiles">Tiles</button>
+    <button type="button" class="view-btn" data-mode="rows">Rows</button>
+  </div>
 </nav>
 
 <div class="hero">
@@ -338,16 +396,21 @@ function keepGame(sport, g) {
 
 function filterDataset(sport, data) {
   if (!data) return null;
-  const days = data.days
-    .map(day => {
-      const time_slots = day.time_slots
-        .map(slot => ({ ...slot, games: slot.games.filter(g => keepGame(sport, g)) }))
-        .filter(slot => slot.games.length > 0);
-      const game_count = time_slots.reduce((n, s) => n + s.games.length, 0);
-      return { ...day, time_slots, game_count };
+  const weeks = data.weeks
+    .map(week => {
+      const days = week.days
+        .map(day => {
+          const time_slots = day.time_slots
+            .map(slot => ({ ...slot, games: slot.games.filter(g => keepGame(sport, g)) }))
+            .filter(slot => slot.games.length > 0);
+          const game_count = time_slots.reduce((n, s) => n + s.games.length, 0);
+          return { ...day, time_slots, game_count };
+        })
+        .filter(day => day.time_slots.length > 0);
+      return { ...week, days };
     })
-    .filter(day => day.time_slots.length > 0);
-  return { ...data, days };
+    .filter(week => week.days.length > 0);
+  return { ...data, weeks };
 }
 
 function renderGame(sport, g) {
@@ -446,16 +509,24 @@ function renderDay(sport, day) {
   </section>`;
 }
 
+function renderWeekSection(sport, week) {
+  return `
+  <div class="week-block">
+    <div class="week-heading"><span class="week-name">Week ${week.week}</span></div>
+    ${week.days.map(day => renderDay(sport, day)).join('')}
+  </div>`;
+}
+
 function renderSection(sport, data, title, themeClass) {
-  if (!data || !data.days.length) return '';
-  const totalGames = data.days.reduce((n, d) => n + d.game_count, 0);
+  if (!data || !data.weeks.length) return '';
+  const totalGames = data.weeks.reduce((n, w) => n + w.days.reduce((m, d) => m + d.game_count, 0), 0);
   return `
   <section class="sport-section ${themeClass}">
     <div class="sport-heading">
       <h2>${title}</h2>
       <span class="count">${totalGames} game${totalGames === 1 ? '' : 's'}</span>
     </div>
-    ${data.days.map(day => renderDay(sport, day)).join('')}
+    ${data.weeks.map(week => renderWeekSection(sport, week)).join('')}
   </section>`;
 }
 
@@ -516,6 +587,7 @@ async function init() {
   }
 }
 
+initViewToggle();
 init();
 </script>
 </body>

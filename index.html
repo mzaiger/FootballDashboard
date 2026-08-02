@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CFB Week Board</title>
+<title>Football Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -220,11 +220,6 @@
     max-width:1180px; margin:0 auto; padding:0.9rem 1.5rem 0;
     display:flex; gap:1.25rem; align-items:center;
   }
-  .site-nav .brand{
-    font-family:'Oswald',sans-serif; font-weight:700; font-size:0.85rem;
-    text-transform:uppercase; letter-spacing:0.1em; color:var(--dim);
-    margin-right:0.5rem;
-  }
   .site-nav a{
     font-family:'Oswald',sans-serif; font-weight:600; font-size:0.82rem;
     text-transform:uppercase; letter-spacing:0.04em;
@@ -233,15 +228,80 @@
   }
   .site-nav a:hover{color:var(--chalk);}
   .site-nav a.active{color:var(--turf-bright); border-bottom-color:var(--turf-bright);}
+  .nav-spacer{flex:1;}
+  .view-toggle{
+    display:flex; gap:0.25rem; background:var(--bg-panel);
+    border:1px solid var(--line); border-radius:8px; padding:0.2rem;
+  }
+  .view-toggle .view-btn{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.04em;
+    color:var(--dim); background:transparent; border:none; border-radius:6px;
+    padding:0.3rem 0.7rem; cursor:pointer; transition:all 0.12s ease;
+  }
+  .view-toggle .view-btn:hover{color:var(--chalk);}
+  .view-toggle .view-btn.active{background:var(--turf); color:#04140a;}
+
+  .week-block{margin-top:2.25rem;}
+  .week-block:first-child{margin-top:1.5rem;}
+  .week-heading{
+    display:flex; align-items:baseline; gap:0.75rem;
+    padding-bottom:0.5rem; margin-bottom:0.25rem;
+    border-bottom:1px dashed var(--line);
+  }
+  .week-heading .week-name{
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:1.15rem;
+    text-transform:uppercase; letter-spacing:0.05em; color:var(--gold);
+  }
+  .week-heading .week-count{margin-left:auto; color:var(--dim); font-size:0.78rem;}
+  .week-empty{color:var(--dim); font-size:0.85rem; padding:0.5rem 0 1.5rem;}
+
+  /* Rows view: same card markup, laid out horizontally instead of in a tile grid */
+  body.row-view .grid{
+    display:flex; flex-direction:column; gap:0.5rem;
+  }
+  body.row-view .card{
+    display:flex; align-items:center; flex-wrap:wrap; gap:1.1rem;
+    padding:0.6rem 1rem;
+  }
+  body.row-view .card.slot-pick{padding-top:0.6rem;}
+  body.row-view .pick-banner{
+    position:static; width:auto; border-radius:6px;
+    padding:0.3rem 0.6rem; margin-right:-0.5rem;
+  }
+  body.row-view .card-top{
+    flex-direction:column; align-items:flex-start; gap:0.3rem;
+    width:110px; flex-shrink:0;
+  }
+  body.row-view .matchup{
+    flex:1 1 220px; margin:0; overflow-x:visible; white-space:normal;
+  }
+  body.row-view .subline{
+    margin:0; flex-direction:column; gap:0.15rem; width:150px; flex-shrink:0;
+  }
+  body.row-view table.odds{width:auto; flex:0 0 auto;}
+  body.row-view .no-odds{width:150px; flex-shrink:0;}
+  body.row-view .pick-toolbar{margin:0; width:230px; flex-shrink:0;}
+  @media (max-width: 900px){
+    body.row-view .card{flex-direction:column; align-items:stretch;}
+    body.row-view .card-top,
+    body.row-view .subline,
+    body.row-view table.odds,
+    body.row-view .pick-toolbar{width:auto;}
+  }
 </style>
 </head>
 <body>
 
 <nav class="site-nav">
-  <span class="brand">Betting Boards</span>
-  <a href="index.html" class="active">College Football</a>
+  <a href="index.html" class="active">College</a>
   <a href="nfl.html">NFL</a>
   <a href="picks.html">Picks</a>
+  <span class="nav-spacer"></span>
+  <div class="view-toggle">
+    <button type="button" class="view-btn" data-mode="tiles">Tiles</button>
+    <button type="button" class="view-btn" data-mode="rows">Rows</button>
+  </div>
 </nav>
 
 
@@ -401,6 +461,24 @@ function renderDay(day) {
   </section>`;
 }
 
+function renderWeek(week) {
+  if (!week.days.length) {
+    return `
+    <section class="week-block">
+      <div class="week-heading"><span class="week-name">Week ${week.week}</span></div>
+      <div class="week-empty">No main-channel games found for this week yet — check back closer to kickoff.</div>
+    </section>`;
+  }
+  return `
+  <section class="week-block">
+    <div class="week-heading">
+      <span class="week-name">Week ${week.week}</span>
+      <span class="week-count">${week.total_games} game${week.total_games === 1 ? '' : 's'}</span>
+    </div>
+    ${week.days.map(renderDay).join('')}
+  </section>`;
+}
+
 async function init() {
   const statusEl = document.getElementById('statusMsg');
   try {
@@ -408,19 +486,21 @@ async function init() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
 
-    document.getElementById('pageTitle').textContent = `Week ${data.week} \u2014 ${data.season}`;
+    const weekNums = data.weeks.map(w => w.week);
+    document.getElementById('pageTitle').textContent =
+      weekNums.length > 1 ? `Weeks ${weekNums[0]}\u2013${weekNums[weekNums.length - 1]} \u2014 ${data.season}` : `Week ${weekNums[0]} \u2014 ${data.season}`;
     document.getElementById('generatedAt').textContent = new Date(data.generated_at).toLocaleString();
-    document.getElementById('totalGames').textContent = data.total_games;
+    document.getElementById('totalGames').textContent = data.weeks.reduce((n, w) => n + w.total_games, 0);
     document.getElementById('channelList').innerHTML =
       data.main_channels.map(c => `<span class="chan-pill">${c}</span>`).join('');
 
     const daysEl = document.getElementById('days');
-    if (!data.days.length) {
+    if (!data.weeks.some(w => w.days.length)) {
       statusEl.style.display = 'block';
-      statusEl.textContent = 'No main-channel games found for this week yet — check back closer to kickoff.';
+      statusEl.textContent = 'No main-channel games found for either week yet — check back closer to kickoff.';
       return;
     }
-    const renderBoard = () => { daysEl.innerHTML = data.days.map(renderDay).join(''); };
+    const renderBoard = () => { daysEl.innerHTML = data.weeks.map(renderWeek).join(''); };
     renderBoard();
     attachPickHandlers(daysEl, renderBoard);
   } catch (err) {
@@ -429,6 +509,7 @@ async function init() {
   }
 }
 
+initViewToggle();
 init();
 </script>
 </body>

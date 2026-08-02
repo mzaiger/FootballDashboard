@@ -1,10 +1,15 @@
-# Sports Betting Dashboards
+# Football Dashboard
 
-Two daily-refreshed betting dashboards, College Football and NFL, each
-showing this week's games grouped by day and then by kickoff window
-(Morning / Noon / Afternoon / Evening / Late Night), ranked within each
-window by best matchup, with **DraftKings** and **FanDuel** spreads +
-moneylines attached to each game.
+Two daily-refreshed betting dashboards, College and NFL, each showing
+**this week and next week's** games grouped by week, then by day, then by
+kickoff window (Morning / Noon / Afternoon / Evening / Late Night), ranked
+within each window by best matchup, with **DraftKings** and **FanDuel**
+spreads + moneylines attached to each game.
+
+Every page has a Tiles/Rows toggle in the nav -- Tiles is the original card
+grid, Rows lays the same games out as a compact list. It defaults to Rows
+on desktop and Tiles on mobile, but remembers whichever you pick after
+that (stored in the browser, per device).
 
 | | College Football | NFL |
 |---|---|---|
@@ -128,11 +133,16 @@ works since the fetch is a relative path in the same folder.
 Optional flags:
 
 ```bash
-python scripts/build_dashboard.py --year 2026 --week 3       # force a specific CFB week
-python scripts/build_nfl_dashboard.py --year 2026 --week 2   # force a specific NFL week
+python scripts/build_dashboard.py --year 2026 --week 3       # force a specific starting CFB week (builds 3 & 4)
+python scripts/build_nfl_dashboard.py --year 2026 --week 2   # force a specific starting NFL week (builds 2 & 3)
+python scripts/build_dashboard.py --week 3 --num-weeks 1     # build just one week instead of two
 python scripts/build_nfl_dashboard.py --season-type 1        # 1=preseason, 2=regular, 3=postseason
 python scripts/build_dashboard.py --out /tmp/test.json       # write somewhere else
 ```
+
+Each script builds `--week` and the following week (2 weeks total by
+default; change with `--num-weeks`) into a single JSON file with a `weeks`
+array, so both pages always show the current and upcoming week together.
 
 If no `--week` is given, both scripts default deterministically to week 1
 before their season starts, rather than relying on an API's implicit
