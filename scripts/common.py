@@ -178,26 +178,26 @@ def _fuzzy_team(normalized_target, candidate_raw):
     if not target_words or not candidate_words:
         return False
 
-disqualifying = {
-    # Original
-    "state", "tech", "international", "commonwealth",
+    disqualifying = {
+        # Original
+        "state", "tech", "international", "commonwealth",
 
-    # Directional & Regional
-    "western", "eastern", "northern", "southern", "central",
-    "north", "south", "east", "west",
-    "northeastern", "southeastern", "northwestern", "southwestern",
-    "middle", "coastal", "atlantic", "pacific", "gulf",
+        # Directional & Regional
+        "western", "eastern", "northern", "southern", "central",
+        "north", "south", "east", "west",
+        "northeastern", "southeastern", "northwestern", "southwestern",
+        "middle", "coastal", "atlantic", "pacific", "gulf",
 
-    # Institutional Types
-    "polytechnic", "poly", "institute", "military", "academy",
-    "college", "valley", "city",
+        # Institutional Types
+        "polytechnic", "poly", "institute", "military", "academy",
+        "college", "valley", "city",
 
-    # Denominational / Religious Affiliations
-    "christian", "methodist", "baptist", "presbyterian", "lutheran", "wesleyan",
+        # Denominational / Religious Affiliations
+        "christian", "methodist", "baptist", "presbyterian", "lutheran", "wesleyan",
 
-    # Specific Campus Modifiers
-    "bluff", "pine",
-}
+        # Specific Campus Modifiers
+        "bluff", "pine",
+    }
 
     shorter, longer = (target_words, candidate_words) if len(target_words) <= len(candidate_words) else (candidate_words, target_words)
     if shorter and shorter.issubset(longer):
