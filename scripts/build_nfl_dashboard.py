@@ -169,7 +169,9 @@ def pick_regional_game(games_in_window):
 # Main build
 # ---------------------------------------------------------------------------
 
-def build(year, week, season_type, sharp_key):
+def build_week(year, week, season_type, sharp_key):
+    """Build a single week's worth of games. Returns the per-week dict
+    (no generated_at/season wrapper -- that's added once, by build())."""
     log(f"Fetching NFL schedule for {year}, week {week}, seasontype {season_type}...")
     scoreboard = get_scoreboard(year, week, season_type)
     events = scoreboard.get("events", [])
@@ -278,28 +280,40 @@ def build(year, week, season_type, sharp_key):
             "time_slots": time_slots,
         })
 
-    output = {
+    return {
+        "week": week,
+        "total_games": sum(d["game_count"] for d in day_list),
+        "days": day_list,
+    }
+
+
+def build(year, week_start, season_type, sharp_key, num_weeks=2):
+    """Build `num_weeks` consecutive weeks starting at week_start (default:
+    this week + next week) and wrap them into the full output payload."""
+    weeks = []
+    for offset in range(num_weeks):
+        weeks.append(build_week(year, week_start + offset, season_type, sharp_key))
+
+    return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "season": year,
-        "week": week,
         "season_type": season_type,
         "display_timezone": DISPLAY_TIMEZONE,
-        "total_games": sum(d["game_count"] for d in day_list),
         "regional_market_note": (
             "regional_picks_omaha_lincoln is an UNOFFICIAL heuristic guess "
             "(Kansas City Chiefs, then Denver Broncos, when a network window "
             "has multiple games) -- not scraped from an actual coverage map. "
             "Verify at https://506sports.com/nfl.php before relying on it."
         ),
-        "days": day_list,
+        "weeks": weeks,
     }
-    return output
 
 
 def parse_args():
     p = argparse.ArgumentParser(description="Build the NFL betting dashboard JSON.")
     p.add_argument("--year", type=int, default=SEASON_YEAR_DEFAULT, help="Season year")
-    p.add_argument("--week", type=int, required=False, help="NFL week number (default: ESPN's current week)")
+    p.add_argument("--week", type=int, required=False, help="Starting NFL week number (default: ESPN's current week); this week and the following week are both built")
+    p.add_argument("--num-weeks", type=int, default=2, help="How many consecutive weeks to build starting at --week (default: 2)")
     p.add_argument("--season-type", type=int, default=SEASON_TYPE_DEFAULT,
                     help="1=preseason, 2=regular season, 3=postseason")
     p.add_argument("--out", default=None, help="Output path (default: data/nfl_dashboard.json)")
@@ -325,7 +339,7 @@ def main():
         week = resp.json().get("week", {}).get("number", 1)
         log(f"No --week given; ESPN reports current week as {week}.")
 
-    output = build(args.year, week, args.season_type, sharp_key)
+    output = build(args.year, week, args.season_type, sharp_key, num_weeks=args.num_weeks)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "nfl_dashboard.json")
@@ -334,7 +348,12 @@ def main():
     with open(out_path, "w") as f:
         json.dump(output, f, indent=2)
 
-    log(f"Wrote {output['total_games']} games across {len(output['days'])} day(s) to {out_path}")
+    total_games = sum(w["total_games"] for w in output["weeks"])
+    week_nums = [w["week"] for w in output["weeks"]]
+    log(f"Wrote {total_games} games across weeks {week_nums} to {out_path}")
+    if args.season_type == 1 and max(week_nums) > 3:
+        log("Note: preseason only runs ~3 weeks -- a week number past that rolls into regular season "
+            "with a different --season-type, so the 2nd week here may come back empty.")
 
 
 if __name__ == "__main__":

@@ -191,7 +191,9 @@ def choose_slot_pick(games_sorted):
 # Main build
 # ---------------------------------------------------------------------------
 
-def build(year, week, cfbd_key, sharp_key, channels):
+def build_week(year, week, cfbd_key, sharp_key, channels):
+    """Build a single week's worth of games. Returns the per-week dict
+    (no generated_at/season wrapper -- that's added once, by build())."""
     log(f"Fetching games for {year} week {week}...")
     games = get_games(cfbd_key, year, week)
     log(f"  {len(games)} games")
@@ -295,22 +297,34 @@ def build(year, week, cfbd_key, sharp_key, channels):
             "time_slots": time_slots,
         })
 
-    output = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
-        "season": year,
+    return {
         "week": week,
-        "main_channels": sorted(channels),
-        "display_timezone": DISPLAY_TIMEZONE,
         "total_games": sum(d["game_count"] for d in day_list),
         "days": day_list,
     }
-    return output
+
+
+def build(year, week_start, cfbd_key, sharp_key, channels, num_weeks=2):
+    """Build `num_weeks` consecutive weeks starting at week_start (default:
+    this week + next week) and wrap them into the full output payload."""
+    weeks = []
+    for offset in range(num_weeks):
+        weeks.append(build_week(year, week_start + offset, cfbd_key, sharp_key, channels))
+
+    return {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "season": year,
+        "main_channels": sorted(channels),
+        "display_timezone": DISPLAY_TIMEZONE,
+        "weeks": weeks,
+    }
 
 
 def parse_args():
     p = argparse.ArgumentParser(description="Build the CFB betting dashboard JSON.")
     p.add_argument("--year", type=int, default=None, help="Season year (default: auto)")
-    p.add_argument("--week", type=int, default=None, help="CFBD week number (default: auto from Aug 22 start)")
+    p.add_argument("--week", type=int, default=None, help="Starting CFBD week number (default: auto from Aug 22 start); this week and the following week are both built")
+    p.add_argument("--num-weeks", type=int, default=2, help="How many consecutive weeks to build starting at --week (default: 2)")
     p.add_argument("--out", default=None, help="Output path (default: data/dashboard.json)")
     return p.parse_args()
 
@@ -334,7 +348,7 @@ def main():
         if preseason:
             log(f"Today ({today}) is before the {year} week-1 start ({WEEK1_START}); defaulting to week 1.")
 
-    output = build(year, week, cfbd_key, sharp_key, MAIN_CHANNELS)
+    output = build(year, week, cfbd_key, sharp_key, MAIN_CHANNELS, num_weeks=args.num_weeks)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "dashboard.json")
@@ -343,7 +357,9 @@ def main():
     with open(out_path, "w") as f:
         json.dump(output, f, indent=2)
 
-    log(f"Wrote {output['total_games']} games across {len(output['days'])} day(s) to {out_path}")
+    total_games = sum(w["total_games"] for w in output["weeks"])
+    week_nums = [w["week"] for w in output["weeks"]]
+    log(f"Wrote {total_games} games across weeks {week_nums} to {out_path}")
 
 
 if __name__ == "__main__":
