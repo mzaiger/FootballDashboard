@@ -216,8 +216,18 @@
   }
   .status{max-width:1180px;margin:2rem auto;padding:0 1.5rem;color:var(--dim);}
 
+  .nav-bar{
+    position:sticky; top:0; z-index:100;
+    background:var(--bg);
+    border-bottom:1px solid transparent;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .nav-bar.stuck{
+    border-bottom-color:var(--line);
+    box-shadow:0 8px 20px -12px rgba(0,0,0,0.6);
+  }
   .site-nav{
-    max-width:1180px; margin:0 auto; padding:0.9rem 1.5rem 0;
+    max-width:1180px; margin:0 auto; padding:0.9rem 1.5rem;
     display:flex; gap:1.25rem; align-items:center;
   }
   .site-nav a{
@@ -348,6 +358,7 @@
 </head>
 <body>
 
+<div class="nav-bar">
 <nav class="site-nav">
   <a href="index.html" class="active">College</a>
   <a href="nfl.html">NFL</a>
@@ -358,6 +369,7 @@
     <button type="button" class="view-btn" data-mode="rows">Rows</button>
   </div>
 </nav>
+</div>
 
 
 <div class="hero">
@@ -383,6 +395,15 @@
 </footer>
 
 <script src="picks-store.js"></script>
+<script>
+(function(){
+  const bar = document.querySelector('.nav-bar');
+  if (!bar) return;
+  const onScroll = () => bar.classList.toggle('stuck', window.scrollY > 2);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
 <script>
 const SPORT = 'cfb';
 const DATA_URL = 'data/dashboard.json';
