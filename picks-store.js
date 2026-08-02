@@ -1,0 +1,106 @@
+/*
+ * Shared "my picks" storage for the CFB / NFL / Picks pages.
+ *
+ * Picks are stored one cookie per game (pick_<sport>_<gameId>) rather than
+ * one giant cookie, so any page can cheaply enumerate every active pick for
+ * a sport without needing to know the full game list up front. Value is a
+ * tiny JSON blob: {"market":"spread"|"moneyline","side":"home"|"away"}.
+ * Only one pick is allowed per game -- selecting a new option overwrites
+ * the old one, and clicking the active option again clears it.
+ *
+ * Picks intentionally do NOT store the team name, line, or odds -- those
+ * are looked up live from the day's dashboard JSON at render time, so a
+ * pick always reflects the latest number even if odds move.
+ */
+
+const PICK_COOKIE_PREFIX = 'pick_';
+const PICK_COOKIE_DAYS = 210;
+
+function _pickCookieName(sport, gameId) {
+  return `${PICK_COOKIE_PREFIX}${sport}_${gameId}`;
+}
+
+function _setCookie(name, value, days) {
+  const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
+  document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+}
+
+function _deleteCookie(name) {
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax`;
+}
+
+function getPick(sport, gameId) {
+  const target = _pickCookieName(sport, gameId) + '=';
+  const parts = document.cookie.split(';');
+  for (let raw of parts) {
+    raw = raw.trim();
+    if (raw.startsWith(target)) {
+      try { return JSON.parse(decodeURIComponent(raw.slice(target.length))); }
+      catch (e) { return null; }
+    }
+  }
+  return null;
+}
+
+function getAllPicks(sport) {
+  const prefix = `${PICK_COOKIE_PREFIX}${sport}_`;
+  const out = {};
+  document.cookie.split(';').forEach(raw => {
+    raw = raw.trim();
+    const eq = raw.indexOf('=');
+    if (eq === -1) return;
+    const name = raw.slice(0, eq);
+    if (!name.startsWith(prefix)) return;
+    const gameId = name.slice(prefix.length);
+    try { out[gameId] = JSON.parse(decodeURIComponent(raw.slice(eq + 1))); }
+    catch (e) { /* ignore malformed cookie */ }
+  });
+  return out;
+}
+
+// Toggle a pick: clicking the already-active option clears it, clicking any
+// other option overwrites it (only one pick allowed per game at a time).
+function togglePick(sport, gameId, market, side) {
+  const current = getPick(sport, gameId);
+  if (current && current.market === market && current.side === side) {
+    _deleteCookie(_pickCookieName(sport, gameId));
+    return null;
+  }
+  _setCookie(_pickCookieName(sport, gameId), JSON.stringify({ market, side }), PICK_COOKIE_DAYS);
+  return { market, side };
+}
+
+// The 4-button toolbar (away/home x spread/moneyline) for one game card.
+function renderPickToolbar(sport, g) {
+  const pick = getPick(sport, g.id);
+  const opts = [
+    { market: 'spread', side: 'away', label: `${g.away_team} ATS` },
+    { market: 'spread', side: 'home', label: `${g.home_team} ATS` },
+    { market: 'moneyline', side: 'away', label: `${g.away_team} ML` },
+    { market: 'moneyline', side: 'home', label: `${g.home_team} ML` },
+  ];
+  const btns = opts.map(o => {
+    const active = pick && pick.market === o.market && pick.side === o.side;
+    return `<button type="button" class="pick-btn${active ? ' active' : ''}" data-sport="${sport}" data-game="${g.id}" data-market="${o.market}" data-side="${o.side}">${active ? '\u2605 ' : ''}${o.label}</button>`;
+  }).join('');
+  return `<div class="pick-toolbar">${btns}</div>`;
+}
+
+// CSS class to drop on an odds-table cell so the picked market/side lights
+// up yellow wherever it appears (both the DraftKings and FanDuel rows).
+function pickCellClass(sport, g, market, side) {
+  const pick = getPick(sport, g.id);
+  return (pick && pick.market === market && pick.side === side) ? 'picked' : '';
+}
+
+// Click-delegation for every .pick-btn inside containerEl. `onPick` runs
+// after each toggle so the caller can re-render with the new cookie state.
+function attachPickHandlers(containerEl, onPick) {
+  containerEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('.pick-btn');
+    if (!btn || !containerEl.contains(btn)) return;
+    const { sport, game, market, side } = btn.dataset;
+    togglePick(sport, game, market, side);
+    if (typeof onPick === 'function') onPick();
+  });
+}
