@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-02T14:05:57.446805+00:00",
+  "generated_at": "2026-08-02T18:23:06.471828+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -15,7 +15,7 @@
           "game_count": 1,
           "time_slots": [
             {
-              "slot": "Evening",
+              "slot": "Prime Time",
               "best_matchup_score": null,
               "pick_reason": "closest_spread",
               "regional_picks_omaha_lincoln": [],
@@ -60,7 +60,7 @@
           "game_count": 6,
           "time_slots": [
             {
-              "slot": "Evening",
+              "slot": "Prime Time",
               "best_matchup_score": null,
               "pick_reason": "closest_spread",
               "regional_picks_omaha_lincoln": [],
@@ -219,7 +219,7 @@
           "game_count": 3,
           "time_slots": [
             {
-              "slot": "Evening",
+              "slot": "Prime Time",
               "best_matchup_score": null,
               "pick_reason": "closest_spread",
               "regional_picks_omaha_lincoln": [],
@@ -442,7 +442,7 @@
               ]
             },
             {
-              "slot": "Evening",
+              "slot": "Prime Time",
               "best_matchup_score": null,
               "pick_reason": "closest_spread",
               "regional_picks_omaha_lincoln": [],
