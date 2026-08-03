@@ -34,10 +34,10 @@ Games are grouped **by day**, then **by kickoff window**:
 
 | Window | Range (Central) |
 |---|---|
-| Morning | before 12:00 PM |
-| Noon | 12:00 PM – 2:59 PM |
-| Afternoon | 3:00 PM – 5:59 PM |
-| Evening | 6:00 PM – 8:59 PM |
+| Morning | before 11:00 PM |
+| Noon | 11:00 PM – 1:59 PM |
+| Afternoon | 2:00 PM – 4:59 PM |
+| Evening | 5:00 PM – 8:59 PM |
 | Late Night | 9:00 PM and later |
 | Time TBD | kickoff not yet announced |
 
