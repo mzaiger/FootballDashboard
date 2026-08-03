@@ -37,7 +37,7 @@ Games are grouped **by day**, then **by kickoff window**:
 | Morning | before 11:00 PM |
 | Noon | 11:00 PM – 1:59 PM |
 | Afternoon | 2:00 PM – 4:59 PM |
-| Evening | 5:00 PM – 8:59 PM |
+| Prime Time | 5:00 PM – 8:59 PM |
 | Late Night | 9:00 PM and later |
 | Time TBD | kickoff not yet announced |
 
