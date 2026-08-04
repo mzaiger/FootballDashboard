@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03T12:54:01.231734+00:00",
+  "generated_at": "2026-08-04T12:01:36.498091+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
@@ -46,11 +46,11 @@
                       "moneyline": {
                         "away": {
                           "line": null,
-                          "american": 210
+                          "american": 230
                         },
                         "home": {
                           "line": null,
-                          "american": -258
+                          "american": -285
                         }
                       }
                     },
@@ -156,7 +156,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -198
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 164
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -322,11 +331,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 102
+                          "american": -2400
                         },
                         "away": {
                           "line": null,
-                          "american": -122
+                          "american": 1200
                         }
                       }
                     },
@@ -507,7 +516,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 1400
+                        },
+                        "home": {
+                          "line": null,
+                          "american": -3200
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -534,7 +552,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -258
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 210
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -597,7 +624,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -278
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 225
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -624,7 +660,12 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 2500
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -823,7 +864,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -112
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -108
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -864,7 +914,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -1800
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 1000
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -898,7 +957,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 1100
+                        },
+                        "home": {
+                          "line": null,
+                          "american": -2100
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1108,7 +1176,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -135
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 114
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1135,7 +1212,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 675
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -1050
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1606,16 +1692,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 295
-                        },
-                        "home": {
-                          "line": null,
-                          "american": -375
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
