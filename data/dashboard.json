@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T11:58:28.974963+00:00",
+  "generated_at": "2026-08-06T12:01:26.908790+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
@@ -396,16 +396,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 1600
-                        },
-                        "home": {
-                          "line": null,
-                          "american": -4000
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -529,16 +520,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -258
-                        },
-                        "away": {
-                          "line": null,
-                          "american": 210
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
