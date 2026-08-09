@@ -359,6 +359,38 @@
 
   .no-odds{color:var(--dim); font-size:0.75rem; padding:0.4rem 0;}
 
+  .gemini-toggle{
+    width:100%; margin-top:0.6rem;
+    display:flex; align-items:center; gap:0.4rem;
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.68rem;
+    text-transform:uppercase; letter-spacing:0.05em;
+    color:var(--dim); background:#161b20; border:1px solid var(--line);
+    border-radius:6px; padding:0.45rem 0.6rem; cursor:pointer;
+    transition:all 0.12s ease;
+  }
+  .gemini-toggle:hover{border-color:#8b5cf6; color:var(--chalk);}
+  .gemini-toggle.open{border-color:#8b5cf6; color:#c4b5fd; background:rgba(139,92,246,0.1);}
+  .gemini-toggle-icon{font-size:0.8rem;}
+  .gemini-conf{margin-left:auto; color:#a78bfa; font-family:'JetBrains Mono',monospace; font-weight:700;}
+  .gemini-caret{font-size:0.6rem; transition:transform .12s ease; color:inherit;}
+  .gemini-toggle.open .gemini-caret{transform:rotate(180deg);}
+  .gemini-panel{
+    margin-top:0.5rem; padding:0.7rem 0.8rem;
+    background:#14101c; border:1px solid rgba(139,92,246,0.3); border-radius:8px;
+  }
+  .gemini-panel-row{
+    display:flex; justify-content:space-between; gap:0.75rem;
+    font-size:0.75rem; padding:0.15rem 0; color:var(--dim);
+  }
+  .gemini-panel-row .gemini-value{color:var(--chalk); font-weight:600; text-align:right;}
+  .gemini-analysis{
+    margin:0.55rem 0 0; color:var(--chalk); font-size:0.78rem; line-height:1.55;
+  }
+  body.row-view .gemini-toggle,
+  body.row-view .gemini-panel{grid-column:1 / -1;}
+  body.row-view .gemini-toggle{grid-row:3;}
+  body.row-view .gemini-panel{grid-row:4;}
+
   footer{
     max-width:1180px; margin:3rem auto 0; padding:0 1.5rem;
     color:var(--dim); font-size:0.75rem; border-top:1px solid var(--line); padding-top:1rem;
@@ -406,6 +438,8 @@
   game, it guesses the Chiefs' game, then the Broncos' game, since neither Omaha nor Lincoln has a home NFL team.
   It is not pulled from an actual coverage map. Always verify at
   <a href="https://506sports.com/nfl.php" target="_blank" rel="noopener">506sports.com</a> before relying on it.
+  <br><br>
+  &#10024; Gemini Prediction Summary is AI-generated from current-season stats and posted odds -- informational only, not betting advice.
 </footer>
 
 <script src="picks-store.js"></script>
@@ -511,6 +545,7 @@ function renderGame(g) {
     </div>
     ${oddsBlock}
     ${renderPickToolbar(SPORT, g)}
+    ${renderGeminiBlock(g)}
   </div>`;
 }
 
@@ -604,6 +639,7 @@ async function init() {
     const renderBoard = () => { daysEl.innerHTML = data.weeks.map(renderWeek).join(''); };
     renderBoard();
     attachPickHandlers(daysEl, renderBoard);
+    attachGeminiHandlers(daysEl);
   } catch (err) {
     statusEl.style.display = 'block';
     statusEl.textContent = `Couldn't load data/nfl_dashboard.json (${err.message}). Run scripts/build_nfl_dashboard.py first.`;
