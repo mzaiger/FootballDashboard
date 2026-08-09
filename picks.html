@@ -338,6 +338,20 @@
 
   .no-odds{color:var(--dim); font-size:0.75rem; padding:0.4rem 0;}
 
+  .score-line{
+    flex-basis:100%; font-weight:700; font-size:0.78rem; display:flex;
+    align-items:center; gap:0.4rem;
+  }
+  .score-line.live{color:#ff5f56;}
+  .score-line.final{color:var(--dim);}
+  .live-dot{
+    width:0.5rem; height:0.5rem; border-radius:50%; background:#ff5f56;
+    display:inline-block; animation:live-pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes live-pulse{
+    0%,100%{opacity:1;} 50%{opacity:0.35;}
+  }
+
   .gemini-toggle{
     width:100%; margin-top:0.6rem;
     display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; row-gap:0.3rem;
@@ -469,6 +483,7 @@
 <script>
 const CFB_URL = 'data/dashboard.json';
 const NFL_URL = 'data/nfl_dashboard.json';
+let SCORES = { cfb: {}, nfl: {} };
 
 function fmtAmerican(n) {
   if (n === null || n === undefined || n === '') return null;
@@ -601,6 +616,7 @@ function renderGame(sport, g) {
     <div class="subline">
       <span>${kickoffTime(g.start_time, g.start_time_tbd)}</span>
       <span>${g.venue || ''}</span>
+      ${renderScoreLine(g, SCORES[sport])}
     </div>
     ${oddsBlock}
     ${renderPickToolbar(sport, g)}
@@ -699,6 +715,9 @@ async function init() {
     if (nflRes.status === 'fulfilled' && nflRes.value.ok) {
       nflData = await nflRes.value.json();
     }
+
+    const [cfbScores, nflScores] = await Promise.all([fetchScores('cfb'), fetchScores('nfl')]);
+    SCORES = { cfb: cfbScores, nfl: nflScores };
 
     if (!cfbData && !nflData) {
       statusEl.style.display = 'block';
