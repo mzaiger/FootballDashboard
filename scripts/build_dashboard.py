@@ -34,6 +34,7 @@ from common import (
     match_odds_for_game,
     time_slot_for,
 )
+from gemini_predictions import attach_gemini_predictions
 
 # ---------------------------------------------------------------------------
 # Config
@@ -191,7 +192,7 @@ def choose_slot_pick(games_sorted):
 # Main build
 # ---------------------------------------------------------------------------
 
-def build_week(year, week, cfbd_key, sharp_key, channels):
+def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None):
     """Build a single week's worth of games. Returns the per-week dict
     (no generated_at/season wrapper -- that's added once, by build())."""
     log(f"Fetching games for {year} week {week}...")
@@ -214,6 +215,7 @@ def build_week(year, week, cfbd_key, sharp_key, channels):
     row_claims = {}
 
     days = {}
+    all_games = []  # flat list, mirrors what's in `days`, for the Gemini pass below
     skipped_no_tv = 0
 
     for g in games:
@@ -264,8 +266,11 @@ def build_week(year, week, cfbd_key, sharp_key, channels):
             "is_nebraska": is_nebraska,
         }
         days.setdefault(day_key, {}).setdefault(slot, []).append(game_entry)
+        all_games.append(game_entry)
 
     log(f"  {skipped_no_tv} games skipped (not on a main channel)")
+
+    attach_gemini_predictions(all_games, sport="cfb", season=year, week=week, gemini_key=gemini_key)
 
     day_list = []
     for day_key in sorted(days.keys()):
@@ -304,12 +309,12 @@ def build_week(year, week, cfbd_key, sharp_key, channels):
     }
 
 
-def build(year, week_start, cfbd_key, sharp_key, channels, num_weeks=2):
+def build(year, week_start, cfbd_key, sharp_key, channels, gemini_key=None, num_weeks=2):
     """Build `num_weeks` consecutive weeks starting at week_start (default:
     this week + next week) and wrap them into the full output payload."""
     weeks = []
     for offset in range(num_weeks):
-        weeks.append(build_week(year, week_start + offset, cfbd_key, sharp_key, channels))
+        weeks.append(build_week(year, week_start + offset, cfbd_key, sharp_key, channels, gemini_key))
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -339,6 +344,10 @@ def main():
     if not sharp_key:
         sys.exit("Missing SHARPAPI_KEY environment variable (get one at sharpapi.io)")
 
+    gemini_key = os.environ.get("GEMINI_KEY")
+    if not gemini_key:
+        log("GEMINI_KEY not set -- building without Gemini predictions.")
+
     today = datetime.now(timezone.utc).date()
     year = args.year or SEASON_YEAR_DEFAULT
     if args.week is not None:
@@ -348,7 +357,7 @@ def main():
         if preseason:
             log(f"Today ({today}) is before the {year} week-1 start ({WEEK1_START}); defaulting to week 1.")
 
-    output = build(year, week, cfbd_key, sharp_key, MAIN_CHANNELS, num_weeks=args.num_weeks)
+    output = build(year, week, cfbd_key, sharp_key, MAIN_CHANNELS, gemini_key, num_weeks=args.num_weeks)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "dashboard.json")
