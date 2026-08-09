@@ -212,17 +212,29 @@
 
   .gemini-toggle{
     width:100%; margin-top:0.6rem;
-    display:flex; align-items:center; gap:0.4rem;
-    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.68rem;
-    text-transform:uppercase; letter-spacing:0.05em;
+    display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; row-gap:0.3rem;
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
     color:var(--dim); background:#161b20; border:1px solid var(--line);
     border-radius:6px; padding:0.45rem 0.6rem; cursor:pointer;
-    transition:all 0.12s ease;
+    text-align:left; transition:all 0.12s ease;
   }
   .gemini-toggle:hover{border-color:#8b5cf6; color:var(--chalk);}
   .gemini-toggle.open{border-color:#8b5cf6; color:#c4b5fd; background:rgba(139,92,246,0.1);}
-  .gemini-toggle-icon{font-size:0.8rem;}
-  .gemini-conf{margin-left:auto; color:#a78bfa; font-family:'JetBrains Mono',monospace; font-weight:700;}
+  .gemini-toggle-icon{font-size:0.85rem; flex-shrink:0;}
+  .gemini-toggle-main{
+    display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;
+    flex:1; min-width:0;
+  }
+  .gemini-toggle-winner{
+    color:var(--chalk); text-transform:none; letter-spacing:normal; font-weight:600;
+  }
+  .gemini-toggle-ats{
+    color:#a78bfa; text-transform:uppercase; letter-spacing:0.04em; font-size:0.65rem;
+  }
+  .gemini-toggle-trailing{
+    display:flex; align-items:center; gap:0.4rem; margin-left:auto; flex-shrink:0;
+  }
+  .gemini-conf{color:#a78bfa; font-family:'JetBrains Mono',monospace; font-weight:700; text-transform:none;}
   .gemini-caret{font-size:0.6rem; transition:transform .12s ease; color:inherit;}
   .gemini-toggle.open .gemini-caret{transform:rotate(180deg);}
   .gemini-panel{
@@ -537,38 +549,6 @@ function renderGame(g) {
     ${renderPickToolbar(SPORT, g)}
     ${renderGeminiBlock(g)}
   </div>`;
-}
-
-function renderGeminiBlock(g) {
-  const p = g.gemini_prediction;
-  if (!p) return '';
-  const conf = (p.confidence !== undefined && p.confidence !== null) ? `${p.confidence}%` : '—';
-  return `
-  <button type="button" class="gemini-toggle" aria-expanded="false">
-    <span class="gemini-toggle-icon">&#10024;</span>
-    <span>Gemini Prediction Summary</span>
-    <span class="gemini-conf">${conf}</span>
-    <span class="gemini-caret">&#9662;</span>
-  </button>
-  <div class="gemini-panel" hidden>
-    <div class="gemini-panel-row"><span>Winner</span><span class="gemini-value">${p.winner || '—'}</span></div>
-    ${p.ats_pick ? `<div class="gemini-panel-row"><span>ATS Pick</span><span class="gemini-value">${p.ats_pick}</span></div>` : ''}
-    ${(p.confidence !== undefined && p.confidence !== null) ? `<div class="gemini-panel-row"><span>Confidence</span><span class="gemini-value">${p.confidence}%</span></div>` : ''}
-    <p class="gemini-analysis">${p.analysis || ''}</p>
-  </div>`;
-}
-
-function attachGeminiHandlers(container) {
-  container.addEventListener('click', (e) => {
-    const btn = e.target.closest('.gemini-toggle');
-    if (!btn || !container.contains(btn)) return;
-    const panel = btn.nextElementSibling;
-    if (!panel || !panel.classList.contains('gemini-panel')) return;
-    const isOpen = !panel.hidden;
-    panel.hidden = isOpen;
-    btn.classList.toggle('open', !isOpen);
-    btn.setAttribute('aria-expanded', String(!isOpen));
-  });
 }
 
 const SLOT_ICON = {
