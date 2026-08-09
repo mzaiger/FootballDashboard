@@ -290,6 +290,10 @@
     padding:0.3rem 0.5rem; border-radius:9px 9px 0 0;
   }
   .odds td.picked{background:rgba(255,214,10,0.16); color:var(--pick-yellow); font-weight:700; border-radius:4px;}
+  .odds td.hit{background:rgba(62,207,106,0.18); color:#3ecf6a; font-weight:700; border-radius:4px;}
+  .odds td.miss{background:rgba(226,88,74,0.16); color:var(--loss-red); font-weight:700; border-radius:4px;}
+  .odds td.picked.hit,
+  .odds td.picked.miss{box-shadow:inset 0 0 0 2px var(--pick-yellow);}
   .pick-toolbar{display:grid; grid-template-columns:repeat(4,1fr); gap:0.35rem; margin-top:0.6rem;}
   .pick-btn{
     font-family:'Inter',sans-serif; font-size:0.68rem; font-weight:600;
@@ -299,6 +303,10 @@
   }
   .pick-btn:hover{border-color:var(--pick-yellow); color:var(--chalk);}
   .pick-btn.active{background:var(--pick-yellow); border-color:var(--pick-yellow); color:#1a1400;}
+  .pick-btn:disabled{opacity:0.55; cursor:not-allowed;}
+  .pick-btn:disabled:hover{border-color:var(--line); color:var(--dim);}
+  .pick-btn.active:disabled{color:#1a1400;}
+  .pick-btn.active:disabled:hover{border-color:var(--pick-yellow);}
 
   .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;}
   .score-badge{
@@ -554,12 +562,14 @@ function renderGame(g) {
   books.forEach(b => {
     const spread = g.odds?.[b]?.spread || {};
     const ml = g.odds?.[b]?.moneyline || {};
+    const cellCls = (market, side, entry) =>
+      `${pickCellClass(SPORT, g, market, side)} ${oddsHitClass(market, side, entry, gScore)}`.trim();
     rows += `<tr>
       <td class="book ${bookCls[b]}">${bookLabel[b]}</td>
-      <td class="${pickCellClass(SPORT, g, 'spread', 'away')}">${oddsCell(spread.away)}</td>
-      <td class="${pickCellClass(SPORT, g, 'spread', 'home')}">${oddsCell(spread.home)}</td>
-      <td class="${pickCellClass(SPORT, g, 'moneyline', 'away')}">${oddsCell(ml.away)}</td>
-      <td class="${pickCellClass(SPORT, g, 'moneyline', 'home')}">${oddsCell(ml.home)}</td>
+      <td class="${cellCls('spread', 'away', spread.away)}">${oddsCell(spread.away)}</td>
+      <td class="${cellCls('spread', 'home', spread.home)}">${oddsCell(spread.home)}</td>
+      <td class="${cellCls('moneyline', 'away', ml.away)}">${oddsCell(ml.away)}</td>
+      <td class="${cellCls('moneyline', 'home', ml.home)}">${oddsCell(ml.home)}</td>
     </tr>`;
   });
 
@@ -592,7 +602,7 @@ function renderGame(g) {
       ${renderLiveStatusLine(gScore)}
     </div>
     ${oddsBlock}
-    ${renderPickToolbar(SPORT, g)}
+    ${renderPickToolbar(SPORT, g, gScore)}
     ${renderGeminiBlock(g)}
   </div>`;
 }
