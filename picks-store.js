@@ -101,6 +101,14 @@ function pickCellClass(sport, g, market, side) {
   return (pick && pick.market === market && pick.side === side) ? 'picked' : '';
 }
 
+function isPickLocked(gScore) {
+  if (!gScore || !gScore.status) return false;
+
+  const status = String(gScore.status).toLowerCase();
+
+  return ['final', 'in_progress', 'live', 'halftime'].includes(status);
+}
+
 // CSS class to mark an odds-table cell green (hit) or red (miss), once a
 // game is final -- the team that covered (spread) or won outright
 // (moneyline) gets 'hit', the other side gets 'miss'. A push (spread) or
