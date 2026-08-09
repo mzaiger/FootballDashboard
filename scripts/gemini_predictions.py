@@ -12,21 +12,26 @@ spread or moneyline), asks Gemini for:
 
 Uses only current-season data.
 
+Model: gemini-3.5-flash-lite (its quota pool is separate from 3.6 flash).
+
 Rate limiting:
-- 1 API call per minute
-- retries wait at least 60 seconds
-- single-threaded so games are processed one at a time
+- 1 API call per minute (well under the free-tier RPM cap)
+- retries wait a full minute
+- games are processed sequentially, one at a time
+- if Gemini reports the *daily* quota (RequestsPerDay) is exhausted, the
+  run stops calling immediately; uncalled games are picked up on the next
+  run (the cache preserves progress).
 
 Caching:
 Predictions are cached in data/gemini_predictions_cache.json, keyed by a
-hash of (sport, season, week, matchup, DK odds, FD odds). If none of those
-change between runs, the cached prediction is reused and no API call is made.
+hash of (model, sport, season, week, matchup, DK odds, FD odds). If none
+of those change between runs, the cached prediction is reused and no API
+call is made.
 
 Env var required: GEMINI_KEY.
 If missing, predictions are skipped entirely.
 """
 
-import concurrent.futures
 import hashlib
 import json
 import os
@@ -39,31 +44,31 @@ import requests
 from common import log
 
 
-GEMINI_MODEL = "gemini-3.6-flash"
+GEMINI_MODEL = "gemini-3.5-flash-lite"
 GEMINI_API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
 GEMINI_TIMEOUT = 30
 
-# One request per minute. Deliberately slow.
+# One request per minute. Deliberately slow; a full slate can take ~1 hour.
 REQUESTS_PER_MINUTE = 1
 MIN_CALL_INTERVAL = 60.0 / REQUESTS_PER_MINUTE
 
-# Retry delay: wait a full minute before retrying.
+# Retries wait a full minute.
 RETRY_DELAY_SECONDS = 60.0
-
 MAX_RETRIES = 5
-
-# Keep this at 1 so it truly walks through games one by one.
-MAX_WORKERS = 1
 
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 CACHE_PATH = os.path.abspath(os.path.join(_SCRIPT_DIR, "..", "data", "gemini_predictions_cache.json"))
 
 
+class DailyQuotaExceeded(RuntimeError):
+    """Gemini's per-day request quota (RPD) is exhausted; retrying today is pointless."""
+
+
+_daily_quota_exhausted = threading.Event()
+
+
 class _RateLimiter:
-    """
-    Spaces out calls to at most one every `min_interval` seconds.
-    Thread-safe, though this file now uses one worker only.
-    """
+    """Spaces out calls to at most one every `min_interval` seconds."""
 
     def __init__(self, min_interval):
         self._min_interval = min_interval
@@ -107,8 +112,9 @@ def _save_cache(cache):
 
 def _odds_hash(sport, season, week, away_team, home_team, odds):
     """
-    Cache key that changes iff the matchup or its odds change.
-    Same matchup + same odds on a later run -> same hash -> cache hit.
+    Cache key that changes iff the model, matchup, or its odds change.
+    Including the model means switching models gets fresh predictions
+    instead of reusing another model's cached output.
     """
     dk_spread = (odds.get("draftkings", {}).get("spread", {}).get("home") or {})
     dk_ml_away = (odds.get("draftkings", {}).get("moneyline", {}).get("away") or {})
@@ -119,6 +125,7 @@ def _odds_hash(sport, season, week, away_team, home_team, odds):
     fd_ml_home = (odds.get("fanduel", {}).get("moneyline", {}).get("home") or {})
 
     key_material = "|".join(str(x) for x in [
+        GEMINI_MODEL,
         sport,
         season,
         week,
@@ -241,10 +248,7 @@ def _clean_nullable_string(value):
 
 
 def _normalize_prediction(raw):
-    """
-    Forces the prediction into the expected shape and ensures both confidence
-    fields exist.
-    """
+    """Forces the prediction into the expected shape with both confidence fields."""
     if not isinstance(raw, dict):
         raise ValueError("Gemini response was not a JSON object")
 
@@ -307,6 +311,15 @@ def _call_gemini(prompt, gemini_key):
             continue
 
         if resp.status_code == 429 or resp.status_code >= 500:
+            # Daily quota exhausted -> retrying today is pointless. Stop now;
+            # the cache keeps progress and the next run finishes the slate.
+            if resp.status_code == 429 and "RequestsPerDay" in resp.text:
+                _daily_quota_exhausted.set()
+                raise DailyQuotaExceeded(
+                    "daily request quota (RPD) exhausted -- remaining games "
+                    "will be picked up on a future run"
+                )
+
             last_err = requests.exceptions.HTTPError(
                 f"{resp.status_code} {resp.reason} for url: {resp.url}",
                 response=resp,
@@ -370,8 +383,10 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key):
     Mutates each dict in `games` by adding a "gemini_prediction" key for any
     game with at least one posted line.
 
-    Reuses cached predictions when the odds hash hasn't changed; only calls
-    Gemini for new/changed games, then saves the updated cache.
+    Reuses cached predictions when the hash hasn't changed; calls Gemini
+    sequentially (~1/min) for new/changed games, then saves the cache.
+    If the daily quota runs out mid-slate, stops calling and leaves the
+    rest for a future run.
     """
     if not gemini_key:
         log("No GEMINI_KEY set -- skipping Gemini predictions.")
@@ -407,37 +422,42 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key):
 
     log(
         f"Gemini predictions: calling for {len(to_call)} game(s) with new/changed odds "
-        f"(~{REQUESTS_PER_MINUTE}/min, so this may take a while)..."
+        f"on {GEMINI_MODEL} (~{REQUESTS_PER_MINUTE}/min, so this may take a while)..."
     )
 
-    def _worker(item):
-        g, h, prompt = item
+    called, failed, skipped = 0, 0, 0
+
+    for g, h, prompt in to_call:
+        label = f"{g['away_team']} @ {g['home_team']}"
+
+        if _daily_quota_exhausted.is_set():
+            skipped += 1
+            log(f"  Skipping {label} -- daily quota exhausted; will call on a future run.")
+            continue
+
         try:
             result = _call_gemini(prompt, gemini_key)
-            result["generated_at"] = datetime.now(timezone.utc).isoformat()
-            result["odds_hash"] = h
-            return g, h, result, None
+        except DailyQuotaExceeded as e:
+            skipped += 1
+            log(f"  Gemini daily quota hit at {label}: {e}")
+            continue
         except Exception as e:  # noqa: BLE001 -- one bad game shouldn't kill the build
-            return g, h, None, str(e)
+            failed += 1
+            log(f"  Gemini call failed for {label}: {e}")
+            continue
 
-    called, failed = 0, 0
+        result["generated_at"] = datetime.now(timezone.utc).isoformat()
+        result["odds_hash"] = h
+        result["model"] = GEMINI_MODEL
+        g["gemini_prediction"] = result
+        cache[h] = result
+        called += 1
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
-        for i, (g, h, result, err) in enumerate(ex.map(_worker, to_call), start=1):
-            if err:
-                failed += 1
-                log(f"  Gemini call failed for {g['away_team']} @ {g['home_team']}: {err}")
-                continue
+        # Save incrementally so a long slow run doesn't lose progress.
+        if called % 5 == 0:
+            _save_cache(cache)
 
-            g["gemini_prediction"] = result
-            cache[h] = result
-            called += 1
-
-            # Save incrementally so a long slow run doesn't lose progress.
-            if called % 5 == 0:
-                _save_cache(cache)
-
-    log(f"Gemini predictions: {called} succeeded, {failed} failed.")
+    log(f"Gemini predictions: {called} succeeded, {failed} failed, {skipped} skipped (daily quota).")
 
     if called:
         _save_cache(cache)
