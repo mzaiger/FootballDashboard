@@ -71,8 +71,12 @@ function togglePick(sport, gameId, market, side) {
 }
 
 // The 4-button toolbar (away/home x spread/moneyline) for one game card.
-function renderPickToolbar(sport, g) {
+// Once a game is final (gScore.status === 'final'), the buttons render
+// disabled -- the pick made (if any) still shows, but can no longer be
+// changed after the fact.
+function renderPickToolbar(sport, g, gScore) {
   const pick = getPick(sport, g.id);
+  const locked = !!(gScore && gScore.status === 'final');
   const opts = [
     { market: 'spread', side: 'away', label: `${g.away_team} ATS` },
     { market: 'spread', side: 'home', label: `${g.home_team} ATS` },
@@ -81,7 +85,7 @@ function renderPickToolbar(sport, g) {
   ];
   const btns = opts.map(o => {
     const active = pick && pick.market === o.market && pick.side === o.side;
-    return `<button type="button" class="pick-btn${active ? ' active' : ''}" data-sport="${sport}" data-game="${g.id}" data-market="${o.market}" data-side="${o.side}">${active ? '\u2605 ' : ''}${o.label}</button>`;
+    return `<button type="button" class="pick-btn${active ? ' active' : ''}" data-sport="${sport}" data-game="${g.id}" data-market="${o.market}" data-side="${o.side}"${locked ? ' disabled' : ''}>${active ? '\u2605 ' : ''}${o.label}</button>`;
   }).join('');
   return `<div class="pick-toolbar">${btns}</div>`;
 }
@@ -93,12 +97,40 @@ function pickCellClass(sport, g, market, side) {
   return (pick && pick.market === market && pick.side === side) ? 'picked' : '';
 }
 
+// CSS class to mark an odds-table cell green (hit) or red (miss), once a
+// game is final -- the team that covered (spread) or won outright
+// (moneyline) gets 'hit', the other side gets 'miss'. A push (spread) or
+// tie (moneyline) -- no actual loser -- marks BOTH sides 'hit'. Empty
+// string while the game is still live/unstarted, since the outcome isn't
+// settled yet, or if this cell has no line/odds posted. `entry` is the
+// cell's own odds object (e.g. spread.home), used to read its line for
+// the spread case.
+function oddsHitClass(market, side, entry, gScore) {
+  if (!gScore || gScore.status !== 'final') return '';
+  if (gScore.home_score === null || gScore.away_score === null) return '';
+
+  const sideScore = side === 'home' ? gScore.home_score : gScore.away_score;
+  const otherScore = side === 'home' ? gScore.away_score : gScore.home_score;
+
+  if (market === 'moneyline') {
+    if (sideScore === otherScore) return 'hit'; // tie -- no loser
+    return sideScore > otherScore ? 'hit' : 'miss';
+  }
+  if (market === 'spread') {
+    if (!entry || entry.line === null || entry.line === undefined) return '';
+    const result = (sideScore - otherScore) + entry.line;
+    if (result === 0) return 'hit'; // push -- no loser
+    return result > 0 ? 'hit' : 'miss';
+  }
+  return '';
+}
+
 // Click-delegation for every .pick-btn inside containerEl. `onPick` runs
 // after each toggle so the caller can re-render with the new cookie state.
 function attachPickHandlers(containerEl, onPick) {
   containerEl.addEventListener('click', (e) => {
     const btn = e.target.closest('.pick-btn');
-    if (!btn || !containerEl.contains(btn)) return;
+    if (!btn || !containerEl.contains(btn) || btn.disabled) return;
     const { sport, game, market, side } = btn.dataset;
     togglePick(sport, game, market, side);
     if (typeof onPick === 'function') onPick();
