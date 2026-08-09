@@ -191,6 +191,24 @@ DraftKings:
 FanDuel:
 {_fmt_book(fd)}
 
+How to read "Home spread": it is the home team's own line, signed for the
+home team. A negative number means the home team is favored by that many
+points; a positive number means the home team is the underdog by that many
+points. The away team's line is always the exact opposite sign of the same
+number.
+
+Example: "Home spread: -28" means the home team is favored by 28 points.
+The home team covers ONLY if it wins by MORE than 28 points (e.g. Alabama
+-28 covers only by winning 29+ points -- winning by exactly 28 is a push,
+winning by 1-27 points or losing outright means the away team covers
+instead, at +28).
+
+Do not default to picking the favorite to cover just because it is
+favored. Weigh current-season performance to judge whether the expected
+margin is actually larger or smaller than the number above -- the
+underdog covers any time the actual margin comes in under that number,
+including if the underdog wins outright.
+
 Using ONLY statistics, injuries, roster status, and performance from the
 {season} season, determine:
 
