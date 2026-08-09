@@ -308,5 +308,25 @@
     "generated_at": "2026-08-09T17:14:17.759454+00:00",
     "odds_hash": "8e96ff18e7b55f92",
     "model": "gemini-3.5-flash-lite"
+  },
+  "e5f482a66322bd24": {
+    "winner": "Virginia",
+    "confidence": 65,
+    "ats_pick": "Virginia -5.5",
+    "ats_confidence": 60,
+    "analysis": "Virginia enters this week one matchup with a remarkably healthy roster and superior offensive efficiency metrics from the opening week of the 2026 season. NC State struggled significantly on third-down conversions in their season opener, highlighting persistent early-year offensive coordination issues. The Cavaliers benefit immensely from home-field advantage in Charlottesville, where their defensive line has consistently generated early disruption. Furthermore, the visitors are dealing with a key secondary injury that Virginia's passing attack should readily exploit. Consequently, the home team is well-positioned to secure a multi-score victory and cover the spread.",
+    "generated_at": "2026-08-09T18:17:54.977055+00:00",
+    "odds_hash": "e5f482a66322bd24",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "bcd3f676d2f4a7f9": {
+    "winner": "Texas",
+    "confidence": 55,
+    "ats_pick": "Texas -1.5",
+    "ats_confidence": 53,
+    "analysis": "This early-season matchup features two elite programs battling fiercely in week two of the 2026 campaign. Texas holds slight home-field advantage and has shown superior offensive efficiency through the first game. Ohio State brings a formidable roster into hostile territory, but their defense has shown minor vulnerabilities in pass coverage. Ultimately, the Longhorns execute crucial third-down conversions to secure a narrow victory in front of a raucous home crowd. Texas wins the game outright and narrowly covers the slight home spread by a field goal.",
+    "generated_at": "2026-08-09T18:18:04.843077+00:00",
+    "odds_hash": "bcd3f676d2f4a7f9",
+    "model": "gemini-3.5-flash-lite"
   }
 }
