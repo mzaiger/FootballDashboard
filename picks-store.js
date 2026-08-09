@@ -253,9 +253,14 @@ function renderScoreLine(g, scores) {
   const isLive = s.status === 'in_progress';
   const isFinal = s.status === 'final';
   const cls = isLive ? 'score-line live' : isFinal ? 'score-line final' : 'score-line';
-  const label = isLive
-    ? `<span class="live-dot"></span>LIVE${s.status_detail ? ' \u00b7 ' + s.status_detail : ''}`
-    : 'FINAL';
+  const scoreText = `${g.away_team} ${s.away_score}, ${g.home_team} ${s.home_score}`;
 
-  return `<span class="${cls}">${label} &mdash; ${g.away_team} ${s.away_score}, ${g.home_team} ${s.home_score}</span>`;
+  const statusLine = isLive
+    ? `<span class="score-line-status"><span class="live-dot"></span>LIVE${s.status_detail ? ' \u00b7 ' + s.status_detail : ''}</span>`
+    : '';
+
+  return `<span class="${cls}">
+    <span class="score-line-score">${scoreText}</span>
+    ${statusLine}
+  </span>`;
 }
