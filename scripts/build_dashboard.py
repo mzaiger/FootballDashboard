@@ -54,7 +54,7 @@ MAIN_CHANNELS = {"ABC", "CBS", "NBC", "FOX", "ESPN", "ESPN2", "FS1"}
 
 # Unranked teams get this rank value for matchup-score purposes so ranked-vs-
 # unranked and unranked-vs-unranked games still sort sensibly (worst last).
-UNRANKED_VALUE = 52
+UNRANKED_VALUE = 26
 
 # Nebraska always gets pulled onto the board and always wins its time slot's
 # "Slot Pick", no matter the AP rank or spread of anything else in that window.
