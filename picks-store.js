@@ -135,8 +135,8 @@ function renderGeminiBlock(g) {
     </span>
     <span class="gemini-toggle-trailing">
       <span class="gemini-picks-summary">
-        <span class="gemini-toggle-winner">Pick: ${p.winner || 'TBD'} (Conf: ${conf})</span>
-        ${p.ats_pick ? `<span class="gemini-toggle-ats">ATS Pick: ${p.ats_pick} (Conf: ${atsConf})</span>` : ''}
+        <span class="gemini-toggle-winner">Pick: ${p.winner || 'TBD'} (${conf})</span>
+        ${p.ats_pick ? `<span class="gemini-toggle-ats">ATS Pick: ${p.ats_pick} (${atsConf})</span>` : ''}
       </span>
       <span class="gemini-caret">▾</span>
     </span>
