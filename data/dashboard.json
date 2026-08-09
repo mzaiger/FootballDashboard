@@ -44,20 +44,20 @@
                     "draftkings": {
                       "spread": {                        
                         "away": {
-                          "line":,
-                          "american": -6
+                          "line": -6,
+                          "american": null
                         },
                         "home": {
-                          "line":,
-                          "american": 6
+                          "line": 6,
+                          "american": null
                         }},
                       "moneyline": {
                         "away": {
-                          "line":,
+                          "line": null,
                           "american": 250
                         },
                         "home": {
-                          "line":,
+                          "line": null,
                           "american": -310
                         }
                       }
