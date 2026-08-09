@@ -358,6 +358,12 @@
   .empty-cell{color:#3d454d;}
 
   .no-odds{color:var(--dim); font-size:0.75rem; padding:0.4rem 0;}
+  /* Tiles view: Gemini block now sits above the odds table, so give the
+     odds table the top margin the subline used to provide. Row view
+     positions everything with explicit grid-row/grid-column, so this is
+     scoped to leave that layout untouched. */
+  body:not(.row-view) .card table.odds,
+  body:not(.row-view) .card .no-odds{margin-top:0.6rem;}
 
   .gemini-toggle{
     width:100%; margin-top:0.6rem;
@@ -562,9 +568,9 @@ function renderGame(g) {
       <span>${kickoffTime(g.start_time, g.start_time_tbd)}</span>
       <span>${g.venue || ''}</span>
     </div>
+    ${renderGeminiBlock(g)}
     ${oddsBlock}
     ${renderPickToolbar(SPORT, g)}
-    ${renderGeminiBlock(g)}
   </div>`;
 }
 
