@@ -48,6 +48,7 @@ from common import (
     match_odds_for_game,
     time_slot_for,
 )
+from gemini_predictions import attach_gemini_predictions
 
 # ---------------------------------------------------------------------------
 # Config
@@ -169,7 +170,7 @@ def pick_regional_game(games_in_window):
 # Main build
 # ---------------------------------------------------------------------------
 
-def build_week(year, week, season_type, sharp_key):
+def build_week(year, week, season_type, sharp_key, gemini_key=None):
     """Build a single week's worth of games. Returns the per-week dict
     (no generated_at/season wrapper -- that's added once, by build())."""
     log(f"Fetching NFL schedule for {year}, week {week}, seasontype {season_type}...")
@@ -185,6 +186,7 @@ def build_week(year, week, season_type, sharp_key):
 
     # days[date_key][slot] -> list of game entries
     days = {}
+    all_games = []  # flat list, mirrors what's in `days`, for the Gemini pass below
 
     for event in events:
         competitions = event.get("competitions", [])
@@ -232,6 +234,9 @@ def build_week(year, week, season_type, sharp_key):
             "odds": odds,
         }
         days.setdefault(day_key, {}).setdefault(slot, []).append(game_entry)
+        all_games.append(game_entry)
+
+    attach_gemini_predictions(all_games, sport="nfl", season=year, week=week, gemini_key=gemini_key)
 
     day_list = []
     for day_key in sorted(days.keys()):
@@ -287,12 +292,12 @@ def build_week(year, week, season_type, sharp_key):
     }
 
 
-def build(year, week_start, season_type, sharp_key, num_weeks=2):
+def build(year, week_start, season_type, sharp_key, gemini_key=None, num_weeks=2):
     """Build `num_weeks` consecutive weeks starting at week_start (default:
     this week + next week) and wrap them into the full output payload."""
     weeks = []
     for offset in range(num_weeks):
-        weeks.append(build_week(year, week_start + offset, season_type, sharp_key))
+        weeks.append(build_week(year, week_start + offset, season_type, sharp_key, gemini_key))
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -327,6 +332,10 @@ def main():
     if not sharp_key:
         sys.exit("Missing SHARPAPI_KEY environment variable (get one at sharpapi.io)")
 
+    gemini_key = os.environ.get("GEMINI_KEY")
+    if not gemini_key:
+        log("GEMINI_KEY not set -- building without Gemini predictions.")
+
     week = args.week
     if week is None:
         # ESPN infers "current week" fine with no week param at all.
@@ -339,7 +348,7 @@ def main():
         week = resp.json().get("week", {}).get("number", 1)
         log(f"No --week given; ESPN reports current week as {week}.")
 
-    output = build(args.year, week, args.season_type, sharp_key, num_weeks=args.num_weeks)
+    output = build(args.year, week, args.season_type, sharp_key, gemini_key, num_weeks=args.num_weeks)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "nfl_dashboard.json")
