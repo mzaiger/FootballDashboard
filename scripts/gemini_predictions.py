@@ -421,7 +421,7 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key):
 
     log(
         f"Gemini predictions: calling for {len(to_call)} game(s) with new/changed odds "
-        f"on {GEMINI_MODEL} (~{REQUESTS_PER_MINUTE}/min, so this may take a while)..."
+        f"on {GEMINI_MODEL} (~{60.0 / MIN_CALL_INTERVAL:.0f}/min, so this may take a while)..."
     )
 
     called, failed, skipped = 0, 0, 0
