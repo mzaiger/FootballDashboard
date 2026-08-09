@@ -339,11 +339,14 @@
   .no-odds{color:var(--dim); font-size:0.75rem; padding:0.4rem 0;}
 
   .score-line{
-    flex-basis:100%; font-weight:700; font-size:0.78rem; display:flex;
-    align-items:center; gap:0.4rem;
+    flex-basis:100%; display:flex; flex-direction:column; gap:0.15rem;
   }
-  .score-line.live{color:#ff5f56;}
-  .score-line.final{color:var(--dim);}
+  .score-line-score{font-weight:700; font-size:0.85rem; color:var(--chalk);}
+  .score-line-status{
+    font-size:0.72rem; font-weight:600; display:flex; align-items:center; gap:0.35rem;
+  }
+  .score-line.live .score-line-status{color:#ff5f56;}
+  .score-line.final .score-line-score{color:#3ecf6a;}
   .live-dot{
     width:0.5rem; height:0.5rem; border-radius:50%; background:#ff5f56;
     display:inline-block; animation:live-pulse 1.4s ease-in-out infinite;
