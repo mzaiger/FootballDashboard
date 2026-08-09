@@ -355,6 +355,7 @@
   .book.dk{color:var(--dk-green);}
   .book.fd{color:var(--fd-blue);}
   .num.neg{color:var(--loss-red);}
+  .num-am{display:block; font-size:0.7rem; margin-top:0.1rem;}
   .empty-cell{color:#3d454d;}
 
   .no-odds{color:var(--dim); font-size:0.75rem; padding:0.4rem 0;}
@@ -502,9 +503,9 @@ function oddsCell(entry) {
   }
   const line = fmtLine(entry.line);
   const am = fmtAmerican(entry.american);
-  const amCls = (typeof entry.american === 'number' && entry.american < 0) ? 'num neg' : 'num';
-  if (line !== null && am !== null) return `${line} <span class="${amCls}">(${am})</span>`;
-  if (am !== null) return `<span class="${amCls}">${am}</span>`;
+  const negCls = (typeof entry.american === 'number' && entry.american < 0) ? 'neg' : '';
+  if (line !== null && am !== null) return `${line}<span class="num num-am ${negCls}">(${am})</span>`;
+  if (am !== null) return `<span class="num ${negCls}">${am}</span>`;
   if (line !== null) return line;
   return '<span class="empty-cell">—</span>';
 }
