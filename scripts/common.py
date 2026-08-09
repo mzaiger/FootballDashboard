@@ -126,12 +126,13 @@ def _normalize(name):
     )
 
 
-# SharpAPI does not return the spread number as its own field. For
-# market_type "spread", the line is embedded in the `selection` string
-# itself, e.g. "Georgia Bulldogs -7" or "Kansas City Chiefs -3.5".
-# Moneyline `selection` is just the team name with no trailing number.
-# See https://sharpapi.io/odds/ncaaf (sample response) and the
-# opportunities/ev example in the SharpAPI quickstart docs.
+# SharpAPI used to embed the spread number in the `selection` string itself,
+# e.g. "Georgia Bulldogs -7" or "Kansas City Chiefs -3.5", with no separate
+# numeric field. That's no longer true: SharpAPI now returns the spread as
+# its own top-level `line` field on the row (e.g. {"selection": "Georgia",
+# "line": -7.0}), and `selection` is just the bare team name with nothing
+# trailing it. We read `line` directly and only fall back to parsing it out
+# of `selection` for old-format rows, so this keeps working either way.
 #
 # Tolerant of: a unicode minus sign (some feeds use \u2212 instead of a
 # plain hyphen), extra/odd whitespace, and "PK"/"PICK" for a pick'em game
@@ -141,9 +142,17 @@ _SPREAD_SELECTION_RE = re.compile(r"^(.*?)\s+([+-]\d+(?:\.\d+)?)$")
 _SPREAD_PICKEM_RE = re.compile(r"^(.*?)\s+(?:PK|PICK)$", re.IGNORECASE)
 
 
-def _parse_selection(selection, market):
-    """Split a selection string into (team_name_part, line_or_None)."""
+def _parse_selection(selection, market, line_field=None):
+    """Split a selection string into (team_name_part, line_or_None).
+
+    `line_field` is the row's own `line` value (current SharpAPI format).
+    When present for a spread row, it's used directly instead of parsing
+    the (now plain team-name) `selection` string.
+    """
     if market == "spread":
+        if line_field is not None:
+            return selection.strip(), float(line_field)
+
         cleaned = selection.strip().replace("\u2212", "-")
         m = _SPREAD_SELECTION_RE.match(cleaned)
         if m:
@@ -282,7 +291,7 @@ def match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
         if book not in result or market not in ("spread", "moneyline"):
             continue
             
-        team_part, line_val = _parse_selection(row.get("selection", ""), market)
+        team_part, line_val = _parse_selection(row.get("selection", ""), market, row.get("line"))
         
         # Determine side dynamically
         side = "home" if _fuzzy_team(home_norm, team_part) else (
