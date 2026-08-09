@@ -21,12 +21,21 @@ week with the same odds is always a cache hit.
 Env var required: GEMINI_KEY (a GitHub Actions secret / local env var).
 If it's missing, predictions are skipped entirely -- the rest of the
 build still runs normally.
+
+Rate limiting: the free API tier caps out around 10-15 requests/minute
+and returns HTTP 429 above that. All calls (including retries) funnel
+through a shared rate limiter capped at REQUESTS_PER_MINUTE, and a 429
+or 5xx response is retried with exponential backoff (honoring the
+Retry-After header when present) instead of failing that game outright.
 """
 
 import concurrent.futures
 import hashlib
 import json
 import os
+import random
+import threading
+import time
 from datetime import datetime, timezone
 
 import requests
@@ -36,10 +45,43 @@ from common import log
 GEMINI_MODEL = "gemini-3.6-flash"
 GEMINI_API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
 GEMINI_TIMEOUT = 30
-MAX_WORKERS = 6
+MAX_WORKERS = 3
+
+# The free tier caps out around 10-15 requests/minute (see Google's docs for
+# your key's actual quota). This is set conservatively below that so a full
+# slate doesn't just trade "6 threads at once" for "6 threads hammering
+# retries at once" -- every call, including retries, funnels through this
+# limiter, so the real ceiling is requests/minute, not thread count.
+REQUESTS_PER_MINUTE = 8
+MIN_CALL_INTERVAL = 60.0 / REQUESTS_PER_MINUTE
+MAX_RETRIES = 5
 
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 CACHE_PATH = os.path.abspath(os.path.join(_SCRIPT_DIR, "..", "data", "gemini_predictions_cache.json"))
+
+
+class _RateLimiter:
+    """Spaces out calls to at most one every `min_interval` seconds, shared
+    across all worker threads. Thread-safe: each caller blocks in wait()
+    until its turn, so concurrent workers still fire at a steady rate
+    instead of bursting."""
+
+    def __init__(self, min_interval):
+        self._min_interval = min_interval
+        self._lock = threading.Lock()
+        self._next_allowed = 0.0
+
+    def wait(self):
+        with self._lock:
+            now = time.monotonic()
+            start_at = max(now, self._next_allowed)
+            self._next_allowed = start_at + self._min_interval
+        sleep_for = start_at - now
+        if sleep_for > 0:
+            time.sleep(sleep_for)
+
+
+_rate_limiter = _RateLimiter(MIN_CALL_INTERVAL)
 
 
 # ---------------------------------------------------------------------------
@@ -130,19 +172,43 @@ Respond with ONLY this JSON object, no other text:
 
 
 def _call_gemini(prompt, gemini_key):
-    resp = requests.post(
-        GEMINI_API_URL,
-        params={"key": gemini_key},
-        json={
-            "contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": 0.4, "responseMimeType": "application/json"},
-        },
-        timeout=GEMINI_TIMEOUT,
-    )
-    resp.raise_for_status()
-    data = resp.json()
-    text = data["candidates"][0]["content"]["parts"][0]["text"]
-    return json.loads(text)
+    last_err = None
+    for attempt in range(MAX_RETRIES):
+        _rate_limiter.wait()
+        resp = requests.post(
+            GEMINI_API_URL,
+            params={"key": gemini_key},
+            json={
+                "contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {"temperature": 0.4, "responseMimeType": "application/json"},
+            },
+            timeout=GEMINI_TIMEOUT,
+        )
+
+        if resp.status_code == 429 or resp.status_code >= 500:
+            last_err = requests.exceptions.HTTPError(
+                f"{resp.status_code} {resp.reason} for url: {resp.url}", response=resp
+            )
+            if attempt == MAX_RETRIES - 1:
+                break
+            retry_after = resp.headers.get("Retry-After")
+            if retry_after is not None:
+                try:
+                    delay = float(retry_after)
+                except ValueError:
+                    delay = (2 ** attempt) + random.uniform(0, 1)
+            else:
+                delay = (2 ** attempt) + random.uniform(0, 1)
+            log(f"  Gemini {resp.status_code} -- retrying in {delay:.1f}s (attempt {attempt + 1}/{MAX_RETRIES})")
+            time.sleep(delay)
+            continue
+
+        resp.raise_for_status()
+        data = resp.json()
+        text = data["candidates"][0]["content"]["parts"][0]["text"]
+        return json.loads(text)
+
+    raise last_err
 
 
 # ---------------------------------------------------------------------------
@@ -185,7 +251,8 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key):
         log("Gemini predictions: nothing new to call (all cached, or no odds posted yet).")
         return
 
-    log(f"Gemini predictions: calling for {len(to_call)} game(s) with new/changed odds...")
+    log(f"Gemini predictions: calling for {len(to_call)} game(s) with new/changed odds "
+        f"(~{REQUESTS_PER_MINUTE}/min, so this may take a few minutes for a full slate)...")
 
     def _worker(item):
         g, h, prompt = item
@@ -199,7 +266,7 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key):
 
     called, failed = 0, 0
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
-        for g, h, result, err in ex.map(_worker, to_call):
+        for i, (g, h, result, err) in enumerate(ex.map(_worker, to_call), start=1):
             if err:
                 failed += 1
                 log(f"  Gemini call failed for {g['away_team']} @ {g['home_team']}: {err}")
@@ -207,6 +274,12 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key):
             g["gemini_prediction"] = result
             cache[h] = result
             called += 1
+            # Save incrementally, not just at the end -- a slate of dozens of
+            # games with an 8/min ceiling can take several minutes, and a
+            # timeout or crash partway through shouldn't throw away every
+            # prediction already earned.
+            if called % 5 == 0:
+                _save_cache(cache)
 
     log(f"Gemini predictions: {called} succeeded, {failed} failed.")
     if called:
