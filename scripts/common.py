@@ -144,7 +144,7 @@ _SPREAD_PICKEM_RE = re.compile(r"^(.*?)\s+(?:PK|PICK)$", re.IGNORECASE)
 def _parse_selection(selection, market):
     """Split a selection string into (team_name_part, line_or_None)."""
     if market == "spread":
-        cleaned = selection.strip().replace("\u2212", "-")  # unicode minus -> ASCII hyphen
+        cleaned = selection.strip().replace("\u2212", "-")
         m = _SPREAD_SELECTION_RE.match(cleaned)
         if m:
             return m.group(1), float(m.group(2))
@@ -152,7 +152,10 @@ def _parse_selection(selection, market):
         if m:
             return m.group(1), 0.0
         log(f"  WARNING: couldn't parse spread selection {selection!r} -- treating as team name only, no line")
-    return selection, None
+        return selection, None
+        
+    # THIS LINE MUST BE HERE FOR MONEYLINES:
+    return selection, None 
 
 
 def _tokens(name):
@@ -271,6 +274,11 @@ def match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
 
         book = row.get("sportsbook")
         market = row.get("market_type")
+        
+        # Map SharpAPI's new "point_spread" name back to our internal "spread" name
+        if market == "point_spread":
+            market = "spread"
+            
         if book not in result or market not in ("spread", "moneyline"):
             continue
             
