@@ -210,6 +210,38 @@
 
   .no-odds{color:var(--dim); font-size:0.75rem; padding:0.4rem 0;}
 
+  .gemini-toggle{
+    width:100%; margin-top:0.6rem;
+    display:flex; align-items:center; gap:0.4rem;
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.68rem;
+    text-transform:uppercase; letter-spacing:0.05em;
+    color:var(--dim); background:#161b20; border:1px solid var(--line);
+    border-radius:6px; padding:0.45rem 0.6rem; cursor:pointer;
+    transition:all 0.12s ease;
+  }
+  .gemini-toggle:hover{border-color:#8b5cf6; color:var(--chalk);}
+  .gemini-toggle.open{border-color:#8b5cf6; color:#c4b5fd; background:rgba(139,92,246,0.1);}
+  .gemini-toggle-icon{font-size:0.8rem;}
+  .gemini-conf{margin-left:auto; color:#a78bfa; font-family:'JetBrains Mono',monospace; font-weight:700;}
+  .gemini-caret{font-size:0.6rem; transition:transform .12s ease; color:inherit;}
+  .gemini-toggle.open .gemini-caret{transform:rotate(180deg);}
+  .gemini-panel{
+    margin-top:0.5rem; padding:0.7rem 0.8rem;
+    background:#14101c; border:1px solid rgba(139,92,246,0.3); border-radius:8px;
+  }
+  .gemini-panel-row{
+    display:flex; justify-content:space-between; gap:0.75rem;
+    font-size:0.75rem; padding:0.15rem 0; color:var(--dim);
+  }
+  .gemini-panel-row .gemini-value{color:var(--chalk); font-weight:600; text-align:right;}
+  .gemini-analysis{
+    margin:0.55rem 0 0; color:var(--chalk); font-size:0.78rem; line-height:1.55;
+  }
+  body.row-view .gemini-toggle,
+  body.row-view .gemini-panel{grid-column:1 / -1;}
+  body.row-view .gemini-toggle{grid-row:3;}
+  body.row-view .gemini-panel{grid-row:4;}
+
   footer{
     max-width:1180px; margin:3rem auto 0; padding:0 1.5rem;
     color:var(--dim); font-size:0.75rem; border-top:1px solid var(--line); padding-top:1rem;
@@ -397,6 +429,7 @@
   Matchup rank = combined AP Top 25 rank of both teams (lower is more marquee, unranked teams score 26).
   &#11088; Slot Pick = best combined AP rank in that time window, closest spread if nobody's ranked, and Nebraska overrides everything whenever it's playing in that window.
   Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule &amp; rankings via CollegeFootballData.com.
+  &#10024; Gemini Prediction Summary is AI-generated from current-season stats and posted odds -- informational only, not betting advice.
 </footer>
 
 <script src="picks-store.js"></script>
@@ -502,7 +535,40 @@ function renderGame(g) {
     </div>
     ${oddsBlock}
     ${renderPickToolbar(SPORT, g)}
+    ${renderGeminiBlock(g)}
   </div>`;
+}
+
+function renderGeminiBlock(g) {
+  const p = g.gemini_prediction;
+  if (!p) return '';
+  const conf = (p.confidence !== undefined && p.confidence !== null) ? `${p.confidence}%` : '—';
+  return `
+  <button type="button" class="gemini-toggle" aria-expanded="false">
+    <span class="gemini-toggle-icon">&#10024;</span>
+    <span>Gemini Prediction Summary</span>
+    <span class="gemini-conf">${conf}</span>
+    <span class="gemini-caret">&#9662;</span>
+  </button>
+  <div class="gemini-panel" hidden>
+    <div class="gemini-panel-row"><span>Winner</span><span class="gemini-value">${p.winner || '—'}</span></div>
+    ${p.ats_pick ? `<div class="gemini-panel-row"><span>ATS Pick</span><span class="gemini-value">${p.ats_pick}</span></div>` : ''}
+    ${(p.confidence !== undefined && p.confidence !== null) ? `<div class="gemini-panel-row"><span>Confidence</span><span class="gemini-value">${p.confidence}%</span></div>` : ''}
+    <p class="gemini-analysis">${p.analysis || ''}</p>
+  </div>`;
+}
+
+function attachGeminiHandlers(container) {
+  container.addEventListener('click', (e) => {
+    const btn = e.target.closest('.gemini-toggle');
+    if (!btn || !container.contains(btn)) return;
+    const panel = btn.nextElementSibling;
+    if (!panel || !panel.classList.contains('gemini-panel')) return;
+    const isOpen = !panel.hidden;
+    panel.hidden = isOpen;
+    btn.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  });
 }
 
 const SLOT_ICON = {
@@ -584,6 +650,7 @@ async function init() {
     const renderBoard = () => { daysEl.innerHTML = data.weeks.map(renderWeek).join(''); };
     renderBoard();
     attachPickHandlers(daysEl, renderBoard);
+    attachGeminiHandlers(daysEl);
   } catch (err) {
     statusEl.style.display = 'block';
     statusEl.textContent = `Couldn't load data/dashboard.json (${err.message}). Run scripts/build_dashboard.py first.`;
