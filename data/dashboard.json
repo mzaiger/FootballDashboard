@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09T14:56:35.725476+00:00",
+  "generated_at": "2026-08-09T15:08:57.893926+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
@@ -23,7 +23,7 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 104,
+              "best_matchup_score": 52,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -36,7 +36,7 @@
                   "away_team": "North Carolina",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "ESPN",
                   "venue": "Aviva Stadium",
                   "neutral_site": true,
@@ -57,7 +57,7 @@
             },
             {
               "slot": "Afternoon",
-              "best_matchup_score": 66,
+              "best_matchup_score": 40,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -70,7 +70,7 @@
                   "away_team": "San Jos\u00e9 State",
                   "away_conference": "Mountain West",
                   "away_rank": null,
-                  "matchup_score": 66,
+                  "matchup_score": 40,
                   "channel": "NBC",
                   "venue": "Los Angeles Memorial Coliseum",
                   "neutral_site": false,
@@ -97,7 +97,7 @@
                   "away_team": "NC State",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "ESPN",
                   "venue": "Scott Stadium",
                   "neutral_site": false,
@@ -118,7 +118,7 @@
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 104,
+              "best_matchup_score": 52,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -131,7 +131,7 @@
                   "away_team": "Memphis",
                   "away_conference": "American Athletic",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "FOX",
                   "venue": "Allegiant Stadium",
                   "neutral_site": false,
@@ -159,7 +159,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 104,
+              "best_matchup_score": 52,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -172,7 +172,7 @@
                   "away_team": "Colorado",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "ESPN",
                   "venue": "Bobby Dodd Stadium",
                   "neutral_site": false,
@@ -200,7 +200,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 59,
+              "best_matchup_score": 33,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -213,7 +213,7 @@
                   "away_team": "Miami",
                   "away_conference": "ACC",
                   "away_rank": 7,
-                  "matchup_score": 59,
+                  "matchup_score": 33,
                   "channel": "ESPN",
                   "venue": "Stanford Stadium",
                   "neutral_site": false,
@@ -240,7 +240,7 @@
                   "away_team": "Fresno State",
                   "away_conference": "Pac-12",
                   "away_rank": null,
-                  "matchup_score": 66,
+                  "matchup_score": 40,
                   "channel": "FOX",
                   "venue": "Los Angeles Memorial Coliseum",
                   "neutral_site": false,
@@ -267,7 +267,7 @@
                   "away_team": "Toledo",
                   "away_conference": "Mid-American",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "FS1",
                   "venue": "Spartan Stadium",
                   "neutral_site": false,
@@ -295,7 +295,7 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 58,
+              "best_matchup_score": 32,
               "pick_reason": "nebraska",
               "games": [
                 {
@@ -308,7 +308,7 @@
                   "away_team": "North Texas",
                   "away_conference": "American Athletic",
                   "away_rank": null,
-                  "matchup_score": 58,
+                  "matchup_score": 32,
                   "channel": "FOX",
                   "venue": "Memorial Stadium (Bloomington, IN)",
                   "neutral_site": false,
@@ -335,7 +335,7 @@
                   "away_team": "East Carolina",
                   "away_conference": "American Athletic",
                   "away_rank": null,
-                  "matchup_score": 63,
+                  "matchup_score": 37,
                   "channel": "ABC",
                   "venue": "Bryant-Denny Stadium",
                   "neutral_site": false,
@@ -362,7 +362,7 @@
                   "away_team": "Oregon State",
                   "away_conference": "Pac-12",
                   "away_rank": null,
-                  "matchup_score": 76,
+                  "matchup_score": 50,
                   "channel": "ESPN",
                   "venue": "TDECU Stadium",
                   "neutral_site": false,
@@ -389,7 +389,7 @@
                   "away_team": "Ohio",
                   "away_conference": "Mid-American",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "FS1",
                   "venue": "Memorial Stadium (Lincoln, NE)",
                   "neutral_site": false,
@@ -410,7 +410,7 @@
             },
             {
               "slot": "Afternoon",
-              "best_matchup_score": 54,
+              "best_matchup_score": 28,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -423,7 +423,7 @@
                   "away_team": "Boise State",
                   "away_conference": "Pac-12",
                   "away_rank": null,
-                  "matchup_score": 54,
+                  "matchup_score": 28,
                   "channel": "CBS",
                   "venue": "Autzen Stadium",
                   "neutral_site": false,
@@ -450,7 +450,7 @@
                   "away_team": "Texas State",
                   "away_conference": "Pac-12",
                   "away_rank": null,
-                  "matchup_score": 56,
+                  "matchup_score": 30,
                   "channel": "ESPN",
                   "venue": "DKR-Texas Memorial Stadium",
                   "neutral_site": false,
@@ -477,7 +477,7 @@
                   "away_team": "Marshall",
                   "away_conference": "Sun Belt",
                   "away_rank": null,
-                  "matchup_score": 69,
+                  "matchup_score": 43,
                   "channel": "FS1",
                   "venue": "Beaver Stadium",
                   "neutral_site": false,
@@ -504,7 +504,7 @@
                   "away_team": "Boston College",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "FOX",
                   "venue": "Nippert Stadium",
                   "neutral_site": false,
@@ -531,7 +531,7 @@
                   "away_team": "Baylor",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "ABC",
                   "venue": "Mercedes-Benz Stadium",
                   "neutral_site": true,
@@ -552,9 +552,36 @@
             },
             {
               "slot": "Prime Time",
-              "best_matchup_score": 36,
+              "best_matchup_score": 34,
               "pick_reason": "ap_rank",
               "games": [
+                {
+                  "id": 401856668,
+                  "start_time": "2026-09-05T23:00:00.000Z",
+                  "start_time_tbd": false,
+                  "home_team": "Texas A&M",
+                  "home_conference": "SEC",
+                  "home_rank": 8,
+                  "away_team": "Missouri State",
+                  "away_conference": "Conference USA",
+                  "away_rank": null,
+                  "matchup_score": 34,
+                  "channel": "ESPN",
+                  "venue": "Kyle Field",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_nebraska": false,
+                  "is_slot_pick": true
+                },
                 {
                   "id": 401856660,
                   "start_time": "2026-09-05T23:30:00.000Z",
@@ -580,33 +607,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "is_slot_pick": true
-                },
-                {
-                  "id": 401856668,
-                  "start_time": "2026-09-05T23:00:00.000Z",
-                  "start_time_tbd": false,
-                  "home_team": "Texas A&M",
-                  "home_conference": "SEC",
-                  "home_rank": 8,
-                  "away_team": "Missouri State",
-                  "away_conference": "Conference USA",
-                  "away_rank": null,
-                  "matchup_score": 60,
-                  "channel": "ESPN",
-                  "venue": "Kyle Field",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_nebraska": false,
                   "is_slot_pick": false
                 },
                 {
@@ -619,7 +619,7 @@
                   "away_team": "Abilene Christian",
                   "away_conference": "UAC",
                   "away_rank": null,
-                  "matchup_score": 64,
+                  "matchup_score": 38,
                   "channel": "FS1",
                   "venue": "Jones AT&T Stadium",
                   "neutral_site": false,
@@ -646,7 +646,7 @@
                   "away_team": "Western Michigan",
                   "away_conference": "Mid-American",
                   "away_rank": null,
-                  "matchup_score": 68,
+                  "matchup_score": 42,
                   "channel": "NBC",
                   "venue": "Michigan Stadium",
                   "neutral_site": false,
@@ -667,7 +667,7 @@
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 104,
+              "best_matchup_score": 52,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -680,7 +680,7 @@
                   "away_team": "Central Michigan",
                   "away_conference": "Mid-American",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "FS1",
                   "venue": "University Stadium (NM)",
                   "neutral_site": false,
@@ -707,7 +707,7 @@
                   "away_team": "UCLA",
                   "away_conference": "Big Ten",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "ESPN",
                   "venue": "California Memorial Stadium",
                   "neutral_site": false,
@@ -735,7 +735,7 @@
           "time_slots": [
             {
               "slot": "Afternoon",
-              "best_matchup_score": 71,
+              "best_matchup_score": 45,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -748,7 +748,7 @@
                   "away_team": "Washington State",
                   "away_conference": "Pac-12",
                   "away_rank": null,
-                  "matchup_score": 71,
+                  "matchup_score": 45,
                   "channel": "NBC",
                   "venue": "Husky Stadium",
                   "neutral_site": false,
@@ -769,7 +769,7 @@
             },
             {
               "slot": "Prime Time",
-              "best_matchup_score": 57,
+              "best_matchup_score": 31,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -782,7 +782,7 @@
                   "away_team": "Wisconsin",
                   "away_conference": "Big Ten",
                   "away_rank": null,
-                  "matchup_score": 57,
+                  "matchup_score": 31,
                   "channel": "NBC",
                   "venue": "Lambeau Field",
                   "neutral_site": true,
@@ -809,7 +809,7 @@
                   "away_team": "Louisville",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 62,
+                  "matchup_score": 36,
                   "channel": "ABC",
                   "venue": "Nissan Stadium",
                   "neutral_site": true,
@@ -837,7 +837,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 72,
+              "best_matchup_score": 46,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -850,7 +850,7 @@
                   "away_team": "SMU",
                   "away_conference": "ACC",
                   "away_rank": 20,
-                  "matchup_score": 72,
+                  "matchup_score": 46,
                   "channel": "ESPN",
                   "venue": "Doak Campbell Stadium",
                   "neutral_site": false,
@@ -884,7 +884,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 104,
+              "best_matchup_score": 52,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -897,7 +897,7 @@
                   "away_team": "Rutgers",
                   "away_conference": "Big Ten",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "ESPN2",
                   "venue": "Alumni Stadium (Chestnut Hill, MA)",
                   "neutral_site": false,
@@ -924,7 +924,7 @@
                   "away_team": "Missouri",
                   "away_conference": "SEC",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "FOX",
                   "venue": "Memorial Stadium",
                   "neutral_site": false,
@@ -952,7 +952,7 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 104,
+              "best_matchup_score": 52,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -965,7 +965,7 @@
                   "away_team": "Oklahoma",
                   "away_conference": "SEC",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "FOX",
                   "venue": "Michigan Stadium",
                   "neutral_site": false,
@@ -992,7 +992,7 @@
                   "away_team": "Oregon",
                   "away_conference": "Big Ten",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "ESPN",
                   "venue": "Boone Pickens Stadium",
                   "neutral_site": false,
@@ -1019,7 +1019,7 @@
                   "away_team": "Wake Forest",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "FS1",
                   "venue": "Ross-Ade Stadium",
                   "neutral_site": false,
@@ -1046,7 +1046,7 @@
                   "away_team": "Arizona State",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "ABC",
                   "venue": "Kyle Field",
                   "neutral_site": false,
@@ -1073,7 +1073,7 @@
                   "away_team": "Penn State",
                   "away_conference": "Big Ten",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "ESPN2",
                   "venue": "Lincoln Financial Field",
                   "neutral_site": false,
@@ -1094,7 +1094,7 @@
             },
             {
               "slot": "Afternoon",
-              "best_matchup_score": 104,
+              "best_matchup_score": 52,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -1107,7 +1107,7 @@
                   "away_team": "Rice",
                   "away_conference": "American Athletic",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "NBC",
                   "venue": "Notre Dame Stadium",
                   "neutral_site": false,
@@ -1134,7 +1134,7 @@
                   "away_team": "Duke",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "FS1",
                   "venue": "Memorial Stadium (Champaign, IL)",
                   "neutral_site": false,
@@ -1161,7 +1161,7 @@
                   "away_team": "Arizona",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "FOX",
                   "venue": "LaVell Edwards Stadium",
                   "neutral_site": false,
@@ -1188,7 +1188,7 @@
                   "away_team": "UCF",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "ESPN2",
                   "venue": "Acrisure Stadium",
                   "neutral_site": false,
@@ -1215,7 +1215,7 @@
                   "away_team": "Mississippi State",
                   "away_conference": "SEC",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "CBS",
                   "venue": "Huntington Bank Stadium",
                   "neutral_site": false,
@@ -1242,7 +1242,7 @@
                   "away_team": "Alabama",
                   "away_conference": "SEC",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "ABC",
                   "venue": "Kroger Field",
                   "neutral_site": false,
@@ -1263,7 +1263,7 @@
             },
             {
               "slot": "Prime Time",
-              "best_matchup_score": 104,
+              "best_matchup_score": 52,
               "pick_reason": "nebraska",
               "games": [
                 {
@@ -1276,7 +1276,7 @@
                   "away_team": "Tennessee",
                   "away_conference": "SEC",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "ESPN",
                   "venue": "Bobby Dodd Stadium",
                   "neutral_site": false,
@@ -1303,7 +1303,7 @@
                   "away_team": "Bowling Green",
                   "away_conference": "Mid-American",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "FS1",
                   "venue": "Memorial Stadium (Lincoln, NE)",
                   "neutral_site": false,
@@ -1330,7 +1330,7 @@
                   "away_team": "Ohio State",
                   "away_conference": "Big Ten",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "ABC",
                   "venue": "DKR-Texas Memorial Stadium",
                   "neutral_site": false,
@@ -1357,7 +1357,7 @@
                   "away_team": "Texas Tech",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "CBS",
                   "venue": "Reser Stadium",
                   "neutral_site": false,
@@ -1384,7 +1384,7 @@
                   "away_team": "Iowa State",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "NBC",
                   "venue": "Kinnick Stadium",
                   "neutral_site": false,
@@ -1405,7 +1405,7 @@
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 104,
+              "best_matchup_score": 52,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -1418,7 +1418,7 @@
                   "away_team": "North Dakota State",
                   "away_conference": "Mountain West",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "FS1",
                   "venue": "Falcon Stadium",
                   "neutral_site": false,
@@ -1445,7 +1445,7 @@
                   "away_team": "Arkansas",
                   "away_conference": "SEC",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 52,
                   "channel": "ESPN",
                   "venue": "Rice-Eccles Stadium",
                   "neutral_site": false,
