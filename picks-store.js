@@ -214,3 +214,48 @@ function initViewToggle() {
     if (!getStoredViewMode()) applyViewMode(getEffectiveViewMode());
   });
 }
+
+/*
+ * Live scores overlay -- shared by index.html / nfl.html / picks.html.
+ *
+ * data/scores.json is written hourly by scripts/fetch_scores.py, separate
+ * from the once-a-day dashboard builds, so scores can refresh far more
+ * often without hitting SharpAPI's/Gemini's tighter rate limits. It's
+ * shaped as {"cfb": {"<gameId>": {...}}, "nfl": {"<gameId>": {...}}} and
+ * simply merged in here at render time by game id -- games with no entry
+ * (not started yet) render exactly as before, with no score line.
+ */
+
+const SCORES_URL = 'data/scores.json';
+
+// Fetches data/scores.json and returns its `cfb` or `nfl` lookup (by game
+// id). Never throws -- if the file is missing or malformed (e.g. the
+// hourly workflow hasn't run yet), returns {} so the rest of the page
+// renders normally with no score lines.
+async function fetchScores(sport) {
+  try {
+    const res = await fetch(SCORES_URL, { cache: 'no-store' });
+    if (!res.ok) return {};
+    const data = await res.json();
+    return data[sport] || {};
+  } catch (e) {
+    return {};
+  }
+}
+
+// Renders the "line 2" score badge for a game, or '' if no score yet.
+// `scores` is the {gameId: {...}} lookup from fetchScores(). Away team is
+// listed first to match the "Away @ Home" order used in the matchup line.
+function renderScoreLine(g, scores) {
+  const s = scores && scores[String(g.id)];
+  if (!s || s.home_score === null || s.away_score === null) return '';
+
+  const isLive = s.status === 'in_progress';
+  const isFinal = s.status === 'final';
+  const cls = isLive ? 'score-line live' : isFinal ? 'score-line final' : 'score-line';
+  const label = isLive
+    ? `<span class="live-dot"></span>LIVE${s.status_detail ? ' \u00b7 ' + s.status_detail : ''}`
+    : 'FINAL';
+
+  return `<span class="${cls}">${label} &mdash; ${g.away_team} ${s.away_score}, ${g.home_team} ${s.home_score}</span>`;
+}
