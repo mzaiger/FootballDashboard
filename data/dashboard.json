@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09T11:20:05.170132+00:00",
+  "generated_at": "2026-08-09T11:45:55.198968+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
@@ -121,16 +121,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -218
-                        },
-                        "away": {
-                          "line": null,
-                          "american": 180
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -138,14 +129,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Virginia",
-                    "ats_pick": null,
-                    "confidence": 60,
-                    "analysis": "Entering Week 1 of the 2026 season, both NC State and Virginia start with identical 0-0 records as they open their campaign. With no prior 2026 game statistics available, roster availability and healthy depth entering the season opener favor the home team. Virginia enters the contest fully healthy with no reported injuries on their 2026 opening week depth chart. NC State also boasts a clean injury report for Week 1, but home-field advantage provides Virginia the edge in season-opening execution. Virginia's edge in market odds reflects their stronger overall 2026 opening roster balance, leading to a projected outright victory at home.",
-                    "generated_at": "2026-08-09T11:19:38.535394+00:00",
-                    "odds_hash": "09241c5db20e8090"
-                  },
                   "is_slot_pick": false
                 }
               ]
@@ -172,16 +155,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -225
-                        },
-                        "away": {
-                          "line": null,
-                          "american": 185
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -189,14 +163,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "UNLV",
-                    "ats_pick": null,
-                    "confidence": 65,
-                    "analysis": "Heading into Week 1 of the 2026 season, UNLV hosts Memphis with initial moneyline odds positioning the Rebels as strong home favorites at -225. With no prior 2026 game statistics available yet for either program, evaluation relies strictly on baseline 2026 roster availability and Week 1 injury report status. UNLV enters the season opener with a fully intact starting lineup and no major reported injuries affecting key position groups. Memphis opens its 2026 campaign on the road with a clean injury slate as well, but faces a tough environment playing at Allegiant Stadium. Given UNLV's home field advantage and favorable market backing entering 2026, the Rebels are projected to secure the outright victory in this season opener.",
-                    "generated_at": "2026-08-09T11:19:38.543548+00:00",
-                    "odds_hash": "1dca77891f02b084"
-                  },
                   "is_slot_pick": true
                 }
               ]
@@ -230,16 +196,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 225
-                        },
-                        "home": {
-                          "line": null,
-                          "american": -278
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -247,14 +204,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Georgia Tech",
-                    "ats_pick": null,
-                    "confidence": 65,
-                    "analysis": "As both teams enter Week 1 of the 2026 season, there are no prior 2026 games or statistical metrics available to evaluate either roster's current on-field performance. Georgia Tech opens as the clear home favorite on DraftKings with a -278 moneyline heading into this initial matchup. Colorado comes in as a +225 road underdog, seeking an early victory without any established 2026 injury reports or team data to rely upon. Without 2026 season statistics available, the implied probability from the betting market provides the primary baseline for this contest. Georgia Tech is selected to win outright at home based on their favored moneyline status in the absence of current-season metrics.",
-                    "generated_at": "2026-08-09T11:19:36.567854+00:00",
-                    "odds_hash": "93e2185c4e46df09"
-                  },
                   "is_slot_pick": true
                 }
               ]
@@ -288,16 +237,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": 1300
-                        },
-                        "away": {
-                          "line": null,
-                          "american": -2800
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -327,11 +267,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -3200
+                          "american": 102
                         },
                         "away": {
                           "line": null,
-                          "american": 1400
+                          "american": -122
                         }
                       }
                     },
@@ -341,14 +281,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "USC",
-                    "ats_pick": null,
-                    "confidence": 95,
-                    "analysis": "Entering Week 1 of the 2026 season, both Fresno State and USC start with identical 0-0 records and no prior 2026 performance data. DraftKings implied probabilities heavily favor USC at -3200 moneyline odds compared to Fresno State at +1400. With no 2026 game statistics or injury reports available yet for either side, evaluation relies entirely on these opening betting market indicators. The massive odds disparity designates USC as the overwhelming favorite to secure a victory in their season opener. Consequently, USC is predicted to win outright, while the lack of a posted point spread leaves the ATS selection as null.",
-                    "generated_at": "2026-08-09T11:19:41.598717+00:00",
-                    "odds_hash": "581ecdf60ba9cf88"
-                  },
                   "is_slot_pick": false
                 },
                 {
@@ -368,16 +300,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -470
-                        },
-                        "away": {
-                          "line": null,
-                          "american": 360
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -385,14 +308,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Michigan State",
-                    "ats_pick": null,
-                    "confidence": 80,
-                    "analysis": "Heading into the opening week of the 2026 season, both Toledo and Michigan State enter with blank 2026 statistical records. DraftKings oddsmakers have positioned Michigan State as a strong home favorite at -470 on the moneyline for this Week 1 matchup. Toledo comes in as a significant underdog at +360 moneyline without any current-season performance metrics to leverage. Because no point spread has been posted by the sportsbooks for this contest, there is no against-the-spread selection available. Michigan State's heavy moneyline advantage makes them the projected outright winner to open their 2026 campaign.",
-                    "generated_at": "2026-08-09T11:19:39.159980+00:00",
-                    "odds_hash": "9285defdddf39442"
-                  },
                   "is_slot_pick": false
                 }
               ]
@@ -453,12 +368,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 2200
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -546,6 +456,14 @@
                     }
                   },
                   "is_nebraska": true,
+                  "gemini_prediction": {
+                    "winner": "Nebraska",
+                    "ats_pick": null,
+                    "confidence": 95,
+                    "analysis": "Nebraska enters this 2026 Week 1 opener as massive home favorites according to opening market lines. With no prior 2026 game statistics available yet for either side, market pricing heavily favors Nebraska's talent profile and depth entering the new campaign. Ohio faces a steep operational challenge traveling on the road to open their 2026 non-conference slate against a Power Four opponent. Nebraska's heavy -3200 moneyline reflects high expectations for their starting unit to dominate the line of scrimmage from the opening kickoff. Consequently, Nebraska is poised to secure a decisive outright victory to start their 2026 regular season campaign.",
+                    "generated_at": "2026-08-09T11:36:15.655864+00:00",
+                    "odds_hash": "650dfccd8a3a83cb"
+                  },
                   "is_slot_pick": true
                 }
               ]
@@ -589,6 +507,14 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Oregon",
+                    "ats_pick": null,
+                    "confidence": 85,
+                    "analysis": "Heading into Week 1 of the 2026 college football season, both Boise State and Oregon enter this matchup with identical 0-0 records and no prior 2026 games played. With no 2026 statistics, roster performances, or injury reports recorded yet for either team, evaluation relies strictly on the available betting market indicators for this opening contest. DraftKings sportsbook lists the home team, Oregon, as an overwhelming moneyline favorite at -3600, while Boise State sits as a long +1500 underdog. Because no point spread line was posted in the provided market data, the against-the-spread pick remains null for this game. Oregon is projected as the outright winner based on the current 2026 implied market probabilities, though confidence reflects the total absence of on-field 2026 performance data.",
+                    "generated_at": "2026-08-09T11:37:39.605501+00:00",
+                    "odds_hash": "c6005406cb67add3"
+                  },
                   "is_slot_pick": true
                 },
                 {
@@ -928,16 +854,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -108
-                        },
-                        "away": {
-                          "line": null,
-                          "american": -112
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -1021,16 +938,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 1000
-                        },
-                        "home": {
-                          "line": null,
-                          "american": -1800
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -1339,16 +1247,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -650
-                        },
-                        "away": {
-                          "line": null,
-                          "american": 470
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -1632,7 +1531,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -112
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -108
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1686,16 +1594,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 470
-                        },
-                        "home": {
-                          "line": null,
-                          "american": -650
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -1756,7 +1655,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 295
+                        },
+                        "home": {
+                          "line": null,
+                          "american": -375
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
