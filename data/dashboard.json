@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09T12:41:46.351529+00:00",
+  "generated_at": "2026-08-09T13:45:04.910698+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
@@ -23,7 +23,7 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 52,
+              "best_matchup_score": 104,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -36,31 +36,14 @@
                   "away_team": "North Carolina",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "ESPN",
                   "venue": "Aviva Stadium",
                   "neutral_site": true,
                   "odds": {
                     "draftkings": {
-                      "spread": {                        
-                        "away": {
-                          "line": -6,
-                          "american": null
-                        },
-                        "home": {
-                          "line": 6,
-                          "american": null
-                        }},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 250
-                        },
-                        "home": {
-                          "line": null,
-                          "american": -310
-                        }
-                      }
+                      "spread": {},
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -68,23 +51,13 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "TCU",
-                    "confidence": 75,
-                    "ats_pick": "TCU",
-                    "ats_confidence": 45,
-                    "analysis": "TCU enters this week 1 matchup as the clear favorite according to current betting markets with a -310 moneyline. The Horned Frogs boast a superior roster build and crucial injury advantages heading into the season opener. North Carolina struggles to establish consistency on the road against high-tier conference opponents during the early stages of the schedule. Furthermore, predictive metrics heavily favor TCU's offensive efficiency to overwhelm the opposing defensive unit early. Consequently, the Horned Frogs should secure an outright victory to start their 2026 campaign successfully.",
-                    "generated_at": "2026-08-09T12:24:45.847859+00:00",
-                    "odds_hash": "a9125cfdfb371ec5",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": true
                 }
               ]
             },
             {
               "slot": "Afternoon",
-              "best_matchup_score": 40,
+              "best_matchup_score": 66,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -97,7 +70,7 @@
                   "away_team": "San Jos\u00e9 State",
                   "away_conference": "Mountain West",
                   "away_rank": null,
-                  "matchup_score": 40,
+                  "matchup_score": 66,
                   "channel": "NBC",
                   "venue": "Los Angeles Memorial Coliseum",
                   "neutral_site": false,
@@ -124,23 +97,14 @@
                   "away_team": "NC State",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "ESPN",
                   "venue": "Scott Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -218
-                        },
-                        "away": {
-                          "line": null,
-                          "american": 180
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -148,23 +112,13 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Virginia",
-                    "confidence": 68,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "Virginia enters this week one matchup as the clear favorite according to current betting markets. The Cavaliers boast a stronger statistical profile from the opening performances of the 2026 season. NC State struggles on the defensive side of the ball, which will likely hinder their ability to secure an away victory. Furthermore, Virginia's home-field advantage provides a crucial boost in what is expected to be a tightly contested battle. Ultimately, the Cavaliers' efficiency on offense will be the deciding factor in sealing the outright win.",
-                    "generated_at": "2026-08-09T12:25:45.641740+00:00",
-                    "odds_hash": "d713dccccc14d7a8",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": false
                 }
               ]
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 52,
+              "best_matchup_score": 104,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -177,7 +131,7 @@
                   "away_team": "Memphis",
                   "away_conference": "American Athletic",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "FOX",
                   "venue": "Allegiant Stadium",
                   "neutral_site": false,
@@ -205,7 +159,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 52,
+              "best_matchup_score": 104,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -218,7 +172,7 @@
                   "away_team": "Colorado",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "ESPN",
                   "venue": "Bobby Dodd Stadium",
                   "neutral_site": false,
@@ -246,7 +200,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 33,
+              "best_matchup_score": 59,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -259,7 +213,7 @@
                   "away_team": "Miami",
                   "away_conference": "ACC",
                   "away_rank": 7,
-                  "matchup_score": 33,
+                  "matchup_score": 59,
                   "channel": "ESPN",
                   "venue": "Stanford Stadium",
                   "neutral_site": false,
@@ -286,23 +240,14 @@
                   "away_team": "Fresno State",
                   "away_conference": "Pac-12",
                   "away_rank": null,
-                  "matchup_score": 40,
+                  "matchup_score": 66,
                   "channel": "FOX",
                   "venue": "Los Angeles Memorial Coliseum",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": 102
-                        },
-                        "away": {
-                          "line": null,
-                          "american": -122
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -310,16 +255,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Fresno State",
-                    "confidence": 55,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "Fresno State enters this week one matchup with a slight statistical advantage in returning production based on the 2026 data. USC struggles to establish early defensive momentum according to the current season metrics. The away team capitalizes on early offensive execution to control the tempo of the game. Furthermore, the betting market reflects this tight matchup by installing Fresno State as a narrow road favorite on the moneyline. Ultimately, Fresno State does just enough to secure a hard-fought victory away from home.",
-                    "generated_at": "2026-08-09T12:26:45.699321+00:00",
-                    "odds_hash": "5a155210d2247bad",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": false
                 },
                 {
@@ -332,7 +267,7 @@
                   "away_team": "Toledo",
                   "away_conference": "Mid-American",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "FS1",
                   "venue": "Spartan Stadium",
                   "neutral_site": false,
@@ -360,7 +295,7 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 32,
+              "best_matchup_score": 58,
               "pick_reason": "nebraska",
               "games": [
                 {
@@ -373,7 +308,7 @@
                   "away_team": "North Texas",
                   "away_conference": "American Athletic",
                   "away_rank": null,
-                  "matchup_score": 32,
+                  "matchup_score": 58,
                   "channel": "FOX",
                   "venue": "Memorial Stadium (Bloomington, IN)",
                   "neutral_site": false,
@@ -400,19 +335,14 @@
                   "away_team": "East Carolina",
                   "away_conference": "American Athletic",
                   "away_rank": null,
-                  "matchup_score": 37,
+                  "matchup_score": 63,
                   "channel": "ABC",
                   "venue": "Bryant-Denny Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 2200
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -420,16 +350,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Alabama",
-                    "confidence": 99,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "As the 2026 college football season has just reached Week 1, zero current-season data, statistics, or injury reports exist for either East Carolina or Alabama. However, evaluating the extreme +2200 away moneyline implies an overwhelming statistical and roster advantage for the Crimson Tide in this matchup. Based strictly on the massive implied probability of the betting market and the baseline talent disparity in the current 2026 rosters, Alabama is heavily favored to secure the outright victory. Without any actual on-field performance metrics from the current season to evaluate, the projection relies entirely on preseason roster valuations and oddsmaker assessments. Consequently, Alabama will win the game outright with supreme confidence.",
-                    "generated_at": "2026-08-09T12:29:45.952402+00:00",
-                    "odds_hash": "41abaff705fbfed3",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": false
                 },
                 {
@@ -442,23 +362,14 @@
                   "away_team": "Oregon State",
                   "away_conference": "Pac-12",
                   "away_rank": null,
-                  "matchup_score": 50,
+                  "matchup_score": 76,
                   "channel": "ESPN",
                   "venue": "TDECU Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -1450
-                        },
-                        "away": {
-                          "line": null,
-                          "american": 850
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -466,16 +377,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Houston",
-                    "confidence": 95,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "Houston enters this week one matchup as heavy favorites supported by dominant current-season metrics. Oregon State struggles significantly on both sides of the ball based on their early 2026 performance data. The Cougars boast a high-powered offense that efficiently exploits defensive vulnerabilities shown by the Beavers this year. Furthermore, Houston's home-field advantage proves insurmountable for an Oregon State roster dealing with multiple key injuries. Ultimately, the statistical profile heavily favors a decisive victory for the home team.",
-                    "generated_at": "2026-08-09T12:27:45.746877+00:00",
-                    "odds_hash": "f72195e49d3dbb02",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": false
                 },
                 {
@@ -488,23 +389,14 @@
                   "away_team": "Ohio",
                   "away_conference": "Mid-American",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "FS1",
                   "venue": "Memorial Stadium (Lincoln, NE)",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 1400
-                        },
-                        "home": {
-                          "line": null,
-                          "american": -3200
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -512,23 +404,13 @@
                     }
                   },
                   "is_nebraska": true,
-                  "gemini_prediction": {
-                    "winner": "Nebraska",
-                    "confidence": 98,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "Nebraska enters this week 1 matchup with overwhelming market support, reflected by their heavily skewed -3200 moneyline odds. The Cornhuskers' current-season roster depth and statistical projections far outpace what Ohio brings to the table for this opening contest. Ohio faces a massive uphill battle on the road against a superior Nebraska squad that dominates in every key efficiency metric. Current performance indicators from the 2026 season firmly point to a blowout victory for the home team. Therefore, Nebraska will easily secure the outright win to start their campaign on a high note.",
-                    "generated_at": "2026-08-09T12:28:45.833575+00:00",
-                    "odds_hash": "76f35765b69d6825",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": true
                 }
               ]
             },
             {
               "slot": "Afternoon",
-              "best_matchup_score": 28,
+              "best_matchup_score": 54,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -541,23 +423,14 @@
                   "away_team": "Boise State",
                   "away_conference": "Pac-12",
                   "away_rank": null,
-                  "matchup_score": 28,
+                  "matchup_score": 54,
                   "channel": "CBS",
                   "venue": "Autzen Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 1500
-                        },
-                        "home": {
-                          "line": null,
-                          "american": -3600
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -565,16 +438,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Oregon",
-                    "confidence": 95,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "Oregon enters this 2026 week one matchup as an overwhelming favorite over Boise State according to the current betting markets. The Ducks boast a heavily fortified roster loaded with elite returning talent and top-tier depth that far surpasses their opponents. Boise State faces a nearly insurmountable task trying to slow down Oregon's explosive offensive scheme on the road. Furthermore, the heavily lopsided moneyline odds indicate a massive disparity in current-season power ratings between the two programs. Ultimately, Oregon's superior execution and roster composition will secure a decisive victory to start their campaign.",
-                    "generated_at": "2026-08-09T12:30:45.792149+00:00",
-                    "odds_hash": "3438b11a7ccbc945",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": true
                 },
                 {
@@ -587,7 +450,7 @@
                   "away_team": "Texas State",
                   "away_conference": "Pac-12",
                   "away_rank": null,
-                  "matchup_score": 30,
+                  "matchup_score": 56,
                   "channel": "ESPN",
                   "venue": "DKR-Texas Memorial Stadium",
                   "neutral_site": false,
@@ -614,7 +477,7 @@
                   "away_team": "Marshall",
                   "away_conference": "Sun Belt",
                   "away_rank": null,
-                  "matchup_score": 43,
+                  "matchup_score": 69,
                   "channel": "FS1",
                   "venue": "Beaver Stadium",
                   "neutral_site": false,
@@ -641,7 +504,7 @@
                   "away_team": "Boston College",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "FOX",
                   "venue": "Nippert Stadium",
                   "neutral_site": false,
@@ -668,23 +531,14 @@
                   "away_team": "Baylor",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "ABC",
                   "venue": "Mercedes-Benz Stadium",
                   "neutral_site": true,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -290
-                        },
-                        "away": {
-                          "line": null,
-                          "american": 235
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -692,52 +546,15 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Auburn",
-                    "confidence": 76,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "Auburn enters this week one matchup with a deeply talented roster that thoroughly outperformed Baylor in foundational early-season metrics. The Tigers showcase an elite defensive front that consistently neutralizes opposing rushing attacks and pressures the quarterback into hurried decisions. Offensively, Auburn's explosive scheme creates mismatches in the secondary that the Baylor defense struggles to contain for four quarters. Furthermore, playing at home provides a significant advantage as the crowd noise disrupts the opposing snap counts and communication. Ultimately, Auburn executes more efficiently in critical third-down situations to secure a decisive victory.",
-                    "generated_at": "2026-08-09T12:31:46.230518+00:00",
-                    "odds_hash": "8c69990ed1137ae7",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": false
                 }
               ]
             },
             {
               "slot": "Prime Time",
-              "best_matchup_score": 34,
+              "best_matchup_score": 36,
               "pick_reason": "ap_rank",
               "games": [
-                {
-                  "id": 401856668,
-                  "start_time": "2026-09-05T23:00:00.000Z",
-                  "start_time_tbd": false,
-                  "home_team": "Texas A&M",
-                  "home_conference": "SEC",
-                  "home_rank": 8,
-                  "away_team": "Missouri State",
-                  "away_conference": "Conference USA",
-                  "away_rank": null,
-                  "matchup_score": 34,
-                  "channel": "ESPN",
-                  "venue": "Kyle Field",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_nebraska": false,
-                  "is_slot_pick": true
-                },
                 {
                   "id": 401856660,
                   "start_time": "2026-09-05T23:30:00.000Z",
@@ -755,16 +572,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 310
-                        },
-                        "home": {
-                          "line": null,
-                          "american": -395
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -772,16 +580,33 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "LSU",
-                    "confidence": 78,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "The LSU Tigers enter this 2026 week one matchup with a heavily favored status backed by dominant early-season metrics and a hostile home-field advantage. Clemson struggles to establish consistency on offense, showing vulnerability in pass protection and third-down conversions against elite competition. LSU's defense suffocates opposing quarterbacks, limiting explosive plays and forcing critical turnovers throughout the contest. Meanwhile, the Tigers' offensive unit executes efficiently on the ground, wearing down the opposing front seven as the game progresses. Consequently, LSU secures a decisive victory to start the 2026 campaign on a high note.",
-                    "generated_at": "2026-08-09T12:33:45.951751+00:00",
-                    "odds_hash": "a5c194661b97326c",
-                    "model": "gemini-3.5-flash-lite"
+                  "is_slot_pick": true
+                },
+                {
+                  "id": 401856668,
+                  "start_time": "2026-09-05T23:00:00.000Z",
+                  "start_time_tbd": false,
+                  "home_team": "Texas A&M",
+                  "home_conference": "SEC",
+                  "home_rank": 8,
+                  "away_team": "Missouri State",
+                  "away_conference": "Conference USA",
+                  "away_rank": null,
+                  "matchup_score": 60,
+                  "channel": "ESPN",
+                  "venue": "Kyle Field",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
                   },
+                  "is_nebraska": false,
                   "is_slot_pick": false
                 },
                 {
@@ -794,7 +619,7 @@
                   "away_team": "Abilene Christian",
                   "away_conference": "UAC",
                   "away_rank": null,
-                  "matchup_score": 38,
+                  "matchup_score": 64,
                   "channel": "FS1",
                   "venue": "Jones AT&T Stadium",
                   "neutral_site": false,
@@ -821,19 +646,14 @@
                   "away_team": "Western Michigan",
                   "away_conference": "Mid-American",
                   "away_rank": null,
-                  "matchup_score": 42,
+                  "matchup_score": 68,
                   "channel": "NBC",
                   "venue": "Michigan Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 2000
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -841,23 +661,13 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Michigan",
-                    "confidence": 98,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "Michigan enters this 2026 week one matchup with a vastly superior roster and significantly deeper talent across both lines of scrimmage. Western Michigan struggles to match the immense physical advantage and overall execution level displayed by the home squad during the current campaign. Statistical efficiency metrics heavily favor Michigan in both offensive production and defensive stops. Furthermore, the visitors lack the necessary firepower to keep pace once the game enters the second half. Consequently, Michigan secures a comfortable outright victory to open their season.",
-                    "generated_at": "2026-08-09T12:32:45.761449+00:00",
-                    "odds_hash": "4f0143ca385d12dd",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": false
                 }
               ]
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 52,
+              "best_matchup_score": 104,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -870,23 +680,14 @@
                   "away_team": "Central Michigan",
                   "away_conference": "Mid-American",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "FS1",
                   "venue": "University Stadium (NM)",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 390
-                        },
-                        "home": {
-                          "line": null,
-                          "american": -520
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -894,16 +695,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "New Mexico",
-                    "confidence": 83,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "Based on current 2026 season data, New Mexico enters this week one matchup with a vastly superior roster and stronger early metrics. Central Michigan struggles significantly with depth and lacks the offensive firepower demonstrated by New Mexico in practices and preliminary evaluations. The betting market heavily reflects this disparity, pricing New Mexico as a substantial -520 home favorite. Furthermore, New Mexico's home-field advantage provides an additional edge that Central Michigan's current personnel cannot overcome. Consequently, New Mexico is heavily favored to secure a decisive outright victory to open their campaign.",
-                    "generated_at": "2026-08-09T12:34:45.713475+00:00",
-                    "odds_hash": "2acefdd8331fef04",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": true
                 },
                 {
@@ -916,7 +707,7 @@
                   "away_team": "UCLA",
                   "away_conference": "Big Ten",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "ESPN",
                   "venue": "California Memorial Stadium",
                   "neutral_site": false,
@@ -944,7 +735,7 @@
           "time_slots": [
             {
               "slot": "Afternoon",
-              "best_matchup_score": 45,
+              "best_matchup_score": 71,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -957,7 +748,7 @@
                   "away_team": "Washington State",
                   "away_conference": "Pac-12",
                   "away_rank": null,
-                  "matchup_score": 45,
+                  "matchup_score": 71,
                   "channel": "NBC",
                   "venue": "Husky Stadium",
                   "neutral_site": false,
@@ -978,7 +769,7 @@
             },
             {
               "slot": "Prime Time",
-              "best_matchup_score": 31,
+              "best_matchup_score": 57,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -991,7 +782,7 @@
                   "away_team": "Wisconsin",
                   "away_conference": "Big Ten",
                   "away_rank": null,
-                  "matchup_score": 31,
+                  "matchup_score": 57,
                   "channel": "NBC",
                   "venue": "Lambeau Field",
                   "neutral_site": true,
@@ -1018,23 +809,14 @@
                   "away_team": "Louisville",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 36,
+                  "matchup_score": 62,
                   "channel": "ABC",
                   "venue": "Nissan Stadium",
                   "neutral_site": true,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 215
-                        },
-                        "home": {
-                          "line": null,
-                          "american": -265
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -1042,16 +824,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Ole Miss",
-                    "confidence": 76,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "Ole Miss enters this week 1 matchup with significant home-field advantage against Louisville according to current 2026 data. The Rebels boast a heavily upgraded roster and superior offensive efficiency metrics through early fall camp evaluations. Louisville struggles defensively to contain high-tempo passing attacks, which plays directly into the strengths of the home squad. Bettors are heavily backing the Rebels at the current -265 moneyline price due to these glaring roster mismatches. Ultimately, Ole Miss controls the line of scrimmage on both sides of the ball to secure a decisive opening-week victory.",
-                    "generated_at": "2026-08-09T12:35:45.733792+00:00",
-                    "odds_hash": "a6d977494a53de94",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": false
                 }
               ]
@@ -1065,7 +837,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 46,
+              "best_matchup_score": 72,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -1078,23 +850,14 @@
                   "away_team": "SMU",
                   "away_conference": "ACC",
                   "away_rank": 20,
-                  "matchup_score": 46,
+                  "matchup_score": 72,
                   "channel": "ESPN",
                   "venue": "Doak Campbell Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": -130
-                        },
-                        "home": {
-                          "line": null,
-                          "american": 110
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -1102,16 +865,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "SMU",
-                    "confidence": 62,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "SMU enters this early 2026 matchup displaying higher offensive efficiency based on current season metrics. Florida State struggles to generate consistent pressure up front, which allows the opposing quarterback ample time in the pocket. The Mustangs' defense also showcases superior third-down stopping power compared to the Seminoles. Playing on the road presents a challenge, but SMU's execution remains sharper in crucial game situations. Consequently, the Mustangs secure the outright victory in a tightly contested opening week battle.",
-                    "generated_at": "2026-08-09T12:36:45.783888+00:00",
-                    "odds_hash": "3f35843b09128b74",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": true
                 }
               ]
@@ -1131,7 +884,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 52,
+              "best_matchup_score": 104,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -1144,7 +897,7 @@
                   "away_team": "Rutgers",
                   "away_conference": "Big Ten",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "ESPN2",
                   "venue": "Alumni Stadium (Chestnut Hill, MA)",
                   "neutral_site": false,
@@ -1171,23 +924,14 @@
                   "away_team": "Missouri",
                   "away_conference": "SEC",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "FOX",
                   "venue": "Memorial Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": -238
-                        },
-                        "home": {
-                          "line": null,
-                          "american": 195
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -1195,16 +939,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Missouri",
-                    "confidence": 78,
-                    "ats_pick": "Missouri -5.5",
-                    "ats_confidence": 70,
-                    "analysis": "Missouri enters this week two matchup displaying an explosive offense that averaged significant yards per game in their season opener. Kansas struggled defensively in their first game of the current season, failing to contain big plays through the air and on the ground. The current betting markets heavily favor the visiting Tigers with a solid minus two hundred thirty-eight moneyline projection. Missouri's roster is fully healthy and features superior depth compared to the Jayhawks' currently depleted defensive unit. Therefore, the Tigers will secure a decisive outright victory while comfortably covering any standard spread.",
-                    "generated_at": "2026-08-09T12:37:45.840073+00:00",
-                    "odds_hash": "1d31184c68b062d5",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": false
                 }
               ]
@@ -1218,7 +952,7 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 52,
+              "best_matchup_score": 104,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -1231,23 +965,14 @@
                   "away_team": "Oklahoma",
                   "away_conference": "SEC",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "FOX",
                   "venue": "Michigan Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -130
-                        },
-                        "away": {
-                          "line": null,
-                          "american": 110
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -1255,16 +980,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Oklahoma",
-                    "confidence": 55,
-                    "ats_pick": "Oklahoma +2.5",
-                    "ats_confidence": 55,
-                    "analysis": "Oklahoma enters this week two matchup with an explosive offensive rhythm established in their season opener. Michigan showcases a formidable defensive front, yet their passing attack has shown early inconsistencies against disciplined coverage. The Sooners' offensive line successfully neutralizes the Wolverines' pass rush, allowing crucial third-down conversions throughout the contest. Oklahoma's secondary forces two pivotal turnovers in the second half to shift the momentum permanently. Ultimately, the Sooners secure a narrow road victory by executing more efficiently in the red zone.",
-                    "generated_at": "2026-08-09T12:38:55.489465+00:00",
-                    "odds_hash": "fb8a4fdfdb2bbdbe",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": true
                 },
                 {
@@ -1277,23 +992,14 @@
                   "away_team": "Oregon",
                   "away_conference": "Big Ten",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "ESPN",
                   "venue": "Boone Pickens Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": 675
-                        },
-                        "away": {
-                          "line": null,
-                          "american": -1050
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -1301,16 +1007,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Oregon",
-                    "confidence": 98,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "Oregon enters this week 2 matchup as an overwhelming favorite with a moneyline of -1050, reflecting their dominant statistical start to the 2026 season. Oklahoma State sits as a massive +675 home underdog, struggling to find consistency in their offensive execution this year. The Ducks' roster boasts superior depth and health compared to the Cowboys, who are battling key injuries across their defensive secondary. Oregon's high-powered offense is currently averaging significantly more yards per game than an Oklahoma State defense that has repeatedly surrendered explosive plays. Ultimately, the talent disparity and current-season performance metrics heavily favor Oregon to secure a comfortable outright victory.",
-                    "generated_at": "2026-08-09T12:39:45.958873+00:00",
-                    "odds_hash": "40872a664f529bbe",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": false
                 },
                 {
@@ -1323,7 +1019,7 @@
                   "away_team": "Wake Forest",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "FS1",
                   "venue": "Ross-Ade Stadium",
                   "neutral_site": false,
@@ -1350,23 +1046,14 @@
                   "away_team": "Arizona State",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "ABC",
                   "venue": "Kyle Field",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -650
-                        },
-                        "away": {
-                          "line": null,
-                          "american": 470
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -1374,16 +1061,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Texas A&M",
-                    "confidence": 88,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "Texas A&M enters this week two matchup with overwhelming current-season momentum and a heavily talented roster. Arizona State struggles to generate consistent offensive production against elite defensive fronts in the early 2026 campaign. The Aggies boast a dominant home-field advantage at Kyle Field that severely limits opposing communication. Furthermore, Texas A&M's superior depth allows them to wear down the Sun Devils over four quarters. Consequently, the home side is heavily favored by the market and primed to secure a comfortable victory.",
-                    "generated_at": "2026-08-09T12:40:45.799444+00:00",
-                    "odds_hash": "038ef4eefb80421a",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": false
                 },
                 {
@@ -1396,7 +1073,7 @@
                   "away_team": "Penn State",
                   "away_conference": "Big Ten",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "ESPN2",
                   "venue": "Lincoln Financial Field",
                   "neutral_site": false,
@@ -1417,7 +1094,7 @@
             },
             {
               "slot": "Afternoon",
-              "best_matchup_score": 52,
+              "best_matchup_score": 104,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -1430,7 +1107,7 @@
                   "away_team": "Rice",
                   "away_conference": "American Athletic",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "NBC",
                   "venue": "Notre Dame Stadium",
                   "neutral_site": false,
@@ -1457,7 +1134,7 @@
                   "away_team": "Duke",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "FS1",
                   "venue": "Memorial Stadium (Champaign, IL)",
                   "neutral_site": false,
@@ -1484,7 +1161,7 @@
                   "away_team": "Arizona",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "FOX",
                   "venue": "LaVell Edwards Stadium",
                   "neutral_site": false,
@@ -1511,7 +1188,7 @@
                   "away_team": "UCF",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "ESPN2",
                   "venue": "Acrisure Stadium",
                   "neutral_site": false,
@@ -1538,7 +1215,7 @@
                   "away_team": "Mississippi State",
                   "away_conference": "SEC",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "CBS",
                   "venue": "Huntington Bank Stadium",
                   "neutral_site": false,
@@ -1565,7 +1242,7 @@
                   "away_team": "Alabama",
                   "away_conference": "SEC",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "ABC",
                   "venue": "Kroger Field",
                   "neutral_site": false,
@@ -1586,7 +1263,7 @@
             },
             {
               "slot": "Prime Time",
-              "best_matchup_score": 52,
+              "best_matchup_score": 104,
               "pick_reason": "nebraska",
               "games": [
                 {
@@ -1599,7 +1276,7 @@
                   "away_team": "Tennessee",
                   "away_conference": "SEC",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "ESPN",
                   "venue": "Bobby Dodd Stadium",
                   "neutral_site": false,
@@ -1626,7 +1303,7 @@
                   "away_team": "Bowling Green",
                   "away_conference": "Mid-American",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "FS1",
                   "venue": "Memorial Stadium (Lincoln, NE)",
                   "neutral_site": false,
@@ -1653,7 +1330,7 @@
                   "away_team": "Ohio State",
                   "away_conference": "Big Ten",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "ABC",
                   "venue": "DKR-Texas Memorial Stadium",
                   "neutral_site": false,
@@ -1680,7 +1357,7 @@
                   "away_team": "Texas Tech",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "CBS",
                   "venue": "Reser Stadium",
                   "neutral_site": false,
@@ -1707,23 +1384,14 @@
                   "away_team": "Iowa State",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "NBC",
                   "venue": "Kinnick Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 470
-                        },
-                        "home": {
-                          "line": null,
-                          "american": -650
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -1731,23 +1399,13 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Iowa",
-                    "confidence": 85,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "Entering week two of the 2026 college football season, Iowa holds a significant advantage in early performance metrics and roster stability. The Hawkeyes boast a formidable defense that completely shut down their opening-week opponent, showcasing elite containment and tackling. Iowa State enters this rivalry matchup struggling to find consistency on the offensive side of the ball during their first game. Furthermore, the heavily favored moneyline odds reflect the decisive gap in current-season efficiency ratings between the two instate rivals. Ultimately, Iowa's suffocating defensive scheme and home-field advantage will propel them to a comfortable outright victory.",
-                    "generated_at": "2026-08-09T12:41:46.350008+00:00",
-                    "odds_hash": "63c5f2c074308fe0",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": false
                 }
               ]
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 52,
+              "best_matchup_score": 104,
               "pick_reason": "ap_rank",
               "games": [
                 {
@@ -1760,7 +1418,7 @@
                   "away_team": "North Dakota State",
                   "away_conference": "Mountain West",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "FS1",
                   "venue": "Falcon Stadium",
                   "neutral_site": false,
@@ -1787,7 +1445,7 @@
                   "away_team": "Arkansas",
                   "away_conference": "SEC",
                   "away_rank": null,
-                  "matchup_score": 52,
+                  "matchup_score": 104,
                   "channel": "ESPN",
                   "venue": "Rice-Eccles Stadium",
                   "neutral_site": false,
