@@ -458,7 +458,7 @@
 
 <footer>
   Matchup score = the smaller of DraftKings/FanDuel's point spread (closer game = more marquee, sorts first).
-  &#11088; Slot Pick = the game with the closest spread in that time window.
+  &#11088; Time Slot Most Watchable Game = the game with the closest spread in that time window.
   Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule &amp; broadcast network via ESPN's public scoreboard API.
   <br><br>
   <strong>Omaha/Lincoln regional pick is an unofficial estimate</strong> — when a network window has more than one
@@ -556,7 +556,7 @@ function renderGame(g) {
 
   return `
   <div class="card ${closeGame ? 'close-game' : ''} ${isPick ? 'slot-pick' : ''}">
-    ${isPick ? '<div class="pick-banner">\u2b50 Slot Pick</div>' : ''}
+    ${isPick ? '<div class="pick-banner">\u2b50 Time Slot Most Watchable Game</div>' : ''}
     <div class="card-top">
       <span class="score-badge">${scoreLabel}</span>
       <span class="channel-pill">${g.channel}</span>
