@@ -15,7 +15,7 @@ Uses only current-season data.
 Model: gemini-3.5-flash-lite (its quota pool is separate from 3.6 flash).
 
 Rate limiting:
-- 1 API call per minute (well under the free-tier RPM cap)
+- 1 API call every 10 seconds (6/minute)
 - retries wait a full minute
 - games are processed sequentially, one at a time
 - if Gemini reports the *daily* quota (RequestsPerDay) is exhausted, the
@@ -48,9 +48,8 @@ GEMINI_MODEL = "gemini-3.5-flash-lite"
 GEMINI_API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
 GEMINI_TIMEOUT = 30
 
-# One request per minute. Deliberately slow; a full slate can take ~1 hour.
-REQUESTS_PER_MINUTE = 1
-MIN_CALL_INTERVAL = 60.0 / REQUESTS_PER_MINUTE
+# One request every 10 seconds (6/minute).
+MIN_CALL_INTERVAL = 10.0
 
 # Retries wait a full minute.
 RETRY_DELAY_SECONDS = 60.0
