@@ -1,11 +1,17 @@
 {
-  "generated_at": "2026-08-09T21:46:31.916589+00:00",
+  "generated_at": "2026-08-09T22:07:10.213294+00:00",
   "cfb": {
     "401856766": {
       "home_score": 24,
       "away_score": 17,
       "status": "in_progress",
       "status_detail": "Q3 08:42"
+    },
+    "401864494": {
+      "home_score": 38,
+      "away_score": 13,
+      "status": "final",
+      "status_detail": "Final"
     }
   },
   "nfl": {}
