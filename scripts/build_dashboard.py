@@ -54,10 +54,11 @@ MAIN_CHANNELS = {"ABC", "CBS", "NBC", "FOX", "ESPN", "ESPN2", "FS1"}
 
 # Unranked teams get this rank value for matchup-score purposes so ranked-vs-
 # unranked and unranked-vs-unranked games still sort sensibly (worst last).
-UNRANKED_VALUE = 52
+UNRANKED_VALUE = 50
 
 # Nebraska always gets pulled onto the board and always wins its time slot's
-# "Slot Pick", no matter the AP rank or spread of anything else in that window.
+# "Time Slot Most Watchable Game" pick, no matter its AP rank or spread
+# relative to anything else in that window.
 NEBRASKA_TEAM = "Nebraska"
 
 REQUEST_TIMEOUT = 20
@@ -117,6 +118,44 @@ def build_rank_lookup(rankings_payload, poll_name="AP Top 25"):
     return lookup
 
 
+def get_rank_lookup_with_fallback(cfbd_key, year, week, cache=None):
+    """Get {team_name: rank} for `week`, carrying forward from the most
+    recent earlier week if `week`'s poll hasn't been released yet.
+
+    CFBD only publishes each week's AP poll after that week's games are
+    played (e.g. the "Week 2" poll comes out once Week 1 wraps up). When
+    we're building a future week ahead of time -- like showing "this week
+    + next week" before this week has kicked off -- the later week's poll
+    genuinely doesn't exist yet. Rather than show no rankings at all, this
+    steps backward (week-1, week-2, ... down to week 1) and reuses the
+    most recent released poll as a best-available approximation.
+
+    `cache` is an optional {week: rankings_payload} dict so build() can
+    share fetched weeks across build_week() calls instead of re-fetching
+    the same week's rankings more than once.
+    """
+    if cache is None:
+        cache = {}
+
+    def payload_for(w):
+        if w not in cache:
+            cache[w] = get_rankings(cfbd_key, year, w)
+        return cache[w]
+
+    lookup = build_rank_lookup(payload_for(week))
+    if lookup:
+        return lookup, week
+
+    for earlier in range(week - 1, 0, -1):
+        lookup = build_rank_lookup(payload_for(earlier))
+        if lookup:
+            log(f"  No rankings published yet for week {week}; using week {earlier}'s poll instead.")
+            return lookup, earlier
+
+    log(f"  No rankings found for week {week} or any earlier week -- all teams will show as unranked.")
+    return {}, None
+
+
 # ---------------------------------------------------------------------------
 # Matchup ranking
 # ---------------------------------------------------------------------------
@@ -153,15 +192,37 @@ def _closest_spread_abs(game_entry):
     return best
 
 
+def _normalize(values):
+    """Min-max scale a list to [0, 1] (0 = best/lowest, 1 = worst/highest).
+
+    None entries (e.g. no spread posted yet) are scored as 1.0 -- worst on
+    that metric -- so a game only wins on the strength of its other metric.
+    If every value is None, or every present value is identical, everyone
+    gets 0.5 on that metric so it doesn't swing the pick.
+    """
+    present = [v for v in values if v is not None]
+    if not present:
+        return [0.5] * len(values)
+    lo, hi = min(present), max(present)
+    if hi == lo:
+        return [0.5 if v is not None else 1.0 for v in values]
+    return [1.0 if v is None else (v - lo) / (hi - lo) for v in values]
+
+
 def choose_slot_pick(games_sorted):
-    """Pick the marquee game for a time slot.
+    """Pick the "Time Slot Most Watchable Game".
 
     Priority:
       1. Nebraska is in this slot -> Nebraska is the pick, always.
-      2. Otherwise the best combined-AP-rank matchup (games_sorted is already
-         sorted ascending by matchup_score, so that's index 0) -- unless
-         every game in the slot is unranked-vs-unranked (score == 52), in
-         which case fall back to whichever game has the closest spread.
+      2. Otherwise, score every game in the slot on two metrics and blend
+         them 50/50:
+           - combined AP rank (matchup_score; unranked teams count as
+             UNRANKED_VALUE), lower = more marquee
+           - closest posted spread (abs value across books), lower = more
+             competitive game
+         Each metric is min-max normalized across just this slot's games
+         (0 = best in the slot, 1 = worst), then averaged 50/50. The game
+         with the lowest blended score is the most watchable pick.
 
     Returns (index_into_games_sorted, reason) or (None, None) if empty.
     """
@@ -172,27 +233,22 @@ def choose_slot_pick(games_sorted):
         if g.get("is_nebraska"):
             return i, "nebraska"
 
-    best_score = games_sorted[0]["matchup_score"]
-    if best_score < UNRANKED_VALUE * 2:
-        return 0, "ap_rank"
+    ap_values = [g["matchup_score"] for g in games_sorted]
+    spread_values = [_closest_spread_abs(g) for g in games_sorted]
 
-    # Nobody in this slot is ranked -- fall back to the closest (most
-    # competitive) spread instead.
-    scored = [(i, _closest_spread_abs(g)) for i, g in enumerate(games_sorted)]
-    available = [(i, v) for i, v in scored if v is not None]
-    if available:
-        idx = min(available, key=lambda t: t[1])[0]
-        return idx, "closest_spread"
+    ap_norm = _normalize(ap_values)
+    spread_norm = _normalize(spread_values)
 
-    # No spreads posted anywhere either -- just default to the first game.
-    return 0, "ap_rank"
+    blended = [0.5 * a + 0.5 * s for a, s in zip(ap_norm, spread_norm)]
+    idx = min(range(len(blended)), key=lambda i: blended[i])
+    return idx, "watchability"
 
 
 # ---------------------------------------------------------------------------
 # Main build
 # ---------------------------------------------------------------------------
 
-def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None):
+def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, rankings_cache=None):
     """Build a single week's worth of games. Returns the per-week dict
     (no generated_at/season wrapper -- that's added once, by build())."""
     log(f"Fetching games for {year} week {week}...")
@@ -204,9 +260,10 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None):
     media_by_game = {m["id"]: m for m in media if m.get("id")}
 
     log("Fetching AP rankings...")
-    rankings_payload = get_rankings(cfbd_key, year, week)
-    rank_lookup = build_rank_lookup(rankings_payload)
-    log(f"  {len(rank_lookup)} ranked teams found")
+    rank_lookup, rank_source_week = get_rank_lookup_with_fallback(cfbd_key, year, week, cache=rankings_cache)
+    log(f"  {len(rank_lookup)} ranked teams found" + (
+        f" (from week {rank_source_week}'s poll)" if rank_source_week not in (None, week) else ""
+    ))
 
     log("Fetching DraftKings/FanDuel NCAAF odds from SharpAPI...")
     odds_rows = fetch_all_odds(sharp_key, league="ncaaf")
@@ -313,8 +370,9 @@ def build(year, week_start, cfbd_key, sharp_key, channels, gemini_key=None, num_
     """Build `num_weeks` consecutive weeks starting at week_start (default:
     this week + next week) and wrap them into the full output payload."""
     weeks = []
+    rankings_cache = {}
     for offset in range(num_weeks):
-        weeks.append(build_week(year, week_start + offset, cfbd_key, sharp_key, channels, gemini_key))
+        weeks.append(build_week(year, week_start + offset, cfbd_key, sharp_key, channels, gemini_key, rankings_cache=rankings_cache))
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
