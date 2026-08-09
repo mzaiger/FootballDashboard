@@ -211,16 +211,16 @@
 
   .no-odds{color:var(--dim); font-size:0.75rem; padding:0.4rem 0;}
 
-  .score-line{
-    flex-basis:100%; display:flex; flex-direction:column; gap:0.15rem;
+  .team-score{
+    font-family:'Oswald',sans-serif; font-weight:700;
   }
-  .score-line-score{font-weight:700; font-size:0.85rem; color:var(--chalk);}
-  .score-line-status{
-    font-size:0.72rem; font-weight:600; display:flex; align-items:center; gap:0.35rem;
+  .team-score.live{color:#ff5f56;}
+  .team-score.final{color:#3ecf6a;}
+  .score-status-line{
+    flex-basis:100%; font-family:'Oswald',sans-serif; font-size:0.68rem;
+    font-weight:600; letter-spacing:0.02em; color:#ff5f56; display:flex;
+    align-items:center; gap:0.35rem;
   }
-  .score-line.live .score-line-score{color:#ff5f56;}
-  .score-line.live .score-line-status{color:#ff5f56;}
-  .score-line.final .score-line-score{color:#3ecf6a;}
   .live-dot{
     width:0.5rem; height:0.5rem; border-radius:50%; background:#ff5f56;
     display:inline-block; animation:live-pulse 1.4s ease-in-out infinite;
@@ -534,6 +534,7 @@ function kickoffTime(iso, tbd) {
 function renderGame(g) {
   const marquee = g.home_rank && g.away_rank;
   const isPick = !!g.is_slot_pick;
+  const gScore = SCORES[String(g.id)];
   const books = ['draftkings', 'fanduel'];
   const bookLabel = { draftkings: 'DK', fanduel: 'FD' };
   const bookCls = { draftkings: 'dk', fanduel: 'fd' };
@@ -571,14 +572,14 @@ function renderGame(g) {
       <span class="channel-pill">${g.channel}</span>
     </div>
     <div class="matchup">
-      <span class="team">${rankBadge(g.away_rank)} ${g.away_team}</span>
+      <span class="team">${rankBadge(g.away_rank)} ${g.away_team}${teamScoreBadge(gScore?.away_score, gScore?.status)}</span>
       <span class="at">@</span>
-      <span class="team">${rankBadge(g.home_rank)} ${g.home_team}</span>
+      <span class="team">${rankBadge(g.home_rank)} ${g.home_team}${teamScoreBadge(gScore?.home_score, gScore?.status)}</span>
     </div>
     <div class="subline">
       <span>${kickoffTime(g.start_time, g.start_time_tbd)}</span>
       <span>${g.venue || ''}</span>
-      ${renderScoreLine(g, SCORES)}
+      ${renderLiveStatusLine(gScore)}
     </div>
     ${oddsBlock}
     ${renderPickToolbar(SPORT, g)}

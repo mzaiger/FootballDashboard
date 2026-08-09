@@ -243,24 +243,18 @@ async function fetchScores(sport) {
   }
 }
 
-// Renders the "line 2" score badge for a game, or '' if no score yet.
-// `scores` is the {gameId: {...}} lookup from fetchScores(). Away team is
-// listed first to match the "Away @ Home" order used in the matchup line.
-function renderScoreLine(g, scores) {
-  const s = scores && scores[String(g.id)];
-  if (!s || s.home_score === null || s.away_score === null) return '';
+// Returns the small score badge to place right next to a team's name in
+// the matchup title, or '' if this game has no score yet. Colored green
+// once final, red while live (no color once the game hasn't started).
+function teamScoreBadge(score, status) {
+  if (score === null || score === undefined) return '';
+  const cls = status === 'final' ? 'final' : status === 'in_progress' ? 'live' : '';
+  return ` <span class="team-score ${cls}">${score}</span>`;
+}
 
-  const isLive = s.status === 'in_progress';
-  const isFinal = s.status === 'final';
-  const cls = isLive ? 'score-line live' : isFinal ? 'score-line final' : 'score-line';
-  const scoreText = `${g.away_team} ${s.away_score}, ${g.home_team} ${s.home_score}`;
-
-  const statusLine = isLive
-    ? `<span class="score-line-status"><span class="live-dot"></span>LIVE${s.status_detail ? ' \u00b7 ' + s.status_detail : ''}</span>`
-    : '';
-
-  return `<span class="${cls}">
-    <span class="score-line-score">${scoreText}</span>
-    ${statusLine}
-  </span>`;
+// Returns the "LIVE · Q3 08:42" line to place under the matchup title
+// while a game is in progress, or '' once it's final (or hasn't started).
+function renderLiveStatusLine(scoreEntry) {
+  if (!scoreEntry || scoreEntry.status !== 'in_progress') return '';
+  return `<div class="score-status-line"><span class="live-dot"></span>LIVE${scoreEntry.status_detail ? ' \u00b7 ' + scoreEntry.status_detail : ''}</div>`;
 }
