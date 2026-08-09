@@ -119,23 +119,32 @@ function attachPickHandlers(containerEl, onPick) {
 function renderGeminiBlock(g) {
   const p = g.gemini_prediction;
   if (!p) return '';
-  const conf = (p.confidence !== undefined && p.confidence !== null) ? `${p.confidence}%` : '—';
-  return `
-  <button type="button" class="gemini-toggle" aria-expanded="false">
-    <span class="gemini-toggle-icon">&#10024;</span>
-    <span class="gemini-toggle-main">
-      <span class="gemini-toggle-winner">${p.winner || 'Pick TBD'}</span>
-      ${p.ats_pick ? `<span class="gemini-toggle-ats">ATS ${p.ats_pick}</span>` : ''}
+
+  const conf = (p.confidence !== undefined && p.confidence !== null)
+    ? `${p.confidence}%` : '—';
+
+  // If your Python builder ever starts emitting a separate ats_confidence,
+  // this picks it up automatically; otherwise it reuses the main confidence.
+  const atsConf = (p.ats_confidence !== undefined && p.ats_confidence !== null)
+    ? `${p.ats_confidence}%` : conf;
+
+  return `<button type="button" class="gemini-toggle" aria-expanded="false">
+    <span class="gemini-toggle-label">
+      <span class="gemini-toggle-icon">&#10024;</span>
+      Gemini Prediction Summary
     </span>
     <span class="gemini-toggle-trailing">
-      <span class="gemini-conf">${conf}</span>
-      <span class="gemini-caret">&#9662;</span>
+      <span class="gemini-picks-summary">
+        <span class="gemini-toggle-winner">Pick: ${p.winner || 'TBD'} (Confidence: ${conf})</span>
+        ${p.ats_pick ? `<span class="gemini-toggle-ats">ATS_Pick: ${p.ats_pick} (Confidence: ${atsConf})</span>` : ''}
+      </span>
+      <span class="gemini-caret">▾</span>
     </span>
   </button>
   <div class="gemini-panel" hidden>
-    <div class="gemini-panel-row"><span>Winner</span><span class="gemini-value">${p.winner || '—'}</span></div>
-    ${p.ats_pick ? `<div class="gemini-panel-row"><span>ATS Pick</span><span class="gemini-value">${p.ats_pick}</span></div>` : ''}
-    ${(p.confidence !== undefined && p.confidence !== null) ? `<div class="gemini-panel-row"><span>Confidence</span><span class="gemini-value">${p.confidence}%</span></div>` : ''}
+    <div class="gemini-panel-row"><span>Winner</span> <span class="gemini-value">${p.winner || '—'}</span></div>
+    ${p.ats_pick ? `<div class="gemini-panel-row"><span>ATS Pick</span> <span class="gemini-value">${p.ats_pick}</span></div>` : ''}
+    ${(p.confidence !== undefined && p.confidence !== null) ? `<div class="gemini-panel-row"><span>Confidence</span> <span class="gemini-value">${p.confidence}%</span></div>` : ''}
     <p class="gemini-analysis">${p.analysis || ''}</p>
   </div>`;
 }
