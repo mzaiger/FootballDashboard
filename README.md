@@ -24,6 +24,11 @@ Both pages share a nav bar at the top, and both builders share matching /
 odds-fetching / time-slot-bucketing logic from `scripts/common.py` so a fix
 in one (like the odds-matching hardening below) benefits both.
 
+Every game with a posted DraftKings or FanDuel line also gets a **Gemini
+Prediction Summary** — a collapsible button on the card showing an AI
+confidence score, which expands to a winner pick, ATS pick, and a
+five-sentence explanation. See "Gemini predictions" below for how it works.
+
 - **Automation**: `.github/workflows/update-dashboard.yml` — runs both
   scripts daily via GitHub Actions and commits the refreshed JSON files
 - **Front-end**: static HTML, no build step, no JS framework
@@ -107,10 +112,36 @@ If you want the accurate version, say the word and I'll build the
 Playwright path — just flagging that it's a meaningfully bigger lift (and a
 heavier, slower CI job) than the rest of this project.
 
+## Gemini predictions
+
+For every game that has at least one posted DraftKings or FanDuel line
+(spread or moneyline), the build scripts call the Gemini API for a
+current-season-only prediction: straight-up winner, ATS pick, a 1-100
+confidence score, and a five-sentence explanation. That's attached to the
+game as a `gemini_prediction` field, which the front-end renders as the
+expandable "✨ Gemini Prediction Summary" button.
+
+- **Model**: `gemini-3.6-flash`, called via `scripts/gemini_predictions.py`
+  (imported by both `build_dashboard.py` and `build_nfl_dashboard.py`).
+- **Caching**: `data/gemini_predictions_cache.json` keys each prediction by
+  a hash of the matchup + that game's DK/FD spread and moneyline numbers.
+  Re-running the same week with unchanged odds is always a cache hit — no
+  API call, no wasted quota. A call only happens the first time a game is
+  seen, or after its odds move, so in practice this runs about once a week
+  per game plus the occasional re-price. Commit the cache file back to the
+  repo (the GitHub Actions workflow does this automatically alongside the
+  dashboard JSON) so it persists between runs.
+- **Concurrency**: new/changed games are called in parallel (thread pool,
+  6 at a time) rather than one at a time, so a full CFB slate doesn't take
+  forever to build.
+- **Optional**: if `GEMINI_KEY` isn't set, the builders log a note and skip
+  predictions entirely rather than failing the build.
+
 ## 1. Get your API keys
 
 - CFBD: [collegefootballdata.com/key](https://collegefootballdata.com/key) — free, sign up with email
 - SharpAPI: [sharpapi.io](https://sharpapi.io) — free tier covers DraftKings + FanDuel at 12 requests/min
+- Gemini: [aistudio.google.com/apikey](https://aistudio.google.com/apikey) — free tier available; optional, only needed for prediction summaries
 - ESPN's scoreboard API needs no key (public, unofficial, no auth)
 
 ## 2. Run it locally
@@ -120,6 +151,7 @@ pip install -r requirements.txt
 
 export CFBD_API_KEY="your_cfbd_key"
 export SHARPAPI_KEY="your_sharpapi_key"
+export GEMINI_KEY="your_gemini_key"   # optional -- skips prediction summaries if unset
 
 python scripts/build_dashboard.py       # CFB -> data/dashboard.json
 python scripts/build_nfl_dashboard.py   # NFL -> data/nfl_dashboard.json (only needs SHARPAPI_KEY)
@@ -158,6 +190,7 @@ sparse until DraftKings/FanDuel post lines closer to game day.
 2. **Add secrets**: repo → Settings → Secrets and variables → Actions → New repository secret
    - `CFBD_API_KEY`
    - `SHARPAPI_KEY`
+   - `GEMINI_KEY` (optional — omit to build without prediction summaries)
 3. **Enable Pages**: repo → Settings → Pages → Source: `Deploy from a branch` → branch `main`, folder `/ (root)`.
 4. **Enable Actions writes**: the workflow already requests `contents: write`
    permission, but if your org has a stricter default, go to Settings →
@@ -178,11 +211,13 @@ cfb-betting-dashboard/
 ├── requirements.txt
 ├── scripts/
 │   ├── common.py                    # shared: SharpAPI fetch/matching, time-slot bucketing
+│   ├── gemini_predictions.py        # shared: Gemini prediction calls + caching
 │   ├── build_dashboard.py           # CFBD + SharpAPI -> data/dashboard.json
 │   └── build_nfl_dashboard.py       # ESPN + SharpAPI -> data/nfl_dashboard.json
 ├── data/
 │   ├── dashboard.json               # generated CFB output (placeholder sample checked in)
-│   └── nfl_dashboard.json           # generated NFL output (placeholder sample checked in)
+│   ├── nfl_dashboard.json           # generated NFL output (placeholder sample checked in)
+│   └── gemini_predictions_cache.json # cached Gemini predictions, keyed by matchup + odds hash
 └── .github/workflows/
     └── update-dashboard.yml         # daily cron + manual trigger, builds both
 ```
