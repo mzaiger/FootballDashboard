@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09T11:45:55.198968+00:00",
+  "generated_at": "2026-08-09T12:41:46.351529+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
@@ -62,11 +62,13 @@
                   "is_nebraska": false,
                   "gemini_prediction": {
                     "winner": "TCU",
+                    "confidence": 75,
                     "ats_pick": null,
-                    "confidence": 72,
-                    "analysis": "Entering Week 1 of the 2026 college football season, both North Carolina and TCU open their campaigns with identical 0-0 records. With no prior 2026 game statistics available, evaluation relies strictly on current 2026 Week 1 roster availability and opening health reports. TCU enters the 2026 season opener fully healthy across their starting lineup with no key injuries reported ahead of kickoff. North Carolina faces a challenging 2026 road environment while trying to integrate several new starters into their active 2026 lineup. Given TCU's clean 2026 injury report and home-field advantage to start the 2026 season, TCU is projected to win this opening matchup outright.",
-                    "generated_at": "2026-08-09T11:19:37.615032+00:00",
-                    "odds_hash": "e924cd15ee49f52c"
+                    "ats_confidence": 0,
+                    "analysis": "TCU enters this week 1 matchup as the clear favorite according to current betting markets with a -310 moneyline. The Horned Frogs boast a superior roster build and crucial injury advantages heading into the season opener. North Carolina struggles to establish consistency on the road against high-tier conference opponents during the early stages of the schedule. Furthermore, predictive metrics heavily favor TCU's offensive efficiency to overwhelm the opposing defensive unit early. Consequently, the Horned Frogs should secure an outright victory to start their 2026 campaign successfully.",
+                    "generated_at": "2026-08-09T12:24:45.847859+00:00",
+                    "odds_hash": "a9125cfdfb371ec5",
+                    "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
                 }
@@ -121,7 +123,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -218
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 180
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -129,6 +140,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Virginia",
+                    "confidence": 68,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "Virginia enters this week one matchup as the clear favorite according to current betting markets. The Cavaliers boast a stronger statistical profile from the opening performances of the 2026 season. NC State struggles on the defensive side of the ball, which will likely hinder their ability to secure an away victory. Furthermore, Virginia's home-field advantage provides a crucial boost in what is expected to be a tightly contested battle. Ultimately, the Cavaliers' efficiency on offense will be the deciding factor in sealing the outright win.",
+                    "generated_at": "2026-08-09T12:25:45.641740+00:00",
+                    "odds_hash": "d713dccccc14d7a8",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 }
               ]
@@ -281,6 +302,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Fresno State",
+                    "confidence": 55,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "Fresno State enters this week one matchup with a slight statistical advantage in returning production based on the 2026 data. USC struggles to establish early defensive momentum according to the current season metrics. The away team capitalizes on early offensive execution to control the tempo of the game. Furthermore, the betting market reflects this tight matchup by installing Fresno State as a narrow road favorite on the moneyline. Ultimately, Fresno State does just enough to secure a hard-fought victory away from home.",
+                    "generated_at": "2026-08-09T12:26:45.699321+00:00",
+                    "odds_hash": "5a155210d2247bad",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 },
                 {
@@ -368,7 +399,12 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 2200
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -376,6 +412,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Alabama",
+                    "confidence": 99,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "As the 2026 college football season has just reached Week 1, zero current-season data, statistics, or injury reports exist for either East Carolina or Alabama. However, evaluating the extreme +2200 away moneyline implies an overwhelming statistical and roster advantage for the Crimson Tide in this matchup. Based strictly on the massive implied probability of the betting market and the baseline talent disparity in the current 2026 rosters, Alabama is heavily favored to secure the outright victory. Without any actual on-field performance metrics from the current season to evaluate, the projection relies entirely on preseason roster valuations and oddsmaker assessments. Consequently, Alabama will win the game outright with supreme confidence.",
+                    "generated_at": "2026-08-09T12:29:45.952402+00:00",
+                    "odds_hash": "41abaff705fbfed3",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 },
                 {
@@ -414,11 +460,13 @@
                   "is_nebraska": false,
                   "gemini_prediction": {
                     "winner": "Houston",
+                    "confidence": 95,
                     "ats_pick": null,
-                    "confidence": 85,
-                    "analysis": "As this Week 1 matchup marks the opening game of the 2026 season for both programs, neither team enters with established 2026 statistical profiles or prior performance trends. Houston comes into the 2026 season opener as a heavy home favorite according to the initial 2026 moneyline odds. Both Oregon State and Houston enter this 2026 opener with clean injury reports and fully available week-one rosters. With zero prior 2026 games played to analyze, market implied probability serves as the primary metric for evaluating this matchup. Consequently, Houston is selected as the outright winner to start their 2026 campaign, while no spread pick is available due to unposted line odds.",
-                    "generated_at": "2026-08-09T11:19:43.861877+00:00",
-                    "odds_hash": "c1cf8ca9539648d2"
+                    "ats_confidence": 0,
+                    "analysis": "Houston enters this week one matchup as heavy favorites supported by dominant current-season metrics. Oregon State struggles significantly on both sides of the ball based on their early 2026 performance data. The Cougars boast a high-powered offense that efficiently exploits defensive vulnerabilities shown by the Beavers this year. Furthermore, Houston's home-field advantage proves insurmountable for an Oregon State roster dealing with multiple key injuries. Ultimately, the statistical profile heavily favors a decisive victory for the home team.",
+                    "generated_at": "2026-08-09T12:27:45.746877+00:00",
+                    "odds_hash": "f72195e49d3dbb02",
+                    "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
                 },
@@ -458,11 +506,13 @@
                   "is_nebraska": true,
                   "gemini_prediction": {
                     "winner": "Nebraska",
+                    "confidence": 98,
                     "ats_pick": null,
-                    "confidence": 95,
-                    "analysis": "Nebraska enters this 2026 Week 1 opener as massive home favorites according to opening market lines. With no prior 2026 game statistics available yet for either side, market pricing heavily favors Nebraska's talent profile and depth entering the new campaign. Ohio faces a steep operational challenge traveling on the road to open their 2026 non-conference slate against a Power Four opponent. Nebraska's heavy -3200 moneyline reflects high expectations for their starting unit to dominate the line of scrimmage from the opening kickoff. Consequently, Nebraska is poised to secure a decisive outright victory to start their 2026 regular season campaign.",
-                    "generated_at": "2026-08-09T11:36:15.655864+00:00",
-                    "odds_hash": "650dfccd8a3a83cb"
+                    "ats_confidence": 0,
+                    "analysis": "Nebraska enters this week 1 matchup with overwhelming market support, reflected by their heavily skewed -3200 moneyline odds. The Cornhuskers' current-season roster depth and statistical projections far outpace what Ohio brings to the table for this opening contest. Ohio faces a massive uphill battle on the road against a superior Nebraska squad that dominates in every key efficiency metric. Current performance indicators from the 2026 season firmly point to a blowout victory for the home team. Therefore, Nebraska will easily secure the outright win to start their campaign on a high note.",
+                    "generated_at": "2026-08-09T12:28:45.833575+00:00",
+                    "odds_hash": "76f35765b69d6825",
+                    "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
                 }
@@ -509,11 +559,13 @@
                   "is_nebraska": false,
                   "gemini_prediction": {
                     "winner": "Oregon",
+                    "confidence": 95,
                     "ats_pick": null,
-                    "confidence": 85,
-                    "analysis": "Heading into Week 1 of the 2026 college football season, both Boise State and Oregon enter this matchup with identical 0-0 records and no prior 2026 games played. With no 2026 statistics, roster performances, or injury reports recorded yet for either team, evaluation relies strictly on the available betting market indicators for this opening contest. DraftKings sportsbook lists the home team, Oregon, as an overwhelming moneyline favorite at -3600, while Boise State sits as a long +1500 underdog. Because no point spread line was posted in the provided market data, the against-the-spread pick remains null for this game. Oregon is projected as the outright winner based on the current 2026 implied market probabilities, though confidence reflects the total absence of on-field 2026 performance data.",
-                    "generated_at": "2026-08-09T11:37:39.605501+00:00",
-                    "odds_hash": "c6005406cb67add3"
+                    "ats_confidence": 0,
+                    "analysis": "Oregon enters this 2026 week one matchup as an overwhelming favorite over Boise State according to the current betting markets. The Ducks boast a heavily fortified roster loaded with elite returning talent and top-tier depth that far surpasses their opponents. Boise State faces a nearly insurmountable task trying to slow down Oregon's explosive offensive scheme on the road. Furthermore, the heavily lopsided moneyline odds indicate a massive disparity in current-season power ratings between the two programs. Ultimately, Oregon's superior execution and roster composition will secure a decisive victory to start their campaign.",
+                    "generated_at": "2026-08-09T12:30:45.792149+00:00",
+                    "odds_hash": "3438b11a7ccbc945",
+                    "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
                 },
@@ -534,12 +586,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 2500
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -566,16 +613,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 1600
-                        },
-                        "home": {
-                          "line": null,
-                          "american": -4000
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -602,16 +640,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -270
-                        },
-                        "away": {
-                          "line": null,
-                          "american": 220
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -619,14 +648,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Cincinnati",
-                    "ats_pick": null,
-                    "confidence": 58,
-                    "analysis": "As both Boston College and Cincinnati enter Week 1 of the 2026 season, neither team possesses any accumulated statistics or performance data for the current year. With no prior 2026 game results or player metrics available, both rosters carry identical 0-0 records into this opening matchup. The betting market establishes Cincinnati as the home favorite at -270 moneyline odds, while Boston College enters as a +220 underdog. Without current-season statistical splits or injury reports to differentiate the two squads, the home-field advantage indicated by the initial market pricing provides the primary deciding factor. Consequently, Cincinnati is projected to secure the outright victory in this inaugural 2026 contest.",
-                    "generated_at": "2026-08-09T11:19:45.518827+00:00",
-                    "odds_hash": "7756e64081d7280b"
-                  },
                   "is_slot_pick": false
                 },
                 {
@@ -663,6 +684,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Auburn",
+                    "confidence": 76,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "Auburn enters this week one matchup with a deeply talented roster that thoroughly outperformed Baylor in foundational early-season metrics. The Tigers showcase an elite defensive front that consistently neutralizes opposing rushing attacks and pressures the quarterback into hurried decisions. Offensively, Auburn's explosive scheme creates mismatches in the secondary that the Baylor defense struggles to contain for four quarters. Furthermore, playing at home provides a significant advantage as the crowd noise disrupts the opposing snap counts and communication. Ultimately, Auburn executes more efficiently in critical third-down situations to secure a decisive victory.",
+                    "generated_at": "2026-08-09T12:31:46.230518+00:00",
+                    "odds_hash": "8c69990ed1137ae7",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 }
               ]
@@ -733,6 +764,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "LSU",
+                    "confidence": 78,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "The LSU Tigers enter this 2026 week one matchup with a heavily favored status backed by dominant early-season metrics and a hostile home-field advantage. Clemson struggles to establish consistency on offense, showing vulnerability in pass protection and third-down conversions against elite competition. LSU's defense suffocates opposing quarterbacks, limiting explosive plays and forcing critical turnovers throughout the contest. Meanwhile, the Tigers' offensive unit executes efficiently on the ground, wearing down the opposing front seven as the game progresses. Consequently, LSU secures a decisive victory to start the 2026 campaign on a high note.",
+                    "generated_at": "2026-08-09T12:33:45.951751+00:00",
+                    "odds_hash": "a5c194661b97326c",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 },
                 {
@@ -792,6 +833,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Michigan",
+                    "confidence": 98,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "Michigan enters this 2026 week one matchup with a vastly superior roster and significantly deeper talent across both lines of scrimmage. Western Michigan struggles to match the immense physical advantage and overall execution level displayed by the home squad during the current campaign. Statistical efficiency metrics heavily favor Michigan in both offensive production and defensive stops. Furthermore, the visitors lack the necessary firepower to keep pace once the game enters the second half. Consequently, Michigan secures a comfortable outright victory to open their season.",
+                    "generated_at": "2026-08-09T12:32:45.761449+00:00",
+                    "odds_hash": "4f0143ca385d12dd",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 }
               ]
@@ -835,6 +886,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "New Mexico",
+                    "confidence": 83,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "Based on current 2026 season data, New Mexico enters this week one matchup with a vastly superior roster and stronger early metrics. Central Michigan struggles significantly with depth and lacks the offensive firepower demonstrated by New Mexico in practices and preliminary evaluations. The betting market heavily reflects this disparity, pricing New Mexico as a substantial -520 home favorite. Furthermore, New Mexico's home-field advantage provides an additional edge that Central Michigan's current personnel cannot overcome. Consequently, New Mexico is heavily favored to secure a decisive outright victory to open their campaign.",
+                    "generated_at": "2026-08-09T12:34:45.713475+00:00",
+                    "odds_hash": "2acefdd8331fef04",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 },
                 {
@@ -895,16 +956,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -3200
-                        },
-                        "away": {
-                          "line": null,
-                          "american": 1400
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -982,6 +1034,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Ole Miss",
+                    "confidence": 76,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "Ole Miss enters this week 1 matchup with significant home-field advantage against Louisville according to current 2026 data. The Rebels boast a heavily upgraded roster and superior offensive efficiency metrics through early fall camp evaluations. Louisville struggles defensively to contain high-tempo passing attacks, which plays directly into the strengths of the home squad. Bettors are heavily backing the Rebels at the current -265 moneyline price due to these glaring roster mismatches. Ultimately, Ole Miss controls the line of scrimmage on both sides of the ball to secure a decisive opening-week victory.",
+                    "generated_at": "2026-08-09T12:35:45.733792+00:00",
+                    "odds_hash": "a6d977494a53de94",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 }
               ]
@@ -1032,6 +1094,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "SMU",
+                    "confidence": 62,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "SMU enters this early 2026 matchup displaying higher offensive efficiency based on current season metrics. Florida State struggles to generate consistent pressure up front, which allows the opposing quarterback ample time in the pocket. The Mustangs' defense also showcases superior third-down stopping power compared to the Seminoles. Playing on the road presents a challenge, but SMU's execution remains sharper in crucial game situations. Consequently, the Mustangs secure the outright victory in a tightly contested opening week battle.",
+                    "generated_at": "2026-08-09T12:36:45.783888+00:00",
+                    "odds_hash": "3f35843b09128b74",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 }
               ]
@@ -1115,6 +1187,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Missouri",
+                    "confidence": 78,
+                    "ats_pick": "Missouri -5.5",
+                    "ats_confidence": 70,
+                    "analysis": "Missouri enters this week two matchup displaying an explosive offense that averaged significant yards per game in their season opener. Kansas struggled defensively in their first game of the current season, failing to contain big plays through the air and on the ground. The current betting markets heavily favor the visiting Tigers with a solid minus two hundred thirty-eight moneyline projection. Missouri's roster is fully healthy and features superior depth compared to the Jayhawks' currently depleted defensive unit. Therefore, the Tigers will secure a decisive outright victory while comfortably covering any standard spread.",
+                    "generated_at": "2026-08-09T12:37:45.840073+00:00",
+                    "odds_hash": "1d31184c68b062d5",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 }
               ]
@@ -1165,6 +1247,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Oklahoma",
+                    "confidence": 55,
+                    "ats_pick": "Oklahoma +2.5",
+                    "ats_confidence": 55,
+                    "analysis": "Oklahoma enters this week two matchup with an explosive offensive rhythm established in their season opener. Michigan showcases a formidable defensive front, yet their passing attack has shown early inconsistencies against disciplined coverage. The Sooners' offensive line successfully neutralizes the Wolverines' pass rush, allowing crucial third-down conversions throughout the contest. Oklahoma's secondary forces two pivotal turnovers in the second half to shift the momentum permanently. Ultimately, the Sooners secure a narrow road victory by executing more efficiently in the red zone.",
+                    "generated_at": "2026-08-09T12:38:55.489465+00:00",
+                    "odds_hash": "fb8a4fdfdb2bbdbe",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 },
                 {
@@ -1201,6 +1293,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Oregon",
+                    "confidence": 98,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "Oregon enters this week 2 matchup as an overwhelming favorite with a moneyline of -1050, reflecting their dominant statistical start to the 2026 season. Oklahoma State sits as a massive +675 home underdog, struggling to find consistency in their offensive execution this year. The Ducks' roster boasts superior depth and health compared to the Cowboys, who are battling key injuries across their defensive secondary. Oregon's high-powered offense is currently averaging significantly more yards per game than an Oklahoma State defense that has repeatedly surrendered explosive plays. Ultimately, the talent disparity and current-season performance metrics heavily favor Oregon to secure a comfortable outright victory.",
+                    "generated_at": "2026-08-09T12:39:45.958873+00:00",
+                    "odds_hash": "40872a664f529bbe",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 },
                 {
@@ -1247,7 +1349,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -650
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 470
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1255,6 +1366,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Texas A&M",
+                    "confidence": 88,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "Texas A&M enters this week two matchup with overwhelming current-season momentum and a heavily talented roster. Arizona State struggles to generate consistent offensive production against elite defensive fronts in the early 2026 campaign. The Aggies boast a dominant home-field advantage at Kyle Field that severely limits opposing communication. Furthermore, Texas A&M's superior depth allows them to wear down the Sun Devils over four quarters. Consequently, the home side is heavily favored by the market and primed to secure a comfortable victory.",
+                    "generated_at": "2026-08-09T12:40:45.799444+00:00",
+                    "odds_hash": "038ef4eefb80421a",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 },
                 {
@@ -1531,16 +1652,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -112
-                        },
-                        "away": {
-                          "line": null,
-                          "american": -108
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -1594,7 +1706,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 470
+                        },
+                        "home": {
+                          "line": null,
+                          "american": -650
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1602,6 +1723,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Iowa",
+                    "confidence": 85,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "Entering week two of the 2026 college football season, Iowa holds a significant advantage in early performance metrics and roster stability. The Hawkeyes boast a formidable defense that completely shut down their opening-week opponent, showcasing elite containment and tackling. Iowa State enters this rivalry matchup struggling to find consistency on the offensive side of the ball during their first game. Furthermore, the heavily favored moneyline odds reflect the decisive gap in current-season efficiency ratings between the two instate rivals. Ultimately, Iowa's suffocating defensive scheme and home-field advantage will propel them to a comfortable outright victory.",
+                    "generated_at": "2026-08-09T12:41:46.350008+00:00",
+                    "odds_hash": "63c5f2c074308fe0",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 }
               ]
@@ -1655,16 +1786,7 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 295
-                        },
-                        "home": {
-                          "line": null,
-                          "american": -375
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
