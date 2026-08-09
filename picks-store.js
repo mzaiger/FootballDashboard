@@ -15,6 +15,15 @@
 
 const PICK_COOKIE_PREFIX = 'pick_';
 const PICK_COOKIE_DAYS = 210;
+const PICK_LOCKED_STATUSES = ['final', 'in_progress', 'live', 'halftime'];
+
+function isPickLocked(gScore) {
+  if (!gScore || !gScore.status) return false;
+
+  const status = String(gScore.status).toLowerCase();
+
+  return PICK_LOCKED_STATUSES.includes(status);
+}
 
 function _pickCookieName(sport, gameId) {
   return `${PICK_COOKIE_PREFIX}${sport}_${gameId}`;
@@ -99,14 +108,6 @@ function renderPickToolbar(sport, g, gScore) {
 function pickCellClass(sport, g, market, side) {
   const pick = getPick(sport, g.id);
   return (pick && pick.market === market && pick.side === side) ? 'picked' : '';
-}
-
-function isPickLocked(gScore) {
-  if (!gScore || !gScore.status) return false;
-
-  const status = String(gScore.status).toLowerCase();
-
-  return ['final', 'in_progress', 'live', 'halftime'].includes(status);
 }
 
 // CSS class to mark an odds-table cell green (hit) or red (miss), once a
