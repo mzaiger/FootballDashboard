@@ -123,9 +123,14 @@ function renderGeminiBlock(g) {
   return `
   <button type="button" class="gemini-toggle" aria-expanded="false">
     <span class="gemini-toggle-icon">&#10024;</span>
-    <span>Gemini Prediction Summary</span>
-    <span class="gemini-conf">${conf}</span>
-    <span class="gemini-caret">&#9662;</span>
+    <span class="gemini-toggle-main">
+      <span class="gemini-toggle-winner">${p.winner || 'Pick TBD'}</span>
+      ${p.ats_pick ? `<span class="gemini-toggle-ats">ATS ${p.ats_pick}</span>` : ''}
+    </span>
+    <span class="gemini-toggle-trailing">
+      <span class="gemini-conf">${conf}</span>
+      <span class="gemini-caret">&#9662;</span>
+    </span>
   </button>
   <div class="gemini-panel" hidden>
     <div class="gemini-panel-row"><span>Winner</span><span class="gemini-value">${p.winner || '—'}</span></div>
