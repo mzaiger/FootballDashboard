@@ -42,14 +42,22 @@
                   "neutral_site": true,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
+                      "spread": {                        
+                        "away": {
+                          "line":,
+                          "american": -6
+                        },
+                        "home": {
+                          "line":,
+                          "american": 6
+                        }},
                       "moneyline": {
                         "away": {
-                          "line": -6,
+                          "line":,
                           "american": 250
                         },
                         "home": {
-                          "line": 6,
+                          "line":,
                           "american": -310
                         }
                       }
