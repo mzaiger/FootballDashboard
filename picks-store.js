@@ -106,6 +106,49 @@ function attachPickHandlers(containerEl, onPick) {
 }
 
 /*
+ * Gemini Prediction Summary block, shared across all three pages.
+ *
+ * Every game with a "gemini_prediction" field (attached by the Python
+ * builders when DK/FanDuel odds are posted) gets a collapsed toggle
+ * button showing the confidence score, which expands to the full
+ * winner / ATS / analysis panel. Uses click-delegation on whatever
+ * container the games were rendered into, same pattern as
+ * attachPickHandlers, so it survives re-renders without re-binding.
+ */
+
+function renderGeminiBlock(g) {
+  const p = g.gemini_prediction;
+  if (!p) return '';
+  const conf = (p.confidence !== undefined && p.confidence !== null) ? `${p.confidence}%` : '—';
+  return `
+  <button type="button" class="gemini-toggle" aria-expanded="false">
+    <span class="gemini-toggle-icon">&#10024;</span>
+    <span>Gemini Prediction Summary</span>
+    <span class="gemini-conf">${conf}</span>
+    <span class="gemini-caret">&#9662;</span>
+  </button>
+  <div class="gemini-panel" hidden>
+    <div class="gemini-panel-row"><span>Winner</span><span class="gemini-value">${p.winner || '—'}</span></div>
+    ${p.ats_pick ? `<div class="gemini-panel-row"><span>ATS Pick</span><span class="gemini-value">${p.ats_pick}</span></div>` : ''}
+    ${(p.confidence !== undefined && p.confidence !== null) ? `<div class="gemini-panel-row"><span>Confidence</span><span class="gemini-value">${p.confidence}%</span></div>` : ''}
+    <p class="gemini-analysis">${p.analysis || ''}</p>
+  </div>`;
+}
+
+function attachGeminiHandlers(containerEl) {
+  containerEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('.gemini-toggle');
+    if (!btn || !containerEl.contains(btn)) return;
+    const panel = btn.nextElementSibling;
+    if (!panel || !panel.classList.contains('gemini-panel')) return;
+    const isOpen = !panel.hidden;
+    panel.hidden = isOpen;
+    btn.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  });
+}
+
+/*
  * Tiles / Rows view toggle, shared across all three pages.
  *
  * If the person has never picked a mode, it auto-picks Rows on wider
