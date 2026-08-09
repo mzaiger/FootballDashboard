@@ -76,17 +76,21 @@ function togglePick(sport, gameId, market, side) {
 // changed after the fact.
 function renderPickToolbar(sport, g, gScore) {
   const pick = getPick(sport, g.id);
-  const locked = !!(gScore && gScore.status === 'final');
+  const locked = isPickLocked(gScore);
+
   const opts = [
     { market: 'spread', side: 'away', label: `${g.away_team} ATS` },
     { market: 'spread', side: 'home', label: `${g.home_team} ATS` },
     { market: 'moneyline', side: 'away', label: `${g.away_team} ML` },
     { market: 'moneyline', side: 'home', label: `${g.home_team} ML` },
   ];
+
   const btns = opts.map(o => {
     const active = pick && pick.market === o.market && pick.side === o.side;
+
     return `<button type="button" class="pick-btn${active ? ' active' : ''}" data-sport="${sport}" data-game="${g.id}" data-market="${o.market}" data-side="${o.side}"${locked ? ' disabled' : ''}>${active ? '\u2605 ' : ''}${o.label}</button>`;
   }).join('');
+
   return `<div class="pick-toolbar">${btns}</div>`;
 }
 
@@ -106,22 +110,40 @@ function pickCellClass(sport, g, market, side) {
 // cell's own odds object (e.g. spread.home), used to read its line for
 // the spread case.
 function oddsHitClass(market, side, entry, gScore) {
-  if (!gScore || gScore.status !== 'final') return '';
-  if (gScore.home_score === null || gScore.away_score === null) return '';
+  if (!isPickLocked(gScore)) return '';
 
-  const sideScore = side === 'home' ? gScore.home_score : gScore.away_score;
-  const otherScore = side === 'home' ? gScore.away_score : gScore.home_score;
+  if (gScore.home_score === null || gScore.home_score === undefined) return '';
+  if (gScore.away_score === null || gScore.away_score === undefined) return '';
+
+  const sideScore = Number(side === 'home' ? gScore.home_score : gScore.away_score);
+  const otherScore = Number(side === 'home' ? gScore.away_score : gScore.home_score);
+
+  if (Number.isNaN(sideScore) || Number.isNaN(otherScore)) return '';
 
   if (market === 'moneyline') {
-    if (sideScore === otherScore) return 'hit'; // tie -- no loser
+    // Currently tied live game or final tie: no loser.
+    // If you want live ties to stay neutral instead of green, return '' here.
+    if (sideScore === otherScore) return 'hit';
+
     return sideScore > otherScore ? 'hit' : 'miss';
   }
+
   if (market === 'spread') {
     if (!entry || entry.line === null || entry.line === undefined) return '';
-    const result = (sideScore - otherScore) + entry.line;
-    if (result === 0) return 'hit'; // push -- no loser
+
+    const line = Number(entry.line);
+
+    if (Number.isNaN(line)) return '';
+
+    const result = (sideScore - otherScore) + line;
+
+    // Currently pushing live game or final push: no loser.
+    // If you want live pushes to stay neutral instead of green, return '' here.
+    if (result === 0) return 'hit';
+
     return result > 0 ? 'hit' : 'miss';
   }
+
   return '';
 }
 
