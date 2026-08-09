@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09T18:18:04.844317+00:00",
+  "generated_at": "2026-08-09T19:01:45.174663+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
@@ -23,8 +23,8 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 104,
-              "pick_reason": "closest_spread",
+              "best_matchup_score": 100,
+              "pick_reason": "watchability",
               "games": [
                 {
                   "id": 401856766,
@@ -36,7 +36,7 @@
                   "away_team": "North Carolina",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 100,
                   "channel": "ESPN",
                   "venue": "Aviva Stadium",
                   "neutral_site": true,
@@ -85,8 +85,8 @@
             },
             {
               "slot": "Afternoon",
-              "best_matchup_score": 66,
-              "pick_reason": "ap_rank",
+              "best_matchup_score": 64,
+              "pick_reason": "watchability",
               "games": [
                 {
                   "id": 401864494,
@@ -98,7 +98,7 @@
                   "away_team": "San Jos\u00e9 State",
                   "away_conference": "Mountain West",
                   "away_rank": null,
-                  "matchup_score": 66,
+                  "matchup_score": 64,
                   "channel": "NBC",
                   "venue": "Los Angeles Memorial Coliseum",
                   "neutral_site": false,
@@ -144,7 +144,7 @@
                   "away_team": "NC State",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 100,
                   "channel": "ESPN",
                   "venue": "Scott Stadium",
                   "neutral_site": false,
@@ -193,8 +193,8 @@
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 104,
-              "pick_reason": "closest_spread",
+              "best_matchup_score": 100,
+              "pick_reason": "watchability",
               "games": [
                 {
                   "id": 401862693,
@@ -206,7 +206,7 @@
                   "away_team": "Memphis",
                   "away_conference": "American Athletic",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 100,
                   "channel": "FOX",
                   "venue": "Allegiant Stadium",
                   "neutral_site": false,
@@ -262,8 +262,8 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 104,
-              "pick_reason": "closest_spread",
+              "best_matchup_score": 100,
+              "pick_reason": "watchability",
               "games": [
                 {
                   "id": 401856776,
@@ -275,7 +275,7 @@
                   "away_team": "Colorado",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 100,
                   "channel": "ESPN",
                   "venue": "Bobby Dodd Stadium",
                   "neutral_site": false,
@@ -331,8 +331,8 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 59,
-              "pick_reason": "ap_rank",
+              "best_matchup_score": 57,
+              "pick_reason": "watchability",
               "games": [
                 {
                   "id": 401858206,
@@ -344,7 +344,7 @@
                   "away_team": "Miami",
                   "away_conference": "ACC",
                   "away_rank": 7,
-                  "matchup_score": 59,
+                  "matchup_score": 57,
                   "channel": "ESPN",
                   "venue": "Stanford Stadium",
                   "neutral_site": false,
@@ -399,7 +399,7 @@
                   "away_team": "Fresno State",
                   "away_conference": "Pac-12",
                   "away_rank": null,
-                  "matchup_score": 66,
+                  "matchup_score": 64,
                   "channel": "FOX",
                   "venue": "Los Angeles Memorial Coliseum",
                   "neutral_site": false,
@@ -454,7 +454,7 @@
                   "away_team": "Toledo",
                   "away_conference": "Mid-American",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 100,
                   "channel": "FS1",
                   "venue": "Spartan Stadium",
                   "neutral_site": false,
@@ -510,7 +510,7 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 58,
+              "best_matchup_score": 56,
               "pick_reason": "nebraska",
               "games": [
                 {
@@ -523,7 +523,7 @@
                   "away_team": "North Texas",
                   "away_conference": "American Athletic",
                   "away_rank": null,
-                  "matchup_score": 58,
+                  "matchup_score": 56,
                   "channel": "FOX",
                   "venue": "Memorial Stadium (Bloomington, IN)",
                   "neutral_site": false,
@@ -569,7 +569,7 @@
                   "away_team": "East Carolina",
                   "away_conference": "American Athletic",
                   "away_rank": null,
-                  "matchup_score": 63,
+                  "matchup_score": 61,
                   "channel": "ABC",
                   "venue": "Bryant-Denny Stadium",
                   "neutral_site": false,
@@ -620,7 +620,7 @@
                   "away_team": "Oregon State",
                   "away_conference": "Pac-12",
                   "away_rank": null,
-                  "matchup_score": 76,
+                  "matchup_score": 74,
                   "channel": "ESPN",
                   "venue": "TDECU Stadium",
                   "neutral_site": false,
@@ -675,7 +675,7 @@
                   "away_team": "Ohio",
                   "away_conference": "Mid-American",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 100,
                   "channel": "FS1",
                   "venue": "Memorial Stadium (Lincoln, NE)",
                   "neutral_site": false,
@@ -724,8 +724,8 @@
             },
             {
               "slot": "Afternoon",
-              "best_matchup_score": 54,
-              "pick_reason": "ap_rank",
+              "best_matchup_score": 52,
+              "pick_reason": "watchability",
               "games": [
                 {
                   "id": 401858433,
@@ -737,7 +737,7 @@
                   "away_team": "Boise State",
                   "away_conference": "Pac-12",
                   "away_rank": null,
-                  "matchup_score": 54,
+                  "matchup_score": 52,
                   "channel": "CBS",
                   "venue": "Autzen Stadium",
                   "neutral_site": false,
@@ -764,7 +764,7 @@
                   "away_team": "Texas State",
                   "away_conference": "Pac-12",
                   "away_rank": null,
-                  "matchup_score": 56,
+                  "matchup_score": 54,
                   "channel": "ESPN",
                   "venue": "DKR-Texas Memorial Stadium",
                   "neutral_site": false,
@@ -815,7 +815,7 @@
                   "away_team": "Marshall",
                   "away_conference": "Sun Belt",
                   "away_rank": null,
-                  "matchup_score": 69,
+                  "matchup_score": 67,
                   "channel": "FS1",
                   "venue": "Beaver Stadium",
                   "neutral_site": false,
@@ -870,7 +870,7 @@
                   "away_team": "Boston College",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 100,
                   "channel": "FOX",
                   "venue": "Nippert Stadium",
                   "neutral_site": false,
@@ -925,7 +925,7 @@
                   "away_team": "Baylor",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 100,
                   "channel": "ABC",
                   "venue": "Mercedes-Benz Stadium",
                   "neutral_site": true,
@@ -975,7 +975,7 @@
             {
               "slot": "Prime Time",
               "best_matchup_score": 36,
-              "pick_reason": "ap_rank",
+              "pick_reason": "watchability",
               "games": [
                 {
                   "id": 401856660,
@@ -1042,7 +1042,7 @@
                   "away_team": "Missouri State",
                   "away_conference": "Conference USA",
                   "away_rank": null,
-                  "matchup_score": 60,
+                  "matchup_score": 58,
                   "channel": "ESPN",
                   "venue": "Kyle Field",
                   "neutral_site": false,
@@ -1088,7 +1088,7 @@
                   "away_team": "Abilene Christian",
                   "away_conference": "UAC",
                   "away_rank": null,
-                  "matchup_score": 64,
+                  "matchup_score": 62,
                   "channel": "FS1",
                   "venue": "Jones AT&T Stadium",
                   "neutral_site": false,
@@ -1115,7 +1115,7 @@
                   "away_team": "Western Michigan",
                   "away_conference": "Mid-American",
                   "away_rank": null,
-                  "matchup_score": 68,
+                  "matchup_score": 66,
                   "channel": "NBC",
                   "venue": "Michigan Stadium",
                   "neutral_site": false,
@@ -1160,8 +1160,8 @@
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 104,
-              "pick_reason": "closest_spread",
+              "best_matchup_score": 100,
+              "pick_reason": "watchability",
               "games": [
                 {
                   "id": 401864498,
@@ -1173,7 +1173,7 @@
                   "away_team": "Central Michigan",
                   "away_conference": "Mid-American",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 100,
                   "channel": "FS1",
                   "venue": "University Stadium (NM)",
                   "neutral_site": false,
@@ -1228,7 +1228,7 @@
                   "away_team": "UCLA",
                   "away_conference": "Big Ten",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 100,
                   "channel": "ESPN",
                   "venue": "California Memorial Stadium",
                   "neutral_site": false,
@@ -1284,8 +1284,8 @@
           "time_slots": [
             {
               "slot": "Afternoon",
-              "best_matchup_score": 71,
-              "pick_reason": "ap_rank",
+              "best_matchup_score": 69,
+              "pick_reason": "watchability",
               "games": [
                 {
                   "id": 401858437,
@@ -1297,7 +1297,7 @@
                   "away_team": "Washington State",
                   "away_conference": "Pac-12",
                   "away_rank": null,
-                  "matchup_score": 71,
+                  "matchup_score": 69,
                   "channel": "NBC",
                   "venue": "Husky Stadium",
                   "neutral_site": false,
@@ -1346,8 +1346,8 @@
             },
             {
               "slot": "Prime Time",
-              "best_matchup_score": 57,
-              "pick_reason": "ap_rank",
+              "best_matchup_score": 55,
+              "pick_reason": "watchability",
               "games": [
                 {
                   "id": 401858438,
@@ -1359,7 +1359,7 @@
                   "away_team": "Wisconsin",
                   "away_conference": "Big Ten",
                   "away_rank": null,
-                  "matchup_score": 57,
+                  "matchup_score": 55,
                   "channel": "NBC",
                   "venue": "Lambeau Field",
                   "neutral_site": true,
@@ -1414,7 +1414,7 @@
                   "away_team": "Louisville",
                   "away_conference": "ACC",
                   "away_rank": null,
-                  "matchup_score": 62,
+                  "matchup_score": 60,
                   "channel": "ABC",
                   "venue": "Nissan Stadium",
                   "neutral_site": true,
@@ -1470,8 +1470,8 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 72,
-              "pick_reason": "ap_rank",
+              "best_matchup_score": 70,
+              "pick_reason": "watchability",
               "games": [
                 {
                   "id": 401858212,
@@ -1483,7 +1483,7 @@
                   "away_team": "SMU",
                   "away_conference": "ACC",
                   "away_rank": 20,
-                  "matchup_score": 72,
+                  "matchup_score": 70,
                   "channel": "ESPN",
                   "venue": "Doak Campbell Stadium",
                   "neutral_site": false,
@@ -1545,36 +1545,9 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 104,
-              "pick_reason": "closest_spread",
+              "best_matchup_score": 75,
+              "pick_reason": "watchability",
               "games": [
-                {
-                  "id": 401858214,
-                  "start_time": "2026-09-11T23:30:00.000Z",
-                  "start_time_tbd": false,
-                  "home_team": "Boston College",
-                  "home_conference": "ACC",
-                  "home_rank": null,
-                  "away_team": "Rutgers",
-                  "away_conference": "Big Ten",
-                  "away_rank": null,
-                  "matchup_score": 104,
-                  "channel": "ESPN2",
-                  "venue": "Alumni Stadium (Chestnut Hill, MA)",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_nebraska": false,
-                  "is_slot_pick": false
-                },
                 {
                   "id": 401856678,
                   "start_time": "2026-09-12T00:00:00.000Z",
@@ -1584,8 +1557,8 @@
                   "home_rank": null,
                   "away_team": "Missouri",
                   "away_conference": "SEC",
-                  "away_rank": null,
-                  "matchup_score": 104,
+                  "away_rank": 25,
+                  "matchup_score": 75,
                   "channel": "FOX",
                   "venue": "Memorial Stadium",
                   "neutral_site": false,
@@ -1629,6 +1602,33 @@
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
+                },
+                {
+                  "id": 401858214,
+                  "start_time": "2026-09-11T23:30:00.000Z",
+                  "start_time_tbd": false,
+                  "home_team": "Boston College",
+                  "home_conference": "ACC",
+                  "home_rank": null,
+                  "away_team": "Rutgers",
+                  "away_conference": "Big Ten",
+                  "away_rank": null,
+                  "matchup_score": 100,
+                  "channel": "ESPN2",
+                  "venue": "Alumni Stadium (Chestnut Hill, MA)",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_nebraska": false,
+                  "is_slot_pick": false
                 }
               ]
             }
@@ -1641,8 +1641,8 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 104,
-              "pick_reason": "closest_spread",
+              "best_matchup_score": 25,
+              "pick_reason": "watchability",
               "games": [
                 {
                   "id": 401856679,
@@ -1650,11 +1650,11 @@
                   "start_time_tbd": false,
                   "home_team": "Michigan",
                   "home_conference": "Big Ten",
-                  "home_rank": null,
+                  "home_rank": 16,
                   "away_team": "Oklahoma",
                   "away_conference": "SEC",
-                  "away_rank": null,
-                  "matchup_score": 104,
+                  "away_rank": 9,
+                  "matchup_score": 25,
                   "channel": "FOX",
                   "venue": "Michigan Stadium",
                   "neutral_site": false,
@@ -1708,8 +1708,8 @@
                   "home_rank": null,
                   "away_team": "Oregon",
                   "away_conference": "Big Ten",
-                  "away_rank": null,
-                  "matchup_score": 104,
+                  "away_rank": 2,
+                  "matchup_score": 52,
                   "channel": "ESPN",
                   "venue": "Boone Pickens Stadium",
                   "neutral_site": false,
@@ -1755,43 +1755,16 @@
                   "is_slot_pick": false
                 },
                 {
-                  "id": 401858224,
-                  "start_time": "2026-09-12T16:00:00.000Z",
-                  "start_time_tbd": false,
-                  "home_team": "Purdue",
-                  "home_conference": "Big Ten",
-                  "home_rank": null,
-                  "away_team": "Wake Forest",
-                  "away_conference": "ACC",
-                  "away_rank": null,
-                  "matchup_score": 104,
-                  "channel": "FS1",
-                  "venue": "Ross-Ade Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_nebraska": false,
-                  "is_slot_pick": false
-                },
-                {
                   "id": 401856683,
                   "start_time": "2026-09-12T16:00:00.000Z",
                   "start_time_tbd": false,
                   "home_team": "Texas A&M",
                   "home_conference": "SEC",
-                  "home_rank": null,
+                  "home_rank": 8,
                   "away_team": "Arizona State",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 58,
                   "channel": "ABC",
                   "venue": "Kyle Field",
                   "neutral_site": false,
@@ -1845,10 +1818,37 @@
                   "home_rank": null,
                   "away_team": "Penn State",
                   "away_conference": "Big Ten",
-                  "away_rank": null,
-                  "matchup_score": 104,
+                  "away_rank": 17,
+                  "matchup_score": 67,
                   "channel": "ESPN2",
                   "venue": "Lincoln Financial Field",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_nebraska": false,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": 401858224,
+                  "start_time": "2026-09-12T16:00:00.000Z",
+                  "start_time_tbd": false,
+                  "home_team": "Purdue",
+                  "home_conference": "Big Ten",
+                  "home_rank": null,
+                  "away_team": "Wake Forest",
+                  "away_conference": "ACC",
+                  "away_rank": null,
+                  "matchup_score": 100,
+                  "channel": "FS1",
+                  "venue": "Ross-Ade Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
@@ -1867,8 +1867,8 @@
             },
             {
               "slot": "Afternoon",
-              "best_matchup_score": 104,
-              "pick_reason": "ap_rank",
+              "best_matchup_score": 55,
+              "pick_reason": "watchability",
               "games": [
                 {
                   "id": 401859184,
@@ -1876,11 +1876,11 @@
                   "start_time_tbd": false,
                   "home_team": "Notre Dame",
                   "home_conference": "FBS Independents",
-                  "home_rank": null,
+                  "home_rank": 5,
                   "away_team": "Rice",
                   "away_conference": "American Athletic",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 55,
                   "channel": "NBC",
                   "venue": "Notre Dame Stadium",
                   "neutral_site": false,
@@ -1898,18 +1898,18 @@
                   "is_slot_pick": true
                 },
                 {
-                  "id": 401858217,
+                  "id": 401856674,
                   "start_time": "2026-09-12T19:30:00.000Z",
                   "start_time_tbd": false,
-                  "home_team": "Illinois",
-                  "home_conference": "Big Ten",
+                  "home_team": "Kentucky",
+                  "home_conference": "SEC",
                   "home_rank": null,
-                  "away_team": "Duke",
-                  "away_conference": "ACC",
-                  "away_rank": null,
-                  "matchup_score": 104,
-                  "channel": "FS1",
-                  "venue": "Memorial Stadium (Champaign, IL)",
+                  "away_team": "Alabama",
+                  "away_conference": "SEC",
+                  "away_rank": 11,
+                  "matchup_score": 61,
+                  "channel": "ABC",
+                  "venue": "Kroger Field",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
@@ -1930,13 +1930,40 @@
                   "start_time_tbd": false,
                   "home_team": "BYU",
                   "home_conference": "Big 12",
-                  "home_rank": null,
+                  "home_rank": 15,
                   "away_team": "Arizona",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 65,
                   "channel": "FOX",
                   "venue": "LaVell Edwards Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_nebraska": false,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": 401858217,
+                  "start_time": "2026-09-12T19:30:00.000Z",
+                  "start_time_tbd": false,
+                  "home_team": "Illinois",
+                  "home_conference": "Big Ten",
+                  "home_rank": null,
+                  "away_team": "Duke",
+                  "away_conference": "ACC",
+                  "away_rank": null,
+                  "matchup_score": 100,
+                  "channel": "FS1",
+                  "venue": "Memorial Stadium (Champaign, IL)",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
@@ -1961,7 +1988,7 @@
                   "away_team": "UCF",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 100,
                   "channel": "ESPN2",
                   "venue": "Acrisure Stadium",
                   "neutral_site": false,
@@ -1988,36 +2015,9 @@
                   "away_team": "Mississippi State",
                   "away_conference": "SEC",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 100,
                   "channel": "CBS",
                   "venue": "Huntington Bank Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_nebraska": false,
-                  "is_slot_pick": false
-                },
-                {
-                  "id": 401856674,
-                  "start_time": "2026-09-12T19:30:00.000Z",
-                  "start_time_tbd": false,
-                  "home_team": "Kentucky",
-                  "home_conference": "SEC",
-                  "home_rank": null,
-                  "away_team": "Alabama",
-                  "away_conference": "SEC",
-                  "away_rank": null,
-                  "matchup_score": 104,
-                  "channel": "ABC",
-                  "venue": "Kroger Field",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
@@ -2036,74 +2036,20 @@
             },
             {
               "slot": "Prime Time",
-              "best_matchup_score": 104,
+              "best_matchup_score": 5,
               "pick_reason": "nebraska",
               "games": [
-                {
-                  "id": 401856681,
-                  "start_time": "2026-09-12T23:00:00.000Z",
-                  "start_time_tbd": false,
-                  "home_team": "Georgia Tech",
-                  "home_conference": "ACC",
-                  "home_rank": null,
-                  "away_team": "Tennessee",
-                  "away_conference": "SEC",
-                  "away_rank": null,
-                  "matchup_score": 104,
-                  "channel": "ESPN",
-                  "venue": "Bobby Dodd Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_nebraska": false,
-                  "is_slot_pick": false
-                },
-                {
-                  "id": 401858441,
-                  "start_time": "2026-09-12T23:00:00.000Z",
-                  "start_time_tbd": false,
-                  "home_team": "Nebraska",
-                  "home_conference": "Big Ten",
-                  "home_rank": null,
-                  "away_team": "Bowling Green",
-                  "away_conference": "Mid-American",
-                  "away_rank": null,
-                  "matchup_score": 104,
-                  "channel": "FS1",
-                  "venue": "Memorial Stadium (Lincoln, NE)",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_nebraska": true,
-                  "is_slot_pick": true
-                },
                 {
                   "id": 401856682,
                   "start_time": "2026-09-12T23:30:00.000Z",
                   "start_time_tbd": false,
                   "home_team": "Texas",
                   "home_conference": "SEC",
-                  "home_rank": null,
+                  "home_rank": 4,
                   "away_team": "Ohio State",
                   "away_conference": "Big Ten",
-                  "away_rank": null,
-                  "matchup_score": 104,
+                  "away_rank": 1,
+                  "matchup_score": 5,
                   "channel": "ABC",
                   "venue": "DKR-Texas Memorial Stadium",
                   "neutral_site": false,
@@ -2148,10 +2094,37 @@
                   "home_rank": null,
                   "away_team": "Texas Tech",
                   "away_conference": "Big 12",
-                  "away_rank": null,
-                  "matchup_score": 104,
+                  "away_rank": 12,
+                  "matchup_score": 62,
                   "channel": "CBS",
                   "venue": "Reser Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_nebraska": false,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": 401856681,
+                  "start_time": "2026-09-12T23:00:00.000Z",
+                  "start_time_tbd": false,
+                  "home_team": "Georgia Tech",
+                  "home_conference": "ACC",
+                  "home_rank": null,
+                  "away_team": "Tennessee",
+                  "away_conference": "SEC",
+                  "away_rank": 18,
+                  "matchup_score": 68,
+                  "channel": "ESPN",
+                  "venue": "Bobby Dodd Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
@@ -2172,11 +2145,11 @@
                   "start_time_tbd": false,
                   "home_team": "Iowa",
                   "home_conference": "Big Ten",
-                  "home_rank": null,
+                  "home_rank": 22,
                   "away_team": "Iowa State",
                   "away_conference": "Big 12",
                   "away_rank": null,
-                  "matchup_score": 104,
+                  "matchup_score": 72,
                   "channel": "NBC",
                   "venue": "Kinnick Stadium",
                   "neutral_site": false,
@@ -2220,27 +2193,54 @@
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
+                },
+                {
+                  "id": 401858441,
+                  "start_time": "2026-09-12T23:00:00.000Z",
+                  "start_time_tbd": false,
+                  "home_team": "Nebraska",
+                  "home_conference": "Big Ten",
+                  "home_rank": null,
+                  "away_team": "Bowling Green",
+                  "away_conference": "Mid-American",
+                  "away_rank": null,
+                  "matchup_score": 100,
+                  "channel": "FS1",
+                  "venue": "Memorial Stadium (Lincoln, NE)",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_nebraska": true,
+                  "is_slot_pick": true
                 }
               ]
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 104,
-              "pick_reason": "ap_rank",
+              "best_matchup_score": 71,
+              "pick_reason": "watchability",
               "games": [
                 {
-                  "id": 401864502,
-                  "start_time": "2026-09-13T02:00:00.000Z",
+                  "id": 401856670,
+                  "start_time": "2026-09-13T02:15:00.000Z",
                   "start_time_tbd": false,
-                  "home_team": "Air Force",
-                  "home_conference": "Mountain West",
-                  "home_rank": null,
-                  "away_team": "North Dakota State",
-                  "away_conference": "Mountain West",
+                  "home_team": "Utah",
+                  "home_conference": "Big 12",
+                  "home_rank": 21,
+                  "away_team": "Arkansas",
+                  "away_conference": "SEC",
                   "away_rank": null,
-                  "matchup_score": 104,
-                  "channel": "FS1",
-                  "venue": "Falcon Stadium",
+                  "matchup_score": 71,
+                  "channel": "ESPN",
+                  "venue": "Rice-Eccles Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
@@ -2256,18 +2256,18 @@
                   "is_slot_pick": true
                 },
                 {
-                  "id": 401856670,
-                  "start_time": "2026-09-13T02:15:00.000Z",
+                  "id": 401864502,
+                  "start_time": "2026-09-13T02:00:00.000Z",
                   "start_time_tbd": false,
-                  "home_team": "Utah",
-                  "home_conference": "Big 12",
+                  "home_team": "Air Force",
+                  "home_conference": "Mountain West",
                   "home_rank": null,
-                  "away_team": "Arkansas",
-                  "away_conference": "SEC",
+                  "away_team": "North Dakota State",
+                  "away_conference": "Mountain West",
                   "away_rank": null,
-                  "matchup_score": 104,
-                  "channel": "ESPN",
-                  "venue": "Rice-Eccles Stadium",
+                  "matchup_score": 100,
+                  "channel": "FS1",
+                  "venue": "Falcon Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
