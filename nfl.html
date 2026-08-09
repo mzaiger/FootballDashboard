@@ -11,8 +11,8 @@
     --bg: #0a0d10;
     --bg-panel: #12161b;
     --line: #232a31;
-    --turf: #2f5f8f;
-    --turf-bright: #4394c1;
+    --turf: #2f8f5b;
+    --turf-bright: #43c179;
     --chalk: #e8ecef;
     --dim: #8a95a1;
     --gold: #e0a63c;
@@ -32,6 +32,233 @@
     min-height:100vh;
     padding-bottom:4rem;
   }
+  .hero{
+    padding:2.5rem 1.5rem 1.75rem;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(120deg, rgba(47,143,91,0.16), transparent 55%);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:1180px;margin:0 auto;position:relative;}
+  .eyebrow{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.22em;
+    font-size:0.72rem;
+    color:var(--turf-bright);
+    font-weight:600;
+  }
+  h1{
+    font-family:'Oswald',sans-serif;
+    font-weight:700;
+    font-size:clamp(2rem, 5vw, 3.1rem);
+    margin:0.35rem 0 0.5rem;
+    letter-spacing:-0.01em;
+  }
+  .meta-row{
+    display:flex; flex-wrap:wrap; gap:1.25rem;
+    color:var(--dim); font-size:0.82rem; margin-top:0.5rem;
+  }
+  .meta-row b{color:var(--chalk); font-weight:600;}
+  .channels{
+    display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.9rem;
+  }
+  .chan-pill{
+    border:1px solid var(--line); border-radius:999px;
+    padding:0.15rem 0.65rem; font-size:0.72rem; color:var(--dim);
+  }
+
+  main{max-width:1180px;margin:0 auto; padding:0 1.5rem;}
+
+  .day-block{margin-top:2.5rem;}
+  .day-heading{
+    display:flex; align-items:baseline; gap:0.75rem;
+    padding-bottom:0.6rem; margin-bottom:1.1rem;
+    border-bottom:2px solid var(--turf);
+  }
+  .day-heading .weekday{
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:1.5rem;
+    text-transform:uppercase; letter-spacing:0.02em;
+  }
+  .day-heading .date{color:var(--dim); font-size:0.85rem;}
+  .day-heading .count{
+    margin-left:auto; color:var(--dim); font-size:0.78rem;
+  }
+
+  .slot-block{margin-bottom:1.75rem;}
+  .slot-block:last-child{margin-bottom:0;}
+  .slot-heading{
+    display:flex; align-items:baseline; gap:0.6rem;
+    margin-bottom:0.7rem;
+  }
+  .slot-heading .slot-name{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.95rem;
+    text-transform:uppercase; letter-spacing:0.08em; color:var(--turf-bright);
+  }
+  .slot-heading .slot-icon{font-size:0.9rem;}
+  .slot-heading::after{
+    content:""; flex:1; height:1px; background:var(--line);
+  }
+  .slot-heading .slot-count{color:var(--dim); font-size:0.72rem;}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(340px, 1fr));
+    gap:1rem;
+  }
+
+  .card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:1.1rem 1.2rem 1.2rem;
+    position:relative;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .card:hover{border-color:#39424b; transform:translateY(-1px);}
+  .card.marquee{border-color:rgba(224,166,60,0.55); box-shadow:0 0 0 1px rgba(224,166,60,0.12), 0 8px 24px -12px rgba(224,166,60,0.25);}
+  .card.slot-pick{
+    border:2px solid var(--pick-yellow);
+    box-shadow:0 0 0 1px rgba(255,214,10,0.25), 0 10px 26px -12px rgba(255,214,10,0.4);
+    padding-top:2.4rem;
+  }
+  .pick-banner{
+    position:absolute; top:0; left:0; right:0;
+    background:var(--pick-yellow); color:#1a1400;
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:0.7rem;
+    text-transform:uppercase; letter-spacing:0.1em; text-align:center;
+    padding:0.3rem 0.5rem; border-radius:9px 9px 0 0;
+  }
+  .odds td.picked{background:rgba(255,214,10,0.16); color:var(--pick-yellow); font-weight:700; border-radius:4px;}
+  .pick-toolbar{display:grid; grid-template-columns:repeat(4,1fr); gap:0.35rem; margin-top:0.6rem;}
+  .pick-btn{
+    font-family:'Inter',sans-serif; font-size:0.68rem; font-weight:600;
+    color:var(--dim); background:#161b20; border:1px solid var(--line);
+    border-radius:6px; padding:0.4rem 0.2rem; cursor:pointer;
+    text-align:center; line-height:1.15; transition:all 0.12s ease;
+  }
+  .pick-btn:hover{border-color:var(--pick-yellow); color:var(--chalk);}
+  .pick-btn.active{background:var(--pick-yellow); border-color:var(--pick-yellow); color:#1a1400;}
+
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;}
+  .score-badge{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.68rem;
+    text-transform:uppercase; letter-spacing:0.08em; color:var(--turf-bright);
+    border:1px solid rgba(67,193,121,0.35); border-radius:999px;
+    padding:0.2rem 0.55rem; white-space:nowrap;
+  }
+  .marquee .score-badge{color:var(--gold); border-color:rgba(224,166,60,0.45);}
+  .channel-pill{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
+    background:var(--turf); color:#04140a; border-radius:5px;
+    padding:0.2rem 0.5rem; letter-spacing:0.02em;
+  }
+
+  .matchup{
+    margin:0.85rem 0 0.6rem;
+    display:flex; align-items:center; flex-wrap:nowrap; gap:0.45rem;
+    font-family:'Oswald',sans-serif; font-size:1.05rem; font-weight:600;
+    white-space:nowrap; overflow-x:auto; scrollbar-width:none;
+  }
+  .matchup::-webkit-scrollbar{display:none;}
+  .team{display:inline-flex; align-items:center; gap:0.4rem;}
+  .rank{
+    font-size:0.68rem; color:var(--gold); border:1px solid rgba(224,166,60,0.4);
+    border-radius:4px; padding:0.05rem 0.3rem; min-width:1.6rem; text-align:center;
+    flex-shrink:0;
+  }
+  .rank.unranked{visibility:hidden;}
+  .at{color:var(--dim); font-size:0.72rem; font-family:'JetBrains Mono',monospace; flex-shrink:0;}
+
+  @media (max-width: 480px){
+    .matchup{
+      flex-wrap:wrap; white-space:normal; overflow-x:visible;
+      font-size:1rem;
+    }
+    .at{margin:0 0.1rem;}
+  }
+
+  .subline{
+    color:var(--dim); font-size:0.75rem; display:flex; gap:1rem; flex-wrap:wrap;
+    margin-bottom:0.9rem;
+  }
+
+  table.odds{
+    width:100%; border-collapse:collapse; font-size:0.78rem;
+  }
+  table.odds th{
+    text-align:right; color:var(--dim); font-weight:500;
+    font-size:0.66rem; text-transform:uppercase; letter-spacing:0.05em;
+    padding-bottom:0.35rem;
+  }
+  table.odds th:first-child, table.odds td:first-child{text-align:left;}
+  table.odds td{
+    text-align:right; padding:0.3rem 0; border-top:1px solid var(--line);
+  }
+  .book{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
+  }
+  .book.dk{color:var(--dk-green);}
+  .book.fd{color:var(--fd-blue);}
+  .num.neg{color:var(--loss-red);}
+  .empty-cell{color:#3d454d;}
+
+  .no-odds{color:var(--dim); font-size:0.75rem; padding:0.4rem 0;}
+
+  .gemini-toggle{
+    width:100%; margin-top:0.6rem;
+    display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; row-gap:0.3rem;
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
+    color:var(--dim); background:#161b20; border:1px solid var(--line);
+    border-radius:6px; padding:0.45rem 0.6rem; cursor:pointer;
+    text-align:left; transition:all 0.12s ease;
+  }
+  .gemini-toggle:hover{border-color:#8b5cf6; color:var(--chalk);}
+  .gemini-toggle.open{border-color:#8b5cf6; color:#c4b5fd; background:rgba(139,92,246,0.1);}
+  .gemini-toggle-icon{font-size:0.85rem; flex-shrink:0;}
+  .gemini-toggle-main{
+    display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;
+    flex:1; min-width:0;
+  }
+  .gemini-toggle-winner{
+    color:var(--chalk); text-transform:none; letter-spacing:normal; font-weight:600;
+  }
+  .gemini-toggle-ats{
+    color:#a78bfa; text-transform:uppercase; letter-spacing:0.04em; font-size:0.65rem;
+  }
+  .gemini-toggle-trailing{
+    display:flex; align-items:center; gap:0.4rem; margin-left:auto; flex-shrink:0;
+  }
+  .gemini-conf{color:#a78bfa; font-family:'JetBrains Mono',monospace; font-weight:700; text-transform:none;}
+  .gemini-caret{font-size:0.6rem; transition:transform .12s ease; color:inherit;}
+  .gemini-toggle.open .gemini-caret{transform:rotate(180deg);}
+  .gemini-panel{
+    margin-top:0.5rem; padding:0.7rem 0.8rem;
+    background:#14101c; border:1px solid rgba(139,92,246,0.3); border-radius:8px;
+  }
+  .gemini-panel-row{
+    display:flex; justify-content:space-between; gap:0.75rem;
+    font-size:0.75rem; padding:0.15rem 0; color:var(--dim);
+  }
+  .gemini-panel-row .gemini-value{color:var(--chalk); font-weight:600; text-align:right;}
+  .gemini-analysis{
+    margin:0.55rem 0 0; color:var(--chalk); font-size:0.78rem; line-height:1.55;
+  }
+  body.row-view .gemini-toggle,
+  body.row-view .gemini-panel{grid-column:1 / -1;}
+  body.row-view .gemini-toggle{grid-row:3;}
+  body.row-view .gemini-panel{grid-row:4;}
+
+  footer{
+    max-width:1180px; margin:3rem auto 0; padding:0 1.5rem;
+    color:var(--dim); font-size:0.75rem; border-top:1px solid var(--line); padding-top:1rem;
+  }
+  .status{max-width:1180px;margin:2rem auto;padding:0 1.5rem;color:var(--dim);}
 
   .nav-bar{
     position:sticky; top:0; z-index:100;
@@ -176,247 +403,14 @@
     body.row-view .no-odds,
     body.row-view .pick-toolbar{width:auto; grid-column:auto; grid-row:auto;}
   }
-
-  .hero{
-    padding:2.5rem 1.5rem 1.75rem;
-    border-bottom:1px solid var(--line);
-    position:relative;
-    overflow:hidden;
-  }
-  .hero::before{
-    content:"";
-    position:absolute; inset:0;
-    background:linear-gradient(120deg, rgba(47,95,143,0.18), transparent 55%);
-    pointer-events:none;
-  }
-  .hero-inner{max-width:1180px;margin:0 auto;position:relative;}
-  .eyebrow{
-    font-family:'Oswald',sans-serif;
-    text-transform:uppercase;
-    letter-spacing:0.22em;
-    font-size:0.72rem;
-    color:var(--turf-bright);
-    font-weight:600;
-  }
-  h1{
-    font-family:'Oswald',sans-serif;
-    font-weight:700;
-    font-size:clamp(2rem, 5vw, 3.1rem);
-    margin:0.35rem 0 0.5rem;
-    letter-spacing:-0.01em;
-  }
-  .meta-row{
-    display:flex; flex-wrap:wrap; gap:1.25rem;
-    color:var(--dim); font-size:0.82rem; margin-top:0.5rem;
-  }
-  .meta-row b{color:var(--chalk); font-weight:600;}
-
-  main{max-width:1180px;margin:0 auto; padding:0 1.5rem;}
-
-  .day-block{margin-top:2.5rem;}
-  .day-heading{
-    display:flex; align-items:baseline; gap:0.75rem;
-    padding-bottom:0.6rem; margin-bottom:1.1rem;
-    border-bottom:2px solid var(--turf);
-  }
-  .day-heading .weekday{
-    font-family:'Oswald',sans-serif; font-weight:700; font-size:1.5rem;
-    text-transform:uppercase; letter-spacing:0.02em;
-  }
-  .day-heading .date{color:var(--dim); font-size:0.85rem;}
-  .day-heading .count{
-    margin-left:auto; color:var(--dim); font-size:0.78rem;
-  }
-
-  .slot-block{margin-bottom:1.75rem;}
-  .slot-block:last-child{margin-bottom:0;}
-  .slot-heading{
-    display:flex; align-items:baseline; gap:0.6rem;
-    margin-bottom:0.7rem;
-  }
-  .slot-heading .slot-name{
-    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.95rem;
-    text-transform:uppercase; letter-spacing:0.08em; color:var(--turf-bright);
-  }
-  .slot-heading .slot-icon{font-size:0.9rem;}
-  .slot-heading::after{
-    content:""; flex:1; height:1px; background:var(--line);
-  }
-  .slot-heading .slot-count{color:var(--dim); font-size:0.72rem;}
-
-  .regional-callout{
-    background:rgba(67,148,193,0.08);
-    border:1px dashed rgba(67,148,193,0.4);
-    border-radius:8px;
-    padding:0.6rem 0.9rem;
-    margin-bottom:0.9rem;
-    font-size:0.76rem;
-    color:var(--dim);
-  }
-  .regional-callout .label{
-    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.68rem;
-    text-transform:uppercase; letter-spacing:0.06em; color:var(--turf-bright);
-    display:block; margin-bottom:0.3rem;
-  }
-  .regional-callout .pick{color:var(--chalk);}
-  .regional-callout .chan{color:var(--gold);}
-
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(340px, 1fr));
-    gap:1rem;
-  }
-
-  .card{
-    background:var(--bg-panel);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:1.1rem 1.2rem 1.2rem;
-    position:relative;
-    transition:border-color .15s ease, transform .15s ease;
-  }
-  .card:hover{border-color:#39424b; transform:translateY(-1px);}
-  .card.close-game{border-color:rgba(224,166,60,0.55); box-shadow:0 0 0 1px rgba(224,166,60,0.12), 0 8px 24px -12px rgba(224,166,60,0.25);}
-  .card.slot-pick{
-    border:2px solid var(--pick-yellow);
-    box-shadow:0 0 0 1px rgba(255,214,10,0.25), 0 10px 26px -12px rgba(255,214,10,0.4);
-    padding-top:2.4rem;
-  }
-  .pick-banner{
-    position:absolute; top:0; left:0; right:0;
-    background:var(--pick-yellow); color:#1a1400;
-    font-family:'Oswald',sans-serif; font-weight:700; font-size:0.7rem;
-    text-transform:uppercase; letter-spacing:0.1em; text-align:center;
-    padding:0.3rem 0.5rem; border-radius:9px 9px 0 0;
-  }
-  .odds td.picked{background:rgba(255,214,10,0.16); color:var(--pick-yellow); font-weight:700; border-radius:4px;}
-  .pick-toolbar{display:grid; grid-template-columns:repeat(4,1fr); gap:0.35rem; margin-top:0.6rem;}
-  .pick-btn{
-    font-family:'Inter',sans-serif; font-size:0.68rem; font-weight:600;
-    color:var(--dim); background:#161b20; border:1px solid var(--line);
-    border-radius:6px; padding:0.4rem 0.2rem; cursor:pointer;
-    text-align:center; line-height:1.15; transition:all 0.12s ease;
-  }
-  .pick-btn:hover{border-color:var(--pick-yellow); color:var(--chalk);}
-  .pick-btn.active{background:var(--pick-yellow); border-color:var(--pick-yellow); color:#1a1400;}
-
-  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;}
-  .score-badge{
-    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.68rem;
-    text-transform:uppercase; letter-spacing:0.08em; color:var(--turf-bright);
-    border:1px solid rgba(67,148,193,0.35); border-radius:999px;
-    padding:0.2rem 0.55rem; white-space:nowrap;
-  }
-  .close-game .score-badge{color:var(--gold); border-color:rgba(224,166,60,0.45);}
-  .channel-pill{
-    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
-    background:var(--turf); color:#04140a; border-radius:5px;
-    padding:0.2rem 0.5rem; letter-spacing:0.02em;
-  }
-
-  .matchup{
-    margin:0.85rem 0 0.6rem;
-    display:flex; align-items:center; flex-wrap:nowrap; gap:0.45rem;
-    font-family:'Oswald',sans-serif; font-size:1.05rem; font-weight:600;
-    white-space:nowrap; overflow-x:auto; scrollbar-width:none;
-  }
-  .matchup::-webkit-scrollbar{display:none;}
-  .team{display:inline-flex; align-items:center; gap:0.4rem;}
-  .at{color:var(--dim); font-size:0.72rem; font-family:'JetBrains Mono',monospace; flex-shrink:0;}
-
-  @media (max-width: 480px){
-    .matchup{
-      flex-wrap:wrap; white-space:normal; overflow-x:visible;
-      font-size:1rem;
-    }
-    .at{margin:0 0.1rem;}
-  }
-
-  .subline{
-    color:var(--dim); font-size:0.75rem; display:flex; gap:1rem; flex-wrap:wrap;
-    margin-bottom:0.9rem;
-  }
-
-  table.odds{
-    width:100%; border-collapse:collapse; font-size:0.78rem;
-  }
-  table.odds th{
-    text-align:right; color:var(--dim); font-weight:500;
-    font-size:0.66rem; text-transform:uppercase; letter-spacing:0.05em;
-    padding-bottom:0.35rem;
-  }
-  table.odds th:first-child, table.odds td:first-child{text-align:left;}
-  table.odds td{
-    text-align:right; padding:0.3rem 0; border-top:1px solid var(--line);
-  }
-  .book{
-    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
-  }
-  .book.dk{color:var(--dk-green);}
-  .book.fd{color:var(--fd-blue);}
-  .num.neg{color:var(--loss-red);}
-  .empty-cell{color:#3d454d;}
-
-  .no-odds{color:var(--dim); font-size:0.75rem; padding:0.4rem 0;}
-
-  .gemini-toggle{
-    width:100%; margin-top:0.6rem;
-    display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; row-gap:0.3rem;
-    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
-    color:var(--dim); background:#161b20; border:1px solid var(--line);
-    border-radius:6px; padding:0.45rem 0.6rem; cursor:pointer;
-    text-align:left; transition:all 0.12s ease;
-  }
-  .gemini-toggle:hover{border-color:#8b5cf6; color:var(--chalk);}
-  .gemini-toggle.open{border-color:#8b5cf6; color:#c4b5fd; background:rgba(139,92,246,0.1);}
-  .gemini-toggle-icon{font-size:0.85rem; flex-shrink:0;}
-  .gemini-toggle-main{
-    display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;
-    flex:1; min-width:0;
-  }
-  .gemini-toggle-winner{
-    color:var(--chalk); text-transform:none; letter-spacing:normal; font-weight:600;
-  }
-  .gemini-toggle-ats{
-    color:#a78bfa; text-transform:uppercase; letter-spacing:0.04em; font-size:0.65rem;
-  }
-  .gemini-toggle-trailing{
-    display:flex; align-items:center; gap:0.4rem; margin-left:auto; flex-shrink:0;
-  }
-  .gemini-conf{color:#a78bfa; font-family:'JetBrains Mono',monospace; font-weight:700; text-transform:none;}
-  .gemini-caret{font-size:0.6rem; transition:transform .12s ease; color:inherit;}
-  .gemini-toggle.open .gemini-caret{transform:rotate(180deg);}
-  .gemini-panel{
-    margin-top:0.5rem; padding:0.7rem 0.8rem;
-    background:#14101c; border:1px solid rgba(139,92,246,0.3); border-radius:8px;
-  }
-  .gemini-panel-row{
-    display:flex; justify-content:space-between; gap:0.75rem;
-    font-size:0.75rem; padding:0.15rem 0; color:var(--dim);
-  }
-  .gemini-panel-row .gemini-value{color:var(--chalk); font-weight:600; text-align:right;}
-  .gemini-analysis{
-    margin:0.55rem 0 0; color:var(--chalk); font-size:0.78rem; line-height:1.55;
-  }
-  body.row-view .gemini-toggle,
-  body.row-view .gemini-panel{grid-column:1 / -1;}
-  body.row-view .gemini-toggle{grid-row:3;}
-  body.row-view .gemini-panel{grid-row:4;}
-
-  footer{
-    max-width:1180px; margin:3rem auto 0; padding:0 1.5rem;
-    color:var(--dim); font-size:0.75rem; border-top:1px solid var(--line); padding-top:1rem;
-  }
-  footer a{color:var(--turf-bright);}
-  .status{max-width:1180px;margin:2rem auto;padding:0 1.5rem;color:var(--dim);}
 </style>
 </head>
 <body>
 
 <div class="nav-bar">
 <nav class="site-nav">
-  <a href="index.html">College</a>
-  <a href="nfl.html" class="active">NFL</a>
+  <a href="index.html" class="active">College</a>
+  <a href="nfl.html">NFL</a>
   <a href="picks.html">Picks</a>
   <span class="nav-spacer"></span>
   <div class="view-toggle">
@@ -426,14 +420,16 @@
 </nav>
 </div>
 
+
 <div class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">NFL &middot; TV Schedule + Odds Board</div>
+    <div class="eyebrow">College Football &middot; TV Schedule + Odds Board</div>
     <h1 id="pageTitle">Loading week&hellip;</h1>
     <div class="meta-row">
       <span>Last updated: <b id="generatedAt">—</b></span>
-      <span><b id="totalGames">—</b> games with a broadcast assigned</span>
+      <span><b id="totalGames">—</b> games on main channels</span>
     </div>
+    <div class="channels" id="channelList"></div>
   </div>
 </div>
 
@@ -442,15 +438,9 @@
 <div class="status" id="statusMsg" style="display:none;"></div>
 
 <footer>
-  Matchup score = the smaller of DraftKings/FanDuel's point spread (closer game = more marquee, sorts first).
-  &#11088; Slot Pick = the game with the closest spread in that time window.
-  Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule &amp; broadcast network via ESPN's public scoreboard API.
-  <br><br>
-  <strong>Omaha/Lincoln regional pick is an unofficial estimate</strong> — when a network window has more than one
-  game, it guesses the Chiefs' game, then the Broncos' game, since neither Omaha nor Lincoln has a home NFL team.
-  It is not pulled from an actual coverage map. Always verify at
-  <a href="https://506sports.com/nfl.php" target="_blank" rel="noopener">506sports.com</a> before relying on it.
-  <br><br>
+  Matchup rank = combined AP Top 25 rank of both teams (lower is more marquee, unranked teams score 26).
+  &#11088; Slot Pick = best combined AP rank in that time window, closest spread if nobody's ranked, and Nebraska overrides everything whenever it's playing in that window.
+  Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule &amp; rankings via CollegeFootballData.com.
   &#10024; Gemini Prediction Summary is AI-generated from current-season stats and posted odds -- informational only, not betting advice.
 </footer>
 
@@ -465,8 +455,8 @@
 })();
 </script>
 <script>
-const SPORT = 'nfl';
-const DATA_URL = 'data/nfl_dashboard.json';
+const SPORT = 'cfb';
+const DATA_URL = 'data/dashboard.json';
 
 function fmtAmerican(n) {
   if (n === null || n === undefined || n === '') return null;
@@ -495,6 +485,10 @@ function oddsCell(entry) {
   return '<span class="empty-cell">—</span>';
 }
 
+function rankBadge(rank) {
+  return rank ? `<span class="rank">#${rank}</span>` : `<span class="rank unranked">#--</span>`;
+}
+
 function kickoffTime(iso, tbd) {
   if (tbd) return 'Time TBD';
   try {
@@ -504,7 +498,7 @@ function kickoffTime(iso, tbd) {
 }
 
 function renderGame(g) {
-  const closeGame = g.matchup_score !== null && g.matchup_score !== undefined && g.matchup_score <= 3;
+  const marquee = g.home_rank && g.away_rank;
   const isPick = !!g.is_slot_pick;
   const books = ['draftkings', 'fanduel'];
   const bookLabel = { draftkings: 'DK', fanduel: 'FD' };
@@ -535,21 +529,17 @@ function renderGame(g) {
       </table>`
     : `<div class="no-odds">Odds not yet posted</div>`;
 
-  const scoreLabel = (g.matchup_score === null || g.matchup_score === undefined)
-    ? 'Pick Rank TBD'
-    : `Pick Rank ${g.matchup_score}`;
-
   return `
-  <div class="card ${closeGame ? 'close-game' : ''} ${isPick ? 'slot-pick' : ''}">
+  <div class="card ${marquee ? 'marquee' : ''} ${isPick ? 'slot-pick' : ''}">
     ${isPick ? '<div class="pick-banner">\u2b50 Slot Pick</div>' : ''}
     <div class="card-top">
-      <span class="score-badge">${scoreLabel}</span>
+      <span class="score-badge">Pick Rank ${g.matchup_score}</span>
       <span class="channel-pill">${g.channel}</span>
     </div>
     <div class="matchup">
-      <span class="team">${g.away_team}</span>
+      <span class="team">${rankBadge(g.away_rank)} ${g.away_team}</span>
       <span class="at">@</span>
-      <span class="team">${g.home_team}</span>
+      <span class="team">${rankBadge(g.home_rank)} ${g.home_team}</span>
     </div>
     <div class="subline">
       <span>${kickoffTime(g.start_time, g.start_time_tbd)}</span>
@@ -570,18 +560,6 @@ const SLOT_ICON = {
   'Time TBD': '\u2753'
 };
 
-function renderRegionalCallout(picks) {
-  if (!picks || !picks.length) return '';
-  const items = picks.map(p =>
-    `<span class="chan">${p.channel}</span>: <span class="pick">${p.matchup}</span>`
-  ).join(' &nbsp;|&nbsp; ');
-  return `
-  <div class="regional-callout">
-    <span class="label">Omaha / Lincoln, NE — unofficial regional pick</span>
-    ${items}
-  </div>`;
-}
-
 function renderSlot(slot) {
   return `
   <div class="slot-block">
@@ -590,7 +568,6 @@ function renderSlot(slot) {
       <span class="slot-name">${slot.slot}</span>
       <span class="slot-count">${slot.games.length} game${slot.games.length === 1 ? '' : 's'}</span>
     </div>
-    ${renderRegionalCallout(slot.regional_picks_omaha_lincoln)}
     <div class="grid">
       ${slot.games.map(renderGame).join('')}
     </div>
@@ -616,7 +593,7 @@ function renderWeek(week) {
     return `
     <section class="week-block">
       <div class="week-heading"><span class="week-name">Week ${week.week}</span></div>
-      <div class="week-empty">No games found for this week yet — check back closer to kickoff.</div>
+      <div class="week-empty">No main-channel games found for this week yet — check back closer to kickoff.</div>
     </section>`;
   }
   return `
@@ -641,11 +618,13 @@ async function init() {
       weekNums.length > 1 ? `Weeks ${weekNums[0]}\u2013${weekNums[weekNums.length - 1]} \u2014 ${data.season}` : `Week ${weekNums[0]} \u2014 ${data.season}`;
     document.getElementById('generatedAt').textContent = new Date(data.generated_at).toLocaleString();
     document.getElementById('totalGames').textContent = data.weeks.reduce((n, w) => n + w.total_games, 0);
+    document.getElementById('channelList').innerHTML =
+      data.main_channels.map(c => `<span class="chan-pill">${c}</span>`).join('');
 
     const daysEl = document.getElementById('days');
     if (!data.weeks.some(w => w.days.length)) {
       statusEl.style.display = 'block';
-      statusEl.textContent = 'No games found for either week yet — check back closer to kickoff.';
+      statusEl.textContent = 'No main-channel games found for either week yet — check back closer to kickoff.';
       return;
     }
     const renderBoard = () => { daysEl.innerHTML = data.weeks.map(renderWeek).join(''); };
@@ -654,7 +633,7 @@ async function init() {
     attachGeminiHandlers(daysEl);
   } catch (err) {
     statusEl.style.display = 'block';
-    statusEl.textContent = `Couldn't load data/nfl_dashboard.json (${err.message}). Run scripts/build_nfl_dashboard.py first.`;
+    statusEl.textContent = `Couldn't load data/dashboard.json (${err.message}). Run scripts/build_dashboard.py first.`;
   }
 }
 
