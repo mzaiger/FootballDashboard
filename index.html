@@ -660,21 +660,26 @@ async function init() {
     const data = await res.json();
     SCORES = await fetchScores('cfb');
 
-    const weekNums = data.weeks.map(w => w.week);
-    document.getElementById('pageTitle').textContent =
-      weekNums.length > 1 ? `Weeks ${weekNums[0]}\u2013${weekNums[weekNums.length - 1]} \u2014 ${data.season}` : `Week ${weekNums[0]} \u2014 ${data.season}`;
+    // dashboard.json now holds every week ever built; only show the
+    // current week (nearest game on/after yesterday) plus the next one.
+    const displayWeeks = selectDisplayWeeks(data.weeks);
+
+    const weekNums = displayWeeks.map(w => w.week);
+    document.getElementById('pageTitle').textContent = weekNums.length
+      ? (weekNums.length > 1 ? `Weeks ${weekNums[0]}\u2013${weekNums[weekNums.length - 1]} \u2014 ${data.season}` : `Week ${weekNums[0]} \u2014 ${data.season}`)
+      : `${data.season}`;
     document.getElementById('generatedAt').textContent = new Date(data.generated_at).toLocaleString();
-    document.getElementById('totalGames').textContent = data.weeks.reduce((n, w) => n + w.total_games, 0);
+    document.getElementById('totalGames').textContent = displayWeeks.reduce((n, w) => n + w.total_games, 0);
     document.getElementById('channelList').innerHTML =
       data.main_channels.map(c => `<span class="chan-pill">${c}</span>`).join('');
 
     const daysEl = document.getElementById('days');
-    if (!data.weeks.some(w => w.days.length)) {
+    if (!displayWeeks.some(w => w.days.length)) {
       statusEl.style.display = 'block';
       statusEl.textContent = 'No main-channel games found for either week yet — check back closer to kickoff.';
       return;
     }
-    const renderBoard = () => { daysEl.innerHTML = data.weeks.map(renderWeek).join(''); };
+    const renderBoard = () => { daysEl.innerHTML = displayWeeks.map(renderWeek).join(''); };
     renderBoard();
     attachPickHandlers(daysEl, renderBoard);
     attachGeminiHandlers(daysEl);

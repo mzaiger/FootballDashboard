@@ -457,6 +457,8 @@
     <h1>My Picks</h1>
     <div class="meta-row">
       <span><b id="pickCount">—</b> active pick(s)</span>
+      <span><b id="pickCorrect">—</b> total picks correct</span>
+      <span><b id="pickIncorrect">—</b> total picks incorrect</span>
       <span>Plus Nebraska's game every week, picked or not</span>
     </div>
   </div>
@@ -470,8 +472,10 @@
   Picks are saved as cookies in this browser only — nobody else can see them, and they won't follow you to another
   device or browser. Un-pick a game any time by clicking its highlighted option again.
   <br><br>
-  This page only shows games from the currently generated week's data — once a new week's board is built, a past
-  week's picks will stop showing up here (the cookie sticks around, but there's no game data left to match it to).
+  Unlike the College Football and NFL pages (which only ever show the current week plus the next one), this page
+  shows every week that's ever had a pick made against it, newest week first — the underlying data keeps every
+  week's lines, scores, and predictions permanently, so a pick from week 1 still grades correctly no matter how
+  far into the season you are.
 </footer>
 
 <script src="picks-store.js"></script>
@@ -691,6 +695,17 @@ function renderBoard() {
   const sectionsEl = document.getElementById('sections');
   const statusEl = document.getElementById('statusMsg');
   document.getElementById('pickCount').textContent = totalPickCount();
+
+  // Correct/incorrect is computed against the full, unfiltered dashboards
+  // (every week ever built), comparing each cookie'd pick to data/scores.json
+  // -- so this total covers picks going all the way back, not just whatever
+  // weeks happen to still be in view.
+  const record = computePickRecord(
+    [{ sport: 'cfb', data: cfbData }, { sport: 'nfl', data: nflData }],
+    SCORES
+  );
+  document.getElementById('pickCorrect').textContent = record.correct;
+  document.getElementById('pickIncorrect').textContent = record.incorrect;
 
   const cfbFiltered = filterDataset('cfb', cfbData);
   const nflFiltered = filterDataset('nfl', nflData);

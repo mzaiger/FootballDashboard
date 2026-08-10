@@ -1,10 +1,16 @@
 # Football Dashboard
 
-Two daily-refreshed betting dashboards, College and NFL, each showing
-**this week and next week's** games grouped by week, then by day, then by
-kickoff window (Morning / Noon / Afternoon / Prime Time / Late Night), ranked
-within each window by best matchup, with **DraftKings** and **FanDuel**
-spreads + moneylines attached to each game.
+Two daily-refreshed betting dashboards, College and NFL, each showing **the
+current week and the next week's** games grouped by week, then by day, then
+by kickoff window (Morning / Noon / Afternoon / Prime Time / Late Night),
+ranked within each window by best matchup, with **DraftKings** and
+**FanDuel** spreads + moneylines attached to each game.
+
+The underlying JSON files keep **every week ever built, forever** — nothing
+is ever deleted. College and NFL only *display* the current + next week
+(see "How weeks work" below for exactly how "current" is decided); the
+[Picks page](#how-picks-store-their-line) shows every week you've ever made
+a pick in, no matter how long ago.
 
 Every page has a Tiles/Rows toggle in the nav -- Tiles is the original card
 grid, Rows lays the same games out as a compact list. It defaults to Rows
@@ -71,10 +77,36 @@ assignment (CBS, FOX, NBC, ESPN, ABC, Amazon, Netflix, NFL Network, Peacock).
 
 ## How weeks work
 
-Each build produces a `weeks` array holding **two consecutive week numbers**
-(this week + next week, per the `--num-weeks` flag described above) — both
-pages show that whole array at once, under a "Week N" (or "P1"/"Weeks
-N–M") heading per week.
+**The JSON files never lose a week.** Each build script loads whatever's
+already sitting in `dashboard.json` / `nfl_dashboard.json`, builds the
+current week + next week fresh from CFBD/ESPN/SharpAPI/Gemini, then merges
+that fresh pair on top of the existing file — any other week already in the
+file (last week, week 1, last season, whatever) is carried forward
+untouched. See `merge_weeks()` in `scripts/common.py`. Nothing in the
+pipeline ever deletes a week; the `weeks` array just keeps growing, one or
+two entries at a time, all season.
+
+**What each page shows is a display decision, not a data limit.** Both
+`index.html` and `nfl.html` fetch the *whole* `weeks` array and then narrow
+it down client-side with `selectDisplayWeeks()` in `picks-store.js`:
+
+1. Find the nearest game whose kickoff is **on or after yesterday at
+   midnight** (`today − 1 day`) across every stored week. That one day of
+   grace is what keeps a full slate of Sunday games visible through all of
+   Monday — by Tuesday, even the last Sunday night game is more than a day
+   old, so that week drops off.
+2. Whichever stored week that game belongs to is "current." Display that
+   week plus the very next stored week — nothing else.
+
+If nothing on file is on/after that cutoff (off-season, or a build hasn't
+run in a while), it falls back to showing the most recent stored week
+instead of an empty board.
+
+**The Picks page ignores all of that** — it renders every week that's ever
+had a pick made against it, most recent week first, using the same
+unfiltered `weeks` array. A Week 1 pick still shows up and still grades
+correctly in Week 15, because Week 1's games, odds, and scores are still
+sitting right where they were built.
 
 **NFL preseason labeling**: ESPN numbers preseason weeks 1–4 the same as it
 numbers regular-season weeks 1–4, so a bare "Week 1" would be ambiguous
@@ -87,27 +119,22 @@ integer either way; `formatWeekLabel()` in `picks-store.js` is what adds
 the "P" prefix, shared by `nfl.html` and `picks.html`. CFB never sets
 `season_type`, so its weeks always render as plain "Week N".
 
-**What happens when the week rolls over**: nothing is deleted anywhere —
-the *board* just moves forward with it. Each day's build (whether run
-manually with `--week N` or via the daily GitHub Action with no `--week`
-flag, which asks CFBD/ESPN for "the current week") regenerates
-`dashboard.json` / `nfl_dashboard.json` from scratch with whatever the
-*current* two weeks are. So once real Week 2 games exist, the file simply
-no longer contains Week 1's games — they age out of the JSON, not because
-anything explicitly wiped them, but because the build only ever asks for
-"this week and next."
+**Your picks are unaffected by any of this** — they're stored as one cookie
+per game id (`pick_<sport>_<gameId>`, see `picks-store.js`), not tied to a
+week number at all, and don't expire until ~210 days pass. Since old weeks
+now stick around in the JSON forever, a pick's game data never disappears
+out from under it — the win/loss coloring on the odds cells, and the
+running correct/incorrect totals at the top of the Picks page, stay
+accurate indefinitely.
 
-**Your picks are unaffected by this** — they're stored as one cookie per
-game id (`pick_<sport>_<gameId>`, see `picks-store.js`), not tied to a
-week number at all, and don't expire until ~210 days pass. A Week 1 pick's
-cookie stays right where it is. What changes is that once Week 1's games
-drop out of the JSON, `picks.html` has no game data left to match that
-cookie against, so that pick simply stops appearing on the Picks page (it
-isn't cleared, it's just invisible until/unless that same game id ever
-reappears in a build). Practically: **make sure you've reviewed how last
-week's picks did before the week rolls over** — the win/loss coloring on
-the odds cells only renders while the game is still present in the current
-dashboard JSON.
+**Score polling scales with this too**: `scripts/fetch_scores.py` used to
+just re-poll every week present in the dashboard on every hourly run. Now
+that the dashboard can hold a whole season's worth of weeks, it instead
+skips any week where every game already has a `"final"` score recorded
+from a previous run (`weeks_needing_refresh()`) — a final score can't
+change, so there's nothing to gain by asking again. Only weeks with an
+unplayed or in-progress game (or a game it's never checked before) get
+re-fetched each run.
 
 ## Omaha / Lincoln regional game (NFL page) — read this before trusting it
 
@@ -317,6 +344,17 @@ market/side you clicked (`{line, american}` from each book) and
   with nothing for it.
 - **Only the picked cell is pinned** — the odds *table* itself always
   displays today's live numbers everywhere else; nothing else is frozen.
+
+**Total record at the top of Picks**: the "total picks correct" / "total
+picks incorrect" counters in the Picks page header are computed by
+`computePickRecord()` in `picks-store.js` — it walks every game in the
+full (unfiltered) `dashboard.json`/`nfl_dashboard.json`, checks each one
+for a pick cookie, and grades any settled one against `data/scores.json`
+using the exact same `oddsHitClass()` logic that colors the odds cells
+(so a push/tie counts as correct, matching the cell coloring). Picks on
+games that haven't finished yet aren't counted in either bucket. Because
+old weeks are never removed from the JSON, this total covers every pick
+you've ever made, not just whatever's currently on the board.
 
 ## Notes / things worth knowing
 

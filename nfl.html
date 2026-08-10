@@ -684,19 +684,24 @@ async function init() {
     const data = await res.json();
     SCORES = await fetchScores('nfl');
 
-    const weekNums = data.weeks.map(w => formatWeekNumberLabel(w.week, data.season_type));
-    document.getElementById('pageTitle').textContent =
-      weekNums.length > 1 ? `Weeks ${weekNums[0]}\u2013${weekNums[weekNums.length - 1]} \u2014 ${data.season}` : `Week ${weekNums[0]} \u2014 ${data.season}`;
+    // nfl_dashboard.json now holds every week ever built; only show the
+    // current week (nearest game on/after yesterday) plus the next one.
+    const displayWeeks = selectDisplayWeeks(data.weeks);
+
+    const weekNums = displayWeeks.map(w => formatWeekNumberLabel(w.week, data.season_type));
+    document.getElementById('pageTitle').textContent = weekNums.length
+      ? (weekNums.length > 1 ? `Weeks ${weekNums[0]}\u2013${weekNums[weekNums.length - 1]} \u2014 ${data.season}` : `Week ${weekNums[0]} \u2014 ${data.season}`)
+      : `${data.season}`;
     document.getElementById('generatedAt').textContent = new Date(data.generated_at).toLocaleString();
-    document.getElementById('totalGames').textContent = data.weeks.reduce((n, w) => n + w.total_games, 0);
+    document.getElementById('totalGames').textContent = displayWeeks.reduce((n, w) => n + w.total_games, 0);
 
     const daysEl = document.getElementById('days');
-    if (!data.weeks.some(w => w.days.length)) {
+    if (!displayWeeks.some(w => w.days.length)) {
       statusEl.style.display = 'block';
       statusEl.textContent = 'No games found for either week yet — check back closer to kickoff.';
       return;
     }
-    const renderBoard = () => { daysEl.innerHTML = data.weeks.map(w => renderWeek(w, data.season_type)).join(''); };
+    const renderBoard = () => { daysEl.innerHTML = displayWeeks.map(w => renderWeek(w, data.season_type)).join(''); };
     renderBoard();
     attachPickHandlers(daysEl, renderBoard);
     attachGeminiHandlers(daysEl);

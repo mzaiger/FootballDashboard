@@ -36,6 +36,63 @@ function formatWeekNumberLabel(weekNum, seasonType) {
   return seasonType === 1 ? `P${weekNum}` : `${weekNum}`;
 }
 
+/*
+ * Which week(s) to actually show on the College / NFL boards.
+ *
+ * dashboard.json / nfl_dashboard.json now keep every week ever built (see
+ * merge_weeks() in scripts/common.py) so Picks can grade a bet from way
+ * back -- but College and NFL themselves should still only ever show
+ * "now". A game's line is worth displaying up through the day after it's
+ * played (so you can still glance at how it closed), then it should drop
+ * off the board.
+ *
+ * "Current week" = the week containing the nearest game whose kickoff is
+ * on or after (today - 1 day), i.e. yesterday at midnight. That one day of
+ * grace is what keeps, say, Sunday's slate visible all through Monday --
+ * Tuesday is when it finally drops, since by then even Sunday's late game
+ * is more than a day old. Whichever week that lands on, plus the very next
+ * stored week, are the only two shown; everything else stays in the JSON
+ * (for Picks) but off the College/NFL boards.
+ */
+
+function findCurrentWeekIndex(weeks, now) {
+  now = now || new Date();
+  const cutoff = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
+
+  let bestTime = null;
+  let bestIdx = null;
+  (weeks || []).forEach((week, idx) => {
+    (week.days || []).forEach(day => {
+      (day.time_slots || []).forEach(slot => {
+        (slot.games || []).forEach(g => {
+          const t = new Date(g.start_time);
+          if (Number.isNaN(t.getTime())) return;
+          if (t >= cutoff && (bestTime === null || t < bestTime)) {
+            bestTime = t;
+            bestIdx = idx;
+          }
+        });
+      });
+    });
+  });
+
+  if (bestIdx !== null) return bestIdx;
+  // Nothing on or after the cutoff (e.g. off-season, or every stored game
+  // has already aged out) -- fall back to the most recent week we have.
+  return weeks && weeks.length ? weeks.length - 1 : null;
+}
+
+// Returns just the weeks College/NFL should render: the current week (per
+// findCurrentWeekIndex) plus the one immediately after it in the stored,
+// week-number-ascending list. Picks.html does NOT use this -- it shows
+// every week that has ever had a pick made against it.
+function selectDisplayWeeks(weeks, now) {
+  if (!weeks || !weeks.length) return [];
+  const idx = findCurrentWeekIndex(weeks, now);
+  if (idx === null) return [];
+  return weeks.slice(idx, idx + 2);
+}
+
 const PICK_COOKIE_PREFIX = 'pick_';
 const PICK_COOKIE_DAYS = 210;
 const PICK_LOCKED_STATUSES = ['final', 'in_progress', 'live', 'halftime'];
@@ -224,6 +281,47 @@ function oddsHitClass(sport, gameId, book, market, side, entry, gScore) {
   }
 
   return '';
+}
+
+// Whether the pick actually made on this game (if any) is currently a win
+// ('hit'), a loss ('miss'), or not yet determined ('' -- game hasn't
+// finished, or there's no line to grade against). Reuses oddsHitClass()
+// against the picked market/side (preferring the DraftKings snapshot,
+// falling back to FanDuel, same preference order as formatLockedLine) so
+// this always agrees with the color already shown on that picked cell.
+// Returns null if no pick was made on this game at all.
+function pickOutcome(sport, g, gScore) {
+  const pick = getPick(sport, g.id);
+  if (!pick) return null;
+  const dkEntry = g.odds && g.odds.draftkings && g.odds.draftkings[pick.market] && g.odds.draftkings[pick.market][pick.side];
+  const fdEntry = g.odds && g.odds.fanduel && g.odds.fanduel[pick.market] && g.odds.fanduel[pick.market][pick.side];
+  const book = dkEntry ? 'draftkings' : 'fanduel';
+  const entry = dkEntry || fdEntry || null;
+  return oddsHitClass(sport, g.id, book, pick.market, pick.side, entry, gScore) || '';
+}
+
+// Total correct/incorrect count across every pick ever made (any week,
+// any sport), for the summary at the top of the Picks page. `datasets` is
+// an array of {sport, data} (the full, unfiltered dashboard JSON for each
+// sport); `scores` is {cfb: {...}, nfl: {...}} from data/scores.json. A
+// push/tie counts as correct, matching the same convention oddsHitClass()
+// already uses for cell coloring. Picks with no settled result yet aren't
+// counted in either bucket.
+function computePickRecord(datasets, scores) {
+  let correct = 0, incorrect = 0;
+  (datasets || []).forEach(({ sport, data }) => {
+    if (!data) return;
+    (data.weeks || []).forEach(week => (week.days || []).forEach(day => (day.time_slots || []).forEach(slot => {
+      (slot.games || []).forEach(g => {
+        if (!getPick(sport, g.id)) return;
+        const gScore = (scores[sport] || {})[String(g.id)];
+        const outcome = pickOutcome(sport, g, gScore);
+        if (outcome === 'hit') correct++;
+        else if (outcome === 'miss') incorrect++;
+      });
+    })));
+  });
+  return { correct, incorrect };
 }
 
 // Click-delegation for every .pick-btn inside containerEl. `onPick` runs
