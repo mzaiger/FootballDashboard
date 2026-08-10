@@ -29,7 +29,9 @@ import requests
 from common import (
     DISPLAY_TIMEZONE,
     TIME_SLOT_ORDER,
+    carry_forward_odds,
     fetch_all_odds,
+    load_previous_odds_by_game,
     log,
     match_odds_for_game,
     time_slot_for,
@@ -248,7 +250,7 @@ def choose_slot_pick(games_sorted):
 # Main build
 # ---------------------------------------------------------------------------
 
-def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, rankings_cache=None):
+def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, rankings_cache=None, previous_odds_by_id=None):
     """Build a single week's worth of games. Returns the per-week dict
     (no generated_at/season wrapper -- that's added once, by build())."""
     log(f"Fetching games for {year} week {week}...")
@@ -304,6 +306,8 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, ranki
         away_rank = rank_lookup.get(away_team)
 
         odds = match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
+        if previous_odds_by_id:
+            odds = carry_forward_odds(odds, previous_odds_by_id.get(game_id))
 
         game_entry = {
             "id": game_id,
@@ -366,13 +370,13 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, ranki
     }
 
 
-def build(year, week_start, cfbd_key, sharp_key, channels, gemini_key=None, num_weeks=2):
+def build(year, week_start, cfbd_key, sharp_key, channels, gemini_key=None, num_weeks=2, previous_odds_by_id=None):
     """Build `num_weeks` consecutive weeks starting at week_start (default:
     this week + next week) and wrap them into the full output payload."""
     weeks = []
     rankings_cache = {}
     for offset in range(num_weeks):
-        weeks.append(build_week(year, week_start + offset, cfbd_key, sharp_key, channels, gemini_key, rankings_cache=rankings_cache))
+        weeks.append(build_week(year, week_start + offset, cfbd_key, sharp_key, channels, gemini_key, rankings_cache=rankings_cache, previous_odds_by_id=previous_odds_by_id))
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -415,11 +419,18 @@ def main():
         if preseason:
             log(f"Today ({today}) is before the {year} week-1 start ({WEEK1_START}); defaulting to week 1.")
 
-    output = build(year, week, cfbd_key, sharp_key, MAIN_CHANNELS, gemini_key, num_weeks=args.num_weeks)
-
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "dashboard.json")
     out_path = os.path.abspath(out_path)
+
+    previous_odds_by_id = load_previous_odds_by_game(out_path)
+    if previous_odds_by_id:
+        log(f"Loaded odds for {len(previous_odds_by_id)} game(s) from the previous build "
+            f"to carry forward if today's fetch comes back blank for any of them.")
+
+    output = build(year, week, cfbd_key, sharp_key, MAIN_CHANNELS, gemini_key,
+                    num_weeks=args.num_weeks, previous_odds_by_id=previous_odds_by_id)
+
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(output, f, indent=2)

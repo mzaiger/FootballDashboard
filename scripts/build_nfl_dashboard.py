@@ -43,7 +43,9 @@ import requests
 from common import (
     DISPLAY_TIMEZONE,
     TIME_SLOT_ORDER,
+    carry_forward_odds,
     fetch_all_odds,
+    load_previous_odds_by_game,
     log,
     match_odds_for_game,
     time_slot_for,
@@ -170,7 +172,7 @@ def pick_regional_game(games_in_window):
 # Main build
 # ---------------------------------------------------------------------------
 
-def build_week(year, week, season_type, sharp_key, gemini_key=None):
+def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odds_by_id=None):
     """Build a single week's worth of games. Returns the per-week dict
     (no generated_at/season wrapper -- that's added once, by build())."""
     log(f"Fetching NFL schedule for {year}, week {week}, seasontype {season_type}...")
@@ -216,6 +218,8 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None):
         away_team = away["team"]["displayName"]
 
         odds = match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
+        if previous_odds_by_id:
+            odds = carry_forward_odds(odds, previous_odds_by_id.get(event.get("id")))
         dk_spread = _dk_home_spread(odds)
         fd_spread = _fd_home_spread(odds)
 
@@ -292,12 +296,12 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None):
     }
 
 
-def build(year, week_start, season_type, sharp_key, gemini_key=None, num_weeks=2):
+def build(year, week_start, season_type, sharp_key, gemini_key=None, num_weeks=2, previous_odds_by_id=None):
     """Build `num_weeks` consecutive weeks starting at week_start (default:
     this week + next week) and wrap them into the full output payload."""
     weeks = []
     for offset in range(num_weeks):
-        weeks.append(build_week(year, week_start + offset, season_type, sharp_key, gemini_key))
+        weeks.append(build_week(year, week_start + offset, season_type, sharp_key, gemini_key, previous_odds_by_id=previous_odds_by_id))
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -348,11 +352,18 @@ def main():
         week = resp.json().get("week", {}).get("number", 1)
         log(f"No --week given; ESPN reports current week as {week}.")
 
-    output = build(args.year, week, args.season_type, sharp_key, gemini_key, num_weeks=args.num_weeks)
-
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "nfl_dashboard.json")
     out_path = os.path.abspath(out_path)
+
+    previous_odds_by_id = load_previous_odds_by_game(out_path)
+    if previous_odds_by_id:
+        log(f"Loaded odds for {len(previous_odds_by_id)} game(s) from the previous build "
+            f"to carry forward if today's fetch comes back blank for any of them.")
+
+    output = build(args.year, week, args.season_type, sharp_key, gemini_key,
+                    num_weeks=args.num_weeks, previous_odds_by_id=previous_odds_by_id)
+
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(output, f, indent=2)

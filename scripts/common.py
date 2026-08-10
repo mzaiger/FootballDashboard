@@ -8,6 +8,8 @@ code rather than two copies that can drift out of sync.
 """
 
 import difflib
+import json
+import os
 import re
 import sys
 import time
@@ -315,3 +317,68 @@ def match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
 
     team_cache[cache_key] = result
     return result
+
+
+# ---------------------------------------------------------------------------
+# Carrying odds forward across runs (books periodically pull lines, then
+# repost them later -- don't let that show up as the board going blank)
+# ---------------------------------------------------------------------------
+
+def load_previous_odds_by_game(path):
+    """Read a previous build's output JSON and return {game_id: odds_dict}
+    for every game found in it.
+
+    Used so a book temporarily pulling a line doesn't blank it out on the
+    board -- see carry_forward_odds() below, which this feeds. Returns {}
+    if the file doesn't exist yet (first-ever run) or can't be parsed,
+    which just means there's nothing to carry forward this time.
+    """
+    if not path or not os.path.exists(path):
+        return {}
+    try:
+        with open(path) as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError) as e:
+        log(f"  NOTE: couldn't read previous output at {path} ({e}) -- starting fresh, nothing to carry forward.")
+        return {}
+
+    lookup = {}
+    for week in data.get("weeks", []):
+        for day in week.get("days", []):
+            for slot in day.get("time_slots", []):
+                for g in slot.get("games", []):
+                    gid = g.get("id")
+                    if gid is not None:
+                        lookup[gid] = g.get("odds")
+    return lookup
+
+
+def carry_forward_odds(new_odds, previous_odds):
+    """
+    Fill in any (book, market, side) odds entry that's missing from
+    `new_odds` (today's fresh SharpAPI match) using whatever was captured
+    for that same game last run, so a book temporarily pulling a line
+    doesn't blank it out on the board.
+
+    Whenever today's fetch DOES have a value for a given (book, market,
+    side), that value always wins over the old one -- even if it's
+    unchanged, since it's simply the freshest read. Only an entry's
+    *absence* today gets patched from history, so a real line move still
+    shows up immediately.
+    """
+    if not previous_odds:
+        return new_odds
+    merged = {}
+    for book in ("draftkings", "fanduel"):
+        merged[book] = {"spread": {}, "moneyline": {}}
+        new_book = (new_odds or {}).get(book, {}) or {}
+        old_book = (previous_odds or {}).get(book, {}) or {}
+        for market in ("spread", "moneyline"):
+            new_sides = new_book.get(market, {}) or {}
+            old_sides = old_book.get(market, {}) or {}
+            for side in ("home", "away"):
+                if new_sides.get(side):
+                    merged[book][market][side] = new_sides[side]
+                elif old_sides.get(side):
+                    merged[book][market][side] = old_sides[side]
+    return merged
