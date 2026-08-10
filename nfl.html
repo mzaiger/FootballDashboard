@@ -657,18 +657,19 @@ function renderDay(day) {
   </section>`;
 }
 
-function renderWeek(week) {
+function renderWeek(week, seasonType) {
+  const label = formatWeekLabel(week.week, seasonType);
   if (!week.days.length) {
     return `
     <section class="week-block">
-      <div class="week-heading"><span class="week-name">Week ${week.week}</span></div>
+      <div class="week-heading"><span class="week-name">${label}</span></div>
       <div class="week-empty">No games found for this week yet — check back closer to kickoff.</div>
     </section>`;
   }
   return `
   <section class="week-block">
     <div class="week-heading">
-      <span class="week-name">Week ${week.week}</span>
+      <span class="week-name">${label}</span>
       <span class="week-count">${week.total_games} game${week.total_games === 1 ? '' : 's'}</span>
     </div>
     ${week.days.map(renderDay).join('')}
@@ -683,9 +684,9 @@ async function init() {
     const data = await res.json();
     SCORES = await fetchScores('nfl');
 
-    const weekNums = data.weeks.map(w => w.week);
+    const weekLabels = data.weeks.map(w => formatWeekLabel(w.week, data.season_type));
     document.getElementById('pageTitle').textContent =
-      weekNums.length > 1 ? `Weeks ${weekNums[0]}\u2013${weekNums[weekNums.length - 1]} \u2014 ${data.season}` : `Week ${weekNums[0]} \u2014 ${data.season}`;
+      weekLabels.length > 1 ? `${weekLabels[0]}\u2013${weekLabels[weekLabels.length - 1]} \u2014 ${data.season}` : `${weekLabels[0]} \u2014 ${data.season}`;
     document.getElementById('generatedAt').textContent = new Date(data.generated_at).toLocaleString();
     document.getElementById('totalGames').textContent = data.weeks.reduce((n, w) => n + w.total_games, 0);
 
@@ -695,7 +696,7 @@ async function init() {
       statusEl.textContent = 'No games found for either week yet — check back closer to kickoff.';
       return;
     }
-    const renderBoard = () => { daysEl.innerHTML = data.weeks.map(renderWeek).join(''); };
+    const renderBoard = () => { daysEl.innerHTML = data.weeks.map(w => renderWeek(w, data.season_type)).join(''); };
     renderBoard();
     attachPickHandlers(daysEl, renderBoard);
     attachGeminiHandlers(daysEl);

@@ -657,10 +657,10 @@ function renderDay(sport, day) {
   </section>`;
 }
 
-function renderWeekSection(sport, week) {
+function renderWeekSection(sport, week, seasonType) {
   return `
   <div class="week-block">
-    <div class="week-heading"><span class="week-name">Week ${week.week}</span></div>
+    <div class="week-heading"><span class="week-name">${formatWeekLabel(week.week, seasonType)}</span></div>
     ${week.days.map(day => renderDay(sport, day)).join('')}
   </div>`;
 }
@@ -674,7 +674,7 @@ function renderSection(sport, data, title, themeClass) {
       <h2>${title}</h2>
       <span class="count">${totalGames} game${totalGames === 1 ? '' : 's'}</span>
     </div>
-    ${data.weeks.map(week => renderWeekSection(sport, week)).join('')}
+    ${[...data.weeks].reverse().map(week => renderWeekSection(sport, week, data.season_type)).join('')}
   </section>`;
 }
 

@@ -2,7 +2,7 @@
 
 Two daily-refreshed betting dashboards, College and NFL, each showing
 **this week and next week's** games grouped by week, then by day, then by
-kickoff window (Morning / Noon / Afternoon / Evening / Late Night), ranked
+kickoff window (Morning / Noon / Afternoon / Prime Time / Late Night), ranked
 within each window by best matchup, with **DraftKings** and **FanDuel**
 spreads + moneylines attached to each game.
 
@@ -39,8 +39,8 @@ Games are grouped **by day**, then **by kickoff window**:
 
 | Window | Range (Central) |
 |---|---|
-| Morning | before 11:00 PM |
-| Noon | 11:00 PM – 1:59 PM |
+| Morning | before 11:00 AM |
+| Noon | 11:00 AM – 1:59 PM |
 | Afternoon | 2:00 PM – 4:59 PM |
 | Prime Time | 5:00 PM – 8:59 PM |
 | Late Night | 9:00 PM and later |
@@ -68,6 +68,46 @@ blowout within the same window. Games with no spread posted yet sort last.
 to add or remove networks. The NFL page doesn't need an equivalent filter:
 ESPN's scoreboard API only returns games that already have a real broadcast
 assignment (CBS, FOX, NBC, ESPN, ABC, Amazon, Netflix, NFL Network, Peacock).
+
+## How weeks work
+
+Each build produces a `weeks` array holding **two consecutive week numbers**
+(this week + next week, per the `--num-weeks` flag described above) — both
+pages show that whole array at once, under a "Week N" (or "P1"/"Weeks
+N–M") heading per week.
+
+**NFL preseason labeling**: ESPN numbers preseason weeks 1–4 the same as it
+numbers regular-season weeks 1–4, so a bare "Week 1" would be ambiguous
+between the preseason opener and the real season opener. To avoid that,
+the NFL page and the Picks page render preseason weeks (`season_type: 1`
+in `nfl_dashboard.json`) as **P1, P2, P3, P4**, and switch to plain **1, 2,
+3, ... 18** once `--season-type 2` (regular season) is built. This is a
+front-end label only — `week.week` in the JSON is still just the raw
+integer either way; `formatWeekLabel()` in `picks-store.js` is what adds
+the "P" prefix, shared by `nfl.html` and `picks.html`. CFB never sets
+`season_type`, so its weeks always render as plain "Week N".
+
+**What happens when the week rolls over**: nothing is deleted anywhere —
+the *board* just moves forward with it. Each day's build (whether run
+manually with `--week N` or via the daily GitHub Action with no `--week`
+flag, which asks CFBD/ESPN for "the current week") regenerates
+`dashboard.json` / `nfl_dashboard.json` from scratch with whatever the
+*current* two weeks are. So once real Week 2 games exist, the file simply
+no longer contains Week 1's games — they age out of the JSON, not because
+anything explicitly wiped them, but because the build only ever asks for
+"this week and next."
+
+**Your picks are unaffected by this** — they're stored as one cookie per
+game id (`pick_<sport>_<gameId>`, see `picks-store.js`), not tied to a
+week number at all, and don't expire until ~210 days pass. A Week 1 pick's
+cookie stays right where it is. What changes is that once Week 1's games
+drop out of the JSON, `picks.html` has no game data left to match that
+cookie against, so that pick simply stops appearing on the Picks page (it
+isn't cleared, it's just invisible until/unless that same game id ever
+reappears in a build). Practically: **make sure you've reviewed how last
+week's picks did before the week rolls over** — the win/loss coloring on
+the odds cells only renders while the game is still present in the current
+dashboard JSON.
 
 ## Omaha / Lincoln regional game (NFL page) — read this before trusting it
 
@@ -111,6 +151,37 @@ forward:
 If you want the accurate version, say the word and I'll build the
 Playwright path — just flagging that it's a meaningfully bigger lift (and a
 heavier, slower CI job) than the rest of this project.
+
+## Live scores
+
+`scripts/fetch_scores.py` overlays live/final scores onto games already
+present in `data/dashboard.json` and `data/nfl_dashboard.json` — it doesn't
+touch odds, rankings, or Gemini predictions, so it's meant to run far more
+often than the once-a-day builds (hourly is the intent) without hitting
+SharpAPI's or Gemini's tighter rate limits.
+
+- **Sources**: CollegeFootballData.com's `/games` endpoint for CFB (same
+  `CFBD_API_KEY`), ESPN's public scoreboard for NFL (no key needed).
+- **Output**: `data/scores.json`, shaped as
+  `{"generated_at": ..., "cfb": {"<game_id>": {...}}, "nfl": {"<game_id>": {...}}}`.
+  Each game entry is `home_score`, `away_score`, `status`
+  (`"in_progress"` or `"final"`), and `status_detail` (e.g. `"Final"` or a
+  live clock string from ESPN).
+- **How the front-end uses it**: `picks-store.js` fetches this file on
+  index.html/nfl.html/picks.html and merges it in client-side by game id —
+  a small score badge appears next to each team once their game has
+  started, plus a "LIVE · ..." status line while in progress. Games with no
+  entry yet (not kicked off) render exactly as before, with no score line.
+- **Picks lock automatically**: once a game's status is `final` (or
+  `in_progress`/`live`/`halftime`), its pick buttons on the board disable —
+  the pick you made still shows, but can no longer be changed. Once final,
+  each odds cell (DraftKings/FanDuel, spread/moneyline) also gets colored
+  green ("hit") or red ("miss") based on the actual final score, including
+  proper push/tie handling.
+- **Automation**: run it on its own schedule separate from the daily
+  builds — e.g. a second GitHub Actions workflow on an hourly cron — since
+  it's cheap (no SharpAPI or Gemini calls) and benefits from refreshing much
+  more often than the odds/schedule data does.
 
 ## Gemini predictions
 

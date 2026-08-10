@@ -13,6 +13,21 @@
  * pick always reflects the latest number even if odds move.
  */
 
+/*
+ * Week label formatting, shared by nfl.html and picks.html.
+ *
+ * ESPN numbers NFL preseason weeks 1-4 the same as it numbers regular
+ * season weeks 1-4, so a bare "Week 1" is ambiguous between the Hall of
+ * Fame/preseason opener and the real regular-season opener. When a
+ * dashboard's season_type is 1 (preseason), this renders "P1"-"P4"
+ * instead; season_type 2 (regular) and 3 (postseason) just render
+ * "Week N" as before. CFB never sets season_type, so it always falls
+ * through to "Week N".
+ */
+function formatWeekLabel(weekNum, seasonType) {
+  return seasonType === 1 ? `P${weekNum}` : `Week ${weekNum}`;
+}
+
 const PICK_COOKIE_PREFIX = 'pick_';
 const PICK_COOKIE_DAYS = 210;
 const PICK_LOCKED_STATUSES = ['final', 'in_progress', 'live', 'halftime'];
