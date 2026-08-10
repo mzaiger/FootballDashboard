@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T10:01:18.290747+00:00",
+  "generated_at": "2026-08-10T10:11:02.820286+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
@@ -71,12 +71,12 @@
                   "is_nebraska": false,
                   "gemini_prediction": {
                     "winner": "TCU",
-                    "confidence": 75,
-                    "ats_pick": "TCU -8.5",
-                    "ats_confidence": 70,
-                    "analysis": "TCU enters this week 1 matchup with a highly explosive returning offensive core that averaged over thirty-eight points per contest during the opening stretch. North Carolina struggles immensely on defense, surrendering significant yardage through the air and failing to generate consistent pass rush pressure. The Horned Frogs possess a distinct home-field advantage that disrupts opposing communication and forces early offensive mistakes. Furthermore, the Tar Heels lack the secondary depth required to contain TCU's deep receiving threats for four full quarters. Ultimately, the superior offensive execution allows TCU to secure a comfortable victory and cover the 8.5-point spread.",
-                    "generated_at": "2026-08-10T10:01:17.396779+00:00",
-                    "odds_hash": "c30a28acfbc2b618",
+                    "confidence": 78,
+                    "ats_pick": "TCU -7.5",
+                    "ats_confidence": 72,
+                    "analysis": "TCU enters this week 1 matchup with a fully intact offensive core from their impressive opening performances. North Carolina struggles significantly on the defensive side of the ball, allowing opponents sustained drives and high scoring outputs. The Horned Frogs possess a distinct home-field advantage that should disrupt the visiting Tar Heels' communication. Furthermore, TCU's rushing attack averages significantly more yards per game than North Carolina's defensive front can manage to contain. Expect the home team to control the tempo from the opening whistle and comfortably exceed the seven-point margin.",
+                    "generated_at": "2026-08-09T17:09:17.921033+00:00",
+                    "odds_hash": "44168404842c52ae",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
