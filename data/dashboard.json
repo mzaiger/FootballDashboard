@@ -44,11 +44,11 @@
                     "draftkings": {
                       "spread": {
                         "home": {
-                          "line": -8.5,
+                          "line": -7.5,
                           "american": -110
                         },
                         "away": {
-                          "line": 8.5,
+                          "line": 7.5,
                           "american": -110
                         }
                       },
