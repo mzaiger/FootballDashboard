@@ -320,6 +320,44 @@ def match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
 
 
 # ---------------------------------------------------------------------------
+# Merging freshly-built weeks into whatever's already on disk (never delete
+# old weeks -- picks can go back to week 1 forever)
+# ---------------------------------------------------------------------------
+
+def load_existing_dashboard(path):
+    """Read a previous build's output JSON, or None if it doesn't exist yet
+    (first-ever run) or can't be parsed."""
+    if not path or not os.path.exists(path):
+        return None
+    try:
+        with open(path) as f:
+            return json.load(f)
+    except (OSError, json.JSONDecodeError) as e:
+        log(f"  NOTE: couldn't read previous output at {path} ({e}) -- starting fresh, nothing to merge.")
+        return None
+
+
+def merge_weeks(existing_data, new_weeks):
+    """Merge freshly-built weeks on top of whatever weeks are already on
+    disk, so old weeks are never lost.
+
+    We never want a day's build to be the *only* copy of the data -- once a
+    week ages out of the "this week + next week" window a build script
+    fetches, that week's games, odds, and Gemini predictions should still
+    sit in the JSON forever (so Picks can grade a bet from week 1 in week
+    12). Any previously-stored week whose number isn't part of this build's
+    fresh output is carried forward untouched; a week number that *is* part
+    of this build's output is fully replaced by the fresh version (newer
+    odds/rankings/predictions win). Returns weeks sorted by week number.
+    """
+    new_week_nums = {w["week"] for w in new_weeks}
+    old_weeks = [w for w in (existing_data or {}).get("weeks", []) if w.get("week") not in new_week_nums]
+    merged = old_weeks + list(new_weeks)
+    merged.sort(key=lambda w: w["week"])
+    return merged
+
+
+# ---------------------------------------------------------------------------
 # Carrying odds forward across runs (books periodically pull lines, then
 # repost them later -- don't let that show up as the board going blank)
 # ---------------------------------------------------------------------------

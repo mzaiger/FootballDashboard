@@ -31,9 +31,11 @@ from common import (
     TIME_SLOT_ORDER,
     carry_forward_odds,
     fetch_all_odds,
+    load_existing_dashboard,
     load_previous_odds_by_game,
     log,
     match_odds_for_game,
+    merge_weeks,
     time_slot_for,
 )
 from gemini_predictions import attach_gemini_predictions
@@ -423,6 +425,8 @@ def main():
     out_path = args.out or os.path.join(script_dir, "..", "data", "dashboard.json")
     out_path = os.path.abspath(out_path)
 
+    existing_data = load_existing_dashboard(out_path)
+
     previous_odds_by_id = load_previous_odds_by_game(out_path)
     if previous_odds_by_id:
         log(f"Loaded odds for {len(previous_odds_by_id)} game(s) from the previous build "
@@ -431,13 +435,20 @@ def main():
     output = build(year, week, cfbd_key, sharp_key, MAIN_CHANNELS, gemini_key,
                     num_weeks=args.num_weeks, previous_odds_by_id=previous_odds_by_id)
 
+    # Never drop old weeks -- merge today's freshly-built weeks on top of
+    # whatever weeks were already on disk instead of replacing the file
+    # wholesale, so lines/scores/predictions from every past week stay
+    # available (the front-end decides what's "current" to display).
+    all_weeks = merge_weeks(existing_data, output["weeks"])
+    output["weeks"] = all_weeks
+
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(output, f, indent=2)
 
     total_games = sum(w["total_games"] for w in output["weeks"])
     week_nums = [w["week"] for w in output["weeks"]]
-    log(f"Wrote {total_games} games across weeks {week_nums} to {out_path}")
+    log(f"Wrote {total_games} games across {len(week_nums)} week(s) total ({week_nums}) to {out_path}")
 
 
 if __name__ == "__main__":

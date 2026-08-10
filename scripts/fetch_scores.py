@@ -84,6 +84,34 @@ def distinct_weeks(dashboard):
     return sorted({week for week, _ in iter_games(dashboard)})
 
 
+def weeks_needing_refresh(dashboard, previous_scores):
+    """Which week numbers are still worth asking CFBD/ESPN about.
+
+    Now that dashboard.json/nfl_dashboard.json keep every week ever built
+    (see merge_weeks() in common.py) instead of aging old ones out, a naive
+    "refetch every week in the file" would re-poll the entire season's
+    worth of already-final games every single hour forever -- wasted CFBD
+    calls and an ever-growing runtime for zero benefit, since a final score
+    doesn't change. A week is skipped only when every game in it already
+    has a "final" status recorded in the previous run's scores.json; any
+    week with an unplayed/in-progress game, or a game we've never fetched a
+    score for at all, still gets checked every run.
+    """
+    by_week = {}
+    for week, g in iter_games(dashboard):
+        by_week.setdefault(week, []).append(g)
+
+    weeks = []
+    for week, games in by_week.items():
+        all_final = games and all(
+            (previous_scores.get(str(g.get("id")), {}) or {}).get("status") == "final"
+            for g in games
+        )
+        if not all_final:
+            weeks.append(week)
+    return sorted(weeks)
+
+
 # ---------------------------------------------------------------------------
 # CFB scores (CollegeFootballData.com)
 # ---------------------------------------------------------------------------
@@ -99,14 +127,20 @@ def cfbd_get_games(key, year, week, season_type="regular"):
     return resp.json()
 
 
-def fetch_cfb_scores(dashboard, cfbd_key):
-    """Return {game_id: {home_score, away_score, status, status_detail}}."""
+def fetch_cfb_scores(dashboard, cfbd_key, weeks_to_fetch=None):
+    """Return {game_id: {home_score, away_score, status, status_detail}}.
+
+    `weeks_to_fetch` restricts which week numbers are actually requested
+    from CFBD (see weeks_needing_refresh()); defaults to every week in the
+    dashboard if not given.
+    """
     scores = {}
     if not dashboard or not cfbd_key:
         return scores
 
     year = dashboard.get("season")
-    for week in distinct_weeks(dashboard):
+    weeks = weeks_to_fetch if weeks_to_fetch is not None else distinct_weeks(dashboard)
+    for week in weeks:
         log(f"CFB scores: fetching week {week}...")
         try:
             games = cfbd_get_games(cfbd_key, year, week)
@@ -146,15 +180,21 @@ def espn_get_scoreboard(year, week, season_type):
     return resp.json()
 
 
-def fetch_nfl_scores(dashboard):
-    """Return {game_id: {home_score, away_score, status, status_detail}}."""
+def fetch_nfl_scores(dashboard, weeks_to_fetch=None):
+    """Return {game_id: {home_score, away_score, status, status_detail}}.
+
+    `weeks_to_fetch` restricts which week numbers are actually requested
+    from ESPN (see weeks_needing_refresh()); defaults to every week in the
+    dashboard if not given.
+    """
     scores = {}
     if not dashboard:
         return scores
 
     year = dashboard.get("season")
     season_type = dashboard.get("season_type", 1)
-    for week in distinct_weeks(dashboard):
+    weeks = weeks_to_fetch if weeks_to_fetch is not None else distinct_weeks(dashboard)
+    for week in weeks:
         log(f"NFL scores: fetching week {week}...")
         try:
             payload = espn_get_scoreboard(year, week, season_type)
@@ -218,8 +258,13 @@ def main():
 
     previous = load_previous_scores(out_path)
 
-    cfb_scores = fetch_cfb_scores(dashboard, cfbd_key)
-    nfl_scores = fetch_nfl_scores(nfl_dashboard)
+    cfb_weeks = weeks_needing_refresh(dashboard, previous["cfb"])
+    nfl_weeks = weeks_needing_refresh(nfl_dashboard, previous["nfl"])
+    log(f"CFB weeks needing a refresh: {cfb_weeks} (skipping any week where every game is already final)")
+    log(f"NFL weeks needing a refresh: {nfl_weeks} (skipping any week where every game is already final)")
+
+    cfb_scores = fetch_cfb_scores(dashboard, cfbd_key, weeks_to_fetch=cfb_weeks)
+    nfl_scores = fetch_nfl_scores(nfl_dashboard, weeks_to_fetch=nfl_weeks)
 
     # Merge onto the previous file rather than replacing it -- a game whose
     # week has aged out of the dashboard's rolling window isn't re-fetched
