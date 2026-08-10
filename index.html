@@ -557,7 +557,7 @@ function renderGame(g) {
     const spread = g.odds?.[b]?.spread || {};
     const ml = g.odds?.[b]?.moneyline || {};
     const cellCls = (market, side, entry) =>
-      `${pickCellClass(SPORT, g, market, side)} ${oddsHitClass(market, side, entry, gScore)}`.trim();
+      `${pickCellClass(SPORT, g, market, side)} ${oddsHitClass(SPORT, g.id, b, market, side, entry, gScore)}`.trim();
     rows += `<tr>
       <td class="book ${bookCls[b]}">${bookLabel[b]}</td>
       <td class="${cellCls('spread', 'away', spread.away)}">${oddsCell(spread.away)}</td>

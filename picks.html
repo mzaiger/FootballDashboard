@@ -581,12 +581,14 @@ function renderGame(sport, g) {
   books.forEach(b => {
     const spread = g.odds?.[b]?.spread || {};
     const ml = g.odds?.[b]?.moneyline || {};
+    const cellCls = (market, side, entry) =>
+      `${pickCellClass(sport, g, market, side)} ${oddsHitClass(sport, g.id, b, market, side, entry, gScore)}`.trim();
     rows += `<tr>
       <td class="book ${bookCls[b]}">${bookLabel[b]}</td>
-      <td class="${pickCellClass(sport, g, 'spread', 'away')}">${oddsCell(spread.away)}</td>
-      <td class="${pickCellClass(sport, g, 'spread', 'home')}">${oddsCell(spread.home)}</td>
-      <td class="${pickCellClass(sport, g, 'moneyline', 'away')}">${oddsCell(ml.away)}</td>
-      <td class="${pickCellClass(sport, g, 'moneyline', 'home')}">${oddsCell(ml.home)}</td>
+      <td class="${cellCls('spread', 'away', spread.away)}">${oddsCell(spread.away)}</td>
+      <td class="${cellCls('spread', 'home', spread.home)}">${oddsCell(spread.home)}</td>
+      <td class="${cellCls('moneyline', 'away', ml.away)}">${oddsCell(ml.away)}</td>
+      <td class="${cellCls('moneyline', 'home', ml.home)}">${oddsCell(ml.home)}</td>
     </tr>`;
   });
 
@@ -624,7 +626,7 @@ function renderGame(sport, g) {
       ${renderLiveStatusLine(gScore)}
     </div>
     ${oddsBlock}
-    ${renderPickToolbar(sport, g)}
+    ${renderPickToolbar(sport, g, gScore)}
     ${renderGeminiBlock(g)}
   </div>`;
 }

@@ -563,7 +563,7 @@ function renderGame(g) {
     const spread = g.odds?.[b]?.spread || {};
     const ml = g.odds?.[b]?.moneyline || {};
     const cellCls = (market, side, entry) =>
-      `${pickCellClass(SPORT, g, market, side)} ${oddsHitClass(market, side, entry, gScore)}`.trim();
+      `${pickCellClass(SPORT, g, market, side)} ${oddsHitClass(SPORT, g.id, b, market, side, entry, gScore)}`.trim();
     rows += `<tr>
       <td class="book ${bookCls[b]}">${bookLabel[b]}</td>
       <td class="${cellCls('spread', 'away', spread.away)}">${oddsCell(spread.away)}</td>
@@ -684,9 +684,9 @@ async function init() {
     const data = await res.json();
     SCORES = await fetchScores('nfl');
 
-    const weekLabels = data.weeks.map(w => formatWeekLabel(w.week, data.season_type));
+    const weekNums = data.weeks.map(w => formatWeekNumberLabel(w.week, data.season_type));
     document.getElementById('pageTitle').textContent =
-      weekLabels.length > 1 ? `${weekLabels[0]}\u2013${weekLabels[weekLabels.length - 1]} \u2014 ${data.season}` : `${weekLabels[0]} \u2014 ${data.season}`;
+      weekNums.length > 1 ? `Weeks ${weekNums[0]}\u2013${weekNums[weekNums.length - 1]} \u2014 ${data.season}` : `Week ${weekNums[0]} \u2014 ${data.season}`;
     document.getElementById('generatedAt').textContent = new Date(data.generated_at).toLocaleString();
     document.getElementById('totalGames').textContent = data.weeks.reduce((n, w) => n + w.total_games, 0);
 

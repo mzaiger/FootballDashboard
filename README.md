@@ -293,6 +293,31 @@ cfb-betting-dashboard/
     └── update-dashboard.yml         # daily cron + manual trigger, builds both
 ```
 
+## How picks store their line
+
+Cookies save more than just which side you picked. `renderPickToolbar()`
+snapshots that game's current DraftKings and FanDuel entries for the
+market/side you clicked (`{line, american}` from each book) and
+`togglePick()` writes them into the cookie alongside `market`/`side`:
+
+```json
+{"market":"spread","side":"home","odds":{"draftkings":{"line":-3.5,"american":-110},"fanduel":{"line":-3,"american":-115}}}
+```
+
+- **The active pick button shows it**: e.g. "★ Chiefs ATS (-3.5)" — pulled
+  from whichever book's snapshot exists (DraftKings first, then FanDuel).
+- **Grading uses the locked snapshot, not the live line**: `oddsHitClass()`
+  in `picks-store.js` checks whether the cell it's coloring is the exact
+  one you picked (matching market + side, per book row) — if so, it grades
+  against the number stored in your cookie instead of today's live
+  `dashboard.json`/`nfl_dashboard.json`. Every other (un-picked) cell still
+  grades off today's live line, same as before. This is what keeps your
+  win/loss color correct even after a sportsbook stops publishing a line
+  for a game that's already final and a later daily rebuild comes back
+  with nothing for it.
+- **Only the picked cell is pinned** — the odds *table* itself always
+  displays today's live numbers everywhere else; nothing else is frozen.
+
 ## Notes / things worth knowing
 
 - **Team name matching**: CFBD/ESPN and SharpAPI don't always use identical

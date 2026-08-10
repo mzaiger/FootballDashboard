@@ -28,6 +28,14 @@ function formatWeekLabel(weekNum, seasonType) {
   return seasonType === 1 ? `P${weekNum}` : `Week ${weekNum}`;
 }
 
+// Bare number/label with no "Week" word -- e.g. "P1" or "3" -- for building
+// a "Week ..."/"Weeks ..." title the same way the College page does
+// (`Week ${n}` / `Weeks ${a}–${b}`), just with the preseason "P" prefix
+// folded into the number instead of a plain integer.
+function formatWeekNumberLabel(weekNum, seasonType) {
+  return seasonType === 1 ? `P${weekNum}` : `${weekNum}`;
+}
+
 const PICK_COOKIE_PREFIX = 'pick_';
 const PICK_COOKIE_DAYS = 210;
 const PICK_LOCKED_STATUSES = ['final', 'in_progress', 'live', 'halftime'];
@@ -84,14 +92,48 @@ function getAllPicks(sport) {
 
 // Toggle a pick: clicking the already-active option clears it, clicking any
 // other option overwrites it (only one pick allowed per game at a time).
-function togglePick(sport, gameId, market, side) {
+// `oddsSnapshot`, when provided, is `{draftkings: entry|null, fanduel: entry|null}`
+// -- each entry is a copy of that book's odds row (`{line, american}`) for
+// the chosen market/side, captured at the moment of the click. It's stored
+// in the cookie alongside the pick so the line you actually took survives
+// even if a later daily rebuild shows a different number (the market
+// moved) or no number at all (the book pulled the line after the game
+// closed). Live cells that were never picked keep showing today's live
+// line as always -- only the picked cell is pinned.
+function togglePick(sport, gameId, market, side, oddsSnapshot) {
   const current = getPick(sport, gameId);
   if (current && current.market === market && current.side === side) {
     _deleteCookie(_pickCookieName(sport, gameId));
     return null;
   }
-  _setCookie(_pickCookieName(sport, gameId), JSON.stringify({ market, side }), PICK_COOKIE_DAYS);
-  return { market, side };
+  const value = { market, side, odds: oddsSnapshot || null };
+  _setCookie(_pickCookieName(sport, gameId), JSON.stringify(value), PICK_COOKIE_DAYS);
+  return value;
+}
+
+// Returns the locked-in odds entry (`{line, american}`) captured at pick
+// time for one book's cell, but only if that cell is the one actually
+// picked (matching market + side) -- otherwise null, so callers fall back
+// to today's live line. This is what lets grading survive a book removing
+// its line after a game closes.
+function getLockedOddsEntry(sport, gameId, market, side, book) {
+  const pick = getPick(sport, gameId);
+  if (!pick || pick.market !== market || pick.side !== side || !pick.odds) return null;
+  return pick.odds[book] || null;
+}
+
+// Short "(-3.5)" / "(+150)" suffix for the active pick button, using
+// whichever book's snapshot was captured (DraftKings first, then
+// FanDuel) so you can see at a glance what number you actually picked at.
+function formatLockedLine(pick) {
+  if (!pick || !pick.odds) return '';
+  const entry = pick.odds.draftkings || pick.odds.fanduel;
+  if (!entry) return '';
+  const raw = pick.market === 'spread' ? entry.line : entry.american;
+  if (raw === undefined || raw === null || raw === '') return '';
+  const n = Number(raw);
+  if (Number.isNaN(n)) return '';
+  return ` (${n > 0 ? '+' : ''}${n})`;
 }
 
 // The 4-button toolbar (away/home x spread/moneyline) for one game card.
@@ -102,6 +144,11 @@ function renderPickToolbar(sport, g, gScore) {
   const pick = getPick(sport, g.id);
   const locked = isPickLocked(gScore);
 
+  const oddsFor = (market, side) => ({
+    draftkings: (g.odds?.draftkings?.[market]?.[side]) || null,
+    fanduel: (g.odds?.fanduel?.[market]?.[side]) || null,
+  });
+
   const opts = [
     { market: 'spread', side: 'away', label: `${g.away_team} ATS` },
     { market: 'spread', side: 'home', label: `${g.home_team} ATS` },
@@ -111,8 +158,10 @@ function renderPickToolbar(sport, g, gScore) {
 
   const btns = opts.map(o => {
     const active = pick && pick.market === o.market && pick.side === o.side;
+    const oddsAttr = encodeURIComponent(JSON.stringify(oddsFor(o.market, o.side)));
+    const lockedSuffix = active ? formatLockedLine(pick) : '';
 
-    return `<button type="button" class="pick-btn${active ? ' active' : ''}" data-sport="${sport}" data-game="${g.id}" data-market="${o.market}" data-side="${o.side}"${locked ? ' disabled' : ''}>${active ? '\u2605 ' : ''}${o.label}</button>`;
+    return `<button type="button" class="pick-btn${active ? ' active' : ''}" data-sport="${sport}" data-game="${g.id}" data-market="${o.market}" data-side="${o.side}" data-odds="${oddsAttr}"${locked ? ' disabled' : ''}>${active ? '\u2605 ' : ''}${o.label}${lockedSuffix}</button>`;
   }).join('');
 
   return `<div class="pick-toolbar">${btns}</div>`;
@@ -131,9 +180,13 @@ function pickCellClass(sport, g, market, side) {
 // tie (moneyline) -- no actual loser -- marks BOTH sides 'hit'. Empty
 // string while the game is still live/unstarted, since the outcome isn't
 // settled yet, or if this cell has no line/odds posted. `entry` is the
-// cell's own odds object (e.g. spread.home), used to read its line for
-// the spread case.
-function oddsHitClass(market, side, entry, gScore) {
+// cell's own live odds object (e.g. spread.home) from today's build. For
+// the exact cell that was picked (market/side match), the line locked in
+// at pick time (see getLockedOddsEntry) takes priority over `entry` --
+// that's what keeps grading correct even after a book stops publishing a
+// line for a finished game. Un-picked cells always use today's live line,
+// same as before.
+function oddsHitClass(sport, gameId, book, market, side, entry, gScore) {
   if (!isPickLocked(gScore)) return '';
 
   if (gScore.home_score === null || gScore.home_score === undefined) return '';
@@ -153,9 +206,11 @@ function oddsHitClass(market, side, entry, gScore) {
   }
 
   if (market === 'spread') {
-    if (!entry || entry.line === null || entry.line === undefined) return '';
+    const lockedEntry = getLockedOddsEntry(sport, gameId, market, side, book);
+    const source = lockedEntry || entry;
+    if (!source || source.line === null || source.line === undefined) return '';
 
-    const line = Number(entry.line);
+    const line = Number(source.line);
 
     if (Number.isNaN(line)) return '';
 
@@ -177,8 +232,12 @@ function attachPickHandlers(containerEl, onPick) {
   containerEl.addEventListener('click', (e) => {
     const btn = e.target.closest('.pick-btn');
     if (!btn || !containerEl.contains(btn) || btn.disabled) return;
-    const { sport, game, market, side } = btn.dataset;
-    togglePick(sport, game, market, side);
+    const { sport, game, market, side, odds } = btn.dataset;
+    let oddsSnapshot = null;
+    if (odds) {
+      try { oddsSnapshot = JSON.parse(decodeURIComponent(odds)); } catch (e) { /* ignore malformed snapshot */ }
+    }
+    togglePick(sport, game, market, side, oddsSnapshot);
     if (typeof onPick === 'function') onPick();
   });
 }
