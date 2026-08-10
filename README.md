@@ -320,6 +320,22 @@ market/side you clicked (`{line, american}` from each book) and
 
 ## Notes / things worth knowing
 
+- **Odds carry forward when a book goes blank**: each build loads the
+  *previous* run's output before fetching anything new, and if today's
+  SharpAPI match comes back empty for a (book, market, side) that had a
+  value last time, the old value is kept instead of overwriting it with
+  blank (see `carry_forward_odds()` / `load_previous_odds_by_game()` in
+  `common.py`). This is what "Sportsbooks/SharpAPI periodically wipe
+  posted odds and repost them later" (see above) needed -- without it,
+  every game the book temporarily pulled would flash "Odds not yet
+  posted" until the book got around to reposting. A value that *is*
+  present in today's fetch always overwrites the old one, even if
+  unchanged, so a real line move still shows up the moment it happens --
+  only an entry's absence gets patched from history. There's nothing to
+  configure; it's automatic on every build as long as the previous
+  `dashboard.json`/`nfl_dashboard.json` is still sitting where the script
+  expects it (which it always will be in the normal GitHub Actions flow,
+  since that file is committed back to the repo each run).
 - **Team name matching**: CFBD/ESPN and SharpAPI don't always use identical
   team name strings (e.g. mascots vs. school names only, "USC" vs "USC
   Trojans"). `match_odds_for_game()` in `common.py` does whole-word fuzzy
