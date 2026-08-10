@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T09:10:29.743288+00:00",
+  "generated_at": "2026-08-09T19:01:45.174663+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
@@ -42,8 +42,26 @@
                   "neutral_site": true,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "away": {
+                          "line": 7.5,
+                          "american": -110
+                        },
+                        "home": {
+                          "line": -7.5,
+                          "american": -110
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 240
+                        },
+                        "home": {
+                          "line": null,
+                          "american": -298
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -51,6 +69,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "TCU",
+                    "confidence": 78,
+                    "ats_pick": "TCU -7.5",
+                    "ats_confidence": 72,
+                    "analysis": "TCU enters this week 1 matchup with a fully intact offensive core from their impressive opening performances. North Carolina struggles significantly on the defensive side of the ball, allowing opponents sustained drives and high scoring outputs. The Horned Frogs possess a distinct home-field advantage that should disrupt the visiting Tar Heels' communication. Furthermore, TCU's rushing attack averages significantly more yards per game than North Carolina's defensive front can manage to contain. Expect the home team to control the tempo from the opening whistle and comfortably exceed the seven-point margin.",
+                    "generated_at": "2026-08-09T17:09:17.921033+00:00",
+                    "odds_hash": "44168404842c52ae",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 }
               ]
@@ -76,7 +104,16 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
+                      "spread": {
+                        "away": {
+                          "line": 38.5,
+                          "american": -115
+                        },
+                        "home": {
+                          "line": -38.5,
+                          "american": -105
+                        }
+                      },
                       "moneyline": {}
                     },
                     "fanduel": {
@@ -85,6 +122,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "USC",
+                    "confidence": 99,
+                    "ats_pick": "San Jos\u00e9 State +38.5",
+                    "ats_confidence": 65,
+                    "analysis": "USC enters this week one matchup with a vastly superior roster built through elite recruiting and the transfer portal. San Jos\u00e9 State struggles to match the immense offensive firepower and defensive speed of the Trojans. However, a spread of 38.5 points is historically large for any FBS matchup, requiring a near-flawless blowout by over five touchdowns. While USC will undoubtedly control the tempo and secure a comfortable victory, garbage-time scores will likely help the Spartans keep the final margin within the massive number. Therefore, the Trojans will win outright, but San Jos\u00e9 State will manage to cover the spread.",
+                    "generated_at": "2026-08-09T17:09:27.867361+00:00",
+                    "odds_hash": "e2e53cea458e9295",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 },
                 {
@@ -103,8 +150,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": -5.5,
+                          "american": -108
+                        },
+                        "away": {
+                          "line": 5.5,
+                          "american": -112
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -218
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 180
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -112,6 +177,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Virginia",
+                    "confidence": 65,
+                    "ats_pick": "Virginia -5.5",
+                    "ats_confidence": 60,
+                    "analysis": "Virginia enters this week one matchup with a remarkably healthy roster and superior offensive efficiency metrics from the opening week of the 2026 season. NC State struggled significantly on third-down conversions in their season opener, highlighting persistent early-year offensive coordination issues. The Cavaliers benefit immensely from home-field advantage in Charlottesville, where their defensive line has consistently generated early disruption. Furthermore, the visitors are dealing with a key secondary injury that Virginia's passing attack should readily exploit. Consequently, the home team is well-positioned to secure a multi-score victory and cover the spread.",
+                    "generated_at": "2026-08-09T18:17:54.977055+00:00",
+                    "odds_hash": "e5f482a66322bd24",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 }
               ]
@@ -137,8 +212,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": -6.0,
+                          "american": -112
+                        },
+                        "away": {
+                          "line": 6.0,
+                          "american": -108
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -225
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 185
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -146,6 +239,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "UNLV",
+                    "confidence": 76,
+                    "ats_pick": "UNLV -6",
+                    "ats_confidence": 70,
+                    "analysis": "The 2026 college football season opens with UNLV hosting Memphis in a compelling Week 1 matchup. UNLV returns key explosive offensive pieces that dominated their scrimmage metrics throughout fall camp. Memphis struggles defensively with major roster turnover in the secondary during the early 2026 weeks. Home-field advantage at Allegiant Stadium heavily favors the Rebels in this high-stakes non-conference clash. Consequently, UNLV secures a double-digit victory and comfortably covers the six-point spread.",
+                    "generated_at": "2026-08-09T17:09:37.709919+00:00",
+                    "odds_hash": "c6b207e64c8ff6e1",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 }
               ]
@@ -178,8 +281,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": -7.0,
+                          "american": -110
+                        },
+                        "away": {
+                          "line": 7.0,
+                          "american": -110
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 225
+                        },
+                        "home": {
+                          "line": null,
+                          "american": -278
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -187,6 +308,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Georgia Tech",
+                    "confidence": 78,
+                    "ats_pick": "Georgia Tech -7",
+                    "ats_confidence": 72,
+                    "analysis": "Georgia Tech opens the 2026 college football season with a strong home-field advantage against Colorado. The Yellow Jackets' returning offensive core from earlier 2026 evaluations demonstrates superior efficiency in passing and rushing metrics. Colorado struggles defensively to contain dual-threat quarterbacks, which heavily favors Georgia Tech's offensive scheme. Furthermore, the oddsmakers' moneyline implies roughly a seventy-four percent implied probability for a home victory. Consequently, Georgia Tech not only secures the outright win but also comfortably covers the seven-point spread.",
+                    "generated_at": "2026-08-09T17:09:47.810199+00:00",
+                    "odds_hash": "8adc9c81da1db381",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 }
               ]
@@ -256,7 +387,7 @@
                     "odds_hash": "42168c9cc7319c52",
                     "model": "gemini-3.5-flash-lite"
                   },
-                  "is_slot_pick": false
+                  "is_slot_pick": true
                 },
                 {
                   "id": 401858436,
@@ -311,7 +442,7 @@
                     "odds_hash": "e093d25270fe91a1",
                     "model": "gemini-3.5-flash-lite"
                   },
-                  "is_slot_pick": true
+                  "is_slot_pick": false
                 },
                 {
                   "id": 401858429,
@@ -329,8 +460,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "away": {
+                          "line": 11.5,
+                          "american": -108
+                        },
+                        "home": {
+                          "line": -11.5,
+                          "american": -112
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -470
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 360
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -338,6 +487,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Michigan State",
+                    "confidence": 78,
+                    "ats_pick": "Michigan State -11.5",
+                    "ats_confidence": 65,
+                    "analysis": "Michigan State enters the 2026 opening week with an explosive offense powered by returning starters who dominated their fall camp scrimmages. Toledo presents a formidable mid-major challenge, but their defensive secondary has struggled with depth and communication issues throughout preseason preparations. The Spartans' revamped defensive front should easily neutralize the Rockets' rushing attack and force crucial turnovers. Furthermore, playing at home in East Lansing provides Michigan State with a distinct energy advantage that will wear down Toledo in the second half. Ultimately, the Spartans have too much overall roster talent and will pull away late to cover the double-digit spread.",
+                    "generated_at": "2026-08-09T17:09:58.020508+00:00",
+                    "odds_hash": "7b26a25e22ede7ed",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 }
               ]
@@ -372,12 +531,12 @@
                     "draftkings": {
                       "spread": {
                         "away": {
-                          "line": 40.5,
-                          "american": -105
+                          "line": 41.5,
+                          "american": -115
                         },
                         "home": {
-                          "line": -40.5,
-                          "american": -115
+                          "line": -41.5,
+                          "american": -105
                         }
                       },
                       "moneyline": {}
@@ -391,11 +550,11 @@
                   "gemini_prediction": {
                     "winner": "Indiana",
                     "confidence": 95,
-                    "ats_pick": "North Texas +40.5",
-                    "ats_confidence": 70,
-                    "analysis": "Indiana enters this week 1 matchup boasting an explosive offensive scheme that has overwhelmed early-season opponents with relentless efficiency. North Texas struggles significantly on the defensive side of the ball, allowing opponents to sustain drives and put up massive point totals. However, a forty-point spread is an extraordinarily high margin to cover in college football, even against a struggling defense. North Texas possesses enough offensive firepower through the air to backdoor cover late in the contest. Ultimately, Indiana will secure a comfortable outright victory, but North Texas does just enough to cover the massive spread.",
-                    "generated_at": "2026-08-10T08:52:23.709175+00:00",
-                    "odds_hash": "c1760f2a0596aa5f",
+                    "ats_pick": "North Texas +41.5",
+                    "ats_confidence": 65,
+                    "analysis": "Indiana enters this week 1 matchup boasting an explosive offense that consistently executes at a high level. North Texas struggles significantly on defense, which will allow Indiana to move the ball with ease throughout the contest. However, a 41.5-point spread is exceptionally large for any FBS matchup, even with a massive talent disparity. North Texas possesses a capable passing attack that can generate late-game garbage-time points to narrow the final margin. Ultimately, Indiana secures a comfortable outright victory, but North Texas does just enough to cover the massive spread.",
+                    "generated_at": "2026-08-09T17:10:37.855111+00:00",
+                    "odds_hash": "be25cd41120feba1",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -416,8 +575,22 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "away": {
+                          "line": 28.5,
+                          "american": -110
+                        },
+                        "home": {
+                          "line": -28.5,
+                          "american": -110
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 2200
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -425,6 +598,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Alabama",
+                    "confidence": 95,
+                    "ats_pick": "Alabama -28.5",
+                    "ats_confidence": 75,
+                    "analysis": "As week one of the 2026 college football season gets underway, both East Carolina and Alabama take the field with completely refreshed rosters and unproven 2026 capabilities. The Crimson Tide possess vastly superior depth, elite recruiting talent, and overwhelming athletic advantages across every single positional group on the depth chart. East Carolina will struggle immensely to move the chains against a swarming Alabama front seven that has completely dominated early-season practice repetitions. Offensively, the Crimson Tide are expected to exploit the Pirates' secondary with explosive downfield passing plays and a relentless rushing attack. Consequently, Alabama will secure a comfortable victory and easily cover the large 28.5-point spread in their season opener.",
+                    "generated_at": "2026-08-09T17:10:58.085219+00:00",
+                    "odds_hash": "ed1fa5f4d087eda7",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 },
                 {
@@ -498,8 +681,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "away": {
+                          "line": 23.5,
+                          "american": -102
+                        },
+                        "home": {
+                          "line": -23.5,
+                          "american": -118
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 1400
+                        },
+                        "home": {
+                          "line": null,
+                          "american": -3200
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -507,6 +708,16 @@
                     }
                   },
                   "is_nebraska": true,
+                  "gemini_prediction": {
+                    "winner": "Nebraska",
+                    "confidence": 92,
+                    "ats_pick": "Nebraska -23.5",
+                    "ats_confidence": 75,
+                    "analysis": "Nebraska enters the 2026 college football season with an explosive, high-tempo offense that has overwhelmed opponents in early-season matchups. Ohio has struggled mightily on defense, yielding significant yardage and failing to generate consistent stops against elite competition. The Cornhuskers' offensive line is completely controlling the line of scrimmage, opening massive running lanes and providing clean pockets for their star quarterback. Conversely, Ohio's offensive attack remains stagnant, plagued by poor efficiency on third downs and an inability to sustain drives. Consequently, Nebraska will easily secure a blowout victory at home and cover the large 23.5-point spread.",
+                    "generated_at": "2026-08-09T17:10:48.009926+00:00",
+                    "odds_hash": "17813386425c6f63",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 }
               ]
@@ -532,26 +743,8 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {
-                        "home": {
-                          "line": -6.0,
-                          "american": -110
-                        },
-                        "away": {
-                          "line": 6.0,
-                          "american": -110
-                        }
-                      },
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": -238
-                        },
-                        "home": {
-                          "line": null,
-                          "american": 195
-                        }
-                      }
+                      "spread": {},
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
@@ -559,16 +752,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "gemini_prediction": {
-                    "winner": "Oregon",
-                    "confidence": 75,
-                    "ats_pick": "Oregon -6",
-                    "ats_confidence": 68,
-                    "analysis": "Oregon enters this week one matchup with a vastly superior roster built through elite recruiting and the transfer portal. Boise State struggles defensively to contain high-powered passing attacks, which plays directly into Oregon's offensive strengths. The Ducks boast an explosive offensive scheme that will consistently exploit gaps in the secondary of the Broncos. Furthermore, Oregon's home-field advantage provides a significant boost that limits Boise State's offensive rhythm early in the game. Ultimately, the Ducks pull away in the second half to secure a decisive victory and cover the six-point spread.",
-                    "generated_at": "2026-08-10T08:52:33.471689+00:00",
-                    "odds_hash": "5a169ee8fafa2fc2",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": true
                 },
                 {
@@ -638,8 +821,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "away": {
+                          "line": 24.5,
+                          "american": -108
+                        },
+                        "home": {
+                          "line": -24.5,
+                          "american": -112
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 1600
+                        },
+                        "home": {
+                          "line": null,
+                          "american": -4000
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -647,6 +848,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Penn State",
+                    "confidence": 98,
+                    "ats_pick": "Penn State -24.5",
+                    "ats_confidence": 75,
+                    "analysis": "Penn State enters this week one matchup with a vastly superior roster and immense firepower on both sides of the ball. Marshall struggles significantly to generate consistent offense against elite defensive fronts in the early part of the 2026 campaign. The Nittany Lions' offense executes at a high level, capitalizing on early-season miscues from the Thundering Herd secondary. Playing at home in Beaver Stadium provides an insurmountable environment for Marshall to overcome in the season opener. Consequently, Penn State secures a decisive blowout victory that comfortably covers the large twenty-four-point spread.",
+                    "generated_at": "2026-08-09T17:11:07.767019+00:00",
+                    "odds_hash": "14bdb3a8b614a8c0",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 },
                 {
@@ -720,8 +931,26 @@
                   "neutral_site": true,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": -7.0,
+                          "american": -110
+                        },
+                        "away": {
+                          "line": 7.0,
+                          "american": -110
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -290
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 235
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -729,6 +958,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Auburn",
+                    "confidence": 78,
+                    "ats_pick": "Auburn -7",
+                    "ats_confidence": 70,
+                    "analysis": "Auburn enters this week 1 matchup with a completely revamped roster that has shown exceptional chemistry in early 2026 practices. Baylor struggles defensively to contain elite SEC speed, which will immediately show on the perimeter. The Tigers' offensive line is completely healthy and primed to dominate the line of scrimmage against a light Baylor front seven. Furthermore, Auburn's home-field advantage provides a crucial boost in execution during high-leverage opening-week moments. Consequently, Auburn will control the pace of the game from the second quarter onward and win by double digits.",
+                    "generated_at": "2026-08-09T17:11:27.901295+00:00",
+                    "odds_hash": "ca63101286132185",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 }
               ]
@@ -754,8 +993,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": -9.5,
+                          "american": -118
+                        },
+                        "away": {
+                          "line": 9.5,
+                          "american": -102
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 310
+                        },
+                        "home": {
+                          "line": null,
+                          "american": -395
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -763,6 +1020,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "LSU",
+                    "confidence": 78,
+                    "ats_pick": "LSU -9.5",
+                    "ats_confidence": 70,
+                    "analysis": "LSU enters this week 1 matchup with an explosive offense that has dominated the early 2026 campaign through exceptional quarterback play and a high-tempo scheme. Clemson's defense has shown significant vulnerabilities in the secondary, struggling to defend deep routes and missing crucial assignments through the first portion of the season. Furthermore, LSU's home-field advantage in Death Valley creates an intensely hostile environment that historically overwhelms visiting offenses during night games. While Clemson features a capable rushing attack, it will likely become one-dimensional once the Tigers build an early multi-possession lead. Consequently, LSU will comfortably secure the outright victory and cover the 9.5-point spread by double digits.",
+                    "generated_at": "2026-08-09T17:12:07.923399+00:00",
+                    "odds_hash": "e3f23f56ff58a2e7",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 },
                 {
@@ -781,7 +1048,16 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
+                      "spread": {
+                        "away": {
+                          "line": 39.5,
+                          "american": -110
+                        },
+                        "home": {
+                          "line": -39.5,
+                          "american": -110
+                        }
+                      },
                       "moneyline": {}
                     },
                     "fanduel": {
@@ -790,6 +1066,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Texas A&M",
+                    "confidence": 99,
+                    "ats_pick": "Missouri State +39.5",
+                    "ats_confidence": 55,
+                    "analysis": "Texas A&M enters this early 2026 matchup with superior overall roster depth and elite SEC-level athleticism across all positions. Missouri State will struggle mightily to match the home team's sheer physicality and explosive offensive capabilities throughout four quarters. However, a massive 39.5-point spread presents a historically wide margin that is often difficult for even dominant favorites to comfortably clear in opening weeks. The visiting squad should manage to scrape together enough late-game offense or garbage-time scores to safely stay within the colossal number. Ultimately, Texas A&M secures a comfortable outright victory while Missouri State does just enough to cover the spread.",
+                    "generated_at": "2026-08-09T17:11:47.947777+00:00",
+                    "odds_hash": "68a40a3ce5cc0c11",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 },
                 {
@@ -893,8 +1179,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "away": {
+                          "line": 12.5,
+                          "american": -110
+                        },
+                        "home": {
+                          "line": -12.5,
+                          "american": -110
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 390
+                        },
+                        "home": {
+                          "line": null,
+                          "american": -520
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -902,7 +1206,17 @@
                     }
                   },
                   "is_nebraska": false,
-                  "is_slot_pick": true
+                  "gemini_prediction": {
+                    "winner": "New Mexico",
+                    "confidence": 85,
+                    "ats_pick": "New Mexico -12.5",
+                    "ats_confidence": 75,
+                    "analysis": "New Mexico enters this week one matchup with exceptional offensive momentum and a significantly more explosive roster than Central Michigan. The Lobos' high-tempo attack consistently exploits defensive vulnerabilities, which will immediately pressure the Chippewas' secondary. Central Michigan struggles to establish a reliable rushing attack, severely limiting their ability to sustain long scoring drives on the road. Furthermore, New Mexico's defensive front has shown remarkable efficiency in stopping the run during early 2026 practices and tune-ups. Consequently, the Lobos should easily control the pace of the game and comfortably cover the double-digit spread.",
+                    "generated_at": "2026-08-09T17:12:17.964883+00:00",
+                    "odds_hash": "29d37afcb87cd8f1",
+                    "model": "gemini-3.5-flash-lite"
+                  },
+                  "is_slot_pick": false
                 },
                 {
                   "id": 401858210,
@@ -920,8 +1234,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -115
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": -105
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -108
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -112
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -929,7 +1261,17 @@
                     }
                   },
                   "is_nebraska": false,
-                  "is_slot_pick": false
+                  "gemini_prediction": {
+                    "winner": "UCLA",
+                    "confidence": 55,
+                    "ats_pick": "California +1.5",
+                    "ats_confidence": 55,
+                    "analysis": "The 2026 college football season is in week one, meaning current statistics for both UCLA and California are heavily reliant on projected roster turnover and early-season adjustments. UCLA enters this matchup as a slight away favorite according to DraftKings moneyline odds set at -112. However, California holds a +1.5 point spread advantage at home, making them the statistical underdog in the eyes of oddsmakers. Evaluating the narrow margins between these two evenly matched squads suggests a closely contested game that could easily come down to the final possession. Because California is receiving points at home in what projects to be a toss-up game, taking the home underdog to cover is the mathematically sound choice. Ultimately, UCLA may squeak out a narrow victory outright, but California will keep it within the 1.5-point margin.",
+                    "generated_at": "2026-08-09T17:12:28.095796+00:00",
+                    "odds_hash": "db8b19d936724c9b",
+                    "model": "gemini-3.5-flash-lite"
+                  },
+                  "is_slot_pick": true
                 }
               ]
             }
@@ -961,8 +1303,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "away": {
+                          "line": 22.5,
+                          "american": -115
+                        },
+                        "home": {
+                          "line": -22.5,
+                          "american": -105
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -3200
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 1400
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -970,6 +1330,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Washington",
+                    "confidence": 95,
+                    "ats_pick": "Washington State +22.5",
+                    "ats_confidence": 65,
+                    "analysis": "Washington enters this week one matchup with a vastly superior roster built through elite recruiting and the transfer portal for the 2026 campaign. The Huskies offense has operated with maximum efficiency, showcasing an explosive passing attack that dictates the tempo of every game. Conversely, Washington State struggles to generate consistent stops on defense, leaving them vulnerable against high-powered tier-one opponents. However, a twenty-two and a half point spread remains an exceptionally large margin for any early-season rivalry contest. Washington State's passing offense should secure enough late-game production to comfortably cover the substantial point spread.",
+                    "generated_at": "2026-08-09T17:12:37.887731+00:00",
+                    "odds_hash": "4b6787c6f90a35c1",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 }
               ]
@@ -995,8 +1365,26 @@
                   "neutral_site": true,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "away": {
+                          "line": 20.5,
+                          "american": -108
+                        },
+                        "home": {
+                          "line": -20.5,
+                          "american": -112
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 1000
+                        },
+                        "home": {
+                          "line": null,
+                          "american": -1800
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1004,6 +1392,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Notre Dame",
+                    "confidence": 95,
+                    "ats_pick": "Notre Dame -20.5",
+                    "ats_confidence": 75,
+                    "analysis": "Notre Dame enters this Week 1 matchup with an elite returning roster and dominant offensive execution that has overwhelmed opponents throughout the early 2026 campaign. Wisconsin has struggled mightily on defense, yielding high yardage totals and failing to generate consistent stops against top-tier competition. The Fighting Irish offense is operating at peak efficiency, utilizing a balanced attack that will exploit every weakness in the visiting secondary. Meanwhile, the Badgers' offensive line has shown glaring vulnerabilities in pass protection and establishing the run against elite front sevens. Given Notre Dame's overwhelming talent advantage and Wisconsin's ongoing struggles to move the chains, the Fighting Irish will secure a blowout victory well beyond the three-touchdown threshold.",
+                    "generated_at": "2026-08-09T17:12:47.972903+00:00",
+                    "odds_hash": "33ccd3396afcad2f",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 },
                 {
@@ -1022,8 +1420,26 @@
                   "neutral_site": true,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "away": {
+                          "line": 6.5,
+                          "american": -102
+                        },
+                        "home": {
+                          "line": -6.5,
+                          "american": -118
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 215
+                        },
+                        "home": {
+                          "line": null,
+                          "american": -265
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1031,6 +1447,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Ole Miss",
+                    "confidence": 76,
+                    "ats_pick": "Ole Miss -6.5",
+                    "ats_confidence": 70,
+                    "analysis": "Ole Miss enters this week one matchup with an exceptionally explosive offense that has consistently overwhelmed opponents through the air and on the ground. Louisville struggles to establish defensive consistency against elite offensive units, leaving significant vulnerabilities in their secondary. The Rebels have maximized their red zone efficiency and maintained disciplined ball control across all opening-week metrics. Meanwhile, the Cardinals face immense pressure on the road against a formidable defensive front that disrupts blocking schemes and limits big plays. Consequently, Ole Miss secures a decisive victory that comfortably surpasses the six-and-a-half-point spread.",
+                    "generated_at": "2026-08-09T17:12:57.927679+00:00",
+                    "odds_hash": "f5c1b667a1929a31",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 }
               ]
@@ -1063,8 +1489,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -105
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": -115
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": -130
+                        },
+                        "home": {
+                          "line": null,
+                          "american": 110
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1072,6 +1516,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "SMU",
+                    "confidence": 60,
+                    "ats_pick": "SMU -1.5",
+                    "ats_confidence": 58,
+                    "analysis": "SMU enters this week 1 matchup with high offensive efficiency built on strong returning production from their 2025 campaign. Florida State is looking to reestablish consistency under their current roster framework after experiencing noticeable turnover during the offseason. The Mustangs' explosive passing attack should exploit early-season defensive alignment issues for the Seminoles. Furthermore, SMU's road resilience will be tested, but their disciplined execution gives them a slight edge in close-game scenarios. Ultimately, the Mustangs will secure the outright victory while covering the narrow 1.5-point spread.",
+                    "generated_at": "2026-08-09T17:13:07.857901+00:00",
+                    "odds_hash": "8c05193d1290cb02",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 }
               ]
@@ -1110,8 +1564,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "away": {
+                          "line": -7.0,
+                          "american": -112
+                        },
+                        "home": {
+                          "line": 7.0,
+                          "american": -108
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": -238
+                        },
+                        "home": {
+                          "line": null,
+                          "american": 195
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1119,6 +1591,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Missouri",
+                    "confidence": 78,
+                    "ats_pick": "Missouri -7",
+                    "ats_confidence": 72,
+                    "analysis": "Missouri enters week two displaying an explosive offensive scheme that thoroughly overwhelmed their opening-week opponent. Kansas struggled defensively in their season debut, showing major vulnerabilities in pass coverage and run stopping. The Missouri offense features a dynamic dual-threat quarterback who will exploit these Kansas defensive weaknesses all game long. Meanwhile, the Kansas offense lacks the consistent firepower needed to keep pace in a high-scoring conference environment. Consequently, Missouri will secure a comfortable victory on the road while successfully covering the seven-point spread.",
+                    "generated_at": "2026-08-09T17:13:17.776040+00:00",
+                    "odds_hash": "ff135fd54502bd80",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 },
                 {
@@ -1178,8 +1660,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": -112
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -108
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -130
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 110
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1187,7 +1687,17 @@
                     }
                   },
                   "is_nebraska": false,
-                  "is_slot_pick": false
+                  "gemini_prediction": {
+                    "winner": "Oklahoma",
+                    "confidence": 55,
+                    "ats_pick": "Oklahoma +1.5",
+                    "ats_confidence": 58,
+                    "analysis": "Oklahoma enters week two with an explosive offensive rhythm established in their season opener. Michigan's defense showed vulnerability against the pass in their first game of 2026. The Sooners' offensive line dominated the line of scrimmage, paving the way for efficient yardage. Meanwhile, the Wolverines struggled to sustain drives and convert critical third downs. Oklahoma's momentum and execution give them the edge to win outright on the road.",
+                    "generated_at": "2026-08-09T17:13:27.854747+00:00",
+                    "odds_hash": "172a7208f0f9c89e",
+                    "model": "gemini-3.5-flash-lite"
+                  },
+                  "is_slot_pick": true
                 },
                 {
                   "id": 401856782,
@@ -1207,22 +1717,22 @@
                     "draftkings": {
                       "spread": {
                         "away": {
-                          "line": 6.0,
-                          "american": -110
+                          "line": -18.5,
+                          "american": -112
                         },
                         "home": {
-                          "line": -6.0,
-                          "american": -110
+                          "line": 18.5,
+                          "american": -108
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -238
+                          "american": 675
                         },
                         "away": {
                           "line": null,
-                          "american": 195
+                          "american": -1050
                         }
                       }
                     },
@@ -1234,15 +1744,15 @@
                   "is_nebraska": false,
                   "gemini_prediction": {
                     "winner": "Oregon",
-                    "confidence": 65,
-                    "ats_pick": "Oregon +6",
-                    "ats_confidence": 70,
-                    "analysis": "Oregon enters this week 2 matchup displaying superior offensive efficiency and defensive disruption during their opening contest of the 2026 campaign. Oklahoma State struggles to establish a consistent rushing attack against elite front sevens, which limits their offensive playbook significantly. The Ducks utilize their explosive wide receiver corps to exploit defensive backfield mismatches early and often. Furthermore, the visiting defense forces multiple critical turnovers that stifle the Cowboys' momentum in hostile territory. Consequently, Oregon not only secures the outright victory on the road but easily covers the six-point spread.",
-                    "generated_at": "2026-08-10T08:52:43.588697+00:00",
-                    "odds_hash": "b164a574959141a5",
+                    "confidence": 92,
+                    "ats_pick": "Oregon -18.5",
+                    "ats_confidence": 78,
+                    "analysis": "Oregon enters week two of the 2026 season showcasing an elite, high-tempo offensive attack that completely overwhelms opposing defenses. Oklahoma State has struggled immensely on defense to start the 2026 campaign, failing to generate any meaningful pass rush or consistent secondary coverage. The Ducks' explosive playmakers will exploit these defensive vulnerabilities early and often throughout the contest. Meanwhile, the Cowboys' offense lacks the sustained firepower necessary to keep pace against a dominant Oregon front seven. Ultimately, Oregon secures a decisive blowout victory that comfortably covers the eighteen-and-a-half-point spread on the road.",
+                    "generated_at": "2026-08-09T17:13:37.874412+00:00",
+                    "odds_hash": "e8f141a4b4dbb795",
                     "model": "gemini-3.5-flash-lite"
                   },
-                  "is_slot_pick": true
+                  "is_slot_pick": false
                 },
                 {
                   "id": 401856683,
@@ -1260,8 +1770,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": -14.5,
+                          "american": -112
+                        },
+                        "away": {
+                          "line": 14.5,
+                          "american": -108
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -650
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 470
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1269,6 +1797,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Texas A&M",
+                    "confidence": 88,
+                    "ats_pick": "Texas A&M -14.5",
+                    "ats_confidence": 75,
+                    "analysis": "Texas A&M enters week 2 with a dominant offense that averaged over forty-five points in their season opener. Arizona State struggled significantly on defense during their first game of 2026, giving up massive yardage through the air and on the ground. The Aggies boast a relentless pass rush that completely neutralizes opposing offensive lines, which will spell disaster for the Sun Devils. Playing at Kyle Field provides a massive home-field advantage that further suppresses Arizona State's ability to execute on third downs. Consequently, Texas A&M secures a comfortable victory well beyond the two-touchdown spread.",
+                    "generated_at": "2026-08-09T17:13:47.796026+00:00",
+                    "odds_hash": "82a6fdad4c1163c9",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 },
                 {
@@ -1518,7 +2056,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -112
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -108
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1526,6 +2073,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Texas",
+                    "confidence": 55,
+                    "ats_pick": "Texas -1.5",
+                    "ats_confidence": 53,
+                    "analysis": "This early-season matchup features two elite programs battling fiercely in week two of the 2026 campaign. Texas holds slight home-field advantage and has shown superior offensive efficiency through the first game. Ohio State brings a formidable roster into hostile territory, but their defense has shown minor vulnerabilities in pass coverage. Ultimately, the Longhorns execute crucial third-down conversions to secure a narrow victory in front of a raucous home crowd. Texas wins the game outright and narrowly covers the slight home spread by a field goal.",
+                    "generated_at": "2026-08-09T18:18:04.843077+00:00",
+                    "odds_hash": "bcd3f676d2f4a7f9",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 },
                 {
@@ -1598,8 +2155,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "away": {
+                          "line": 11.5,
+                          "american": -112
+                        },
+                        "home": {
+                          "line": -11.5,
+                          "american": -108
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": 470
+                        },
+                        "home": {
+                          "line": null,
+                          "american": -650
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1607,6 +2182,16 @@
                     }
                   },
                   "is_nebraska": false,
+                  "gemini_prediction": {
+                    "winner": "Iowa",
+                    "confidence": 88,
+                    "ats_pick": "Iowa -11.5",
+                    "ats_confidence": 75,
+                    "analysis": "Iowa enters week two of the 2026 college football season with a dominant home-field advantage and an offense that has shown vastly improved efficiency over last year. Iowa State has struggled significantly in the trenches during their opening 2026 contest, failing to establish any semblance of a consistent rushing attack. The Iowa defensive front seven has completely shut down opposing ground games so far this season, allowing virtually no room for error for opposing quarterbacks. Given the glaring disparities in current-season performance and line play, the Hawkeyes are well-positioned to control the tempo of this matchup from the opening whistle. Consequently, Iowa will not only secure a decisive outright victory but will also comfortably cover the 11.5-point spread.",
+                    "generated_at": "2026-08-09T17:14:07.949843+00:00",
+                    "odds_hash": "31c6f2ba72fda5a3",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 },
                 {
