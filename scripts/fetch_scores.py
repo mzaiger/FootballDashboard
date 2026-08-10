@@ -54,6 +54,21 @@ def load_json(path):
         return json.load(f)
 
 
+def load_previous_scores(path):
+    """Read the existing scores.json (previous run's output), or empty
+    cfb/nfl dicts if it doesn't exist yet or can't be parsed.
+
+    Used so scores for a week that's aged out of the current dashboard's
+    rolling 2-week window (and is therefore no longer requested from
+    CFBD/ESPN this run) don't just vanish from scores.json -- see the
+    merge in main() below.
+    """
+    data = load_json(path)
+    if not data:
+        return {"cfb": {}, "nfl": {}}
+    return {"cfb": data.get("cfb", {}) or {}, "nfl": data.get("nfl", {}) or {}}
+
+
 def iter_games(dashboard):
     """Yield (week_number, game_dict) for every game in a dashboard payload."""
     if not dashboard:
@@ -201,20 +216,31 @@ def main():
     dashboard = load_json(dashboard_path)
     nfl_dashboard = load_json(nfl_dashboard_path)
 
+    previous = load_previous_scores(out_path)
+
     cfb_scores = fetch_cfb_scores(dashboard, cfbd_key)
     nfl_scores = fetch_nfl_scores(nfl_dashboard)
 
+    # Merge onto the previous file rather than replacing it -- a game whose
+    # week has aged out of the dashboard's rolling window isn't re-fetched
+    # this run, but its last-known score (almost always "final" by then)
+    # stays in scores.json instead of disappearing. Freshly fetched entries
+    # always win over old ones for any game id present in both.
+    merged_cfb = {**previous["cfb"], **cfb_scores}
+    merged_nfl = {**previous["nfl"], **nfl_scores}
+
     output = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "cfb": cfb_scores,
-        "nfl": nfl_scores,
+        "cfb": merged_cfb,
+        "nfl": merged_nfl,
     }
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(output, f, indent=2)
 
-    log(f"Wrote {len(cfb_scores)} CFB score(s) and {len(nfl_scores)} NFL score(s) to {out_path}")
+    log(f"Wrote {len(merged_cfb)} CFB score(s) ({len(cfb_scores)} fresh) and "
+        f"{len(merged_nfl)} NFL score(s) ({len(nfl_scores)} fresh) to {out_path}")
 
 
 if __name__ == "__main__":
