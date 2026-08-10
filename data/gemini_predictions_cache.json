@@ -328,5 +328,35 @@
     "generated_at": "2026-08-09T18:18:04.843077+00:00",
     "odds_hash": "bcd3f676d2f4a7f9",
     "model": "gemini-3.5-flash-lite"
+  },
+  "c1760f2a0596aa5f": {
+    "winner": "Indiana",
+    "confidence": 95,
+    "ats_pick": "North Texas +40.5",
+    "ats_confidence": 70,
+    "analysis": "Indiana enters this week 1 matchup boasting an explosive offensive scheme that has overwhelmed early-season opponents with relentless efficiency. North Texas struggles significantly on the defensive side of the ball, allowing opponents to sustain drives and put up massive point totals. However, a forty-point spread is an extraordinarily high margin to cover in college football, even against a struggling defense. North Texas possesses enough offensive firepower through the air to backdoor cover late in the contest. Ultimately, Indiana will secure a comfortable outright victory, but North Texas does just enough to cover the massive spread.",
+    "generated_at": "2026-08-10T08:52:23.709175+00:00",
+    "odds_hash": "c1760f2a0596aa5f",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "5a169ee8fafa2fc2": {
+    "winner": "Oregon",
+    "confidence": 75,
+    "ats_pick": "Oregon -6",
+    "ats_confidence": 68,
+    "analysis": "Oregon enters this week one matchup with a vastly superior roster built through elite recruiting and the transfer portal. Boise State struggles defensively to contain high-powered passing attacks, which plays directly into Oregon's offensive strengths. The Ducks boast an explosive offensive scheme that will consistently exploit gaps in the secondary of the Broncos. Furthermore, Oregon's home-field advantage provides a significant boost that limits Boise State's offensive rhythm early in the game. Ultimately, the Ducks pull away in the second half to secure a decisive victory and cover the six-point spread.",
+    "generated_at": "2026-08-10T08:52:33.471689+00:00",
+    "odds_hash": "5a169ee8fafa2fc2",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "b164a574959141a5": {
+    "winner": "Oregon",
+    "confidence": 65,
+    "ats_pick": "Oregon +6",
+    "ats_confidence": 70,
+    "analysis": "Oregon enters this week 2 matchup displaying superior offensive efficiency and defensive disruption during their opening contest of the 2026 campaign. Oklahoma State struggles to establish a consistent rushing attack against elite front sevens, which limits their offensive playbook significantly. The Ducks utilize their explosive wide receiver corps to exploit defensive backfield mismatches early and often. Furthermore, the visiting defense forces multiple critical turnovers that stifle the Cowboys' momentum in hostile territory. Consequently, Oregon not only secures the outright victory on the road but easily covers the six-point spread.",
+    "generated_at": "2026-08-10T08:52:43.588697+00:00",
+    "odds_hash": "b164a574959141a5",
+    "model": "gemini-3.5-flash-lite"
   }
 }
