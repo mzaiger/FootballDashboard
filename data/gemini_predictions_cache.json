@@ -368,5 +368,15 @@
     "generated_at": "2026-08-10T10:01:17.396779+00:00",
     "odds_hash": "c30a28acfbc2b618",
     "model": "gemini-3.5-flash-lite"
+  },
+  "979ff9c64d116342": {
+    "winner": "Texas Tech",
+    "confidence": 99,
+    "ats_pick": "Abilene Christian +42.5",
+    "ats_confidence": 65,
+    "analysis": "Texas Tech enters this early 2026 matchup with an explosive offense capable of overwhelming most defensive fronts. Abilene Christian boasts a resilient squad that will fight to sustain drives against a superior opponent. However, the sheer depth and offensive firepower of Texas Tech create an insurmountable talent gap on the field. While the Red Raiders will secure a decisive victory to start their campaign, a forty-two and a half point spread is exceptionally massive to cover. Expect Abilene Christian to do just enough through garbage-time scoring and sustained possessions to narrowly beat the colossal spread.",
+    "generated_at": "2026-08-11T01:08:04.808507+00:00",
+    "odds_hash": "979ff9c64d116342",
+    "model": "gemini-3.5-flash-lite"
   }
 }
