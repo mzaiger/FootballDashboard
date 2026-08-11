@@ -13,15 +13,20 @@ that index.html / nfl.html / picks.html fetch and merge in client-side.
 Keeping this separate means scores can refresh hourly (or more) without
 hitting SharpAPI's or Gemini's much tighter rate limits.
 
-Score sources (matched by the exact game id already in each dashboard):
-    CFB - CollegeFootballData.com's /games endpoint (same CFBD_API_KEY
-          the daily CFB build uses).
+Score sources (matched by the exact game id already in each dashboard for
+NFL; matched by team name + date for CFB -- see note below):
+    CFB - ESPN's public college-football scoreboard endpoint (no key
+          required). Matched back to our CFBD-numbered game ids by fuzzy
+          team-name matching (same matcher common.py uses for odds)
+          plus date, since ESPN's own event ids don't line up with
+          CFBD's. Switched from CFBD's /games endpoint specifically
+          because CFBD only ever reports final scores -- no in-progress
+          quarter/clock -- while ESPN's status.type.shortDetail gives a
+          real "8:42 - 3rd" while a game is live.
     NFL - ESPN's public scoreboard endpoint (same one build_nfl_dashboard.py
           uses for schedule; no key required).
 
-Env vars required:
-    CFBD_API_KEY - only used if data/dashboard.json has CFB games in it
-                   (no key needed for the NFL/ESPN half)
+Env vars required: none -- both halves use ESPN's public endpoints.
 
 Usage:
     python scripts/fetch_scores.py
@@ -36,9 +41,9 @@ from datetime import datetime, timezone
 
 import requests
 
-from common import log
+from common import log, _normalize, _fuzzy_team
 
-CFBD_BASE = "https://api.collegefootballdata.com"
+ESPN_CFB_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard"
 ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
 REQUEST_TIMEOUT = 20
 
@@ -113,55 +118,134 @@ def weeks_needing_refresh(dashboard, previous_scores):
 
 
 # ---------------------------------------------------------------------------
-# CFB scores (CollegeFootballData.com)
+# CFB scores (ESPN public college-football scoreboard)
 # ---------------------------------------------------------------------------
 
-def cfbd_get_games(key, year, week, season_type="regular"):
+def espn_get_cfb_scoreboard(dates_param):
     resp = requests.get(
-        f"{CFBD_BASE}/games",
-        headers={"Authorization": f"Bearer {key}", "Accept": "application/json"},
-        params={"year": year, "week": week, "seasonType": season_type, "classification": "fbs"},
+        ESPN_CFB_SCOREBOARD_URL,
+        params={"dates": dates_param, "groups": 80, "limit": 500},
         timeout=REQUEST_TIMEOUT,
     )
     resp.raise_for_status()
     return resp.json()
 
 
-def fetch_cfb_scores(dashboard, cfbd_key, weeks_to_fetch=None):
+def _cfb_games_needing_scores(dashboard, weeks_to_fetch):
+    """Yield (date_str "YYYYMMDD", game_dict) for every game in the given
+    week numbers of the CFB dashboard (every week if weeks_to_fetch is
+    None)."""
+    if not dashboard:
+        return
+    wanted = set(weeks_to_fetch) if weeks_to_fetch is not None else None
+    for week in dashboard.get("weeks", []):
+        if wanted is not None and week["week"] not in wanted:
+            continue
+        for day in week.get("days", []):
+            date_str = (day.get("date") or "").replace("-", "")
+            for slot in day.get("time_slots", []):
+                for g in slot.get("games", []):
+                    yield date_str, g
+
+
+def _match_espn_cfb_event(g, events):
+    """Find the ESPN event (if any) whose competitors match this
+    dashboard game's home/away teams, checking both straight and
+    flipped (neutral-site) orientation -- same approach
+    match_odds_for_game() in common.py uses for odds. Returns
+    (event, home_competitor, away_competitor) or None.
+    """
+    home_norm = _normalize(g.get("home_team", ""))
+    away_norm = _normalize(g.get("away_team", ""))
+
+    for event in events:
+        comp = (event.get("competitions") or [{}])[0]
+        competitors = comp.get("competitors", [])
+        home_c = next((c for c in competitors if c.get("homeAway") == "home"), None)
+        away_c = next((c for c in competitors if c.get("homeAway") == "away"), None)
+        if not home_c or not away_c:
+            continue
+        home_name = (home_c.get("team") or {}).get("displayName", "")
+        away_name = (away_c.get("team") or {}).get("displayName", "")
+
+        if _fuzzy_team(home_norm, home_name) and _fuzzy_team(away_norm, away_name):
+            return event, home_c, away_c
+        if _fuzzy_team(home_norm, away_name) and _fuzzy_team(away_norm, home_name):
+            # ESPN has the two teams flipped relative to our dashboard --
+            # keep returning (home_c, away_c) in OUR home/away order.
+            return event, away_c, home_c
+    return None
+
+
+def fetch_cfb_scores(dashboard, weeks_to_fetch=None):
     """Return {game_id: {home_score, away_score, status, status_detail}}.
 
-    `weeks_to_fetch` restricts which week numbers are actually requested
-    from CFBD (see weeks_needing_refresh()); defaults to every week in the
-    dashboard if not given.
+    Sourced from ESPN's public college-football scoreboard rather than
+    CFBD, specifically so a live game's status_detail carries a real
+    quarter/clock (e.g. "8:42 - 3rd") -- CFBD's /games endpoint only
+    ever reports final scores, never in-game state. ESPN's own event
+    ids don't match CFBD's, so games are matched back to our
+    CFBD-numbered game ids by team name (fuzzy, both orientations) plus
+    the game's calendar date.
+
+    `weeks_to_fetch` restricts which week numbers are pulled from the
+    dashboard (see weeks_needing_refresh()); defaults to every week in
+    the dashboard if not given. One ESPN request covers the whole date
+    range spanned by those weeks.
     """
     scores = {}
-    if not dashboard or not cfbd_key:
+    if not dashboard:
         return scores
 
-    year = dashboard.get("season")
-    weeks = weeks_to_fetch if weeks_to_fetch is not None else distinct_weeks(dashboard)
-    for week in weeks:
-        log(f"CFB scores: fetching week {week}...")
-        try:
-            games = cfbd_get_games(cfbd_key, year, week)
-        except requests.RequestException as e:
-            log(f"  WARNING: couldn't fetch CFB scores for week {week}: {e}")
+    games_by_date = {}
+    for date_str, g in _cfb_games_needing_scores(dashboard, weeks_to_fetch):
+        if not date_str:
             continue
+        games_by_date.setdefault(date_str, []).append(g)
+    if not games_by_date:
+        return scores
 
+    dates_sorted = sorted(games_by_date)
+    dates_param = dates_sorted[0] if len(dates_sorted) == 1 else f"{dates_sorted[0]}-{dates_sorted[-1]}"
+
+    log(f"CFB scores: fetching ESPN scoreboard for {dates_param}...")
+    try:
+        payload = espn_get_cfb_scoreboard(dates_param)
+    except requests.RequestException as e:
+        log(f"  WARNING: couldn't fetch CFB scores from ESPN ({dates_param}): {e}")
+        return scores
+
+    # Bucket ESPN events by their own calendar date so a dashboard game
+    # only ever gets matched against an ESPN event from the same day.
+    events_by_date = {}
+    for event in payload.get("events", []):
+        event_date = (event.get("date") or "")[:10].replace("-", "")
+        events_by_date.setdefault(event_date, []).append(event)
+
+    for date_str, games in games_by_date.items():
+        events = events_by_date.get(date_str, [])
         for g in games:
             game_id = g.get("id")
-            if game_id is None:
+            if game_id is None or not events:
                 continue
-            home_pts = g.get("homePoints")
-            away_pts = g.get("awayPoints")
-            if home_pts is None and away_pts is None:
-                continue  # game hasn't kicked off (or CFBD hasn't posted yet)
-            completed = bool(g.get("completed"))
+
+            match = _match_espn_cfb_event(g, events)
+            if not match:
+                continue
+            event, home_c, away_c = match
+
+            status = event.get("status", {}).get("type", {})
+            state = status.get("state")  # "pre" / "in" / "post"
+            if state == "pre":
+                continue  # hasn't started -- nothing to overlay yet
+
+            home_score = home_c.get("score")
+            away_score = away_c.get("score")
             scores[str(game_id)] = {
-                "home_score": home_pts,
-                "away_score": away_pts,
-                "status": "final" if completed else "in_progress",
-                "status_detail": "Final" if completed else None,
+                "home_score": int(home_score) if home_score is not None else None,
+                "away_score": int(away_score) if away_score is not None else None,
+                "status": "final" if state == "post" else "in_progress",
+                "status_detail": status.get("shortDetail") or status.get("detail"),
             }
     return scores
 
@@ -249,10 +333,6 @@ def main():
     )
     out_path = os.path.abspath(args.out or os.path.join(script_dir, "..", "data", "scores.json"))
 
-    cfbd_key = os.environ.get("CFBD_API_KEY")
-    if not cfbd_key:
-        log("CFBD_API_KEY not set -- skipping CFB scores.")
-
     dashboard = load_json(dashboard_path)
     nfl_dashboard = load_json(nfl_dashboard_path)
 
@@ -263,7 +343,7 @@ def main():
     log(f"CFB weeks needing a refresh: {cfb_weeks} (skipping any week where every game is already final)")
     log(f"NFL weeks needing a refresh: {nfl_weeks} (skipping any week where every game is already final)")
 
-    cfb_scores = fetch_cfb_scores(dashboard, cfbd_key, weeks_to_fetch=cfb_weeks)
+    cfb_scores = fetch_cfb_scores(dashboard, weeks_to_fetch=cfb_weeks)
     nfl_scores = fetch_nfl_scores(nfl_dashboard, weeks_to_fetch=nfl_weeks)
 
     # Merge onto the previous file rather than replacing it -- a game whose
