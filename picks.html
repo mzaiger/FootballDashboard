@@ -298,7 +298,6 @@
     font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--gold);
     background:rgba(224,166,60,0.12); border-radius:4px; padding:0.05rem 0.3rem;
   }
-  .rank.unranked{color:#4a535c; background:transparent;}
 
   .matchup{
     margin:0.85rem 0 0.6rem;
@@ -521,7 +520,7 @@ function oddsCell(entry) {
 }
 
 function rankBadge(rank) {
-  return rank ? `<span class="rank">#${rank}</span>` : `<span class="rank unranked">#--</span>`;
+  return rank ? `<span class="rank">#${rank}</span> ` : '';
 }
 
 function kickoffTime(iso, tbd) {
@@ -607,8 +606,8 @@ function renderGame(sport, g) {
     ? `Rank Sum ${g.matchup_score}`
     : ((g.matchup_score === null || g.matchup_score === undefined) ? 'Spread TBD' : `Spread ${g.matchup_score}`);
 
-  const awayLabel = sport === 'cfb' ? `${rankBadge(g.away_rank)} ${g.away_team}` : g.away_team;
-  const homeLabel = sport === 'cfb' ? `${rankBadge(g.home_rank)} ${g.home_team}` : g.home_team;
+  const awayLabel = sport === 'cfb' ? `${rankBadge(g.away_rank)}${g.away_team}` : g.away_team;
+  const homeLabel = sport === 'cfb' ? `${rankBadge(g.home_rank)}${g.home_team}` : g.home_team;
 
   const cardClasses = isSlotPick ? 'your-pick slot-banner' : '';
 

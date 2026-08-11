@@ -180,7 +180,6 @@
     border-radius:4px; padding:0.05rem 0.3rem; min-width:1.6rem; text-align:center;
     flex-shrink:0;
   }
-  .rank.unranked{visibility:hidden;}
   .at{color:var(--dim); font-size:0.72rem; font-family:'JetBrains Mono',monospace; flex-shrink:0;}
 
   @media (max-width: 480px){
@@ -528,7 +527,7 @@ function oddsCell(entry) {
 }
 
 function rankBadge(rank) {
-  return rank ? `<span class="rank">#${rank}</span>` : `<span class="rank unranked">#--</span>`;
+  return rank ? `<span class="rank">#${rank}</span> ` : '';
 }
 
 function kickoffTime(iso, tbd) {
@@ -582,9 +581,9 @@ function renderGame(g) {
       <span class="channel-pill">${g.channel}</span>
     </div>
     <div class="matchup">
-      <span class="team">${rankBadge(g.away_rank)} ${g.away_team}${teamScoreBadge(gScore?.away_score, gScore?.status)}</span>
+      <span class="team">${rankBadge(g.away_rank)}${g.away_team}${teamScoreBadge(gScore?.away_score, gScore?.status)}</span>
       <span class="at">@</span>
-      <span class="team">${rankBadge(g.home_rank)} ${g.home_team}${teamScoreBadge(gScore?.home_score, gScore?.status)}</span>
+      <span class="team">${rankBadge(g.home_rank)}${g.home_team}${teamScoreBadge(gScore?.home_score, gScore?.status)}</span>
     </div>
     <div class="subline">
       <span>${kickoffTime(g.start_time, g.start_time_tbd)}</span>
