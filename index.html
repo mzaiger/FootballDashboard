@@ -660,9 +660,9 @@ async function init() {
     const data = await res.json();
     SCORES = await fetchScores('cfb');
 
-    // dashboard.json now holds every week ever built; only show the
-    // current week (nearest game on/after yesterday) plus the next one.
-    const displayWeeks = selectDisplayWeeks(data.weeks);
+    // dashboard.json now holds every week ever built; only show the week
+    // the build itself resolved as current, plus the next one.
+    const displayWeeks = selectDisplayWeeks(data.weeks, data.current_week);
 
     const weekNums = displayWeeks.map(w => w.week);
     document.getElementById('pageTitle').textContent = weekNums.length

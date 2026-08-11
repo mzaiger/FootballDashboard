@@ -86,21 +86,20 @@ untouched. See `merge_weeks()` in `scripts/common.py`. Nothing in the
 pipeline ever deletes a week; the `weeks` array just keeps growing, one or
 two entries at a time, all season.
 
-**What each page shows is a display decision, not a data limit.** Both
-`index.html` and `nfl.html` fetch the *whole* `weeks` array and then narrow
-it down client-side with `selectDisplayWeeks()` in `picks-store.js`:
-
-1. Find the nearest game whose kickoff is **on or after yesterday at
-   midnight** (`today − 1 day`) across every stored week. That one day of
-   grace is what keeps a full slate of Sunday games visible through all of
-   Monday — by Tuesday, even the last Sunday night game is more than a day
-   old, so that week drops off.
-2. Whichever stored week that game belongs to is "current." Display that
-   week plus the very next stored week — nothing else.
-
-If nothing on file is on/after that cutoff (off-season, or a build hasn't
-run in a while), it falls back to showing the most recent stored week
-instead of an empty board.
+**What each page shows is a display decision, not a data limit.** Every
+build stamps the output with a top-level `current_week` field — the exact
+same week number the build itself resolved as "current" before fetching
+(CFB's date-based `derive_week()`, or NFL's ESPN-lookup-plus-fallback
+`resolve_current_week()` — see below). `index.html` and `nfl.html` fetch
+the *whole* `weeks` array but only render the weeks matching
+`current_week` and `current_week + 1`, via `selectDisplayWeeks()` in
+`picks-store.js` — everything else stays in the JSON but off the board.
+This intentionally does **not** try to infer "current" from individual
+game kickoff times client-side; it trusts whatever the most recent build
+run decided, so what's displayed only changes once a day, when the build
+actually runs (if the JSON has no `current_week` yet — e.g. a very old
+cached copy — it falls back to showing the two most-recently-stored
+weeks rather than nothing).
 
 **The Picks page ignores all of that** — it renders every week that's ever
 had a pick made against it, most recent week first, using the same
@@ -205,10 +204,15 @@ SharpAPI's or Gemini's tighter rate limits.
   each odds cell (DraftKings/FanDuel, spread/moneyline) also gets colored
   green ("hit") or red ("miss") based on the actual final score, including
   proper push/tie handling.
-- **Automation**: run it on its own schedule separate from the daily
-  builds — e.g. a second GitHub Actions workflow on an hourly cron — since
-  it's cheap (no SharpAPI or Gemini calls) and benefits from refreshing much
-  more often than the odds/schedule data does.
+- **Automation**: runs on its own schedule, separate from the daily
+  builds, via `.github/workflows/fetch-scores.yml` — every hour on the
+  hour, plus `workflow_dispatch` for a manual run and a
+  `repository_dispatch` hook (`trigger-scores-pull`) so something external
+  (a cron job, Apps Script, etc.) can kick off a run on demand. It's cheap
+  to run this often since it makes no SharpAPI or Gemini calls, and (see
+  "How weeks work" above) it skips any week where every game already has a
+  final score recorded, so the growing pile of past weeks doesn't make
+  each run slower over time.
 
 ## Gemini predictions
 
@@ -274,13 +278,18 @@ Each script builds `--week` and the following week (2 weeks total by
 default; change with `--num-weeks`) into a single JSON file with a `weeks`
 array, so both pages always show the current and upcoming week together.
 
-If no `--week` is given, both scripts default deterministically to week 1
-before their season starts, rather than relying on an API's implicit
-"current week" behavior: CFB from `WEEK1_START = Aug 22, 2026` in
-`scripts/build_dashboard.py`, NFL from `WEEK1_START = Sept 9, 2026` in
-`scripts/build_nfl_dashboard.py`. Run it any time before kickoff and you'll
-still get the real Week 1 schedule and broadcast info — odds will just be
-sparse until DraftKings/FanDuel post lines closer to game day.
+If no `--week` is given: **CFB** defaults deterministically to week 1
+before the season starts, and after that from `WEEK1_START = Aug 22, 2026`
+in `scripts/build_dashboard.py` — no API call needed to know "current
+week." **NFL** doesn't have an equivalent hardcoded date; it asks ESPN's
+scoreboard endpoint what week "today" falls under
+(`get_espn_current_week()` in `scripts/build_nfl_dashboard.py`), with a
+fallback that cross-checks that answer against what's already been built
+(see "NFL 'current week' detection has a safety net" further down) since
+the unofficial ESPN endpoint has been observed getting stuck on a stale
+week. Run either script any time before kickoff and you'll still get the
+real Week 1 schedule and broadcast info — odds will just be sparse until
+DraftKings/FanDuel post lines closer to game day.
 
 ## 3. Deploy: GitHub Pages + daily Actions run
 
@@ -296,29 +305,46 @@ sparse until DraftKings/FanDuel post lines closer to game day.
 5. Trigger the first run manually: Actions tab → "Update Betting Dashboards" → Run workflow.
    After that it runs automatically every day at 10:00 UTC (edit the `cron`
    line in `.github/workflows/update-dashboard.yml` to change the time).
+6. The **"Fetch Live Scores"** workflow (`.github/workflows/fetch-scores.yml`)
+   needs no extra setup — it runs automatically every hour once the repo is
+   pushed, using the same `CFBD_API_KEY` secret. Trigger it manually the
+   same way (Actions tab → "Fetch Live Scores" → Run workflow) if you don't
+   want to wait for the next hour.
 
-Your site will be live at `https://<username>.github.io/<repo>/` (CFB) and
-`https://<username>.github.io/<repo>/nfl.html` (NFL).
+Your site will be live at `https://<username>.github.io/<repo>/` (CFB),
+`https://<username>.github.io/<repo>/nfl.html` (NFL), and
+`https://<username>.github.io/<repo>/picks.html` (Picks).
 
 ## Project structure
 
 ```
 cfb-betting-dashboard/
-├── index.html                       # CFB front-end
-├── nfl.html                         # NFL front-end
+├── index.html                        # CFB front-end
+├── nfl.html                          # NFL front-end
+├── picks.html                        # Picks front-end (all-time, every week ever built)
+├── picks-store.js                    # shared: cookie picks, week selection, score merging, odds grading
 ├── requirements.txt
 ├── scripts/
-│   ├── common.py                    # shared: SharpAPI fetch/matching, time-slot bucketing
-│   ├── gemini_predictions.py        # shared: Gemini prediction calls + caching
-│   ├── build_dashboard.py           # CFBD + SharpAPI -> data/dashboard.json
-│   └── build_nfl_dashboard.py       # ESPN + SharpAPI -> data/nfl_dashboard.json
+│   ├── common.py                     # shared: SharpAPI fetch/matching, time-slot bucketing, week merging
+│   ├── gemini_predictions.py         # shared: Gemini prediction calls + caching
+│   ├── build_dashboard.py            # CFBD + SharpAPI -> data/dashboard.json
+│   ├── build_nfl_dashboard.py        # ESPN + SharpAPI -> data/nfl_dashboard.json
+│   └── fetch_scores.py               # CFBD + ESPN -> data/scores.json (hourly, no odds/predictions)
 ├── data/
-│   ├── dashboard.json               # generated CFB output (placeholder sample checked in)
-│   ├── nfl_dashboard.json           # generated NFL output (placeholder sample checked in)
+│   ├── dashboard.json                # generated CFB output (placeholder sample checked in)
+│   ├── nfl_dashboard.json            # generated NFL output (placeholder sample checked in)
+│   ├── scores.json                   # generated live/final scores for both sports
 │   └── gemini_predictions_cache.json # cached Gemini predictions, keyed by matchup + odds hash
 └── .github/workflows/
-    └── update-dashboard.yml         # daily cron + manual trigger, builds both
+    ├── update-dashboard.yml          # daily cron + manual trigger, builds both dashboards
+    └── fetch-scores.yml              # hourly cron + manual/dispatch trigger, updates scores.json
 ```
+
+Every build (`update-dashboard.yml`) merges its fresh week + next week on
+top of whatever's already in `dashboard.json` / `nfl_dashboard.json`
+instead of overwriting the file — see "How weeks work" above — so these
+two JSON files are the permanent, all-time record of every week ever
+built, not just a snapshot of what's currently on the board.
 
 ## How picks store their line
 
@@ -396,3 +422,16 @@ you've ever made, not just whatever's currently on the board.
   own site and app use, widely relied on by hobby projects, but it's not a
   documented/supported product — it could change without notice. No API key
   is required.
+- **NFL "current week" detection has a safety net**: when `--week` isn't
+  passed, `build_nfl_dashboard.py` asks ESPN what week "today" falls under
+  (`get_espn_current_week()`, now passing an explicit `dates=YYYYMMDD` for
+  today instead of no date at all — the earlier no-date version was
+  observed getting stuck reporting an old week once "today" no longer
+  lined up with a game in the requested `--season-type`'s window, which is
+  why a week could stop advancing run after run). On top of that,
+  `resolve_current_week()` cross-checks ESPN's answer against what's
+  already stored on disk: if every game in the highest week already built
+  has already kicked off, but ESPN's answer isn't past that week, it
+  trusts the stored data instead and advances one week past it. Check the
+  build log for a line starting `NOTE: every game in stored week ... has
+  already kicked off` — that's this safety net firing.

@@ -685,8 +685,8 @@ async function init() {
     SCORES = await fetchScores('nfl');
 
     // nfl_dashboard.json now holds every week ever built; only show the
-    // current week (nearest game on/after yesterday) plus the next one.
-    const displayWeeks = selectDisplayWeeks(data.weeks);
+    // week the build itself resolved as current, plus the next one.
+    const displayWeeks = selectDisplayWeeks(data.weeks, data.current_week);
 
     const weekNums = displayWeeks.map(w => formatWeekNumberLabel(w.week, data.season_type));
     document.getElementById('pageTitle').textContent = weekNums.length

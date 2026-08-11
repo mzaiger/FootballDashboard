@@ -42,55 +42,30 @@ function formatWeekNumberLabel(weekNum, seasonType) {
  * dashboard.json / nfl_dashboard.json now keep every week ever built (see
  * merge_weeks() in scripts/common.py) so Picks can grade a bet from way
  * back -- but College and NFL themselves should still only ever show
- * "now". A game's line is worth displaying up through the day after it's
- * played (so you can still glance at how it closed), then it should drop
- * off the board.
- *
- * "Current week" = the week containing the nearest game whose kickoff is
- * on or after (today - 1 day), i.e. yesterday at midnight. That one day of
- * grace is what keeps, say, Sunday's slate visible all through Monday --
- * Tuesday is when it finally drops, since by then even Sunday's late game
- * is more than a day old. Whichever week that lands on, plus the very next
- * stored week, are the only two shown; everything else stays in the JSON
- * (for Picks) but off the College/NFL boards.
+ * "now". Each build stamps the JSON with a top-level `current_week`: the
+ * same week number the build itself resolved as current (CFB's date-based
+ * derive_week(), or NFL's ESPN-lookup-plus-stuck-week-fallback in
+ * resolve_current_week() -- see scripts/build_dashboard.py /
+ * build_nfl_dashboard.py). College/NFL just display `current_week` and
+ * `current_week + 1`; everything else stays in the JSON (for Picks) but
+ * off the boards. This intentionally does NOT try to guess "current" from
+ * game kickoff times client-side -- it trusts whatever the last build run
+ * decided, which only changes once a day when the build actually runs.
  */
 
-function findCurrentWeekIndex(weeks, now) {
-  now = now || new Date();
-  const cutoff = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
-
-  let bestTime = null;
-  let bestIdx = null;
-  (weeks || []).forEach((week, idx) => {
-    (week.days || []).forEach(day => {
-      (day.time_slots || []).forEach(slot => {
-        (slot.games || []).forEach(g => {
-          const t = new Date(g.start_time);
-          if (Number.isNaN(t.getTime())) return;
-          if (t >= cutoff && (bestTime === null || t < bestTime)) {
-            bestTime = t;
-            bestIdx = idx;
-          }
-        });
-      });
-    });
-  });
-
-  if (bestIdx !== null) return bestIdx;
-  // Nothing on or after the cutoff (e.g. off-season, or every stored game
-  // has already aged out) -- fall back to the most recent week we have.
-  return weeks && weeks.length ? weeks.length - 1 : null;
-}
-
-// Returns just the weeks College/NFL should render: the current week (per
-// findCurrentWeekIndex) plus the one immediately after it in the stored,
-// week-number-ascending list. Picks.html does NOT use this -- it shows
-// every week that has ever had a pick made against it.
-function selectDisplayWeeks(weeks, now) {
+// Returns just the weeks College/NFL should render: the week matching
+// data.current_week, plus the one right after it, pulled out of the full
+// `weeks` array by week number (not by array position -- a week can be
+// briefly missing if a build hasn't run yet for it). Picks.html does NOT
+// use this -- it shows every week that's ever had a pick made against it.
+function selectDisplayWeeks(weeks, currentWeek) {
   if (!weeks || !weeks.length) return [];
-  const idx = findCurrentWeekIndex(weeks, now);
-  if (idx === null) return [];
-  return weeks.slice(idx, idx + 2);
+  if (currentWeek === undefined || currentWeek === null) {
+    // Older cached JSON with no current_week field yet -- fall back to
+    // the two most recently stored weeks rather than showing nothing.
+    return weeks.slice(-2);
+  }
+  return weeks.filter(w => w.week === currentWeek || w.week === currentWeek + 1);
 }
 
 const PICK_COOKIE_PREFIX = 'pick_';
