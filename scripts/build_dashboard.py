@@ -435,10 +435,19 @@ def main():
     output = build(year, week, cfbd_key, sharp_key, MAIN_CHANNELS, gemini_key,
                     num_weeks=args.num_weeks, previous_odds_by_id=previous_odds_by_id)
 
+    # Record which week THIS build resolved as "current" -- College/NFL use
+    # this (plus current_week + 1) to decide what to display, instead of
+    # re-deriving "current" client-side from individual game timestamps.
+    # It's just whatever `week` above ended up being (either --week, or
+    # derive_week()'s date-based answer), so it always reflects the same
+    # source of truth the actual fetch used.
+    output["current_week"] = week
+
     # Never drop old weeks -- merge today's freshly-built weeks on top of
     # whatever weeks were already on disk instead of replacing the file
     # wholesale, so lines/scores/predictions from every past week stay
-    # available (the front-end decides what's "current" to display).
+    # available (Picks shows all of them; College only shows current_week
+    # and current_week + 1).
     all_weeks = merge_weeks(existing_data, output["weeks"])
     output["weeks"] = all_weeks
 

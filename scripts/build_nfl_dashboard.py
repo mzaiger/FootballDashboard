@@ -171,6 +171,85 @@ def pick_regional_game(games_in_window):
 
 
 # ---------------------------------------------------------------------------
+# "Current week" resolution
+# ---------------------------------------------------------------------------
+
+def get_espn_current_week(season_type):
+    """Ask ESPN what NFL week "today" falls under for the given season_type.
+
+    Passing an explicit `dates=YYYYMMDD` for today is the documented way to
+    get ESPN to resolve "current" correctly. The previous version of this
+    call passed only `seasontype` with no date at all, which relies on
+    ESPN's own default-to-today behavior -- that stopped working reliably
+    once "today" no longer lined up with a game in the requested season
+    type's window (e.g. mid-week between two preseason weeks), and got
+    observed staying stuck on an old week number run after run instead of
+    advancing. See resolve_current_week() below for a second safety net on
+    top of this.
+    """
+    today_str = datetime.now(timezone.utc).strftime("%Y%m%d")
+    resp = requests.get(
+        ESPN_SCOREBOARD_URL,
+        params={"seasontype": season_type, "dates": today_str},
+        timeout=REQUEST_TIMEOUT,
+    )
+    resp.raise_for_status()
+    week_field = resp.json().get("week", {})
+    week = week_field.get("number", 1)
+    log(f"ESPN reports current week as {week} for {today_str} (season_type {season_type}).")
+    return week
+
+
+def highest_stored_week_info(existing_data):
+    """(week_number, last_kickoff_utc) for the latest week already sitting
+    in a previously-built dashboard file, or (None, None) if there isn't
+    one yet. `last_kickoff_utc` is the latest start_time among that week's
+    games -- used by resolve_current_week() to tell whether that week is
+    fully in the past."""
+    best_week, best_kickoff = None, None
+    for w in (existing_data or {}).get("weeks", []):
+        games = [g for day in w.get("days", []) for slot in day.get("time_slots", []) for g in slot.get("games", [])]
+        kickoffs = []
+        for g in games:
+            raw = g.get("start_time")
+            if not raw:
+                continue
+            try:
+                kickoffs.append(datetime.fromisoformat(raw.replace("Z", "+00:00")))
+            except ValueError:
+                continue
+        last_kickoff = max(kickoffs) if kickoffs else None
+        if best_week is None or w.get("week", 0) > best_week:
+            best_week, best_kickoff = w.get("week"), last_kickoff
+    return best_week, best_kickoff
+
+
+def resolve_current_week(season_type, existing_data):
+    """Figure out which NFL week to treat as "current" for this build.
+
+    Primary source is ESPN's own answer (get_espn_current_week). As a
+    safety net against that answer getting stuck: if every game in the
+    highest week we've already built has already kicked off (so that week
+    is clearly over by now) but ESPN's answer isn't past it, trust our own
+    stored data instead and advance one week past what we've already got --
+    this is exactly the "ran the workflow and it didn't add the next week"
+    symptom, and doesn't depend on guessing why ESPN's endpoint stalled.
+    """
+    espn_week = get_espn_current_week(season_type)
+    highest_week, highest_last_kickoff = highest_stored_week_info(existing_data)
+
+    now = datetime.now(timezone.utc)
+    if (highest_week is not None and highest_last_kickoff is not None
+            and highest_last_kickoff < now and espn_week <= highest_week):
+        fallback_week = highest_week + 1
+        log(f"  NOTE: every game in stored week {highest_week} has already kicked off, but ESPN "
+            f"still reports week {espn_week} as current -- using week {fallback_week} instead.")
+        return fallback_week
+
+    return espn_week
+
+
+# ---------------------------------------------------------------------------
 # Main build
 # ---------------------------------------------------------------------------
 
@@ -343,22 +422,14 @@ def main():
         log("GEMINI_KEY not set -- building without Gemini predictions.")
 
     week = args.week
-    if week is None:
-        # ESPN infers "current week" fine with no week param at all.
-        resp = requests.get(
-            ESPN_SCOREBOARD_URL,
-            params={"seasontype": args.season_type},
-            timeout=REQUEST_TIMEOUT,
-        )
-        resp.raise_for_status()
-        week = resp.json().get("week", {}).get("number", 1)
-        log(f"No --week given; ESPN reports current week as {week}.")
-
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "nfl_dashboard.json")
     out_path = os.path.abspath(out_path)
 
     existing_data = load_existing_dashboard(out_path)
+
+    if week is None:
+        week = resolve_current_week(args.season_type, existing_data)
 
     previous_odds_by_id = load_previous_odds_by_game(out_path)
     if previous_odds_by_id:
@@ -369,10 +440,16 @@ def main():
                     num_weeks=args.num_weeks, previous_odds_by_id=previous_odds_by_id)
     fresh_week_nums = [w["week"] for w in output["weeks"]]
 
+    # Record which week THIS build resolved as "current" -- College/NFL use
+    # this (plus current_week + 1) to decide what to display, instead of
+    # re-deriving "current" client-side from individual game timestamps.
+    output["current_week"] = week
+
     # Never drop old weeks -- merge today's freshly-built weeks on top of
     # whatever weeks were already on disk instead of replacing the file
     # wholesale, so lines/scores/predictions from every past week stay
-    # available (the front-end decides what's "current" to display).
+    # available (Picks shows all of them; NFL only shows current_week and
+    # current_week + 1).
     output["weeks"] = merge_weeks(existing_data, output["weeks"])
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
