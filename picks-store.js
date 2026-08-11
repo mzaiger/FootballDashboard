@@ -275,15 +275,20 @@ function pickOutcome(sport, g, gScore) {
   return oddsHitClass(sport, g.id, book, pick.market, pick.side, entry, gScore) || '';
 }
 
-// Total correct/incorrect count across every pick ever made (any week,
-// any sport), for the summary at the top of the Picks page. `datasets` is
-// an array of {sport, data} (the full, unfiltered dashboard JSON for each
-// sport); `scores` is {cfb: {...}, nfl: {...}} from data/scores.json. A
-// push/tie counts as correct, matching the same convention oddsHitClass()
-// already uses for cell coloring. Picks with no settled result yet aren't
-// counted in either bucket.
+// Summary across every pick ever made (any week, any sport), for the
+// badges at the top of the Picks page. `datasets` is an array of
+// {sport, data} (the full, unfiltered dashboard JSON for each sport);
+// `scores` is {cfb: {...}, nfl: {...}} from data/scores.json. A push/tie
+// counts as correct, matching the same convention oddsHitClass() already
+// uses for cell coloring.
+//
+// Every picked game falls into exactly one bucket:
+//   - active: the game hasn't been graded yet (not finished, or no score
+//     posted yet) -- the pick is still "live"
+//   - inactive: the game is graded (win, loss, or push) -- inactiveCorrect
+//     is how many of those inactive picks hit
 function computePickRecord(datasets, scores) {
-  let correct = 0, incorrect = 0;
+  let active = 0, inactiveTotal = 0, inactiveCorrect = 0;
   (datasets || []).forEach(({ sport, data }) => {
     if (!data) return;
     (data.weeks || []).forEach(week => (week.days || []).forEach(day => (day.time_slots || []).forEach(slot => {
@@ -291,12 +296,13 @@ function computePickRecord(datasets, scores) {
         if (!getPick(sport, g.id)) return;
         const gScore = (scores[sport] || {})[String(g.id)];
         const outcome = pickOutcome(sport, g, gScore);
-        if (outcome === 'hit') correct++;
-        else if (outcome === 'miss') incorrect++;
+        if (outcome === 'hit') { inactiveTotal++; inactiveCorrect++; }
+        else if (outcome === 'miss') { inactiveTotal++; }
+        else { active++; }
       });
     })));
   });
-  return { correct, incorrect };
+  return { active, inactiveTotal, inactiveCorrect };
 }
 
 // Click-delegation for every .pick-btn inside containerEl. `onPick` runs
