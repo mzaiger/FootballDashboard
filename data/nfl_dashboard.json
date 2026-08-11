@@ -1,45 +1,319 @@
 {
-  "generated_at": "2026-08-11T10:49:06.195228+00:00",
+  "generated_at": "2026-09-16T11:00:00+00:00",
   "season": 2026,
-  "season_type": 1,
+  "season_type": 2,
+  "current_week": 3,
   "display_timezone": "America/Chicago",
   "regional_market_note": "regional_picks_omaha_lincoln is an UNOFFICIAL heuristic guess (Kansas City Chiefs, then Denver Broncos, when a network window has multiple games) -- not scraped from an actual coverage map. Verify at https://506sports.com/nfl.php before relying on it.",
   "weeks": [
     {
-      "week": 1,
-      "total_games": 1,
+      "week": 3,
+      "total_games": 6,
       "days": [
         {
-          "date": "2026-08-06",
+          "date": "2026-09-17",
           "weekday": "Thursday",
           "game_count": 1,
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": null,
+              "best_matchup_score": 999,
               "pick_reason": "closest_spread",
               "regional_picks_omaha_lincoln": [],
               "games": [
                 {
-                  "id": "401873271",
-                  "start_time": "2026-08-07T00:00Z",
+                  "id": "999000301",
+                  "start_time": "2026-09-18T00:15Z",
                   "start_time_tbd": false,
-                  "home_team": "Arizona Cardinals",
-                  "home_abbr": "ARI",
-                  "away_team": "Carolina Panthers",
-                  "away_abbr": "CAR",
+                  "home_team": "Buffalo Bills",
+                  "home_abbr": "BUF",
+                  "away_team": "Miami Dolphins",
+                  "away_abbr": "MIA",
                   "matchup_score": 999,
-                  "channel": "NBC",
-                  "venue": "Tom Benson Hall of Fame Stadium",
-                  "neutral_site": true,
+                  "channel": "Prime Video",
+                  "venue": "Highmark Stadium",
+                  "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": -3.5,
+                          "price": -110
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "price": -175
+                        }
+                      }
                     },
                     "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": -3.0,
+                          "price": -115
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "price": -170
+                        }
+                      }
+                    }
+                  },
+                  "is_slot_pick": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "date": "2026-09-20",
+          "weekday": "Sunday",
+          "game_count": 5,
+          "time_slots": [
+            {
+              "slot": "Noon",
+              "best_matchup_score": 999,
+              "pick_reason": "closest_spread",
+              "regional_picks_omaha_lincoln": [
+                {
+                  "channel": "CBS",
+                  "matchup": "Chiefs @ Broncos"
+                }
+              ],
+              "games": [
+                {
+                  "id": "999000302",
+                  "start_time": "2026-09-20T17:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Kansas City Chiefs",
+                  "home_abbr": "KC",
+                  "away_team": "Denver Broncos",
+                  "away_abbr": "DEN",
+                  "matchup_score": 999,
+                  "channel": "CBS",
+                  "venue": "GEHA Field at Arrowhead Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {
+                        "home": {
+                          "line": -6.5,
+                          "price": -110
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "price": -260
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {
+                        "home": {
+                          "line": -6.5,
+                          "price": -108
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "price": -250
+                        }
+                      }
+                    }
+                  },
+                  "is_slot_pick": true
+                },
+                {
+                  "id": "999000303",
+                  "start_time": "2026-09-20T17:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Green Bay Packers",
+                  "home_abbr": "GB",
+                  "away_team": "Chicago Bears",
+                  "away_abbr": "CHI",
+                  "matchup_score": 999,
+                  "channel": "FOX",
+                  "venue": "Lambeau Field",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {
+                        "home": {
+                          "line": -3.0,
+                          "price": -112
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "price": -155
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {
+                        "home": {
+                          "line": -2.5,
+                          "price": -110
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "price": -150
+                        }
+                      }
+                    }
+                  },
+                  "is_slot_pick": false
+                }
+              ]
+            },
+            {
+              "slot": "Afternoon",
+              "best_matchup_score": 999,
+              "pick_reason": "closest_spread",
+              "regional_picks_omaha_lincoln": [
+                {
+                  "channel": "FOX",
+                  "matchup": "49ers @ Rams"
+                },
+                {
+                  "channel": "CBS",
+                  "matchup": "Cowboys @ Eagles"
+                }
+              ],
+              "games": [
+                {
+                  "id": "999000304",
+                  "start_time": "2026-09-20T20:05Z",
+                  "start_time_tbd": false,
+                  "home_team": "San Francisco 49ers",
+                  "home_abbr": "SF",
+                  "away_team": "Los Angeles Rams",
+                  "away_abbr": "LAR",
+                  "matchup_score": 999,
+                  "channel": "FOX",
+                  "venue": "Levi's Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {
+                        "home": {
+                          "line": -2.5,
+                          "price": -108
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "price": -138
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {
+                        "home": {
+                          "line": -2.5,
+                          "price": -112
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "price": -135
+                        }
+                      }
+                    }
+                  },
+                  "is_slot_pick": true
+                },
+                {
+                  "id": "999000305",
+                  "start_time": "2026-09-20T20:25Z",
+                  "start_time_tbd": false,
+                  "home_team": "Dallas Cowboys",
+                  "home_abbr": "DAL",
+                  "away_team": "Philadelphia Eagles",
+                  "away_abbr": "PHI",
+                  "matchup_score": 999,
+                  "channel": "CBS",
+                  "venue": "AT&T Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {
+                        "away": {
+                          "line": -1.5,
+                          "price": -110
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "price": -125
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {
+                        "away": {
+                          "line": -1.5,
+                          "price": -110
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "price": -120
+                        }
+                      }
+                    }
+                  },
+                  "is_slot_pick": false
+                }
+              ]
+            },
+            {
+              "slot": "Late Night",
+              "best_matchup_score": 999,
+              "pick_reason": "closest_spread",
+              "regional_picks_omaha_lincoln": [],
+              "games": [
+                {
+                  "id": "999000306",
+                  "start_time": "2026-09-21T00:20Z",
+                  "start_time_tbd": false,
+                  "home_team": "Seattle Seahawks",
+                  "home_abbr": "SEA",
+                  "away_team": "Arizona Cardinals",
+                  "away_abbr": "ARI",
+                  "matchup_score": 999,
+                  "channel": "NBC",
+                  "venue": "Lumen Field",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {
+                        "home": {
+                          "line": -4.0,
+                          "price": -110
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "price": -195
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {
+                        "home": {
+                          "line": -4.0,
+                          "price": -110
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "price": -190
+                        }
+                      }
                     }
                   },
                   "is_slot_pick": true
@@ -51,334 +325,58 @@
       ]
     },
     {
-      "week": 2,
-      "total_games": 16,
+      "week": 4,
+      "total_games": 2,
       "days": [
         {
-          "date": "2026-08-13",
-          "weekday": "Thursday",
-          "game_count": 6,
-          "time_slots": [
-            {
-              "slot": "Prime Time",
-              "best_matchup_score": null,
-              "pick_reason": "closest_spread",
-              "regional_picks_omaha_lincoln": [],
-              "games": [
-                {
-                  "id": "401873272",
-                  "start_time": "2026-08-13T23:00Z",
-                  "start_time_tbd": false,
-                  "home_team": "Cincinnati Bengals",
-                  "home_abbr": "CIN",
-                  "away_team": "Detroit Lions",
-                  "away_abbr": "DET",
-                  "matchup_score": 999,
-                  "channel": "TBD",
-                  "venue": "Paycor Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_slot_pick": true
-                },
-                {
-                  "id": "401873275",
-                  "start_time": "2026-08-13T23:00Z",
-                  "start_time_tbd": false,
-                  "home_team": "Pittsburgh Steelers",
-                  "home_abbr": "PIT",
-                  "away_team": "Green Bay Packers",
-                  "away_abbr": "GB",
-                  "matchup_score": 999,
-                  "channel": "NFL Net",
-                  "venue": "Acrisure Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_slot_pick": false
-                },
-                {
-                  "id": "401873273",
-                  "start_time": "2026-08-13T23:30Z",
-                  "start_time_tbd": false,
-                  "home_team": "New England Patriots",
-                  "home_abbr": "NE",
-                  "away_team": "Indianapolis Colts",
-                  "away_abbr": "IND",
-                  "matchup_score": 999,
-                  "channel": "TBD",
-                  "venue": "Gillette Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_slot_pick": false
-                },
-                {
-                  "id": "401873640",
-                  "start_time": "2026-08-14T00:00Z",
-                  "start_time_tbd": false,
-                  "home_team": "Las Vegas Raiders",
-                  "home_abbr": "LV",
-                  "away_team": "Arizona Cardinals",
-                  "away_abbr": "ARI",
-                  "matchup_score": 999,
-                  "channel": "ESPN Unlmtd",
-                  "venue": "Allegiant Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_slot_pick": false
-                },
-                {
-                  "id": "401873274",
-                  "start_time": "2026-08-14T00:00Z",
-                  "start_time_tbd": false,
-                  "home_team": "Houston Texans",
-                  "home_abbr": "HOU",
-                  "away_team": "Los Angeles Chargers",
-                  "away_abbr": "LAC",
-                  "matchup_score": 999,
-                  "channel": "TBD",
-                  "venue": "NRG Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_slot_pick": false
-                },
-                {
-                  "id": "401874392",
-                  "start_time": "2026-08-14T01:00Z",
-                  "start_time_tbd": false,
-                  "home_team": "San Francisco 49ers",
-                  "home_abbr": "SF",
-                  "away_team": "Tennessee Titans",
-                  "away_abbr": "TEN",
-                  "matchup_score": 999,
-                  "channel": "NFL Net",
-                  "venue": "Levi's Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_slot_pick": false
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "date": "2026-08-14",
-          "weekday": "Friday",
-          "game_count": 3,
-          "time_slots": [
-            {
-              "slot": "Prime Time",
-              "best_matchup_score": null,
-              "pick_reason": "closest_spread",
-              "regional_picks_omaha_lincoln": [],
-              "games": [
-                {
-                  "id": "401873278",
-                  "start_time": "2026-08-14T23:00Z",
-                  "start_time_tbd": false,
-                  "home_team": "Atlanta Falcons",
-                  "home_abbr": "ATL",
-                  "away_team": "Denver Broncos",
-                  "away_abbr": "DEN",
-                  "matchup_score": 999,
-                  "channel": "ESPN Unlmtd",
-                  "venue": "Mercedes-Benz Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_slot_pick": true
-                },
-                {
-                  "id": "401873276",
-                  "start_time": "2026-08-14T23:00Z",
-                  "start_time_tbd": false,
-                  "home_team": "New York Jets",
-                  "home_abbr": "NYJ",
-                  "away_team": "Tampa Bay Buccaneers",
-                  "away_abbr": "TB",
-                  "matchup_score": 999,
-                  "channel": "NFL Net",
-                  "venue": "MetLife Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_slot_pick": false
-                },
-                {
-                  "id": "401873277",
-                  "start_time": "2026-08-14T23:00Z",
-                  "start_time_tbd": false,
-                  "home_team": "Washington Commanders",
-                  "home_abbr": "WSH",
-                  "away_team": "Miami Dolphins",
-                  "away_abbr": "MIA",
-                  "matchup_score": 999,
-                  "channel": "TBD",
-                  "venue": "Northwest Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_slot_pick": false
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "date": "2026-08-15",
-          "weekday": "Saturday",
-          "game_count": 7,
+          "date": "2026-09-27",
+          "weekday": "Sunday",
+          "game_count": 2,
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": null,
+              "best_matchup_score": 999,
               "pick_reason": "closest_spread",
               "regional_picks_omaha_lincoln": [],
               "games": [
                 {
-                  "id": "401873282",
-                  "start_time": "2026-08-15T17:00Z",
-                  "start_time_tbd": false,
-                  "home_team": "Buffalo Bills",
-                  "home_abbr": "BUF",
-                  "away_team": "Carolina Panthers",
-                  "away_abbr": "CAR",
-                  "matchup_score": 999,
-                  "channel": "TBD",
-                  "venue": "Highmark Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_slot_pick": true
-                },
-                {
-                  "id": "401874393",
-                  "start_time": "2026-08-15T17:00Z",
-                  "start_time_tbd": false,
-                  "home_team": "Chicago Bears",
-                  "home_abbr": "CHI",
-                  "away_team": "Cleveland Browns",
-                  "away_abbr": "CLE",
-                  "matchup_score": 999,
-                  "channel": "NFL Net",
-                  "venue": "Soldier Field",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_slot_pick": false
-                },
-                {
-                  "id": "401873280",
-                  "start_time": "2026-08-15T17:00Z",
+                  "id": "999000401",
+                  "start_time": "2026-09-27T17:00Z",
                   "start_time_tbd": false,
                   "home_team": "New York Giants",
                   "home_abbr": "NYG",
-                  "away_team": "Minnesota Vikings",
-                  "away_abbr": "MIN",
+                  "away_team": "Washington Commanders",
+                  "away_abbr": "WAS",
                   "matchup_score": 999,
-                  "channel": "ESPN Unlmtd",
+                  "channel": "FOX",
                   "venue": "MetLife Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "away": {
+                          "line": -2.5,
+                          "price": -110
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "price": -135
+                        }
+                      }
                     },
                     "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "away": {
+                          "line": -2.0,
+                          "price": -112
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "price": -130
+                        }
+                      }
                     }
                   },
                   "is_slot_pick": false
@@ -387,113 +385,51 @@
             },
             {
               "slot": "Afternoon",
-              "best_matchup_score": null,
+              "best_matchup_score": 999,
               "pick_reason": "closest_spread",
               "regional_picks_omaha_lincoln": [],
               "games": [
                 {
-                  "id": "401873283",
-                  "start_time": "2026-08-15T20:00Z",
-                  "start_time_tbd": false,
-                  "home_team": "Kansas City Chiefs",
-                  "home_abbr": "KC",
-                  "away_team": "Los Angeles Rams",
-                  "away_abbr": "LAR",
-                  "matchup_score": 999,
-                  "channel": "NFL Net",
-                  "venue": "GEHA Field at Arrowhead Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_slot_pick": true
-                },
-                {
-                  "id": "401873281",
-                  "start_time": "2026-08-15T20:00Z",
-                  "start_time_tbd": false,
-                  "home_team": "New Orleans Saints",
-                  "home_abbr": "NO",
-                  "away_team": "Jacksonville Jaguars",
-                  "away_abbr": "JAX",
-                  "matchup_score": 999,
-                  "channel": "ESPN Unlmtd",
-                  "venue": "Caesars Superdome",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_slot_pick": false
-                }
-              ]
-            },
-            {
-              "slot": "Prime Time",
-              "best_matchup_score": null,
-              "pick_reason": "closest_spread",
-              "regional_picks_omaha_lincoln": [],
-              "games": [
-                {
-                  "id": "401873284",
-                  "start_time": "2026-08-15T23:00Z",
+                  "id": "999000402",
+                  "start_time": "2026-09-27T20:05Z",
                   "start_time_tbd": false,
                   "home_team": "Baltimore Ravens",
                   "home_abbr": "BAL",
-                  "away_team": "Philadelphia Eagles",
-                  "away_abbr": "PHI",
+                  "away_team": "Cincinnati Bengals",
+                  "away_abbr": "CIN",
                   "matchup_score": 999,
-                  "channel": "ESPN Unlmtd",
+                  "channel": "CBS",
                   "venue": "M&T Bank Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": -5.5,
+                          "price": -110
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "price": -230
+                        }
+                      }
                     },
                     "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": -5.5,
+                          "price": -110
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "price": -225
+                        }
+                      }
                     }
                   },
                   "is_slot_pick": true
-                },
-                {
-                  "id": "401873279",
-                  "start_time": "2026-08-16T00:00Z",
-                  "start_time_tbd": false,
-                  "home_team": "Seattle Seahawks",
-                  "home_abbr": "SEA",
-                  "away_team": "Dallas Cowboys",
-                  "away_abbr": "DAL",
-                  "matchup_score": 999,
-                  "channel": "NFL Net",
-                  "venue": "Lumen Field",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_slot_pick": false
                 }
               ]
             }
@@ -501,6 +437,5 @@
         }
       ]
     }
-  ],
-  "current_week": 1
+  ]
 }
