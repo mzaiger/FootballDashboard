@@ -231,7 +231,7 @@
   .slot-block{margin-bottom:1.75rem;}
   .slot-block:last-child{margin-bottom:0;}
   .slot-heading{
-    display:flex; align-items:baseline; gap:0.6rem;
+    display:flex; align-items:baseline; gap:0.6rem; flex-wrap:wrap;
     margin-bottom:0.7rem;
   }
   .slot-heading .slot-name{
@@ -243,6 +243,11 @@
     content:""; flex:1; height:1px; background:var(--line);
   }
   .slot-heading .slot-count{color:var(--dim); font-size:0.72rem;}
+  .slot-heading .slot-regional-link{
+    flex-basis:100%; font-size:0.68rem; color:var(--dim);
+  }
+  .slot-heading .slot-regional-link a{color:var(--turf-bright); text-decoration:none;}
+  .slot-heading .slot-regional-link a:hover{text-decoration:underline;}
 
   .regional-callout{
     background:rgba(67,148,193,0.08);
@@ -509,6 +514,7 @@
 const SPORT = 'nfl';
 const DATA_URL = 'data/nfl_dashboard.json';
 let SCORES = {};
+let CURRENT_SEASON = null;
 
 function fmtAmerican(n) {
   if (n === null || n === undefined || n === '') return null;
@@ -628,13 +634,26 @@ function renderRegionalCallout(picks) {
   </div>`;
 }
 
-function renderSlot(slot) {
+// Only Noon and Afternoon windows are ambiguous enough (multiple games,
+// different regional broadcasts) for 506sports.com's coverage map to be
+// worth linking -- Morning/Prime Time/Late Night are single-game windows
+// nationally, so there's nothing regional to look up.
+const REGIONAL_MAP_SLOTS = new Set(['Noon', 'Afternoon']);
+
+function regionalMapLink(weekNum) {
+  if (!CURRENT_SEASON || !weekNum) return '';
+  const url = `https://506sports.com/nfl.php?yr=${CURRENT_SEASON}&wk=${weekNum}`;
+  return ` <span class="slot-regional-link">(<a href="${url}" target="_blank" rel="noopener">Regional Coverage Map: ${url}</a>)</span>`;
+}
+
+function renderSlot(slot, weekNum) {
   return `
   <div class="slot-block">
     <div class="slot-heading">
       <span class="slot-icon">${SLOT_ICON[slot.slot] || ''}</span>
       <span class="slot-name">${slot.slot}</span>
       <span class="slot-count">${slot.games.length} game${slot.games.length === 1 ? '' : 's'}</span>
+      ${REGIONAL_MAP_SLOTS.has(slot.slot) ? regionalMapLink(weekNum) : ''}
     </div>
     ${renderRegionalCallout(slot.regional_picks_omaha_lincoln)}
     <div class="grid">
@@ -643,7 +662,7 @@ function renderSlot(slot) {
   </div>`;
 }
 
-function renderDay(day) {
+function renderDay(day, weekNum) {
   const d = new Date(day.date + 'T00:00:00');
   const dateStr = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
   return `
@@ -653,7 +672,7 @@ function renderDay(day) {
       <span class="date">${dateStr}</span>
       <span class="count">${day.game_count} game${day.game_count === 1 ? '' : 's'}</span>
     </div>
-    ${day.time_slots.map(renderSlot).join('')}
+    ${day.time_slots.map(slot => renderSlot(slot, weekNum)).join('')}
   </section>`;
 }
 
@@ -672,7 +691,7 @@ function renderWeek(week, seasonType) {
       <span class="week-name">${label}</span>
       <span class="week-count">${week.total_games} game${week.total_games === 1 ? '' : 's'}</span>
     </div>
-    ${week.days.map(renderDay).join('')}
+    ${week.days.map(day => renderDay(day, week.week)).join('')}
   </section>`;
 }
 
@@ -683,6 +702,7 @@ async function init() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     SCORES = await fetchScores('nfl');
+    CURRENT_SEASON = data.season;
 
     // nfl_dashboard.json now holds every week ever built; only show the
     // week the build itself resolved as current, plus the next one.
