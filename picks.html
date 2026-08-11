@@ -210,6 +210,40 @@
   }
   .meta-row b{color:var(--chalk); font-weight:600;}
 
+  .stat-badges{
+    display:flex; flex-wrap:wrap; gap:1.75rem;
+    margin-top:1.1rem; align-items:center;
+  }
+  .stat-badge{ display:flex; align-items:center; gap:0.85rem; }
+  .stat-circle{
+    width:84px; height:84px; border-radius:50%; flex:none;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    font-family:'Oswald',sans-serif;
+  }
+  .stat-circle .num{ font-size:1.7rem; font-weight:700; line-height:1; }
+  .stat-circle .sub{
+    font-size:0.55rem; font-weight:600; letter-spacing:0.06em;
+    text-transform:uppercase; opacity:0.85; margin-top:1px;
+  }
+  .stat-active-circle{
+    color:var(--pick-yellow);
+    border:3px solid var(--pick-yellow);
+    background:radial-gradient(circle at 32% 28%, rgba(255,214,10,0.28), rgba(255,214,10,0.04));
+    box-shadow:0 0 20px rgba(255,214,10,0.4), inset 0 0 14px rgba(255,214,10,0.18);
+  }
+  .stat-inactive-circle{
+    color:var(--dk-green);
+    border:3px solid var(--dk-green);
+    background:radial-gradient(circle at 32% 28%, rgba(83,211,55,0.28), rgba(83,211,55,0.04));
+    box-shadow:0 0 20px rgba(83,211,55,0.4), inset 0 0 14px rgba(83,211,55,0.18);
+  }
+  .stat-title{
+    font-family:'Oswald',sans-serif; font-weight:600;
+    font-size:0.95rem; color:var(--chalk); text-transform:uppercase;
+    letter-spacing:0.03em;
+  }
+  .stat-title span{ display:block; font-size:0.72rem; color:var(--dim); font-weight:500; margin-top:0.15rem; letter-spacing:0.01em; text-transform:none; }
+
   main{max-width:1180px;margin:0 auto; padding:0 1.5rem;}
 
   .sport-section{margin-top:2.25rem;}
@@ -454,10 +488,17 @@
   <div class="hero-inner">
     <div class="eyebrow">Your Board &middot; Saved Picks</div>
     <h1>My Picks</h1>
+    <div class="stat-badges">
+      <div class="stat-badge">
+        <div class="stat-circle stat-active-circle"><span class="num" id="activeNum">—</span></div>
+        <div class="stat-title">Active Picks<span>Awaiting a final result</span></div>
+      </div>
+      <div class="stat-badge">
+        <div class="stat-circle stat-inactive-circle"><span class="num" id="inactiveFrac">—/—</span><span class="sub">Correct</span></div>
+        <div class="stat-title">Inactive Picks<span>Games already graded</span></div>
+      </div>
+    </div>
     <div class="meta-row">
-      <span><b id="pickCount">—</b> active pick(s)</span>
-      <span><b id="pickCorrect">—</b> total picks correct</span>
-      <span><b id="pickIncorrect">—</b> total picks incorrect</span>
       <span>Plus Nebraska's game every week, picked or not</span>
     </div>
   </div>
@@ -686,25 +727,21 @@ function renderSection(sport, data, title, themeClass) {
 let cfbData = null;
 let nflData = null;
 
-function totalPickCount() {
-  return Object.keys(getAllPicks('cfb')).length + Object.keys(getAllPicks('nfl')).length;
-}
-
 function renderBoard() {
   const sectionsEl = document.getElementById('sections');
   const statusEl = document.getElementById('statusMsg');
-  document.getElementById('pickCount').textContent = totalPickCount();
 
-  // Correct/incorrect is computed against the full, unfiltered dashboards
-  // (every week ever built), comparing each cookie'd pick to data/scores.json
-  // -- so this total covers picks going all the way back, not just whatever
-  // weeks happen to still be in view.
+  // Computed against the full, unfiltered dashboards (every week ever
+  // built), comparing each cookie'd pick to data/scores.json -- so this
+  // covers picks going all the way back, not just whatever weeks happen
+  // to still be in view. "Active" = pick made but game not graded yet;
+  // "Inactive" = game graded, shown as correct/total.
   const record = computePickRecord(
     [{ sport: 'cfb', data: cfbData }, { sport: 'nfl', data: nflData }],
     SCORES
   );
-  document.getElementById('pickCorrect').textContent = record.correct;
-  document.getElementById('pickIncorrect').textContent = record.incorrect;
+  document.getElementById('activeNum').textContent = record.active;
+  document.getElementById('inactiveFrac').textContent = `${record.inactiveCorrect}/${record.inactiveTotal}`;
 
   const cfbFiltered = filterDataset('cfb', cfbData);
   const nflFiltered = filterDataset('nfl', nflData);
