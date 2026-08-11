@@ -216,11 +216,11 @@
   }
   .stat-badge{ display:flex; align-items:center; gap:0.85rem; }
   .stat-circle{
-    width:84px; height:84px; border-radius:50%; flex:none;
+    width:68px; height:68px; border-radius:50%; flex:none;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     font-family:'Oswald',sans-serif;
   }
-  .stat-circle .num{ font-size:1.7rem; font-weight:700; line-height:1; }
+  .stat-circle .num{ font-size:1.4rem; font-weight:700; line-height:1; }
   .stat-circle .sub{
     font-size:0.55rem; font-weight:600; letter-spacing:0.06em;
     text-transform:uppercase; opacity:0.85; margin-top:1px;
@@ -242,7 +242,7 @@
     font-size:0.95rem; color:var(--chalk); text-transform:uppercase;
     letter-spacing:0.03em;
   }
-  .stat-title span{ display:block; font-size:0.72rem; color:var(--dim); font-weight:500; margin-top:0.15rem; letter-spacing:0.01em; text-transform:none; }
+  .stat-title span{ display:block; font-size:0.72rem; color:var(--dim); font-weight:500; margin-top:0.15rem; letter-spacing:0.01em; text-transform:none; line-height:1.25; }
 
   main{max-width:1180px;margin:0 auto; padding:0 1.5rem;}
 
@@ -491,11 +491,11 @@
     <div class="stat-badges">
       <div class="stat-badge">
         <div class="stat-circle stat-active-circle"><span class="num" id="activeNum">—</span></div>
-        <div class="stat-title">Active Picks<span>Awaiting a final result</span></div>
+        <div class="stat-title">Active<span>Awaiting a<br>final result</span></div>
       </div>
       <div class="stat-badge">
         <div class="stat-circle stat-inactive-circle"><span class="num" id="inactiveFrac">—/—</span><span class="sub">Correct</span></div>
-        <div class="stat-title">Inactive Picks<span>Games already graded</span></div>
+        <div class="stat-title">Inactive<span>Games already<br>graded</span></div>
       </div>
     </div>
     <div class="meta-row">
