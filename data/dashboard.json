@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11T01:08:05.369448+00:00",
+  "generated_at": "2026-08-11T10:22:43.125038+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
@@ -745,22 +745,22 @@
                     "draftkings": {
                       "spread": {
                         "home": {
-                          "line": -6.0,
-                          "american": -110
+                          "line": -24.5,
+                          "american": -105
                         },
                         "away": {
-                          "line": 6.0,
-                          "american": -110
+                          "line": 24.5,
+                          "american": -115
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 195
+                          "american": -3600
                         },
                         "away": {
                           "line": null,
-                          "american": -238
+                          "american": 1500
                         }
                       }
                     },
@@ -772,12 +772,12 @@
                   "is_nebraska": false,
                   "gemini_prediction": {
                     "winner": "Oregon",
-                    "confidence": 75,
-                    "ats_pick": "Oregon -6",
-                    "ats_confidence": 68,
-                    "analysis": "Oregon enters this week one matchup with a vastly superior roster built through elite recruiting and the transfer portal. Boise State struggles defensively to contain high-powered passing attacks, which plays directly into Oregon's offensive strengths. The Ducks boast an explosive offensive scheme that will consistently exploit gaps in the secondary of the Broncos. Furthermore, Oregon's home-field advantage provides a significant boost that limits Boise State's offensive rhythm early in the game. Ultimately, the Ducks pull away in the second half to secure a decisive victory and cover the six-point spread.",
-                    "generated_at": "2026-08-10T08:52:33.471689+00:00",
-                    "odds_hash": "5a169ee8fafa2fc2",
+                    "confidence": 95,
+                    "ats_pick": "Boise State +24.5",
+                    "ats_confidence": 60,
+                    "analysis": "Oregon enters this week one matchup with a vastly superior roster and exceptional returning production from the 2025 campaign that translates into immediate 2026 dominance. Boise State struggles to match the sheer depth and elite speed of the Ducks' offense on the road. While Oregon will secure a comfortable victory to start their season, a 24.5-point spread remains a massive margin to cover in an early September game. The Broncos possess enough offensive firepower to keep the final score within three touchdowns and backdoor a cover. Ultimately, Oregon wins the game outright, but Boise State successfully beats the heavy number.",
+                    "generated_at": "2026-08-11T10:22:42.275302+00:00",
+                    "odds_hash": "4fea0c207d79a968",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true

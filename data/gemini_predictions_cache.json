@@ -378,5 +378,15 @@
     "generated_at": "2026-08-11T01:08:04.808507+00:00",
     "odds_hash": "979ff9c64d116342",
     "model": "gemini-3.5-flash-lite"
+  },
+  "4fea0c207d79a968": {
+    "winner": "Oregon",
+    "confidence": 95,
+    "ats_pick": "Boise State +24.5",
+    "ats_confidence": 60,
+    "analysis": "Oregon enters this week one matchup with a vastly superior roster and exceptional returning production from the 2025 campaign that translates into immediate 2026 dominance. Boise State struggles to match the sheer depth and elite speed of the Ducks' offense on the road. While Oregon will secure a comfortable victory to start their season, a 24.5-point spread remains a massive margin to cover in an early September game. The Broncos possess enough offensive firepower to keep the final score within three touchdowns and backdoor a cover. Ultimately, Oregon wins the game outright, but Boise State successfully beats the heavy number.",
+    "generated_at": "2026-08-11T10:22:42.275302+00:00",
+    "odds_hash": "4fea0c207d79a968",
+    "model": "gemini-3.5-flash-lite"
   }
 }
