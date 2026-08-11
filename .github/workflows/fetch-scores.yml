@@ -31,8 +31,6 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Fetch scores.json
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python scripts/fetch_scores.py
 
       - name: Commit updated scores
