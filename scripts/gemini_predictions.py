@@ -217,6 +217,10 @@ Using ONLY statistics, injuries, roster status, and performance from the
 3. A confidence score from 1-100 for the outright winner pick.
 4. A confidence score from 0-100 for the ATS pick.
 5. A five-sentence explanation of the reasoning.
+6. What percentage of bets (or bet count) is going to each side of the
+   spread and each side of the moneyline, and which direction the spread
+   and moneyline have moved from their opening numbers -- in exactly two
+   sentences.
 
 Ignore previous seasons, franchise history, and reputation -- current-season
 data only.
@@ -227,12 +231,18 @@ Return ONLY a valid JSON object with exactly these keys:
 - "ats_pick": string or null
 - "ats_confidence": integer 0-100
 - "analysis": string with exactly five sentences
+- "splits_and_direction": string with exactly two sentences covering the
+  spread/moneyline betting percentage splits between the two teams and
+  which direction each line has moved
 
 If no spread is posted, set "ats_pick" to JSON null and "ats_confidence" to 0.
 Do not put the word "null" in quotes.
+If betting-splits data is not available to you, give your best estimate
+based on the odds and public tendencies and say so briefly rather than
+leaving the field empty.
 
 Example shape:
-{{"winner": "Team A", "confidence": 72, "ats_pick": "Team B +3.5", "ats_confidence": 64, "analysis": "Sentence one. Sentence two. Sentence three. Sentence four. Sentence five."}}"""
+{{"winner": "Team A", "confidence": 72, "ats_pick": "Team B +3.5", "ats_confidence": 64, "analysis": "Sentence one. Sentence two. Sentence three. Sentence four. Sentence five.", "splits_and_direction": "Sentence one about the split. Sentence two about line direction."}}"""
 
 
 #---------------------------------------------------------------------------
@@ -282,6 +292,12 @@ def _normalize_prediction(raw):
         ats_confidence = max(1, min(100, _as_int(raw.get("ats_confidence"), 50)))
 
     analysis = str(raw.get("analysis", "")).strip()
+    splits_and_direction = str(raw.get("splits_and_direction", "")).strip()
+
+    display_parts = [f"Summary: {analysis}"]
+    if splits_and_direction:
+        display_parts.append(f"Splits and Direction: {splits_and_direction}")
+    display_text = "\n\n".join(display_parts)
 
     return {
         "winner": winner,
@@ -289,6 +305,8 @@ def _normalize_prediction(raw):
         "ats_pick": ats_pick,
         "ats_confidence": ats_confidence,
         "analysis": analysis,
+        "splits_and_direction": splits_and_direction,
+        "display_text": display_text,
     }
 
 
