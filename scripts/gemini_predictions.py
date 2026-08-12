@@ -28,6 +28,11 @@ hash of (model, sport, season, week, matchup, DK odds, FD odds). If none
 of those change between runs, the cached prediction is reused and no API
 call is made.
 
+On Thursdays (UTC), the cache is ignored entirely and every game with a
+posted line gets a fresh call, regardless of whether its odds hash
+matches an existing cache entry. Any other day, caching works as
+described above.
+
 Env var required: GEMINI_KEY.
 If missing, predictions are skipped entirely.
 """
@@ -427,6 +432,11 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key):
         log("No GEMINI_KEY set -- skipping Gemini predictions.")
         return
 
+    # Thursday: always refresh, ignoring the cache entirely. Every other
+    # day of the week, behave as before -- reuse a cached prediction
+    # whenever the odds hash hasn't changed.
+    force_refresh = datetime.now(timezone.utc).weekday() == 3  # Mon=0 ... Thu=3
+
     cache = _load_cache()
     to_call = []
 
@@ -444,7 +454,7 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key):
         h = _odds_hash(sport, season, week, g["away_team"], g["home_team"], odds)
         cached = cache.get(h)
 
-        if cached:
+        if cached and not force_refresh:
             g["gemini_prediction"] = cached
             continue
 
@@ -454,6 +464,9 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key):
     if not to_call:
         log("Gemini predictions: nothing new to call (all cached, or no odds posted yet).")
         return
+
+    if force_refresh:
+        log("Gemini predictions: today is Thursday -- forcing a refresh for all games with posted odds, cache or not.")
 
     log(
         f"Gemini predictions: calling for {len(to_call)} game(s) with new/changed odds "
