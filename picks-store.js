@@ -373,7 +373,7 @@ function renderGeminiBlock(g) {
     ${p.ats_pick ? `<div class="gemini-panel-row"><span>ATS Pick</span> <span class="gemini-value">${p.ats_pick}</span></div>` : ''}
     <div class="gemini-panel-row"><span>Confidence</span> <span class="gemini-value">${conf}</span></div>
     ${p.ats_pick ? `<div class="gemini-panel-row"><span>ATS Confidence</span> <span class="gemini-value">${atsConf}</span></div>` : ''}
-    <p class="gemini-analysis"><strong>Summary:</strong> ${p.analysis || ''}</p>
+    <p class="gemini-analysis"><strong>Analysis:</strong> ${p.analysis || ''}</p>
     ${splits ? `<p class="gemini-analysis"><strong>Splits and Direction:</strong> ${splits}</p>` : ''}
   </div>`;
 }
