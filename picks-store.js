@@ -348,6 +348,15 @@ function renderGeminiBlock(g) {
                : p.confidence;
   const atsConf = fmt(atsRaw);
 
+  // Splits and Direction: dedicated field from newer cache entries, with a
+  // fallback that pulls it out of display_text for any older cached
+  // predictions that predate this field.
+  let splits = p.splits_and_direction || '';
+  if (!splits && p.display_text) {
+    const match = p.display_text.match(/Splits and Direction:\s*([\s\S]*)/i);
+    if (match) splits = match[1].trim();
+  }
+
   return `<button type="button" class="gemini-toggle" aria-expanded="false">
     <span class="gemini-toggle-icon">&#10024;</span>
     <span class="gemini-toggle-main">Gemini Prediction Summary</span>
@@ -364,7 +373,8 @@ function renderGeminiBlock(g) {
     ${p.ats_pick ? `<div class="gemini-panel-row"><span>ATS Pick</span> <span class="gemini-value">${p.ats_pick}</span></div>` : ''}
     <div class="gemini-panel-row"><span>Confidence</span> <span class="gemini-value">${conf}</span></div>
     ${p.ats_pick ? `<div class="gemini-panel-row"><span>ATS Confidence</span> <span class="gemini-value">${atsConf}</span></div>` : ''}
-    <p class="gemini-analysis">${p.analysis || ''}</p>
+    <p class="gemini-analysis"><strong>Summary:</strong> ${p.analysis || ''}</p>
+    ${splits ? `<p class="gemini-analysis"><strong>Splits and Direction:</strong> ${splits}</p>` : ''}
   </div>`;
 }
 
