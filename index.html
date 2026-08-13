@@ -479,7 +479,7 @@
 
 <footer>
   Matchup rank = combined AP Top 25 rank of both teams (lower is more marquee, unranked teams score 26).
-  &#11088; Time Slot Most Watchable Game = 50% combined AP rank (unranked teams count as 50) + 50% closest posted spread, blended within that time window. Nebraska overrides everything whenever it's playing in that window.
+  &#11088; Time Slot Best Matchup = 50% combined AP rank (unranked teams count as 50) + 50% closest posted spread, blended within that time window. Nebraska overrides everything whenever it's playing in that window.
   Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule &amp; rankings via CollegeFootballData.com.
   &#10024; Gemini Prediction Summary is AI-generated from current-season stats and posted odds -- informational only, not betting advice.
 </footer>
@@ -575,9 +575,9 @@ function renderGame(g) {
 
   return `
   <div class="card ${marquee ? 'marquee' : ''} ${isPick ? 'slot-pick' : ''}">
-    ${isPick ? '<div class="pick-banner">\u2b50 Time Slot Most Watchable Game</div>' : ''}
+    ${isPick ? '<div class="pick-banner">\u2b50 Time Slot Best Matchup</div>' : ''}
     <div class="card-top">
-      <span class="score-badge">Pick Rank ${g.matchup_score}</span>
+      <span class="score-badge">Matchup Score ${g.matchup_score}</span>
       <span class="channel-pill">${g.channel}</span>
     </div>
     <div class="matchup">

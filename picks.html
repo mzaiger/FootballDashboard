@@ -647,9 +647,9 @@ function renderGame(sport, g) {
       </table>`
     : `<div class="no-odds">Odds not yet posted</div>`;
 
-  const scoreLabel = sport === 'cfb'
-    ? `Rank Sum ${g.matchup_score}`
-    : ((g.matchup_score === null || g.matchup_score === undefined) ? 'Spread TBD' : `Spread ${g.matchup_score}`);
+  const scoreLabel = (g.matchup_score === null || g.matchup_score === undefined)
+    ? 'Matchup Score TBD'
+    : `Matchup Score ${g.matchup_score}`;
 
   const awayLabel = sport === 'cfb' ? `${rankBadge(g.away_rank)}${g.away_team}` : g.away_team;
   const homeLabel = sport === 'cfb' ? `${rankBadge(g.home_rank)}${g.home_team}` : g.home_team;
@@ -658,7 +658,7 @@ function renderGame(sport, g) {
 
   return `
   <div class="card ${cardClasses}">
-    ${isSlotPick ? '<div class="pick-banner">\u2b50 Time Slot Most Watchable Game</div>' : ''}
+    ${isSlotPick ? '<div class="pick-banner">\u2b50 Time Slot Best Matchup</div>' : ''}
     <div class="card-top">
       <span class="score-badge">${scoreLabel}</span>
       <span class="channel-pill">${g.channel}</span>
