@@ -6,6 +6,10 @@ on:
     - cron: "0 10 * * *"
   workflow_dispatch: {}  # lets you trigger a manual run from the Actions tab
 
+concurrency:
+  group: shared-repo-lock
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
