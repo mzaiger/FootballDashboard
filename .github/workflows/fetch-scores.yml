@@ -12,6 +12,10 @@ on:
     #   { "event_type": "trigger-scores-pull" }
     types: [trigger-scores-pull]
 
+concurrency:
+  group: shared-repo-lock
+  cancel-in-progress: false    
+
 permissions:
   contents: write
 
