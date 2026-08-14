@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T23:54:49.483685+00:00",
+  "generated_at": "2026-08-14T00:05:57.275340+00:00",
   "cfb": {},
   "nfl": {
     "401873271": {
@@ -9,22 +9,28 @@
       "status_detail": "Final"
     },
     "401873272": {
-      "home_score": 3,
+      "home_score": 10,
       "away_score": 0,
       "status": "in_progress",
-      "status_detail": "10:37 - 2nd"
+      "status_detail": "7:32 - 2nd"
     },
     "401873275": {
       "home_score": 0,
       "away_score": 3,
       "status": "in_progress",
-      "status_detail": "11:30 - 2nd"
+      "status_detail": "7:45 - 2nd"
     },
     "401873273": {
       "home_score": 3,
       "away_score": 0,
       "status": "in_progress",
-      "status_detail": "8:33 - 1st"
+      "status_detail": "5:59 - 1st"
+    },
+    "401873640": {
+      "home_score": 0,
+      "away_score": 0,
+      "status": "in_progress",
+      "status_detail": "15:00 - 1st"
     }
   }
 }
