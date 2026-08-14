@@ -362,15 +362,15 @@ function renderGeminiBlock(g) {
     <span class="gemini-toggle-main">Gemini Prediction Summary</span>
     <span class="gemini-toggle-trailing">
       <span class="gemini-picks-summary">
-        <span class="gemini-toggle-winner">Pick: ${p.winner || 'TBD'} (${conf})</span>
-        ${p.ats_pick ? `<span class="gemini-toggle-ats">ATS Pick: ${p.ats_pick} (${atsConf})</span>` : ''}
+        <span class="gemini-toggle-winner">ML: ${p.winner || 'TBD'} (${conf})</span>
+        ${p.ats_pick ? `<span class="gemini-toggle-ats">ATS: ${p.ats_pick} (${atsConf})</span>` : ''}
       </span>
       <span class="gemini-caret">▾</span>
     </span>
   </button>
   <div class="gemini-panel" hidden>
     <div class="gemini-panel-row"><span>Winner</span> <span class="gemini-value">${p.winner || '—'}</span></div>
-    ${p.ats_pick ? `<div class="gemini-panel-row"><span>ATS Pick</span> <span class="gemini-value">${p.ats_pick}</span></div>` : ''}
+    ${p.ats_pick ? `<div class="gemini-panel-row"><span>ATS</span> <span class="gemini-value">${p.ats_pick}</span></div>` : ''}
     <div class="gemini-panel-row"><span>Confidence</span> <span class="gemini-value">${conf}</span></div>
     ${p.ats_pick ? `<div class="gemini-panel-row"><span>ATS Confidence</span> <span class="gemini-value">${atsConf}</span></div>` : ''}
     <p class="gemini-analysis"><strong>Analysis:</strong> ${p.analysis || ''}</p>
