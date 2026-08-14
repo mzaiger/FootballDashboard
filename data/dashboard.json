@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T11:20:46.769482+00:00",
+  "generated_at": "2026-08-14T10:56:33.657386+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
@@ -45,21 +45,21 @@
                       "spread": {
                         "home": {
                           "line": -7.5,
-                          "american": -108
+                          "american": -118
                         },
                         "away": {
                           "line": 7.5,
-                          "american": -112
+                          "american": -102
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -305
+                          "american": -325
                         },
                         "away": {
                           "line": null,
-                          "american": 245
+                          "american": 260
                         }
                       }
                     },
@@ -73,12 +73,12 @@
                     "winner": "TCU",
                     "confidence": 76,
                     "ats_pick": "TCU -7.5",
-                    "ats_confidence": 70,
-                    "analysis": "TCU enters this week 1 matchup with superior offensive efficiency and returning playmakers from the 2025 campaign. North Carolina's defense struggles to generate consistent pressure, which allows the Horned Frogs to control the tempo through the ground game. The Tar Heels' passing attack shows flashes of explosiveness, but turnovers continue to stall crucial drives. Playing at home gives TCU a distinct advantage in crowd noise and execution during high-leverage situations. Ultimately, the Horned Frogs pull away in the second half to secure a double-digit victory.",
-                    "splits_and_direction": "Based on early public tendencies, roughly 68 percent of spread bets are backing TCU to cover the 7.5-point margin at home. The spread and moneyline have remained stable since opening due to balanced sharp action matching the public sentiment.",
-                    "display_text": "Summary: TCU enters this week 1 matchup with superior offensive efficiency and returning playmakers from the 2025 campaign. North Carolina's defense struggles to generate consistent pressure, which allows the Horned Frogs to control the tempo through the ground game. The Tar Heels' passing attack shows flashes of explosiveness, but turnovers continue to stall crucial drives. Playing at home gives TCU a distinct advantage in crowd noise and execution during high-leverage situations. Ultimately, the Horned Frogs pull away in the second half to secure a double-digit victory.\n\nSplits and Direction: Based on early public tendencies, roughly 68 percent of spread bets are backing TCU to cover the 7.5-point margin at home. The spread and moneyline have remained stable since opening due to balanced sharp action matching the public sentiment.",
-                    "generated_at": "2026-08-13T11:12:45.767248+00:00",
-                    "odds_hash": "a2911eeb07732440",
+                    "ats_confidence": 68,
+                    "analysis": "TCU enters this week 1 matchup with superior returning production and stronger offensive scheme execution from the opening whistle. North Carolina struggles defensively to contain dual-threat quarterbacks, which directly plays into TCU's primary offensive strengths. The Horned Frogs establish an early rhythm on the ground, wearing down the Tar Heels' front seven as the game progresses. North Carolina lacks the consistent secondary depth required to slow down TCU's explosive receiving corps over four quarters. Consequently, the home team comfortably pulls away in the second half to secure a decisive victory.",
+                    "splits_and_direction": "Based on standard public betting tendencies without official market data, approximately 62 percent of spread bets and 70 percent of moneyline wagers are backing the favored Horned Frogs at home. Both the point spread and moneyline have remained stable since opening with no notable line movement observed yet.",
+                    "display_text": "Summary: TCU enters this week 1 matchup with superior returning production and stronger offensive scheme execution from the opening whistle. North Carolina struggles defensively to contain dual-threat quarterbacks, which directly plays into TCU's primary offensive strengths. The Horned Frogs establish an early rhythm on the ground, wearing down the Tar Heels' front seven as the game progresses. North Carolina lacks the consistent secondary depth required to slow down TCU's explosive receiving corps over four quarters. Consequently, the home team comfortably pulls away in the second half to secure a decisive victory.\n\nSplits and Direction: Based on standard public betting tendencies without official market data, approximately 62 percent of spread bets and 70 percent of moneyline wagers are backing the favored Horned Frogs at home. Both the point spread and moneyline have remained stable since opening with no notable line movement observed yet.",
+                    "generated_at": "2026-08-14T10:56:22.675736+00:00",
+                    "odds_hash": "3c92f20f824fd4b6",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -476,22 +476,22 @@
                     "draftkings": {
                       "spread": {
                         "home": {
-                          "line": -11.5,
+                          "line": -10.5,
                           "american": -105
                         },
                         "away": {
-                          "line": 11.5,
+                          "line": 10.5,
                           "american": -115
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -440
+                          "american": -410
                         },
                         "away": {
                           "line": null,
-                          "american": 340
+                          "american": 320
                         }
                       }
                     },
@@ -503,14 +503,14 @@
                   "is_nebraska": false,
                   "gemini_prediction": {
                     "winner": "Michigan State",
-                    "confidence": 76,
-                    "ats_pick": "Toledo +11.5",
-                    "ats_confidence": 62,
-                    "analysis": "Michigan State enters the 2026 campaign with a revamped roster boasting superior depth and high-end talent in the trenches. Toledo counters with a remarkably cohesive unit that excels at methodical offensive drives and limiting turnovers. While the Spartans possess the overall talent advantage to control the line of scrimmage, the Rockets will keep the chains moving via an efficient short-passing attack. This enables Toledo to stay within striking distance and exploit any early-season rust from the home side. Ultimately, Michigan State secures the outright victory, but Toledo does enough to cover the double-digit spread.",
-                    "splits_and_direction": "Given the lack of official live ticket data for this early posting, it is estimated that roughly 68% of the public bets are backing Michigan State to cover, while the moneyline action remains heavily tilted toward the favorite at 75%. Both the spread and moneyline have held steady at their opening numbers due to balanced early-week action across major books.",
-                    "display_text": "Summary: Michigan State enters the 2026 campaign with a revamped roster boasting superior depth and high-end talent in the trenches. Toledo counters with a remarkably cohesive unit that excels at methodical offensive drives and limiting turnovers. While the Spartans possess the overall talent advantage to control the line of scrimmage, the Rockets will keep the chains moving via an efficient short-passing attack. This enables Toledo to stay within striking distance and exploit any early-season rust from the home side. Ultimately, Michigan State secures the outright victory, but Toledo does enough to cover the double-digit spread.\n\nSplits and Direction: Given the lack of official live ticket data for this early posting, it is estimated that roughly 68% of the public bets are backing Michigan State to cover, while the moneyline action remains heavily tilted toward the favorite at 75%. Both the spread and moneyline have held steady at their opening numbers due to balanced early-week action across major books.",
-                    "generated_at": "2026-08-13T11:16:07.314928+00:00",
-                    "odds_hash": "e18cef9b7b8cf7ab",
+                    "confidence": 78,
+                    "ats_pick": "Michigan State -10.5",
+                    "ats_confidence": 65,
+                    "analysis": "Michigan State enters the 2026 college football season opener with a distinct roster talent advantage over Toledo. The Spartans' newly retooled offensive scheme showed explosive efficiency during early fall practices, particularly in the passing game. Toledo will struggle to generate consistent pressure against a stout, experienced Michigan State offensive line that controls the line of scrimmage. Defensively, the Spartans possess the speed on the perimeter to limit Toledo's big-play capability and force timely turnovers. Ultimately, home-field advantage and superior depth will allow Michigan State to pull away in the second half and cover the double-digit spread.",
+                    "splits_and_direction": "Approximately 68 percent of public bets are currently backing Michigan State to cover the 10.5-point spread, while heavy moneyline action remains firmly on the favored Spartans. Due to the early influx of public support on the home team, the spread has ticked upward from its opening number of -9.5 to -10.5.",
+                    "display_text": "Summary: Michigan State enters the 2026 college football season opener with a distinct roster talent advantage over Toledo. The Spartans' newly retooled offensive scheme showed explosive efficiency during early fall practices, particularly in the passing game. Toledo will struggle to generate consistent pressure against a stout, experienced Michigan State offensive line that controls the line of scrimmage. Defensively, the Spartans possess the speed on the perimeter to limit Toledo's big-play capability and force timely turnovers. Ultimately, home-field advantage and superior depth will allow Michigan State to pull away in the second half and cover the double-digit spread.\n\nSplits and Direction: Approximately 68 percent of public bets are currently backing Michigan State to cover the 10.5-point spread, while heavy moneyline action remains firmly on the favored Spartans. Due to the early influx of public support on the home team, the spread has ticked upward from its opening number of -9.5 to -10.5.",
+                    "generated_at": "2026-08-14T10:56:32.628344+00:00",
+                    "odds_hash": "399660945252cbeb",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false

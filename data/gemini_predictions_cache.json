@@ -430,5 +430,29 @@
     "generated_at": "2026-08-13T11:18:10.522800+00:00",
     "odds_hash": "d89f9ebf9137789e",
     "model": "gemini-3.5-flash-lite"
+  },
+  "3c92f20f824fd4b6": {
+    "winner": "TCU",
+    "confidence": 76,
+    "ats_pick": "TCU -7.5",
+    "ats_confidence": 68,
+    "analysis": "TCU enters this week 1 matchup with superior returning production and stronger offensive scheme execution from the opening whistle. North Carolina struggles defensively to contain dual-threat quarterbacks, which directly plays into TCU's primary offensive strengths. The Horned Frogs establish an early rhythm on the ground, wearing down the Tar Heels' front seven as the game progresses. North Carolina lacks the consistent secondary depth required to slow down TCU's explosive receiving corps over four quarters. Consequently, the home team comfortably pulls away in the second half to secure a decisive victory.",
+    "splits_and_direction": "Based on standard public betting tendencies without official market data, approximately 62 percent of spread bets and 70 percent of moneyline wagers are backing the favored Horned Frogs at home. Both the point spread and moneyline have remained stable since opening with no notable line movement observed yet.",
+    "display_text": "Summary: TCU enters this week 1 matchup with superior returning production and stronger offensive scheme execution from the opening whistle. North Carolina struggles defensively to contain dual-threat quarterbacks, which directly plays into TCU's primary offensive strengths. The Horned Frogs establish an early rhythm on the ground, wearing down the Tar Heels' front seven as the game progresses. North Carolina lacks the consistent secondary depth required to slow down TCU's explosive receiving corps over four quarters. Consequently, the home team comfortably pulls away in the second half to secure a decisive victory.\n\nSplits and Direction: Based on standard public betting tendencies without official market data, approximately 62 percent of spread bets and 70 percent of moneyline wagers are backing the favored Horned Frogs at home. Both the point spread and moneyline have remained stable since opening with no notable line movement observed yet.",
+    "generated_at": "2026-08-14T10:56:22.675736+00:00",
+    "odds_hash": "3c92f20f824fd4b6",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "399660945252cbeb": {
+    "winner": "Michigan State",
+    "confidence": 78,
+    "ats_pick": "Michigan State -10.5",
+    "ats_confidence": 65,
+    "analysis": "Michigan State enters the 2026 college football season opener with a distinct roster talent advantage over Toledo. The Spartans' newly retooled offensive scheme showed explosive efficiency during early fall practices, particularly in the passing game. Toledo will struggle to generate consistent pressure against a stout, experienced Michigan State offensive line that controls the line of scrimmage. Defensively, the Spartans possess the speed on the perimeter to limit Toledo's big-play capability and force timely turnovers. Ultimately, home-field advantage and superior depth will allow Michigan State to pull away in the second half and cover the double-digit spread.",
+    "splits_and_direction": "Approximately 68 percent of public bets are currently backing Michigan State to cover the 10.5-point spread, while heavy moneyline action remains firmly on the favored Spartans. Due to the early influx of public support on the home team, the spread has ticked upward from its opening number of -9.5 to -10.5.",
+    "display_text": "Summary: Michigan State enters the 2026 college football season opener with a distinct roster talent advantage over Toledo. The Spartans' newly retooled offensive scheme showed explosive efficiency during early fall practices, particularly in the passing game. Toledo will struggle to generate consistent pressure against a stout, experienced Michigan State offensive line that controls the line of scrimmage. Defensively, the Spartans possess the speed on the perimeter to limit Toledo's big-play capability and force timely turnovers. Ultimately, home-field advantage and superior depth will allow Michigan State to pull away in the second half and cover the double-digit spread.\n\nSplits and Direction: Approximately 68 percent of public bets are currently backing Michigan State to cover the 10.5-point spread, while heavy moneyline action remains firmly on the favored Spartans. Due to the early influx of public support on the home team, the spread has ticked upward from its opening number of -9.5 to -10.5.",
+    "generated_at": "2026-08-14T10:56:32.628344+00:00",
+    "odds_hash": "399660945252cbeb",
+    "model": "gemini-3.5-flash-lite"
   }
 }

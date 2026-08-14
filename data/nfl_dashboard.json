@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T11:20:48.566612+00:00",
+  "generated_at": "2026-08-14T10:56:35.313791+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -74,7 +74,7 @@
                   "away_team": "Detroit Lions",
                   "away_abbr": "DET",
                   "matchup_score": 999,
-                  "channel": "TBD",
+                  "channel": "Bengals Preseason TV Network/Lions TV Network",
                   "venue": "Paycor Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -122,7 +122,7 @@
                   "away_team": "Indianapolis Colts",
                   "away_abbr": "IND",
                   "matchup_score": 999,
-                  "channel": "TBD",
+                  "channel": "Patriots Preseason Network/FOX59",
                   "venue": "Gillette Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -170,7 +170,7 @@
                   "away_team": "Los Angeles Chargers",
                   "away_abbr": "LAC",
                   "matchup_score": 999,
-                  "channel": "TBD",
+                  "channel": "KTRK (ABC)/CBS2",
                   "venue": "NRG Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -281,7 +281,7 @@
                   "away_team": "Miami Dolphins",
                   "away_abbr": "MIA",
                   "matchup_score": 999,
-                  "channel": "TBD",
+                  "channel": "WUSA9/CBS Miami",
                   "venue": "Northwest Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -320,7 +320,7 @@
                   "away_team": "Carolina Panthers",
                   "away_abbr": "CAR",
                   "matchup_score": 999,
-                  "channel": "TBD",
+                  "channel": "WIVB/WSOC-TV Channel 9",
                   "venue": "Highmark Stadium",
                   "neutral_site": false,
                   "odds": {
