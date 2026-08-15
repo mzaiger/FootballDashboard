@@ -115,10 +115,13 @@ def build_record_lookup(records_payload):
     lookup = {}
     for entry in records_payload:
         team = entry.get("team")
-        total = entry.get("total", {}) or {}
-        wins, losses, ties = total.get("wins"), total.get("losses"), total.get("ties")
-        if not team or wins is None or losses is None:
+        if not team:
             continue
+        total = entry.get("total", {}) or {}
+        wins = total.get("wins") if total.get("wins") is not None else 0
+        losses = total.get("losses") if total.get("losses") is not None else 0
+        ties = total.get("ties") or 0
+
         lookup[team] = f"{wins}-{losses}-{ties}" if ties else f"{wins}-{losses}"
     return lookup
 
@@ -330,11 +333,11 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, ranki
             "home_team": home_team,
             "home_conference": g.get("homeConference"),
             "home_rank": home_rank,
-            "home_record": record_lookup.get(home_team),
+            "home_record": record_lookup.get(home_team, "0-0"),
             "away_team": away_team,
             "away_conference": g.get("awayConference"),
             "away_rank": away_rank,
-            "away_record": record_lookup.get(away_team),
+            "away_record": record_lookup.get(away_team, "0-0"),
             "matchup_score": matchup_score(home_rank, away_rank),
             "channel": outlet or "Not on Main TV",
             "venue": g.get("venue"),
