@@ -343,6 +343,11 @@
   }
   .matchup::-webkit-scrollbar{display:none;}
   .team{display:inline-flex; align-items:center; gap:0.4rem;}
+  .team-name-wrap{display:inline-flex; flex-direction:column; align-items:flex-start; line-height:1.2;}
+  .team-record{
+    font-family:'JetBrains Mono',monospace; font-weight:500; font-size:0.62rem;
+    letter-spacing:0.02em; color:var(--dim);
+  }
   .at{color:var(--dim); font-size:0.72rem; font-family:'JetBrains Mono',monospace; flex-shrink:0;}
 
   @media (max-width: 480px){
@@ -570,6 +575,11 @@ function rankBadge(rank) {
   return rank ? `<span class="rank">#${rank}</span> ` : '';
 }
 
+function teamNameBlock(name, record) {
+  const recordHtml = record ? `<span class="team-record">${record}</span>` : '';
+  return `<span class="team-name-wrap"><span class="team-name">${name}</span>${recordHtml}</span>`;
+}
+
 function kickoffTime(iso, tbd) {
   if (tbd) return 'Time TBD';
   try {
@@ -653,8 +663,12 @@ function renderGame(sport, g) {
     ? 'Matchup Score TBD'
     : `Matchup Score ${g.matchup_score}`;
 
-  const awayLabel = sport === 'cfb' ? `${rankBadge(g.away_rank)}${g.away_team}` : g.away_team;
-  const homeLabel = sport === 'cfb' ? `${rankBadge(g.home_rank)}${g.home_team}` : g.home_team;
+  const awayLabel = sport === 'cfb'
+    ? `${rankBadge(g.away_rank)}${teamNameBlock(g.away_team, g.away_record)}`
+    : teamNameBlock(g.away_team, g.away_record);
+  const homeLabel = sport === 'cfb'
+    ? `${rankBadge(g.home_rank)}${teamNameBlock(g.home_team, g.home_record)}`
+    : teamNameBlock(g.home_team, g.home_record);
 
   const cardClasses = isSlotPick ? 'your-pick slot-banner' : '';
 

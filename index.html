@@ -175,6 +175,11 @@
   }
   .matchup::-webkit-scrollbar{display:none;}
   .team{display:inline-flex; align-items:center; gap:0.4rem;}
+  .team-name-wrap{display:inline-flex; flex-direction:column; align-items:flex-start; line-height:1.2;}
+  .team-record{
+    font-family:'JetBrains Mono',monospace; font-weight:500; font-size:0.62rem;
+    letter-spacing:0.02em; color:var(--dim);
+  }
   .rank{
     font-size:0.68rem; color:var(--gold); border:1px solid rgba(224,166,60,0.4);
     border-radius:4px; padding:0.05rem 0.3rem; min-width:1.6rem; text-align:center;
@@ -312,8 +317,9 @@
   }
   .site-nav{
     max-width:1180px; margin:0 auto; padding:0.9rem 1.5rem;
-    display:flex; gap:1.25rem; align-items:center;
+    display:flex; flex-wrap:wrap; gap:1.25rem; align-items:center;
   }
+  .nav-links{display:flex; gap:1.25rem; align-items:center; order:1;}
   .site-nav a{
     font-family:'Oswald',sans-serif; font-weight:600; font-size:0.82rem;
     text-transform:uppercase; letter-spacing:0.04em;
@@ -322,10 +328,10 @@
   }
   .site-nav a:hover{color:var(--chalk);}
   .site-nav a.active{color:var(--turf-bright); border-bottom-color:var(--turf-bright);}
-  .nav-spacer{flex:1;}
   .view-toggle{
     display:flex; gap:0.25rem; background:var(--bg-panel);
     border:1px solid var(--line); border-radius:8px; padding:0.2rem;
+    order:3; margin-left:auto;
   }
   .view-toggle .view-btn{
     font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
@@ -336,34 +342,35 @@
   .view-toggle .view-btn:hover{color:var(--chalk);}
   .view-toggle .view-btn.active{background:var(--turf); color:#04140a;}
 
-  .filter-bar{
-    border-bottom:1px solid var(--line);
-    background:var(--bg-panel);
-  }
+  /* Filter options now live inline in the nav bar itself (same sticky
+     element, same background) instead of a separate bar underneath --
+     order:2 puts them between the menu links and the Tiles/Row toggle on
+     desktop; the mobile media query below reorders them onto their own
+     second line. */
   .filter-bar-inner{
-    max-width:1180px; margin:0.6rem auto; padding:0.5rem 0.75rem;
     display:flex; flex-wrap:wrap; gap:0.6rem; align-items:center;
-    border:1px solid var(--line); border-radius:8px;
+    justify-content:center;
+    flex:1 1 auto; order:2;
   }
   .filter-pill{
-    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.82rem;
     text-transform:uppercase; letter-spacing:0.04em;
-    color:var(--dim); background:#000; border:3px solid var(--line); border-radius:6px;
-    padding:0.24rem 0.6rem; cursor:pointer; transition:all 0.12s ease;
+    color:var(--dim); background:#000; border:1px solid var(--line); border-radius:6px;
+    padding:0.3rem 0.7rem; cursor:pointer; transition:all 0.12s ease;
   }
   .filter-pill:hover{color:var(--chalk);}
   .filter-pill.active{background:var(--turf); color:#04140a; border-color:var(--turf);}
 
   .filter-conf-group{
     display:flex; align-items:center; gap:0.5rem;
-    border:3px solid var(--line); border-radius:6px;
-    padding:0.13rem 0.5rem;
+    border:1px solid var(--line); border-radius:8px;
+    padding:0.2rem 0.55rem;
   }
   .conf-type-toggle{
     display:flex; gap:0.2rem; background:var(--bg); border-radius:6px; padding:0.1rem;
   }
   .conf-type-btn{
-    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.66rem;
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
     text-transform:uppercase; letter-spacing:0.03em;
     color:var(--dim); background:transparent; border:none; border-radius:5px;
     padding:0.2rem 0.45rem; cursor:pointer; transition:all 0.12s ease;
@@ -372,13 +379,21 @@
   .conf-type-btn.active{background:var(--turf); color:#04140a;}
   .filter-conf{display:flex; align-items:center; gap:0.35rem;}
   .filter-conf label{
-    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.66rem;
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
     text-transform:uppercase; letter-spacing:0.03em; color:var(--dim);
   }
   .filter-conf select{
     background:var(--bg); color:var(--chalk); border:none;
     border-radius:5px; padding:0.18rem 0.4rem; font-family:'JetBrains Mono',monospace;
     font-size:0.72rem; cursor:pointer;
+  }
+
+  /* Below this width the links + filters + toggle can't fit on one line --
+     drop the filters to their own full-width second line inside the same
+     sticky nav bar (order swap so links/toggle stay on line 1). */
+  @media (max-width: 760px){
+    .filter-bar-inner{order:3; flex:1 1 100%; justify-content:flex-start;}
+    .view-toggle{order:2;}
   }
 
 
@@ -497,18 +512,11 @@
 
 <div class="nav-bar">
 <nav class="site-nav">
-  <a href="index.html" class="active">College</a>
-  <a href="nfl.html">NFL</a>
-  <a href="picks.html">Picks</a>
-  <span class="nav-spacer"></span>
-  <div class="view-toggle">
-    <button type="button" class="view-btn" data-mode="tiles">Tiles</button>
-    <button type="button" class="view-btn" data-mode="rows">Rows</button>
+  <div class="nav-links">
+    <a href="index.html" class="active">College</a>
+    <a href="nfl.html">NFL</a>
+    <a href="picks.html">Picks</a>
   </div>
-</nav>
-</div>
-
-<div class="filter-bar">
   <div class="filter-bar-inner">
     <button type="button" class="filter-pill" id="bestMatchupOnly">Best Matchup Only</button>
     <div class="filter-conf-group">
@@ -544,6 +552,11 @@
       </div>
     </div>
   </div>
+  <div class="view-toggle">
+    <button type="button" class="view-btn" data-mode="tiles">Tiles</button>
+    <button type="button" class="view-btn" data-mode="rows">Rows</button>
+  </div>
+</nav>
 </div>
 
 <div class="hero">
@@ -619,6 +632,11 @@ function rankBadge(rank) {
   return rank ? `<span class="rank">#${rank}</span> ` : '';
 }
 
+function teamNameBlock(name, record) {
+  const recordHtml = record ? `<span class="team-record">${record}</span>` : '';
+  return `<span class="team-name-wrap"><span class="team-name">${name}</span>${recordHtml}</span>`;
+}
+
 function kickoffTime(iso, tbd) {
   if (tbd) return 'Time TBD';
   try {
@@ -670,9 +688,9 @@ function renderGame(g) {
       <span class="channel-pill">${g.channel}</span>
     </div>
     <div class="matchup">
-      <span class="team">${rankBadge(g.away_rank)}${g.away_team}${teamScoreBadge(gScore?.away_score, gScore?.status)}</span>
+      <span class="team">${rankBadge(g.away_rank)}${teamNameBlock(g.away_team, g.away_record)}${teamScoreBadge(gScore?.away_score, gScore?.status)}</span>
       <span class="at">@</span>
-      <span class="team">${rankBadge(g.home_rank)}${g.home_team}${teamScoreBadge(gScore?.home_score, gScore?.status)}</span>
+      <span class="team">${rankBadge(g.home_rank)}${teamNameBlock(g.home_team, g.home_record)}${teamScoreBadge(gScore?.home_score, gScore?.status)}</span>
     </div>
     <div class="subline">
       <span>${kickoffTime(g.start_time, g.start_time_tbd)}</span>
