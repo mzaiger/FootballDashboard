@@ -65,9 +65,10 @@ REQUEST_TIMEOUT = 20
 SEASON_TYPE_DEFAULT = 1  # Updated to default to preseason
 SEASON_YEAR_DEFAULT = 2026
 
-# Regional-pick heuristic priority for the Omaha/Lincoln, NE market (no home
-# NFL team). Checked in order; first match in a multi-game window wins.
-REGIONAL_TEAM_PRIORITY = ["Kansas City Chiefs", "Denver Broncos"]
+# Time Slot Best Matchup team priority: if either of these teams is playing
+# in a window, they win the slot pick over the closest-spread game. Checked
+# in order -- Chiefs first, then Broncos.
+SLOT_PICK_TEAM_PRIORITY = ["Kansas City Chiefs", "Denver Broncos"]
 
 
 # ---------------------------------------------------------------------------
@@ -150,20 +151,14 @@ def _fd_home_spread(odds):
     return odds.get("fanduel", {}).get("spread", {}).get("home", {}).get("line")
 
 
-# ---------------------------------------------------------------------------
-# Regional pick heuristic (Omaha / Lincoln, NE)
-# ---------------------------------------------------------------------------
-
-def pick_regional_game(games_in_window):
+def pick_slot_team_priority(games_in_window):
     """
-    Given all games sharing one network + kickoff window, guess which one
-    the Omaha/Lincoln market gets. Only meaningful when there's more than
-    one game in the window (if there's only one, everyone gets it -- no
-    guess needed).
+    Given all games in a time-slot window, return the game featuring
+    Kansas City or Denver if one is playing, else None. Checked in
+    SLOT_PICK_TEAM_PRIORITY order so Chiefs win out over Broncos if both
+    happen to be on at once.
     """
-    if len(games_in_window) < 2:
-        return None
-    for priority_team in REGIONAL_TEAM_PRIORITY:
+    for priority_team in SLOT_PICK_TEAM_PRIORITY:
         for g in games_in_window:
             if g["home_team"] == priority_team or g["away_team"] == priority_team:
                 return g
@@ -333,32 +328,22 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odd
             games_sorted = sorted(slots_for_day[slot_name], key=lambda x: x["matchup_score"])
             best_score = games_sorted[0]["matchup_score"] if games_sorted else None
 
-            # Slot Pick: NFL doesn't have AP rankings to fall back on, so the
-            # pick is simply the game with the closest (most competitive)
-            # spread in this window -- games_sorted is already sorted that
-            # way, so index 0 is it.
-            for i, g in enumerate(games_sorted):
-                g["is_slot_pick"] = (i == 0)
-
-            # Regional pick heuristic: group this window's games by channel
-            by_channel = {}
+            # Slot Pick: prefer the Chiefs or Broncos game if either is
+            # playing in this window; otherwise fall back to the game with
+            # the closest (most competitive) spread -- games_sorted is
+            # already sorted that way, so index 0 is it.
+            team_priority_pick = pick_slot_team_priority(games_sorted)
+            pick_reason = None
             for g in games_sorted:
-                by_channel.setdefault(g["channel"], []).append(g)
-            regional_picks = []
-            for channel, channel_games in by_channel.items():
-                pick = pick_regional_game(channel_games)
-                if pick:
-                    regional_picks.append({
-                        "channel": channel,
-                        "game_id": pick["id"],
-                        "matchup": f"{pick['away_team']} @ {pick['home_team']}",
-                    })
+                is_pick = (g is team_priority_pick) if team_priority_pick else (g is games_sorted[0] if games_sorted else False)
+                g["is_slot_pick"] = is_pick
+                if is_pick:
+                    pick_reason = "team_priority" if team_priority_pick else "closest_spread"
 
             time_slots.append({
                 "slot": slot_name,
                 "best_matchup_score": best_score if best_score != 999 else None,
-                "pick_reason": "closest_spread" if games_sorted else None,
-                "regional_picks_omaha_lincoln": regional_picks,
+                "pick_reason": pick_reason,
                 "games": games_sorted,
             })
         weekday_name = date.fromisoformat(day_key).strftime("%A")
@@ -389,12 +374,6 @@ def build(year, week_start, season_type, sharp_key, gemini_key=None, num_weeks=2
         "season": year,
         "season_type": season_type,
         "display_timezone": DISPLAY_TIMEZONE,
-        "regional_market_note": (
-            "regional_picks_omaha_lincoln is an UNOFFICIAL heuristic guess "
-            "(Kansas City Chiefs, then Denver Broncos, when a network window "
-            "has multiple games) -- not scraped from an actual coverage map. "
-            "Verify at https://506sports.com/nfl.php before relying on it."
-        ),
         "weeks": weeks,
     }
 
