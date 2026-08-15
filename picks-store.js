@@ -442,6 +442,117 @@ function initViewToggle() {
 }
 
 /*
+ * Board filters (Best Matchup Only / Min Conf / ML-ATS) -- shared by
+ * index.html and nfl.html. Not used on picks.html, which shows every pick
+ * ever made rather than the current board.
+ *
+ * Three controls, all optional and combinable:
+ * - "Best Matchup Only": keep only each slot's is_slot_pick game.
+ * - "Min Conf": keep only games whose Gemini confidence is at least this
+ *   number, in steps of 5 (0 = off / no games excluded on this basis).
+ * - ML / ATS: which Gemini confidence field "Min Conf" reads --
+ *   moneyline/straight-up confidence, or the ATS pick's confidence (a game
+ *   with no posted ATS pick fails this filter, since there's nothing to
+ *   compare against).
+ *
+ * The chosen state persists in localStorage per device, same pattern as
+ * the Tiles/Rows view toggle below.
+ */
+
+const FILTER_STATE_KEY = 'fb_filter_state';
+
+function getFilterState() {
+  let stored = null;
+  try {
+    stored = JSON.parse(localStorage.getItem(FILTER_STATE_KEY));
+  } catch (e) { /* ignore malformed value */ }
+  return {
+    bestMatchupOnly: !!(stored && stored.bestMatchupOnly),
+    minConf: (stored && Number.isInteger(stored.minConf)) ? stored.minConf : 0,
+    confType: (stored && (stored.confType === 'ats' || stored.confType === 'ml')) ? stored.confType : 'ml',
+  };
+}
+
+function saveFilterState(state) {
+  localStorage.setItem(FILTER_STATE_KEY, JSON.stringify(state));
+}
+
+function gamePassesFilters(g, state) {
+  if (state.bestMatchupOnly && !g.is_slot_pick) return false;
+  if (state.minConf > 0) {
+    const pred = g.gemini_prediction;
+    if (!pred) return false;
+    if (state.confType === 'ats') {
+      if (!pred.ats_pick) return false;
+      if ((pred.ats_confidence ?? 0) < state.minConf) return false;
+    } else {
+      if ((pred.confidence ?? 0) < state.minConf) return false;
+    }
+  }
+  return true;
+}
+
+// Returns a filtered copy of `weeks` -- games that don't pass, then any
+// slot/day left with zero games, are dropped, with game_count/total_games
+// recomputed at each level. Passing the same `weeks` array back out
+// unfiltered (no clone) when no filter is active avoids needless work on
+// every render.
+function filterWeeksForDisplay(weeks, state) {
+  if (!state.bestMatchupOnly && state.minConf <= 0) return weeks;
+  return weeks.map(week => {
+    const days = week.days
+      .map(day => {
+        const time_slots = day.time_slots
+          .map(slot => ({ ...slot, games: slot.games.filter(g => gamePassesFilters(g, state)) }))
+          .filter(slot => slot.games.length);
+        const game_count = time_slots.reduce((n, s) => n + s.games.length, 0);
+        return { ...day, time_slots, game_count };
+      })
+      .filter(day => day.time_slots.length);
+    const total_games = days.reduce((n, d) => n + d.game_count, 0);
+    return { ...week, days, total_games, _filtered: true };
+  });
+}
+
+// Call once per page, after the nav (with its #bestMatchupOnly,
+// #minConfSelect, and .conf-type-btn controls) is in the DOM. `onChange`
+// re-renders the board using the new filter state.
+function initFilterBar(onChange) {
+  const state = getFilterState();
+
+  const bestMatchupEl = document.getElementById('bestMatchupOnly');
+  const minConfEl = document.getElementById('minConfSelect');
+  const confTypeBtns = document.querySelectorAll('.conf-type-btn');
+
+  if (bestMatchupEl) bestMatchupEl.checked = state.bestMatchupOnly;
+  if (minConfEl) minConfEl.value = String(state.minConf);
+  confTypeBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.conftype === state.confType));
+
+  if (bestMatchupEl) {
+    bestMatchupEl.addEventListener('change', () => {
+      state.bestMatchupOnly = bestMatchupEl.checked;
+      saveFilterState(state);
+      onChange();
+    });
+  }
+  if (minConfEl) {
+    minConfEl.addEventListener('change', () => {
+      state.minConf = parseInt(minConfEl.value, 10) || 0;
+      saveFilterState(state);
+      onChange();
+    });
+  }
+  confTypeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.confType = btn.dataset.conftype;
+      saveFilterState(state);
+      confTypeBtns.forEach(b => b.classList.toggle('active', b === btn));
+      onChange();
+    });
+  });
+}
+
+/*
  * Live scores overlay -- shared by index.html / nfl.html / picks.html.
  *
  * data/scores.json is written hourly by scripts/fetch_scores.py, separate
