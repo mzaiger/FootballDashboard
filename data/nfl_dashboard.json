@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-14T10:56:35.313791+00:00",
+  "generated_at": "2026-08-15T10:19:57.939046+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -233,7 +233,7 @@
                   "away_team": "Denver Broncos",
                   "away_abbr": "DEN",
                   "matchup_score": 999,
-                  "channel": "ESPN Unlmtd",
+                  "channel": "ESPN Unlmtd/KUSA-TV (9NEWS)",
                   "venue": "Mercedes-Benz Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -257,7 +257,7 @@
                   "away_team": "Tampa Bay Buccaneers",
                   "away_abbr": "TB",
                   "matchup_score": 999,
-                  "channel": "NFL Net",
+                  "channel": "NFL Net/WCBS",
                   "venue": "MetLife Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -344,7 +344,7 @@
                   "away_team": "Cleveland Browns",
                   "away_abbr": "CLE",
                   "matchup_score": 999,
-                  "channel": "NFL Net",
+                  "channel": "NFL Net/FOX32",
                   "venue": "Soldier Field",
                   "neutral_site": false,
                   "odds": {
@@ -400,7 +400,7 @@
                   "away_team": "Los Angeles Rams",
                   "away_abbr": "LAR",
                   "matchup_score": 999,
-                  "channel": "NFL Net",
+                  "channel": "NFL Net/KSHB/KCBS-TV",
                   "venue": "GEHA Field at Arrowhead Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -424,7 +424,7 @@
                   "away_team": "Jacksonville Jaguars",
                   "away_abbr": "JAX",
                   "matchup_score": 999,
-                  "channel": "ESPN Unlmtd",
+                  "channel": "ESPN Unlmtd/FOX30/Fox 8",
                   "venue": "Caesars Superdome",
                   "neutral_site": false,
                   "odds": {
@@ -456,7 +456,7 @@
                   "away_team": "Philadelphia Eagles",
                   "away_abbr": "PHI",
                   "matchup_score": 999,
-                  "channel": "ESPN Unlmtd",
+                  "channel": "ESPN Unlmtd/NBC 10",
                   "venue": "M&T Bank Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -480,7 +480,7 @@
                   "away_team": "Dallas Cowboys",
                   "away_abbr": "DAL",
                   "matchup_score": 999,
-                  "channel": "NFL Net",
+                  "channel": "NFL Net/KING 5",
                   "venue": "Lumen Field",
                   "neutral_site": false,
                   "odds": {
@@ -525,7 +525,7 @@
                   "away_team": "Las Vegas Raiders",
                   "away_abbr": "LV",
                   "matchup_score": 999,
-                  "channel": "ESPN",
+                  "channel": "ESPN/KTRK (ABC)/Fox 5 Vegas",
                   "venue": "NRG Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -557,7 +557,7 @@
                   "away_team": "San Francisco 49ers",
                   "away_abbr": "SF",
                   "matchup_score": 999,
-                  "channel": "NFL Net",
+                  "channel": "NFL Net/CBS LA/KPIX",
                   "venue": "SoFi Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -585,13 +585,7 @@
               "slot": "Prime Time",
               "best_matchup_score": null,
               "pick_reason": "closest_spread",
-              "regional_picks_omaha_lincoln": [
-                {
-                  "channel": "NFL Net",
-                  "game_id": "401873613",
-                  "matchup": "Green Bay Packers @ Denver Broncos"
-                }
-              ],
+              "regional_picks_omaha_lincoln": [],
               "games": [
                 {
                   "id": "401873288",
@@ -602,7 +596,7 @@
                   "away_team": "New York Jets",
                   "away_abbr": "NYJ",
                   "matchup_score": 999,
-                  "channel": "NFL Net",
+                  "channel": "NFL Net/WCBS/KDKA-TV",
                   "venue": "Acrisure Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -626,7 +620,7 @@
                   "away_team": "Carolina Panthers",
                   "away_abbr": "CAR",
                   "matchup_score": 999,
-                  "channel": "ESPN Unlmtd",
+                  "channel": "ESPN Unlmtd/CBS47",
                   "venue": "EverBank Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -650,7 +644,7 @@
                   "away_team": "Green Bay Packers",
                   "away_abbr": "GB",
                   "matchup_score": 999,
-                  "channel": "NFL Net",
+                  "channel": "NFL Net/Packers TV Network/KUSA-TV (9NEWS)",
                   "venue": "Empower Field at Mile High",
                   "neutral_site": false,
                   "odds": {
@@ -689,7 +683,7 @@
                   "away_team": "Washington Commanders",
                   "away_abbr": "WSH",
                   "matchup_score": 999,
-                  "channel": "TBD",
+                  "channel": "Lions TV Network/WUSA9",
                   "venue": "Ford Field",
                   "neutral_site": false,
                   "odds": {
@@ -737,7 +731,7 @@
                   "away_team": "Atlanta Falcons",
                   "away_abbr": "ATL",
                   "matchup_score": 999,
-                  "channel": "TBD",
+                  "channel": "CBS4",
                   "venue": "Lucas Oil Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -761,7 +755,7 @@
                   "away_team": "Baltimore Ravens",
                   "away_abbr": "BAL",
                   "matchup_score": 999,
-                  "channel": "ESPN Unlmtd",
+                  "channel": "ESPN Unlmtd/WBAL-TV",
                   "venue": "U.S. Bank Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -793,7 +787,7 @@
                   "away_team": "New Orleans Saints",
                   "away_abbr": "NO",
                   "matchup_score": 999,
-                  "channel": "ESPN Unlmtd",
+                  "channel": "ESPN Unlmtd/KCBS-TV/Fox 8",
                   "venue": "SoFi Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -817,7 +811,7 @@
                   "away_team": "New York Giants",
                   "away_abbr": "NYG",
                   "matchup_score": 999,
-                  "channel": "NFL Net",
+                  "channel": "NFL Net/CBS Miami",
                   "venue": "Hard Rock Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -849,7 +843,7 @@
                   "away_team": "Chicago Bears",
                   "away_abbr": "CHI",
                   "matchup_score": 999,
-                  "channel": "TBD",
+                  "channel": "Bengals Preseason TV Network/FOX32",
                   "venue": "Paycor Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -873,7 +867,7 @@
                   "away_team": "Philadelphia Eagles",
                   "away_abbr": "PHI",
                   "matchup_score": 999,
-                  "channel": "NFL Net",
+                  "channel": "NFL Net/WBZ/NBC 10",
                   "venue": "Gillette Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -897,7 +891,7 @@
                   "away_team": "Kansas City Chiefs",
                   "away_abbr": "KC",
                   "matchup_score": 999,
-                  "channel": "ESPN Unlmtd",
+                  "channel": "ESPN Unlmtd/KSHB",
                   "venue": "Raymond James Stadium",
                   "neutral_site": false,
                   "odds": {
