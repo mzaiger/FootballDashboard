@@ -36,6 +36,7 @@ from common import (
     log,
     match_odds_for_game,
     merge_weeks,
+    normalize_minmax,
     time_slot_for,
 )
 from gemini_predictions import attach_gemini_predictions
@@ -101,6 +102,25 @@ def get_media(key, year, week, season_type="regular"):
 
 def get_rankings(key, year, week, season_type="regular"):
     return cfbd_get("/rankings", key, {"year": year, "week": week, "seasonType": season_type})
+
+
+def get_records(key, year):
+    return cfbd_get("/records", key, {"year": year})
+
+
+def build_record_lookup(records_payload):
+    """{team_name: 'W-L' string} (or 'W-L-T' if the team has a tie) from
+    CFBD's /records payload, for displaying under each team's name on the
+    board. Season-to-date, so it fills in as the year progresses."""
+    lookup = {}
+    for entry in records_payload:
+        team = entry.get("team")
+        total = entry.get("total", {}) or {}
+        wins, losses, ties = total.get("wins"), total.get("losses"), total.get("ties")
+        if not team or wins is None or losses is None:
+            continue
+        lookup[team] = f"{wins}-{losses}-{ties}" if ties else f"{wins}-{losses}"
+    return lookup
 
 
 def build_rank_lookup(rankings_payload, poll_name="AP Top 25"):
@@ -196,23 +216,6 @@ def _closest_spread_abs(game_entry):
     return best
 
 
-def _normalize(values):
-    """Min-max scale a list to [0, 1] (0 = best/lowest, 1 = worst/highest).
-
-    None entries (e.g. no spread posted yet) are scored as 1.0 -- worst on
-    that metric -- so a game only wins on the strength of its other metric.
-    If every value is None, or every present value is identical, everyone
-    gets 0.5 on that metric so it doesn't swing the pick.
-    """
-    present = [v for v in values if v is not None]
-    if not present:
-        return [0.5] * len(values)
-    lo, hi = min(present), max(present)
-    if hi == lo:
-        return [0.5 if v is not None else 1.0 for v in values]
-    return [1.0 if v is None else (v - lo) / (hi - lo) for v in values]
-
-
 def choose_slot_pick(games_sorted):
     """Pick the "Time Slot Most Watchable Game".
 
@@ -240,8 +243,8 @@ def choose_slot_pick(games_sorted):
     ap_values = [g["matchup_score"] for g in games_sorted]
     spread_values = [_closest_spread_abs(g) for g in games_sorted]
 
-    ap_norm = _normalize(ap_values)
-    spread_norm = _normalize(spread_values)
+    ap_norm = normalize_minmax(ap_values)
+    spread_norm = normalize_minmax(spread_values)
 
     blended = [0.5 * a + 0.5 * s for a, s in zip(ap_norm, spread_norm)]
     idx = min(range(len(blended)), key=lambda i: blended[i])
@@ -252,7 +255,7 @@ def choose_slot_pick(games_sorted):
 # Main build
 # ---------------------------------------------------------------------------
 
-def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, rankings_cache=None, previous_odds_by_id=None):
+def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, rankings_cache=None, records_cache=None, previous_odds_by_id=None):
     """Build a single week's worth of games. Returns the per-week dict
     (no generated_at/season wrapper -- that's added once, by build())."""
     log(f"Fetching games for {year} week {week}...")
@@ -268,6 +271,15 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, ranki
     log(f"  {len(rank_lookup)} ranked teams found" + (
         f" (from week {rank_source_week}'s poll)" if rank_source_week not in (None, week) else ""
     ))
+
+    if records_cache is not None and year in records_cache:
+        record_lookup = records_cache[year]
+    else:
+        log("Fetching team records...")
+        record_lookup = build_record_lookup(get_records(cfbd_key, year))
+        log(f"  {len(record_lookup)} team records found")
+        if records_cache is not None:
+            records_cache[year] = record_lookup
 
     log("Fetching DraftKings/FanDuel NCAAF odds from SharpAPI...")
     odds_rows = fetch_all_odds(sharp_key, league="ncaaf")
@@ -318,9 +330,11 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, ranki
             "home_team": home_team,
             "home_conference": g.get("homeConference"),
             "home_rank": home_rank,
+            "home_record": record_lookup.get(home_team),
             "away_team": away_team,
             "away_conference": g.get("awayConference"),
             "away_rank": away_rank,
+            "away_record": record_lookup.get(away_team),
             "matchup_score": matchup_score(home_rank, away_rank),
             "channel": outlet or "Not on Main TV",
             "venue": g.get("venue"),
@@ -377,8 +391,9 @@ def build(year, week_start, cfbd_key, sharp_key, channels, gemini_key=None, num_
     this week + next week) and wrap them into the full output payload."""
     weeks = []
     rankings_cache = {}
+    records_cache = {}
     for offset in range(num_weeks):
-        weeks.append(build_week(year, week_start + offset, cfbd_key, sharp_key, channels, gemini_key, rankings_cache=rankings_cache, previous_odds_by_id=previous_odds_by_id))
+        weeks.append(build_week(year, week_start + offset, cfbd_key, sharp_key, channels, gemini_key, rankings_cache=rankings_cache, records_cache=records_cache, previous_odds_by_id=previous_odds_by_id))
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),

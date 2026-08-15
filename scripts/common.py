@@ -42,6 +42,25 @@ def log(msg):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] {msg}", file=sys.stderr)
 
 
+def normalize_minmax(values):
+    """Min-max scale a list of numbers (or None) to [0, 1] (0 = best/lowest,
+    1 = worst/highest). Shared by CFB's slot-pick blend and NFL's matchup
+    score blend so both "50% X + 50% Y" calculations behave the same way.
+
+    None entries (e.g. no spread posted yet) are scored as 1.0 -- worst on
+    that metric -- so a game only wins on the strength of its other metric.
+    If every value is None, or every present value is identical, everyone
+    gets 0.5 on that metric so it doesn't swing the pick.
+    """
+    present = [v for v in values if v is not None]
+    if not present:
+        return [0.5] * len(values)
+    lo, hi = min(present), max(present)
+    if hi == lo:
+        return [0.5 if v is not None else 1.0 for v in values]
+    return [1.0 if v is None else (v - lo) / (hi - lo) for v in values]
+
+
 def time_slot_for(local_dt, is_tbd):
     """Bucket a timezone-aware local datetime into a named kickoff window."""
     if is_tbd or local_dt is None:

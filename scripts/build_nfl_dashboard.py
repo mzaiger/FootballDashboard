@@ -50,6 +50,7 @@ from common import (
     log,
     match_odds_for_game,
     merge_weeks,
+    normalize_minmax,
     time_slot_for,
 )
 from gemini_predictions import attach_gemini_predictions
@@ -66,9 +67,15 @@ SEASON_TYPE_DEFAULT = 1  # Updated to default to preseason
 SEASON_YEAR_DEFAULT = 2026
 
 # Time Slot Best Matchup team priority: if either of these teams is playing
-# in a window, they win the slot pick over the closest-spread game. Checked
-# in order -- Chiefs first, then Broncos.
+# in a window, they win the slot pick over the blended spread/wins score.
+# Checked in order -- Chiefs first, then Broncos.
 SLOT_PICK_TEAM_PRIORITY = ["Kansas City Chiefs", "Denver Broncos"]
+
+# A team with no games played yet (e.g. before its season opener) gets this
+# win-rank value -- one worse than the worst possible real rank (32 teams
+# in the league) -- so it never outranks a team that actually has a record,
+# mirroring how CFB treats an unranked team as rank 26 (one past AP's 25).
+UNRANKED_WIN_RANK = 33
 
 
 # ---------------------------------------------------------------------------
@@ -119,21 +126,70 @@ def broadcast_label(event):
 # Matchup ranking
 # ---------------------------------------------------------------------------
 
-def matchup_score(dk_spread, fd_spread):
+def matchup_score(dk_spread, fd_spread, home_win_rank, away_win_rank):
     """
-    Lower score = closer / more competitive game = better matchup for a
-    betting dashboard. Unlike CFB (which has AP rankings to lean on), the
-    NFL doesn't have a clean, universally-agreed "how good is this team"
-    number this early in a season, so this uses the market's own judgment
-    instead: the smaller the point spread, the more competitive Vegas
-    expects the game to be. Falls back to FanDuel's spread if DraftKings
-    hasn't posted one yet; games with no spread posted from either book
-    sort last (they're usually just further out from kickoff).
+    Lower score = closer / more marquee game for a betting dashboard.
+    Blends two 0-1 normalized metrics 50/50 (normalization happens across
+    the whole week's games in build_week, via common.normalize_minmax --
+    see there for why None-handling works the way it does):
+
+      - spread component: the smaller the point spread, the more
+        competitive Vegas expects the game to be.
+      - win component: combined win-rank of both teams, with each team's
+        rank computed the same way CFB's AP poll works -- teams are
+        ranked 1..N by this week's win percentage (best record = rank 1),
+        so two unbeaten teams playing each other scores as well as two
+        top-5 AP teams would in the CFB dashboard.
+
+    `home_win_rank`/`away_win_rank` are already resolved ranks (or None
+    for a team with no record yet, e.g. before its first game). Actual
+    normalization/blending happens in build_week() once every game's raw
+    components are known; this function just computes the raw components
+    for a single game so build_week can normalize the whole batch at once.
     """
     spread = dk_spread if dk_spread is not None else fd_spread
-    if spread is None:
-        return 999
-    return abs(spread)
+    spread_component = abs(spread) if spread is not None else None
+    win_component = None
+    if home_win_rank is not None or away_win_rank is not None:
+        win_component = (home_win_rank or UNRANKED_WIN_RANK) + (away_win_rank or UNRANKED_WIN_RANK)
+    return spread_component, win_component
+
+
+def build_win_rank_lookup(team_records):
+    """Rank every team with a known record by win percentage, like a poll
+    release: rank 1 = best record on the board this week. Ties broken by
+    raw win total, then by team name for a stable, deterministic order.
+    Teams with no games played yet (0-0) sort to the bottom together.
+
+    `team_records` is {team_name: (wins, losses, ties)}. Returns
+    {team_name: rank}.
+    """
+    entries = []
+    for team, (wins, losses, ties) in team_records.items():
+        games_played = wins + losses + ties
+        pct = (wins + 0.5 * ties) / games_played if games_played else -1
+        entries.append((team, pct, wins, team))
+    entries.sort(key=lambda e: (-e[1], -e[2], e[3]))
+    return {team: i + 1 for i, (team, pct, wins, _) in enumerate(entries)}
+
+
+def _parse_espn_record(competitor):
+    """Extract (wins, losses, ties, summary) from an ESPN scoreboard
+    competitor's `records` list, or (None, None, None, None) if no overall
+    record is present yet (e.g. before that team's first game)."""
+    for rec in competitor.get("records", []):
+        if rec.get("type") == "total" or rec.get("name") == "overall":
+            summary = rec.get("summary")
+            if not summary:
+                continue
+            parts = summary.split("-")
+            try:
+                wins, losses = int(parts[0]), int(parts[1])
+                ties = int(parts[2]) if len(parts) > 2 else 0
+                return wins, losses, ties, summary
+            except (ValueError, IndexError):
+                return None, None, None, summary
+    return None, None, None, None
 
 
 def _home_spread(odds):
@@ -265,6 +321,8 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odd
     # days[date_key][slot] -> list of game entries
     days = {}
     all_games = []  # flat list, mirrors what's in `days`, for the Gemini pass below
+    team_records = {}       # {team_name: (wins, losses, ties)} -- accumulated as we go
+    raw_components_by_id = {}  # {game_id: (dk_spread, fd_spread)}
 
     for event in events:
         competitions = event.get("competitions", [])
@@ -293,21 +351,33 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odd
         home_team = home["team"]["displayName"]
         away_team = away["team"]["displayName"]
 
+        home_wins, home_losses, home_ties, home_record = _parse_espn_record(home)
+        away_wins, away_losses, away_ties, away_record = _parse_espn_record(away)
+        if home_wins is not None:
+            team_records[home_team] = (home_wins, home_losses, home_ties)
+        if away_wins is not None:
+            team_records[away_team] = (away_wins, away_losses, away_ties)
+
         odds = match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
         if previous_odds_by_id:
             odds = carry_forward_odds(odds, previous_odds_by_id.get(event.get("id")))
         dk_spread = _dk_home_spread(odds)
         fd_spread = _fd_home_spread(odds)
 
+        game_id = event.get("id")
+        raw_components_by_id[game_id] = (dk_spread, fd_spread)
+
         game_entry = {
-            "id": event.get("id"),
+            "id": game_id,
             "start_time": start_raw,
             "start_time_tbd": is_tbd,
             "home_team": home_team,
             "home_abbr": home["team"].get("abbreviation"),
+            "home_record": home_record,
             "away_team": away_team,
             "away_abbr": away["team"].get("abbreviation"),
-            "matchup_score": matchup_score(dk_spread, fd_spread),
+            "away_record": away_record,
+            "matchup_score": None,  # filled in below, once every team's win rank is known
             "channel": outlet,
             "venue": comp.get("venue", {}).get("fullName"),
             "neutral_site": comp.get("neutralSite", False),
@@ -315,6 +385,23 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odd
         }
         days.setdefault(day_key, {}).setdefault(slot, []).append(game_entry)
         all_games.append(game_entry)
+
+    # Rank every team on the board by this week's win percentage, like a
+    # poll release (rank 1 = best record), then blend each game's spread
+    # closeness with its combined win rank -- 50/50, both normalized 0-1
+    # across this week's games so neither metric's raw scale dominates.
+    win_rank_lookup = build_win_rank_lookup(team_records)
+    spread_components, win_components = [], []
+    for g in all_games:
+        dk_spread, fd_spread = raw_components_by_id[g["id"]]
+        s, w = matchup_score(dk_spread, fd_spread,
+                              win_rank_lookup.get(g["home_team"]), win_rank_lookup.get(g["away_team"]))
+        spread_components.append(s)
+        win_components.append(w)
+    spread_norm = normalize_minmax(spread_components)
+    win_norm = normalize_minmax(win_components)
+    for g, sn, wn in zip(all_games, spread_norm, win_norm):
+        g["matchup_score"] = round(100 * (0.5 * sn + 0.5 * wn), 1)
 
     attach_gemini_predictions(all_games, sport="nfl", season=year, week=week, gemini_key=gemini_key)
 
@@ -330,19 +417,19 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odd
 
             # Slot Pick: prefer the Chiefs or Broncos game if either is
             # playing in this window; otherwise fall back to the game with
-            # the closest (most competitive) spread -- games_sorted is
-            # already sorted that way, so index 0 is it.
+            # the best blended (50% spread + 50% win-rank) score --
+            # games_sorted is already sorted that way, so index 0 is it.
             team_priority_pick = pick_slot_team_priority(games_sorted)
             pick_reason = None
             for g in games_sorted:
                 is_pick = (g is team_priority_pick) if team_priority_pick else (g is games_sorted[0] if games_sorted else False)
                 g["is_slot_pick"] = is_pick
                 if is_pick:
-                    pick_reason = "team_priority" if team_priority_pick else "closest_spread"
+                    pick_reason = "team_priority" if team_priority_pick else "blended_score"
 
             time_slots.append({
                 "slot": slot_name,
-                "best_matchup_score": best_score if best_score != 999 else None,
+                "best_matchup_score": best_score,
                 "pick_reason": pick_reason,
                 "games": games_sorted,
             })
