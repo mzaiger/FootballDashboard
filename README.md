@@ -135,49 +135,6 @@ change, so there's nothing to gain by asking again. Only weeks with an
 unplayed or in-progress game (or a game it's never checked before) get
 re-fetched each run.
 
-## Omaha / Lincoln regional game (NFL page) — read this before trusting it
-
-You asked for the actual per-market regional coverage (which specific CBS
-or FOX game airs in the Omaha/Lincoln DMA) pulled from 506sports.com's maps.
-Here's what I found trying to build that:
-
-**506sports.com's per-game map pages (`nfl.php?yr=X&wk=Y`) build their
-market-by-market data client-side in JavaScript.** A plain HTTP GET (what
-`requests`, `curl`, or any non-browser script does) returns an empty page
-shell — I confirmed this directly, fetching several different week pages
-and getting nothing back, while the same tool fetched 506sports' *season
-schedule index* page (`506sports.com/nfl/`) just fine, because that page's
-content is plain server-rendered HTML. The per-market station lists (e.g.
-"KETV/KMTV/KPTM — Omaha") only showed up because Google's crawler executes
-JavaScript when indexing and I could see fragments of it in search results
-— but a script can't do that without a real browser engine.
-
-**What this means for automation**: a `requests`-based Python script (what
-you asked for, and what runs in GitHub Actions without extra setup) cannot
-reliably scrape 506sports' actual regional routing. The two honest paths
-forward:
-
-1. **Headless-browser scraper (accurate, heavier)** — use Playwright to
-   actually render the page's JavaScript and read the DOM/legend it
-   produces. This works in GitHub Actions but adds a real browser
-   installation to the workflow (bigger, slower runs, more moving parts to
-   break when 506sports changes their page). I didn't build this — happy to
-   if you want it, but wanted to flag the tradeoff first rather than quietly
-   add a much heavier workflow.
-2. **Heuristic guess (what's implemented now, lightweight but unofficial)**
-   — `regional_pick_omaha_lincoln` in the NFL builder: when a CBS or FOX
-   window has more than one game, it guesses whichever game features the
-   **Kansas City Chiefs**, then the **Denver Broncos** (both have
-   historically been the closest teams to that market, since neither Omaha
-   nor Lincoln has a home NFL team). It's clearly labeled "unofficial" on
-   the page with a link back to 506sports.com to verify. This is *not*
-   pulled from any real coverage map — it's a plausible guess based on
-   geography, nothing more.
-
-If you want the accurate version, say the word and I'll build the
-Playwright path — just flagging that it's a meaningfully bigger lift (and a
-heavier, slower CI job) than the rest of this project.
-
 ## Live scores
 
 `scripts/fetch_scores.py` overlays live/final scores onto games already
