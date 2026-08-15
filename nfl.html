@@ -251,23 +251,6 @@
   }
   .slot-heading a.slot-regional-link:hover{text-decoration:underline;}
 
-  .regional-callout{
-    background:rgba(67,148,193,0.08);
-    border:1px dashed rgba(67,148,193,0.4);
-    border-radius:8px;
-    padding:0.6rem 0.9rem;
-    margin-bottom:0.9rem;
-    font-size:0.76rem;
-    color:var(--dim);
-  }
-  .regional-callout .label{
-    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.68rem;
-    text-transform:uppercase; letter-spacing:0.06em; color:var(--turf-bright);
-    display:block; margin-bottom:0.3rem;
-  }
-  .regional-callout .pick{color:var(--chalk);}
-  .regional-callout .chan{color:var(--gold);}
-
   .grid{
     display:grid;
     grid-template-columns:repeat(auto-fill, minmax(340px, 1fr));
@@ -491,13 +474,9 @@
 
 <footer>
   Matchup score = the smaller of DraftKings/FanDuel's point spread (closer game = more marquee, sorts first).
-  &#11088; Time Slot Best Matchup = the game with the closest spread in that time window.
-  Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule &amp; broadcast network via ESPN's public scoreboard API.
-  <br><br>
-  <strong>Omaha/Lincoln regional pick is an unofficial estimate</strong> — when a network window has more than one
-  game, it guesses the Chiefs' game, then the Broncos' game, since neither Omaha nor Lincoln has a home NFL team.
-  It is not pulled from an actual coverage map. Always verify at
-  <a href="https://506sports.com/nfl.php" target="_blank" rel="noopener">506sports.com</a> before relying on it.
+  &#11088; Time Slot Best Matchup = the Chiefs' or Broncos' game if either is playing in that window, otherwise the game
+  with the closest spread. Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule &amp; broadcast network via
+  ESPN's public scoreboard API.
   <br><br>
   &#10024; Gemini Prediction Summary is AI-generated from current-season stats and posted odds -- informational only, not betting advice.
 </footer>
@@ -624,18 +603,6 @@ const SLOT_ICON = {
   'Time TBD': '\u2753'
 };
 
-function renderRegionalCallout(picks) {
-  if (!picks || !picks.length) return '';
-  const items = picks.map(p =>
-    `<span class="chan">${p.channel}</span>: <span class="pick">${p.matchup}</span>`
-  ).join(' &nbsp;|&nbsp; ');
-  return `
-  <div class="regional-callout">
-    <span class="label">Omaha / Lincoln, NE — unofficial regional pick</span>
-    ${items}
-  </div>`;
-}
-
 // Only Noon and Afternoon windows are ambiguous enough (multiple games,
 // different regional broadcasts) for 506sports.com's coverage map to be
 // worth linking -- Morning/Prime Time/Late Night are single-game windows
@@ -657,7 +624,6 @@ function renderSlot(slot, weekNum) {
       <span class="slot-count">${slot.games.length} game${slot.games.length === 1 ? '' : 's'}</span>
       ${REGIONAL_MAP_SLOTS.has(slot.slot) ? regionalMapLink(weekNum) : ''}
     </div>
-    ${renderRegionalCallout(slot.regional_picks_omaha_lincoln)}
     <div class="grid">
       ${slot.games.map(renderGame).join('')}
     </div>
