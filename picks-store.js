@@ -524,14 +524,15 @@ function initFilterBar(onChange) {
   const minConfEl = document.getElementById('minConfSelect');
   const confTypeBtns = document.querySelectorAll('.conf-type-btn');
 
-  if (bestMatchupEl) bestMatchupEl.checked = state.bestMatchupOnly;
+  if (bestMatchupEl) bestMatchupEl.classList.toggle('active', state.bestMatchupOnly);
   if (minConfEl) minConfEl.value = String(state.minConf);
   confTypeBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.conftype === state.confType));
 
   if (bestMatchupEl) {
-    bestMatchupEl.addEventListener('change', () => {
-      state.bestMatchupOnly = bestMatchupEl.checked;
+    bestMatchupEl.addEventListener('click', () => {
+      state.bestMatchupOnly = !state.bestMatchupOnly;
       saveFilterState(state);
+      bestMatchupEl.classList.toggle('active', state.bestMatchupOnly);
       onChange();
     });
   }

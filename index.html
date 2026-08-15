@@ -341,16 +341,18 @@
     background:var(--bg-panel);
   }
   .filter-bar-inner{
-    max-width:1180px; margin:0 auto; padding:0.6rem 1.5rem;
-    display:flex; flex-wrap:wrap; gap:1rem; align-items:center;
+    max-width:1180px; margin:0.6rem auto; padding:0.5rem 0.75rem;
+    display:flex; flex-wrap:wrap; gap:0.6rem; align-items:center;
+    border:1px solid var(--line); border-radius:8px;
   }
-  .filter-toggle{
-    display:flex; align-items:center; gap:0.4rem; cursor:pointer;
-    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
-    text-transform:uppercase; letter-spacing:0.04em; color:var(--dim);
+  .filter-pill{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
+    text-transform:uppercase; letter-spacing:0.04em;
+    color:var(--dim); background:#000; border:1px solid var(--line); border-radius:6px;
+    padding:0.28rem 0.6rem; cursor:pointer; transition:all 0.12s ease;
   }
-  .filter-toggle input{accent-color:var(--turf-bright); width:14px; height:14px; cursor:pointer;}
-  .filter-toggle:hover{color:var(--chalk);}
+  .filter-pill:hover{color:var(--chalk);}
+  .filter-pill.active{background:var(--dk-green); color:#04140a; border-color:var(--dk-green);}
   .filter-conf{display:flex; align-items:center; gap:0.4rem;}
   .filter-conf label{
     font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
@@ -502,12 +504,13 @@
 
 <div class="filter-bar">
   <div class="filter-bar-inner">
-    <label class="filter-toggle">
-      <input type="checkbox" id="bestMatchupOnly">
-      <span>&#11088; Best Matchup Only</span>
-    </label>
+    <button type="button" class="filter-pill" id="bestMatchupOnly">Best Matchup Only</button>
+    <div class="conf-type-toggle">
+      <button type="button" class="conf-type-btn" data-conftype="ml">ML</button>
+      <button type="button" class="conf-type-btn" data-conftype="ats">ATS</button>
+    </div>
     <div class="filter-conf">
-      <label for="minConfSelect">Min Conf</label>
+      <label for="minConfSelect">Conf</label>
       <select id="minConfSelect">
         <option value="0">Any</option>
         <option value="5">5+</option>
@@ -531,10 +534,6 @@
         <option value="95">95+</option>
         <option value="100">100</option>
       </select>
-    </div>
-    <div class="conf-type-toggle">
-      <button type="button" class="conf-type-btn" data-conftype="ml">ML</button>
-      <button type="button" class="conf-type-btn" data-conftype="ats">ATS</button>
     </div>
   </div>
 </div>
@@ -561,9 +560,9 @@
   Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule &amp; rankings via CollegeFootballData.com.
   &#10024; Gemini Prediction Summary is AI-generated from current-season stats and posted odds -- informational only, not betting advice.
   <br><br>
-  &#11088; Best Matchup Only shows just each window's starred pick. Min Conf filters to games where Gemini's confidence
+  &#11088; Best Matchup Only shows just each window's starred pick. Conf filters to games where Gemini's confidence
   (ML or ATS, whichever is selected) is at least that number; a game with no Gemini prediction, or no ATS pick posted
-  when ATS is selected, is filtered out once Min Conf is above Any.
+  when ATS is selected, is filtered out once Conf is above Any.
 </footer>
 
 <script src="picks-store.js"></script>
