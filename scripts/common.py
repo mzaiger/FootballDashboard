@@ -118,9 +118,20 @@ def fetch_all_odds(sharp_key, league, sportsbooks=("draftkings", "fanduel"),
             timeout=REQUEST_TIMEOUT,
         )
         if resp.status_code == 429:
-            wait = int(resp.headers.get("X-RateLimit-Reset", 5))
+            reset_header = resp.headers.get("X-RateLimit-Reset")
+            if reset_header and reset_header.isdigit():
+                val = int(reset_header)
+                # If the header value is a Unix timestamp (e.g. > 1,000,000), 
+                # subtract the current epoch time to get the actual wait seconds.
+                wait = val - int(time.time()) if val > 1_000_000 else val
+            else:
+                wait = 5
+
+            # Cap the wait between 1 and 60 seconds as a safety rail
+            wait = min(max(wait, 1), 60)
+            
             log(f"SharpAPI rate limited, sleeping {wait}s")
-            time.sleep(max(wait, 1))
+            time.sleep(wait)
             continue
         resp.raise_for_status()
         payload = resp.json()
