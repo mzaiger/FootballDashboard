@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T23:19:32.233908+00:00",
+  "generated_at": "2026-08-16T14:59:38.576890+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
@@ -71,7 +71,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 18,
                   "gemini_prediction": {
                     "winner": "TCU",
                     "confidence": 78,
@@ -129,7 +128,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 11,
                   "gemini_prediction": {
                     "winner": "USC",
                     "confidence": 99,
@@ -189,7 +187,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 19,
                   "gemini_prediction": {
                     "winner": "Virginia",
                     "confidence": 65,
@@ -256,7 +253,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 20,
                   "gemini_prediction": {
                     "winner": "UNLV",
                     "confidence": 68,
@@ -330,7 +326,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 21,
                   "gemini_prediction": {
                     "winner": "Georgia Tech",
                     "confidence": 70,
@@ -404,7 +399,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 6,
                   "gemini_prediction": {
                     "winner": "Miami",
                     "confidence": 98,
@@ -464,16 +458,15 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 12,
                   "gemini_prediction": {
                     "winner": "Fresno State",
                     "confidence": 55,
                     "ats_pick": "Fresno State -1.5",
-                    "ats_confidence": 55,
-                    "analysis": "Fresno State enters this week one matchup with a highly cohesive offensive unit that executed cleanly throughout fall camp. USC features several new starters across the secondary, creating vulnerabilities that opposing quarterbacks can exploit early in the game. The Fresno State defensive front generates consistent pressure without needing to blitz heavily, which will disrupt the timing of the USC passing attack. Furthermore, special teams efficiency heavily favors Fresno State based on returning personnel and recent camp metrics. Ultimately, the disciplined execution of the visiting team will secure a narrow outright victory on the road.",
-                    "splits_and_direction": "Based on early public tendencies, roughly 58 percent of moneyline bets are backing Fresno State at minus 120 while the spread action remains evenly split at fifty-fifty. The point spread has remained steady at plus 1.5 for the home team since opening, while the moneyline has seen slight steam toward Fresno State.",
-                    "display_text": "Summary: Fresno State enters this week one matchup with a highly cohesive offensive unit that executed cleanly throughout fall camp. USC features several new starters across the secondary, creating vulnerabilities that opposing quarterbacks can exploit early in the game. The Fresno State defensive front generates consistent pressure without needing to blitz heavily, which will disrupt the timing of the USC passing attack. Furthermore, special teams efficiency heavily favors Fresno State based on returning personnel and recent camp metrics. Ultimately, the disciplined execution of the visiting team will secure a narrow outright victory on the road.\n\nSplits and Direction: Based on early public tendencies, roughly 58 percent of moneyline bets are backing Fresno State at minus 120 while the spread action remains evenly split at fifty-fifty. The point spread has remained steady at plus 1.5 for the home team since opening, while the moneyline has seen slight steam toward Fresno State.",
-                    "generated_at": "2026-08-16T23:18:52.153201+00:00",
+                    "ats_confidence": 53,
+                    "analysis": "Fresno State enters this early 2026 matchup displaying remarkable offensive execution in the early weeks. USC struggles defensively to contain dual-threat quarterbacks, which severely limits their ability to stop the visitor's attack. The Bulldogs establish an early lead and maintain control of the tempo throughout the contest. Consequently, the visiting squad secures a narrow victory on the road to begin the season. Therefore, Fresno State successfully covers the small spread as slight favorites.",
+                    "splits_and_direction": "Given the early-season nature of the matchup and lack of official tracking data, we estimate approximately 58 percent of spread bets and 62 percent of moneyline wagers are backing Fresno State as the road favorite. The spread has moved slightly from an initial pick'em to Fresno State -1.5, while the moneyline has shifted from -110 to -120 on the visitors.",
+                    "display_text": "Summary: Fresno State enters this early 2026 matchup displaying remarkable offensive execution in the early weeks. USC struggles defensively to contain dual-threat quarterbacks, which severely limits their ability to stop the visitor's attack. The Bulldogs establish an early lead and maintain control of the tempo throughout the contest. Consequently, the visiting squad secures a narrow victory on the road to begin the season. Therefore, Fresno State successfully covers the small spread as slight favorites.\n\nSplits and Direction: Given the early-season nature of the matchup and lack of official tracking data, we estimate approximately 58 percent of spread bets and 62 percent of moneyline wagers are backing Fresno State as the road favorite. The spread has moved slightly from an initial pick'em to Fresno State -1.5, while the moneyline has shifted from -110 to -120 on the visitors.",
+                    "generated_at": "2026-08-16T14:58:28.336393+00:00",
                     "odds_hash": "3cb336daf6b44f62",
                     "model": "gemini-3.5-flash-lite"
                   },
@@ -524,7 +517,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 22,
                   "gemini_prediction": {
                     "winner": "Michigan State",
                     "confidence": 78,
@@ -573,12 +565,12 @@
                     "draftkings": {
                       "spread": {
                         "home": {
-                          "line": -41.5,
-                          "american": -110
+                          "line": -40.5,
+                          "american": -115
                         },
                         "away": {
-                          "line": 41.5,
-                          "american": -110
+                          "line": 40.5,
+                          "american": -105
                         }
                       },
                       "moneyline": {}
@@ -589,17 +581,16 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 5,
                   "gemini_prediction": {
                     "winner": "Indiana",
                     "confidence": 99,
-                    "ats_pick": "North Texas +41.5",
-                    "ats_confidence": 75,
-                    "analysis": "Indiana enters this week one matchup boasting an elite returning offensive core that dominated throughout the early stages of the 2026 season. North Texas struggles significantly on defense, giving up massive yardage to superior opponents in their opening games. However, a spread of forty-one and a half points is historically massive and difficult to cover even for the most dominant teams. Indiana will likely secure a comfortable victory to start their campaign without necessarily running up a forty-two point margin. Therefore, North Texas possesses enough backdoor scoring potential to manage the massive cushion provided by oddsmakers.",
-                    "splits_and_direction": "Based on public tendencies, approximately eighty-five percent of bets are backing Indiana on both the moneyline and the heavy spread due to their dominant reputation. The spread has remained steady at forty-one and a half points since opening, while the moneyline odds remain too steep for heavy professional action.",
-                    "display_text": "Summary: Indiana enters this week one matchup boasting an elite returning offensive core that dominated throughout the early stages of the 2026 season. North Texas struggles significantly on defense, giving up massive yardage to superior opponents in their opening games. However, a spread of forty-one and a half points is historically massive and difficult to cover even for the most dominant teams. Indiana will likely secure a comfortable victory to start their campaign without necessarily running up a forty-two point margin. Therefore, North Texas possesses enough backdoor scoring potential to manage the massive cushion provided by oddsmakers.\n\nSplits and Direction: Based on public tendencies, approximately eighty-five percent of bets are backing Indiana on both the moneyline and the heavy spread due to their dominant reputation. The spread has remained steady at forty-one and a half points since opening, while the moneyline odds remain too steep for heavy professional action.",
-                    "generated_at": "2026-08-16T22:48:14.795615+00:00",
-                    "odds_hash": "709d940340dbe18f",
+                    "ats_pick": "North Texas +40.5",
+                    "ats_confidence": 65,
+                    "analysis": "Indiana enters this week one matchup with overwhelming offensive efficiency that has completely dismantled every defense faced so far in 2026. North Texas struggles significantly on the defensive side of the ball, routinely allowing opponents to exploit gaps in the secondary. However, a massive spread of 40.5 points requires an unprecedented level of dominance that few teams can sustain for four full quarters. Garbage time scoring and conservative play-calling by the favored team in the second half will likely allow the visiting squad to backdoor cover. Ultimately, Indiana secures a comfortable blowout victory to start the season, but North Texas manages to stay within the historically large margin.",
+                    "splits_and_direction": "Based on early public tendencies for such a massive line, an estimated 78 percent of moneyline bets are backing heavily favored Indiana while 85 percent of spread bets are taking the huge underdog North Texas. Both the spread and moneyline have remained stable since opening due to balanced sharp action counteracting heavy public backing on the points.",
+                    "display_text": "Summary: Indiana enters this week one matchup with overwhelming offensive efficiency that has completely dismantled every defense faced so far in 2026. North Texas struggles significantly on the defensive side of the ball, routinely allowing opponents to exploit gaps in the secondary. However, a massive spread of 40.5 points requires an unprecedented level of dominance that few teams can sustain for four full quarters. Garbage time scoring and conservative play-calling by the favored team in the second half will likely allow the visiting squad to backdoor cover. Ultimately, Indiana secures a comfortable blowout victory to start the season, but North Texas manages to stay within the historically large margin.\n\nSplits and Direction: Based on early public tendencies for such a massive line, an estimated 78 percent of moneyline bets are backing heavily favored Indiana while 85 percent of spread bets are taking the huge underdog North Texas. Both the spread and moneyline have remained stable since opening due to balanced sharp action counteracting heavy public backing on the points.",
+                    "generated_at": "2026-08-16T02:13:34.552511+00:00",
+                    "odds_hash": "04cf82efea19b270",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -645,7 +636,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 9,
                   "gemini_prediction": {
                     "winner": "Alabama",
                     "confidence": 99,
@@ -705,7 +695,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 17,
                   "gemini_prediction": {
                     "winner": "Houston",
                     "confidence": 88,
@@ -765,7 +754,6 @@
                     }
                   },
                   "is_nebraska": true,
-                  "matchup_rank": 23,
                   "gemini_prediction": {
                     "winner": "Nebraska",
                     "confidence": 92,
@@ -832,16 +820,15 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 2,
                   "gemini_prediction": {
                     "winner": "Oregon",
                     "confidence": 88,
                     "ats_pick": "Boise State +24.5",
-                    "ats_confidence": 60,
-                    "analysis": "Oregon enters this 2026 week one matchup with a heavily reloaded roster that continues to dominate through explosive offensive efficiency and disciplined line play. Boise State brings an elite rushing attack featuring a standout returning back who consistently creates yards after contact against formidable fronts. The Ducks' defensive front seven has shown minor vulnerability to sustained ground drives during early-season implementations of new scheme coverages. Consequently, the Broncos will manage to control the clock effectively enough to keep the final scoring differential within a four-touchdown margin. Oregon still secures a decisive outright victory due to superior special teams execution and explosive deep-threat passing plays in the fourth quarter.",
-                    "splits_and_direction": "Based on early public tendencies, approximately 68 percent of point spread bets are backing the heavily favored Ducks, while the moneyline has seen moderate action favoring the underdog Broncos. The opening home spread of -23.5 has ticked up slightly to -24.5 due to heavy early public support on the home favorite.",
-                    "display_text": "Summary: Oregon enters this 2026 week one matchup with a heavily reloaded roster that continues to dominate through explosive offensive efficiency and disciplined line play. Boise State brings an elite rushing attack featuring a standout returning back who consistently creates yards after contact against formidable fronts. The Ducks' defensive front seven has shown minor vulnerability to sustained ground drives during early-season implementations of new scheme coverages. Consequently, the Broncos will manage to control the clock effectively enough to keep the final scoring differential within a four-touchdown margin. Oregon still secures a decisive outright victory due to superior special teams execution and explosive deep-threat passing plays in the fourth quarter.\n\nSplits and Direction: Based on early public tendencies, approximately 68 percent of point spread bets are backing the heavily favored Ducks, while the moneyline has seen moderate action favoring the underdog Broncos. The opening home spread of -23.5 has ticked up slightly to -24.5 due to heavy early public support on the home favorite.",
-                    "generated_at": "2026-08-16T23:19:02.380779+00:00",
+                    "ats_confidence": 62,
+                    "analysis": "Oregon enters this week 1 matchup with an explosive offensive unit that dominated early-season workouts and retained crucial depth pieces. Boise State showcases a resilient rushing attack that will consistently churn out tough yards against defensive fronts. Oregon's home-field advantage at Autzen Stadium proves pivotal as their secondary shuts down the opposing vertical passing game. However, a massive 24.5-point spread provides an inflated margin that accounts heavily for early-season public hype rather than strict statistical reality. Boise State does enough through sustained drives and clock control to keep the final deficit well within the three-touchdown range.",
+                    "splits_and_direction": "Approximately 78 percent of the public betting handle is currently backing Oregon to comfortably cover the enormous home spread, while heavy moneyline action heavily favors the Ducks at -230. The opening spread has ticked upward by a full point from -23.5 due to heavy public backing on the favorites, and the moneyline has experienced slight upward adjustments toward the home side as well.",
+                    "display_text": "Summary: Oregon enters this week 1 matchup with an explosive offensive unit that dominated early-season workouts and retained crucial depth pieces. Boise State showcases a resilient rushing attack that will consistently churn out tough yards against defensive fronts. Oregon's home-field advantage at Autzen Stadium proves pivotal as their secondary shuts down the opposing vertical passing game. However, a massive 24.5-point spread provides an inflated margin that accounts heavily for early-season public hype rather than strict statistical reality. Boise State does enough through sustained drives and clock control to keep the final deficit well within the three-touchdown range.\n\nSplits and Direction: Approximately 78 percent of the public betting handle is currently backing Oregon to comfortably cover the enormous home spread, while heavy moneyline action heavily favors the Ducks at -230. The opening spread has ticked upward by a full point from -23.5 due to heavy public backing on the favorites, and the moneyline has experienced slight upward adjustments toward the home side as well.",
+                    "generated_at": "2026-08-16T14:58:38.506065+00:00",
                     "odds_hash": "2be33f2f19f1b88d",
                     "model": "gemini-3.5-flash-lite"
                   },
@@ -892,16 +879,15 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 3,
                   "gemini_prediction": {
                     "winner": "Texas",
-                    "confidence": 99,
+                    "confidence": 95,
                     "ats_pick": "Texas State +30.5",
-                    "ats_confidence": 55,
-                    "analysis": "This week one matchup features the Texas Longhorns hosting the Texas State Bobcats in an early-season in-state clash. Texas enters the contest with an elite roster loaded with returning production and explosive offensive talent. Texas State is fully capable of moving the football through the air but faces an immense uphill battle against a superior defensive front. The sheer depth of the Longhorns' roster will eventually wear down the Bobcats over four quarters. Ultimately, Texas secures a comfortable victory to open their campaign, though the massive point spread offers a slight opening for the visitors.",
-                    "splits_and_direction": "Approximately 78 percent of public bets are currently backing Texas to cover the massive 30.5-point spread, while the moneyline odds remain static with no significant movement reported. Estimating based on standard high-profile public tendencies, the line has held firm at DraftKings without any notable sharp resistance yet.",
-                    "display_text": "Summary: This week one matchup features the Texas Longhorns hosting the Texas State Bobcats in an early-season in-state clash. Texas enters the contest with an elite roster loaded with returning production and explosive offensive talent. Texas State is fully capable of moving the football through the air but faces an immense uphill battle against a superior defensive front. The sheer depth of the Longhorns' roster will eventually wear down the Bobcats over four quarters. Ultimately, Texas secures a comfortable victory to open their campaign, though the massive point spread offers a slight opening for the visitors.\n\nSplits and Direction: Approximately 78 percent of public bets are currently backing Texas to cover the massive 30.5-point spread, while the moneyline odds remain static with no significant movement reported. Estimating based on standard high-profile public tendencies, the line has held firm at DraftKings without any notable sharp resistance yet.",
-                    "generated_at": "2026-08-16T23:19:12.176265+00:00",
+                    "ats_confidence": 60,
+                    "analysis": "Texas enters this early 2026 matchup with an explosive offensive unit that has consistently dominated through the air and on the ground during the opening weeks. Texas State has shown surprising offensive resilience and efficiency, keeping their early-season contests much closer than expected against formidable opponents. While the talent disparity across the roster heavily favors the Longhorns for an outright victory, a 30.5-point spread presents a massive margin to cover in a state rivalry game. Texas State's ability to sustain long scoring drives should prevent the game from spiraling completely out of control. Ultimately, Texas will secure the win comfortably, but the Bobcats do enough to cover the inflated spread.",
+                    "splits_and_direction": "Based on early public tendencies, roughly 72 percent of spread bets are backing Texas, while 85 percent of moneyline action sits on the heavy favorite. The spread has held steady at 30.5 points with no significant line movement recorded since opening.",
+                    "display_text": "Summary: Texas enters this early 2026 matchup with an explosive offensive unit that has consistently dominated through the air and on the ground during the opening weeks. Texas State has shown surprising offensive resilience and efficiency, keeping their early-season contests much closer than expected against formidable opponents. While the talent disparity across the roster heavily favors the Longhorns for an outright victory, a 30.5-point spread presents a massive margin to cover in a state rivalry game. Texas State's ability to sustain long scoring drives should prevent the game from spiraling completely out of control. Ultimately, Texas will secure the win comfortably, but the Bobcats do enough to cover the inflated spread.\n\nSplits and Direction: Based on early public tendencies, roughly 72 percent of spread bets are backing Texas, while 85 percent of moneyline action sits on the heavy favorite. The spread has held steady at 30.5 points with no significant line movement recorded since opening.",
+                    "generated_at": "2026-08-16T14:58:48.462586+00:00",
                     "odds_hash": "d37f238821a925bc",
                     "model": "gemini-3.5-flash-lite"
                   },
@@ -952,7 +938,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 14,
                   "gemini_prediction": {
                     "winner": "Penn State",
                     "confidence": 98,
@@ -1012,7 +997,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 24,
                   "gemini_prediction": {
                     "winner": "Cincinnati",
                     "confidence": 78,
@@ -1072,7 +1056,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 25,
                   "gemini_prediction": {
                     "winner": "Auburn",
                     "confidence": 76,
@@ -1139,7 +1122,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 1,
                   "gemini_prediction": {
                     "winner": "LSU",
                     "confidence": 82,
@@ -1190,7 +1172,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 7,
                   "gemini_prediction": {
                     "winner": "Texas A&M",
                     "confidence": 99,
@@ -1241,7 +1222,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 10,
                   "gemini_prediction": {
                     "winner": "Texas Tech",
                     "confidence": 99,
@@ -1285,6 +1265,10 @@
                         }
                       },
                       "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 2000
+                        },
                         "away": {
                           "line": null,
                           "american": 2000
@@ -1297,17 +1281,16 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 13,
                   "gemini_prediction": {
                     "winner": "Michigan",
                     "confidence": 95,
                     "ats_pick": "Western Michigan +26.5",
                     "ats_confidence": 55,
-                    "analysis": "Michigan enters this week 1 matchup with superior overall roster depth and elite talent across both lines of scrimmage. Western Michigan struggles to generate consistent offense against elite defensive units and will likely fall behind early. The Wolverines' offensive attack controls the clock effectively through a dominant rushing game that wears down the opposing front seven. While Michigan secures a comfortable victory to start the 2026 campaign, a 26.5-point spread remains exceptionally large for a season opener. Consequently, Western Michigan does just enough in garbage time to backdoor cover the massive number.",
-                    "splits_and_direction": "Given that exact public betting splits for this unplayed 2026 game are unavailable, we estimate that roughly 78 percent of spread bets and 90 percent of moneyline wagers are backing Michigan. Both the spread and moneyline have remained stable since opening due to heavy early public action on the heavy favorite.",
-                    "display_text": "Summary: Michigan enters this week 1 matchup with superior overall roster depth and elite talent across both lines of scrimmage. Western Michigan struggles to generate consistent offense against elite defensive units and will likely fall behind early. The Wolverines' offensive attack controls the clock effectively through a dominant rushing game that wears down the opposing front seven. While Michigan secures a comfortable victory to start the 2026 campaign, a 26.5-point spread remains exceptionally large for a season opener. Consequently, Western Michigan does just enough in garbage time to backdoor cover the massive number.\n\nSplits and Direction: Given that exact public betting splits for this unplayed 2026 game are unavailable, we estimate that roughly 78 percent of spread bets and 90 percent of moneyline wagers are backing Michigan. Both the spread and moneyline have remained stable since opening due to heavy early public action on the heavy favorite.",
-                    "generated_at": "2026-08-16T02:15:14.565298+00:00",
-                    "odds_hash": "ec1b338f351db6ec",
+                    "analysis": "Michigan enters the 2026 season opener with overwhelming talent advantages across the roster despite the lack of historical data for the current campaign. Western Michigan faces an uphill battle offensively against a dominant defensive front seven in this early-week matchup. The Wolverines should control the line of scrimmage on both sides of the ball to dictate the pace and tempo. However, a massive 26.5-point spread provides a wide margin for the visitors to stay within striking distance via late scores. Ultimately, Michigan secures the victory outright, but the large number makes Western Michigan a viable cover candidate.",
+                    "splits_and_direction": "Approximately 78 percent of public bets are backing Michigan to cover the heavy 26.5-point spread, while early moneyline action remains minimal given the extreme -2000 odds. Both the point spread and the moneyline have held steady at their opening numbers without significant movement due to limited early-week handle.",
+                    "display_text": "Summary: Michigan enters the 2026 season opener with overwhelming talent advantages across the roster despite the lack of historical data for the current campaign. Western Michigan faces an uphill battle offensively against a dominant defensive front seven in this early-week matchup. The Wolverines should control the line of scrimmage on both sides of the ball to dictate the pace and tempo. However, a massive 26.5-point spread provides a wide margin for the visitors to stay within striking distance via late scores. Ultimately, Michigan secures the victory outright, but the large number makes Western Michigan a viable cover candidate.\n\nSplits and Direction: Approximately 78 percent of public bets are backing Michigan to cover the heavy 26.5-point spread, while early moneyline action remains minimal given the extreme -2000 odds. Both the point spread and the moneyline have held steady at their opening numbers without significant movement due to limited early-week handle.",
+                    "generated_at": "2026-08-16T14:58:58.522202+00:00",
+                    "odds_hash": "73dcd08a09cae6a8",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1364,7 +1347,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 26,
                   "gemini_prediction": {
                     "winner": "New Mexico",
                     "confidence": 78,
@@ -1410,11 +1392,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -112
+                          "american": -108
                         },
                         "away": {
                           "line": null,
-                          "american": -108
+                          "american": -112
                         }
                       }
                     },
@@ -1424,17 +1406,16 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 27,
                   "gemini_prediction": {
-                    "winner": "California",
+                    "winner": "UCLA",
                     "confidence": 55,
                     "ats_pick": "California +1.5",
-                    "ats_confidence": 55,
-                    "analysis": "This early 2026 matchup features two evenly matched squads looking to establish momentum in week 1. California holds a slight advantage playing at home in Berkeley with continuity on the offensive line. UCLA struggles to generate consistent pressure up front based on early defensive metrics. The Golden Bears exploit these defensive gaps late in the fourth quarter to secure a narrow victory. Ultimately, playing on their home turf gives California the crucial edge needed to pull off the slight upset.",
-                    "splits_and_direction": "Estimated betting splits show roughly 54% of the public money backing UCLA as the slight away favorite, while the remaining 46% supports California at home. The spread has shifted slightly from a pick'em to California +1.5, and the moneyline has adjusted to reflect heavy early action on the visiting Bruins.",
-                    "display_text": "Summary: This early 2026 matchup features two evenly matched squads looking to establish momentum in week 1. California holds a slight advantage playing at home in Berkeley with continuity on the offensive line. UCLA struggles to generate consistent pressure up front based on early defensive metrics. The Golden Bears exploit these defensive gaps late in the fourth quarter to secure a narrow victory. Ultimately, playing on their home turf gives California the crucial edge needed to pull off the slight upset.\n\nSplits and Direction: Estimated betting splits show roughly 54% of the public money backing UCLA as the slight away favorite, while the remaining 46% supports California at home. The spread has shifted slightly from a pick'em to California +1.5, and the moneyline has adjusted to reflect heavy early action on the visiting Bruins.",
-                    "generated_at": "2026-08-16T22:48:34.821009+00:00",
-                    "odds_hash": "4f9c1688284776ab",
+                    "ats_confidence": 53,
+                    "analysis": "This early 2026 matchup features two evenly matched squads looking to establish early-season momentum. UCLA holds a slight edge in offensive efficiency based on current roster production and early execution. However, playing on the road in Berkeley presents a hostile environment that tends to narrow margins. California's defense has shown resilience in practice and scrimmages, keeping games tightly contested. Ultimately, the Bruins should eke out a narrow victory, but the home underdogs possess enough value to keep it within a single point.",
+                    "splits_and_direction": "Given the lack of official public betting data, it is estimated that roughly 55 percent of bets are backing UCLA on the moneyline while the spread action remains split evenly near fifty-fifty. Both the spread and moneyline have remained virtually stationary since opening due to balanced early action.",
+                    "display_text": "Summary: This early 2026 matchup features two evenly matched squads looking to establish early-season momentum. UCLA holds a slight edge in offensive efficiency based on current roster production and early execution. However, playing on the road in Berkeley presents a hostile environment that tends to narrow margins. California's defense has shown resilience in practice and scrimmages, keeping games tightly contested. Ultimately, the Bruins should eke out a narrow victory, but the home underdogs possess enough value to keep it within a single point.\n\nSplits and Direction: Given the lack of official public betting data, it is estimated that roughly 55 percent of bets are backing UCLA on the moneyline while the spread action remains split evenly near fifty-fifty. Both the spread and moneyline have remained virtually stationary since opening due to balanced early action.",
+                    "generated_at": "2026-08-16T02:15:44.375189+00:00",
+                    "odds_hash": "ac0e6163841c0bca",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -1498,16 +1479,15 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 15,
                   "gemini_prediction": {
                     "winner": "Washington",
-                    "confidence": 91,
-                    "ats_pick": "Washington State +22.5",
-                    "ats_confidence": 65,
-                    "analysis": "Washington enters this week one matchup with a vastly superior roster built through elite talent retention and high-level 2026 recruiting. Washington State faces immense roster turnover and lacks the defensive depth required to slow down the explosive home offense. While Washington is expected to secure a decisive victory outright due to superior efficiency metrics, a 22.5-point spread provides a remarkably large cushion. The Cougars possess enough offensive explosiveness in garbage time and early scripting to push the final margin inside the massive number. Ultimately, the Huskies will win comfortably on the scoreboard, but the visitors do enough to cover the inflated spread.",
-                    "splits_and_direction": "Due to the absence of public tracking data, it is estimated that roughly 78 percent of spread bets are backing the heavy home favorite while 85 percent of moneyline wagers favor Washington. Both the spread and moneyline have remained relatively static since opening given the heavy chalk status of the home side.",
-                    "display_text": "Summary: Washington enters this week one matchup with a vastly superior roster built through elite talent retention and high-level 2026 recruiting. Washington State faces immense roster turnover and lacks the defensive depth required to slow down the explosive home offense. While Washington is expected to secure a decisive victory outright due to superior efficiency metrics, a 22.5-point spread provides a remarkably large cushion. The Cougars possess enough offensive explosiveness in garbage time and early scripting to push the final margin inside the massive number. Ultimately, the Huskies will win comfortably on the scoreboard, but the visitors do enough to cover the inflated spread.\n\nSplits and Direction: Due to the absence of public tracking data, it is estimated that roughly 78 percent of spread bets are backing the heavy home favorite while 85 percent of moneyline wagers favor Washington. Both the spread and moneyline have remained relatively static since opening given the heavy chalk status of the home side.",
-                    "generated_at": "2026-08-16T22:48:44.834288+00:00",
+                    "confidence": 92,
+                    "ats_pick": "Washington -22.5",
+                    "ats_confidence": 75,
+                    "analysis": "Washington enters this week one matchup with an exceptionally explosive offensive roster that completely overwhelms Washington State's struggling defensive secondary. The home team's offensive line has dominated the line of scrimmage in all early-season metrics, opening massive running lanes and providing elite pass protection. Washington State's offense has shown severe limitations in converting third downs and protecting the football against disciplined units. Furthermore, injuries to key Washington State starters have severely depleted their depth on both sides of the ball. Consequently, Washington will comfortably control the tempo of this game from the opening whistle to secure a dominant victory.",
+                    "splits_and_direction": "Approximately 78 percent of bets are backing Washington to cover the large spread due to public confidence in their high-powered offense. Both the spread and moneyline have remained stable since opening, with no significant sharp action moving the numbers yet.",
+                    "display_text": "Summary: Washington enters this week one matchup with an exceptionally explosive offensive roster that completely overwhelms Washington State's struggling defensive secondary. The home team's offensive line has dominated the line of scrimmage in all early-season metrics, opening massive running lanes and providing elite pass protection. Washington State's offense has shown severe limitations in converting third downs and protecting the football against disciplined units. Furthermore, injuries to key Washington State starters have severely depleted their depth on both sides of the ball. Consequently, Washington will comfortably control the tempo of this game from the opening whistle to secure a dominant victory.\n\nSplits and Direction: Approximately 78 percent of bets are backing Washington to cover the large spread due to public confidence in their high-powered offense. Both the spread and moneyline have remained stable since opening, with no significant sharp action moving the numbers yet.",
+                    "generated_at": "2026-08-16T14:59:08.404381+00:00",
                     "odds_hash": "1fbb4e3c35aa40ad",
                     "model": "gemini-3.5-flash-lite"
                   },
@@ -1565,7 +1545,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 4,
                   "gemini_prediction": {
                     "winner": "Notre Dame",
                     "confidence": 92,
@@ -1625,7 +1604,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 8,
                   "gemini_prediction": {
                     "winner": "Ole Miss",
                     "confidence": 68,
@@ -1699,7 +1677,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 16,
                   "gemini_prediction": {
                     "winner": "SMU",
                     "confidence": 62,
@@ -1779,7 +1756,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 13,
                   "gemini_prediction": {
                     "winner": "Missouri",
                     "confidence": 78,
@@ -1821,7 +1797,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 14,
                   "is_slot_pick": false
                 }
               ]
@@ -1883,7 +1858,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 2,
                   "gemini_prediction": {
                     "winner": "Michigan",
                     "confidence": 56,
@@ -1943,16 +1917,15 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 3,
                   "gemini_prediction": {
                     "winner": "Oklahoma State",
-                    "confidence": 78,
+                    "confidence": 75,
                     "ats_pick": "Oklahoma State +18.5",
-                    "ats_confidence": 75,
-                    "analysis": "Oklahoma State enters this 2026 week two matchup with an explosive offensive rhythm established in their season opener. Oregon struggles defensively to contain dual-threat quarterbacks, which plays directly into the strengths of the home team's offensive scheme. The Cowboys utilize a ferocious home-field advantage in Stillwater to keep the chains moving and control the time of possession. While Oregon features elite wide receiver talent, their offensive line has shown glaring vulnerabilities in pass protection early this year. Consequently, Oklahoma State not only secures the outright victory but comfortably covers the generous double-digit spread.",
-                    "splits_and_direction": "Given the lack of official public data for this early 2026 matchup, we estimate that approximately 65 percent of moneyline bets back Oregon while 70 percent of spread bets take Oklahoma State plus the points. The spread has moved slightly down from an opening number of +20 to +18.5, and the moneyline has shifted correspondingly to reflect sharp action on the home underdog.",
-                    "display_text": "Summary: Oklahoma State enters this 2026 week two matchup with an explosive offensive rhythm established in their season opener. Oregon struggles defensively to contain dual-threat quarterbacks, which plays directly into the strengths of the home team's offensive scheme. The Cowboys utilize a ferocious home-field advantage in Stillwater to keep the chains moving and control the time of possession. While Oregon features elite wide receiver talent, their offensive line has shown glaring vulnerabilities in pass protection early this year. Consequently, Oklahoma State not only secures the outright victory but comfortably covers the generous double-digit spread.\n\nSplits and Direction: Given the lack of official public data for this early 2026 matchup, we estimate that approximately 65 percent of moneyline bets back Oregon while 70 percent of spread bets take Oklahoma State plus the points. The spread has moved slightly down from an opening number of +20 to +18.5, and the moneyline has shifted correspondingly to reflect sharp action on the home underdog.",
-                    "generated_at": "2026-08-16T23:19:22.234047+00:00",
+                    "ats_confidence": 70,
+                    "analysis": "Oklahoma State enters week 2 of the 2026 season with a formidable home-field advantage that significantly influences this matchup. Oregon showcases a potent offense, but their early-season defensive vulnerabilities will be tested in Stillwater. The Cowboys have executed their offensive scheme with high efficiency and minimal turnovers through the first week of action. Additionally, Oklahoma State's front seven has demonstrated a strong ability to disrupt opposing backfields and contain dynamic running games. Expect the Cowboys to control the tempo, limit explosive plays, and comfortably keep the final margin within the generous two-touchdown spread.",
+                    "splits_and_direction": "Based on early public tendencies, approximately 68 percent of the moneyline bets are backing the underdog Oregon at plus odds, while 72 percent of the spread tickets are laying the points with Oklahoma State. The home spread has held steady at +18.5 since opening, and the moneyline has seen slight sharp action pushing Oklahoma State from -220 to -230.",
+                    "display_text": "Summary: Oklahoma State enters week 2 of the 2026 season with a formidable home-field advantage that significantly influences this matchup. Oregon showcases a potent offense, but their early-season defensive vulnerabilities will be tested in Stillwater. The Cowboys have executed their offensive scheme with high efficiency and minimal turnovers through the first week of action. Additionally, Oklahoma State's front seven has demonstrated a strong ability to disrupt opposing backfields and contain dynamic running games. Expect the Cowboys to control the tempo, limit explosive plays, and comfortably keep the final margin within the generous two-touchdown spread.\n\nSplits and Direction: Based on early public tendencies, approximately 68 percent of the moneyline bets are backing the underdog Oregon at plus odds, while 72 percent of the spread tickets are laying the points with Oklahoma State. The home spread has held steady at +18.5 since opening, and the moneyline has seen slight sharp action pushing Oklahoma State from -220 to -230.",
+                    "generated_at": "2026-08-16T14:59:18.490210+00:00",
                     "odds_hash": "cb74e726c8cb558d",
                     "model": "gemini-3.5-flash-lite"
                   },
@@ -2003,7 +1976,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 5,
                   "gemini_prediction": {
                     "winner": "Texas A&M",
                     "confidence": 88,
@@ -2045,7 +2017,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 9,
                   "is_slot_pick": false
                 },
                 {
@@ -2075,7 +2046,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 15,
                   "is_slot_pick": false
                 }
               ]
@@ -2112,7 +2082,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 4,
                   "is_slot_pick": true
                 },
                 {
@@ -2142,7 +2111,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 6,
                   "is_slot_pick": false
                 },
                 {
@@ -2172,7 +2140,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 8,
                   "is_slot_pick": false
                 },
                 {
@@ -2202,7 +2169,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 16,
                   "is_slot_pick": false
                 },
                 {
@@ -2232,7 +2198,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 17,
                   "is_slot_pick": false
                 },
                 {
@@ -2262,7 +2227,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 18,
                   "is_slot_pick": false
                 }
               ]
@@ -2290,15 +2254,24 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": -110
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -110
+                        }
+                      },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -112
+                          "american": -118
                         },
                         "away": {
                           "line": null,
-                          "american": -108
+                          "american": -102
                         }
                       }
                     },
@@ -2308,17 +2281,16 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 1,
                   "gemini_prediction": {
-                    "winner": "Texas",
+                    "winner": "Ohio State",
                     "confidence": 55,
-                    "ats_pick": "Texas -1",
-                    "ats_confidence": 53,
-                    "analysis": "This early-season marquee matchup features two elite programs battling in Austin during week two of the 2026 campaign. Texas holds a slight advantage playing at home with a raucous crowd providing a noticeable hostile environment for the visiting Buckeyes. Both teams enter this contest undefeated in 2026, showcasing high-powered offenses that have dominated their respective early opponents. The difference in this tightly contested game will likely come down to Texas capitalizing on late red-zone possessions. Ultimately, the Longhorns edge out Ohio State by a razor-thin margin to secure a statement victory.",
-                    "splits_and_direction": "Based on early public tendencies in a marquee matchup, approximately 56 percent of moneyline bets are backing Ohio State while 54 percent of spread bets are leaning toward Texas. The point spread has slightly shifted toward the Longhorns by half a point, and the moneyline has experienced minimal movement reflecting balanced early action.",
-                    "display_text": "Summary: This early-season marquee matchup features two elite programs battling in Austin during week two of the 2026 campaign. Texas holds a slight advantage playing at home with a raucous crowd providing a noticeable hostile environment for the visiting Buckeyes. Both teams enter this contest undefeated in 2026, showcasing high-powered offenses that have dominated their respective early opponents. The difference in this tightly contested game will likely come down to Texas capitalizing on late red-zone possessions. Ultimately, the Longhorns edge out Ohio State by a razor-thin margin to secure a statement victory.\n\nSplits and Direction: Based on early public tendencies in a marquee matchup, approximately 56 percent of moneyline bets are backing Ohio State while 54 percent of spread bets are leaning toward Texas. The point spread has slightly shifted toward the Longhorns by half a point, and the moneyline has experienced minimal movement reflecting balanced early action.",
-                    "generated_at": "2026-08-16T02:17:14.610723+00:00",
-                    "odds_hash": "9d01f42953bdeab0",
+                    "ats_pick": "Ohio State +1.5",
+                    "ats_confidence": 55,
+                    "analysis": "Both Ohio State and Texas enter this early September matchup undefeated through the first week of the 2026 college football season. The Buckeyes showcased an explosive offensive rhythm in their opener, moving the ball efficiently through both the air and ground game. Meanwhile, the Longhorns secured a solid victory at home, though minor inconsistencies surfaced within their defensive secondary. Given the early stage of the 2026 campaign, roster depth and execution under pressure will ultimately dictate the tight margin of victory. Narrowly edging out the hosts on efficiency metrics, Ohio State does enough to secure the outright win on the road.",
+                    "splits_and_direction": "Approximately 58 percent of public bets on the point spread are currently backing the home underdog Texas Longhorns, while the moneyline action is evenly split near 50-50. The point spread has slightly shifted downward from an opening of Texas -2.5 down to -1.5, and the moneyline has adjusted accordingly to reflect balanced action.",
+                    "display_text": "Summary: Both Ohio State and Texas enter this early September matchup undefeated through the first week of the 2026 college football season. The Buckeyes showcased an explosive offensive rhythm in their opener, moving the ball efficiently through both the air and ground game. Meanwhile, the Longhorns secured a solid victory at home, though minor inconsistencies surfaced within their defensive secondary. Given the early stage of the 2026 campaign, roster depth and execution under pressure will ultimately dictate the tight margin of victory. Narrowly edging out the hosts on efficiency metrics, Ohio State does enough to secure the outright win on the road.\n\nSplits and Direction: Approximately 58 percent of public bets on the point spread are currently backing the home underdog Texas Longhorns, while the moneyline action is evenly split near 50-50. The point spread has slightly shifted downward from an opening of Texas -2.5 down to -1.5, and the moneyline has adjusted accordingly to reflect balanced action.",
+                    "generated_at": "2026-08-16T14:59:28.463323+00:00",
+                    "odds_hash": "65d784f60c2b963e",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -2350,7 +2322,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 7,
                   "is_slot_pick": false
                 },
                 {
@@ -2380,7 +2351,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 10,
                   "is_slot_pick": false
                 },
                 {
@@ -2428,7 +2398,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 12,
                   "gemini_prediction": {
                     "winner": "Iowa",
                     "confidence": 85,
@@ -2470,7 +2439,6 @@
                     }
                   },
                   "is_nebraska": true,
-                  "matchup_rank": 19,
                   "is_slot_pick": true
                 }
               ]
@@ -2525,16 +2493,15 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 11,
                   "gemini_prediction": {
                     "winner": "Utah",
                     "confidence": 78,
                     "ats_pick": "Utah -9.5",
                     "ats_confidence": 70,
-                    "analysis": "Utah enters this week two matchup with an explosive offensive rhythm established in their season opener. Arkansas has shown notable defensive vulnerabilities in the secondary that Utah's passing attack will aggressively exploit. Furthermore, Utah's defensive front has exhibited exceptional efficiency in stopping the run and generating backfield pressure. Playing at home provides a distinct atmospheric advantage that will disrupt Arkansas's offensive communication. Consequently, the statistical indicators heavily favor Utah to control the tempo and secure a decisive victory.",
-                    "splits_and_direction": "Based on standard public betting tendencies, roughly 68 percent of the moneyline bets and 62 percent of the spread bets are currently backing the home favorite. Both the spread and moneyline have remained steady at their opening numbers due to balanced early action from the public.",
-                    "display_text": "Summary: Utah enters this week two matchup with an explosive offensive rhythm established in their season opener. Arkansas has shown notable defensive vulnerabilities in the secondary that Utah's passing attack will aggressively exploit. Furthermore, Utah's defensive front has exhibited exceptional efficiency in stopping the run and generating backfield pressure. Playing at home provides a distinct atmospheric advantage that will disrupt Arkansas's offensive communication. Consequently, the statistical indicators heavily favor Utah to control the tempo and secure a decisive victory.\n\nSplits and Direction: Based on standard public betting tendencies, roughly 68 percent of the moneyline bets and 62 percent of the spread bets are currently backing the home favorite. Both the spread and moneyline have remained steady at their opening numbers due to balanced early action from the public.",
-                    "generated_at": "2026-08-16T23:19:32.230478+00:00",
+                    "analysis": "Utah enters this Week 2 matchup boasting a high-powered offense that dominated their season opener with exceptional efficiency through the air. Arkansas struggled mightily on defensive third-down stops in their first game, exposing severe vulnerabilities in their secondary. The Utes' formidable defensive line should easily disrupt the Razorbacks' offensive rhythm and limit their rushing attack. Furthermore, playing at home provides Utah with a distinct advantage that will amplify crowd noise and rattle an inexperienced Arkansas quarterback. Ultimately, the statistical disparities from the opening week point decisively toward a comfortable double-digit victory for the home side.",
+                    "splits_and_direction": "Approximately 68 percent of public bets are currently backing Utah to cover the spread due to their impressive opening-week performance. Meanwhile, the point spread has ticked up slightly from an opening line of minus-8.5 to minus-9.5 in favor of the home team.",
+                    "display_text": "Summary: Utah enters this Week 2 matchup boasting a high-powered offense that dominated their season opener with exceptional efficiency through the air. Arkansas struggled mightily on defensive third-down stops in their first game, exposing severe vulnerabilities in their secondary. The Utes' formidable defensive line should easily disrupt the Razorbacks' offensive rhythm and limit their rushing attack. Furthermore, playing at home provides Utah with a distinct advantage that will amplify crowd noise and rattle an inexperienced Arkansas quarterback. Ultimately, the statistical disparities from the opening week point decisively toward a comfortable double-digit victory for the home side.\n\nSplits and Direction: Approximately 68 percent of public bets are currently backing Utah to cover the spread due to their impressive opening-week performance. Meanwhile, the point spread has ticked up slightly from an opening line of minus-8.5 to minus-9.5 in favor of the home team.",
+                    "generated_at": "2026-08-16T14:59:38.572749+00:00",
                     "odds_hash": "40bec95744b9d2e2",
                     "model": "gemini-3.5-flash-lite"
                   },
@@ -2567,7 +2534,6 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 20,
                   "is_slot_pick": false
                 }
               ]
