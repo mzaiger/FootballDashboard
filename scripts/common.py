@@ -77,18 +77,40 @@ def time_slot_for(local_dt, is_tbd):
 # ---------------------------------------------------------------------------
 
 def fetch_all_odds(sharp_key, league, sportsbooks=("draftkings", "fanduel"),
-                    markets=("spread", "moneyline")):
-    """Pull every odds row for the given league/books/markets, following pagination."""
+                    markets=("spread", "moneyline"), date_from=None, date_to=None):
+    """Pull every odds row for the given league/books/markets, following
+    pagination.
+
+    `date_from`/`date_to` (YYYY-MM-DD strings) are optional but recommended
+    when the caller knows the exact date range it's building -- narrowing
+    the request server-side means far fewer total rows/pages to page
+    through, which is both faster and less exposed to any pagination edge
+    case than asking for everything currently posted and filtering
+    client-side.
+    """
     rows = []
     offset = 0
+    cursor = None
     while True:
         params = {
-            "league": league,
+            # SharpAPI's own example requests use the upper-case league
+            # code ("MLB"); we'd been passing whatever casing each build
+            # script's own `league="mlb"` call happened to use.
+            # Uppercasing defensively here means it no longer matters.
+            "league": league.upper(),
             "sportsbook": ",".join(sportsbooks),
             "market": ",".join(markets),
             "limit": SHARPAPI_PAGE_LIMIT,
-            "offset": offset,
         }
+        if date_from:
+            params["date_from"] = date_from
+        if date_to:
+            params["date_to"] = date_to
+        if cursor:
+            params["cursor"] = cursor
+        else:
+            params["offset"] = offset
+
         resp = requests.get(
             f"{SHARPAPI_BASE}/odds",
             headers={"X-API-Key": sharp_key},
@@ -103,24 +125,51 @@ def fetch_all_odds(sharp_key, league, sportsbooks=("draftkings", "fanduel"),
         resp.raise_for_status()
         payload = resp.json()
         rows.extend(payload.get("data", []))
-        meta = payload.get("meta", {})
-        pagination = meta.get("pagination", {})
+
+        # Pagination info is a TOP-LEVEL field of the response, a sibling
+        # of "data" and "meta" -- NOT nested inside "meta" the way an
+        # earlier version of this function read it
+        # (payload["meta"]["pagination"]). Since "meta" never actually
+        # contains a "pagination" key, that always evaluated to an empty
+        # dict, so has_more was always falsy and this loop silently
+        # stopped after the very first page (up to SHARPAPI_PAGE_LIMIT
+        # rows) on every single call, no matter how many more rows were
+        # actually waiting. For a market/day with more rows than one page
+        # holds, whichever games' odds rows happened to sort past that
+        # cutoff would just never get fetched -- indistinguishable from
+        # "SharpAPI hasn't posted them yet" from the matching code's
+        # point of view.
+        pagination = payload.get("pagination", {})
         if not pagination.get("has_more"):
             break
-        offset = pagination.get("next_offset", offset + SHARPAPI_PAGE_LIMIT)
+        next_cursor = pagination.get("next_cursor")
+        if next_cursor:
+            cursor = next_cursor
+        else:
+            offset = pagination.get("next_offset", offset + SHARPAPI_PAGE_LIMIT)
         time.sleep(0.3)  # be polite to the free tier (12 req/min)
 
-    _log_odds_breakdown(rows)
+    _log_odds_breakdown(rows, sportsbooks, markets)
+    return rows
+
+    _log_odds_breakdown(rows, sportsbooks, markets)
     return rows
 
 
-def _log_odds_breakdown(rows):
+def _log_odds_breakdown(rows, sportsbooks=("draftkings", "fanduel"), markets=("spread", "moneyline")):
     """Print a (sportsbook, market_type) row-count table to stderr.
 
     This is the fastest way to tell "SharpAPI genuinely hasn't posted these
     lines yet" apart from "we're getting rows back but dropping them during
     matching" -- if a combination is missing here, it never reached us in
     the first place, so nothing downstream can be at fault.
+
+    Checks against whichever `markets` were actually REQUESTED for this
+    call, not a hardcoded ("spread", "moneyline") pair -- MLB requests
+    "run_line" (not "spread"; see build_mlb_dashboard.py), so a hardcoded
+    check for "spread" would always log a false "0 rows" NOTE for MLB even
+    when run-line rows came through completely fine, since they're tagged
+    market_type "run_line" in the response, never literally "spread".
     """
     from collections import Counter
     counts = Counter((r.get("sportsbook"), r.get("market_type")) for r in rows)
@@ -128,8 +177,8 @@ def _log_odds_breakdown(rows):
         log("  SharpAPI returned 0 odds rows total")
         return
     log(f"  odds rows by (sportsbook, market): {dict(counts)}")
-    for book in ("draftkings", "fanduel"):
-        for market in ("spread", "moneyline"):
+    for book in sportsbooks:
+        for market in markets:
             if counts.get((book, market), 0) == 0:
                 log(f"  NOTE: 0 rows for ({book}, {market}) -- SharpAPI hasn't posted these yet, "
                     f"or (book, market) label differs from what we expect. Not a matching bug if "
