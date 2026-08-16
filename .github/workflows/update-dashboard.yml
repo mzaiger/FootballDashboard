@@ -2,8 +2,15 @@ name: Update Betting Dashboards
 
 on:
   schedule:
-    # 12:00 UTC daily (~7am Central). Adjust to taste.
-    - cron: "0 12 * * *"
+    # 8am / 2pm / 8pm Central (Central Daylight Time = UTC-5, so that's
+    # 13:00 / 19:00 / 01:00 UTC). Central shifts to UTC-6 outside DST
+    # (roughly early Nov - early March), which would run this an hour
+    # later than intended those months -- shift these by 1 hour if that
+    # matters to you (GitHub Actions cron is always UTC, it doesn't
+    # follow DST on its own).
+    - cron: "0 13 * * *"
+    - cron: "0 19 * * *"
+    - cron: "0 1 * * *"
   workflow_dispatch: {}  # lets you trigger a manual run from the Actions tab
 
 concurrency:
@@ -28,12 +35,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Build CFB dashboard.json
+      - name: Build NCAAF ncaaf_dashboard.json
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
           SHARPAPI_KEY: ${{ secrets.SHARPAPI_KEY }}
           GEMINI_KEY: ${{ secrets.GEMINI_KEY }}
-        run: python scripts/build_dashboard.py
+        run: python scripts/build_ncaaf_dashboard.py
 
       - name: Build NFL nfl_dashboard.json
         env:
@@ -51,7 +58,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/dashboard.json data/nfl_dashboard.json data/mlb_dashboard.json
+          git add data/ncaaf_dashboard.json data/nfl_dashboard.json data/mlb_dashboard.json
           # Only exists once a Gemini call has actually happened (e.g. GEMINI_KEY
           # unset, or every game was already cached) -- don't fail the step over it.
           if [ -f data/gemini_predictions_cache.json ]; then
