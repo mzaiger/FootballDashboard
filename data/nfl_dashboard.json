@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T09:46:17.141225+00:00",
+  "generated_at": "2026-08-16T10:28:12.041513+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -107,12 +107,33 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 120
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -142
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
                       "moneyline": {}
                     }
+                  },
+                  "gemini_prediction": {
+                    "winner": "Los Angeles Chargers",
+                    "confidence": 62,
+                    "ats_pick": "Los Angeles Chargers -2.5",
+                    "ats_confidence": 58,
+                    "analysis": "The Los Angeles Chargers enter this week 2 matchup exhibiting superior offensive efficiency compared to the Houston Texans based on early 2026 data. Los Angeles has moved the ball effectively through the air, while Houston's offense has struggled to sustain drives and convert in the red zone. Defensively, the Chargers have generated consistent pressure up front, limiting opposing quarterbacks and forcing timely turnovers. The Texans will have difficulty establishing their ground game against a stout Chargers defensive front that has plugged running lanes efficiently this season. Ultimately, the Chargers' well-rounded execution gives them the necessary edge to secure both the outright victory and cover the projected spread on the road.",
+                    "splits_and_direction": "Estimated betting splits show roughly 58 percent of public wagers backing the visiting Chargers on the moneyline and spread due to their stronger week 1 showing. Both the moneyline and spread have seen minor upward movement toward Los Angeles since opening as sharp action follows the early-season indicators.",
+                    "display_text": "Summary: The Los Angeles Chargers enter this week 2 matchup exhibiting superior offensive efficiency compared to the Houston Texans based on early 2026 data. Los Angeles has moved the ball effectively through the air, while Houston's offense has struggled to sustain drives and convert in the red zone. Defensively, the Chargers have generated consistent pressure up front, limiting opposing quarterbacks and forcing timely turnovers. The Texans will have difficulty establishing their ground game against a stout Chargers defensive front that has plugged running lanes efficiently this season. Ultimately, the Chargers' well-rounded execution gives them the necessary edge to secure both the outright victory and cover the projected spread on the road.\n\nSplits and Direction: Estimated betting splits show roughly 58 percent of public wagers backing the visiting Chargers on the moneyline and spread due to their stronger week 1 showing. Both the moneyline and spread have seen minor upward movement toward Los Angeles since opening as sharp action follows the early-season indicators.",
+                    "generated_at": "2026-08-16T10:28:12.039325+00:00",
+                    "odds_hash": "e8bb1a159da20342",
+                    "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
                 },

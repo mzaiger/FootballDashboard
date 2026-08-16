@@ -1186,5 +1186,29 @@
     "generated_at": "2026-08-16T09:47:39.284062+00:00",
     "odds_hash": "892f964dd1255feb",
     "model": "gemini-3.5-flash-lite"
+  },
+  "e8bb1a159da20342": {
+    "winner": "Los Angeles Chargers",
+    "confidence": 62,
+    "ats_pick": "Los Angeles Chargers -2.5",
+    "ats_confidence": 58,
+    "analysis": "The Los Angeles Chargers enter this week 2 matchup exhibiting superior offensive efficiency compared to the Houston Texans based on early 2026 data. Los Angeles has moved the ball effectively through the air, while Houston's offense has struggled to sustain drives and convert in the red zone. Defensively, the Chargers have generated consistent pressure up front, limiting opposing quarterbacks and forcing timely turnovers. The Texans will have difficulty establishing their ground game against a stout Chargers defensive front that has plugged running lanes efficiently this season. Ultimately, the Chargers' well-rounded execution gives them the necessary edge to secure both the outright victory and cover the projected spread on the road.",
+    "splits_and_direction": "Estimated betting splits show roughly 58 percent of public wagers backing the visiting Chargers on the moneyline and spread due to their stronger week 1 showing. Both the moneyline and spread have seen minor upward movement toward Los Angeles since opening as sharp action follows the early-season indicators.",
+    "display_text": "Summary: The Los Angeles Chargers enter this week 2 matchup exhibiting superior offensive efficiency compared to the Houston Texans based on early 2026 data. Los Angeles has moved the ball effectively through the air, while Houston's offense has struggled to sustain drives and convert in the red zone. Defensively, the Chargers have generated consistent pressure up front, limiting opposing quarterbacks and forcing timely turnovers. The Texans will have difficulty establishing their ground game against a stout Chargers defensive front that has plugged running lanes efficiently this season. Ultimately, the Chargers' well-rounded execution gives them the necessary edge to secure both the outright victory and cover the projected spread on the road.\n\nSplits and Direction: Estimated betting splits show roughly 58 percent of public wagers backing the visiting Chargers on the moneyline and spread due to their stronger week 1 showing. Both the moneyline and spread have seen minor upward movement toward Los Angeles since opening as sharp action follows the early-season indicators.",
+    "generated_at": "2026-08-16T10:28:12.039325+00:00",
+    "odds_hash": "e8bb1a159da20342",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "542e39a2e5281cb5": {
+    "winner": "New York Mets",
+    "confidence": 63,
+    "ats_pick": "Washington Nationals +1.5",
+    "ats_confidence": 56,
+    "analysis": "The New York Mets host the Washington Nationals in a crucial mid-August matchup driven by contrasting 2026 campaign trajectories. New York holds a distinct edge in overall roster depth and home-field performance throughout the current season. Washington continues to struggle with consistency on the road, frequently dropping close contests rather than getting blown out. Given the competitiveness of divisional matchups in the National League, the visitors consistently hang around within striking distance. Therefore, while the Mets should secure the outright victory, the Nationals possess enough resilience to keep the final margin within a single run.",
+    "splits_and_direction": "Approximately 68 percent of public bets are backing the New York moneyline due to their stronger overall profile, while the spread split is relatively even at 52 percent on Washington plus the runs. Both the moneyline and spread have remained largely stable since opening, with only minor adjustments reflecting standard late-week sharp action.",
+    "display_text": "Summary: The New York Mets host the Washington Nationals in a crucial mid-August matchup driven by contrasting 2026 campaign trajectories. New York holds a distinct edge in overall roster depth and home-field performance throughout the current season. Washington continues to struggle with consistency on the road, frequently dropping close contests rather than getting blown out. Given the competitiveness of divisional matchups in the National League, the visitors consistently hang around within striking distance. Therefore, while the Mets should secure the outright victory, the Nationals possess enough resilience to keep the final margin within a single run.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the New York moneyline due to their stronger overall profile, while the spread split is relatively even at 52 percent on Washington plus the runs. Both the moneyline and spread have remained largely stable since opening, with only minor adjustments reflecting standard late-week sharp action.",
+    "generated_at": "2026-08-16T10:28:14.089147+00:00",
+    "odds_hash": "542e39a2e5281cb5",
+    "model": "gemini-3.5-flash-lite"
   }
 }

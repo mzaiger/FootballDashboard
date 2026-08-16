@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T09:47:39.286994+00:00",
+  "generated_at": "2026-08-16T10:28:14.468223+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -770,11 +770,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 144
+                          "american": 148
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -175
+                          "american": -180
                         }
                       },
                       "moneyline": {
@@ -846,11 +846,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 175
+                          "american": 168
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -215
+                          "american": -205
                         }
                       },
                       "moneyline": {
@@ -1182,11 +1182,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -154
+                          "american": -156
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 128
+                          "american": 130
                         }
                       },
                       "moneyline": {
@@ -1259,25 +1259,25 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -178
+                          "american": -168
                         },
                         "away": {
                           "line": null,
-                          "american": 150
+                          "american": 156
                         }
                       }
                     }
                   },
                   "gemini_prediction": {
                     "winner": "New York Mets",
-                    "confidence": 64,
+                    "confidence": 63,
                     "ats_pick": "Washington Nationals +1.5",
-                    "ats_confidence": 58,
-                    "analysis": "The New York Mets host the Washington Nationals in a crucial National League East divisional matchup during the 2026 campaign. New York holds the upper hand at home this season thanks to a more potent batting order and superior depth in the bullpen. Washington continues to struggle with consistency on the road, often falling behind early in hostile environments. Although the Mets are expected to secure the outright victory, their recent tendency to play in close games suggests a narrow margin of victory. Therefore, the Nationals possess enough value to cover the 1.5 run spread in what should be a tightly contested contest.",
-                    "splits_and_direction": "Approximately 68 percent of public bets are backing the New York Mets on the moneyline, while the run line is seeing balanced action with slight lean toward the underdog Nationals. The home moneyline has moved from -155 to -165 at DraftKings, and the spread has remained steady at -1.5 since opening.",
-                    "display_text": "Summary: The New York Mets host the Washington Nationals in a crucial National League East divisional matchup during the 2026 campaign. New York holds the upper hand at home this season thanks to a more potent batting order and superior depth in the bullpen. Washington continues to struggle with consistency on the road, often falling behind early in hostile environments. Although the Mets are expected to secure the outright victory, their recent tendency to play in close games suggests a narrow margin of victory. Therefore, the Nationals possess enough value to cover the 1.5 run spread in what should be a tightly contested contest.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the New York Mets on the moneyline, while the run line is seeing balanced action with slight lean toward the underdog Nationals. The home moneyline has moved from -155 to -165 at DraftKings, and the spread has remained steady at -1.5 since opening.",
-                    "generated_at": "2026-08-16T09:47:29.312321+00:00",
-                    "odds_hash": "dc1ad68c130414f6",
+                    "ats_confidence": 56,
+                    "analysis": "The New York Mets host the Washington Nationals in a crucial mid-August matchup driven by contrasting 2026 campaign trajectories. New York holds a distinct edge in overall roster depth and home-field performance throughout the current season. Washington continues to struggle with consistency on the road, frequently dropping close contests rather than getting blown out. Given the competitiveness of divisional matchups in the National League, the visitors consistently hang around within striking distance. Therefore, while the Mets should secure the outright victory, the Nationals possess enough resilience to keep the final margin within a single run.",
+                    "splits_and_direction": "Approximately 68 percent of public bets are backing the New York moneyline due to their stronger overall profile, while the spread split is relatively even at 52 percent on Washington plus the runs. Both the moneyline and spread have remained largely stable since opening, with only minor adjustments reflecting standard late-week sharp action.",
+                    "display_text": "Summary: The New York Mets host the Washington Nationals in a crucial mid-August matchup driven by contrasting 2026 campaign trajectories. New York holds a distinct edge in overall roster depth and home-field performance throughout the current season. Washington continues to struggle with consistency on the road, frequently dropping close contests rather than getting blown out. Given the competitiveness of divisional matchups in the National League, the visitors consistently hang around within striking distance. Therefore, while the Mets should secure the outright victory, the Nationals possess enough resilience to keep the final margin within a single run.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the New York moneyline due to their stronger overall profile, while the spread split is relatively even at 52 percent on Washington plus the runs. Both the moneyline and spread have remained largely stable since opening, with only minor adjustments reflecting standard late-week sharp action.",
+                    "generated_at": "2026-08-16T10:28:14.089147+00:00",
+                    "odds_hash": "542e39a2e5281cb5",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1587,13 +1587,13 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -175
-                        },
                         "home": {
                           "line": -1.5,
-                          "american": 144
+                          "american": 148
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -180
                         }
                       },
                       "moneyline": {
@@ -1609,13 +1609,13 @@
                     },
                     "fanduel": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -182
-                        },
                         "home": {
                           "line": -1.5,
                           "american": 150
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -182
                         }
                       },
                       "moneyline": {
