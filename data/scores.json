@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T02:04:46.749076+00:00",
+  "generated_at": "2026-08-16T02:21:18.878400+00:00",
   "cfb": {},
   "nfl": {
     "401873271": {
@@ -102,7 +102,99 @@
       "home_score": 7,
       "away_score": 17,
       "status": "in_progress",
-      "status_detail": "4:06 - 3rd"
+      "status_detail": "13:13 - 4th"
+    }
+  },
+  "mlb": {
+    "401816535": {
+      "home_score": 3,
+      "away_score": 4,
+      "status": "final",
+      "status_detail": "Final"
+    },
+    "401816542": {
+      "home_score": 4,
+      "away_score": 8,
+      "status": "final",
+      "status_detail": "Final"
+    },
+    "401816537": {
+      "home_score": 4,
+      "away_score": 1,
+      "status": "final",
+      "status_detail": "Final"
+    },
+    "401816543": {
+      "home_score": 7,
+      "away_score": 1,
+      "status": "final",
+      "status_detail": "Final"
+    },
+    "401816539": {
+      "home_score": 5,
+      "away_score": 4,
+      "status": "final",
+      "status_detail": "Final"
+    },
+    "401816533": {
+      "home_score": 3,
+      "away_score": 4,
+      "status": "final",
+      "status_detail": "Final/10"
+    },
+    "401816536": {
+      "home_score": 4,
+      "away_score": 8,
+      "status": "final",
+      "status_detail": "Final"
+    },
+    "401816538": {
+      "home_score": 6,
+      "away_score": 1,
+      "status": "final",
+      "status_detail": "Final"
+    },
+    "401816540": {
+      "home_score": 1,
+      "away_score": 9,
+      "status": "final",
+      "status_detail": "Final"
+    },
+    "401816541": {
+      "home_score": 5,
+      "away_score": 10,
+      "status": "final",
+      "status_detail": "Final"
+    },
+    "401816532": {
+      "home_score": 3,
+      "away_score": 10,
+      "status": "final",
+      "status_detail": "Final"
+    },
+    "401816534": {
+      "home_score": 0,
+      "away_score": 4,
+      "status": "final",
+      "status_detail": "Final"
+    },
+    "401816545": {
+      "home_score": 1,
+      "away_score": 4,
+      "status": "final",
+      "status_detail": "Final"
+    },
+    "401816544": {
+      "home_score": 0,
+      "away_score": 0,
+      "status": "in_progress",
+      "status_detail": "Bot 3rd"
+    },
+    "401816546": {
+      "home_score": 0,
+      "away_score": 0,
+      "status": "in_progress",
+      "status_detail": "Bot 2nd"
     }
   }
 }
