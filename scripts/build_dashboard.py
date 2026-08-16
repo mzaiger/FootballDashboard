@@ -285,7 +285,22 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, ranki
             records_cache[year] = record_lookup
 
     log("Fetching DraftKings/FanDuel NCAAF odds from SharpAPI...")
-    odds_rows = fetch_all_odds(sharp_key, league="ncaaf")
+    # date_from/date_to scope the request to this week's actual games
+    # instead of asking for everything currently posted league-wide --
+    # fewer rows/pages to page through, and less exposed to any
+    # pagination edge case.
+    game_dates = []
+    for g in games:
+        raw = g.get("startDate")
+        if not raw:
+            continue
+        try:
+            game_dates.append(datetime.fromisoformat(raw.replace("Z", "+00:00")))
+        except ValueError:
+            continue
+    date_from = min(game_dates).strftime("%Y-%m-%d") if game_dates else None
+    date_to = max(game_dates).strftime("%Y-%m-%d") if game_dates else None
+    odds_rows = fetch_all_odds(sharp_key, league="ncaaf", date_from=date_from, date_to=date_to)
     log(f"  {len(odds_rows)} odds rows returned")
     team_cache = {}
     row_claims = {}
