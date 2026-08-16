@@ -1,5 +1,5 @@
 """
-Gemini prediction helper, shared by build_dashboard.py (CFB) and
+Gemini prediction helper, shared by build_ncaaf_dashboard.py (CFB) and
 build_nfl_dashboard.py (NFL).
 
 For every game that has at least one posted line (DraftKings or FanDuel,

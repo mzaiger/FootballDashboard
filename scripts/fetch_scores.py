@@ -3,8 +3,8 @@
 Live score poller -- run hourly via .github/workflows/fetch-scores.yml.
 
 Overlays home/away scores + game status onto the games already listed in
-data/dashboard.json (CFB), data/nfl_dashboard.json (NFL), and
-data/mlb_dashboard.json (MLB), which build_dashboard.py /
+data/ncaaf_dashboard.json (CFB), data/nfl_dashboard.json (NFL), and
+data/mlb_dashboard.json (MLB), which build_ncaaf_dashboard.py /
 build_nfl_dashboard.py / build_mlb_dashboard.py produce once a day. This
 script is intentionally lightweight and kept separate from those daily
 builds: it does NOT touch odds, AP rankings, probable pitchers, or Gemini
@@ -36,7 +36,7 @@ Env vars required: none -- all three sources use ESPN's public endpoints.
 
 Usage:
     python scripts/fetch_scores.py
-    python scripts/fetch_scores.py --dashboard data/dashboard.json \\
+    python scripts/fetch_scores.py --ncaaf-dashboard data/ncaaf_dashboard.json \\
         --nfl-dashboard data/nfl_dashboard.json \\
         --mlb-dashboard data/mlb_dashboard.json --out data/scores.json
 """
@@ -398,14 +398,16 @@ def main():
     parser = argparse.ArgumentParser(
         description="Fetch current scores and write an overlay file for the existing dashboards."
     )
-    parser.add_argument("--dashboard", default=None, help="Path to data/dashboard.json (CFB)")
+    parser.add_argument("--ncaaf-dashboard", default=None, help="Path to data/ncaaf_dashboard.json")
     parser.add_argument("--nfl-dashboard", default=None, help="Path to data/nfl_dashboard.json")
     parser.add_argument("--mlb-dashboard", default=None, help="Path to data/mlb_dashboard.json")
     parser.add_argument("--out", default=None, help="Output path (default: data/scores.json)")
     args = parser.parse_args()
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    dashboard_path = os.path.abspath(args.dashboard or os.path.join(script_dir, "..", "data", "dashboard.json"))
+    dashboard_path = os.path.abspath(
+        args.ncaaf_dashboard or os.path.join(script_dir, "..", "data", "ncaaf_dashboard.json")
+    )
     nfl_dashboard_path = os.path.abspath(
         args.nfl_dashboard or os.path.join(script_dir, "..", "data", "nfl_dashboard.json")
     )

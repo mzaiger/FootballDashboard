@@ -47,6 +47,7 @@ import requests
 from common import (
     DISPLAY_TIMEZONE,
     TIME_SLOT_ORDER,
+    assign_matchup_ranks,
     carry_forward_odds,
     fetch_all_odds,
     load_existing_dashboard,
@@ -113,7 +114,10 @@ def broadcast_label(event):
         if short and short not in names:
             names.append(short)
 
-    return "/".join(names) if names else "TBD"
+    # ", " instead of "/" between multiple networks -- "/" was wrapping
+    # awkwardly inside the TV pill and reading as a fraction/path rather
+    # than a list.
+    return ", ".join(names) if names else "TBD"
 
 
 def _parse_espn_record(competitor):
@@ -313,6 +317,11 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None):
     win_norm = normalize_minmax(win_components)
     for g, wn in zip(all_games, win_norm):
         g["matchup_score"] = round(100 * wn, 1)
+
+    # Rank spans the WHOLE DAY (e.g. 1-16 across a full 16-game slate),
+    # not just whichever time slot a game lands in -- computed here, once
+    # per day, before games get split up into time_slots below.
+    assign_matchup_ranks(all_games)
 
     attach_gemini_predictions(all_games, sport="mlb", season=day.year,
                                week=day.isoformat(), gemini_key=gemini_key)

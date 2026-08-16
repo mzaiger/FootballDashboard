@@ -43,6 +43,7 @@ import requests
 from common import (
     DISPLAY_TIMEZONE,
     TIME_SLOT_ORDER,
+    assign_matchup_ranks,
     carry_forward_odds,
     fetch_all_odds,
     load_existing_dashboard,
@@ -128,7 +129,10 @@ def broadcast_label(event):
         if short and short not in names:
             names.append(short)
 
-    return "/".join(names) if names else "TBD"
+    # ", " instead of "/" between multiple networks (e.g. a game
+    # simulcast on two channels) -- "/" was wrapping awkwardly inside the
+    # TV pill and reading as a fraction/path rather than a list.
+    return ", ".join(names) if names else "TBD"
 
 # ---------------------------------------------------------------------------
 # Matchup ranking
@@ -321,29 +325,61 @@ def highest_stored_week_info(existing_data):
     return best_week, best_kickoff
 
 
+def earliest_unelapsed_stored_week(existing_data):
+    """The lowest week number already in existing_data that still has at
+    least one game NOT yet kicked off, or None if every stored week is
+    fully in the past (or nothing's stored yet).
+
+    Used as a floor on "current": if we've already built a future week's
+    full slate on some earlier run, current should never sit two or more
+    weeks behind it, even if ESPN's own current-week answer hasn't caught
+    up. This specifically catches the case highest_stored_week_info()'s
+    older, simpler check couldn't: that check only looked at the SINGLE
+    highest stored week, so an already-finished week between "now" and
+    that highest week could stay silently stuck as "current" as long as
+    something further out had already been built too.
+    """
+    now = datetime.now(timezone.utc)
+    for w in sorted((existing_data or {}).get("weeks", []), key=lambda w: w.get("week", 0)):
+        games = [g for day in w.get("days", []) for slot in day.get("time_slots", []) for g in slot.get("games", [])]
+        kickoffs = []
+        for g in games:
+            raw = g.get("start_time")
+            if not raw:
+                continue
+            try:
+                kickoffs.append(datetime.fromisoformat(raw.replace("Z", "+00:00")))
+            except ValueError:
+                continue
+        if kickoffs and max(kickoffs) >= now:
+            return w.get("week")
+    return None
+
+
 def resolve_current(existing_data, forced_season_type=None):
     """Figure out which NFL week (and season type) to treat as "current"
     for this build.
 
-    Primary source is ESPN's own answer (get_espn_current_state), which now
-    resolves season_type dynamically too instead of trusting a hardcoded
-    default -- so a preseason -> regular-season transition (or reg ->
-    post) gets picked up automatically on the first run after it happens.
+    Primary source is ESPN's own answer (get_espn_current_state). On top
+    of that, two safety nets guard against ESPN's answer stalling on an
+    old week (observed happening -- most likely during a multi-day gap
+    between two weeks, when "today" has no games of its own for ESPN to
+    resolve "current" against):
+
+    1. Floor check (earliest_unelapsed_stored_week): if a LATER week is
+       already built with games still ahead of us, current is never
+       allowed to sit more than one week behind it -- this is what
+       actually catches a stale ESPN answer even when the OLD
+       highest-stored-week check below wouldn't (that check only compares
+       against the single highest week ever built, so a fully-finished
+       week sitting between "now" and that highest week could get missed).
+    2. Anti-regression: current is never allowed to drop below whatever
+       current_week this exact season_type was already confirmed at on a
+       previous run -- weeks only move forward during a season.
+
     `forced_season_type`, when given (via --season-type), skips
     auto-detection entirely and only resolves the week for that season
     type -- useful for manually rebuilding an older season type on demand.
-
-    As a safety net against ESPN's answer getting stuck: if every game in
-    the highest week we've already built has already kicked off (so that
-    week is clearly over by now) but ESPN's answer isn't past it, trust
-    our own stored data instead and advance one week past what we've
-    already got -- this is exactly the "ran the workflow and it didn't add
-    the next week" symptom, and doesn't depend on guessing why ESPN's
-    endpoint stalled. Note this stored-week comparison only looks at week
-    NUMBER, not season type -- so right at a season-type transition (new
-    week 1 of the regular season vs. old week 3 of preseason) it's
-    possible for this fallback to misfire once; ESPN's own fresh answer
-    the following run corrects it.
     """
     if forced_season_type is not None:
         espn_week = get_espn_current_week_for(forced_season_type)
@@ -351,8 +387,24 @@ def resolve_current(existing_data, forced_season_type=None):
     else:
         espn_week, season_type = get_espn_current_state()
 
-    highest_week, highest_last_kickoff = highest_stored_week_info(existing_data)
+    floor_week = earliest_unelapsed_stored_week(existing_data)
+    if floor_week is not None and espn_week < floor_week - 1:
+        fallback_week = floor_week - 1
+        log(f"  NOTE: ESPN reports week {espn_week} as current, but week {floor_week} is "
+            f"already built with games still ahead of us -- using week {fallback_week} "
+            f"instead so both show.")
+        return fallback_week, season_type
 
+    stored_current_week = (existing_data or {}).get("current_week")
+    stored_season_type = (existing_data or {}).get("season_type")
+    if (stored_current_week is not None and stored_season_type == season_type
+            and espn_week < stored_current_week):
+        log(f"  NOTE: ESPN reports week {espn_week} as current, but we already advanced to "
+            f"week {stored_current_week} on a previous run (season_type {season_type}) -- "
+            f"keeping {stored_current_week} instead of regressing.")
+        return stored_current_week, season_type
+
+    highest_week, highest_last_kickoff = highest_stored_week_info(existing_data)
     now = datetime.now(timezone.utc)
     if (highest_week is not None and highest_last_kickoff is not None
             and highest_last_kickoff < now and espn_week <= highest_week):
@@ -393,7 +445,22 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odd
     log(f"  {len(events)} games")
 
     log("Fetching DraftKings/FanDuel NFL odds from SharpAPI...")
-    odds_rows = fetch_all_odds(sharp_key, league="nfl")
+    # date_from/date_to scope the request to this week's actual games
+    # instead of asking for everything currently posted league-wide --
+    # fewer rows/pages to page through, and less exposed to any
+    # pagination edge case.
+    game_dates = []
+    for event in events:
+        raw = event.get("date")
+        if not raw:
+            continue
+        try:
+            game_dates.append(datetime.fromisoformat(raw.replace("Z", "+00:00")))
+        except ValueError:
+            continue
+    date_from = min(game_dates).strftime("%Y-%m-%d") if game_dates else None
+    date_to = max(game_dates).strftime("%Y-%m-%d") if game_dates else None
+    odds_rows = fetch_all_odds(sharp_key, league="nfl", date_from=date_from, date_to=date_to)
     log(f"  {len(odds_rows)} odds rows returned")
     team_cache = {}
     row_claims = {}
@@ -482,6 +549,10 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odd
     win_norm = normalize_minmax(win_components)
     for g, sn, wn in zip(all_games, spread_norm, win_norm):
         g["matchup_score"] = round(100 * (0.5 * sn + 0.5 * wn), 1)
+
+    # Rank spans the WHOLE WEEK, across every day in it, not just
+    # whichever time slot or day a game lands in.
+    assign_matchup_ranks(all_games)
 
     attach_gemini_predictions(all_games, sport="nfl", season=year, week=week, gemini_key=gemini_key)
 

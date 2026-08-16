@@ -2,7 +2,7 @@
 Shared utilities for the sports betting dashboards (CFB + NFL).
 
 Holds the SharpAPI odds fetching/matching logic and the day/time-slot
-bucketing logic, so both scripts/build_dashboard.py (CFB) and
+bucketing logic, so both scripts/build_ncaaf_dashboard.py (CFB) and
 scripts/build_nfl_dashboard.py (NFL) use the exact same, tested matching
 code rather than two copies that can drift out of sync.
 """
@@ -59,6 +59,34 @@ def normalize_minmax(values):
     if hi == lo:
         return [0.5 if v is not None else 1.0 for v in values]
     return [1.0 if v is None else (v - lo) / (hi - lo) for v in values]
+
+
+def assign_matchup_ranks(games):
+    """Set `matchup_rank` on every game in `games` (1 = best/most marquee
+    matchup, N = worst, where N is the number of games passed in), based
+    on ascending `matchup_score` -- the existing 0-100 blended score (AP
+    rank/spread/win-rank, computed upstream per sport) still decides the
+    ORDER; this just turns that continuous score into a plain integer
+    rank across the whole group, which is what the board displays now
+    ("Matchup: 3" instead of a raw "Matchup Score: 41.2").
+
+    Call this once per NATURAL grouping -- once for all of a day's games
+    (MLB) or once for all of a week's games across every day (NFL/CFB) --
+    not per time slot; the rank is meant to span the whole day/week (e.g.
+    1-16 across a full 16-game MLB day), not just whichever slot a game
+    happens to be in. Games with no score at all (matchup_score is None)
+    get matchup_rank None and sort after every ranked game.
+    """
+    ranked = sorted(
+        (g for g in games if g.get("matchup_score") is not None),
+        key=lambda g: g["matchup_score"],
+    )
+    for i, g in enumerate(ranked):
+        g["matchup_rank"] = i + 1
+    for g in games:
+        if g.get("matchup_score") is None:
+            g["matchup_rank"] = None
+
 
 
 def time_slot_for(local_dt, is_tbd):
@@ -118,20 +146,9 @@ def fetch_all_odds(sharp_key, league, sportsbooks=("draftkings", "fanduel"),
             timeout=REQUEST_TIMEOUT,
         )
         if resp.status_code == 429:
-            reset_header = resp.headers.get("X-RateLimit-Reset")
-            if reset_header and reset_header.isdigit():
-                val = int(reset_header)
-                # If the header value is a Unix timestamp (e.g. > 1,000,000), 
-                # subtract the current epoch time to get the actual wait seconds.
-                wait = val - int(time.time()) if val > 1_000_000 else val
-            else:
-                wait = 5
-
-            # Cap the wait between 1 and 60 seconds as a safety rail
-            wait = min(max(wait, 1), 60)
-            
+            wait = int(resp.headers.get("X-RateLimit-Reset", 5))
             log(f"SharpAPI rate limited, sleeping {wait}s")
-            time.sleep(wait)
+            time.sleep(max(wait, 1))
             continue
         resp.raise_for_status()
         payload = resp.json()
