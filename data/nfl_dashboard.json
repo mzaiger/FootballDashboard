@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T15:00:34.789968+00:00",
+  "generated_at": "2026-08-16T09:46:17.141225+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -75,7 +75,7 @@
                   "away_abbr": "DET",
                   "away_record": "0-1",
                   "matchup_score": 38.5,
-                  "channel": "Bengals Preseason TV Network/Lions TV Network",
+                  "channel": "Bengals Preseason TV Network, Lions TV Network",
                   "venue": "Paycor Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -101,39 +101,18 @@
                   "away_abbr": "LAC",
                   "away_record": "1-0",
                   "matchup_score": 50.0,
-                  "channel": "KTRK (ABC)/CBS2",
+                  "channel": "KTRK (ABC), CBS2",
                   "venue": "NRG Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": 120
-                        },
-                        "away": {
-                          "line": null,
-                          "american": -142
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
                       "moneyline": {}
                     }
-                  },
-                  "gemini_prediction": {
-                    "winner": "Los Angeles Chargers",
-                    "confidence": 62,
-                    "ats_pick": "Los Angeles Chargers -2.5",
-                    "ats_confidence": 58,
-                    "analysis": "The Los Angeles Chargers enter this week 2 matchup exhibiting superior offensive efficiency compared to the Houston Texans based on early 2026 data. Los Angeles has moved the ball effectively through the air, while Houston's offense has struggled to sustain drives and convert in the red zone. Defensively, the Chargers have generated consistent pressure up front, limiting opposing quarterbacks and forcing timely turnovers. The Texans will have difficulty establishing their ground game against a stout Chargers defensive front that has plugged running lanes efficiently this season. Ultimately, the Chargers' well-rounded execution gives them the necessary edge to secure both the outright victory and cover the projected spread on the road.",
-                    "splits_and_direction": "Estimated betting splits show roughly 58 percent of public wagers backing the visiting Chargers on the moneyline and spread due to their stronger week 1 showing. Both the moneyline and spread have seen minor upward movement toward Los Angeles since opening as sharp action follows the early-season indicators.",
-                    "display_text": "Summary: The Los Angeles Chargers enter this week 2 matchup exhibiting superior offensive efficiency compared to the Houston Texans based on early 2026 data. Los Angeles has moved the ball effectively through the air, while Houston's offense has struggled to sustain drives and convert in the red zone. Defensively, the Chargers have generated consistent pressure up front, limiting opposing quarterbacks and forcing timely turnovers. The Texans will have difficulty establishing their ground game against a stout Chargers defensive front that has plugged running lanes efficiently this season. Ultimately, the Chargers' well-rounded execution gives them the necessary edge to secure both the outright victory and cover the projected spread on the road.\n\nSplits and Direction: Estimated betting splits show roughly 58 percent of public wagers backing the visiting Chargers on the moneyline and spread due to their stronger week 1 showing. Both the moneyline and spread have seen minor upward movement toward Los Angeles since opening as sharp action follows the early-season indicators.",
-                    "generated_at": "2026-08-16T10:28:12.039325+00:00",
-                    "odds_hash": "e8bb1a159da20342",
-                    "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
                 },
@@ -174,7 +153,7 @@
                   "away_abbr": "IND",
                   "away_record": "0-0-1",
                   "matchup_score": 57.7,
-                  "channel": "Patriots Preseason Network/FOX59",
+                  "channel": "Patriots Preseason Network, FOX59",
                   "venue": "Gillette Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -206,33 +185,12 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -130
-                        },
-                        "away": {
-                          "line": null,
-                          "american": 110
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
                       "moneyline": {}
                     }
-                  },
-                  "gemini_prediction": {
-                    "winner": "Las Vegas Raiders",
-                    "confidence": 56,
-                    "ats_pick": "Arizona Cardinals +2.5",
-                    "ats_confidence": 54,
-                    "analysis": "Early 2026 NFL season data for Week 2 points toward a tightly contested matchup in Las Vegas between the Raiders and Cardinals. The Arizona offense has shown solid efficiency moving the chains through the air and keeping drives alive under current personnel. Las Vegas relies heavily on its home-field advantage and a stout defensive front to control the line of scrimmage against opposing rushing attacks. While the Raiders possess enough firepower to edge out a narrow victory outright, the visiting Cardinals are well-positioned to keep the final score within a field goal. Consequently, backing the home team to win is supported by their situational edge, but taking the points with the visitors is the mathematically sound play.",
-                    "splits_and_direction": "Approximately 58% of public moneyline bets are currently backing the home Raiders at -130, while 52% of spread tickets favor the underdog Cardinals based on early estimated public tendencies. The moneyline has ticked up slightly toward Las Vegas since opening, while the estimated spread has held relatively steady at a field goal.",
-                    "display_text": "Summary: Early 2026 NFL season data for Week 2 points toward a tightly contested matchup in Las Vegas between the Raiders and Cardinals. The Arizona offense has shown solid efficiency moving the chains through the air and keeping drives alive under current personnel. Las Vegas relies heavily on its home-field advantage and a stout defensive front to control the line of scrimmage against opposing rushing attacks. While the Raiders possess enough firepower to edge out a narrow victory outright, the visiting Cardinals are well-positioned to keep the final score within a field goal. Consequently, backing the home team to win is supported by their situational edge, but taking the points with the visitors is the mathematically sound play.\n\nSplits and Direction: Approximately 58% of public moneyline bets are currently backing the home Raiders at -130, while 52% of spread tickets favor the underdog Cardinals based on early estimated public tendencies. The moneyline has ticked up slightly toward Las Vegas since opening, while the estimated spread has held relatively steady at a field goal.",
-                    "generated_at": "2026-08-16T15:00:04.906965+00:00",
-                    "odds_hash": "386ae396b530f96c",
-                    "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
                 },
@@ -287,7 +245,7 @@
                   "away_abbr": "DEN",
                   "away_record": "1-0",
                   "matchup_score": 38.5,
-                  "channel": "ESPN Unlmtd/KUSA-TV (9NEWS)",
+                  "channel": "ESPN Unlmtd, KUSA-TV (9NEWS)",
                   "venue": "Mercedes-Benz Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -313,7 +271,7 @@
                   "away_abbr": "MIA",
                   "away_record": "0-1",
                   "matchup_score": 67.3,
-                  "channel": "WUSA9/CBS Miami",
+                  "channel": "WUSA9, CBS Miami",
                   "venue": "Northwest Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -339,7 +297,7 @@
                   "away_abbr": "TB",
                   "away_record": "1-0",
                   "matchup_score": 69.2,
-                  "channel": "NFL Net/WCBS",
+                  "channel": "NFL Net, WCBS",
                   "venue": "MetLife Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -379,7 +337,7 @@
                   "away_abbr": "CAR",
                   "away_record": "1-1",
                   "matchup_score": 25.0,
-                  "channel": "WIVB/WSOC-TV Channel 9",
+                  "channel": "WIVB, WSOC-TV Channel 9",
                   "venue": "Highmark Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -405,7 +363,7 @@
                   "away_abbr": "CLE",
                   "away_record": "0-1",
                   "matchup_score": 34.6,
-                  "channel": "NFL Net/FOX32",
+                  "channel": "NFL Net, FOX32",
                   "venue": "Soldier Field",
                   "neutral_site": false,
                   "odds": {
@@ -437,33 +395,12 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": 154
-                        },
-                        "away": {
-                          "line": null,
-                          "american": -185
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
                       "moneyline": {}
                     }
-                  },
-                  "gemini_prediction": {
-                    "winner": "Minnesota Vikings",
-                    "confidence": 68,
-                    "ats_pick": "Minnesota Vikings -3.5",
-                    "ats_confidence": 62,
-                    "analysis": "The Minnesota Vikings enter Week 2 of the 2026 NFL season exhibiting a more cohesive offensive scheme than the New York Giants. Minnesota's defense has shown strong early-season metrics in stopping the run and forcing turnovers. Meanwhile, the New York Giants continue to struggle with pass protection and consistency under center. Playing on the road will present challenges, but the talent disparity heavily favors the visiting squad. Ultimately, the Vikings should control the line of scrimmage and secure a comfortable victory.",
-                    "splits_and_direction": "Approximately 68 percent of public bets are currently backing the Minnesota Vikings on the moneyline and spread due to their strong Week 1 showing. The point spread has moved half a point in favor of the Vikings since opening, while the moneyline has shortened slightly to reflect the heavy incoming action.",
-                    "display_text": "Summary: The Minnesota Vikings enter Week 2 of the 2026 NFL season exhibiting a more cohesive offensive scheme than the New York Giants. Minnesota's defense has shown strong early-season metrics in stopping the run and forcing turnovers. Meanwhile, the New York Giants continue to struggle with pass protection and consistency under center. Playing on the road will present challenges, but the talent disparity heavily favors the visiting squad. Ultimately, the Vikings should control the line of scrimmage and secure a comfortable victory.\n\nSplits and Direction: Approximately 68 percent of public bets are currently backing the Minnesota Vikings on the moneyline and spread due to their strong Week 1 showing. The point spread has moved half a point in favor of the Vikings since opening, while the moneyline has shortened slightly to reflect the heavy incoming action.",
-                    "generated_at": "2026-08-16T15:00:14.638543+00:00",
-                    "odds_hash": "f1e049887cc45b68",
-                    "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
                 }
@@ -485,39 +422,18 @@
                   "away_abbr": "LAR",
                   "away_record": "1-0",
                   "matchup_score": 53.8,
-                  "channel": "NFL Net/KSHB/KCBS-TV",
+                  "channel": "NFL Net, KSHB, KCBS-TV",
                   "venue": "GEHA Field at Arrowhead Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": 170
-                        },
-                        "away": {
-                          "line": null,
-                          "american": -205
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
                       "moneyline": {}
                     }
-                  },
-                  "gemini_prediction": {
-                    "winner": "Los Angeles Rams",
-                    "confidence": 68,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "The Los Angeles Rams enter week 2 of the 2026 NFL season showcasing an explosive offensive unit that has dominated opponents through the air and on the ground. Kansas City has struggled defensively to contain high-powered passing attacks, leaving their secondary exposed against elite wide receiver corps. Furthermore, the Rams' pass rush has demonstrated high efficiency in disrupting opposing quarterbacks and forcing critical turnovers early in games. Although playing on the road in Kansas City presents a formidable hostile environment, Los Angeles's balanced execution outweighs the home-field advantage. Ultimately, the Rams will secure a hard-fought victory outright by controlling the time of possession in the second half.",
-                    "splits_and_direction": "Given that no betting splits or opening numbers are currently posted, it is estimated that roughly 65 percent of public moneyline wagers are backing the visiting Rams at -205 while the remaining 35 percent support the underdog Chiefs. Without prior closing data available, line movement cannot be accurately tracked at this early stage of the week.",
-                    "display_text": "Summary: The Los Angeles Rams enter week 2 of the 2026 NFL season showcasing an explosive offensive unit that has dominated opponents through the air and on the ground. Kansas City has struggled defensively to contain high-powered passing attacks, leaving their secondary exposed against elite wide receiver corps. Furthermore, the Rams' pass rush has demonstrated high efficiency in disrupting opposing quarterbacks and forcing critical turnovers early in games. Although playing on the road in Kansas City presents a formidable hostile environment, Los Angeles's balanced execution outweighs the home-field advantage. Ultimately, the Rams will secure a hard-fought victory outright by controlling the time of possession in the second half.\n\nSplits and Direction: Given that no betting splits or opening numbers are currently posted, it is estimated that roughly 65 percent of public moneyline wagers are backing the visiting Rams at -205 while the remaining 35 percent support the underdog Chiefs. Without prior closing data available, line movement cannot be accurately tracked at this early stage of the week.",
-                    "generated_at": "2026-08-16T15:00:24.733108+00:00",
-                    "odds_hash": "27ad95a98a7bae37",
-                    "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
                 },
@@ -532,7 +448,7 @@
                   "away_abbr": "JAX",
                   "away_record": "1-0",
                   "matchup_score": 55.8,
-                  "channel": "ESPN Unlmtd/FOX30/Fox 8",
+                  "channel": "ESPN Unlmtd, FOX30, Fox 8",
                   "venue": "Caesars Superdome",
                   "neutral_site": false,
                   "odds": {
@@ -565,7 +481,7 @@
                   "away_abbr": "PHI",
                   "away_record": "0-1",
                   "matchup_score": 50.0,
-                  "channel": "ESPN Unlmtd/NBC 10",
+                  "channel": "ESPN Unlmtd, NBC 10",
                   "venue": "M&T Bank Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -591,39 +507,18 @@
                   "away_abbr": "DAL",
                   "away_record": "1-0",
                   "matchup_score": 61.5,
-                  "channel": "NFL Net/KING 5",
+                  "channel": "NFL Net, KING 5",
                   "venue": "Lumen Field",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -225
-                        },
-                        "away": {
-                          "line": null,
-                          "american": 185
-                        }
-                      }
+                      "moneyline": {}
                     },
                     "fanduel": {
                       "spread": {},
                       "moneyline": {}
                     }
-                  },
-                  "gemini_prediction": {
-                    "winner": "Seattle Seahawks",
-                    "confidence": 68,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "The Seattle Seahawks enter week 2 with a distinct home-field advantage against the Dallas Cowboys. Seattle's offense showcased strong execution in week 1, efficiently moving the chains and capitalizing in the red zone. Meanwhile, Dallas struggled defensively on the road, missing key assignments in the secondary and failing to generate consistent pressure. The Seahawks' defensive front is well-positioned to contain the Cowboys' rushing attack and force critical turnovers. Ultimately, Seattle's balanced game plan will wear down Dallas over four quarters to secure a home victory.",
-                    "splits_and_direction": "Given that official betting splits are not yet widely published for this early market, an estimated 65 percent of early moneyline bets are backing the Seattle Seahawks at home. The moneyline has seen slight upward movement toward Seattle since opening, while the point spread remains off the board at sportsbooks.",
-                    "display_text": "Summary: The Seattle Seahawks enter week 2 with a distinct home-field advantage against the Dallas Cowboys. Seattle's offense showcased strong execution in week 1, efficiently moving the chains and capitalizing in the red zone. Meanwhile, Dallas struggled defensively on the road, missing key assignments in the secondary and failing to generate consistent pressure. The Seahawks' defensive front is well-positioned to contain the Cowboys' rushing attack and force critical turnovers. Ultimately, Seattle's balanced game plan will wear down Dallas over four quarters to secure a home victory.\n\nSplits and Direction: Given that official betting splits are not yet widely published for this early market, an estimated 65 percent of early moneyline bets are backing the Seattle Seahawks at home. The moneyline has seen slight upward movement toward Seattle since opening, while the point spread remains off the board at sportsbooks.",
-                    "generated_at": "2026-08-16T15:00:34.784918+00:00",
-                    "odds_hash": "1f987399be774425",
-                    "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
                 }
@@ -658,7 +553,7 @@
                   "away_abbr": "LV",
                   "away_record": "0-1",
                   "matchup_score": 42.9,
-                  "channel": "ESPN/KTRK (ABC)/Fox 5 Vegas",
+                  "channel": "ESPN, KTRK (ABC), Fox 5 Vegas",
                   "venue": "NRG Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -691,7 +586,7 @@
                   "away_abbr": "SF",
                   "away_record": "0-1",
                   "matchup_score": 32.7,
-                  "channel": "NFL Net/CBS LA/KPIX",
+                  "channel": "NFL Net, CBS LA, KPIX",
                   "venue": "SoFi Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -731,7 +626,7 @@
                   "away_abbr": "GB",
                   "away_record": "0-1",
                   "matchup_score": 25.0,
-                  "channel": "NFL Net/Packers TV Network/KUSA-TV (9NEWS)",
+                  "channel": "NFL Net, Packers TV Network, KUSA-TV (9NEWS)",
                   "venue": "Empower Field at Mile High",
                   "neutral_site": false,
                   "odds": {
@@ -757,7 +652,7 @@
                   "away_abbr": "NYJ",
                   "away_record": "0-1",
                   "matchup_score": 32.7,
-                  "channel": "NFL Net/WCBS/KDKA-TV",
+                  "channel": "NFL Net, WCBS, KDKA-TV",
                   "venue": "Acrisure Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -783,7 +678,7 @@
                   "away_abbr": "CAR",
                   "away_record": "1-0",
                   "matchup_score": 36.5,
-                  "channel": "ESPN Unlmtd/CBS47",
+                  "channel": "ESPN Unlmtd, CBS47",
                   "venue": "EverBank Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -823,7 +718,7 @@
                   "away_abbr": "WSH",
                   "away_record": "1-0",
                   "matchup_score": 30.1,
-                  "channel": "Lions TV Network/WUSA9",
+                  "channel": "Lions TV Network, WUSA9",
                   "venue": "Ford Field",
                   "neutral_site": false,
                   "odds": {
@@ -901,7 +796,7 @@
                   "away_abbr": "BAL",
                   "away_record": "0-0",
                   "matchup_score": 64.7,
-                  "channel": "ESPN Unlmtd/WBAL-TV",
+                  "channel": "ESPN Unlmtd, WBAL-TV",
                   "venue": "U.S. Bank Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -934,7 +829,7 @@
                   "away_abbr": "NYG",
                   "away_record": "0-0",
                   "matchup_score": 63.5,
-                  "channel": "NFL Net/CBS Miami",
+                  "channel": "NFL Net, CBS Miami",
                   "venue": "Hard Rock Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -960,7 +855,7 @@
                   "away_abbr": "NO",
                   "away_record": "0-0",
                   "matchup_score": 75.0,
-                  "channel": "ESPN Unlmtd/KCBS-TV/Fox 8",
+                  "channel": "ESPN Unlmtd, KCBS-TV, Fox 8",
                   "venue": "SoFi Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -993,7 +888,7 @@
                   "away_abbr": "CHI",
                   "away_record": "0-0",
                   "matchup_score": 34.0,
-                  "channel": "Bengals Preseason TV Network/FOX32",
+                  "channel": "Bengals Preseason TV Network, FOX32",
                   "venue": "Paycor Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -1019,7 +914,7 @@
                   "away_abbr": "KC",
                   "away_record": "0-0",
                   "matchup_score": 44.2,
-                  "channel": "ESPN Unlmtd/KSHB",
+                  "channel": "ESPN Unlmtd, KSHB",
                   "venue": "Raymond James Stadium",
                   "neutral_site": false,
                   "odds": {
@@ -1045,7 +940,7 @@
                   "away_abbr": "PHI",
                   "away_record": "0-0",
                   "matchup_score": 57.1,
-                  "channel": "NFL Net/WBZ/NBC 10",
+                  "channel": "NFL Net, WBZ, NBC 10",
                   "venue": "Gillette Stadium",
                   "neutral_site": false,
                   "odds": {
