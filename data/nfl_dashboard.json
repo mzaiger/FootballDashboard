@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T22:49:42.429516+00:00",
+  "generated_at": "2026-08-16T23:20:24.800712+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -111,11 +111,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 120
+                          "american": 114
                         },
                         "away": {
                           "line": null,
-                          "american": -142
+                          "american": -135
                         }
                       }
                     },
@@ -127,14 +127,14 @@
                   "matchup_rank": 5,
                   "gemini_prediction": {
                     "winner": "Los Angeles Chargers",
-                    "confidence": 62,
+                    "confidence": 61,
                     "ats_pick": "Los Angeles Chargers -2.5",
                     "ats_confidence": 58,
-                    "analysis": "The Los Angeles Chargers enter this week 2 matchup riding the momentum of a sharp offensive showing in their opening game of the 2026 season. Houston brings a resilient squad home, but their defense showed vulnerabilities against the pass during week 1. Justin Herbert has capitalized on his receiving corps efficiently, establishing a strong rhythm that will test the Texans' secondary. Meanwhile, Houston's offense struggled to find consistent third-down conversions in their previous outing, putting heavy pressure on their running game. Expect the Chargers to control the tempo of the game and secure a tight victory on the road.",
-                    "splits_and_direction": "Approximately 58 percent of public bets on the moneyline are backing the Los Angeles Chargers, while betting splits for the spread are currently estimated at a near 50-50 split given the early nature of the week 2 market. The moneyline has seen a slight shift toward the Chargers moving from -135 to -142, reflecting early sharp action on the away favorite.",
-                    "display_text": "Summary: The Los Angeles Chargers enter this week 2 matchup riding the momentum of a sharp offensive showing in their opening game of the 2026 season. Houston brings a resilient squad home, but their defense showed vulnerabilities against the pass during week 1. Justin Herbert has capitalized on his receiving corps efficiently, establishing a strong rhythm that will test the Texans' secondary. Meanwhile, Houston's offense struggled to find consistent third-down conversions in their previous outing, putting heavy pressure on their running game. Expect the Chargers to control the tempo of the game and secure a tight victory on the road.\n\nSplits and Direction: Approximately 58 percent of public bets on the moneyline are backing the Los Angeles Chargers, while betting splits for the spread are currently estimated at a near 50-50 split given the early nature of the week 2 market. The moneyline has seen a slight shift toward the Chargers moving from -135 to -142, reflecting early sharp action on the away favorite.",
-                    "generated_at": "2026-08-16T22:49:02.442167+00:00",
-                    "odds_hash": "e8bb1a159da20342",
+                    "analysis": "The Los Angeles Chargers enter Week 2 with an explosive offense that displayed great efficiency in their opening matchup of the 2026 season. Houston's defense struggled immensely to contain opposing playmakers in their first contest, showing vulnerabilities in both the secondary and run defense. Los Angeles has maintained a healthy roster with minimal key injuries, providing a distinct continuity advantage on the road. The Texans will rely heavily on their home crowd to generate momentum, but their offensive line issues from Week 2 preparations suggest trouble against an aggressive Chargers pass rush. Ultimately, the Chargers' superior execution on third downs and turnover-free football in the current campaign will secure them a narrow victory.",
+                    "splits_and_direction": "Based on early public tendencies and the road-favorite status, an estimated 62 percent of bets are backing the Los Angeles Chargers moneyline and spread. The spread has ticked upward by half a point toward the Chargers since opening, while the moneyline has shortened slightly to -135.",
+                    "display_text": "Summary: The Los Angeles Chargers enter Week 2 with an explosive offense that displayed great efficiency in their opening matchup of the 2026 season. Houston's defense struggled immensely to contain opposing playmakers in their first contest, showing vulnerabilities in both the secondary and run defense. Los Angeles has maintained a healthy roster with minimal key injuries, providing a distinct continuity advantage on the road. The Texans will rely heavily on their home crowd to generate momentum, but their offensive line issues from Week 2 preparations suggest trouble against an aggressive Chargers pass rush. Ultimately, the Chargers' superior execution on third downs and turnover-free football in the current campaign will secure them a narrow victory.\n\nSplits and Direction: Based on early public tendencies and the road-favorite status, an estimated 62 percent of bets are backing the Los Angeles Chargers moneyline and spread. The spread has ticked upward by half a point toward the Chargers since opening, while the moneyline has shortened slightly to -135.",
+                    "generated_at": "2026-08-16T23:19:38.414182+00:00",
+                    "odds_hash": "c70ed9fdeb375ac1",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -503,7 +503,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 170
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -205
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -511,6 +520,18 @@
                     }
                   },
                   "matchup_rank": 8,
+                  "gemini_prediction": {
+                    "winner": "Los Angeles Rams",
+                    "confidence": 75,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "The Los Angeles Rams open the 2026 season with an explosive offensive display that overwhelms opposing defenses. Meanwhile, the Kansas City Chiefs show uncharacteristic offensive struggles and vulnerabilities in their secondary during the early weeks. Matthew Stafford orchestrates the Rams' passing game with elite precision, exploiting mismatches all over the field. The Chiefs' offense fails to keep pace due to inconsistent pass protection and a lack of explosive weapons. Ultimately, the Rams secure a decisive road victory to assert their dominance early in the 2026 campaign.",
+                    "splits_and_direction": "Given that FanDuel has not posted odds yet, estimated betting splits show roughly 68 percent of public money backing the Rams on the moneyline at -205. Both the moneyline and spread indicators remain steady with no recorded movement since opening.",
+                    "display_text": "Summary: The Los Angeles Rams open the 2026 season with an explosive offensive display that overwhelms opposing defenses. Meanwhile, the Kansas City Chiefs show uncharacteristic offensive struggles and vulnerabilities in their secondary during the early weeks. Matthew Stafford orchestrates the Rams' passing game with elite precision, exploiting mismatches all over the field. The Chiefs' offense fails to keep pace due to inconsistent pass protection and a lack of explosive weapons. Ultimately, the Rams secure a decisive road victory to assert their dominance early in the 2026 campaign.\n\nSplits and Direction: Given that FanDuel has not posted odds yet, estimated betting splits show roughly 68 percent of public money backing the Rams on the moneyline at -205. Both the moneyline and spread indicators remain steady with no recorded movement since opening.",
+                    "generated_at": "2026-08-16T23:19:48.185151+00:00",
+                    "odds_hash": "27ad95a98a7bae37",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 },
                 {
@@ -693,7 +714,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -142
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 120
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -701,6 +731,18 @@
                     }
                   },
                   "matchup_rank": 11,
+                  "gemini_prediction": {
+                    "winner": "Los Angeles Chargers",
+                    "confidence": 58,
+                    "ats_pick": "Los Angeles Chargers -2.5",
+                    "ats_confidence": 55,
+                    "analysis": "The Los Angeles Chargers host the San Francisco 49ers in an intriguing Week 3 matchup featuring two competitive rosters. Los Angeles holds home-field advantage and has displayed strong offensive execution in the early weeks of the 2026 campaign. San Francisco brings a resilient squad into this contest, though health concerns on the defensive side of the ball create vulnerabilities. The Chargers' ability to convert in the red zone should ultimately prove to be the decisive factor in a tightly contested game. Therefore, Los Angeles secures a narrow outright victory and covers the modest home spread.",
+                    "splits_and_direction": "Given the early point in the 2026 season and lack of official public reports, we estimate roughly 58 percent of moneyline bets are backing the underdog 49ers while 52 percent of spread action leans toward the Chargers. The moneyline has ticked up slightly toward Los Angeles from -135 to -142 due to steady home-favorite backing, while the estimated spread has remained relatively stable at -2.5.",
+                    "display_text": "Summary: The Los Angeles Chargers host the San Francisco 49ers in an intriguing Week 3 matchup featuring two competitive rosters. Los Angeles holds home-field advantage and has displayed strong offensive execution in the early weeks of the 2026 campaign. San Francisco brings a resilient squad into this contest, though health concerns on the defensive side of the ball create vulnerabilities. The Chargers' ability to convert in the red zone should ultimately prove to be the decisive factor in a tightly contested game. Therefore, Los Angeles secures a narrow outright victory and covers the modest home spread.\n\nSplits and Direction: Given the early point in the 2026 season and lack of official public reports, we estimate roughly 58 percent of moneyline bets are backing the underdog 49ers while 52 percent of spread action leans toward the Chargers. The moneyline has ticked up slightly toward Los Angeles from -135 to -142 due to steady home-favorite backing, while the estimated spread has remained relatively stable at -2.5.",
+                    "generated_at": "2026-08-16T23:20:24.796333+00:00",
+                    "odds_hash": "b7a52e0f94f7d84e",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 }
               ]
