@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T13:39:17.853513+00:00",
+  "generated_at": "2026-08-16T14:01:43.797426+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -780,11 +780,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -136
+                          "american": -140
                         },
                         "away": {
                           "line": null,
-                          "american": 127
+                          "american": 131
                         }
                       }
                     },
@@ -792,11 +792,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 146
+                          "american": 152
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -178
+                          "american": -184
                         }
                       },
                       "moneyline": {
@@ -816,11 +816,11 @@
                     "confidence": 56,
                     "ats_pick": "Baltimore Orioles +1.5",
                     "ats_confidence": 58,
-                    "analysis": "The Tampa Bay Rays host the Baltimore Orioles in an important American League East divisional matchup during the 2026 campaign. Tampa Bay holds a slight edge in overall consistency and home-field performance based on their current 2026 statistics. However, Baltimore remains a tough divisional opponent capable of keeping games close against any pitching staff. The Orioles' recent offensive output suggests they will avoid a blowout defeat even if they fall short of the outright victory. Therefore, while the Rays are well-positioned to secure the win, the Orioles offer strong value to cover the 1.5-run spread.",
-                    "splits_and_direction": "Based on public betting tendencies, roughly 58 percent of moneyline wagers are backing the visiting Orioles as underdogs while 65 percent of spread bets are taking Baltimore plus the runs. Both the moneyline and run line have remained relatively stable since opening, with only a minor one-cent adjustment toward the Rays.",
-                    "display_text": "Summary: The Tampa Bay Rays host the Baltimore Orioles in an important American League East divisional matchup during the 2026 campaign. Tampa Bay holds a slight edge in overall consistency and home-field performance based on their current 2026 statistics. However, Baltimore remains a tough divisional opponent capable of keeping games close against any pitching staff. The Orioles' recent offensive output suggests they will avoid a blowout defeat even if they fall short of the outright victory. Therefore, while the Rays are well-positioned to secure the win, the Orioles offer strong value to cover the 1.5-run spread.\n\nSplits and Direction: Based on public betting tendencies, roughly 58 percent of moneyline wagers are backing the visiting Orioles as underdogs while 65 percent of spread bets are taking Baltimore plus the runs. Both the moneyline and run line have remained relatively stable since opening, with only a minor one-cent adjustment toward the Rays.",
-                    "generated_at": "2026-08-16T13:10:22.983360+00:00",
-                    "odds_hash": "d77bc808b49828e2",
+                    "analysis": "The Tampa Bay Rays host the Baltimore Orioles on August 16, 2026, relying on their home-field advantage to secure a narrow victory. Tampa Bay's current-season metrics reflect stable pitching and timely hitting at Tropicana Field. Meanwhile, Baltimore maintains a competitive roster that consistently keeps games close well into the late innings. The Orioles' offensive depth ensures they will apply significant pressure throughout the contest, preventing a blowout. Ultimately, the Rays pull out a tight win, but the Orioles easily cover the one-and-a-half-run spread given the expected close margin.",
+                    "splits_and_direction": "Approximately 58 percent of public bets are backing the Tampa Bay Rays on the moneyline, while the run line action is evenly split with slight lean toward the Orioles plus the runs. The moneyline has ticked up slightly toward Tampa Bay from its opening number, whereas the home spread has remained stable at -1.5 across both major sportsbooks.",
+                    "display_text": "Summary: The Tampa Bay Rays host the Baltimore Orioles on August 16, 2026, relying on their home-field advantage to secure a narrow victory. Tampa Bay's current-season metrics reflect stable pitching and timely hitting at Tropicana Field. Meanwhile, Baltimore maintains a competitive roster that consistently keeps games close well into the late innings. The Orioles' offensive depth ensures they will apply significant pressure throughout the contest, preventing a blowout. Ultimately, the Rays pull out a tight win, but the Orioles easily cover the one-and-a-half-run spread given the expected close margin.\n\nSplits and Direction: Approximately 58 percent of public bets are backing the Tampa Bay Rays on the moneyline, while the run line action is evenly split with slight lean toward the Orioles plus the runs. The moneyline has ticked up slightly toward Tampa Bay from its opening number, whereas the home spread has remained stable at -1.5 across both major sportsbooks.",
+                    "generated_at": "2026-08-16T09:46:19.487389+00:00",
+                    "odds_hash": "d5c71f8f23b067b8",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -998,7 +998,7 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -194
+                          "american": -193
                         },
                         "away": {
                           "line": -1.5,
@@ -1170,11 +1170,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 108
+                          "american": 110
                         },
                         "away": {
                           "line": null,
-                          "american": -116
+                          "american": -118
                         }
                       }
                     },
@@ -1202,15 +1202,15 @@
                     }
                   },
                   "gemini_prediction": {
-                    "winner": "Cincinnati Reds",
-                    "confidence": 53,
+                    "winner": "Miami Marlins",
+                    "confidence": 54,
                     "ats_pick": "Cincinnati Reds +1.5",
-                    "ats_confidence": 62,
-                    "analysis": "The Cincinnati Reds host the Miami Marlins in a tightly contested August matchup at Great American Ball Park. Cincinnati's 2026 home offensive metrics show improved production against right-handed pitching compared to Miami's current road splits. Miami struggles to generate consistent power away from their home ballpark, placing heavy pressure on their bullpen. The Reds' pitching staff has managed high-leverage situations more effectively over the last month of the current campaign. Consequently, Cincinnati secures a narrow victory while easily covering the +1.5 run line as home underdogs.",
-                    "splits_and_direction": "Public betting splits are currently estimated at 54 percent backing the Cincinnati Reds moneyline due to home field value. Both the moneyline and spread have remained relatively stable since opening with minor adjustments favoring the away side.",
-                    "display_text": "Summary: The Cincinnati Reds host the Miami Marlins in a tightly contested August matchup at Great American Ball Park. Cincinnati's 2026 home offensive metrics show improved production against right-handed pitching compared to Miami's current road splits. Miami struggles to generate consistent power away from their home ballpark, placing heavy pressure on their bullpen. The Reds' pitching staff has managed high-leverage situations more effectively over the last month of the current campaign. Consequently, Cincinnati secures a narrow victory while easily covering the +1.5 run line as home underdogs.\n\nSplits and Direction: Public betting splits are currently estimated at 54 percent backing the Cincinnati Reds moneyline due to home field value. Both the moneyline and spread have remained relatively stable since opening with minor adjustments favoring the away side.",
-                    "generated_at": "2026-08-16T13:38:57.341251+00:00",
-                    "odds_hash": "25fda28e166731b6",
+                    "ats_confidence": 56,
+                    "analysis": "The Miami Marlins travel to face the Cincinnati Reds in this mid-August 2026 matchup. Miami holds a slight edge in recent 2026 performance metrics, particularly in starting pitching depth. However, playing at the Great American Ball Park provides Cincinnati a notable offensive boost given their power numbers this year. The visiting Marlins bullpen has shown vulnerability in late-inning high-leverage situations throughout the current campaign. Consequently, while Miami is slight favorites to win outright, the tight projected run environment makes the home underdog an appealing cover option.",
+                    "splits_and_direction": "Approximately 58 percent of moneyline bets are currently backing the Miami Marlins as slight road favorites, while 62 percent of spread wagers lean toward the Cincinnati Reds plus the runs. Both the moneyline and spread have remained largely stable since opening, with only minor adjustments toward Miami following early action.",
+                    "display_text": "Summary: The Miami Marlins travel to face the Cincinnati Reds in this mid-August 2026 matchup. Miami holds a slight edge in recent 2026 performance metrics, particularly in starting pitching depth. However, playing at the Great American Ball Park provides Cincinnati a notable offensive boost given their power numbers this year. The visiting Marlins bullpen has shown vulnerability in late-inning high-leverage situations throughout the current campaign. Consequently, while Miami is slight favorites to win outright, the tight projected run environment makes the home underdog an appealing cover option.\n\nSplits and Direction: Approximately 58 percent of moneyline bets are currently backing the Miami Marlins as slight road favorites, while 62 percent of spread wagers lean toward the Cincinnati Reds plus the runs. Both the moneyline and spread have remained largely stable since opening, with only minor adjustments toward Miami following early action.",
+                    "generated_at": "2026-08-16T14:01:43.459811+00:00",
+                    "odds_hash": "56e3dc810d443a4d",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1599,11 +1599,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -136
+                          "american": -140
                         },
                         "away": {
                           "line": null,
-                          "american": 127
+                          "american": 131
                         }
                       }
                     },
@@ -1611,11 +1611,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 146
+                          "american": 152
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -178
+                          "american": -184
                         }
                       },
                       "moneyline": {
@@ -1631,15 +1631,15 @@
                     }
                   },
                   "gemini_prediction": {
-                    "winner": "Baltimore Orioles",
-                    "confidence": 53,
+                    "winner": "Tampa Bay Rays",
+                    "confidence": 56,
                     "ats_pick": "Baltimore Orioles +1.5",
-                    "ats_confidence": 62,
-                    "analysis": "The Baltimore Orioles enter this August matchup with a potent offensive lineup that has consistently outperformed expectations throughout the 2026 campaign. Tampa Bay relies heavily on its pitching depth, but recent injuries in their bullpen have exposed late-inning vulnerabilities. Baltimore's starting pitcher has shown an ability to suppress hard contact against top-tier American League opponents. The Rays hold a slight home-field advantage at Tropicana Field, yet their inconsistent run production makes them prone to close contests. Ultimately, the Orioles possess enough offensive firepower to either win outright or keep the margin within a single run.",
-                    "splits_and_direction": "Based on public tendencies, approximately 58 percent of moneyline bets are backing the Tampa Bay Rays as home favorites, while 62 percent of spread bets are taking the Baltimore Orioles plus the runs. The moneyline has ticked up slightly toward Tampa Bay from an opener of -130 to -136, whereas the run line has remained steady at -1.5 for the home side.",
-                    "display_text": "Summary: The Baltimore Orioles enter this August matchup with a potent offensive lineup that has consistently outperformed expectations throughout the 2026 campaign. Tampa Bay relies heavily on its pitching depth, but recent injuries in their bullpen have exposed late-inning vulnerabilities. Baltimore's starting pitcher has shown an ability to suppress hard contact against top-tier American League opponents. The Rays hold a slight home-field advantage at Tropicana Field, yet their inconsistent run production makes them prone to close contests. Ultimately, the Orioles possess enough offensive firepower to either win outright or keep the margin within a single run.\n\nSplits and Direction: Based on public tendencies, approximately 58 percent of moneyline bets are backing the Tampa Bay Rays as home favorites, while 62 percent of spread bets are taking the Baltimore Orioles plus the runs. The moneyline has ticked up slightly toward Tampa Bay from an opener of -130 to -136, whereas the run line has remained steady at -1.5 for the home side.",
-                    "generated_at": "2026-08-16T13:11:02.914222+00:00",
-                    "odds_hash": "3575099d0f28010b",
+                    "ats_confidence": 54,
+                    "analysis": "The Tampa Bay Rays host the Baltimore Orioles in this critical 2026 American League East matchup at Tropicana Field. Tampa Bay holds a slight edge in overall current-season metrics and home-field performance compared to Baltimore. However, the Orioles remain competitive enough to keep most divisional games tightly contested into the late innings. The home team's pitching staff matches up well against the Orioles' lineup, providing just enough edge to secure a narrow victory. Expect a low-scoring affair where Tampa Bay edges out Baltimore by a single run, making the underdog run line the safer wager.",
+                    "splits_and_direction": "Approximately 58 percent of the moneyline bets are currently backing the Tampa Bay Rays at home, while the spread action leans slightly toward the underdog Orioles getting the run and a half. The home moneyline has ticked up slightly from -135 to -140 at DraftKings, reflecting early sharp confidence in Tampa Bay.",
+                    "display_text": "Summary: The Tampa Bay Rays host the Baltimore Orioles in this critical 2026 American League East matchup at Tropicana Field. Tampa Bay holds a slight edge in overall current-season metrics and home-field performance compared to Baltimore. However, the Orioles remain competitive enough to keep most divisional games tightly contested into the late innings. The home team's pitching staff matches up well against the Orioles' lineup, providing just enough edge to secure a narrow victory. Expect a low-scoring affair where Tampa Bay edges out Baltimore by a single run, making the underdog run line the safer wager.\n\nSplits and Direction: Approximately 58 percent of the moneyline bets are currently backing the Tampa Bay Rays at home, while the spread action leans slightly toward the underdog Orioles getting the run and a half. The home moneyline has ticked up slightly from -135 to -140 at DraftKings, reflecting early sharp confidence in Tampa Bay.",
+                    "generated_at": "2026-08-16T09:47:39.284062+00:00",
+                    "odds_hash": "892f964dd1255feb",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false

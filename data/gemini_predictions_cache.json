@@ -1450,5 +1450,17 @@
     "generated_at": "2026-08-16T13:39:17.605939+00:00",
     "odds_hash": "e19faf52f47b8040",
     "model": "gemini-3.5-flash-lite"
+  },
+  "56e3dc810d443a4d": {
+    "winner": "Miami Marlins",
+    "confidence": 54,
+    "ats_pick": "Cincinnati Reds +1.5",
+    "ats_confidence": 56,
+    "analysis": "The Miami Marlins travel to face the Cincinnati Reds in this mid-August 2026 matchup. Miami holds a slight edge in recent 2026 performance metrics, particularly in starting pitching depth. However, playing at the Great American Ball Park provides Cincinnati a notable offensive boost given their power numbers this year. The visiting Marlins bullpen has shown vulnerability in late-inning high-leverage situations throughout the current campaign. Consequently, while Miami is slight favorites to win outright, the tight projected run environment makes the home underdog an appealing cover option.",
+    "splits_and_direction": "Approximately 58 percent of moneyline bets are currently backing the Miami Marlins as slight road favorites, while 62 percent of spread wagers lean toward the Cincinnati Reds plus the runs. Both the moneyline and spread have remained largely stable since opening, with only minor adjustments toward Miami following early action.",
+    "display_text": "Summary: The Miami Marlins travel to face the Cincinnati Reds in this mid-August 2026 matchup. Miami holds a slight edge in recent 2026 performance metrics, particularly in starting pitching depth. However, playing at the Great American Ball Park provides Cincinnati a notable offensive boost given their power numbers this year. The visiting Marlins bullpen has shown vulnerability in late-inning high-leverage situations throughout the current campaign. Consequently, while Miami is slight favorites to win outright, the tight projected run environment makes the home underdog an appealing cover option.\n\nSplits and Direction: Approximately 58 percent of moneyline bets are currently backing the Miami Marlins as slight road favorites, while 62 percent of spread wagers lean toward the Cincinnati Reds plus the runs. Both the moneyline and spread have remained largely stable since opening, with only minor adjustments toward Miami following early action.",
+    "generated_at": "2026-08-16T14:01:43.459811+00:00",
+    "odds_hash": "56e3dc810d443a4d",
+    "model": "gemini-3.5-flash-lite"
   }
 }
