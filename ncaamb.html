@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Football Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0d10;
+    --bg-panel: #12161b;
+    --line: #232a31;
+    --turf: #8f6a2f;
+    --turf-bright: #c19a43;
+    --chalk: #e8ecef;
+    --dim: #8a95a1;
+    --gold: #e0a63c;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse at top, #131a1f 0%, var(--bg) 55%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0 1px, transparent 1px 64px);
+    color:var(--chalk);
+    font-family:'JetBrains Mono', monospace;
+    min-height:100vh;
+  }
+
+  .nav-bar{
+    position:sticky; top:0; z-index:100;
+    background:var(--bg);
+    border-bottom:1px solid transparent;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .nav-bar.stuck{
+    border-bottom-color:var(--line);
+    box-shadow:0 8px 20px -12px rgba(0,0,0,0.6);
+  }
+  .site-nav{
+    max-width:1180px; margin:0 auto; padding:0.9rem 1.5rem;
+    display:flex; flex-wrap:wrap; gap:1.55rem; align-items:center;
+    position:relative;
+  }
+  .hamburger-btn{
+    display:none; order:1;
+    background:transparent; border:1px solid var(--line); border-radius:6px;
+    color:var(--chalk); font-size:1.1rem; line-height:1;
+    padding:0.32rem 0.55rem; cursor:pointer;
+  }
+  .nav-links{display:flex; gap:1.25rem; align-items:center; order:1;}
+  .site-nav a{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.82rem;
+    text-transform:uppercase; letter-spacing:0.04em;
+    color:var(--dim); text-decoration:none;
+    padding:0.3rem 0; border-bottom:2px solid transparent;
+  }
+  .site-nav a:hover{color:var(--chalk);}
+  .site-nav a.active{color:var(--turf-bright); border-bottom-color:var(--turf-bright);}
+
+  @media (max-width: 760px){
+    .hamburger-btn{display:flex; align-items:center; justify-content:center;}
+    .nav-links{
+      display:none; position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; align-items:flex-start; gap:0.6rem;
+      background:var(--bg-panel); border:1px solid var(--line); border-top:none;
+      padding:0.85rem 1.5rem; z-index:150;
+    }
+    .nav-links.open{display:flex;}
+  }
+
+  .coming-soon{
+    max-width:1180px; margin:0 auto; padding:6rem 1.5rem;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; min-height:60vh;
+  }
+  .coming-soon .eyebrow{
+    font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.22em;
+    font-size:0.72rem; color:var(--gold); font-weight:600;
+  }
+  .coming-soon h1{
+    font-family:'Oswald',sans-serif; font-weight:700;
+    font-size:clamp(2rem, 6vw, 3.5rem);
+    margin:0.5rem 0; letter-spacing:-0.01em;
+  }
+  .coming-soon p{color:var(--dim); font-size:0.95rem; max-width:32rem;}
+</style>
+</head>
+<body>
+
+<div class="nav-bar">
+<nav class="site-nav">
+  <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">NCAAF</a>
+    <a href="ncaamb.html" class="active">NCAAMB</a>
+    <a href="nfl.html">NFL</a>
+    <a href="mlb.html">MLB</a>
+    <a href="picks.html">Picks</a>
+  </div>
+</nav>
+</div>
+
+<div class="coming-soon">
+  <div class="eyebrow">College Basketball</div>
+  <h1>Coming Soon</h1>
+  <p>The NCAAMB board isn't built yet -- check back once college basketball season gets closer.</p>
+</div>
+
+<script>
+(function(){
+  const bar = document.querySelector('.nav-bar');
+  if (!bar) return;
+  const onScroll = () => bar.classList.toggle('stuck', window.scrollY > 2);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+(function(){
+  const btn = document.getElementById('hamburgerBtn');
+  const nav = document.getElementById('navLinks');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  nav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => nav.classList.remove('open'));
+  });
+  document.addEventListener('click', (e) => {
+    if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+</script>
+</body>
+</html>

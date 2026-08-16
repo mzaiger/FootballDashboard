@@ -11,8 +11,8 @@
     --bg: #0a0d10;
     --bg-panel: #12161b;
     --line: #232a31;
-    --turf: #2f5f8f;
-    --turf-bright: #4394c1;
+    --turf: #8f4a2f;
+    --turf-bright: #c17a43;
     --chalk: #e8ecef;
     --dim: #8a95a1;
     --gold: #e0a63c;
@@ -544,8 +544,8 @@
   <div class="nav-links" id="navLinks">
     <a href="index.html">NCAAF</a>
     <a href="ncaamb.html">NCAAMB</a>
-    <a href="nfl.html" class="active">NFL</a>
-    <a href="mlb.html">MLB</a>
+    <a href="nfl.html">NFL</a>
+    <a href="mlb.html" class="active">MLB</a>
     <a href="picks.html">Picks</a>
   </div>
   <div class="filter-bar-inner">
@@ -597,11 +597,11 @@
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">NFL &middot; TV Schedule + Odds Board</div>
-    <h1 id="pageTitle">Loading week&hellip;</h1>
+    <div class="eyebrow">MLB &middot; Run Line + Moneyline Board</div>
+    <h1 id="pageTitle">Loading day&hellip;</h1>
     <div class="meta-row">
       <span>Last updated: <b id="generatedAt">—</b></span>
-      <span><b id="totalGames">—</b> games with a broadcast assigned</span>
+      <span><b id="totalGames">—</b> games today</span>
     </div>
   </div>
 </div>
@@ -611,14 +611,15 @@
 <div class="status" id="statusMsg" style="display:none;"></div>
 
 <footer>
-  Matchup score = 50% DraftKings/FanDuel point spread + 50% combined win rank (teams ranked by this
-  week's record like an AP-style poll, best record = rank 1) -- both normalized 0-100 and blended, lower =
-  more marquee/competitive.
-  &#11088; Time Slot Best Matchup = the Chiefs' or Broncos' game if either is playing in that window, otherwise the game
-  with the best blended matchup score. Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule, broadcast
-  network, &amp; records via ESPN's public scoreboard API.
+  Matchup score = combined win rank of both teams (teams ranked by record, best record = rank 1, lower combined
+  rank = more marquee/competitive matchup) -- the run line is essentially always &plusmn;1.5 runs so it isn't
+  factored in the way a football point spread is.
+  &#11088; Time Slot Best Matchup = the game with the best combined-win-count matchup score in that window.
+  Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule, broadcast network, records, and probable
+  starting pitchers via ESPN's public scoreboard API.
   <br><br>
-  &#10024; Gemini Prediction Summary is AI-generated from current-season stats and posted odds -- informational only, not betting advice.
+  &#10024; Gemini Prediction Summary is AI-generated from current-season stats, posted odds, and (once
+  announced) probable starting pitchers -- informational only, not betting advice.
   <br><br>
   &#11088; Best Matchup Only shows just each window's starred pick. Conf filters to games where Gemini's confidence
   (ML or ATS, whichever is selected) is at least that number; a game with no Gemini prediction, or no ATS pick posted
@@ -636,8 +637,8 @@
 })();
 </script>
 <script>
-const SPORT = 'nfl';
-const DATA_URL = 'data/nfl_dashboard.json';
+const SPORT = 'mlb';
+const DATA_URL = 'data/mlb_dashboard.json';
 let SCORES = {};
 let CURRENT_SEASON = null;
 
@@ -668,8 +669,9 @@ function oddsCell(entry) {
   return '<span class="empty-cell">—</span>';
 }
 
-function teamNameBlock(name, record, scoreBadge) {
-  const recordHtml = record ? `<span class="team-record">${record}</span>` : '';
+function teamNameBlock(name, record, scoreBadge, pitcher) {
+  const recordText = pitcher ? `${record || ''}${record ? ' \u00b7 ' : ''}${pitcher}` : (record || '');
+  const recordHtml = recordText ? `<span class="team-record">${recordText}</span>` : '';
   return `<span class="team-name-wrap"><span class="team-name-line"><span class="team-name">${name}</span>${scoreBadge || ''}</span>${recordHtml}</span>`;
 }
 
@@ -682,10 +684,10 @@ function kickoffTime(iso, tbd) {
 }
 
 function renderGame(g) {
-  // matchup_score is now a blended 0-100 score (50% spread + 50% win rank,
-  // both normalized) rather than a raw spread number, so the old "<=3
-  // points" threshold no longer applies -- treat the bottom ~1/5th of the
-  // 0-100 scale as a "close/marquee" game instead. Adjust to taste.
+  // matchup_score here is purely a normalized combined-win-rank score (no
+  // spread blending -- the MLB run line is almost always a fixed +/-1.5,
+  // so it doesn't discriminate between games); treat the bottom ~1/5th of
+  // the 0-100 scale as a "close/marquee" game. Adjust to taste.
   const closeGame = g.matchup_score !== null && g.matchup_score !== undefined && g.matchup_score <= 20;
   const isPick = !!g.is_slot_pick;
   const gScore = SCORES[String(g.id)];
@@ -715,7 +717,7 @@ function renderGame(g) {
 
   const oddsBlock = hasAnyOdds
     ? `<table class="odds">
-        <thead><tr><th></th><th>Away Spd</th><th>Home Spd</th><th>Away ML</th><th>Home ML</th></tr></thead>
+        <thead><tr><th></th><th>Away Line</th><th>Home Line</th><th>Away ML</th><th>Home ML</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>`
     : `<div class="no-odds">Odds not yet posted</div>`;
@@ -732,9 +734,9 @@ function renderGame(g) {
       <span class="channel-pill">${g.channel}</span>
     </div>
     <div class="matchup">
-      <span class="team">${teamNameBlock(g.away_team, g.away_record, teamScoreBadge(gScore?.away_score, gScore?.status))}</span>
+      <span class="team">${teamNameBlock(g.away_team, g.away_record, teamScoreBadge(gScore?.away_score, gScore?.status), g.away_pitcher)}</span>
       <span class="at">@</span>
-      <span class="team">${teamNameBlock(g.home_team, g.home_record, teamScoreBadge(gScore?.home_score, gScore?.status))}</span>
+      <span class="team">${teamNameBlock(g.home_team, g.home_record, teamScoreBadge(gScore?.home_score, gScore?.status), g.home_pitcher)}</span>
     </div>
     <div class="subline">
       <span>${kickoffTime(g.start_time, g.start_time_tbd)}</span>
@@ -756,26 +758,13 @@ const SLOT_ICON = {
   'Time TBD': '\u2753'
 };
 
-// Only Noon and Afternoon windows are ambiguous enough (multiple games,
-// different regional broadcasts) for 506sports.com's coverage map to be
-// worth linking -- Morning/Prime Time/Late Night are single-game windows
-// nationally, so there's nothing regional to look up.
-const REGIONAL_MAP_SLOTS = new Set(['Noon', 'Afternoon']);
-
-function regionalMapLink(weekNum) {
-  if (!CURRENT_SEASON || !weekNum) return '';
-  const url = `https://506sports.com/nfl.php?yr=${CURRENT_SEASON}&wk=${weekNum}`;
-  return ` <a class="slot-regional-link" href="${url}" target="_blank" rel="noopener">\u{1F5FA}\uFE0F Click for Regional Coverage Map</a>`;
-}
-
-function renderSlot(slot, weekNum) {
+function renderSlot(slot) {
   return `
   <div class="slot-block">
     <div class="slot-heading">
       <span class="slot-icon">${SLOT_ICON[slot.slot] || ''}</span>
       <span class="slot-name">${slot.slot}</span>
       <span class="slot-count">${slot.games.length} game${slot.games.length === 1 ? '' : 's'}</span>
-      ${REGIONAL_MAP_SLOTS.has(slot.slot) ? regionalMapLink(weekNum) : ''}
     </div>
     <div class="grid">
       ${slot.games.map(renderGame).join('')}
@@ -783,7 +772,7 @@ function renderSlot(slot, weekNum) {
   </div>`;
 }
 
-function renderDay(day, weekNum) {
+function renderDay(day) {
   const d = new Date(day.date + 'T00:00:00');
   const dateStr = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
   return `
@@ -793,21 +782,16 @@ function renderDay(day, weekNum) {
       <span class="date">${dateStr}</span>
       <span class="count">${day.game_count} game${day.game_count === 1 ? '' : 's'}</span>
     </div>
-    ${day.time_slots.map(slot => renderSlot(slot, weekNum)).join('')}
+    ${day.time_slots.map(renderSlot).join('')}
   </section>`;
 }
 
-function renderWeek(week, seasonType) {
-  const label = formatWeekLabel(week.week, seasonType);
-  // 506sports.com's coverage map only tracks the real regular-season
-  // broadcast map -- preseason windows aren't worth linking, so only pass
-  // a week number through when this is a regular-season week (regionalMapLink
-  // already no-ops on a falsy week number).
-  const regionalWeekNum = seasonType === 2 ? week.week : null;
+function renderWeek(week) {
+  const label = formatMlbDayLabel(week);
   if (!week.days.length) {
     const emptyMsg = week._filtered
       ? 'No games match the current filters.'
-      : 'No games found for this week yet — check back closer to kickoff.';
+      : 'No games found for this day yet — check back closer to first pitch.';
     return `
     <section class="week-block">
       <div class="week-heading"><span class="week-name">${label}</span></div>
@@ -820,7 +804,7 @@ function renderWeek(week, seasonType) {
       <span class="week-name">${label}</span>
       <span class="week-count">${week.total_games} game${week.total_games === 1 ? '' : 's'}</span>
     </div>
-    ${week.days.map(day => renderDay(day, regionalWeekNum)).join('')}
+    ${week.days.map(renderDay).join('')}
   </section>`;
 }
 
@@ -830,23 +814,23 @@ async function init() {
     const res = await fetch(DATA_URL, { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    SCORES = await fetchScores('nfl');
+    SCORES = await fetchScores('mlb');
     CURRENT_SEASON = data.season;
 
-    // nfl_dashboard.json now holds every week ever built; only show the
-    // week the build itself resolved as current, plus the next one.
-    const displayWeeks = selectDisplayWeeks(data.weeks, data.current_week);
+    // mlb_dashboard.json holds every day ever built; only show the day
+    // the build itself resolved as "today", plus the next day present.
+    const displayWeeks = selectDisplayDays(data.weeks, data.current_week);
 
-    const weekNums = displayWeeks.map(w => formatWeekNumberLabel(w.week, data.season_type));
-    document.getElementById('pageTitle').textContent = weekNums.length
-      ? (weekNums.length > 1 ? `Weeks ${weekNums[0]}\u2013${weekNums[weekNums.length - 1]} \u2014 ${data.season}` : `Week ${weekNums[0]} \u2014 ${data.season}`)
+    const dayLabels = displayWeeks.map(formatMlbDayLabel);
+    document.getElementById('pageTitle').textContent = dayLabels.length
+      ? dayLabels.join(' \u2014 ')
       : `${data.season}`;
     document.getElementById('generatedAt').textContent = new Date(data.generated_at).toLocaleString();
 
     const daysEl = document.getElementById('days');
     if (!displayWeeks.some(w => w.days.length)) {
       statusEl.style.display = 'block';
-      statusEl.textContent = 'No games found for either week yet — check back closer to kickoff.';
+      statusEl.textContent = 'No games found for today or tomorrow yet — check back closer to first pitch.';
       return;
     }
     let statusPills;
@@ -855,16 +839,16 @@ async function init() {
       updateStatusPillCounts(filteredWeeks, SCORES);
       const shownWeeks = applyStatusFilterToWeeks(filteredWeeks, statusPills.get(), SCORES);
       document.getElementById('totalGames').textContent = shownWeeks.reduce((n, w) => n + w.total_games, 0);
-      daysEl.innerHTML = shownWeeks.map(w => renderWeek(w, data.season_type)).join('');
+      daysEl.innerHTML = shownWeeks.map(renderWeek).join('');
     };
-    statusPills = initStatusPills('nfl', 'open', renderBoard);
+    statusPills = initStatusPills('mlb', 'open', renderBoard);
     renderBoard();
     attachPickHandlers(daysEl, renderBoard);
     attachGeminiHandlers(daysEl);
     initFilterBar(renderBoard);
   } catch (err) {
     statusEl.style.display = 'block';
-    statusEl.textContent = `Couldn't load data/nfl_dashboard.json (${err.message}). Run scripts/build_nfl_dashboard.py first.`;
+    statusEl.textContent = `Couldn't load data/mlb_dashboard.json (${err.message}). Run scripts/build_mlb_dashboard.py first.`;
   }
 }
 

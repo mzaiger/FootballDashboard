@@ -21,6 +21,7 @@
   }
   .cfb-theme{ --turf: #2f8f5b; --turf-bright: #43c179; }
   .nfl-theme{ --turf: #2f5f8f; --turf-bright: #4394c1; }
+  .mlb-theme{ --turf: #8f4a2f; --turf-bright: #c17a43; }
 
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -46,8 +47,16 @@
   }
   .site-nav{
     max-width:1180px; margin:0 auto; padding:0.9rem 1.5rem;
-    display:flex; gap:1.55rem; align-items:center;
+    display:flex; flex-wrap:wrap; gap:1.55rem; align-items:center;
+    position:relative;
   }
+  .hamburger-btn{
+    display:none; order:1;
+    background:transparent; border:1px solid var(--line); border-radius:6px;
+    color:var(--chalk); font-size:1.1rem; line-height:1;
+    padding:0.32rem 0.55rem; cursor:pointer;
+  }
+  .nav-links{display:flex; gap:1.25rem; align-items:center; order:1;}
   .site-nav a{
     font-family:'Oswald',sans-serif; font-weight:600; font-size:0.82rem;
     text-transform:uppercase; letter-spacing:0.04em;
@@ -56,10 +65,21 @@
   }
   .site-nav a:hover{color:var(--chalk);}
   .site-nav a.active{color:var(--gold); border-bottom-color:var(--gold);}
-  .nav-spacer{flex:1;}
+  .status-pills{display:flex; gap:0.3rem; align-items:center; order:3;}
+  .status-pill{
+    display:flex; align-items:center; gap:0.3rem;
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.03em;
+    color:var(--dim); background:#000; border:1px solid var(--line); border-radius:6px;
+    padding:0.18rem 0.5rem; cursor:pointer; transition:all 0.12s ease;
+  }
+  .status-pill:hover{color:var(--chalk);}
+  .status-pill.active{background:var(--gold); color:#1a1400; border-color:var(--gold);}
+  .pill-count{font-family:'JetBrains Mono',monospace; font-weight:500; opacity:0.85;}
   .view-toggle{
     display:flex; gap:0.25rem; background:var(--bg-panel);
     border:1px solid var(--line); border-radius:8px; padding:0.2rem;
+    order:4; margin-left:auto;
   }
   .view-toggle .view-btn{
     font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
@@ -69,6 +89,21 @@
   }
   .view-toggle .view-btn:hover{color:var(--chalk);}
   .view-toggle .view-btn.active{background:var(--gold); color:#1a1400;}
+
+  /* Below this width the links + pills + toggle can't fit on one line --
+     hamburger replaces the inline nav links (which become a dropdown). */
+  @media (max-width: 760px){
+    .hamburger-btn{display:flex; align-items:center; justify-content:center;}
+    .nav-links{
+      display:none; position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; align-items:flex-start; gap:0.6rem;
+      background:var(--bg-panel); border:1px solid var(--line); border-top:none;
+      padding:0.85rem 1.5rem; z-index:150;
+    }
+    .nav-links.open{display:flex;}
+    .status-pills{order:2;}
+    .view-toggle{order:3; margin-left:0;}
+  }
 
   .week-block{margin-top:1.75rem;}
   .week-block:first-child{margin-top:1rem;}
@@ -344,6 +379,7 @@
   .matchup::-webkit-scrollbar{display:none;}
   .team{display:inline-flex; align-items:center; gap:0.4rem;}
   .team-name-wrap{display:inline-flex; flex-direction:column; align-items:flex-start; line-height:1.2;}
+  .team-name-line{display:inline-flex; align-items:baseline; gap:0.4rem;}
   .team-record{
     font-family:'JetBrains Mono',monospace; font-weight:500; font-size:0.62rem;
     letter-spacing:0.02em; color:var(--dim);
@@ -484,10 +520,19 @@
 
 <div class="nav-bar">
 <nav class="site-nav">
-  <a href="index.html">College</a>
-  <a href="nfl.html">NFL</a>
-  <a href="picks.html" class="active">Picks</a>
-  <span class="nav-spacer"></span>
+  <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">NCAAF</a>
+    <a href="ncaamb.html">NCAAMB</a>
+    <a href="nfl.html">NFL</a>
+    <a href="mlb.html">MLB</a>
+    <a href="picks.html" class="active">Picks</a>
+  </div>
+  <div class="status-pills">
+    <button type="button" class="status-pill" data-status="open">Open <span class="pill-count" id="openCount">0</span></button>
+    <button type="button" class="status-pill" data-status="closed">Closed <span class="pill-count" id="closedCount">0</span></button>
+    <button type="button" class="status-pill" data-status="all">All <span class="pill-count" id="allCount">0</span></button>
+  </div>
   <div class="view-toggle">
     <button type="button" class="view-btn" data-mode="tiles">Tiles</button>
     <button type="button" class="view-btn" data-mode="rows">Rows</button>
@@ -542,7 +587,8 @@
 <script>
 const CFB_URL = 'data/dashboard.json';
 const NFL_URL = 'data/nfl_dashboard.json';
-let SCORES = { cfb: {}, nfl: {} };
+const MLB_URL = 'data/mlb_dashboard.json';
+let SCORES = { cfb: {}, nfl: {}, mlb: {} };
 
 function fmtAmerican(n) {
   if (n === null || n === undefined || n === '') return null;
@@ -575,9 +621,10 @@ function rankBadge(rank) {
   return rank ? `<span class="rank">#${rank}</span> ` : '';
 }
 
-function teamNameBlock(name, record) {
-  const recordHtml = record ? `<span class="team-record">${record}</span>` : '';
-  return `<span class="team-name-wrap"><span class="team-name">${name}</span>${recordHtml}</span>`;
+function teamNameBlock(name, record, scoreBadge, pitcher) {
+  const recordText = pitcher ? `${record || ''}${record ? ' \u00b7 ' : ''}${pitcher}` : (record || '');
+  const recordHtml = recordText ? `<span class="team-record">${recordText}</span>` : '';
+  return `<span class="team-name-wrap"><span class="team-name-line"><span class="team-name">${name}</span>${scoreBadge || ''}</span>${recordHtml}</span>`;
 }
 
 function kickoffTime(iso, tbd) {
@@ -664,11 +711,11 @@ function renderGame(sport, g) {
     : `Matchup Score ${g.matchup_score}`;
 
   const awayLabel = sport === 'cfb'
-    ? `${rankBadge(g.away_rank)}${teamNameBlock(g.away_team, g.away_record)}`
-    : teamNameBlock(g.away_team, g.away_record);
+    ? `${rankBadge(g.away_rank)}${teamNameBlock(g.away_team, g.away_record, teamScoreBadge(gScore?.away_score, gScore?.status))}`
+    : teamNameBlock(g.away_team, g.away_record, teamScoreBadge(gScore?.away_score, gScore?.status), sport === 'mlb' ? g.away_pitcher : undefined);
   const homeLabel = sport === 'cfb'
-    ? `${rankBadge(g.home_rank)}${teamNameBlock(g.home_team, g.home_record)}`
-    : teamNameBlock(g.home_team, g.home_record);
+    ? `${rankBadge(g.home_rank)}${teamNameBlock(g.home_team, g.home_record, teamScoreBadge(gScore?.home_score, gScore?.status))}`
+    : teamNameBlock(g.home_team, g.home_record, teamScoreBadge(gScore?.home_score, gScore?.status), sport === 'mlb' ? g.home_pitcher : undefined);
 
   const cardClasses = isSlotPick ? 'your-pick slot-banner' : '';
 
@@ -680,9 +727,9 @@ function renderGame(sport, g) {
       <span class="channel-pill">${g.channel}</span>
     </div>
     <div class="matchup">
-      <span class="team">${awayLabel}${teamScoreBadge(gScore?.away_score, gScore?.status)}</span>
+      <span class="team">${awayLabel}</span>
       <span class="at">@</span>
-      <span class="team">${homeLabel}${teamScoreBadge(gScore?.home_score, gScore?.status)}</span>
+      <span class="team">${homeLabel}</span>
     </div>
     <div class="subline">
       <span>${kickoffTime(g.start_time, g.start_time_tbd)}</span>
@@ -724,9 +771,10 @@ function renderDay(sport, day) {
 }
 
 function renderWeekSection(sport, week, seasonType) {
+  const label = sport === 'mlb' ? formatMlbDayLabel(week) : formatWeekLabel(week.week, seasonType);
   return `
   <div class="week-block">
-    <div class="week-heading"><span class="week-name">${formatWeekLabel(week.week, seasonType)}</span></div>
+    <div class="week-heading"><span class="week-name">${label}</span></div>
     ${week.days.map(day => renderDay(sport, day)).join('')}
   </div>`;
 }
@@ -746,18 +794,20 @@ function renderSection(sport, data, title, themeClass) {
 
 let cfbData = null;
 let nflData = null;
+let mlbData = null;
+let statusPills;
 
 function renderBoard() {
   const sectionsEl = document.getElementById('sections');
   const statusEl = document.getElementById('statusMsg');
 
-  // Computed against the full, unfiltered dashboards (every week ever
+  // Computed against the full, unfiltered dashboards (every week/day ever
   // built), comparing each cookie'd pick to data/scores.json -- so this
   // covers picks going all the way back, not just whatever weeks happen
   // to still be in view. "Active" = pick made but game not graded yet;
   // "Inactive" = game graded, shown as correct/total.
   const record = computePickRecord(
-    [{ sport: 'cfb', data: cfbData }, { sport: 'nfl', data: nflData }],
+    [{ sport: 'cfb', data: cfbData }, { sport: 'nfl', data: nflData }, { sport: 'mlb', data: mlbData }],
     SCORES
   );
   document.getElementById('activeNum').textContent = record.active;
@@ -765,26 +815,38 @@ function renderBoard() {
 
   const cfbFiltered = filterDataset('cfb', cfbData);
   const nflFiltered = filterDataset('nfl', nflData);
+  const mlbFiltered = filterDataset('mlb', mlbData);
 
-  const cfbHtml = renderSection('cfb', cfbFiltered, 'College Football', 'cfb-theme');
-  const nflHtml = renderSection('nfl', nflFiltered, 'NFL', 'nfl-theme');
+  updateStatusPillCounts(
+    [...(cfbFiltered?.weeks || []), ...(nflFiltered?.weeks || []), ...(mlbFiltered?.weeks || [])],
+    { ...(SCORES.cfb || {}), ...(SCORES.nfl || {}), ...(SCORES.mlb || {}) }
+  );
+  const statusVal = statusPills ? statusPills.get() : 'closed';
+  const cfbShown = cfbFiltered ? { ...cfbFiltered, weeks: applyStatusFilterToWeeks(cfbFiltered.weeks, statusVal, SCORES.cfb) } : null;
+  const nflShown = nflFiltered ? { ...nflFiltered, weeks: applyStatusFilterToWeeks(nflFiltered.weeks, statusVal, SCORES.nfl) } : null;
+  const mlbShown = mlbFiltered ? { ...mlbFiltered, weeks: applyStatusFilterToWeeks(mlbFiltered.weeks, statusVal, SCORES.mlb) } : null;
 
-  if (!cfbHtml && !nflHtml) {
+  const cfbHtml = renderSection('cfb', cfbShown, 'College Football', 'cfb-theme');
+  const nflHtml = renderSection('nfl', nflShown, 'NFL', 'nfl-theme');
+  const mlbHtml = renderSection('mlb', mlbShown, 'MLB', 'mlb-theme');
+
+  if (!cfbHtml && !nflHtml && !mlbHtml) {
     sectionsEl.innerHTML = '';
     statusEl.style.display = 'block';
-    statusEl.textContent = "No picks yet. Head to College Football or NFL, pick a spread or moneyline on any game, and it'll show up here.";
+    statusEl.textContent = "No picks yet. Head to NCAAF, NFL, or MLB, pick a spread or moneyline on any game, and it'll show up here.";
     return;
   }
   statusEl.style.display = 'none';
-  sectionsEl.innerHTML = cfbHtml + nflHtml;
+  sectionsEl.innerHTML = cfbHtml + nflHtml + mlbHtml;
 }
 
 async function init() {
   const statusEl = document.getElementById('statusMsg');
   try {
-    const [cfbRes, nflRes] = await Promise.allSettled([
+    const [cfbRes, nflRes, mlbRes] = await Promise.allSettled([
       fetch(CFB_URL, { cache: 'no-store' }),
       fetch(NFL_URL, { cache: 'no-store' }),
+      fetch(MLB_URL, { cache: 'no-store' }),
     ]);
 
     if (cfbRes.status === 'fulfilled' && cfbRes.value.ok) {
@@ -793,16 +855,20 @@ async function init() {
     if (nflRes.status === 'fulfilled' && nflRes.value.ok) {
       nflData = await nflRes.value.json();
     }
+    if (mlbRes.status === 'fulfilled' && mlbRes.value.ok) {
+      mlbData = await mlbRes.value.json();
+    }
 
-    const [cfbScores, nflScores] = await Promise.all([fetchScores('cfb'), fetchScores('nfl')]);
-    SCORES = { cfb: cfbScores, nfl: nflScores };
+    const [cfbScores, nflScores, mlbScores] = await Promise.all([fetchScores('cfb'), fetchScores('nfl'), fetchScores('mlb')]);
+    SCORES = { cfb: cfbScores, nfl: nflScores, mlb: mlbScores };
 
-    if (!cfbData && !nflData) {
+    if (!cfbData && !nflData && !mlbData) {
       statusEl.style.display = 'block';
-      statusEl.textContent = "Couldn't load either board's data. Run the build scripts first.";
+      statusEl.textContent = "Couldn't load any board's data. Run the build scripts first.";
       return;
     }
 
+    statusPills = initStatusPills('picks', 'closed', renderBoard);
     renderBoard();
     attachPickHandlers(document.getElementById('sections'), renderBoard);
     attachGeminiHandlers(document.getElementById('sections'));
@@ -813,6 +879,7 @@ async function init() {
 }
 
 initViewToggle();
+initHamburgerMenu();
 init();
 </script>
 </body>

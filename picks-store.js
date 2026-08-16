@@ -68,6 +68,163 @@ function selectDisplayWeeks(weeks, currentWeek) {
   return weeks.filter(w => w.week === currentWeek || w.week === currentWeek + 1);
 }
 
+/*
+ * MLB day-label formatting + display-day selection.
+ *
+ * build_mlb_dashboard.py reuses the exact same weeks -> days -> time_slots
+ * -> games JSON shape NFL/CFB use (see that script's module docstring),
+ * but each "week" entry actually holds exactly one calendar day, and its
+ * "week" number is that day's date as YYYYMMDD (e.g. 20260815) instead of
+ * a real week number. That lets merge_weeks()/filterWeeksForDisplay()/
+ * computePickRecord() all work unchanged. These two helpers are the MLB
+ * equivalents of formatWeekLabel() and selectDisplayWeeks() above, reading
+ * the real date back out instead of formatting a week number.
+ */
+
+// Pulls the actual date out of a "week" entry's single day and formats it
+// nicely (e.g. "Friday, August 15") instead of showing the raw YYYYMMDD
+// number a "Week ..." label would use.
+function formatMlbDayLabel(week) {
+  const dateStr = week && week.days && week.days[0] && week.days[0].date;
+  if (!dateStr) return week ? `${week.week}` : '';
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+}
+
+// MLB equivalent of selectDisplayWeeks(): returns just the days mlb.html
+// should render -- the day matching currentDayKey (YYYYMMDD), plus
+// whichever day comes right after it in the array. Uses array position
+// rather than "currentDayKey + 1" arithmetic because YYYYMMDD doesn't
+// increment cleanly across a month boundary (e.g. 20260831 + 1 is not
+// 20260901) -- the day that's actually "tomorrow" is whatever the build
+// script placed next in the sorted list, not currentDayKey+1.
+function selectDisplayDays(weeks, currentDayKey) {
+  if (!weeks || !weeks.length) return [];
+  const sorted = [...weeks].sort((a, b) => a.week - b.week);
+  if (currentDayKey === undefined || currentDayKey === null) {
+    return sorted.slice(-2);
+  }
+  const idx = sorted.findIndex(w => w.week === currentDayKey);
+  if (idx === -1) return sorted.slice(-2);
+  return sorted.slice(idx, idx + 2);
+}
+
+/*
+ * Hamburger nav (mobile) -- shared by every page. On desktop the links in
+ * #navLinks show inline in the nav bar as normal; on mobile they're
+ * hidden and shown as a dropdown when the hamburger button is tapped.
+ */
+function initHamburgerMenu() {
+  const btn = document.getElementById('hamburgerBtn');
+  const nav = document.getElementById('navLinks');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  nav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => nav.classList.remove('open'));
+  });
+  document.addEventListener('click', (e) => {
+    if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+/*
+ * Open/Closed/All status pills -- shared by every page. "Open" = the game
+ * hasn't started yet (no entry in scores.json, since fetch_scores.py only
+ * writes an entry once a game leaves "pre" state); "Closed" = the game has
+ * started or finished. Each page stores its own choice separately (a
+ * pageKey-scoped localStorage key) so, e.g., picking "All" on the NFL page
+ * doesn't change the Picks page's independent default.
+ */
+
+function gameHasStarted(g, scores) {
+  const entry = scores[String(g.id)];
+  return !!(entry && entry.status);
+}
+
+function getStatusFilter(pageKey, defaultVal) {
+  try {
+    const v = localStorage.getItem(`fb_status_filter_${pageKey}`);
+    if (v === 'open' || v === 'closed' || v === 'all') return v;
+  } catch (e) { /* ignore */ }
+  return defaultVal;
+}
+
+function setStatusFilter(pageKey, val) {
+  try { localStorage.setItem(`fb_status_filter_${pageKey}`, val); } catch (e) { /* ignore */ }
+}
+
+function flattenGames(weeks) {
+  const out = [];
+  (weeks || []).forEach(week => (week.days || []).forEach(day =>
+    (day.time_slots || []).forEach(slot => (slot.games || []).forEach(g => out.push(g)))));
+  return out;
+}
+
+// Filters a games array down to just "open" or "closed" games; "all"
+// (or any other value) returns the array unchanged.
+function filterGamesByStatus(games, statusFilter, scores) {
+  if (statusFilter !== 'open' && statusFilter !== 'closed') return games;
+  return games.filter(g => gameHasStarted(g, scores) === (statusFilter === 'closed'));
+}
+
+// Same shape/behavior as filterWeeksForDisplay() above, but filtering by
+// game-started status instead of Best-Matchup/Confidence.
+function applyStatusFilterToWeeks(weeks, statusFilter, scores) {
+  if (statusFilter !== 'open' && statusFilter !== 'closed') return weeks;
+  return weeks.map(week => {
+    const days = week.days
+      .map(day => {
+        const time_slots = day.time_slots
+          .map(slot => ({ ...slot, games: filterGamesByStatus(slot.games, statusFilter, scores) }))
+          .filter(slot => slot.games.length);
+        const game_count = time_slots.reduce((n, s) => n + s.games.length, 0);
+        return { ...day, time_slots, game_count };
+      })
+      .filter(day => day.time_slots.length);
+    const total_games = days.reduce((n, d) => n + d.game_count, 0);
+    return { ...week, days, total_games, _filtered: true };
+  });
+}
+
+// Updates the Open(x)/Closed(x)/All(x) pill counts from whatever game set
+// is currently on the board (after any other active filters, but before
+// the status filter itself, so switching pills is meaningful).
+function updateStatusPillCounts(weeks, scores) {
+  const games = flattenGames(weeks);
+  let open = 0, closed = 0;
+  games.forEach(g => { if (gameHasStarted(g, scores)) closed++; else open++; });
+  const openEl = document.getElementById('openCount');
+  const closedEl = document.getElementById('closedCount');
+  const allEl = document.getElementById('allCount');
+  if (openEl) openEl.textContent = String(open);
+  if (closedEl) closedEl.textContent = String(closed);
+  if (allEl) allEl.textContent = String(games.length);
+}
+
+// Call once per page, after the nav (with its .status-pills buttons) is in
+// the DOM. Returns { get() } so the page's render function can read the
+// current choice. `onChange` re-renders the board using the new filter.
+function initStatusPills(pageKey, defaultVal, onChange) {
+  let current = getStatusFilter(pageKey, defaultVal);
+  const buttons = document.querySelectorAll('.status-pill');
+  buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.status === current));
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      current = btn.dataset.status;
+      setStatusFilter(pageKey, current);
+      buttons.forEach(b => b.classList.toggle('active', b === btn));
+      onChange();
+    });
+  });
+  return { get: () => current };
+}
+
 const PICK_COOKIE_PREFIX = 'pick_';
 const PICK_COOKIE_DAYS = 210;
 const PICK_LOCKED_STATUSES = ['final', 'in_progress', 'live', 'halftime'];

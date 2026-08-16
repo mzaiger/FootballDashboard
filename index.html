@@ -176,6 +176,7 @@
   .matchup::-webkit-scrollbar{display:none;}
   .team{display:inline-flex; align-items:center; gap:0.4rem;}
   .team-name-wrap{display:inline-flex; flex-direction:column; align-items:flex-start; line-height:1.2;}
+  .team-name-line{display:inline-flex; align-items:baseline; gap:0.4rem;}
   .team-record{
     font-family:'JetBrains Mono',monospace; font-weight:500; font-size:0.62rem;
     letter-spacing:0.02em; color:var(--dim);
@@ -318,6 +319,13 @@
   .site-nav{
     max-width:1180px; margin:0 auto; padding:0.9rem 1.5rem;
     display:flex; flex-wrap:wrap; gap:1.55rem; align-items:center;
+    position:relative;
+  }
+  .hamburger-btn{
+    display:none; order:1;
+    background:transparent; border:1px solid var(--line); border-radius:6px;
+    color:var(--chalk); font-size:1.1rem; line-height:1;
+    padding:0.32rem 0.55rem; cursor:pointer;
   }
   .nav-links{display:flex; gap:1.25rem; align-items:center; order:1;}
   .site-nav a{
@@ -328,10 +336,21 @@
   }
   .site-nav a:hover{color:var(--chalk);}
   .site-nav a.active{color:var(--turf-bright); border-bottom-color:var(--turf-bright);}
+  .status-pills{display:flex; gap:0.3rem; align-items:center; order:3;}
+  .status-pill{
+    display:flex; align-items:center; gap:0.3rem;
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.03em;
+    color:var(--dim); background:#000; border:1px solid var(--line); border-radius:6px;
+    padding:0.18rem 0.5rem; cursor:pointer; transition:all 0.12s ease;
+  }
+  .status-pill:hover{color:var(--chalk);}
+  .status-pill.active{background:var(--turf); color:#04140a; border-color:var(--turf);}
+  .pill-count{font-family:'JetBrains Mono',monospace; font-weight:500; opacity:0.85;}
   .view-toggle{
     display:flex; gap:0.25rem; background:var(--bg-panel);
     border:1px solid var(--line); border-radius:8px; padding:0.2rem;
-    order:3; margin-left:auto;
+    order:4; margin-left:auto;
   }
   .view-toggle .view-btn{
     font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
@@ -344,7 +363,7 @@
 
   /* Filter options now live inline in the nav bar itself (same sticky
      element, same background) instead of a separate bar underneath --
-     order:2 puts them between the menu links and the Tiles/Row toggle on
+     order:2 puts them between the menu links and the status pills on
      desktop; the mobile media query below reorders them onto their own
      second line. */
   .filter-bar-inner{
@@ -391,9 +410,23 @@
   /* Below this width the links + filters + toggle can't fit on one line --
      drop the filters to their own full-width second line inside the same
      sticky nav bar (order swap so links/toggle stay on line 1). */
+  /* Below this width the links + filters + pills + toggle can't fit on one
+     line. Hamburger replaces the inline nav links (which become a
+     dropdown), and Best-Slot-Matchups/Confidence drop to their own full-
+     width second line, while Hamburger/Open/Closed/All/Tiles/Rows stay
+     together on line 1. */
   @media (max-width: 760px){
-    .filter-bar-inner{order:3; flex:1 1 100%; justify-content:flex-start;}
-    .view-toggle{order:2;}
+    .hamburger-btn{display:flex; align-items:center; justify-content:center;}
+    .nav-links{
+      display:none; position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; align-items:flex-start; gap:0.6rem;
+      background:var(--bg-panel); border:1px solid var(--line); border-top:none;
+      padding:0.85rem 1.5rem; z-index:150;
+    }
+    .nav-links.open{display:flex;}
+    .status-pills{order:2;}
+    .view-toggle{order:3; margin-left:0;}
+    .filter-bar-inner{order:4; flex:1 1 100%; justify-content:flex-start;}
   }
 
 
@@ -512,9 +545,12 @@
 
 <div class="nav-bar">
 <nav class="site-nav">
-  <div class="nav-links">
-    <a href="index.html" class="active">College</a>
+  <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html" class="active">NCAAF</a>
+    <a href="ncaamb.html">NCAAMB</a>
     <a href="nfl.html">NFL</a>
+    <a href="mlb.html">MLB</a>
     <a href="picks.html">Picks</a>
   </div>
   <div class="filter-bar-inner">
@@ -551,6 +587,11 @@
         </select>
       </div>
     </div>
+  </div>
+  <div class="status-pills">
+    <button type="button" class="status-pill" data-status="open">Open <span class="pill-count" id="openCount">0</span></button>
+    <button type="button" class="status-pill" data-status="closed">Closed <span class="pill-count" id="closedCount">0</span></button>
+    <button type="button" class="status-pill" data-status="all">All <span class="pill-count" id="allCount">0</span></button>
   </div>
   <div class="view-toggle">
     <button type="button" class="view-btn" data-mode="tiles">Tiles</button>
@@ -632,9 +673,9 @@ function rankBadge(rank) {
   return rank ? `<span class="rank">#${rank}</span> ` : '';
 }
 
-function teamNameBlock(name, record) {
+function teamNameBlock(name, record, scoreBadge) {
   const recordHtml = record ? `<span class="team-record">${record}</span>` : '';
-  return `<span class="team-name-wrap"><span class="team-name">${name}</span>${recordHtml}</span>`;
+  return `<span class="team-name-wrap"><span class="team-name-line"><span class="team-name">${name}</span>${scoreBadge || ''}</span>${recordHtml}</span>`;
 }
 
 function kickoffTime(iso, tbd) {
@@ -688,9 +729,9 @@ function renderGame(g) {
       <span class="channel-pill">${g.channel}</span>
     </div>
     <div class="matchup">
-      <span class="team">${rankBadge(g.away_rank)}${teamNameBlock(g.away_team, g.away_record)}${teamScoreBadge(gScore?.away_score, gScore?.status)}</span>
+      <span class="team">${rankBadge(g.away_rank)}${teamNameBlock(g.away_team, g.away_record, teamScoreBadge(gScore?.away_score, gScore?.status))}</span>
       <span class="at">@</span>
-      <span class="team">${rankBadge(g.home_rank)}${teamNameBlock(g.home_team, g.home_record)}${teamScoreBadge(gScore?.home_score, gScore?.status)}</span>
+      <span class="team">${rankBadge(g.home_rank)}${teamNameBlock(g.home_team, g.home_record, teamScoreBadge(gScore?.home_score, gScore?.status))}</span>
     </div>
     <div class="subline">
       <span>${kickoffTime(g.start_time, g.start_time_tbd)}</span>
@@ -787,11 +828,15 @@ async function init() {
       statusEl.textContent = 'No main-channel games found for either week yet — check back closer to kickoff.';
       return;
     }
+    let statusPills;
     const renderBoard = () => {
       const filteredWeeks = filterWeeksForDisplay(displayWeeks, getFilterState());
-      document.getElementById('totalGames').textContent = filteredWeeks.reduce((n, w) => n + w.total_games, 0);
-      daysEl.innerHTML = filteredWeeks.map(renderWeek).join('');
+      updateStatusPillCounts(filteredWeeks, SCORES);
+      const shownWeeks = applyStatusFilterToWeeks(filteredWeeks, statusPills.get(), SCORES);
+      document.getElementById('totalGames').textContent = shownWeeks.reduce((n, w) => n + w.total_games, 0);
+      daysEl.innerHTML = shownWeeks.map(renderWeek).join('');
     };
+    statusPills = initStatusPills('cfb', 'open', renderBoard);
     renderBoard();
     attachPickHandlers(daysEl, renderBoard);
     attachGeminiHandlers(daysEl);
@@ -803,6 +848,7 @@ async function init() {
 }
 
 initViewToggle();
+initHamburgerMenu();
 init();
 </script>
 </body>
