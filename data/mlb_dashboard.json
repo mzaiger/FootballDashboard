@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T13:11:02.917722+00:00",
+  "generated_at": "2026-08-16T13:39:17.853513+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -846,21 +846,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 168
+                          "american": 177
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -205
+                          "american": -217
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -124
+                          "american": -119
                         },
                         "away": {
                           "line": null,
-                          "american": 116
+                          "american": 111
                         }
                       }
                     },
@@ -889,14 +889,14 @@
                   },
                   "gemini_prediction": {
                     "winner": "Toronto Blue Jays",
-                    "confidence": 56,
+                    "confidence": 54,
                     "ats_pick": "New York Yankees +1.5",
-                    "ats_confidence": 58,
-                    "analysis": "The Toronto Blue Jays hold a slight edge playing at home against the New York Yankees based on their current 2026 season metrics. Toronto's home field advantage at Rogers Centre heavily influences this matchup in a tightly contested divisional race. New York's potent offense keeps them competitive enough to stay within a single run throughout the contest. Because of this offensive firepower, the Yankees are a strong candidate to cover the 1.5 run spread even if they fall just short outright. Expect a close, hard-fought battle that ultimately favors the home side by a narrow margin.",
-                    "splits_and_direction": "Approximately 58 percent of public bets are currently backing the Toronto Blue Jays on the moneyline and spread due to their home field status. Both the moneyline and run line have seen minimal movement since opening, holding steady with slight backing toward the home favorite.",
-                    "display_text": "Summary: The Toronto Blue Jays hold a slight edge playing at home against the New York Yankees based on their current 2026 season metrics. Toronto's home field advantage at Rogers Centre heavily influences this matchup in a tightly contested divisional race. New York's potent offense keeps them competitive enough to stay within a single run throughout the contest. Because of this offensive firepower, the Yankees are a strong candidate to cover the 1.5 run spread even if they fall just short outright. Expect a close, hard-fought battle that ultimately favors the home side by a narrow margin.\n\nSplits and Direction: Approximately 58 percent of public bets are currently backing the Toronto Blue Jays on the moneyline and spread due to their home field status. Both the moneyline and run line have seen minimal movement since opening, holding steady with slight backing toward the home favorite.",
-                    "generated_at": "2026-08-16T12:52:54.663462+00:00",
-                    "odds_hash": "ba2691d2a63d059e",
+                    "ats_confidence": 56,
+                    "analysis": "The Toronto Blue Jays host the New York Yankees in an American League East matchup on August 16, 2026. Toronto holds a slight edge in home performance based on their current 2026 season metrics and consistency at Rogers Centre. The Yankees possess a potent lineup that keeps games close, making a blowout victory for either side statistically unlikely. Consequently, the one-and-a-half run spread provides sufficient cushion for the visitors to keep the margin tight. Toronto should narrowly secure the outright win, but New York is well-positioned to cover the run line.",
+                    "splits_and_direction": "Based on public tendencies toward the Yankees, an estimated 54 percent of moneyline bets back New York while 56 percent of spread bets take Toronto minus the runs. Both the moneyline and run line have remained relatively stable since opening with only minor adjustments reflecting balanced action.",
+                    "display_text": "Summary: The Toronto Blue Jays host the New York Yankees in an American League East matchup on August 16, 2026. Toronto holds a slight edge in home performance based on their current 2026 season metrics and consistency at Rogers Centre. The Yankees possess a potent lineup that keeps games close, making a blowout victory for either side statistically unlikely. Consequently, the one-and-a-half run spread provides sufficient cushion for the visitors to keep the margin tight. Toronto should narrowly secure the outright win, but New York is well-positioned to cover the run line.\n\nSplits and Direction: Based on public tendencies toward the Yankees, an estimated 54 percent of moneyline bets back New York while 56 percent of spread bets take Toronto minus the runs. Both the moneyline and run line have remained relatively stable since opening with only minor adjustments reflecting balanced action.",
+                    "generated_at": "2026-08-16T13:38:47.582982+00:00",
+                    "odds_hash": "374f6d2dc6acc3c5",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -944,11 +944,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -176
+                          "american": -170
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 146
+                          "american": 140
                         }
                       },
                       "moneyline": {
@@ -1078,21 +1078,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -172
+                          "american": -178
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 142
+                          "american": 146
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 102
+                          "american": 100
                         },
                         "away": {
                           "line": null,
-                          "american": -112
+                          "american": -110
                         }
                       }
                     }
@@ -1100,13 +1100,13 @@
                   "gemini_prediction": {
                     "winner": "San Diego Padres",
                     "confidence": 54,
-                    "ats_pick": "Cleveland Guardians +1.5",
-                    "ats_confidence": 57,
-                    "analysis": "The San Diego Padres hold a slight edge in overall roster depth during the 2026 season. Cleveland's home-field advantage at Progressive Field keeps this matchup tightly contested throughout. San Diego's bullpen execution late in the game provides the necessary margin for a narrow victory. However, the Cleveland Guardians consistently keep games within a single run against similarly matched opponents. Given the narrow projected outcome, the home underdog represents the safer value to cover the run line.",
-                    "splits_and_direction": "Approximately 58% of moneyline bets are currently backing the San Diego Padres as slight road favorites, while 62% of spread tickets favor the Cleveland Guardians plus the runs. The moneyline has ticked up slightly toward San Diego from -105 to -108 at DraftKings, while the home spread has remained stable at +1.5 with minor juice adjustments.",
-                    "display_text": "Summary: The San Diego Padres hold a slight edge in overall roster depth during the 2026 season. Cleveland's home-field advantage at Progressive Field keeps this matchup tightly contested throughout. San Diego's bullpen execution late in the game provides the necessary margin for a narrow victory. However, the Cleveland Guardians consistently keep games within a single run against similarly matched opponents. Given the narrow projected outcome, the home underdog represents the safer value to cover the run line.\n\nSplits and Direction: Approximately 58% of moneyline bets are currently backing the San Diego Padres as slight road favorites, while 62% of spread tickets favor the Cleveland Guardians plus the runs. The moneyline has ticked up slightly toward San Diego from -105 to -108 at DraftKings, while the home spread has remained stable at +1.5 with minor juice adjustments.",
-                    "generated_at": "2026-08-16T12:53:14.624401+00:00",
-                    "odds_hash": "46e764195fabf310",
+                    "ats_pick": "San Diego Padres -1.5",
+                    "ats_confidence": 51,
+                    "analysis": "The San Diego Padres travel to face the Cleveland Guardians in a compelling interleague matchup during the 2026 campaign. San Diego enters this contest with a slightly more balanced offensive attack and robust production from the top of their lineup. Cleveland counters with a disciplined pitching staff, but their bats have occasionally struggled to generate consistent run support against quality arms. The Padres' bullpen holds a minor efficiency advantage in high-leverage situations as the season moves into August. Ultimately, San Diego's slight edge in overall roster depth allows them to secure a narrow victory on the road.",
+                    "splits_and_direction": "Approximately 58 percent of public bets are backing the San Diego moneyline with moderate action leaning toward the road team on the run line. Both the moneyline and spread have remained relatively stable since opening with only minor adjustments reflecting balanced two-way action.",
+                    "display_text": "Summary: The San Diego Padres travel to face the Cleveland Guardians in a compelling interleague matchup during the 2026 campaign. San Diego enters this contest with a slightly more balanced offensive attack and robust production from the top of their lineup. Cleveland counters with a disciplined pitching staff, but their bats have occasionally struggled to generate consistent run support against quality arms. The Padres' bullpen holds a minor efficiency advantage in high-leverage situations as the season moves into August. Ultimately, San Diego's slight edge in overall roster depth allows them to secure a narrow victory on the road.\n\nSplits and Direction: Approximately 58 percent of public bets are backing the San Diego moneyline with moderate action leaning toward the road team on the run line. Both the moneyline and spread have remained relatively stable since opening with only minor adjustments reflecting balanced two-way action.",
+                    "generated_at": "2026-08-16T13:39:07.660417+00:00",
+                    "odds_hash": "e697077b920b3466",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1160,21 +1160,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -155
+                          "american": -156
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 128
+                          "american": 129
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 111
+                          "american": 108
                         },
                         "away": {
                           "line": null,
-                          "american": -119
+                          "american": -116
                         }
                       }
                     },
@@ -1206,11 +1206,11 @@
                     "confidence": 53,
                     "ats_pick": "Cincinnati Reds +1.5",
                     "ats_confidence": 62,
-                    "analysis": "The Cincinnati Reds host the Miami Marlins in a tightly contested matchup driven by comparable 2026 performance levels. Cincinnati holds a slight offensive edge at home, leveraging their ballpark dimensions effectively against right-handed pitching. Miami continues to struggle with consistency on the road, particularly in high-leverage bullpen situations late in games. The pitching matchup projects as a coin-flip, but the Reds' lineup depth slightly favors them to edge out a victory. Given the closeness of both teams' season metrics, taking the home underdog on the run line offers strong value.",
-                    "splits_and_direction": "Approximately 58 percent of early moneyline bets are backing the Miami Marlins at -119, while 62 percent of spread tickets favor the Cincinnati Reds plus 1.5. The moneyline has ticked slightly upward toward Miami from an opener of -115, while the run line odds have remained stable across major sportsbooks.",
-                    "display_text": "Summary: The Cincinnati Reds host the Miami Marlins in a tightly contested matchup driven by comparable 2026 performance levels. Cincinnati holds a slight offensive edge at home, leveraging their ballpark dimensions effectively against right-handed pitching. Miami continues to struggle with consistency on the road, particularly in high-leverage bullpen situations late in games. The pitching matchup projects as a coin-flip, but the Reds' lineup depth slightly favors them to edge out a victory. Given the closeness of both teams' season metrics, taking the home underdog on the run line offers strong value.\n\nSplits and Direction: Approximately 58 percent of early moneyline bets are backing the Miami Marlins at -119, while 62 percent of spread tickets favor the Cincinnati Reds plus 1.5. The moneyline has ticked slightly upward toward Miami from an opener of -115, while the run line odds have remained stable across major sportsbooks.",
-                    "generated_at": "2026-08-16T09:47:09.394526+00:00",
-                    "odds_hash": "456e879129819030",
+                    "analysis": "The Cincinnati Reds host the Miami Marlins in a tightly contested August matchup at Great American Ball Park. Cincinnati's 2026 home offensive metrics show improved production against right-handed pitching compared to Miami's current road splits. Miami struggles to generate consistent power away from their home ballpark, placing heavy pressure on their bullpen. The Reds' pitching staff has managed high-leverage situations more effectively over the last month of the current campaign. Consequently, Cincinnati secures a narrow victory while easily covering the +1.5 run line as home underdogs.",
+                    "splits_and_direction": "Public betting splits are currently estimated at 54 percent backing the Cincinnati Reds moneyline due to home field value. Both the moneyline and spread have remained relatively stable since opening with minor adjustments favoring the away side.",
+                    "display_text": "Summary: The Cincinnati Reds host the Miami Marlins in a tightly contested August matchup at Great American Ball Park. Cincinnati's 2026 home offensive metrics show improved production against right-handed pitching compared to Miami's current road splits. Miami struggles to generate consistent power away from their home ballpark, placing heavy pressure on their bullpen. The Reds' pitching staff has managed high-leverage situations more effectively over the last month of the current campaign. Consequently, Cincinnati secures a narrow victory while easily covering the +1.5 run line as home underdogs.\n\nSplits and Direction: Public betting splits are currently estimated at 54 percent backing the Cincinnati Reds moneyline due to home field value. Both the moneyline and spread have remained relatively stable since opening with minor adjustments favoring the away side.",
+                    "generated_at": "2026-08-16T13:38:57.341251+00:00",
+                    "odds_hash": "25fda28e166731b6",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1246,11 +1246,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -165
+                          "american": -159
                         },
                         "away": {
                           "line": null,
-                          "american": 153
+                          "american": 148
                         }
                       }
                     },
@@ -1259,11 +1259,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -166
+                          "american": -164
                         },
                         "away": {
                           "line": null,
-                          "american": 152
+                          "american": 150
                         }
                       }
                     }
@@ -1273,11 +1273,11 @@
                     "confidence": 64,
                     "ats_pick": "Washington Nationals +1.5",
                     "ats_confidence": 58,
-                    "analysis": "The New York Mets host the Washington Nationals in this August 2026 divisional matchup backed by a superior home record and more consistent offensive production. Washington has struggled to maintain momentum on the road this season due to a thin bullpen and inconsistent starting pitching. New York's primary bats have performed well against left-handed pitching, giving them a distinct matchup advantage in this contest. While the Mets are expected to secure the outright victory, their recent bullpen struggles suggest many games remain close in the late innings. Consequently, the Nationals possess enough value to keep the margin within a single run and cover the run line.",
-                    "splits_and_direction": "Approximately 68% of the public moneyline handle is backing the New York Mets, while 55% of spread bets lean toward the Washington Nationals. The home moneyline has slightly shortened from -155 to -165, and the run line has held steady at -1.5 since opening.",
-                    "display_text": "Summary: The New York Mets host the Washington Nationals in this August 2026 divisional matchup backed by a superior home record and more consistent offensive production. Washington has struggled to maintain momentum on the road this season due to a thin bullpen and inconsistent starting pitching. New York's primary bats have performed well against left-handed pitching, giving them a distinct matchup advantage in this contest. While the Mets are expected to secure the outright victory, their recent bullpen struggles suggest many games remain close in the late innings. Consequently, the Nationals possess enough value to keep the margin within a single run and cover the run line.\n\nSplits and Direction: Approximately 68% of the public moneyline handle is backing the New York Mets, while 55% of spread bets lean toward the Washington Nationals. The home moneyline has slightly shortened from -155 to -165, and the run line has held steady at -1.5 since opening.",
-                    "generated_at": "2026-08-16T13:10:52.756420+00:00",
-                    "odds_hash": "a862c9a813ce574c",
+                    "analysis": "The New York Mets host the Washington Nationals in a crucial 2026 divisional matchup at Citi Field. New York holds a stronger home record this season, powered by consistent offensive production from their core hitters. Washington struggles on the road against quality pitching, which limits their ability to build sustained rallies. However, the Nationals have shown resilience in tight games, keeping many contests within a single run. Expect the Mets to secure a narrow victory, while the Nationals manage to cover the run line.",
+                    "splits_and_direction": "Based on public tendencies, approximately 68 percent of moneyline bets are backing the home Mets while 55 percent of run line wagers favor the underdog Nationals. The home moneyline has slightly shortened from -150 to -159, and the spread has remained steady at -1.5.",
+                    "display_text": "Summary: The New York Mets host the Washington Nationals in a crucial 2026 divisional matchup at Citi Field. New York holds a stronger home record this season, powered by consistent offensive production from their core hitters. Washington struggles on the road against quality pitching, which limits their ability to build sustained rallies. However, the Nationals have shown resilience in tight games, keeping many contests within a single run. Expect the Mets to secure a narrow victory, while the Nationals manage to cover the run line.\n\nSplits and Direction: Based on public tendencies, approximately 68 percent of moneyline bets are backing the home Mets while 55 percent of run line wagers favor the underdog Nationals. The home moneyline has slightly shortened from -150 to -159, and the spread has remained steady at -1.5.",
+                    "generated_at": "2026-08-16T13:39:17.605939+00:00",
+                    "odds_hash": "e19faf52f47b8040",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
