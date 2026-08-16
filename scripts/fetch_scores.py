@@ -3,18 +3,20 @@
 Live score poller -- run hourly via .github/workflows/fetch-scores.yml.
 
 Overlays home/away scores + game status onto the games already listed in
-data/dashboard.json (CFB) and data/nfl_dashboard.json (NFL), which
-build_dashboard.py / build_nfl_dashboard.py produce once a day. This
+data/dashboard.json (CFB), data/nfl_dashboard.json (NFL), and
+data/mlb_dashboard.json (MLB), which build_dashboard.py /
+build_nfl_dashboard.py / build_mlb_dashboard.py produce once a day. This
 script is intentionally lightweight and kept separate from those daily
-builds: it does NOT touch odds, AP rankings, or Gemini predictions -- it
-just looks up each game's current score by the same game id the daily
-build already assigned, and writes a small overlay file, data/scores.json,
-that index.html / nfl.html / picks.html fetch and merge in client-side.
-Keeping this separate means scores can refresh hourly (or more) without
-hitting SharpAPI's or Gemini's much tighter rate limits.
+builds: it does NOT touch odds, AP rankings, probable pitchers, or Gemini
+predictions -- it just looks up each game's current score by the same
+game id the daily build already assigned, and writes a small overlay
+file, data/scores.json, that index.html / nfl.html / mlb.html /
+picks.html fetch and merge in client-side. Keeping this separate means
+scores can refresh hourly (or more) without hitting SharpAPI's or
+Gemini's much tighter rate limits.
 
 Score sources (matched by the exact game id already in each dashboard for
-NFL; matched by team name + date for CFB -- see note below):
+NFL and MLB; matched by team name + date for CFB -- see note below):
     CFB - ESPN's public college-football scoreboard endpoint (no key
           required). Matched back to our CFBD-numbered game ids by fuzzy
           team-name matching (same matcher common.py uses for odds)
@@ -25,13 +27,18 @@ NFL; matched by team name + date for CFB -- see note below):
           real "8:42 - 3rd" while a game is live.
     NFL - ESPN's public scoreboard endpoint (same one build_nfl_dashboard.py
           uses for schedule; no key required).
+    MLB - ESPN's public baseball scoreboard endpoint (same one
+          build_mlb_dashboard.py uses for schedule; no key required).
+          Matched directly by event id, same as NFL, since
+          build_mlb_dashboard.py's game ids already come from ESPN.
 
-Env vars required: none -- both halves use ESPN's public endpoints.
+Env vars required: none -- all three sources use ESPN's public endpoints.
 
 Usage:
     python scripts/fetch_scores.py
     python scripts/fetch_scores.py --dashboard data/dashboard.json \\
-        --nfl-dashboard data/nfl_dashboard.json --out data/scores.json
+        --nfl-dashboard data/nfl_dashboard.json \\
+        --mlb-dashboard data/mlb_dashboard.json --out data/scores.json
 """
 
 import argparse
@@ -45,6 +52,7 @@ from common import log, _normalize, _fuzzy_team
 
 ESPN_CFB_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard"
 ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
+ESPN_MLB_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard"
 REQUEST_TIMEOUT = 20
 
 
@@ -70,8 +78,12 @@ def load_previous_scores(path):
     """
     data = load_json(path)
     if not data:
-        return {"cfb": {}, "nfl": {}}
-    return {"cfb": data.get("cfb", {}) or {}, "nfl": data.get("nfl", {}) or {}}
+        return {"cfb": {}, "nfl": {}, "mlb": {}}
+    return {
+        "cfb": data.get("cfb", {}) or {},
+        "nfl": data.get("nfl", {}) or {},
+        "mlb": data.get("mlb", {}) or {},
+    }
 
 
 def iter_games(dashboard):
@@ -314,6 +326,71 @@ def fetch_nfl_scores(dashboard, weeks_to_fetch=None):
 
 
 # ---------------------------------------------------------------------------
+# MLB scores (ESPN public scoreboard)
+# ---------------------------------------------------------------------------
+
+def espn_get_mlb_scoreboard(date_str):
+    resp = requests.get(
+        ESPN_MLB_SCOREBOARD_URL,
+        params={"dates": date_str, "limit": 200},
+        timeout=REQUEST_TIMEOUT,
+    )
+    resp.raise_for_status()
+    return resp.json()
+
+
+def fetch_mlb_scores(dashboard, weeks_to_fetch=None):
+    """Return {game_id: {home_score, away_score, status, status_detail}}.
+
+    `weeks_to_fetch` here is really a list of dates (build_mlb_dashboard.py
+    uses each day's YYYYMMDD as its "week" number -- see that script's
+    module docstring), so this fetches one ESPN scoreboard request per day
+    that still needs a refresh, matched directly by event id (build_mlb_
+    dashboard.py's game ids already come from ESPN, so no fuzzy matching
+    is needed here, same as NFL).
+    """
+    scores = {}
+    if not dashboard:
+        return scores
+
+    days = weeks_to_fetch if weeks_to_fetch is not None else distinct_weeks(dashboard)
+    for day_num in days:
+        date_str = str(day_num)
+        log(f"MLB scores: fetching {date_str}...")
+        try:
+            payload = espn_get_mlb_scoreboard(date_str)
+        except requests.RequestException as e:
+            log(f"  WARNING: couldn't fetch MLB scores for {date_str}: {e}")
+            continue
+
+        for event in payload.get("events", []):
+            game_id = event.get("id")
+            if game_id is None:
+                continue
+            comp = (event.get("competitions") or [{}])[0]
+            competitors = comp.get("competitors", [])
+            home = next((c for c in competitors if c.get("homeAway") == "home"), None)
+            away = next((c for c in competitors if c.get("homeAway") == "away"), None)
+            if not home or not away:
+                continue
+
+            status = event.get("status", {}).get("type", {})
+            state = status.get("state")  # "pre" / "in" / "post"
+            if state == "pre":
+                continue  # hasn't started -- nothing to overlay yet
+
+            home_score = home.get("score")
+            away_score = away.get("score")
+            scores[str(game_id)] = {
+                "home_score": int(home_score) if home_score is not None else None,
+                "away_score": int(away_score) if away_score is not None else None,
+                "status": "final" if state == "post" else "in_progress",
+                "status_detail": status.get("shortDetail") or status.get("detail"),
+            }
+    return scores
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -323,6 +400,7 @@ def main():
     )
     parser.add_argument("--dashboard", default=None, help="Path to data/dashboard.json (CFB)")
     parser.add_argument("--nfl-dashboard", default=None, help="Path to data/nfl_dashboard.json")
+    parser.add_argument("--mlb-dashboard", default=None, help="Path to data/mlb_dashboard.json")
     parser.add_argument("--out", default=None, help="Output path (default: data/scores.json)")
     args = parser.parse_args()
 
@@ -331,41 +409,52 @@ def main():
     nfl_dashboard_path = os.path.abspath(
         args.nfl_dashboard or os.path.join(script_dir, "..", "data", "nfl_dashboard.json")
     )
+    mlb_dashboard_path = os.path.abspath(
+        args.mlb_dashboard or os.path.join(script_dir, "..", "data", "mlb_dashboard.json")
+    )
     out_path = os.path.abspath(args.out or os.path.join(script_dir, "..", "data", "scores.json"))
 
     dashboard = load_json(dashboard_path)
     nfl_dashboard = load_json(nfl_dashboard_path)
+    mlb_dashboard = load_json(mlb_dashboard_path)
 
     previous = load_previous_scores(out_path)
 
     cfb_weeks = weeks_needing_refresh(dashboard, previous["cfb"])
     nfl_weeks = weeks_needing_refresh(nfl_dashboard, previous["nfl"])
+    mlb_days = weeks_needing_refresh(mlb_dashboard, previous["mlb"])
     log(f"CFB weeks needing a refresh: {cfb_weeks} (skipping any week where every game is already final)")
     log(f"NFL weeks needing a refresh: {nfl_weeks} (skipping any week where every game is already final)")
+    log(f"MLB days needing a refresh: {mlb_days} (skipping any day where every game is already final)")
 
     cfb_scores = fetch_cfb_scores(dashboard, weeks_to_fetch=cfb_weeks)
     nfl_scores = fetch_nfl_scores(nfl_dashboard, weeks_to_fetch=nfl_weeks)
+    mlb_scores = fetch_mlb_scores(mlb_dashboard, weeks_to_fetch=mlb_days)
 
     # Merge onto the previous file rather than replacing it -- a game whose
-    # week has aged out of the dashboard's rolling window isn't re-fetched
-    # this run, but its last-known score (almost always "final" by then)
-    # stays in scores.json instead of disappearing. Freshly fetched entries
-    # always win over old ones for any game id present in both.
+    # week/day has aged out of the dashboard's rolling window isn't
+    # re-fetched this run, but its last-known score (almost always "final"
+    # by then) stays in scores.json instead of disappearing. Freshly
+    # fetched entries always win over old ones for any game id present in
+    # both.
     merged_cfb = {**previous["cfb"], **cfb_scores}
     merged_nfl = {**previous["nfl"], **nfl_scores}
+    merged_mlb = {**previous["mlb"], **mlb_scores}
 
     output = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "cfb": merged_cfb,
         "nfl": merged_nfl,
+        "mlb": merged_mlb,
     }
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(output, f, indent=2)
 
-    log(f"Wrote {len(merged_cfb)} CFB score(s) ({len(cfb_scores)} fresh) and "
-        f"{len(merged_nfl)} NFL score(s) ({len(nfl_scores)} fresh) to {out_path}")
+    log(f"Wrote {len(merged_cfb)} CFB score(s) ({len(cfb_scores)} fresh), "
+        f"{len(merged_nfl)} NFL score(s) ({len(nfl_scores)} fresh), and "
+        f"{len(merged_mlb)} MLB score(s) ({len(mlb_scores)} fresh) to {out_path}")
 
 
 if __name__ == "__main__":

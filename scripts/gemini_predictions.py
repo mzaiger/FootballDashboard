@@ -114,11 +114,15 @@ def _save_cache(cache):
         json.dump(cache, f, indent=2)
 
 
-def _odds_hash(sport, season, week, away_team, home_team, odds):
+def _odds_hash(sport, season, week, away_team, home_team, odds, away_pitcher=None, home_pitcher=None):
     """
-    Cache key that changes iff the model, matchup, or its odds change.
-    Including the model means switching models gets fresh predictions
-    instead of reusing another model's cached output.
+    Cache key that changes iff the model, matchup, its odds, or (for MLB)
+    the probable starting pitchers change. Including the model means
+    switching models gets fresh predictions instead of reusing another
+    model's cached output. For MLB, `week` is actually the game's date
+    (see attach_gemini_predictions) so two different days' games between
+    the same two teams still hash differently, and a late pitcher swap
+    triggers a fresh call instead of serving a stale cached prediction.
     """
     dk_spread = (odds.get("draftkings", {}).get("spread", {}).get("home") or {})
     dk_ml_away = (odds.get("draftkings", {}).get("moneyline", {}).get("away") or {})
@@ -143,6 +147,9 @@ def _odds_hash(sport, season, week, away_team, home_team, odds):
         fd_spread.get("line"),
         fd_ml_away.get("american"),
         fd_ml_home.get("american"),
+        "SP",
+        away_pitcher,
+        home_pitcher,
     ])
 
     return hashlib.sha256(key_material.encode()).hexdigest()[:16]
@@ -179,17 +186,33 @@ def _fmt_book(book):
     return "\n".join(lines) if lines else "No odds posted yet"
 
 
-def _build_prompt(sport, season, week, away_team, home_team, odds):
-    league_label = "NFL" if sport == "nfl" else "college football"
+def _build_prompt(sport, season, week, away_team, home_team, odds, away_pitcher=None, home_pitcher=None):
+    league_label = {"nfl": "NFL", "mlb": "MLB"}.get(sport, "college football")
+
+    # For MLB, `week` is the game's actual calendar date (see
+    # attach_gemini_predictions) -- MLB plays every day, so "week 5" is
+    # meaningless; the model needs the specific date to know which of
+    # possibly several games between these two teams this is.
+    period_label = f"on {week}" if sport == "mlb" else f"(week {week})"
+
+    margin_unit = "runs" if sport == "mlb" else "points"
+
+    pitcher_block = ""
+    if sport == "mlb" and (away_pitcher or home_pitcher):
+        pitcher_block = f"""
+Probable Starting Pitchers:
+Away: {away_pitcher or 'Not yet announced'}
+Home: {home_pitcher or 'Not yet announced'}
+"""
 
     dk = odds.get("draftkings", {})
     fd = odds.get("fanduel", {})
 
-    return f"""You are analyzing an upcoming {season} {league_label} game (week {week}).
+    return f"""You are analyzing an upcoming {season} {league_label} game {period_label}.
 
 Away Team: {away_team}
 Home Team: {home_team}
-
+{pitcher_block}
 DraftKings:
 {_fmt_book(dk)}
 
@@ -197,16 +220,17 @@ FanDuel:
 {_fmt_book(fd)}
 
 How to read "Home spread": it is the home team's own line, signed for the
-home team. A negative number means the home team is favored by that many
-points; a positive number means the home team is the underdog by that many
-points. The away team's line is always the exact opposite sign of the same
-number.
+home team (for MLB this is the run line, almost always +/-1.5 runs). A
+negative number means the home team is favored by that many {margin_unit};
+a positive number means the home team is the underdog by that many
+{margin_unit}. The away team's line is always the exact opposite sign of
+the same number.
 
-Example: "Home spread: -28" means the home team is favored by 28 points.
-The home team covers ONLY if it wins by MORE than 28 points (e.g. Alabama
--28 covers only by winning 29+ points -- winning by exactly 28 is a push,
-winning by 1-27 points or losing outright means the away team covers
-instead, at +28).
+Example: "Home spread: -1.5" means the home team is favored by 1.5 {margin_unit}.
+The home team covers ONLY if it wins by MORE than that margin -- winning by
+exactly that margin is a push (rare for a MLB run line, since half-run
+lines can't push), winning by less or losing outright means the away team
+covers instead, at the positive number.
 
 Do not default to picking the favorite to cover just because it is
 favored. Weigh current-season performance to judge whether the expected
@@ -451,14 +475,19 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key):
         if not has_odds:
             continue
 
-        h = _odds_hash(sport, season, week, g["away_team"], g["home_team"], odds)
+        away_pitcher = g.get("away_pitcher") if sport == "mlb" else None
+        home_pitcher = g.get("home_pitcher") if sport == "mlb" else None
+
+        h = _odds_hash(sport, season, week, g["away_team"], g["home_team"], odds,
+                        away_pitcher=away_pitcher, home_pitcher=home_pitcher)
         cached = cache.get(h)
 
         if cached and not force_refresh:
             g["gemini_prediction"] = cached
             continue
 
-        prompt = _build_prompt(sport, season, week, g["away_team"], g["home_team"], odds)
+        prompt = _build_prompt(sport, season, week, g["away_team"], g["home_team"], odds,
+                                away_pitcher=away_pitcher, home_pitcher=home_pitcher)
         to_call.append((g, h, prompt))
 
     if not to_call:
