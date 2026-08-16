@@ -55,7 +55,7 @@ function formatWeekNumberLabel(weekNum, seasonType) {
  * "now". Each build stamps the JSON with a top-level `current_week`: the
  * same week number the build itself resolved as current (CFB's date-based
  * derive_week(), or NFL's ESPN-lookup-plus-stuck-week-fallback in
- * resolve_current_week() -- see scripts/build_dashboard.py /
+ * resolve_current_week() -- see scripts/build_ncaaf_dashboard.py /
  * build_nfl_dashboard.py). College/NFL just display `current_week` and
  * `current_week + 1`; everything else stays in the JSON (for Picks) but
  * off the boards. This intentionally does NOT try to guess "current" from
@@ -233,6 +233,16 @@ function initStatusPills(pageKey, defaultVal, onChange) {
     });
   });
   return { get: () => current };
+}
+
+// The "Matchup" badge on every card shows a plain 1..N rank within its
+// natural grouping (the whole day for MLB, the whole week for NFL/CFB --
+// see assign_matchup_ranks() in common.py) rather than the raw 0-100
+// blended score that rank is computed from.
+function matchupLabel(g) {
+  return (g.matchup_rank === null || g.matchup_rank === undefined)
+    ? 'Matchup: TBD'
+    : `Matchup: ${g.matchup_rank}`;
 }
 
 const PICK_COOKIE_PREFIX = 'pick_';

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Football Dashboard</title>
+<title>Sports Dashboard - MLB</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -398,6 +398,12 @@
     font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
     background:var(--turf); color:#04140a; border-radius:5px;
     padding:0.2rem 0.5rem; letter-spacing:0.02em;
+    /* Capped to roughly the width of the Matchup badge ("Matchup: XX")
+       and wraps instead of overflowing, so a long combined national-TV
+       string (e.g. multiple networks) doesn't blow out the card width or
+       push the score badge off to one side. */
+    max-width: 18ch; white-space: normal; overflow-wrap: break-word;
+    text-align: center; line-height: 1.25;
   }
 
   .matchup{
@@ -410,6 +416,7 @@
   .team{display:inline-flex; align-items:center; gap:0.4rem;}
   .team-name-wrap{display:inline-flex; flex-direction:column; align-items:flex-start; line-height:1.2;}
   .team-name-line{display:inline-flex; align-items:baseline; gap:0.4rem;}
+  .team-name{font-size:0.88rem;}
   .team-record{
     font-family:'JetBrains Mono',monospace; font-weight:500; font-size:0.62rem;
     letter-spacing:0.02em; color:var(--dim);
@@ -486,7 +493,7 @@
     flex:1; min-width:0;
   }
   .gemini-toggle-winner{
-    color:var(--chalk); text-transform:none; letter-spacing:normal; font-weight:600;
+    color:var(--chalk); text-transform:none; letter-spacing:normal; font-weight:600; font-size:0.66rem;
   }
   .gemini-toggle-ats{
     color:#ffffff; letter-spacing:0.04em; font-size:0.65rem;
@@ -611,8 +618,7 @@
 <div class="status" id="statusMsg" style="display:none;"></div>
 
 <footer>
-  Matchup score = combined win rank of both teams (teams ranked by record, best record = rank 1, lower combined
-  rank = more marquee/competitive matchup) -- the run line is essentially always &plusmn;1.5 runs so it isn't
+  Matchup: N badge = this game's rank among every game that day (1 = most marquee), based on combined win rank of both teams (teams ranked by record, best record = rank 1) -- the run line is essentially always &plusmn;1.5 runs so it isn't
   factored in the way a football point spread is.
   &#11088; Time Slot Best Matchup = the game with the best combined-win-count matchup score in that window.
   Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule, broadcast network, records, and probable
@@ -722,15 +728,12 @@ function renderGame(g) {
       </table>`
     : `<div class="no-odds">Odds not yet posted</div>`;
 
-  const scoreLabel = (g.matchup_score === null || g.matchup_score === undefined)
-    ? 'Matchup Score TBD'
-    : `Matchup Score ${g.matchup_score}`;
 
   return `
   <div class="card ${closeGame ? 'close-game' : ''} ${isPick ? 'slot-pick' : ''}">
     ${isPick ? '<div class="pick-banner">\u2b50 Time Slot Best Matchup</div>' : ''}
     <div class="card-top">
-      <span class="score-badge">${scoreLabel}</span>
+      <span class="score-badge">${matchupLabel(g)}</span>
       <span class="channel-pill">${g.channel}</span>
     </div>
     <div class="matchup">

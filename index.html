@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Football Dashboard</title>
+<title>Sports Dashboard - NCAAF</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -165,6 +165,12 @@
     font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
     background:var(--turf); color:#04140a; border-radius:5px;
     padding:0.2rem 0.5rem; letter-spacing:0.02em;
+    /* Capped to roughly the width of the Matchup badge ("Matchup: XX")
+       and wraps instead of overflowing, so a long combined national-TV
+       string (e.g. multiple networks) doesn't blow out the card width or
+       push the score badge off to one side. */
+    max-width: 18ch; white-space: normal; overflow-wrap: break-word;
+    text-align: center; line-height: 1.25;
   }
 
   .matchup{
@@ -177,6 +183,7 @@
   .team{display:inline-flex; align-items:center; gap:0.4rem;}
   .team-name-wrap{display:inline-flex; flex-direction:column; align-items:flex-start; line-height:1.2;}
   .team-name-line{display:inline-flex; align-items:baseline; gap:0.4rem;}
+  .team-name{font-size:0.88rem;}
   .team-record{
     font-family:'JetBrains Mono',monospace; font-weight:500; font-size:0.62rem;
     letter-spacing:0.02em; color:var(--dim);
@@ -258,7 +265,7 @@
     flex:1; min-width:0;
   }
   .gemini-toggle-winner{
-    color:var(--chalk); text-transform:none; letter-spacing:normal; font-weight:600;
+    color:var(--chalk); text-transform:none; letter-spacing:normal; font-weight:600; font-size:0.66rem;
   }
   .gemini-toggle-ats{
     color:#ffffff; letter-spacing:0.04em; font-size:0.65rem;
@@ -617,7 +624,7 @@
 <div class="status" id="statusMsg" style="display:none;"></div>
 
 <footer>
-  Matchup rank = combined AP Top 25 rank of both teams (lower is more marquee, unranked teams score 26).
+  Matchup: N badge = this game's rank among every game this week (1 = most marquee), based on combined AP Top 25 rank of both teams (unranked teams count as 26).
   &#11088; Time Slot Best Matchup = 50% combined AP rank (unranked teams count as 50) + 50% closest posted spread, blended within that time window. Nebraska overrides everything whenever it's playing in that window.
   Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule &amp; rankings via CollegeFootballData.com.
   &#10024; Gemini Prediction Summary is AI-generated from current-season stats and posted odds -- informational only, not betting advice.
@@ -639,7 +646,7 @@
 </script>
 <script>
 const SPORT = 'cfb';
-const DATA_URL = 'data/dashboard.json';
+const DATA_URL = 'data/ncaaf_dashboard.json';
 let SCORES = {};
 
 function fmtAmerican(n) {
@@ -725,7 +732,7 @@ function renderGame(g) {
   <div class="card ${marquee ? 'marquee' : ''} ${isPick ? 'slot-pick' : ''}">
     ${isPick ? '<div class="pick-banner">\u2b50 Time Slot Best Matchup</div>' : ''}
     <div class="card-top">
-      <span class="score-badge">Matchup Score ${g.matchup_score}</span>
+      <span class="score-badge">${matchupLabel(g)}</span>
       <span class="channel-pill">${g.channel}</span>
     </div>
     <div class="matchup">
@@ -843,7 +850,7 @@ async function init() {
     initFilterBar(renderBoard);
   } catch (err) {
     statusEl.style.display = 'block';
-    statusEl.textContent = `Couldn't load data/dashboard.json (${err.message}). Run scripts/build_dashboard.py first.`;
+    statusEl.textContent = `Couldn't load data/ncaaf_dashboard.json (${err.message}). Run scripts/build_ncaaf_dashboard.py first.`;
   }
 }
 
