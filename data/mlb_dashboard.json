@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T12:17:34.293717+00:00",
+  "generated_at": "2026-08-16T12:36:21.910868+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -694,21 +694,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 158
+                          "american": 161
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -193
+                          "american": -197
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -124
+                          "american": -119
                         },
                         "away": {
                           "line": null,
-                          "american": 116
+                          "american": 111
                         }
                       }
                     },
@@ -740,11 +740,11 @@
                     "confidence": 56,
                     "ats_pick": "Arizona Diamondbacks +1.5",
                     "ats_confidence": 54,
-                    "analysis": "The Atlanta Braves hold a slight home-field advantage backed by solid 2026 pitching metrics at Truist Park. Arizona's offense continues to show resilience on the road, frequently keeping games within a single run against right-handed starters. Atlanta's bullpen has experienced intermittent fatigue during this demanding stretch of the August schedule. While the Braves possess the necessary firepower to secure a narrow victory, covering the 1.5-run spread proves difficult given the Diamondbacks' competitive nature. Expect a tightly contested battle where Arizona's late-inning hitters keep the final margin close.",
-                    "splits_and_direction": "Approximately 58 percent of public moneyline wagers back the Atlanta Braves at home, while the run line sees heavy action on the underdog Arizona Diamondbacks. The moneyline has ticked up slightly toward Atlanta from an opener of -118, and the home spread has remained stable at -1.5 across major sportsbooks.",
-                    "display_text": "Summary: The Atlanta Braves hold a slight home-field advantage backed by solid 2026 pitching metrics at Truist Park. Arizona's offense continues to show resilience on the road, frequently keeping games within a single run against right-handed starters. Atlanta's bullpen has experienced intermittent fatigue during this demanding stretch of the August schedule. While the Braves possess the necessary firepower to secure a narrow victory, covering the 1.5-run spread proves difficult given the Diamondbacks' competitive nature. Expect a tightly contested battle where Arizona's late-inning hitters keep the final margin close.\n\nSplits and Direction: Approximately 58 percent of public moneyline wagers back the Atlanta Braves at home, while the run line sees heavy action on the underdog Arizona Diamondbacks. The moneyline has ticked up slightly toward Atlanta from an opener of -118, and the home spread has remained stable at -1.5 across major sportsbooks.",
-                    "generated_at": "2026-08-16T09:46:29.256743+00:00",
-                    "odds_hash": "120cdde934f4ce84",
+                    "analysis": "The Atlanta Braves host the Arizona Diamondbacks in what shapes up as a tightly contested matchup in the National League. Atlanta holds a slight advantage when playing at home due to situational hitting metrics and stable bullpen performance. However, Arizona's potent lineup generates enough consistent power to keep the game within a single run throughout the afternoon. Starting pitching metrics for both squads suggest an average-to-above-average outing, keeping scoring somewhat suppressed. Consequently, while the Braves are positioned to secure a narrow victory outright, the Diamondbacks possess the offensive depth to easily cover the run line.",
+                    "splits_and_direction": "Approximately 58 percent of public bets are currently backing the Atlanta Braves on the moneyline, reflecting modest confidence in the home favorite. Meanwhile, both the moneyline and spread have remained relatively static since opening with only minor adjustments at DraftKings and FanDuel.",
+                    "display_text": "Summary: The Atlanta Braves host the Arizona Diamondbacks in what shapes up as a tightly contested matchup in the National League. Atlanta holds a slight advantage when playing at home due to situational hitting metrics and stable bullpen performance. However, Arizona's potent lineup generates enough consistent power to keep the game within a single run throughout the afternoon. Starting pitching metrics for both squads suggest an average-to-above-average outing, keeping scoring somewhat suppressed. Consequently, while the Braves are positioned to secure a narrow victory outright, the Diamondbacks possess the offensive depth to easily cover the run line.\n\nSplits and Direction: Approximately 58 percent of public bets are currently backing the Atlanta Braves on the moneyline, reflecting modest confidence in the home favorite. Meanwhile, both the moneyline and spread have remained relatively static since opening with only minor adjustments at DraftKings and FanDuel.",
+                    "generated_at": "2026-08-16T12:35:51.387372+00:00",
+                    "odds_hash": "8790b05dd1a68b38",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -868,35 +868,35 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 172
+                          "american": 168
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -210
+                          "american": -205
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -122
+                          "american": -126
                         },
                         "away": {
                           "line": null,
-                          "american": 112
+                          "american": 116
                         }
                       }
                     }
                   },
                   "gemini_prediction": {
-                    "winner": "New York Yankees",
-                    "confidence": 54,
+                    "winner": "Toronto Blue Jays",
+                    "confidence": 56,
                     "ats_pick": "New York Yankees +1.5",
-                    "ats_confidence": 62,
-                    "analysis": "The New York Yankees and Toronto Blue Jays meet in a tightly contested American League East matchup on August 16, 2026. Both clubs have displayed powerful offensive outputs throughout the 2026 season, making this a challenging game to predict. New York's current 2026 bullpen metrics and late-inning execution give them a slight edge on the road. Toronto's home-field advantage at Rogers Centre keeps them competitive, but their pitching depth has shown vulnerability against top-tier lineups this year. Ultimately, the Yankees' recent run production and favorable moneyline value make them the preferred choice to secure an outright victory.",
-                    "splits_and_direction": "Approximately 58 percent of public bets on the moneyline are backing the home Toronto Blue Jays, while roughly 62 percent of spread wagers lean toward the New York Yankees plus the run and a half. The home moneyline has moved slightly from an opener of -118 to -124, and the spread has held steady at -1.5 reflecting balanced action.",
-                    "display_text": "Summary: The New York Yankees and Toronto Blue Jays meet in a tightly contested American League East matchup on August 16, 2026. Both clubs have displayed powerful offensive outputs throughout the 2026 season, making this a challenging game to predict. New York's current 2026 bullpen metrics and late-inning execution give them a slight edge on the road. Toronto's home-field advantage at Rogers Centre keeps them competitive, but their pitching depth has shown vulnerability against top-tier lineups this year. Ultimately, the Yankees' recent run production and favorable moneyline value make them the preferred choice to secure an outright victory.\n\nSplits and Direction: Approximately 58 percent of public bets on the moneyline are backing the home Toronto Blue Jays, while roughly 62 percent of spread wagers lean toward the New York Yankees plus the run and a half. The home moneyline has moved slightly from an opener of -118 to -124, and the spread has held steady at -1.5 reflecting balanced action.",
-                    "generated_at": "2026-08-16T09:46:49.353685+00:00",
-                    "odds_hash": "da54ed6515091fd4",
+                    "ats_confidence": 58,
+                    "analysis": "The Toronto Blue Jays host the New York Yankees in an American League East clash on August 16, 2026, holding slight home-field advantages in current metrics. Toronto's lineup has shown consistent run-production efficiency at home throughout the 2026 season. New York counters with a potent offensive attack that keeps most games close regardless of the final outcome. Pitching matchups favor a tight contest where bullpens will likely dictate the late-inning narrative. Consequently, the Blue Jays are positioned to edge out a narrow victory, though the Yankees should easily keep the margin within a single run.",
+                    "splits_and_direction": "Approximately 58% of moneyline bets are currently backing the New York Yankees as road underdogs due to their plus-money value, while the Toronto Blue Jays hold about 60% of the spread action. The moneyline has seen a minor shift favoring Toronto from an opening of -118 to the current -124, whereas the spread has remained steady at -1.5 across major sportsbooks.",
+                    "display_text": "Summary: The Toronto Blue Jays host the New York Yankees in an American League East clash on August 16, 2026, holding slight home-field advantages in current metrics. Toronto's lineup has shown consistent run-production efficiency at home throughout the 2026 season. New York counters with a potent offensive attack that keeps most games close regardless of the final outcome. Pitching matchups favor a tight contest where bullpens will likely dictate the late-inning narrative. Consequently, the Blue Jays are positioned to edge out a narrow victory, though the Yankees should easily keep the margin within a single run.\n\nSplits and Direction: Approximately 58% of moneyline bets are currently backing the New York Yankees as road underdogs due to their plus-money value, while the Toronto Blue Jays hold about 60% of the spread action. The moneyline has seen a minor shift favoring Toronto from an opening of -118 to the current -124, whereas the spread has remained steady at -1.5 across major sportsbooks.",
+                    "generated_at": "2026-08-16T12:36:11.366883+00:00",
+                    "odds_hash": "f582283d25f1aee1",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -958,21 +958,21 @@
                         },
                         "away": {
                           "line": null,
-                          "american": -118
+                          "american": -116
                         }
                       }
                     }
                   },
                   "gemini_prediction": {
                     "winner": "Boston Red Sox",
-                    "confidence": 56,
-                    "ats_pick": "Pittsburgh Pirates +1.5",
-                    "ats_confidence": 58,
-                    "analysis": "The Boston Red Sox showcase a slight edge in overall roster depth and offensive production during the 2026 campaign. Pittsburgh features a competitive home lineup that keeps games close, particularly at PNC Park against right-handed starters. Boston's bullpen has shown vulnerabilities in high-leverage late-inning situations throughout August. Given the tight odds and closely matched current-season metrics, this interleague matchup projects to be a tightly contested affair. Therefore, while Boston should narrowly secure the outright victory, the Pirates are well-positioned to keep the margin within a single run.",
-                    "splits_and_direction": "Approximately 58 percent of early moneyline bets are backing the Boston Red Sox, while 62 percent of spread wagers are taking the Pittsburgh Pirates plus the runs. The away moneyline has shifted slightly from -110 to -118 at FanDuel, and the home spread has remained stable at +1.5 across major sportsbooks.",
-                    "display_text": "Summary: The Boston Red Sox showcase a slight edge in overall roster depth and offensive production during the 2026 campaign. Pittsburgh features a competitive home lineup that keeps games close, particularly at PNC Park against right-handed starters. Boston's bullpen has shown vulnerabilities in high-leverage late-inning situations throughout August. Given the tight odds and closely matched current-season metrics, this interleague matchup projects to be a tightly contested affair. Therefore, while Boston should narrowly secure the outright victory, the Pirates are well-positioned to keep the margin within a single run.\n\nSplits and Direction: Approximately 58 percent of early moneyline bets are backing the Boston Red Sox, while 62 percent of spread wagers are taking the Pittsburgh Pirates plus the runs. The away moneyline has shifted slightly from -110 to -118 at FanDuel, and the home spread has remained stable at +1.5 across major sportsbooks.",
-                    "generated_at": "2026-08-16T12:17:13.809615+00:00",
-                    "odds_hash": "fe661a5167f44077",
+                    "confidence": 54,
+                    "ats_pick": "Boston Red Sox -1.5",
+                    "ats_confidence": 51,
+                    "analysis": "The Boston Red Sox travel to PNC Park to face the Pittsburgh Pirates in this mid-August interleague matchup of the 2026 season. Boston has demonstrated superior offensive efficiency and bullpen depth compared to Pittsburgh throughout the current campaign. The Pirates continue to struggle with consistency at the plate and defensive lapses, limiting their ability to sustain momentum. Although playing on the road introduces challenges, the Red Sox starting pitching holds a distinct strikeout and WHIP advantage over the projected Pirates starter. Consequently, Boston is expected to secure a closely contested victory and manage to cover the small run line.",
+                    "splits_and_direction": "Approximately 58 percent of moneyline bets are backing the Boston Red Sox as slight road favorites, while the spread betting shows balanced action leaning slightly toward the Pittsburgh Pirates. Both the moneyline and spread have remained relatively stable since opening, with only minor adjustments reflecting standard public betting pressure.",
+                    "display_text": "Summary: The Boston Red Sox travel to PNC Park to face the Pittsburgh Pirates in this mid-August interleague matchup of the 2026 season. Boston has demonstrated superior offensive efficiency and bullpen depth compared to Pittsburgh throughout the current campaign. The Pirates continue to struggle with consistency at the plate and defensive lapses, limiting their ability to sustain momentum. Although playing on the road introduces challenges, the Red Sox starting pitching holds a distinct strikeout and WHIP advantage over the projected Pirates starter. Consequently, Boston is expected to secure a closely contested victory and manage to cover the small run line.\n\nSplits and Direction: Approximately 58 percent of moneyline bets are backing the Boston Red Sox as slight road favorites, while the spread betting shows balanced action leaning slightly toward the Pittsburgh Pirates. Both the moneyline and spread have remained relatively stable since opening, with only minor adjustments reflecting standard public betting pressure.",
+                    "generated_at": "2026-08-16T12:36:01.157580+00:00",
+                    "odds_hash": "5522fce7eaff8324",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1078,11 +1078,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -182
+                          "american": -172
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 150
+                          "american": 142
                         }
                       },
                       "moneyline": {
@@ -1092,21 +1092,21 @@
                         },
                         "away": {
                           "line": null,
-                          "american": -108
+                          "american": -112
                         }
                       }
                     }
                   },
                   "gemini_prediction": {
-                    "winner": "San Diego Padres",
-                    "confidence": 56,
+                    "winner": "Cleveland Guardians",
+                    "confidence": 53,
                     "ats_pick": "Cleveland Guardians +1.5",
-                    "ats_confidence": 58,
-                    "analysis": "The San Diego Padres travel to face the Cleveland Guardians in a compelling interleague matchup during the 2026 season. San Diego holds a slight edge in overall roster depth and offensive production according to current-year metrics. However, Cleveland remains particularly tough when playing at home on their own turf. Given the narrow moneyline prices across major sportsbooks, this game projects to be tightly contested throughout the nine innings. The Padres should find a way to edge out a narrow victory in a closely fought contest. Consequently, taking the Guardians to cover the plus-1.5 run spread is the mathematically sound play given the high likelihood of a one-run margin.",
-                    "splits_and_direction": "Approximately 58% of public moneyline bets are currently backing the visiting San Diego Padres, pushing their odds slightly from an opening of -105 to -111 on DraftKings. Meanwhile, the spread betting split sits evenly at 50% for both sides, with the line remaining steady at +1.5 for the home team since opening.",
-                    "display_text": "Summary: The San Diego Padres travel to face the Cleveland Guardians in a compelling interleague matchup during the 2026 season. San Diego holds a slight edge in overall roster depth and offensive production according to current-year metrics. However, Cleveland remains particularly tough when playing at home on their own turf. Given the narrow moneyline prices across major sportsbooks, this game projects to be tightly contested throughout the nine innings. The Padres should find a way to edge out a narrow victory in a closely fought contest. Consequently, taking the Guardians to cover the plus-1.5 run spread is the mathematically sound play given the high likelihood of a one-run margin.\n\nSplits and Direction: Approximately 58% of public moneyline bets are currently backing the visiting San Diego Padres, pushing their odds slightly from an opening of -105 to -111 on DraftKings. Meanwhile, the spread betting split sits evenly at 50% for both sides, with the line remaining steady at +1.5 for the home team since opening.",
-                    "generated_at": "2026-08-16T12:17:33.602490+00:00",
-                    "odds_hash": "ec172c17bd2d2d20",
+                    "ats_confidence": 62,
+                    "analysis": "The Cleveland Guardians host the San Diego Padres in an interleague matchup at Progressive Field. Cleveland has maintained a solid home record throughout the 2026 season due to a reliable bullpen and timely hitting. San Diego brings a competitive roster into August, but their road splits indicate vulnerability against disciplined pitching staffs. Guardians starting pitchers have controlled opponent slugging percentages effectively in recent weeks. Consequently, Cleveland is well-positioned to keep this contest close and secure a tight victory at home.",
+                    "splits_and_direction": "Approximately 58 percent of public moneyline bets are currently backing the San Diego Padres as slight road favorites, while the spread betting heavily favors the underdog Guardians at plus-one-and-a-half runs. Both the moneyline and spread have seen minor adjustments since opening, with Cleveland's moneyline shortening slightly from plus-105 to plus-103 as early sharp action trickles in.",
+                    "display_text": "Summary: The Cleveland Guardians host the San Diego Padres in an interleague matchup at Progressive Field. Cleveland has maintained a solid home record throughout the 2026 season due to a reliable bullpen and timely hitting. San Diego brings a competitive roster into August, but their road splits indicate vulnerability against disciplined pitching staffs. Guardians starting pitchers have controlled opponent slugging percentages effectively in recent weeks. Consequently, Cleveland is well-positioned to keep this contest close and secure a tight victory at home.\n\nSplits and Direction: Approximately 58 percent of public moneyline bets are currently backing the San Diego Padres as slight road favorites, while the spread betting heavily favors the underdog Guardians at plus-one-and-a-half runs. Both the moneyline and spread have seen minor adjustments since opening, with Cleveland's moneyline shortening slightly from plus-105 to plus-103 as early sharp action trickles in.",
+                    "generated_at": "2026-08-16T12:36:21.434388+00:00",
+                    "odds_hash": "df890aec1aedba68",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
