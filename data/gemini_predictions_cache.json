@@ -1462,5 +1462,29 @@
     "generated_at": "2026-08-16T14:01:43.459811+00:00",
     "odds_hash": "56e3dc810d443a4d",
     "model": "gemini-3.5-flash-lite"
+  },
+  "600f201a1877bbd1": {
+    "winner": "Boston Red Sox",
+    "confidence": 56,
+    "ats_pick": "Boston Red Sox -1.5",
+    "ats_confidence": 52,
+    "analysis": "The Boston Red Sox showcase a more potent offensive attack during the 2026 season compared to the Pittsburgh Pirates. Boston's pitching rotation has maintained a lower collective ERA over the summer months, providing consistent leads for their bullpen. Meanwhile, Pittsburgh struggles with runners in scoring position, limiting their ability to generate consistent run support. Playing away from home has not hindered the Red Sox, who maintain a solid road record against interleague and similar tier opponents. Ultimately, Boston's deeper lineup depth and superior bullpen management will secure a multi-run victory.",
+    "splits_and_direction": "Public betting splits estimate that approximately 62 percent of moneyline wagers are backing the Boston Red Sox, while roughly 55 percent of spread bets lean toward the Pittsburgh Pirates plus 1.5 runs. The away moneyline has slightly shortened from minus 108 to minus 112 at DraftKings, and the home spread has remained stable at plus 1.5 since opening.",
+    "display_text": "Summary: The Boston Red Sox showcase a more potent offensive attack during the 2026 season compared to the Pittsburgh Pirates. Boston's pitching rotation has maintained a lower collective ERA over the summer months, providing consistent leads for their bullpen. Meanwhile, Pittsburgh struggles with runners in scoring position, limiting their ability to generate consistent run support. Playing away from home has not hindered the Red Sox, who maintain a solid road record against interleague and similar tier opponents. Ultimately, Boston's deeper lineup depth and superior bullpen management will secure a multi-run victory.\n\nSplits and Direction: Public betting splits estimate that approximately 62 percent of moneyline wagers are backing the Boston Red Sox, while roughly 55 percent of spread bets lean toward the Pittsburgh Pirates plus 1.5 runs. The away moneyline has slightly shortened from minus 108 to minus 112 at DraftKings, and the home spread has remained stable at plus 1.5 since opening.",
+    "generated_at": "2026-08-16T14:24:02.083112+00:00",
+    "odds_hash": "600f201a1877bbd1",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "66e790136aa5e9a8": {
+    "winner": "Detroit Tigers",
+    "confidence": 56,
+    "ats_pick": "Detroit Tigers +1.5",
+    "ats_confidence": 56,
+    "analysis": "The Detroit Tigers hold home-field advantage for this matchup against the Chicago White Sox on August 16, 2026. Detroit's roster has demonstrated superior consistency in run production and pitching depth throughout the 2026 campaign compared to Chicago. The White Sox have struggled defensively and offensively on the road, dropping their metrics well below league averages. Given the tight -108 moneyline and +1.5 home spread, oddsmakers project a closely contested battle between these AL Central rivals. The Tigers should utilize their home-field edge to edge out a narrow victory and comfortably cover the alternate run line.",
+    "splits_and_direction": "Since exact real-time betting splits are unavailable, it is estimated that roughly 60 percent of public moneyline bets are leaning toward the home Tigers due to their slightly better overall 2026 standing. Both the moneyline and spread have remained relatively static since opening with minimal market movement.",
+    "display_text": "Summary: The Detroit Tigers hold home-field advantage for this matchup against the Chicago White Sox on August 16, 2026. Detroit's roster has demonstrated superior consistency in run production and pitching depth throughout the 2026 campaign compared to Chicago. The White Sox have struggled defensively and offensively on the road, dropping their metrics well below league averages. Given the tight -108 moneyline and +1.5 home spread, oddsmakers project a closely contested battle between these AL Central rivals. The Tigers should utilize their home-field edge to edge out a narrow victory and comfortably cover the alternate run line.\n\nSplits and Direction: Since exact real-time betting splits are unavailable, it is estimated that roughly 60 percent of public moneyline bets are leaning toward the home Tigers due to their slightly better overall 2026 standing. Both the moneyline and spread have remained relatively static since opening with minimal market movement.",
+    "generated_at": "2026-08-16T14:24:11.798867+00:00",
+    "odds_hash": "66e790136aa5e9a8",
+    "model": "gemini-3.5-flash-lite"
   }
 }

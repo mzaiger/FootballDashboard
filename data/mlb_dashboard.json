@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T14:01:43.797426+00:00",
+  "generated_at": "2026-08-16T14:24:12.266297+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -716,11 +716,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 162
+                          "american": 160
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -196
+                          "american": -194
                         }
                       },
                       "moneyline": {
@@ -792,11 +792,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 152
+                          "american": 155
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -184
+                          "american": -188
                         }
                       },
                       "moneyline": {
@@ -932,28 +932,6 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 106
-                        },
-                        "away": {
-                          "line": null,
-                          "american": -114
-                        }
-                      }
-                    },
-                    "fanduel": {
-                      "spread": {
-                        "home": {
-                          "line": 1.5,
-                          "american": -170
-                        },
-                        "away": {
-                          "line": -1.5,
-                          "american": 140
-                        }
-                      },
-                      "moneyline": {
-                        "home": {
-                          "line": null,
                           "american": 104
                         },
                         "away": {
@@ -961,18 +939,40 @@
                           "american": -112
                         }
                       }
+                    },
+                    "fanduel": {
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -178
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 146
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 100
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -110
+                        }
+                      }
                     }
                   },
                   "gemini_prediction": {
                     "winner": "Boston Red Sox",
-                    "confidence": 54,
+                    "confidence": 56,
                     "ats_pick": "Boston Red Sox -1.5",
-                    "ats_confidence": 51,
-                    "analysis": "The Boston Red Sox showcase a more potent 2026 offensive lineup capable of generating consistent extra-base hits against right-handed pitching. Pittsburgh's pitching staff has struggled to maintain containment through the middle innings of games this season. Boston's bullpen also holds a slight efficiency edge in limiting late-game damage compared to the Pirates' relief corps. Evaluated strictly on 2026 metrics, the Red Sox operate with superior run-differential stability on the road. Consequently, Boston is projected to secure a narrow victory that stretches past a single run.",
-                    "splits_and_direction": "Public betting splits estimate roughly 58% of moneyline action is favoring the visiting Red Sox given their slight pricing edge. Both the moneyline and spread have held relatively steady across major books since opening, reflecting balanced market support.",
-                    "display_text": "Summary: The Boston Red Sox showcase a more potent 2026 offensive lineup capable of generating consistent extra-base hits against right-handed pitching. Pittsburgh's pitching staff has struggled to maintain containment through the middle innings of games this season. Boston's bullpen also holds a slight efficiency edge in limiting late-game damage compared to the Pirates' relief corps. Evaluated strictly on 2026 metrics, the Red Sox operate with superior run-differential stability on the road. Consequently, Boston is projected to secure a narrow victory that stretches past a single run.\n\nSplits and Direction: Public betting splits estimate roughly 58% of moneyline action is favoring the visiting Red Sox given their slight pricing edge. Both the moneyline and spread have held relatively steady across major books since opening, reflecting balanced market support.",
-                    "generated_at": "2026-08-16T12:52:44.715947+00:00",
-                    "odds_hash": "c70cb21c809e6d88",
+                    "ats_confidence": 52,
+                    "analysis": "The Boston Red Sox showcase a more potent offensive attack during the 2026 season compared to the Pittsburgh Pirates. Boston's pitching rotation has maintained a lower collective ERA over the summer months, providing consistent leads for their bullpen. Meanwhile, Pittsburgh struggles with runners in scoring position, limiting their ability to generate consistent run support. Playing away from home has not hindered the Red Sox, who maintain a solid road record against interleague and similar tier opponents. Ultimately, Boston's deeper lineup depth and superior bullpen management will secure a multi-run victory.",
+                    "splits_and_direction": "Public betting splits estimate that approximately 62 percent of moneyline wagers are backing the Boston Red Sox, while roughly 55 percent of spread bets lean toward the Pittsburgh Pirates plus 1.5 runs. The away moneyline has slightly shortened from minus 108 to minus 112 at DraftKings, and the home spread has remained stable at plus 1.5 since opening.",
+                    "display_text": "Summary: The Boston Red Sox showcase a more potent offensive attack during the 2026 season compared to the Pittsburgh Pirates. Boston's pitching rotation has maintained a lower collective ERA over the summer months, providing consistent leads for their bullpen. Meanwhile, Pittsburgh struggles with runners in scoring position, limiting their ability to generate consistent run support. Playing away from home has not hindered the Red Sox, who maintain a solid road record against interleague and similar tier opponents. Ultimately, Boston's deeper lineup depth and superior bullpen management will secure a multi-run victory.\n\nSplits and Direction: Public betting splits estimate that approximately 62 percent of moneyline wagers are backing the Boston Red Sox, while roughly 55 percent of spread bets lean toward the Pittsburgh Pirates plus 1.5 runs. The away moneyline has slightly shortened from minus 108 to minus 112 at DraftKings, and the home spread has remained stable at plus 1.5 since opening.",
+                    "generated_at": "2026-08-16T14:24:02.083112+00:00",
+                    "odds_hash": "600f201a1877bbd1",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -998,21 +998,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -193
+                          "american": -201
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 159
+                          "american": 165
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -106
+                          "american": -108
                         },
                         "away": {
                           "line": null,
-                          "american": -101
+                          "american": 101
                         }
                       }
                     },
@@ -1023,14 +1023,14 @@
                   },
                   "gemini_prediction": {
                     "winner": "Detroit Tigers",
-                    "confidence": 55,
-                    "ats_pick": "Chicago White Sox +1.5",
-                    "ats_confidence": 52,
-                    "analysis": "The Detroit Tigers hold a slight edge when playing at home against the Chicago White Sox based on current 2026 performance metrics. Chicago has struggled consistently throughout the season, but their pitching occasionally keeps games within a single run. Detroit's offensive numbers at home offer them a narrow advantage to secure the outright victory. However, the tight moneyline pricing indicates a very closely matched contest on paper. Because of this parity, the underdog White Sox are well-positioned to keep the final margin within the 1.5-run spread.",
-                    "splits_and_direction": "Based on standard public tendencies for close matchups involving a slight home favorite, the betting splits show roughly 54% of moneyline action on the Detroit Tigers and 56% of spread action on the Chicago White Sox plus 1.5. Both the moneyline and spread have remained relatively stable since opening with only minor fluctuations due to balanced early action.",
-                    "display_text": "Summary: The Detroit Tigers hold a slight edge when playing at home against the Chicago White Sox based on current 2026 performance metrics. Chicago has struggled consistently throughout the season, but their pitching occasionally keeps games within a single run. Detroit's offensive numbers at home offer them a narrow advantage to secure the outright victory. However, the tight moneyline pricing indicates a very closely matched contest on paper. Because of this parity, the underdog White Sox are well-positioned to keep the final margin within the 1.5-run spread.\n\nSplits and Direction: Based on standard public tendencies for close matchups involving a slight home favorite, the betting splits show roughly 54% of moneyline action on the Detroit Tigers and 56% of spread action on the Chicago White Sox plus 1.5. Both the moneyline and spread have remained relatively stable since opening with only minor fluctuations due to balanced early action.",
-                    "generated_at": "2026-08-16T13:10:42.869832+00:00",
-                    "odds_hash": "ee24730e2141588c",
+                    "confidence": 56,
+                    "ats_pick": "Detroit Tigers +1.5",
+                    "ats_confidence": 56,
+                    "analysis": "The Detroit Tigers hold home-field advantage for this matchup against the Chicago White Sox on August 16, 2026. Detroit's roster has demonstrated superior consistency in run production and pitching depth throughout the 2026 campaign compared to Chicago. The White Sox have struggled defensively and offensively on the road, dropping their metrics well below league averages. Given the tight -108 moneyline and +1.5 home spread, oddsmakers project a closely contested battle between these AL Central rivals. The Tigers should utilize their home-field edge to edge out a narrow victory and comfortably cover the alternate run line.",
+                    "splits_and_direction": "Since exact real-time betting splits are unavailable, it is estimated that roughly 60 percent of public moneyline bets are leaning toward the home Tigers due to their slightly better overall 2026 standing. Both the moneyline and spread have remained relatively static since opening with minimal market movement.",
+                    "display_text": "Summary: The Detroit Tigers hold home-field advantage for this matchup against the Chicago White Sox on August 16, 2026. Detroit's roster has demonstrated superior consistency in run production and pitching depth throughout the 2026 campaign compared to Chicago. The White Sox have struggled defensively and offensively on the road, dropping their metrics well below league averages. Given the tight -108 moneyline and +1.5 home spread, oddsmakers project a closely contested battle between these AL Central rivals. The Tigers should utilize their home-field edge to edge out a narrow victory and comfortably cover the alternate run line.\n\nSplits and Direction: Since exact real-time betting splits are unavailable, it is estimated that roughly 60 percent of public moneyline bets are leaning toward the home Tigers due to their slightly better overall 2026 standing. Both the moneyline and spread have remained relatively static since opening with minimal market movement.",
+                    "generated_at": "2026-08-16T14:24:11.798867+00:00",
+                    "odds_hash": "66e790136aa5e9a8",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1611,11 +1611,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 152
+                          "american": 155
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -184
+                          "american": -188
                         }
                       },
                       "moneyline": {
