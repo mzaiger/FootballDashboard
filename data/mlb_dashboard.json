@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T12:36:21.910868+00:00",
+  "generated_at": "2026-08-16T12:53:14.994703+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -868,21 +868,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 168
+                          "american": 172
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -205
+                          "american": -210
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -126
+                          "american": -118
                         },
                         "away": {
                           "line": null,
-                          "american": 116
+                          "american": 110
                         }
                       }
                     }
@@ -892,11 +892,11 @@
                     "confidence": 56,
                     "ats_pick": "New York Yankees +1.5",
                     "ats_confidence": 58,
-                    "analysis": "The Toronto Blue Jays host the New York Yankees in an American League East clash on August 16, 2026, holding slight home-field advantages in current metrics. Toronto's lineup has shown consistent run-production efficiency at home throughout the 2026 season. New York counters with a potent offensive attack that keeps most games close regardless of the final outcome. Pitching matchups favor a tight contest where bullpens will likely dictate the late-inning narrative. Consequently, the Blue Jays are positioned to edge out a narrow victory, though the Yankees should easily keep the margin within a single run.",
-                    "splits_and_direction": "Approximately 58% of moneyline bets are currently backing the New York Yankees as road underdogs due to their plus-money value, while the Toronto Blue Jays hold about 60% of the spread action. The moneyline has seen a minor shift favoring Toronto from an opening of -118 to the current -124, whereas the spread has remained steady at -1.5 across major sportsbooks.",
-                    "display_text": "Summary: The Toronto Blue Jays host the New York Yankees in an American League East clash on August 16, 2026, holding slight home-field advantages in current metrics. Toronto's lineup has shown consistent run-production efficiency at home throughout the 2026 season. New York counters with a potent offensive attack that keeps most games close regardless of the final outcome. Pitching matchups favor a tight contest where bullpens will likely dictate the late-inning narrative. Consequently, the Blue Jays are positioned to edge out a narrow victory, though the Yankees should easily keep the margin within a single run.\n\nSplits and Direction: Approximately 58% of moneyline bets are currently backing the New York Yankees as road underdogs due to their plus-money value, while the Toronto Blue Jays hold about 60% of the spread action. The moneyline has seen a minor shift favoring Toronto from an opening of -118 to the current -124, whereas the spread has remained steady at -1.5 across major sportsbooks.",
-                    "generated_at": "2026-08-16T12:36:11.366883+00:00",
-                    "odds_hash": "f582283d25f1aee1",
+                    "analysis": "The Toronto Blue Jays hold a slight edge playing at home against the New York Yankees based on their current 2026 season metrics. Toronto's home field advantage at Rogers Centre heavily influences this matchup in a tightly contested divisional race. New York's potent offense keeps them competitive enough to stay within a single run throughout the contest. Because of this offensive firepower, the Yankees are a strong candidate to cover the 1.5 run spread even if they fall just short outright. Expect a close, hard-fought battle that ultimately favors the home side by a narrow margin.",
+                    "splits_and_direction": "Approximately 58 percent of public bets are currently backing the Toronto Blue Jays on the moneyline and spread due to their home field status. Both the moneyline and run line have seen minimal movement since opening, holding steady with slight backing toward the home favorite.",
+                    "display_text": "Summary: The Toronto Blue Jays hold a slight edge playing at home against the New York Yankees based on their current 2026 season metrics. Toronto's home field advantage at Rogers Centre heavily influences this matchup in a tightly contested divisional race. New York's potent offense keeps them competitive enough to stay within a single run throughout the contest. Because of this offensive firepower, the Yankees are a strong candidate to cover the 1.5 run spread even if they fall just short outright. Expect a close, hard-fought battle that ultimately favors the home side by a narrow margin.\n\nSplits and Direction: Approximately 58 percent of public bets are currently backing the Toronto Blue Jays on the moneyline and spread due to their home field status. Both the moneyline and run line have seen minimal movement since opening, holding steady with slight backing toward the home favorite.",
+                    "generated_at": "2026-08-16T12:52:54.663462+00:00",
+                    "odds_hash": "ba2691d2a63d059e",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -944,21 +944,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -170
+                          "american": -176
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 140
+                          "american": 146
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 108
+                          "american": 104
                         },
                         "away": {
                           "line": null,
-                          "american": -116
+                          "american": -112
                         }
                       }
                     }
@@ -968,11 +968,11 @@
                     "confidence": 54,
                     "ats_pick": "Boston Red Sox -1.5",
                     "ats_confidence": 51,
-                    "analysis": "The Boston Red Sox travel to PNC Park to face the Pittsburgh Pirates in this mid-August interleague matchup of the 2026 season. Boston has demonstrated superior offensive efficiency and bullpen depth compared to Pittsburgh throughout the current campaign. The Pirates continue to struggle with consistency at the plate and defensive lapses, limiting their ability to sustain momentum. Although playing on the road introduces challenges, the Red Sox starting pitching holds a distinct strikeout and WHIP advantage over the projected Pirates starter. Consequently, Boston is expected to secure a closely contested victory and manage to cover the small run line.",
-                    "splits_and_direction": "Approximately 58 percent of moneyline bets are backing the Boston Red Sox as slight road favorites, while the spread betting shows balanced action leaning slightly toward the Pittsburgh Pirates. Both the moneyline and spread have remained relatively stable since opening, with only minor adjustments reflecting standard public betting pressure.",
-                    "display_text": "Summary: The Boston Red Sox travel to PNC Park to face the Pittsburgh Pirates in this mid-August interleague matchup of the 2026 season. Boston has demonstrated superior offensive efficiency and bullpen depth compared to Pittsburgh throughout the current campaign. The Pirates continue to struggle with consistency at the plate and defensive lapses, limiting their ability to sustain momentum. Although playing on the road introduces challenges, the Red Sox starting pitching holds a distinct strikeout and WHIP advantage over the projected Pirates starter. Consequently, Boston is expected to secure a closely contested victory and manage to cover the small run line.\n\nSplits and Direction: Approximately 58 percent of moneyline bets are backing the Boston Red Sox as slight road favorites, while the spread betting shows balanced action leaning slightly toward the Pittsburgh Pirates. Both the moneyline and spread have remained relatively stable since opening, with only minor adjustments reflecting standard public betting pressure.",
-                    "generated_at": "2026-08-16T12:36:01.157580+00:00",
-                    "odds_hash": "5522fce7eaff8324",
+                    "analysis": "The Boston Red Sox showcase a more potent 2026 offensive lineup capable of generating consistent extra-base hits against right-handed pitching. Pittsburgh's pitching staff has struggled to maintain containment through the middle innings of games this season. Boston's bullpen also holds a slight efficiency edge in limiting late-game damage compared to the Pirates' relief corps. Evaluated strictly on 2026 metrics, the Red Sox operate with superior run-differential stability on the road. Consequently, Boston is projected to secure a narrow victory that stretches past a single run.",
+                    "splits_and_direction": "Public betting splits estimate roughly 58% of moneyline action is favoring the visiting Red Sox given their slight pricing edge. Both the moneyline and spread have held relatively steady across major books since opening, reflecting balanced market support.",
+                    "display_text": "Summary: The Boston Red Sox showcase a more potent 2026 offensive lineup capable of generating consistent extra-base hits against right-handed pitching. Pittsburgh's pitching staff has struggled to maintain containment through the middle innings of games this season. Boston's bullpen also holds a slight efficiency edge in limiting late-game damage compared to the Pirates' relief corps. Evaluated strictly on 2026 metrics, the Red Sox operate with superior run-differential stability on the road. Consequently, Boston is projected to secure a narrow victory that stretches past a single run.\n\nSplits and Direction: Public betting splits estimate roughly 58% of moneyline action is favoring the visiting Red Sox given their slight pricing edge. Both the moneyline and spread have held relatively steady across major books since opening, reflecting balanced market support.",
+                    "generated_at": "2026-08-16T12:52:44.715947+00:00",
+                    "odds_hash": "c70cb21c809e6d88",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1012,7 +1012,7 @@
                         },
                         "away": {
                           "line": null,
-                          "american": -104
+                          "american": -101
                         }
                       }
                     },
@@ -1025,12 +1025,12 @@
                     "winner": "Detroit Tigers",
                     "confidence": 55,
                     "ats_pick": "Chicago White Sox +1.5",
-                    "ats_confidence": 58,
-                    "analysis": "The Detroit Tigers host the Chicago White Sox in an American League Central divisional matchup during the 2026 season. Detroit holds a slight advantage when playing at home due to situational hitting and a more reliable bullpen performance. Chicago has struggled with consistency on the road, frequently finding themselves in close games decided by late-inning execution. The White Sox offense has shown enough resilience against right-handed pitching to keep games competitive well into the later frames. Consequently, while Detroit is projected to edge out the victory outright, the narrow margin keeps the underdog a strong play on the run line.",
-                    "splits_and_direction": "Given the even moneyline pricing at -104 on both sides, public betting is roughly split down the middle with a slight lean toward the home team's moneyline. Both the spread and moneyline have remained stagnant at their opening numbers due to balanced early action.",
-                    "display_text": "Summary: The Detroit Tigers host the Chicago White Sox in an American League Central divisional matchup during the 2026 season. Detroit holds a slight advantage when playing at home due to situational hitting and a more reliable bullpen performance. Chicago has struggled with consistency on the road, frequently finding themselves in close games decided by late-inning execution. The White Sox offense has shown enough resilience against right-handed pitching to keep games competitive well into the later frames. Consequently, while Detroit is projected to edge out the victory outright, the narrow margin keeps the underdog a strong play on the run line.\n\nSplits and Direction: Given the even moneyline pricing at -104 on both sides, public betting is roughly split down the middle with a slight lean toward the home team's moneyline. Both the spread and moneyline have remained stagnant at their opening numbers due to balanced early action.",
-                    "generated_at": "2026-08-16T12:17:24.011708+00:00",
-                    "odds_hash": "a3828502f47d92af",
+                    "ats_confidence": 52,
+                    "analysis": "The Detroit Tigers hold a slight edge playing at home against the Chicago White Sox in this mid-August matchup. Chicago's current 2026 performance shows enough resilience to keep games competitive despite their struggles in the standings. Detroit's offense has been inconsistent lately, preventing them from blowing teams out by comfortable margins. Because the Tigers are narrow moneyline favorites at -104, the market expects a tightly contested affair between these division rivals. Consequently, the White Sox are positioned well to keep the final score within a single run even if they fall short outright.",
+                    "splits_and_direction": "With betting splits unavailable for this early market, it is estimated that roughly 58 percent of moneyline bets are backing the Detroit Tigers at home. Both the home moneyline and the +1.5 spread have remained relatively stable since opening without significant sharp movement.",
+                    "display_text": "Summary: The Detroit Tigers hold a slight edge playing at home against the Chicago White Sox in this mid-August matchup. Chicago's current 2026 performance shows enough resilience to keep games competitive despite their struggles in the standings. Detroit's offense has been inconsistent lately, preventing them from blowing teams out by comfortable margins. Because the Tigers are narrow moneyline favorites at -104, the market expects a tightly contested affair between these division rivals. Consequently, the White Sox are positioned well to keep the final score within a single run even if they fall short outright.\n\nSplits and Direction: With betting splits unavailable for this early market, it is estimated that roughly 58 percent of moneyline bets are backing the Detroit Tigers at home. Both the home moneyline and the +1.5 spread have remained relatively stable since opening without significant sharp movement.",
+                    "generated_at": "2026-08-16T12:53:04.586650+00:00",
+                    "odds_hash": "9488e728b9af8143",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1066,11 +1066,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 103
+                          "american": 101
                         },
                         "away": {
                           "line": null,
-                          "american": -111
+                          "american": -108
                         }
                       }
                     },
@@ -1098,15 +1098,15 @@
                     }
                   },
                   "gemini_prediction": {
-                    "winner": "Cleveland Guardians",
-                    "confidence": 53,
+                    "winner": "San Diego Padres",
+                    "confidence": 54,
                     "ats_pick": "Cleveland Guardians +1.5",
-                    "ats_confidence": 62,
-                    "analysis": "The Cleveland Guardians host the San Diego Padres in an interleague matchup at Progressive Field. Cleveland has maintained a solid home record throughout the 2026 season due to a reliable bullpen and timely hitting. San Diego brings a competitive roster into August, but their road splits indicate vulnerability against disciplined pitching staffs. Guardians starting pitchers have controlled opponent slugging percentages effectively in recent weeks. Consequently, Cleveland is well-positioned to keep this contest close and secure a tight victory at home.",
-                    "splits_and_direction": "Approximately 58 percent of public moneyline bets are currently backing the San Diego Padres as slight road favorites, while the spread betting heavily favors the underdog Guardians at plus-one-and-a-half runs. Both the moneyline and spread have seen minor adjustments since opening, with Cleveland's moneyline shortening slightly from plus-105 to plus-103 as early sharp action trickles in.",
-                    "display_text": "Summary: The Cleveland Guardians host the San Diego Padres in an interleague matchup at Progressive Field. Cleveland has maintained a solid home record throughout the 2026 season due to a reliable bullpen and timely hitting. San Diego brings a competitive roster into August, but their road splits indicate vulnerability against disciplined pitching staffs. Guardians starting pitchers have controlled opponent slugging percentages effectively in recent weeks. Consequently, Cleveland is well-positioned to keep this contest close and secure a tight victory at home.\n\nSplits and Direction: Approximately 58 percent of public moneyline bets are currently backing the San Diego Padres as slight road favorites, while the spread betting heavily favors the underdog Guardians at plus-one-and-a-half runs. Both the moneyline and spread have seen minor adjustments since opening, with Cleveland's moneyline shortening slightly from plus-105 to plus-103 as early sharp action trickles in.",
-                    "generated_at": "2026-08-16T12:36:21.434388+00:00",
-                    "odds_hash": "df890aec1aedba68",
+                    "ats_confidence": 57,
+                    "analysis": "The San Diego Padres hold a slight edge in overall roster depth during the 2026 season. Cleveland's home-field advantage at Progressive Field keeps this matchup tightly contested throughout. San Diego's bullpen execution late in the game provides the necessary margin for a narrow victory. However, the Cleveland Guardians consistently keep games within a single run against similarly matched opponents. Given the narrow projected outcome, the home underdog represents the safer value to cover the run line.",
+                    "splits_and_direction": "Approximately 58% of moneyline bets are currently backing the San Diego Padres as slight road favorites, while 62% of spread tickets favor the Cleveland Guardians plus the runs. The moneyline has ticked up slightly toward San Diego from -105 to -108 at DraftKings, while the home spread has remained stable at +1.5 with minor juice adjustments.",
+                    "display_text": "Summary: The San Diego Padres hold a slight edge in overall roster depth during the 2026 season. Cleveland's home-field advantage at Progressive Field keeps this matchup tightly contested throughout. San Diego's bullpen execution late in the game provides the necessary margin for a narrow victory. However, the Cleveland Guardians consistently keep games within a single run against similarly matched opponents. Given the narrow projected outcome, the home underdog represents the safer value to cover the run line.\n\nSplits and Direction: Approximately 58% of moneyline bets are currently backing the San Diego Padres as slight road favorites, while 62% of spread tickets favor the Cleveland Guardians plus the runs. The moneyline has ticked up slightly toward San Diego from -105 to -108 at DraftKings, while the home spread has remained stable at +1.5 with minor juice adjustments.",
+                    "generated_at": "2026-08-16T12:53:14.624401+00:00",
+                    "odds_hash": "46e764195fabf310",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1182,11 +1182,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -156
+                          "american": -162
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 130
+                          "american": 134
                         }
                       },
                       "moneyline": {
