@@ -47,7 +47,7 @@
   }
   .site-nav{
     max-width:1180px; margin:0 auto; padding:0.9rem 1.5rem;
-    display:flex; flex-wrap:wrap; gap:1rem; align-items:center;
+    display:flex; flex-wrap:wrap; gap:1.55rem; align-items:center;
     position:relative;
   }
   .hamburger-btn{
@@ -65,13 +65,13 @@
   }
   .site-nav a:hover{color:var(--chalk);}
   .site-nav a.active{color:var(--gold); border-bottom-color:var(--gold);}
-  .status-pills{display:flex; gap:0.1rem; align-items:center; order:3;}
+  .status-pills{display:flex; gap:0.3rem; align-items:center; order:3;}
   .status-pill{
     display:flex; align-items:center; gap:0.3rem;
     font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
     text-transform:uppercase; letter-spacing:0.03em;
     color:var(--dim); background:#000; border:1px solid var(--line); border-radius:6px;
-    padding:0.1rem 0.22rem; cursor:pointer; transition:all 0.12s ease;
+    padding:0.18rem 0.5rem; cursor:pointer; transition:all 0.12s ease;
   }
   .status-pill:hover{color:var(--chalk);}
   .status-pill.active{background:var(--gold); color:#1a1400; border-color:var(--gold);}
@@ -283,17 +283,18 @@
 
   main{max-width:1180px;margin:0 auto; padding:0 1.5rem;}
 
-  .sport-section{margin-top:2.25rem;}
-  .sport-heading{
-    display:flex; align-items:baseline; gap:0.6rem;
-    padding-bottom:0.6rem; margin-bottom:0.25rem;
-    border-bottom:2px solid var(--turf);
+  .sport-subgroup{margin-bottom:1.1rem;}
+  .sport-subgroup:last-child{margin-bottom:0;}
+  .sport-subheading{
+    display:flex; align-items:baseline; gap:0.5rem;
+    padding-bottom:0.35rem; margin-bottom:0.6rem;
+    border-bottom:1px solid var(--line);
   }
-  .sport-heading h2{
-    font-family:'Oswald',sans-serif; font-weight:700; font-size:1.3rem;
-    text-transform:uppercase; letter-spacing:0.03em; margin:0; color:var(--turf-bright);
+  .sport-subheading .sport-subname{
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:0.8rem;
+    text-transform:uppercase; letter-spacing:0.06em; color:var(--turf-bright);
   }
-  .sport-heading .count{margin-left:auto; color:var(--dim); font-size:0.78rem;}
+  .sport-subheading .sport-subcount{color:var(--dim); font-size:0.72rem;}
 
   .day-block{margin-top:2rem;}
   .day-heading{
@@ -742,53 +743,91 @@ function renderGame(sport, g) {
   </div>`;
 }
 
-function renderSlot(sport, slot) {
+const SLOT_ORDER = ['Morning', 'Noon', 'Afternoon', 'Prime Time', 'Late Night', 'Time TBD'];
+const SPORT_ORDER = ['cfb', 'nfl', 'mlb'];
+const SPORT_LABEL = { cfb: 'NCAAF', nfl: 'NFL', mlb: 'MLB' };
+const SPORT_THEME = { cfb: 'cfb-theme', nfl: 'nfl-theme', mlb: 'mlb-theme' };
+
+// Flattens { cfb: filteredData, nfl: ..., mlb: ... } (each already run through
+// filterDataset() + applyStatusFilterToWeeks(), same weeks->days->time_slots
+// ->games shape every sport uses) into Day -> Time Slot -> Sport groups, each
+// sport's games inside a slot sorted by matchup score (best/lowest first) --
+// so everything you've picked for a given day, across every sport, shows up
+// together in one place instead of three separate sport sections.
+function buildUnifiedDayGroups(datasets) {
+  const byDate = new Map();
+  datasets.forEach(({ sport, data }) => {
+    (data?.weeks || []).forEach(week => {
+      (week.days || []).forEach(day => {
+        if (!day.date) return;
+        if (!byDate.has(day.date)) {
+          byDate.set(day.date, { date: day.date, weekday: day.weekday, slotMap: new Map() });
+        }
+        const dateEntry = byDate.get(day.date);
+        (day.time_slots || []).forEach(slot => {
+          if (!slot.games.length) return;
+          if (!dateEntry.slotMap.has(slot.slot)) dateEntry.slotMap.set(slot.slot, new Map());
+          const sportMap = dateEntry.slotMap.get(slot.slot);
+          if (!sportMap.has(sport)) sportMap.set(sport, []);
+          sportMap.get(sport).push(...slot.games);
+        });
+      });
+    });
+  });
+
+  return [...byDate.keys()].sort().map(date => {
+    const entry = byDate.get(date);
+    const slots = SLOT_ORDER.filter(name => entry.slotMap.has(name)).map(name => {
+      const sportMap = entry.slotMap.get(name);
+      const sports = SPORT_ORDER.filter(sp => sportMap.has(sp)).map(sp => ({
+        sport: sp,
+        games: [...sportMap.get(sp)].sort((a, b) =>
+          (a.matchup_score ?? Infinity) - (b.matchup_score ?? Infinity)),
+      }));
+      return { slot: name, sports };
+    });
+    return { date, weekday: entry.weekday, slots };
+  });
+}
+
+function renderUnifiedSportGroup(group) {
+  return `
+  <div class="sport-subgroup ${SPORT_THEME[group.sport] || ''}">
+    <div class="sport-subheading">
+      <span class="sport-subname">${SPORT_LABEL[group.sport] || group.sport.toUpperCase()}</span>
+      <span class="sport-subcount">${group.games.length} pick${group.games.length === 1 ? '' : 's'}</span>
+    </div>
+    <div class="grid">
+      ${group.games.map(g => renderGame(group.sport, g)).join('')}
+    </div>
+  </div>`;
+}
+
+function renderUnifiedSlot(slotGroup) {
+  const total = slotGroup.sports.reduce((n, s) => n + s.games.length, 0);
   return `
   <div class="slot-block">
     <div class="slot-heading">
-      <span class="slot-icon">${SLOT_ICON[slot.slot] || ''}</span>
-      <span class="slot-name">${slot.slot}</span>
-      <span class="slot-count">${slot.games.length} game${slot.games.length === 1 ? '' : 's'}</span>
+      <span class="slot-icon">${SLOT_ICON[slotGroup.slot] || ''}</span>
+      <span class="slot-name">${slotGroup.slot}</span>
+      <span class="slot-count">${total} pick${total === 1 ? '' : 's'}</span>
     </div>
-    <div class="grid">
-      ${slot.games.map(g => renderGame(sport, g)).join('')}
-    </div>
+    ${slotGroup.sports.map(renderUnifiedSportGroup).join('')}
   </div>`;
 }
 
-function renderDay(sport, day) {
-  const d = new Date(day.date + 'T00:00:00');
+function renderUnifiedDay(dayGroup) {
+  const d = new Date(dayGroup.date + 'T00:00:00');
   const dateStr = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+  const total = dayGroup.slots.reduce((n, s) => n + s.sports.reduce((m, sp) => m + sp.games.length, 0), 0);
   return `
   <section class="day-block">
     <div class="day-heading">
-      <span class="weekday">${day.weekday}</span>
+      <span class="weekday">${dayGroup.weekday}</span>
       <span class="date">${dateStr}</span>
-      <span class="count">${day.game_count} game${day.game_count === 1 ? '' : 's'}</span>
+      <span class="count">${total} pick${total === 1 ? '' : 's'}</span>
     </div>
-    ${day.time_slots.map(slot => renderSlot(sport, slot)).join('')}
-  </section>`;
-}
-
-function renderWeekSection(sport, week, seasonType) {
-  const label = sport === 'mlb' ? formatMlbDayLabel(week) : formatWeekLabel(week.week, seasonType);
-  return `
-  <div class="week-block">
-    <div class="week-heading"><span class="week-name">${label}</span></div>
-    ${week.days.map(day => renderDay(sport, day)).join('')}
-  </div>`;
-}
-
-function renderSection(sport, data, title, themeClass) {
-  if (!data || !data.weeks.length) return '';
-  const totalGames = data.weeks.reduce((n, w) => n + w.days.reduce((m, d) => m + d.game_count, 0), 0);
-  return `
-  <section class="sport-section ${themeClass}">
-    <div class="sport-heading">
-      <h2>${title}</h2>
-      <span class="count">${totalGames} game${totalGames === 1 ? '' : 's'}</span>
-    </div>
-    ${[...data.weeks].reverse().map(week => renderWeekSection(sport, week, data.season_type)).join('')}
+    ${dayGroup.slots.map(renderUnifiedSlot).join('')}
   </section>`;
 }
 
@@ -826,18 +865,20 @@ function renderBoard() {
   const nflShown = nflFiltered ? { ...nflFiltered, weeks: applyStatusFilterToWeeks(nflFiltered.weeks, statusVal, SCORES.nfl) } : null;
   const mlbShown = mlbFiltered ? { ...mlbFiltered, weeks: applyStatusFilterToWeeks(mlbFiltered.weeks, statusVal, SCORES.mlb) } : null;
 
-  const cfbHtml = renderSection('cfb', cfbShown, 'College Football', 'cfb-theme');
-  const nflHtml = renderSection('nfl', nflShown, 'NFL', 'nfl-theme');
-  const mlbHtml = renderSection('mlb', mlbShown, 'MLB', 'mlb-theme');
+  const dayGroups = buildUnifiedDayGroups([
+    { sport: 'cfb', data: cfbShown },
+    { sport: 'nfl', data: nflShown },
+    { sport: 'mlb', data: mlbShown },
+  ]);
 
-  if (!cfbHtml && !nflHtml && !mlbHtml) {
+  if (!dayGroups.length) {
     sectionsEl.innerHTML = '';
     statusEl.style.display = 'block';
     statusEl.textContent = "No picks yet. Head to NCAAF, NFL, or MLB, pick a spread or moneyline on any game, and it'll show up here.";
     return;
   }
   statusEl.style.display = 'none';
-  sectionsEl.innerHTML = cfbHtml + nflHtml + mlbHtml;
+  sectionsEl.innerHTML = dayGroups.map(renderUnifiedDay).join('');
 }
 
 async function init() {
