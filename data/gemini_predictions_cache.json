@@ -1210,5 +1210,41 @@
     "generated_at": "2026-08-16T10:28:14.089147+00:00",
     "odds_hash": "542e39a2e5281cb5",
     "model": "gemini-3.5-flash-lite"
+  },
+  "fe661a5167f44077": {
+    "winner": "Boston Red Sox",
+    "confidence": 56,
+    "ats_pick": "Pittsburgh Pirates +1.5",
+    "ats_confidence": 58,
+    "analysis": "The Boston Red Sox showcase a slight edge in overall roster depth and offensive production during the 2026 campaign. Pittsburgh features a competitive home lineup that keeps games close, particularly at PNC Park against right-handed starters. Boston's bullpen has shown vulnerabilities in high-leverage late-inning situations throughout August. Given the tight odds and closely matched current-season metrics, this interleague matchup projects to be a tightly contested affair. Therefore, while Boston should narrowly secure the outright victory, the Pirates are well-positioned to keep the margin within a single run.",
+    "splits_and_direction": "Approximately 58 percent of early moneyline bets are backing the Boston Red Sox, while 62 percent of spread wagers are taking the Pittsburgh Pirates plus the runs. The away moneyline has shifted slightly from -110 to -118 at FanDuel, and the home spread has remained stable at +1.5 across major sportsbooks.",
+    "display_text": "Summary: The Boston Red Sox showcase a slight edge in overall roster depth and offensive production during the 2026 campaign. Pittsburgh features a competitive home lineup that keeps games close, particularly at PNC Park against right-handed starters. Boston's bullpen has shown vulnerabilities in high-leverage late-inning situations throughout August. Given the tight odds and closely matched current-season metrics, this interleague matchup projects to be a tightly contested affair. Therefore, while Boston should narrowly secure the outright victory, the Pirates are well-positioned to keep the margin within a single run.\n\nSplits and Direction: Approximately 58 percent of early moneyline bets are backing the Boston Red Sox, while 62 percent of spread wagers are taking the Pittsburgh Pirates plus the runs. The away moneyline has shifted slightly from -110 to -118 at FanDuel, and the home spread has remained stable at +1.5 across major sportsbooks.",
+    "generated_at": "2026-08-16T12:17:13.809615+00:00",
+    "odds_hash": "fe661a5167f44077",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "a3828502f47d92af": {
+    "winner": "Detroit Tigers",
+    "confidence": 55,
+    "ats_pick": "Chicago White Sox +1.5",
+    "ats_confidence": 58,
+    "analysis": "The Detroit Tigers host the Chicago White Sox in an American League Central divisional matchup during the 2026 season. Detroit holds a slight advantage when playing at home due to situational hitting and a more reliable bullpen performance. Chicago has struggled with consistency on the road, frequently finding themselves in close games decided by late-inning execution. The White Sox offense has shown enough resilience against right-handed pitching to keep games competitive well into the later frames. Consequently, while Detroit is projected to edge out the victory outright, the narrow margin keeps the underdog a strong play on the run line.",
+    "splits_and_direction": "Given the even moneyline pricing at -104 on both sides, public betting is roughly split down the middle with a slight lean toward the home team's moneyline. Both the spread and moneyline have remained stagnant at their opening numbers due to balanced early action.",
+    "display_text": "Summary: The Detroit Tigers host the Chicago White Sox in an American League Central divisional matchup during the 2026 season. Detroit holds a slight advantage when playing at home due to situational hitting and a more reliable bullpen performance. Chicago has struggled with consistency on the road, frequently finding themselves in close games decided by late-inning execution. The White Sox offense has shown enough resilience against right-handed pitching to keep games competitive well into the later frames. Consequently, while Detroit is projected to edge out the victory outright, the narrow margin keeps the underdog a strong play on the run line.\n\nSplits and Direction: Given the even moneyline pricing at -104 on both sides, public betting is roughly split down the middle with a slight lean toward the home team's moneyline. Both the spread and moneyline have remained stagnant at their opening numbers due to balanced early action.",
+    "generated_at": "2026-08-16T12:17:24.011708+00:00",
+    "odds_hash": "a3828502f47d92af",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "ec172c17bd2d2d20": {
+    "winner": "San Diego Padres",
+    "confidence": 56,
+    "ats_pick": "Cleveland Guardians +1.5",
+    "ats_confidence": 58,
+    "analysis": "The San Diego Padres travel to face the Cleveland Guardians in a compelling interleague matchup during the 2026 season. San Diego holds a slight edge in overall roster depth and offensive production according to current-year metrics. However, Cleveland remains particularly tough when playing at home on their own turf. Given the narrow moneyline prices across major sportsbooks, this game projects to be tightly contested throughout the nine innings. The Padres should find a way to edge out a narrow victory in a closely fought contest. Consequently, taking the Guardians to cover the plus-1.5 run spread is the mathematically sound play given the high likelihood of a one-run margin.",
+    "splits_and_direction": "Approximately 58% of public moneyline bets are currently backing the visiting San Diego Padres, pushing their odds slightly from an opening of -105 to -111 on DraftKings. Meanwhile, the spread betting split sits evenly at 50% for both sides, with the line remaining steady at +1.5 for the home team since opening.",
+    "display_text": "Summary: The San Diego Padres travel to face the Cleveland Guardians in a compelling interleague matchup during the 2026 season. San Diego holds a slight edge in overall roster depth and offensive production according to current-year metrics. However, Cleveland remains particularly tough when playing at home on their own turf. Given the narrow moneyline prices across major sportsbooks, this game projects to be tightly contested throughout the nine innings. The Padres should find a way to edge out a narrow victory in a closely fought contest. Consequently, taking the Guardians to cover the plus-1.5 run spread is the mathematically sound play given the high likelihood of a one-run margin.\n\nSplits and Direction: Approximately 58% of public moneyline bets are currently backing the visiting San Diego Padres, pushing their odds slightly from an opening of -105 to -111 on DraftKings. Meanwhile, the spread betting split sits evenly at 50% for both sides, with the line remaining steady at +1.5 for the home team since opening.",
+    "generated_at": "2026-08-16T12:17:33.602490+00:00",
+    "odds_hash": "ec172c17bd2d2d20",
+    "model": "gemini-3.5-flash-lite"
   }
 }

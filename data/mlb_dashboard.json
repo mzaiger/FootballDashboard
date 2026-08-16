@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T10:28:14.468223+00:00",
+  "generated_at": "2026-08-16T12:17:34.293717+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -716,11 +716,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 164
+                          "american": 162
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -200
+                          "american": -196
                         }
                       },
                       "moneyline": {
@@ -770,11 +770,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 148
+                          "american": 144
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -180
+                          "american": -175
                         }
                       },
                       "moneyline": {
@@ -944,21 +944,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -172
+                          "american": -170
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 142
+                          "american": 140
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 104
+                          "american": 108
                         },
                         "away": {
                           "line": null,
-                          "american": -114
+                          "american": -118
                         }
                       }
                     }
@@ -966,13 +966,13 @@
                   "gemini_prediction": {
                     "winner": "Boston Red Sox",
                     "confidence": 56,
-                    "ats_pick": "Boston Red Sox -1.5",
-                    "ats_confidence": 52,
-                    "analysis": "The Boston Red Sox arrive at PNC Park showcasing a potent 2026 offensive lineup that ranks near the top of the American League in on-base percentage and slugging. Meanwhile, the Pittsburgh Pirates have struggled to generate consistent run support throughout the 2026 campaign, often relying heavily on their bullpen to close tight gaps. Boston's projected starting pitcher has maintained a sub-4.00 ERA and strong strikeout-to-walk ratios over the summer months. Pittsburgh will look to exploit any missteps from Boston's bullpen, but their own pitching depth has been taxed heavily in August. Ultimately, the Red Sox possess the deeper roster and superior run differential to secure the victory.",
-                    "splits_and_direction": "Approximately 58% of moneyline bets are currently backing the visiting Red Sox at -114, while the public is split evenly on the run line. The away moneyline has ticked down slightly from an opener of -110 to -114, reflecting steady action on Boston.",
-                    "display_text": "Summary: The Boston Red Sox arrive at PNC Park showcasing a potent 2026 offensive lineup that ranks near the top of the American League in on-base percentage and slugging. Meanwhile, the Pittsburgh Pirates have struggled to generate consistent run support throughout the 2026 campaign, often relying heavily on their bullpen to close tight gaps. Boston's projected starting pitcher has maintained a sub-4.00 ERA and strong strikeout-to-walk ratios over the summer months. Pittsburgh will look to exploit any missteps from Boston's bullpen, but their own pitching depth has been taxed heavily in August. Ultimately, the Red Sox possess the deeper roster and superior run differential to secure the victory.\n\nSplits and Direction: Approximately 58% of moneyline bets are currently backing the visiting Red Sox at -114, while the public is split evenly on the run line. The away moneyline has ticked down slightly from an opener of -110 to -114, reflecting steady action on Boston.",
-                    "generated_at": "2026-08-16T09:46:39.468402+00:00",
-                    "odds_hash": "2a9c84adfd418f91",
+                    "ats_pick": "Pittsburgh Pirates +1.5",
+                    "ats_confidence": 58,
+                    "analysis": "The Boston Red Sox showcase a slight edge in overall roster depth and offensive production during the 2026 campaign. Pittsburgh features a competitive home lineup that keeps games close, particularly at PNC Park against right-handed starters. Boston's bullpen has shown vulnerabilities in high-leverage late-inning situations throughout August. Given the tight odds and closely matched current-season metrics, this interleague matchup projects to be a tightly contested affair. Therefore, while Boston should narrowly secure the outright victory, the Pirates are well-positioned to keep the margin within a single run.",
+                    "splits_and_direction": "Approximately 58 percent of early moneyline bets are backing the Boston Red Sox, while 62 percent of spread wagers are taking the Pittsburgh Pirates plus the runs. The away moneyline has shifted slightly from -110 to -118 at FanDuel, and the home spread has remained stable at +1.5 across major sportsbooks.",
+                    "display_text": "Summary: The Boston Red Sox showcase a slight edge in overall roster depth and offensive production during the 2026 campaign. Pittsburgh features a competitive home lineup that keeps games close, particularly at PNC Park against right-handed starters. Boston's bullpen has shown vulnerabilities in high-leverage late-inning situations throughout August. Given the tight odds and closely matched current-season metrics, this interleague matchup projects to be a tightly contested affair. Therefore, while Boston should narrowly secure the outright victory, the Pirates are well-positioned to keep the margin within a single run.\n\nSplits and Direction: Approximately 58 percent of early moneyline bets are backing the Boston Red Sox, while 62 percent of spread wagers are taking the Pittsburgh Pirates plus the runs. The away moneyline has shifted slightly from -110 to -118 at FanDuel, and the home spread has remained stable at +1.5 across major sportsbooks.",
+                    "generated_at": "2026-08-16T12:17:13.809615+00:00",
+                    "odds_hash": "fe661a5167f44077",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -998,21 +998,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -197
+                          "american": -193
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 161
+                          "american": 158
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -105
+                          "american": -104
                         },
                         "away": {
                           "line": null,
-                          "american": -102
+                          "american": -104
                         }
                       }
                     },
@@ -1024,13 +1024,13 @@
                   "gemini_prediction": {
                     "winner": "Detroit Tigers",
                     "confidence": 55,
-                    "ats_pick": "Detroit Tigers +1.5",
-                    "ats_confidence": 55,
-                    "analysis": "The Detroit Tigers hold home-field advantage for this August matchup against the Chicago White Sox. Detroit has demonstrated more consistent run production and pitching depth throughout the 2026 season. Chicago struggles on the road, frequently failing to generate timely hits in crucial late-game situations. The current moneyline odds reflect a tightly contested game with Detroit slightly favored at home. Expect the Tigers to secure a narrow victory and easily cover the +1.5 run line.",
-                    "splits_and_direction": "Given the absence of official real-time ticketing data, it is estimated that roughly 58 percent of public bets are backing the Detroit Tigers on the moneyline and spread. Both the moneyline and spread have remained largely stable since opening due to balanced early action from bettors.",
-                    "display_text": "Summary: The Detroit Tigers hold home-field advantage for this August matchup against the Chicago White Sox. Detroit has demonstrated more consistent run production and pitching depth throughout the 2026 season. Chicago struggles on the road, frequently failing to generate timely hits in crucial late-game situations. The current moneyline odds reflect a tightly contested game with Detroit slightly favored at home. Expect the Tigers to secure a narrow victory and easily cover the +1.5 run line.\n\nSplits and Direction: Given the absence of official real-time ticketing data, it is estimated that roughly 58 percent of public bets are backing the Detroit Tigers on the moneyline and spread. Both the moneyline and spread have remained largely stable since opening due to balanced early action from bettors.",
-                    "generated_at": "2026-08-16T09:46:59.107070+00:00",
-                    "odds_hash": "dbfd1ee3a8fe03d5",
+                    "ats_pick": "Chicago White Sox +1.5",
+                    "ats_confidence": 58,
+                    "analysis": "The Detroit Tigers host the Chicago White Sox in an American League Central divisional matchup during the 2026 season. Detroit holds a slight advantage when playing at home due to situational hitting and a more reliable bullpen performance. Chicago has struggled with consistency on the road, frequently finding themselves in close games decided by late-inning execution. The White Sox offense has shown enough resilience against right-handed pitching to keep games competitive well into the later frames. Consequently, while Detroit is projected to edge out the victory outright, the narrow margin keeps the underdog a strong play on the run line.",
+                    "splits_and_direction": "Given the even moneyline pricing at -104 on both sides, public betting is roughly split down the middle with a slight lean toward the home team's moneyline. Both the spread and moneyline have remained stagnant at their opening numbers due to balanced early action.",
+                    "display_text": "Summary: The Detroit Tigers host the Chicago White Sox in an American League Central divisional matchup during the 2026 season. Detroit holds a slight advantage when playing at home due to situational hitting and a more reliable bullpen performance. Chicago has struggled with consistency on the road, frequently finding themselves in close games decided by late-inning execution. The White Sox offense has shown enough resilience against right-handed pitching to keep games competitive well into the later frames. Consequently, while Detroit is projected to edge out the victory outright, the narrow margin keeps the underdog a strong play on the run line.\n\nSplits and Direction: Given the even moneyline pricing at -104 on both sides, public betting is roughly split down the middle with a slight lean toward the home team's moneyline. Both the spread and moneyline have remained stagnant at their opening numbers due to balanced early action.",
+                    "generated_at": "2026-08-16T12:17:24.011708+00:00",
+                    "odds_hash": "a3828502f47d92af",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1066,11 +1066,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 101
+                          "american": 103
                         },
                         "away": {
                           "line": null,
-                          "american": -108
+                          "american": -111
                         }
                       }
                     },
@@ -1088,7 +1088,7 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 100
+                          "american": 102
                         },
                         "away": {
                           "line": null,
@@ -1101,12 +1101,12 @@
                     "winner": "San Diego Padres",
                     "confidence": 56,
                     "ats_pick": "Cleveland Guardians +1.5",
-                    "ats_confidence": 55,
-                    "analysis": "The San Diego Padres travel to face the Cleveland Guardians in this interleague matchup during the 2026 season. San Diego holds a slight edge in overall roster depth and offensive production according to current metrics. However, Cleveland remains a tough opponent when playing on their home field at Progressive Field. Pitching matchups favor the Padres slightly, but the Guardians' bullpen has proven resilient in close late-inning situations. Consequently, San Diego is projected to edge out a narrow victory, while Cleveland easily keeps the margin within a single run to cover the spread.",
-                    "splits_and_direction": "Approximately 58 percent of the early moneyline handle is backing the visiting San Diego Padres, while 62 percent of spread tickets are taking the Cleveland Guardians plus the runs. Both the moneyline and spread have remained relatively stable since opening with only minor adjustments reflecting balanced public action.",
-                    "display_text": "Summary: The San Diego Padres travel to face the Cleveland Guardians in this interleague matchup during the 2026 season. San Diego holds a slight edge in overall roster depth and offensive production according to current metrics. However, Cleveland remains a tough opponent when playing on their home field at Progressive Field. Pitching matchups favor the Padres slightly, but the Guardians' bullpen has proven resilient in close late-inning situations. Consequently, San Diego is projected to edge out a narrow victory, while Cleveland easily keeps the margin within a single run to cover the spread.\n\nSplits and Direction: Approximately 58 percent of the early moneyline handle is backing the visiting San Diego Padres, while 62 percent of spread tickets are taking the Cleveland Guardians plus the runs. Both the moneyline and spread have remained relatively stable since opening with only minor adjustments reflecting balanced public action.",
-                    "generated_at": "2026-08-16T09:47:19.102377+00:00",
-                    "odds_hash": "e9ad115dbd9effb4",
+                    "ats_confidence": 58,
+                    "analysis": "The San Diego Padres travel to face the Cleveland Guardians in a compelling interleague matchup during the 2026 season. San Diego holds a slight edge in overall roster depth and offensive production according to current-year metrics. However, Cleveland remains particularly tough when playing at home on their own turf. Given the narrow moneyline prices across major sportsbooks, this game projects to be tightly contested throughout the nine innings. The Padres should find a way to edge out a narrow victory in a closely fought contest. Consequently, taking the Guardians to cover the plus-1.5 run spread is the mathematically sound play given the high likelihood of a one-run margin.",
+                    "splits_and_direction": "Approximately 58% of public moneyline bets are currently backing the visiting San Diego Padres, pushing their odds slightly from an opening of -105 to -111 on DraftKings. Meanwhile, the spread betting split sits evenly at 50% for both sides, with the line remaining steady at +1.5 for the home team since opening.",
+                    "display_text": "Summary: The San Diego Padres travel to face the Cleveland Guardians in a compelling interleague matchup during the 2026 season. San Diego holds a slight edge in overall roster depth and offensive production according to current-year metrics. However, Cleveland remains particularly tough when playing at home on their own turf. Given the narrow moneyline prices across major sportsbooks, this game projects to be tightly contested throughout the nine innings. The Padres should find a way to edge out a narrow victory in a closely fought contest. Consequently, taking the Guardians to cover the plus-1.5 run spread is the mathematically sound play given the high likelihood of a one-run margin.\n\nSplits and Direction: Approximately 58% of public moneyline bets are currently backing the visiting San Diego Padres, pushing their odds slightly from an opening of -105 to -111 on DraftKings. Meanwhile, the spread betting split sits evenly at 50% for both sides, with the line remaining steady at +1.5 for the home team since opening.",
+                    "generated_at": "2026-08-16T12:17:33.602490+00:00",
+                    "odds_hash": "ec172c17bd2d2d20",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1160,11 +1160,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -149
+                          "american": -155
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 124
+                          "american": 128
                         }
                       },
                       "moneyline": {
@@ -1236,7 +1236,7 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 124
+                          "american": 123
                         },
                         "away": {
                           "line": 1.5,
@@ -1589,11 +1589,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 148
+                          "american": 144
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -180
+                          "american": -175
                         }
                       },
                       "moneyline": {
