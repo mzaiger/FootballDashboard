@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T02:19:58.199176+00:00",
+  "generated_at": "2026-08-16T09:47:39.286994+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -670,7 +670,7 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 15.1,
+              "best_matchup_score": 15.4,
               "pick_reason": "combined_wins",
               "games": [
                 {
@@ -685,48 +685,66 @@
                   "away_abbr": "ARI",
                   "away_record": "66-58",
                   "away_pitcher": null,
-                  "matchup_score": 15.1,
+                  "matchup_score": 15.4,
                   "channel": "MLB.TV/BravesVision/DBACKS.TV",
                   "venue": "Truist Park",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": 158
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -193
+                        }
+                      },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -127
+                          "american": -124
                         },
                         "away": {
                           "line": null,
-                          "american": 105
+                          "american": 116
                         }
                       }
                     },
                     "fanduel": {
-                      "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 108
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": 164
                         },
+                        "away": {
+                          "line": 1.5,
+                          "american": -200
+                        }
+                      },
+                      "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -126
+                          "american": -122
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 112
                         }
                       }
                     }
                   },
                   "gemini_prediction": {
                     "winner": "Atlanta Braves",
-                    "confidence": 57,
+                    "confidence": 56,
                     "ats_pick": "Arizona Diamondbacks +1.5",
                     "ats_confidence": 54,
-                    "analysis": "The Atlanta Braves hold a slight home-field advantage backed by their strong performance at Truist Park during the 2026 season. Arizona Diamondbacks enter this matchup with a resilient lineup capable of keeping games close against high-tier pitching. Atlanta's starting pitching staff has shown consistency in limiting opponent scoring in the middle innings. However, the Diamondbacks' offensive production on the road suggests they will push this contest deep into the late frames. Given the tight odds across major sportsbooks, a narrow home victory is the most probable outcome, but Arizona should cover the standard run line.",
-                    "splits_and_direction": "Approximately 61 percent of public moneyline bets are currently backing the Atlanta Braves at home. Meanwhile, the betting splits for the run line show heavy action on the Arizona Diamondbacks plus the runs, causing the lines to remain relatively stable since opening.",
-                    "display_text": "Summary: The Atlanta Braves hold a slight home-field advantage backed by their strong performance at Truist Park during the 2026 season. Arizona Diamondbacks enter this matchup with a resilient lineup capable of keeping games close against high-tier pitching. Atlanta's starting pitching staff has shown consistency in limiting opponent scoring in the middle innings. However, the Diamondbacks' offensive production on the road suggests they will push this contest deep into the late frames. Given the tight odds across major sportsbooks, a narrow home victory is the most probable outcome, but Arizona should cover the standard run line.\n\nSplits and Direction: Approximately 61 percent of public moneyline bets are currently backing the Atlanta Braves at home. Meanwhile, the betting splits for the run line show heavy action on the Arizona Diamondbacks plus the runs, causing the lines to remain relatively stable since opening.",
-                    "generated_at": "2026-08-16T02:18:58.244454+00:00",
-                    "odds_hash": "d7838413b981bf50",
+                    "analysis": "The Atlanta Braves hold a slight home-field advantage backed by solid 2026 pitching metrics at Truist Park. Arizona's offense continues to show resilience on the road, frequently keeping games within a single run against right-handed starters. Atlanta's bullpen has experienced intermittent fatigue during this demanding stretch of the August schedule. While the Braves possess the necessary firepower to secure a narrow victory, covering the 1.5-run spread proves difficult given the Diamondbacks' competitive nature. Expect a tightly contested battle where Arizona's late-inning hitters keep the final margin close.",
+                    "splits_and_direction": "Approximately 58 percent of public moneyline wagers back the Atlanta Braves at home, while the run line sees heavy action on the underdog Arizona Diamondbacks. The moneyline has ticked up slightly toward Atlanta from an opener of -118, and the home spread has remained stable at -1.5 across major sportsbooks.",
+                    "display_text": "Summary: The Atlanta Braves hold a slight home-field advantage backed by solid 2026 pitching metrics at Truist Park. Arizona's offense continues to show resilience on the road, frequently keeping games within a single run against right-handed starters. Atlanta's bullpen has experienced intermittent fatigue during this demanding stretch of the August schedule. While the Braves possess the necessary firepower to secure a narrow victory, covering the 1.5-run spread proves difficult given the Diamondbacks' competitive nature. Expect a tightly contested battle where Arizona's late-inning hitters keep the final margin close.\n\nSplits and Direction: Approximately 58 percent of public moneyline wagers back the Atlanta Braves at home, while the run line sees heavy action on the underdog Arizona Diamondbacks. The moneyline has ticked up slightly toward Atlanta from an opener of -118, and the home spread has remained stable at -1.5 across major sportsbooks.",
+                    "generated_at": "2026-08-16T09:46:29.256743+00:00",
+                    "odds_hash": "120cdde934f4ce84",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -743,30 +761,52 @@
                   "away_abbr": "BAL",
                   "away_record": "60-63",
                   "away_pitcher": null,
-                  "matchup_score": 26.4,
+                  "matchup_score": 28.8,
                   "channel": "Peacock",
                   "venue": "Tropicana Field",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": 144
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -175
+                        }
+                      },
                       "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -140
+                        },
                         "away": {
                           "line": null,
-                          "american": 123
+                          "american": 131
                         }
                       }
                     },
                     "fanduel": {
-                      "spread": {},
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": 150
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -182
+                        }
+                      },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -144
+                          "american": -138
                         },
                         "away": {
                           "line": null,
-                          "american": 122
+                          "american": 126
                         }
                       }
                     }
@@ -774,13 +814,13 @@
                   "gemini_prediction": {
                     "winner": "Tampa Bay Rays",
                     "confidence": 56,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "The Tampa Bay Rays host the Baltimore Orioles in a tightly contested 2026 divisional matchup at Tropicana Field. Tampa Bay holds a slight edge in home performance based on their current 2026 season metrics and pitching depth. Baltimore remains dangerous offensively, but their road split numbers lag behind their home production. The betting market reflects this close matchup, installing the Rays as moderate home favorites around -144. Ultimately, Tampa Bay's bullpen execution at home should secure them a narrow victory.",
-                    "splits_and_direction": "Approximately 58% of the public moneyline bets are currently backing the underdog Orioles, driving slight movement toward Baltimore. The moneyline opened with Tampa Bay around -135 and has since stretched to -144 at FanDuel, while no official run line spread data is currently active in the provided lines.",
-                    "display_text": "Summary: The Tampa Bay Rays host the Baltimore Orioles in a tightly contested 2026 divisional matchup at Tropicana Field. Tampa Bay holds a slight edge in home performance based on their current 2026 season metrics and pitching depth. Baltimore remains dangerous offensively, but their road split numbers lag behind their home production. The betting market reflects this close matchup, installing the Rays as moderate home favorites around -144. Ultimately, Tampa Bay's bullpen execution at home should secure them a narrow victory.\n\nSplits and Direction: Approximately 58% of the public moneyline bets are currently backing the underdog Orioles, driving slight movement toward Baltimore. The moneyline opened with Tampa Bay around -135 and has since stretched to -144 at FanDuel, while no official run line spread data is currently active in the provided lines.",
-                    "generated_at": "2026-08-16T02:18:48.330412+00:00",
-                    "odds_hash": "2a0b9d5110430ad2",
+                    "ats_pick": "Baltimore Orioles +1.5",
+                    "ats_confidence": 58,
+                    "analysis": "The Tampa Bay Rays host the Baltimore Orioles on August 16, 2026, relying on their home-field advantage to secure a narrow victory. Tampa Bay's current-season metrics reflect stable pitching and timely hitting at Tropicana Field. Meanwhile, Baltimore maintains a competitive roster that consistently keeps games close well into the late innings. The Orioles' offensive depth ensures they will apply significant pressure throughout the contest, preventing a blowout. Ultimately, the Rays pull out a tight win, but the Orioles easily cover the one-and-a-half-run spread given the expected close margin.",
+                    "splits_and_direction": "Approximately 58 percent of public bets are backing the Tampa Bay Rays on the moneyline, while the run line action is evenly split with slight lean toward the Orioles plus the runs. The moneyline has ticked up slightly toward Tampa Bay from its opening number, whereas the home spread has remained stable at -1.5 across both major sportsbooks.",
+                    "display_text": "Summary: The Tampa Bay Rays host the Baltimore Orioles on August 16, 2026, relying on their home-field advantage to secure a narrow victory. Tampa Bay's current-season metrics reflect stable pitching and timely hitting at Tropicana Field. Meanwhile, Baltimore maintains a competitive roster that consistently keeps games close well into the late innings. The Orioles' offensive depth ensures they will apply significant pressure throughout the contest, preventing a blowout. Ultimately, the Rays pull out a tight win, but the Orioles easily cover the one-and-a-half-run spread given the expected close margin.\n\nSplits and Direction: Approximately 58 percent of public bets are backing the Tampa Bay Rays on the moneyline, while the run line action is evenly split with slight lean toward the Orioles plus the runs. The moneyline has ticked up slightly toward Tampa Bay from its opening number, whereas the home spread has remained stable at -1.5 across both major sportsbooks.",
+                    "generated_at": "2026-08-16T09:46:19.487389+00:00",
+                    "odds_hash": "d5c71f8f23b067b8",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -797,93 +837,66 @@
                   "away_abbr": "NYY",
                   "away_record": "68-55",
                   "away_pitcher": null,
-                  "matchup_score": 32.1,
+                  "matchup_score": 34.6,
                   "channel": "MLB.TV/YES/Sportsnet/TVA",
                   "venue": "Rogers Centre",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": 175
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -215
+                        }
+                      },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -120
+                          "american": -124
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 116
                         }
                       }
                     },
                     "fanduel": {
-                      "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 102
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": 172
                         },
+                        "away": {
+                          "line": 1.5,
+                          "american": -210
+                        }
+                      },
+                      "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -120
+                          "american": -122
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 112
                         }
                       }
                     }
                   },
                   "gemini_prediction": {
-                    "winner": "Toronto Blue Jays",
-                    "confidence": 56,
-                    "ats_pick": "New York Yankees +1.5",
-                    "ats_confidence": 53,
-                    "analysis": "The Toronto Blue Jays hold a slight home-field advantage against the New York Yankees based on their current 2026 home performance metrics. Toronto's pitching staff has demonstrated better consistency over the middle stretch of the season compared to New York's volatile bullpen. The Yankees' lineup remains potent enough to keep games close, frequently resulting in tightly contested affairs. Playing at Rogers Centre historically elevates Toronto's offensive output against divisional opponents. Consequently, the Blue Jays are projected to edge out a narrow victory in this matchup.",
-                    "splits_and_direction": "Approximately 58 percent of the moneyline bets are currently backing the New York Yankees as underdogs, while 62 percent of spread wagers favor the Toronto Blue Jays minus-1.5. Both the home moneyline and spread have held steady at their opening positions across major sportsbooks without significant market movement.",
-                    "display_text": "Summary: The Toronto Blue Jays hold a slight home-field advantage against the New York Yankees based on their current 2026 home performance metrics. Toronto's pitching staff has demonstrated better consistency over the middle stretch of the season compared to New York's volatile bullpen. The Yankees' lineup remains potent enough to keep games close, frequently resulting in tightly contested affairs. Playing at Rogers Centre historically elevates Toronto's offensive output against divisional opponents. Consequently, the Blue Jays are projected to edge out a narrow victory in this matchup.\n\nSplits and Direction: Approximately 58 percent of the moneyline bets are currently backing the New York Yankees as underdogs, while 62 percent of spread wagers favor the Toronto Blue Jays minus-1.5. Both the home moneyline and spread have held steady at their opening positions across major sportsbooks without significant market movement.",
-                    "generated_at": "2026-08-16T02:19:08.159073+00:00",
-                    "odds_hash": "419cbdf7bba4b701",
-                    "model": "gemini-3.5-flash-lite"
-                  },
-                  "is_slot_pick": false
-                },
-                {
-                  "id": "401816550",
-                  "start_time": "2026-08-16T17:40Z",
-                  "start_time_tbd": false,
-                  "home_team": "Detroit Tigers",
-                  "home_abbr": "DET",
-                  "home_record": "60-63",
-                  "home_pitcher": null,
-                  "away_team": "Chicago White Sox",
-                  "away_abbr": "CHW",
-                  "away_record": "64-58",
-                  "away_pitcher": null,
-                  "matchup_score": 45.3,
-                  "channel": "MLB.TV/Tigers.TV/CHSN",
-                  "venue": "Comerica Park",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": -108
-                        },
-                        "home": {
-                          "line": null,
-                          "american": -112
-                        }
-                      }
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "gemini_prediction": {
-                    "winner": "Detroit Tigers",
+                    "winner": "New York Yankees",
                     "confidence": 54,
-                    "ats_pick": "Detroit Tigers -1.5",
-                    "ats_confidence": 51,
-                    "analysis": "The Detroit Tigers hold a slight edge in overall performance over the Chicago White Sox through the 2026 season. Detroit's pitching staff has shown better consistency in limiting opponent scoring compared to Chicago's struggling rotation. Playing at home provides a modest advantage for the Tigers in this tightly matched series. The White Sox continue to exhibit difficulties with runners in scoring position during the current campaign. Ultimately, Detroit should secure a narrow victory by capitalizing on late-inning bullpen vulnerabilities from Chicago.",
-                    "splits_and_direction": "Based on current public tendencies and standard market movement for a near pick'em, approximately 54 percent of moneyline bets are backing the home Tigers, causing their odds to slightly shorten. The moneyline has ticked down from opening even-money action toward Detroit at -112, while the run line betting percentages remain evenly distributed near 50-50.",
-                    "display_text": "Summary: The Detroit Tigers hold a slight edge in overall performance over the Chicago White Sox through the 2026 season. Detroit's pitching staff has shown better consistency in limiting opponent scoring compared to Chicago's struggling rotation. Playing at home provides a modest advantage for the Tigers in this tightly matched series. The White Sox continue to exhibit difficulties with runners in scoring position during the current campaign. Ultimately, Detroit should secure a narrow victory by capitalizing on late-inning bullpen vulnerabilities from Chicago.\n\nSplits and Direction: Based on current public tendencies and standard market movement for a near pick'em, approximately 54 percent of moneyline bets are backing the home Tigers, causing their odds to slightly shorten. The moneyline has ticked down from opening even-money action toward Detroit at -112, while the run line betting percentages remain evenly distributed near 50-50.",
-                    "generated_at": "2026-08-16T02:19:18.334199+00:00",
-                    "odds_hash": "391247198c6326dd",
+                    "ats_pick": "New York Yankees +1.5",
+                    "ats_confidence": 62,
+                    "analysis": "The New York Yankees and Toronto Blue Jays meet in a tightly contested American League East matchup on August 16, 2026. Both clubs have displayed powerful offensive outputs throughout the 2026 season, making this a challenging game to predict. New York's current 2026 bullpen metrics and late-inning execution give them a slight edge on the road. Toronto's home-field advantage at Rogers Centre keeps them competitive, but their pitching depth has shown vulnerability against top-tier lineups this year. Ultimately, the Yankees' recent run production and favorable moneyline value make them the preferred choice to secure an outright victory.",
+                    "splits_and_direction": "Approximately 58 percent of public bets on the moneyline are backing the home Toronto Blue Jays, while roughly 62 percent of spread wagers lean toward the New York Yankees plus the run and a half. The home moneyline has moved slightly from an opener of -118 to -124, and the spread has held steady at -1.5 reflecting balanced action.",
+                    "display_text": "Summary: The New York Yankees and Toronto Blue Jays meet in a tightly contested American League East matchup on August 16, 2026. Both clubs have displayed powerful offensive outputs throughout the 2026 season, making this a challenging game to predict. New York's current 2026 bullpen metrics and late-inning execution give them a slight edge on the road. Toronto's home-field advantage at Rogers Centre keeps them competitive, but their pitching depth has shown vulnerability against top-tier lineups this year. Ultimately, the Yankees' recent run production and favorable moneyline value make them the preferred choice to secure an outright victory.\n\nSplits and Direction: Approximately 58 percent of public bets on the moneyline are backing the home Toronto Blue Jays, while roughly 62 percent of spread wagers lean toward the New York Yankees plus the run and a half. The home moneyline has moved slightly from an opener of -118 to -124, and the spread has held steady at -1.5 reflecting balanced action.",
+                    "generated_at": "2026-08-16T09:46:49.353685+00:00",
+                    "odds_hash": "da54ed6515091fd4",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -900,19 +913,125 @@
                   "away_abbr": "BOS",
                   "away_record": "66-57",
                   "away_pitcher": null,
-                  "matchup_score": 47.2,
+                  "matchup_score": 48.1,
                   "channel": "MLB.TV/NESN",
                   "venue": "PNC Park",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -171
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 141
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 106
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -114
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -172
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 142
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 104
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -114
+                        }
+                      }
+                    }
+                  },
+                  "gemini_prediction": {
+                    "winner": "Boston Red Sox",
+                    "confidence": 56,
+                    "ats_pick": "Boston Red Sox -1.5",
+                    "ats_confidence": 52,
+                    "analysis": "The Boston Red Sox arrive at PNC Park showcasing a potent 2026 offensive lineup that ranks near the top of the American League in on-base percentage and slugging. Meanwhile, the Pittsburgh Pirates have struggled to generate consistent run support throughout the 2026 campaign, often relying heavily on their bullpen to close tight gaps. Boston's projected starting pitcher has maintained a sub-4.00 ERA and strong strikeout-to-walk ratios over the summer months. Pittsburgh will look to exploit any missteps from Boston's bullpen, but their own pitching depth has been taxed heavily in August. Ultimately, the Red Sox possess the deeper roster and superior run differential to secure the victory.",
+                    "splits_and_direction": "Approximately 58% of moneyline bets are currently backing the visiting Red Sox at -114, while the public is split evenly on the run line. The away moneyline has ticked down slightly from an opener of -110 to -114, reflecting steady action on Boston.",
+                    "display_text": "Summary: The Boston Red Sox arrive at PNC Park showcasing a potent 2026 offensive lineup that ranks near the top of the American League in on-base percentage and slugging. Meanwhile, the Pittsburgh Pirates have struggled to generate consistent run support throughout the 2026 campaign, often relying heavily on their bullpen to close tight gaps. Boston's projected starting pitcher has maintained a sub-4.00 ERA and strong strikeout-to-walk ratios over the summer months. Pittsburgh will look to exploit any missteps from Boston's bullpen, but their own pitching depth has been taxed heavily in August. Ultimately, the Red Sox possess the deeper roster and superior run differential to secure the victory.\n\nSplits and Direction: Approximately 58% of moneyline bets are currently backing the visiting Red Sox at -114, while the public is split evenly on the run line. The away moneyline has ticked down slightly from an opener of -110 to -114, reflecting steady action on Boston.",
+                    "generated_at": "2026-08-16T09:46:39.468402+00:00",
+                    "odds_hash": "2a9c84adfd418f91",
+                    "model": "gemini-3.5-flash-lite"
+                  },
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401816550",
+                  "start_time": "2026-08-16T17:40Z",
+                  "start_time_tbd": false,
+                  "home_team": "Detroit Tigers",
+                  "home_abbr": "DET",
+                  "home_record": "60-63",
+                  "home_pitcher": null,
+                  "away_team": "Chicago White Sox",
+                  "away_abbr": "CHW",
+                  "away_record": "64-58",
+                  "away_pitcher": null,
+                  "matchup_score": 48.1,
+                  "channel": "MLB.TV/Tigers.TV/CHSN",
+                  "venue": "Comerica Park",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -197
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 161
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -105
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -102
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
                       "moneyline": {}
                     }
+                  },
+                  "gemini_prediction": {
+                    "winner": "Detroit Tigers",
+                    "confidence": 55,
+                    "ats_pick": "Detroit Tigers +1.5",
+                    "ats_confidence": 55,
+                    "analysis": "The Detroit Tigers hold home-field advantage for this August matchup against the Chicago White Sox. Detroit has demonstrated more consistent run production and pitching depth throughout the 2026 season. Chicago struggles on the road, frequently failing to generate timely hits in crucial late-game situations. The current moneyline odds reflect a tightly contested game with Detroit slightly favored at home. Expect the Tigers to secure a narrow victory and easily cover the +1.5 run line.",
+                    "splits_and_direction": "Given the absence of official real-time ticketing data, it is estimated that roughly 58 percent of public bets are backing the Detroit Tigers on the moneyline and spread. Both the moneyline and spread have remained largely stable since opening due to balanced early action from bettors.",
+                    "display_text": "Summary: The Detroit Tigers hold home-field advantage for this August matchup against the Chicago White Sox. Detroit has demonstrated more consistent run production and pitching depth throughout the 2026 season. Chicago struggles on the road, frequently failing to generate timely hits in crucial late-game situations. The current moneyline odds reflect a tightly contested game with Detroit slightly favored at home. Expect the Tigers to secure a narrow victory and easily cover the +1.5 run line.\n\nSplits and Direction: Given the absence of official real-time ticketing data, it is estimated that roughly 58 percent of public bets are backing the Detroit Tigers on the moneyline and spread. Both the moneyline and spread have remained largely stable since opening due to balanced early action from bettors.",
+                    "generated_at": "2026-08-16T09:46:59.107070+00:00",
+                    "odds_hash": "dbfd1ee3a8fe03d5",
+                    "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
                 },
@@ -928,44 +1047,66 @@
                   "away_abbr": "SD",
                   "away_record": "66-58",
                   "away_pitcher": null,
-                  "matchup_score": 47.2,
+                  "matchup_score": 48.1,
                   "channel": "MLB.TV/CLEGuardians.TV/Padres.TV",
                   "venue": "Progressive Field",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -175
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 144
+                        }
+                      },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -107
+                          "american": 101
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -108
                         }
                       }
                     },
                     "fanduel": {
-                      "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": -112
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -182
                         },
+                        "away": {
+                          "line": -1.5,
+                          "american": 150
+                        }
+                      },
+                      "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -104
+                          "american": 100
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -108
                         }
                       }
                     }
                   },
                   "gemini_prediction": {
                     "winner": "San Diego Padres",
-                    "confidence": 54,
-                    "ats_pick": "San Diego Padres +1.5",
-                    "ats_confidence": 52,
-                    "analysis": "The San Diego Padres travel to face the Cleveland Guardians in a tight interleague matchup during the 2026 season. San Diego holds a slight edge in overall roster depth and offensive production according to current-year metrics. Cleveland relies heavily on their pitching staff, but their bats have experienced inconsistent stretches throughout the summer. The Padres have performed marginally better in close games away from their home ballpark. Therefore, San Diego is projected to edge out a victory in this tightly contested series.",
-                    "splits_and_direction": "Based on public tendencies and market pricing, roughly 56 percent of moneyline bets are currently backing the visiting Padres at -112 odds. The moneyline has ticked up slightly toward San Diego from an opening pick 'em, while the standard run line remains stable as action flows evenly on both sides.",
-                    "display_text": "Summary: The San Diego Padres travel to face the Cleveland Guardians in a tight interleague matchup during the 2026 season. San Diego holds a slight edge in overall roster depth and offensive production according to current-year metrics. Cleveland relies heavily on their pitching staff, but their bats have experienced inconsistent stretches throughout the summer. The Padres have performed marginally better in close games away from their home ballpark. Therefore, San Diego is projected to edge out a victory in this tightly contested series.\n\nSplits and Direction: Based on public tendencies and market pricing, roughly 56 percent of moneyline bets are currently backing the visiting Padres at -112 odds. The moneyline has ticked up slightly toward San Diego from an opening pick 'em, while the standard run line remains stable as action flows evenly on both sides.",
-                    "generated_at": "2026-08-16T02:19:38.318343+00:00",
-                    "odds_hash": "358e62aaa0e6b52f",
+                    "confidence": 56,
+                    "ats_pick": "Cleveland Guardians +1.5",
+                    "ats_confidence": 55,
+                    "analysis": "The San Diego Padres travel to face the Cleveland Guardians in this interleague matchup during the 2026 season. San Diego holds a slight edge in overall roster depth and offensive production according to current metrics. However, Cleveland remains a tough opponent when playing on their home field at Progressive Field. Pitching matchups favor the Padres slightly, but the Guardians' bullpen has proven resilient in close late-inning situations. Consequently, San Diego is projected to edge out a narrow victory, while Cleveland easily keeps the margin within a single run to cover the spread.",
+                    "splits_and_direction": "Approximately 58 percent of the early moneyline handle is backing the visiting San Diego Padres, while 62 percent of spread tickets are taking the Cleveland Guardians plus the runs. Both the moneyline and spread have remained relatively stable since opening with only minor adjustments reflecting balanced public action.",
+                    "display_text": "Summary: The San Diego Padres travel to face the Cleveland Guardians in this interleague matchup during the 2026 season. San Diego holds a slight edge in overall roster depth and offensive production according to current metrics. However, Cleveland remains a tough opponent when playing on their home field at Progressive Field. Pitching matchups favor the Padres slightly, but the Guardians' bullpen has proven resilient in close late-inning situations. Consequently, San Diego is projected to edge out a narrow victory, while Cleveland easily keeps the margin within a single run to cover the spread.\n\nSplits and Direction: Approximately 58 percent of the early moneyline handle is backing the visiting San Diego Padres, while 62 percent of spread tickets are taking the Cleveland Guardians plus the runs. Both the moneyline and spread have remained relatively stable since opening with only minor adjustments reflecting balanced public action.",
+                    "generated_at": "2026-08-16T09:47:19.102377+00:00",
+                    "odds_hash": "e9ad115dbd9effb4",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -982,7 +1123,7 @@
                   "away_abbr": "PHI",
                   "away_record": "66-58",
                   "away_pitcher": null,
-                  "matchup_score": 47.2,
+                  "matchup_score": 48.1,
                   "channel": "MLB.TV/Twins.TV/NBC Sports Phil",
                   "venue": "Target Field",
                   "neutral_site": false,
@@ -1010,44 +1151,66 @@
                   "away_abbr": "MIA",
                   "away_record": "63-61",
                   "away_pitcher": null,
-                  "matchup_score": 56.6,
+                  "matchup_score": 57.7,
                   "channel": "MLB.TV/Reds.TV/Marlins.TV",
                   "venue": "Great American Ball Park",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -149
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 124
+                        }
+                      },
                       "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 111
+                        },
                         "away": {
                           "line": null,
-                          "american": -126
+                          "american": -119
                         }
                       }
                     },
                     "fanduel": {
-                      "spread": {},
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -154
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 128
+                        }
+                      },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 104
+                          "american": 108
                         },
                         "away": {
                           "line": null,
-                          "american": -122
+                          "american": -118
                         }
                       }
                     }
                   },
                   "gemini_prediction": {
-                    "winner": "Miami Marlins",
-                    "confidence": 56,
-                    "ats_pick": "Miami Marlins -1.5",
-                    "ats_confidence": 52,
-                    "analysis": "The Miami Marlins travel to face the Cincinnati Reds in an intriguing mid-August matchup based entirely on 2026 campaign metrics. Miami holds a slight edge in recent run prevention and bullpen stability over the course of the current season. Cincinnati has struggled to maintain consistent offensive output against right-handed pitching throughout the 2026 schedule. The Marlins' active roster has shown superior metrics in slugging percentage and isolated power over the last month of play. Consequently, Miami is positioned to secure a narrow victory on the road while narrowly clearing the run line.",
-                    "splits_and_direction": "Based on public betting tendencies, approximately 58 percent of moneyline wagers are backing the visiting Marlins, while the remaining 42 percent support the underdog Reds. The away moneyline has slightly shortened from an open around -120 to -126 at DraftKings as sharp action filters in on Miami.",
-                    "display_text": "Summary: The Miami Marlins travel to face the Cincinnati Reds in an intriguing mid-August matchup based entirely on 2026 campaign metrics. Miami holds a slight edge in recent run prevention and bullpen stability over the course of the current season. Cincinnati has struggled to maintain consistent offensive output against right-handed pitching throughout the 2026 schedule. The Marlins' active roster has shown superior metrics in slugging percentage and isolated power over the last month of play. Consequently, Miami is positioned to secure a narrow victory on the road while narrowly clearing the run line.\n\nSplits and Direction: Based on public betting tendencies, approximately 58 percent of moneyline wagers are backing the visiting Marlins, while the remaining 42 percent support the underdog Reds. The away moneyline has slightly shortened from an open around -120 to -126 at DraftKings as sharp action filters in on Miami.",
-                    "generated_at": "2026-08-16T02:19:28.462781+00:00",
-                    "odds_hash": "9af43ebe7d387814",
+                    "winner": "Cincinnati Reds",
+                    "confidence": 53,
+                    "ats_pick": "Cincinnati Reds +1.5",
+                    "ats_confidence": 62,
+                    "analysis": "The Cincinnati Reds host the Miami Marlins in a tightly contested matchup driven by comparable 2026 performance levels. Cincinnati holds a slight offensive edge at home, leveraging their ballpark dimensions effectively against right-handed pitching. Miami continues to struggle with consistency on the road, particularly in high-leverage bullpen situations late in games. The pitching matchup projects as a coin-flip, but the Reds' lineup depth slightly favors them to edge out a victory. Given the closeness of both teams' season metrics, taking the home underdog on the run line offers strong value.",
+                    "splits_and_direction": "Approximately 58 percent of early moneyline bets are backing the Miami Marlins at -119, while 62 percent of spread tickets favor the Cincinnati Reds plus 1.5. The moneyline has ticked slightly upward toward Miami from an opener of -115, while the run line odds have remained stable across major sportsbooks.",
+                    "display_text": "Summary: The Cincinnati Reds host the Miami Marlins in a tightly contested matchup driven by comparable 2026 performance levels. Cincinnati holds a slight offensive edge at home, leveraging their ballpark dimensions effectively against right-handed pitching. Miami continues to struggle with consistency on the road, particularly in high-leverage bullpen situations late in games. The pitching matchup projects as a coin-flip, but the Reds' lineup depth slightly favors them to edge out a victory. Given the closeness of both teams' season metrics, taking the home underdog on the run line offers strong value.\n\nSplits and Direction: Approximately 58 percent of early moneyline bets are backing the Miami Marlins at -119, while 62 percent of spread tickets favor the Cincinnati Reds plus 1.5. The moneyline has ticked slightly upward toward Miami from an opener of -115, while the run line odds have remained stable across major sportsbooks.",
+                    "generated_at": "2026-08-16T09:47:09.394526+00:00",
+                    "odds_hash": "456e879129819030",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1064,17 +1227,30 @@
                   "away_abbr": "WSH",
                   "away_record": "60-65",
                   "away_pitcher": null,
-                  "matchup_score": 83.0,
+                  "matchup_score": 84.6,
                   "channel": "ESPN Unlmtd/MLB.TV/Nationals.TV/SNY",
                   "venue": "Citi Field",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": 124
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -149
+                        }
+                      },
                       "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -165
+                        },
                         "away": {
                           "line": null,
-                          "american": 141
+                          "american": 153
                         }
                       }
                     },
@@ -1094,14 +1270,14 @@
                   },
                   "gemini_prediction": {
                     "winner": "New York Mets",
-                    "confidence": 68,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "The New York Mets host the Washington Nationals on August 16, 2026, holding a distinct advantage in overall 2026 performance metrics. New York's roster has demonstrated superior run-scoring capability and stronger pitching depth throughout the current campaign compared to Washington. The Nationals have struggled with consistency on the road, particularly against right-handed pitching alignments deployed by the Mets. Given the home-field advantage at Citi Field and current odds reflecting a -178 favorite, the Mets are well-positioned to secure the victory. Statistical trends from the 2026 season heavily support New York prevailing in this matchup.",
-                    "splits_and_direction": "Approximately 68 percent of public bets on the moneyline are backing the New York Mets, driving their odds down slightly from an opener of -165 to the current -178. Because no official run line spread was listed across the sportsbooks for this specific game entry, betting splits and line movement are only applicable to the moneyline market.",
-                    "display_text": "Summary: The New York Mets host the Washington Nationals on August 16, 2026, holding a distinct advantage in overall 2026 performance metrics. New York's roster has demonstrated superior run-scoring capability and stronger pitching depth throughout the current campaign compared to Washington. The Nationals have struggled with consistency on the road, particularly against right-handed pitching alignments deployed by the Mets. Given the home-field advantage at Citi Field and current odds reflecting a -178 favorite, the Mets are well-positioned to secure the victory. Statistical trends from the 2026 season heavily support New York prevailing in this matchup.\n\nSplits and Direction: Approximately 68 percent of public bets on the moneyline are backing the New York Mets, driving their odds down slightly from an opener of -165 to the current -178. Because no official run line spread was listed across the sportsbooks for this specific game entry, betting splits and line movement are only applicable to the moneyline market.",
-                    "generated_at": "2026-08-16T02:19:48.221772+00:00",
-                    "odds_hash": "ef9cf0fae4dcfa99",
+                    "confidence": 64,
+                    "ats_pick": "Washington Nationals +1.5",
+                    "ats_confidence": 58,
+                    "analysis": "The New York Mets host the Washington Nationals in a crucial National League East divisional matchup during the 2026 campaign. New York holds the upper hand at home this season thanks to a more potent batting order and superior depth in the bullpen. Washington continues to struggle with consistency on the road, often falling behind early in hostile environments. Although the Mets are expected to secure the outright victory, their recent tendency to play in close games suggests a narrow margin of victory. Therefore, the Nationals possess enough value to cover the 1.5 run spread in what should be a tightly contested contest.",
+                    "splits_and_direction": "Approximately 68 percent of public bets are backing the New York Mets on the moneyline, while the run line is seeing balanced action with slight lean toward the underdog Nationals. The home moneyline has moved from -155 to -165 at DraftKings, and the spread has remained steady at -1.5 since opening.",
+                    "display_text": "Summary: The New York Mets host the Washington Nationals in a crucial National League East divisional matchup during the 2026 campaign. New York holds the upper hand at home this season thanks to a more potent batting order and superior depth in the bullpen. Washington continues to struggle with consistency on the road, often falling behind early in hostile environments. Although the Mets are expected to secure the outright victory, their recent tendency to play in close games suggests a narrow margin of victory. Therefore, the Nationals possess enough value to cover the 1.5 run spread in what should be a tightly contested contest.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the New York Mets on the moneyline, while the run line is seeing balanced action with slight lean toward the underdog Nationals. The home moneyline has moved from -155 to -165 at DraftKings, and the spread has remained steady at -1.5 since opening.",
+                    "generated_at": "2026-08-16T09:47:29.312321+00:00",
+                    "odds_hash": "dc1ad68c130414f6",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1153,7 +1329,7 @@
                   "away_abbr": "STL",
                   "away_record": "62-61",
                   "away_pitcher": null,
-                  "matchup_score": 28.3,
+                  "matchup_score": 28.8,
                   "channel": "ABC",
                   "venue": "Wrigley Field",
                   "neutral_site": false,
@@ -1175,13 +1351,13 @@
                   "start_time_tbd": false,
                   "home_team": "Athletics",
                   "home_abbr": "ATH",
-                  "home_record": "48-74",
+                  "home_record": "48-75",
                   "home_pitcher": null,
                   "away_team": "Texas Rangers",
                   "away_abbr": "TEX",
-                  "away_record": "60-63",
+                  "away_record": "61-63",
                   "away_pitcher": null,
-                  "matchup_score": 81.1,
+                  "matchup_score": 78.8,
                   "channel": "MLB.TV/Rangers Sports Network/NBC Sports CA",
                   "venue": "Sutter Health Park",
                   "neutral_site": false,
@@ -1209,7 +1385,7 @@
                   "away_abbr": "COL",
                   "away_record": "49-74",
                   "away_pitcher": null,
-                  "matchup_score": 94.3,
+                  "matchup_score": 96.2,
                   "channel": "MLB.TV/NBC Sports BA/Rockies.TV",
                   "venue": "Oracle Park",
                   "neutral_site": false,
@@ -1231,11 +1407,11 @@
                   "start_time_tbd": false,
                   "home_team": "Los Angeles Angels",
                   "home_abbr": "LAA",
-                  "home_record": "48-75",
+                  "home_record": "49-75",
                   "home_pitcher": null,
                   "away_team": "Kansas City Royals",
                   "away_abbr": "KC",
-                  "away_record": "50-73",
+                  "away_record": "50-74",
                   "away_pitcher": null,
                   "matchup_score": 100.0,
                   "channel": "MLB.TV/Royals.TV/Angels.TV",
@@ -1278,7 +1454,7 @@
             },
             {
               "slot": "Prime Time",
-              "best_matchup_score": 60.4,
+              "best_matchup_score": 61.5,
               "pick_reason": "combined_wins",
               "games": [
                 {
@@ -1293,7 +1469,7 @@
                   "away_abbr": "SEA",
                   "away_record": "58-66",
                   "away_pitcher": null,
-                  "matchup_score": 60.4,
+                  "matchup_score": 61.5,
                   "channel": "NBC",
                   "venue": "Daikin Park",
                   "neutral_site": false,
@@ -1314,7 +1490,390 @@
           ]
         }
       ]
+    },
+    {
+      "week": 20260817,
+      "total_games": 11,
+      "days": [
+        {
+          "date": "2026-08-17",
+          "weekday": "Monday",
+          "game_count": 11,
+          "time_slots": [
+            {
+              "slot": "Noon",
+              "best_matchup_score": 55.6,
+              "pick_reason": "combined_wins",
+              "games": [
+                {
+                  "id": "401873710",
+                  "start_time": "2026-08-17T17:40Z",
+                  "start_time_tbd": false,
+                  "home_team": "Cincinnati Reds",
+                  "home_abbr": "CIN",
+                  "home_record": "59-63",
+                  "home_pitcher": null,
+                  "away_team": "St. Louis Cardinals",
+                  "away_abbr": "STL",
+                  "away_record": "62-61",
+                  "away_pitcher": null,
+                  "matchup_score": 55.6,
+                  "channel": "ESPN Unlmtd/MLB.TV/Reds.TV/Cardinals.TV",
+                  "venue": "Great American Ball Park",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_slot_pick": true
+                }
+              ]
+            },
+            {
+              "slot": "Prime Time",
+              "best_matchup_score": 0.0,
+              "pick_reason": "combined_wins",
+              "games": [
+                {
+                  "id": "401816562",
+                  "start_time": "2026-08-17T23:10Z",
+                  "start_time_tbd": false,
+                  "home_team": "Boston Red Sox",
+                  "home_abbr": "BOS",
+                  "home_record": "66-57",
+                  "home_pitcher": null,
+                  "away_team": "Arizona Diamondbacks",
+                  "away_abbr": "ARI",
+                  "away_record": "66-58",
+                  "away_pitcher": null,
+                  "matchup_score": 0.0,
+                  "channel": "MLB.TV/DBACKS.TV/NESN",
+                  "venue": "Fenway Park",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_slot_pick": true
+                },
+                {
+                  "id": "401816563",
+                  "start_time": "2026-08-17T22:05Z",
+                  "start_time_tbd": false,
+                  "home_team": "Tampa Bay Rays",
+                  "home_abbr": "TB",
+                  "home_record": "74-48",
+                  "home_pitcher": null,
+                  "away_team": "Baltimore Orioles",
+                  "away_abbr": "BAL",
+                  "away_record": "60-63",
+                  "away_pitcher": null,
+                  "matchup_score": 7.4,
+                  "channel": "MLB.TV/Rays.TV/MASN",
+                  "venue": "Tropicana Field",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {
+                        "away": {
+                          "line": 1.5,
+                          "american": -175
+                        },
+                        "home": {
+                          "line": -1.5,
+                          "american": 144
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -140
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 131
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {
+                        "away": {
+                          "line": 1.5,
+                          "american": -182
+                        },
+                        "home": {
+                          "line": -1.5,
+                          "american": 150
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -138
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 126
+                        }
+                      }
+                    }
+                  },
+                  "gemini_prediction": {
+                    "winner": "Tampa Bay Rays",
+                    "confidence": 56,
+                    "ats_pick": "Baltimore Orioles +1.5",
+                    "ats_confidence": 54,
+                    "analysis": "The Tampa Bay Rays host the Baltimore Orioles in this critical 2026 American League East matchup at Tropicana Field. Tampa Bay holds a slight edge in overall current-season metrics and home-field performance compared to Baltimore. However, the Orioles remain competitive enough to keep most divisional games tightly contested into the late innings. The home team's pitching staff matches up well against the Orioles' lineup, providing just enough edge to secure a narrow victory. Expect a low-scoring affair where Tampa Bay edges out Baltimore by a single run, making the underdog run line the safer wager.",
+                    "splits_and_direction": "Approximately 58 percent of the moneyline bets are currently backing the Tampa Bay Rays at home, while the spread action leans slightly toward the underdog Orioles getting the run and a half. The home moneyline has ticked up slightly from -135 to -140 at DraftKings, reflecting early sharp confidence in Tampa Bay.",
+                    "display_text": "Summary: The Tampa Bay Rays host the Baltimore Orioles in this critical 2026 American League East matchup at Tropicana Field. Tampa Bay holds a slight edge in overall current-season metrics and home-field performance compared to Baltimore. However, the Orioles remain competitive enough to keep most divisional games tightly contested into the late innings. The home team's pitching staff matches up well against the Orioles' lineup, providing just enough edge to secure a narrow victory. Expect a low-scoring affair where Tampa Bay edges out Baltimore by a single run, making the underdog run line the safer wager.\n\nSplits and Direction: Approximately 58 percent of the moneyline bets are currently backing the Tampa Bay Rays at home, while the spread action leans slightly toward the underdog Orioles getting the run and a half. The home moneyline has ticked up slightly from -135 to -140 at DraftKings, reflecting early sharp confidence in Tampa Bay.",
+                    "generated_at": "2026-08-16T09:47:39.284062+00:00",
+                    "odds_hash": "892f964dd1255feb",
+                    "model": "gemini-3.5-flash-lite"
+                  },
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401816569",
+                  "start_time": "2026-08-18T00:05Z",
+                  "start_time_tbd": false,
+                  "home_team": "Chicago Cubs",
+                  "home_abbr": "CHC",
+                  "home_record": "72-52",
+                  "home_pitcher": null,
+                  "away_team": "Chicago White Sox",
+                  "away_abbr": "CHW",
+                  "away_record": "64-58",
+                  "away_pitcher": null,
+                  "matchup_score": 7.4,
+                  "channel": "MLB.TV/Marquee Sports Net/CHSN/WCIU-TV",
+                  "venue": "Wrigley Field",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401816565",
+                  "start_time": "2026-08-17T22:40Z",
+                  "start_time_tbd": false,
+                  "home_team": "Philadelphia Phillies",
+                  "home_abbr": "PHI",
+                  "home_record": "66-58",
+                  "home_pitcher": null,
+                  "away_team": "Miami Marlins",
+                  "away_abbr": "MIA",
+                  "away_record": "63-61",
+                  "away_pitcher": null,
+                  "matchup_score": 22.2,
+                  "channel": "MLB.TV/Marlins.TV/NBC Sports Phil",
+                  "venue": "Citizens Bank Park",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401816581",
+                  "start_time": "2026-08-17T23:40Z",
+                  "start_time_tbd": false,
+                  "home_team": "Minnesota Twins",
+                  "home_abbr": "MIN",
+                  "home_record": "60-64",
+                  "home_pitcher": null,
+                  "away_team": "Atlanta Braves",
+                  "away_abbr": "ATL",
+                  "away_record": "73-50",
+                  "away_pitcher": null,
+                  "matchup_score": 22.2,
+                  "channel": "MLB.TV/Twins.TV/BravesVision",
+                  "venue": "Target Field",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401816570",
+                  "start_time": "2026-08-18T00:40Z",
+                  "start_time_tbd": false,
+                  "home_team": "Colorado Rockies",
+                  "home_abbr": "COL",
+                  "home_record": "49-74",
+                  "home_pitcher": null,
+                  "away_team": "Los Angeles Dodgers",
+                  "away_abbr": "LAD",
+                  "away_record": "74-50",
+                  "away_pitcher": null,
+                  "matchup_score": 37.0,
+                  "channel": "MLB.TV/SportsNet LA/Rockies.TV",
+                  "venue": "Coors Field",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401816566",
+                  "start_time": "2026-08-17T23:10Z",
+                  "start_time_tbd": false,
+                  "home_team": "New York Mets",
+                  "home_abbr": "NYM",
+                  "home_record": "55-69",
+                  "home_pitcher": null,
+                  "away_team": "San Diego Padres",
+                  "away_abbr": "SD",
+                  "away_record": "66-58",
+                  "away_pitcher": null,
+                  "matchup_score": 51.9,
+                  "channel": "MLB.TV/Padres.TV/SNY",
+                  "venue": "Citi Field",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401816567",
+                  "start_time": "2026-08-17T22:40Z",
+                  "start_time_tbd": false,
+                  "home_team": "Cincinnati Reds",
+                  "home_abbr": "CIN",
+                  "home_record": "59-63",
+                  "home_pitcher": null,
+                  "away_team": "St. Louis Cardinals",
+                  "away_abbr": "STL",
+                  "away_record": "62-61",
+                  "away_pitcher": null,
+                  "matchup_score": 55.6,
+                  "channel": "MLB.TV/Reds.TV/Cardinals.TV",
+                  "venue": "Great American Ball Park",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401816564",
+                  "start_time": "2026-08-17T23:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Pittsburgh Pirates",
+                  "home_abbr": "PIT",
+                  "home_record": "60-65",
+                  "home_pitcher": null,
+                  "away_team": "Detroit Tigers",
+                  "away_abbr": "DET",
+                  "away_record": "60-63",
+                  "away_pitcher": null,
+                  "matchup_score": 66.7,
+                  "channel": "ESPN",
+                  "venue": "PNC Park",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401816568",
+                  "start_time": "2026-08-17T23:40Z",
+                  "start_time_tbd": false,
+                  "home_team": "Kansas City Royals",
+                  "home_abbr": "KC",
+                  "home_record": "50-74",
+                  "home_pitcher": null,
+                  "away_team": "Athletics",
+                  "away_abbr": "ATH",
+                  "away_record": "48-75",
+                  "away_pitcher": null,
+                  "matchup_score": 100.0,
+                  "channel": "MLB.TV/Royals.TV/NBC Sports CA",
+                  "venue": "Kauffman Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_slot_pick": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
-  "current_week": 20260815
+  "current_week": 20260816
 }

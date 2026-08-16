@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T02:17:24.506165+00:00",
+  "generated_at": "2026-08-16T09:46:15.842355+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
@@ -806,11 +806,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 190
+                          "american": -3600
                         },
                         "away": {
                           "line": null,
-                          "american": -230
+                          "american": 1500
                         }
                       }
                     },
@@ -822,14 +822,14 @@
                   "is_nebraska": false,
                   "gemini_prediction": {
                     "winner": "Oregon",
-                    "confidence": 78,
+                    "confidence": 85,
                     "ats_pick": "Oregon -6",
-                    "ats_confidence": 70,
-                    "analysis": "Oregon enters this week one matchup boasting an explosive offensive scheme that thoroughly overwhelms opposing defenses through efficient passing and dynamic rushing attacks. Boise State struggles significantly with defensive containment on the perimeter, creating severe vulnerabilities against high-tempo offenses. Furthermore, Oregon's defensive front dominates the line of scrimmage, effectively neutralizing the opponent's primary running threats and forcing predictable passing situations. The home-field advantage at Autzen Stadium creates an extremely hostile environment that further hinders the away team's execution and communication. Consequently, Oregon builds a comfortable multi-score lead early and maintains control throughout the contest to secure a decisive victory.",
-                    "splits_and_direction": "Approximately 68 percent of public bets are currently backing Oregon to cover the six-point spread, driving heavy early action on the home favorite. Both the point spread and moneyline have remained stable since opening, with no significant steam pushing the numbers in either direction yet.",
-                    "display_text": "Summary: Oregon enters this week one matchup boasting an explosive offensive scheme that thoroughly overwhelms opposing defenses through efficient passing and dynamic rushing attacks. Boise State struggles significantly with defensive containment on the perimeter, creating severe vulnerabilities against high-tempo offenses. Furthermore, Oregon's defensive front dominates the line of scrimmage, effectively neutralizing the opponent's primary running threats and forcing predictable passing situations. The home-field advantage at Autzen Stadium creates an extremely hostile environment that further hinders the away team's execution and communication. Consequently, Oregon builds a comfortable multi-score lead early and maintains control throughout the contest to secure a decisive victory.\n\nSplits and Direction: Approximately 68 percent of public bets are currently backing Oregon to cover the six-point spread, driving heavy early action on the home favorite. Both the point spread and moneyline have remained stable since opening, with no significant steam pushing the numbers in either direction yet.",
-                    "generated_at": "2026-08-16T02:14:24.409722+00:00",
-                    "odds_hash": "9b309b511532a250",
+                    "ats_confidence": 75,
+                    "analysis": "Oregon enters this week one matchup with a vastly superior roster depth and elite home-field advantage at Autzen Stadium. Boise State struggles defensively to contain high-powered passing attacks, which plays directly into Oregon's offensive strengths. The Ducks' offensive line dominates the line of scrimmage, creating sustained drives and wearing down opposing front sevens. Furthermore, Oregon's exceptional special teams execution provides a critical advantage in field position throughout the contest. Consequently, the home team comfortably secures a double-digit victory to cover the six-point spread.",
+                    "splits_and_direction": "Approximately 72 percent of the public bets are backing Oregon to cover the six-point spread and win on the moneyline. Both the home spread and the moneyline have remained stable since opening due to heavy early action aligning with the favored Ducks.",
+                    "display_text": "Summary: Oregon enters this week one matchup with a vastly superior roster depth and elite home-field advantage at Autzen Stadium. Boise State struggles defensively to contain high-powered passing attacks, which plays directly into Oregon's offensive strengths. The Ducks' offensive line dominates the line of scrimmage, creating sustained drives and wearing down opposing front sevens. Furthermore, Oregon's exceptional special teams execution provides a critical advantage in field position throughout the contest. Consequently, the home team comfortably secures a double-digit victory to cover the six-point spread.\n\nSplits and Direction: Approximately 72 percent of the public bets are backing Oregon to cover the six-point spread and win on the moneyline. Both the home spread and the moneyline have remained stable since opening due to heavy early action aligning with the favored Ducks.",
+                    "generated_at": "2026-08-16T09:45:55.581732+00:00",
+                    "odds_hash": "fe551debf7b8e0f2",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -1884,8 +1884,8 @@
                     "draftkings": {
                       "spread": {
                         "home": {
-                          "line": -6.0,
-                          "american": -108
+                          "line": 18.5,
+                          "american": -110
                         },
                         "away": {
                           "line": 6.0,
@@ -1895,11 +1895,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -230
+                          "american": 700
                         },
                         "away": {
                           "line": null,
-                          "american": 190
+                          "american": -1100
                         }
                       }
                     },
@@ -1911,14 +1911,14 @@
                   "is_nebraska": false,
                   "gemini_prediction": {
                     "winner": "Oregon",
-                    "confidence": 65,
-                    "ats_pick": "Oregon +6",
-                    "ats_confidence": 70,
-                    "analysis": "Oregon enters this week two matchup with an explosive offensive unit that has shown superior efficiency in the early 2026 season. Oklahoma State possesses a strong home-field advantage in Stillwater, but their defensive secondary has looked vulnerable against elite passing attacks. The Ducks' offensive line has successfully protected the quarterback, allowing them to sustain long drives and control the tempo. Meanwhile, the Cowboys' offense has struggled to establish a consistent running game against quality front sevens. Given the generous six-point spread provided by DraftKings, the visiting Ducks are well-positioned to either win outright or keep the final margin extremely tight.",
-                    "splits_and_direction": "Based on public tendencies and the current odds, approximately 62% of early spread bets are backing Oklahoma State as the home favorite, while 55% of moneyline wagers lean toward the upset with Oregon. The spread has remained stable at -6 since opening, and the moneyline has seen minor adjustments with slight sharp action moving toward the away side.",
-                    "display_text": "Summary: Oregon enters this week two matchup with an explosive offensive unit that has shown superior efficiency in the early 2026 season. Oklahoma State possesses a strong home-field advantage in Stillwater, but their defensive secondary has looked vulnerable against elite passing attacks. The Ducks' offensive line has successfully protected the quarterback, allowing them to sustain long drives and control the tempo. Meanwhile, the Cowboys' offense has struggled to establish a consistent running game against quality front sevens. Given the generous six-point spread provided by DraftKings, the visiting Ducks are well-positioned to either win outright or keep the final margin extremely tight.\n\nSplits and Direction: Based on public tendencies and the current odds, approximately 62% of early spread bets are backing Oklahoma State as the home favorite, while 55% of moneyline wagers lean toward the upset with Oregon. The spread has remained stable at -6 since opening, and the moneyline has seen minor adjustments with slight sharp action moving toward the away side.",
-                    "generated_at": "2026-08-16T02:16:54.535994+00:00",
-                    "odds_hash": "046a7a866ab1f105",
+                    "confidence": 92,
+                    "ats_pick": "Oregon -18.5",
+                    "ats_confidence": 75,
+                    "analysis": "Oregon enters this week 2 matchup with an explosive offensive unit that has dominated the early 2026 season stats. Oklahoma State struggles defensively, yielding high yardage totals and failing to stop efficient passing attacks. The Ducks' roster features elite depth and exceptional health, contrasting sharply with the Cowboys' hobbled secondary. Oregon's relentless defensive front should stifle the home team's run game entirely and force crucial turnovers. Consequently, the visitors will control the tempo from the opening whistle and easily surpass the double-digit spread.",
+                    "splits_and_direction": "Estimated betting splits indicate roughly 78 percent of public wagers are backing Oregon on the moneyline and 65 percent are laying the points on the spread due to their dominant week 1 showing. The spread has moved up slightly from an opening of 17.5 to 18.5 in favor of the away team, while the moneyline has stabilized at -1100 after minor early action.",
+                    "display_text": "Summary: Oregon enters this week 2 matchup with an explosive offensive unit that has dominated the early 2026 season stats. Oklahoma State struggles defensively, yielding high yardage totals and failing to stop efficient passing attacks. The Ducks' roster features elite depth and exceptional health, contrasting sharply with the Cowboys' hobbled secondary. Oregon's relentless defensive front should stifle the home team's run game entirely and force crucial turnovers. Consequently, the visitors will control the tempo from the opening whistle and easily surpass the double-digit spread.\n\nSplits and Direction: Estimated betting splits indicate roughly 78 percent of public wagers are backing Oregon on the moneyline and 65 percent are laying the points on the spread due to their dominant week 1 showing. The spread has moved up slightly from an opening of 17.5 to 18.5 in favor of the away team, while the moneyline has stabilized at -1100 after minor early action.",
+                    "generated_at": "2026-08-16T09:46:05.965797+00:00",
+                    "odds_hash": "17f1f1e6ff6d6618",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1954,11 +1954,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -650
+                          "american": -575
                         },
                         "away": {
                           "line": null,
-                          "american": 470
+                          "american": 425
                         }
                       }
                     },
@@ -1971,13 +1971,13 @@
                   "gemini_prediction": {
                     "winner": "Texas A&M",
                     "confidence": 88,
-                    "ats_pick": "Arizona State +14.5",
-                    "ats_confidence": 62,
-                    "analysis": "Texas A&M enters this week 2 matchup with a lethal home-field advantage at Kyle Field and a high-powered offense that has dominated early 2026 opponents. Arizona State showcases a resilient rushing attack that will keep them within striking distance despite the hostile environment. The Aggies' defensive front has generated immense pressure this season, making it difficult for opposing quarterbacks to sustain long drives. However, a two-touchdown spread is generous for an Arizona State squad that consistently converts in high-leverage red-zone situations. Ultimately, Texas A&M secures a hard-fought victory outright, but the Sun Devils do enough to cover the large spread.",
-                    "splits_and_direction": "Approximately 78 percent of public bets are currently backing Texas A&M to cover the 14.5-point spread and win comfortably on the moneyline. Both the spread and moneyline have remained stable since opening due to heavy early action aligning with the oddsmakers' initial projections.",
-                    "display_text": "Summary: Texas A&M enters this week 2 matchup with a lethal home-field advantage at Kyle Field and a high-powered offense that has dominated early 2026 opponents. Arizona State showcases a resilient rushing attack that will keep them within striking distance despite the hostile environment. The Aggies' defensive front has generated immense pressure this season, making it difficult for opposing quarterbacks to sustain long drives. However, a two-touchdown spread is generous for an Arizona State squad that consistently converts in high-leverage red-zone situations. Ultimately, Texas A&M secures a hard-fought victory outright, but the Sun Devils do enough to cover the large spread.\n\nSplits and Direction: Approximately 78 percent of public bets are currently backing Texas A&M to cover the 14.5-point spread and win comfortably on the moneyline. Both the spread and moneyline have remained stable since opening due to heavy early action aligning with the oddsmakers' initial projections.",
-                    "generated_at": "2026-08-16T02:17:04.433950+00:00",
-                    "odds_hash": "7b50e90e278d9d67",
+                    "ats_pick": "Texas A&M -14.5",
+                    "ats_confidence": 75,
+                    "analysis": "Texas A&M enters week 2 of the 2026 season with an explosive offense that dominated its opening opponent through both the air and ground. Arizona State struggled significantly in week 1 defensively, showing major vulnerabilities in their secondary that elite SEC talent will easily exploit. Furthermore, the Aggies hold a massive home-field advantage at Kyle Field, which historically overwhelms visiting non-conference opponents. The Sun Devils lack the offensive firepower required to keep pace in a hostile environment against a stout Texas A&M front seven. Consequently, the Aggies will control the line of scrimmage on both sides of the ball to secure a comfortable multi-score victory.",
+                    "splits_and_direction": "Approximately 78 percent of the early bets are backing Texas A&M to cover the large home spread due to their dominant week 1 performance. Both the home spread and the moneyline have remained stable since opening, with no significant steam pushing the numbers in either direction.",
+                    "display_text": "Summary: Texas A&M enters week 2 of the 2026 season with an explosive offense that dominated its opening opponent through both the air and ground. Arizona State struggled significantly in week 1 defensively, showing major vulnerabilities in their secondary that elite SEC talent will easily exploit. Furthermore, the Aggies hold a massive home-field advantage at Kyle Field, which historically overwhelms visiting non-conference opponents. The Sun Devils lack the offensive firepower required to keep pace in a hostile environment against a stout Texas A&M front seven. Consequently, the Aggies will control the line of scrimmage on both sides of the ball to secure a comfortable multi-score victory.\n\nSplits and Direction: Approximately 78 percent of the early bets are backing Texas A&M to cover the large home spread due to their dominant week 1 performance. Both the home spread and the moneyline have remained stable since opening, with no significant steam pushing the numbers in either direction.",
+                    "generated_at": "2026-08-16T09:46:15.839976+00:00",
+                    "odds_hash": "6764a7a7cc714ee0",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
