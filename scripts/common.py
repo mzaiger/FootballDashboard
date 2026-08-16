@@ -267,6 +267,13 @@ def _fuzzy_team(normalized_target, candidate_raw):
     return difflib.SequenceMatcher(None, a, b).ratio() > 0.72
 
 
+# SharpAPI's spread-equivalent market is named differently per sport --
+# football's is "point_spread", baseball's is "run_line" (the MLB run line
+# is effectively always the fixed +/-1.5). Both map back to our internal
+# "spread" bucket.
+_SPREAD_MARKET_ALIASES = {"point_spread": "spread", "run_line": "spread", "spread": "spread"}
+
+
 def match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims):
     cache_key = (home_team, away_team)
     if cache_key in team_cache:
@@ -303,34 +310,65 @@ def match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
             row_claims[row_id] = cache_key
 
         book = row.get("sportsbook")
-        market = row.get("market_type")
-        
-        # Map SharpAPI's new "point_spread" name back to our internal "spread" name
-        if market == "point_spread":
-            market = "spread"
-            
+        market = _SPREAD_MARKET_ALIASES.get(row.get("market_type"), row.get("market_type"))
+
         if book not in result or market not in ("spread", "moneyline"):
             continue
-            
-        team_part, line_val = _parse_selection(row.get("selection", ""), market, row.get("line"))
-        
-        # Determine side dynamically
-        side = "home" if _fuzzy_team(home_norm, team_part) else (
-            "away" if _fuzzy_team(away_norm, team_part) else None
-        )
-        if side is None:
+
+        # A book typically posts many alternate lines alongside the main
+        # one (e.g. every run line from +/-0.5 up to +/-8.5 for MLB, or a
+        # handful of alternate point spreads for football) -- keep only
+        # the primary line SharpAPI itself flags, so the board doesn't end
+        # up randomly picking whichever alternate line happened to match
+        # first. Moneyline has no alternates, so this only applies to spread.
+        if market == "spread":
+            if row.get("is_alternate_line"):
+                continue
+            if row.get("is_main_line") is False:
+                continue
+
+        # Prefer SharpAPI's own selection_type field ("home"/"away", always
+        # relative to THIS row's own home_team/away_team) over parsing the
+        # `selection` text -- selection is sometimes an abbreviated form
+        # (e.g. "TEX Rangers", "Athletics" with no city) that doesn't always
+        # fuzzy-match reliably against the full team name, which was
+        # silently dropping some games' odds. Only fall back to the old
+        # text-parsing approach for rows that don't have selection_type at
+        # all, so nothing that used to match stops matching.
+        row_side = row.get("selection_type")
+        if row_side not in ("home", "away"):
+            team_part, line_val = _parse_selection(row.get("selection", ""), market, row.get("line"))
+            row_side = "home" if _fuzzy_team(home_norm, team_part) else (
+                "away" if _fuzzy_team(away_norm, team_part) else None
+            )
+            if row_side is None:
+                continue
+            # This fallback path found `row_side` by matching directly
+            # against OUR home/away already, so it's already in our terms
+            # -- skip the row-side -> our-side remap below for it.
+            r_home = row.get("home_team", "")
+            is_flipped = _fuzzy_team(away_norm, r_home)
+            final_line = line_val
+            if market == "spread" and line_val is not None and is_flipped:
+                final_line = -line_val
+            result[book][market][row_side] = {"line": final_line, "american": row.get("odds_american")}
             continue
-            
-        # Invert spread sign if the sportsbook's home team is flipped relative to ESPN
+
+        # row_side is relative to the ROW's own home_team/away_team, which
+        # may be flipped relative to ours (e.g. a neutral-site game where
+        # SharpAPI lists the two teams in the opposite home/away order ESPN
+        # does). Remap to OUR home/away -- the line value itself needs no
+        # sign change, since it already reflects whichever row-side it
+        # belongs to; we're only relabeling which of OUR teams that is.
         r_home = row.get("home_team", "")
         is_flipped = _fuzzy_team(away_norm, r_home)
-        
-        final_line = line_val
-        if market == "spread" and line_val is not None and is_flipped:
-            final_line = -line_val  # Flip spread direction to match ESPN's home team
+        our_side = row_side
+        if is_flipped:
+            our_side = "away" if row_side == "home" else "home"
 
-        result[book][market][side] = {
-            "line": final_line,
+        _, line_val = _parse_selection(row.get("selection", ""), market, row.get("line"))
+        result[book][market][our_side] = {
+            "line": line_val,
             "american": row.get("odds_american"),
         }
 

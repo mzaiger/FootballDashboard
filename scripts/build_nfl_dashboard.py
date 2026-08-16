@@ -63,7 +63,15 @@ ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nf
 REQUEST_TIMEOUT = 20
 
 # seasontype: 1=preseason, 2=regular season, 3=postseason
-SEASON_TYPE_DEFAULT = 1  # Updated to default to preseason
+# Used only as a last-resort fallback if ESPN's response is ever missing a
+# season type entirely (see get_espn_current_state() below) -- normal runs
+# don't use this constant at all anymore. A previous version of this file
+# pinned --season-type's default to this constant and used it for every
+# build regardless of the actual calendar, which is why the board got
+# stuck showing preseason weeks (P1/P2) long after the season had already
+# moved on to P3/regular season -- season type now comes from ESPN itself,
+# fresh, every run, unless --season-type is explicitly passed.
+SEASON_TYPE_FALLBACK = 1
 SEASON_YEAR_DEFAULT = 2026
 
 # Time Slot Best Matchup team priority: if either of these teams is playing
@@ -225,37 +233,75 @@ def pick_slot_team_priority(games_in_window):
 # "Current week" resolution
 # ---------------------------------------------------------------------------
 
-def get_espn_current_week(season_type):
-    """Ask ESPN what NFL week "today" falls under for the given season_type.
+def _extract_season_type(payload):
+    """Pull the numeric season type (1/2/3) out of an ESPN scoreboard
+    response. Tries the top-level `season.type` field first (usually a
+    plain int for NFL), then falls back to the more deeply-nested
+    `leagues[0].season.type` shape (sometimes an object like
+    {"id": "2", "type": 2, ...} instead of a bare int). Returns None if
+    neither is present so the caller can fall back to SEASON_TYPE_FALLBACK.
+    """
+    raw = payload.get("season", {}).get("type")
+    if isinstance(raw, bool):
+        return None
+    if isinstance(raw, int):
+        return raw
+    if isinstance(raw, dict):
+        val = raw.get("type", raw.get("id"))
+        try:
+            return int(val)
+        except (TypeError, ValueError):
+            pass
 
-    Passing an explicit `dates=YYYYMMDD` for today is the documented way to
-    get ESPN to resolve "current" correctly. The previous version of this
-    call passed only `seasontype` with no date at all, which relies on
-    ESPN's own default-to-today behavior -- that stopped working reliably
-    once "today" no longer lined up with a game in the requested season
-    type's window (e.g. mid-week between two preseason weeks), and got
-    observed staying stuck on an old week number run after run instead of
-    advancing. See resolve_current_week() below for a second safety net on
-    top of this.
+    leagues = payload.get("leagues") or [{}]
+    raw2 = (leagues[0].get("season") or {}).get("type")
+    if isinstance(raw2, int):
+        return raw2
+    if isinstance(raw2, dict):
+        val = raw2.get("type", raw2.get("id"))
+        try:
+            return int(val)
+        except (TypeError, ValueError):
+            pass
+    return None
+
+
+def get_espn_current_state():
+    """Ask ESPN what NFL week AND season type (preseason/regular/post)
+    "today" falls under, letting ESPN's own response decide the season
+    type instead of us assuming one.
+
+    Passing an explicit `dates=YYYYMMDD` for today (with NO seasontype
+    filter) is what makes ESPN resolve BOTH values off the real calendar
+    date, the same way the site itself does -- this is what a season-type
+    transition (e.g. the last preseason week ending and the regular season
+    starting) needs in order to actually be picked up automatically,
+    rather than being stuck on whatever --season-type was pinned to.
+    Returns (week_number, season_type).
     """
     today_str = datetime.now(timezone.utc).strftime("%Y%m%d")
     resp = requests.get(
         ESPN_SCOREBOARD_URL,
-        params={"seasontype": season_type, "dates": today_str},
+        params={"dates": today_str},
         timeout=REQUEST_TIMEOUT,
     )
     resp.raise_for_status()
-    week_field = resp.json().get("week", {})
-    week = week_field.get("number", 1)
-    log(f"ESPN reports current week as {week} for {today_str} (season_type {season_type}).")
-    return week
+    payload = resp.json()
+    week = payload.get("week", {}).get("number", 1)
+    season_type = _extract_season_type(payload)
+    if season_type is None:
+        log(f"  NOTE: ESPN's response didn't include a season type for {today_str} -- "
+            f"falling back to season_type={SEASON_TYPE_FALLBACK}.")
+        season_type = SEASON_TYPE_FALLBACK
+    log(f"ESPN reports current week {week}, season_type {season_type} for {today_str}.")
+    return week, season_type
 
 
 def highest_stored_week_info(existing_data):
     """(week_number, last_kickoff_utc) for the latest week already sitting
     in a previously-built dashboard file, or (None, None) if there isn't
     one yet. `last_kickoff_utc` is the latest start_time among that week's
-    games -- used by resolve_current_week() to tell whether that week is
+    games -- used by resolve_current() to tell whether that week is
     fully in the past."""
     best_week, best_kickoff = None, None
     for w in (existing_data or {}).get("weeks", []):
@@ -275,18 +321,36 @@ def highest_stored_week_info(existing_data):
     return best_week, best_kickoff
 
 
-def resolve_current_week(season_type, existing_data):
-    """Figure out which NFL week to treat as "current" for this build.
+def resolve_current(existing_data, forced_season_type=None):
+    """Figure out which NFL week (and season type) to treat as "current"
+    for this build.
 
-    Primary source is ESPN's own answer (get_espn_current_week). As a
-    safety net against that answer getting stuck: if every game in the
-    highest week we've already built has already kicked off (so that week
-    is clearly over by now) but ESPN's answer isn't past it, trust our own
-    stored data instead and advance one week past what we've already got --
-    this is exactly the "ran the workflow and it didn't add the next week"
-    symptom, and doesn't depend on guessing why ESPN's endpoint stalled.
+    Primary source is ESPN's own answer (get_espn_current_state), which now
+    resolves season_type dynamically too instead of trusting a hardcoded
+    default -- so a preseason -> regular-season transition (or reg ->
+    post) gets picked up automatically on the first run after it happens.
+    `forced_season_type`, when given (via --season-type), skips
+    auto-detection entirely and only resolves the week for that season
+    type -- useful for manually rebuilding an older season type on demand.
+
+    As a safety net against ESPN's answer getting stuck: if every game in
+    the highest week we've already built has already kicked off (so that
+    week is clearly over by now) but ESPN's answer isn't past it, trust
+    our own stored data instead and advance one week past what we've
+    already got -- this is exactly the "ran the workflow and it didn't add
+    the next week" symptom, and doesn't depend on guessing why ESPN's
+    endpoint stalled. Note this stored-week comparison only looks at week
+    NUMBER, not season type -- so right at a season-type transition (new
+    week 1 of the regular season vs. old week 3 of preseason) it's
+    possible for this fallback to misfire once; ESPN's own fresh answer
+    the following run corrects it.
     """
-    espn_week = get_espn_current_week(season_type)
+    if forced_season_type is not None:
+        espn_week = get_espn_current_week_for(forced_season_type)
+        season_type = forced_season_type
+    else:
+        espn_week, season_type = get_espn_current_state()
+
     highest_week, highest_last_kickoff = highest_stored_week_info(existing_data)
 
     now = datetime.now(timezone.utc)
@@ -295,9 +359,25 @@ def resolve_current_week(season_type, existing_data):
         fallback_week = highest_week + 1
         log(f"  NOTE: every game in stored week {highest_week} has already kicked off, but ESPN "
             f"still reports week {espn_week} as current -- using week {fallback_week} instead.")
-        return fallback_week
+        return fallback_week, season_type
 
-    return espn_week
+    return espn_week, season_type
+
+
+def get_espn_current_week_for(season_type):
+    """Same as get_espn_current_state(), but for an explicitly-forced
+    season type (--season-type was passed) rather than letting ESPN
+    auto-detect one. Only the week number is used from this path."""
+    today_str = datetime.now(timezone.utc).strftime("%Y%m%d")
+    resp = requests.get(
+        ESPN_SCOREBOARD_URL,
+        params={"seasontype": season_type, "dates": today_str},
+        timeout=REQUEST_TIMEOUT,
+    )
+    resp.raise_for_status()
+    week = resp.json().get("week", {}).get("number", 1)
+    log(f"ESPN reports current week as {week} for {today_str} (forced season_type {season_type}).")
+    return week
 
 
 # ---------------------------------------------------------------------------
@@ -470,8 +550,8 @@ def parse_args():
     p.add_argument("--year", type=int, default=SEASON_YEAR_DEFAULT, help="Season year")
     p.add_argument("--week", type=int, required=False, help="Starting NFL week number (default: ESPN's current week); this week and the following week are both built")
     p.add_argument("--num-weeks", type=int, default=2, help="How many consecutive weeks to build starting at --week (default: 2)")
-    p.add_argument("--season-type", type=int, default=SEASON_TYPE_DEFAULT,
-                    help="1=preseason, 2=regular season, 3=postseason")
+    p.add_argument("--season-type", type=int, default=None,
+                    help="1=preseason, 2=regular season, 3=postseason (default: auto-detected from ESPN each run)")
     p.add_argument("--out", default=None, help="Output path (default: data/nfl_dashboard.json)")
     return p.parse_args()
 
@@ -494,15 +574,21 @@ def main():
 
     existing_data = load_existing_dashboard(out_path)
 
+    season_type = args.season_type
     if week is None:
-        week = resolve_current_week(args.season_type, existing_data)
+        week, season_type = resolve_current(existing_data, forced_season_type=args.season_type)
+    elif season_type is None:
+        # An explicit --week with no --season-type: still need SOME season
+        # type to build with -- ask ESPN what's current rather than
+        # guessing, same as the no-args path does.
+        _, season_type = get_espn_current_state()
 
     previous_odds_by_id = load_previous_odds_by_game(out_path)
     if previous_odds_by_id:
         log(f"Loaded odds for {len(previous_odds_by_id)} game(s) from the previous build "
             f"to carry forward if today's fetch comes back blank for any of them.")
 
-    output = build(args.year, week, args.season_type, sharp_key, gemini_key,
+    output = build(args.year, week, season_type, sharp_key, gemini_key,
                     num_weeks=args.num_weeks, previous_odds_by_id=previous_odds_by_id)
     fresh_week_nums = [w["week"] for w in output["weeks"]]
 
@@ -525,8 +611,8 @@ def main():
     total_games = sum(w["total_games"] for w in output["weeks"])
     week_nums = [w["week"] for w in output["weeks"]]
     log(f"Wrote {total_games} games across {len(week_nums)} week(s) total ({week_nums}) to {out_path}; "
-        f"freshly built this run: {fresh_week_nums}")
-    if args.season_type == 1 and max(fresh_week_nums) > 3:
+        f"freshly built this run: {fresh_week_nums} (season_type={season_type})")
+    if season_type == 1 and max(fresh_week_nums) > 3:
         log("Note: preseason only runs ~3 weeks -- a week number past that rolls into regular season "
             "with a different --season-type, so the 2nd week here may come back empty.")
 

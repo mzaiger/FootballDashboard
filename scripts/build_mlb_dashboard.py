@@ -137,16 +137,26 @@ def _parse_espn_record(competitor):
 def _probable_pitchers(comp):
     """Return {team_id: "K. Bradish (7-11, 3.69)"} from a competition's
     `probables` list, or {} if no probable pitchers are posted yet (common
-    more than a day or two out)."""
+    more than a day or two out).
+
+    Each entry's team id sits as a SIBLING of `athlete` on the probable
+    object itself (`{"athlete": {...}, "team": {"id": "16"}, "record": ...}`),
+    NOT nested inside `athlete` -- pulling it from athlete.team.id (as an
+    earlier version of this function did) always came back empty, which is
+    why pitchers never showed up. Still checks athlete.team.id too, in case
+    ESPN ever nests it there for some games, since that costs nothing.
+    """
     pitchers = {}
     for p in comp.get("probables", []):
         athlete = p.get("athlete") or {}
-        team_id = (athlete.get("team") or {}).get("id")
-        name = athlete.get("shortName") or athlete.get("fullName")
-        if not team_id or not name:
+        name = athlete.get("shortName") or athlete.get("displayName") or athlete.get("fullName")
+        if not name:
+            continue
+        team_id = (p.get("team") or {}).get("id") or (athlete.get("team") or {}).get("id")
+        if not team_id:
             continue
         record = p.get("record")  # e.g. "(7-11, 3.69)"
-        pitchers[team_id] = f"{name} {record}" if record else name
+        pitchers[str(team_id)] = f"{name} {record}" if record else name
     return pitchers
 
 
@@ -197,7 +207,13 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None):
     log(f"  {len(events)} games")
 
     log("Fetching DraftKings/FanDuel MLB odds from SharpAPI...")
-    odds_rows = fetch_all_odds(sharp_key, league="mlb")
+    # SharpAPI's spread-equivalent market for baseball is called
+    # "run_line", not "spread"/"point_spread" (those are the football
+    # names) -- requesting "spread" here returned zero rows for MLB, which
+    # is why the board's spread/run-line column was always empty. See
+    # common.py's _SPREAD_MARKET_ALIASES, which maps "run_line" back to
+    # our internal "spread" bucket once the rows come back.
+    odds_rows = fetch_all_odds(sharp_key, league="mlb", markets=("run_line", "moneyline"))
     log(f"  {len(odds_rows)} odds rows returned")
     team_cache = {}
     row_claims = {}
@@ -242,8 +258,8 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None):
             team_records[away_team] = (away_wins, away_losses)
 
         pitchers = _probable_pitchers(comp)
-        home_pitcher = pitchers.get(home_id)
-        away_pitcher = pitchers.get(away_id)
+        home_pitcher = pitchers.get(str(home_id)) if home_id else None
+        away_pitcher = pitchers.get(str(away_id)) if away_id else None
 
         odds = match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
         if previous_odds_by_id:
