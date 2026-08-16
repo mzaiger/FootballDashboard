@@ -3,7 +3,7 @@ name: Update Betting Dashboards
 on:
   schedule:
     # 10:00 UTC daily (~5am Central). Adjust to taste.
-    - cron: "0 10 * * *"
+    - cron: "0 9 * * *"
   workflow_dispatch: {}  # lets you trigger a manual run from the Actions tab
 
 concurrency:
