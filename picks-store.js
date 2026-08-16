@@ -24,16 +24,26 @@
  * "Week N" as before. CFB never sets season_type, so it always falls
  * through to "Week N".
  */
+// ESPN numbers the preseason as week 1 = the Hall of Fame Game, then
+// week 2 = the first real preseason slate, week 3 = the second, etc. --
+// so the on-screen "P" label needs to be shifted down by one AND the
+// Hall of Fame week itself needs its own "HOF" label instead of being
+// called "P1" (that off-by-one was showing "P1"/"P2" for what were
+// actually the Hall of Fame Game and the real P1 week).
+function preseasonWeekLabel(weekNum) {
+  return weekNum <= 1 ? 'HOF' : `P${weekNum - 1}`;
+}
+
 function formatWeekLabel(weekNum, seasonType) {
-  return seasonType === 1 ? `P${weekNum}` : `Week ${weekNum}`;
+  return seasonType === 1 ? preseasonWeekLabel(weekNum) : `Week ${weekNum}`;
 }
 
 // Bare number/label with no "Week" word -- e.g. "P1" or "3" -- for building
 // a "Week ..."/"Weeks ..." title the same way the College page does
-// (`Week ${n}` / `Weeks ${a}–${b}`), just with the preseason "P" prefix
-// folded into the number instead of a plain integer.
+// (`Week ${n}` / `Weeks ${a}–${b}`), just with the preseason "P"/"HOF"
+// label folded into the number instead of a plain integer.
 function formatWeekNumberLabel(weekNum, seasonType) {
-  return seasonType === 1 ? `P${weekNum}` : `${weekNum}`;
+  return seasonType === 1 ? preseasonWeekLabel(weekNum) : `${weekNum}`;
 }
 
 /*
