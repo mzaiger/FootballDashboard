@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-15T16:39:57.229109+00:00",
+  "generated_at": "2026-08-16T02:17:26.057308+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -15,9 +15,8 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": null,
-              "pick_reason": "closest_spread",
-              "regional_picks_omaha_lincoln": [],
+              "best_matchup_score": 50.0,
+              "pick_reason": "blended_score",
               "games": [
                 {
                   "id": "401873271",
@@ -25,9 +24,11 @@
                   "start_time_tbd": false,
                   "home_team": "Arizona Cardinals",
                   "home_abbr": "ARI",
+                  "home_record": "0-1",
                   "away_team": "Carolina Panthers",
                   "away_abbr": "CAR",
-                  "matchup_score": 999,
+                  "away_record": "1-0",
+                  "matchup_score": 50.0,
                   "channel": "NBC",
                   "venue": "Tom Benson Hall of Fame Stadium",
                   "neutral_site": true,
@@ -60,7 +61,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 25.0,
+              "best_matchup_score": 32.6,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -73,7 +74,7 @@
                   "away_team": "Detroit Lions",
                   "away_abbr": "DET",
                   "away_record": "0-1",
-                  "matchup_score": 25.0,
+                  "matchup_score": 32.6,
                   "channel": "Bengals Preseason TV Network/Lions TV Network",
                   "venue": "Paycor Stadium",
                   "neutral_site": false,
@@ -90,18 +91,18 @@
                   "is_slot_pick": true
                 },
                 {
-                  "id": "401873275",
-                  "start_time": "2026-08-13T23:00Z",
+                  "id": "401873274",
+                  "start_time": "2026-08-14T00:00Z",
                   "start_time_tbd": false,
-                  "home_team": "Pittsburgh Steelers",
-                  "home_abbr": "PIT",
-                  "home_record": "1-0",
-                  "away_team": "Green Bay Packers",
-                  "away_abbr": "GB",
-                  "away_record": "0-1",
-                  "matchup_score": 29.7,
-                  "channel": "NFL Net",
-                  "venue": "Acrisure Stadium",
+                  "home_team": "Houston Texans",
+                  "home_abbr": "HOU",
+                  "home_record": "0-1",
+                  "away_team": "Los Angeles Chargers",
+                  "away_abbr": "LAC",
+                  "away_record": "1-0",
+                  "matchup_score": 38.0,
+                  "channel": "KTRK (ABC)/CBS2",
+                  "venue": "NRG Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
@@ -116,18 +117,18 @@
                   "is_slot_pick": false
                 },
                 {
-                  "id": "401873274",
-                  "start_time": "2026-08-14T00:00Z",
+                  "id": "401873275",
+                  "start_time": "2026-08-13T23:00Z",
                   "start_time_tbd": false,
-                  "home_team": "Houston Texans",
-                  "home_abbr": "HOU",
-                  "home_record": "0-1",
-                  "away_team": "Los Angeles Chargers",
-                  "away_abbr": "LAC",
-                  "away_record": "1-0",
-                  "matchup_score": 29.7,
-                  "channel": "KTRK (ABC)/CBS2",
-                  "venue": "NRG Stadium",
+                  "home_team": "Pittsburgh Steelers",
+                  "home_abbr": "PIT",
+                  "home_record": "1-0",
+                  "away_team": "Green Bay Packers",
+                  "away_abbr": "GB",
+                  "away_record": "0-1",
+                  "matchup_score": 40.2,
+                  "channel": "NFL Net",
+                  "venue": "Acrisure Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
@@ -151,7 +152,7 @@
                   "away_team": "Indianapolis Colts",
                   "away_abbr": "IND",
                   "away_record": "0-0-1",
-                  "matchup_score": 32.0,
+                  "matchup_score": 42.4,
                   "channel": "Patriots Preseason Network/FOX59",
                   "venue": "Gillette Stadium",
                   "neutral_site": false,
@@ -177,7 +178,7 @@
                   "away_team": "Arizona Cardinals",
                   "away_abbr": "ARI",
                   "away_record": "1-1",
-                  "matchup_score": 36.6,
+                  "matchup_score": 47.8,
                   "channel": "ESPN Unlmtd",
                   "venue": "Allegiant Stadium",
                   "neutral_site": false,
@@ -203,7 +204,7 @@
                   "away_team": "Tennessee Titans",
                   "away_abbr": "TEN",
                   "away_record": "1-0",
-                  "matchup_score": 37.8,
+                  "matchup_score": 52.2,
                   "channel": "NFL Net",
                   "venue": "Levi's Stadium",
                   "neutral_site": false,
@@ -230,7 +231,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 25.0,
+              "best_matchup_score": 31.5,
               "pick_reason": "team_priority",
               "games": [
                 {
@@ -243,7 +244,7 @@
                   "away_team": "Denver Broncos",
                   "away_abbr": "DEN",
                   "away_record": "1-0",
-                  "matchup_score": 25.0,
+                  "matchup_score": 31.5,
                   "channel": "ESPN Unlmtd/KUSA-TV (9NEWS)",
                   "venue": "Mercedes-Benz Stadium",
                   "neutral_site": false,
@@ -260,18 +261,18 @@
                   "is_slot_pick": true
                 },
                 {
-                  "id": "401873276",
+                  "id": "401873277",
                   "start_time": "2026-08-14T23:00Z",
                   "start_time_tbd": false,
-                  "home_team": "New York Jets",
-                  "home_abbr": "NYJ",
-                  "home_record": "0-1",
-                  "away_team": "Tampa Bay Buccaneers",
-                  "away_abbr": "TB",
-                  "away_record": "1-0",
-                  "matchup_score": 35.5,
-                  "channel": "NFL Net/WCBS",
-                  "venue": "MetLife Stadium",
+                  "home_team": "Washington Commanders",
+                  "home_abbr": "WSH",
+                  "home_record": "1-0",
+                  "away_team": "Miami Dolphins",
+                  "away_abbr": "MIA",
+                  "away_record": "0-1",
+                  "matchup_score": 47.8,
+                  "channel": "WUSA9/CBS Miami",
+                  "venue": "Northwest Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
@@ -286,18 +287,18 @@
                   "is_slot_pick": false
                 },
                 {
-                  "id": "401873277",
+                  "id": "401873276",
                   "start_time": "2026-08-14T23:00Z",
                   "start_time_tbd": false,
-                  "home_team": "Washington Commanders",
-                  "home_abbr": "WSH",
-                  "home_record": "1-0",
-                  "away_team": "Miami Dolphins",
-                  "away_abbr": "MIA",
-                  "away_record": "0-1",
-                  "matchup_score": 36.6,
-                  "channel": "WUSA9/CBS Miami",
-                  "venue": "Northwest Stadium",
+                  "home_team": "New York Jets",
+                  "home_abbr": "NYJ",
+                  "home_record": "0-1",
+                  "away_team": "Tampa Bay Buccaneers",
+                  "away_abbr": "TB",
+                  "away_record": "1-0",
+                  "matchup_score": 48.9,
+                  "channel": "NFL Net/WCBS",
+                  "venue": "MetLife Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
@@ -322,7 +323,7 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 33.1,
+              "best_matchup_score": 25.0,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -331,11 +332,11 @@
                   "start_time_tbd": false,
                   "home_team": "Buffalo Bills",
                   "home_abbr": "BUF",
-                  "home_record": "0-0",
+                  "home_record": "1-0",
                   "away_team": "Carolina Panthers",
                   "away_abbr": "CAR",
-                  "away_record": "1-0",
-                  "matchup_score": 33.1,
+                  "away_record": "1-1",
+                  "matchup_score": 25.0,
                   "channel": "WIVB/WSOC-TV Channel 9",
                   "venue": "Highmark Stadium",
                   "neutral_site": false,
@@ -357,11 +358,11 @@
                   "start_time_tbd": false,
                   "home_team": "Chicago Bears",
                   "home_abbr": "CHI",
-                  "home_record": "0-0",
+                  "home_record": "1-0",
                   "away_team": "Cleveland Browns",
                   "away_abbr": "CLE",
-                  "away_record": "0-0",
-                  "matchup_score": 59.9,
+                  "away_record": "0-1",
+                  "matchup_score": 30.4,
                   "channel": "NFL Net/FOX32",
                   "venue": "Soldier Field",
                   "neutral_site": false,
@@ -383,11 +384,11 @@
                   "start_time_tbd": false,
                   "home_team": "New York Giants",
                   "home_abbr": "NYG",
-                  "home_record": "0-0",
+                  "home_record": "0-1",
                   "away_team": "Minnesota Vikings",
                   "away_abbr": "MIN",
-                  "away_record": "0-0",
-                  "matchup_score": 75.0,
+                  "away_record": "1-0",
+                  "matchup_score": 45.7,
                   "channel": "ESPN Unlmtd",
                   "venue": "MetLife Stadium",
                   "neutral_site": false,
@@ -407,7 +408,7 @@
             },
             {
               "slot": "Afternoon",
-              "best_matchup_score": 69.2,
+              "best_matchup_score": 40.2,
               "pick_reason": "team_priority",
               "games": [
                 {
@@ -416,11 +417,11 @@
                   "start_time_tbd": false,
                   "home_team": "Kansas City Chiefs",
                   "home_abbr": "KC",
-                  "home_record": "0-0",
+                  "home_record": "0-1",
                   "away_team": "Los Angeles Rams",
                   "away_abbr": "LAR",
-                  "away_record": "0-0",
-                  "matchup_score": 69.2,
+                  "away_record": "1-0",
+                  "matchup_score": 40.2,
                   "channel": "NFL Net/KSHB/KCBS-TV",
                   "venue": "GEHA Field at Arrowhead Stadium",
                   "neutral_site": false,
@@ -442,11 +443,11 @@
                   "start_time_tbd": false,
                   "home_team": "New Orleans Saints",
                   "home_abbr": "NO",
-                  "home_record": "0-0",
+                  "home_record": "0-1",
                   "away_team": "Jacksonville Jaguars",
                   "away_abbr": "JAX",
-                  "away_record": "0-0",
-                  "matchup_score": 70.3,
+                  "away_record": "1-0",
+                  "matchup_score": 41.3,
                   "channel": "ESPN Unlmtd/FOX30/Fox 8",
                   "venue": "Caesars Superdome",
                   "neutral_site": false,
@@ -466,7 +467,7 @@
             },
             {
               "slot": "Prime Time",
-              "best_matchup_score": 66.9,
+              "best_matchup_score": 39.1,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -475,11 +476,11 @@
                   "start_time_tbd": false,
                   "home_team": "Baltimore Ravens",
                   "home_abbr": "BAL",
-                  "home_record": "0-0",
+                  "home_record": "1-0",
                   "away_team": "Philadelphia Eagles",
                   "away_abbr": "PHI",
-                  "away_record": "0-0",
-                  "matchup_score": 66.9,
+                  "away_record": "0-1",
+                  "matchup_score": 39.1,
                   "channel": "ESPN Unlmtd/NBC 10",
                   "venue": "M&T Bank Stadium",
                   "neutral_site": false,
@@ -505,7 +506,7 @@
                   "away_team": "Dallas Cowboys",
                   "away_abbr": "DAL",
                   "away_record": "0-0",
-                  "matchup_score": 72.7,
+                  "matchup_score": 75.0,
                   "channel": "NFL Net/KING 5",
                   "venue": "Lumen Field",
                   "neutral_site": false,
@@ -1034,5 +1035,5 @@
       ]
     }
   ],
-  "current_week": 2
+  "current_week": 1
 }
