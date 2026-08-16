@@ -145,11 +145,28 @@ def fetch_all_odds(sharp_key, league, sportsbooks=("draftkings", "fanduel"),
             params=params,
             timeout=REQUEST_TIMEOUT,
         )
-        if resp.status_code == 429:
-            wait = int(resp.headers.get("X-RateLimit-Reset", 5))
-            log(f"SharpAPI rate limited, sleeping {wait}s")
-            time.sleep(max(wait, 1))
-            continue
+if resp.status_code == 429:
+    wait = 5  # Default fallback
+    
+    # 1. Check for the standard Retry-After header (relative seconds)
+    retry_after = resp.headers.get("Retry-After")
+    if retry_after and retry_after.isdigit():
+        wait = int(retry_after)
+        
+    # 2. Fallback to X-RateLimit-Reset (often an absolute Unix timestamp)
+    else:
+        reset_header = resp.headers.get("X-RateLimit-Reset")
+        if reset_header and reset_header.isdigit():
+            reset_val = int(reset_header)
+            # If the value is huge, it's an absolute Unix timestamp
+            if reset_val > 86400:  
+                wait = max(reset_val - int(time.time()), 5)
+            else:
+                wait = reset_val # It's actually relative seconds
+                
+    log(f"SharpAPI rate limited, sleeping {wait}s")
+    time.sleep(max(wait, 1))
+    continue
         resp.raise_for_status()
         payload = resp.json()
         rows.extend(payload.get("data", []))
