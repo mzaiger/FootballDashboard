@@ -134,30 +134,31 @@ def _parse_espn_record(competitor):
     return None, None, None
 
 
-def _probable_pitchers(comp):
-    """Return {team_id: "K. Bradish (7-11, 3.69)"} from a competition's
-    `probables` list, or {} if no probable pitchers are posted yet (common
-    more than a day or two out).
+def _probable_pitcher(competitor):
+    """Return "K. Bradish (7-11, 3.69)" for a home/away competitor dict, or
+    None if no probable pitcher is posted yet (common more than a day or
+    two out).
 
-    Each entry's team id sits as a SIBLING of `athlete` on the probable
-    object itself (`{"athlete": {...}, "team": {"id": "16"}, "record": ...}`),
-    NOT nested inside `athlete` -- pulling it from athlete.team.id (as an
-    earlier version of this function did) always came back empty, which is
-    why pitchers never showed up. Still checks athlete.team.id too, in case
-    ESPN ever nests it there for some games, since that costs nothing.
+    `probables` lives directly on each COMPETITOR (home/away), not on the
+    competition object as a whole, and holds one entry for that
+    competitor's own starter: `{"name": "probableStartingPitcher",
+    "athlete": {...}, "record": "(7-1, 1.71)"}`. An earlier version of
+    this looked for `comp["probables"]` (competition-level) and tried to
+    match entries back to a team by id -- that key never existed at all in
+    the real payload (confirmed against an actual ESPN scoreboard dump),
+    which is why pitchers never showed up; since each competitor's own
+    probable is already scoped to that team, no id matching is needed.
     """
-    pitchers = {}
-    for p in comp.get("probables", []):
-        athlete = p.get("athlete") or {}
-        name = athlete.get("shortName") or athlete.get("displayName") or athlete.get("fullName")
-        if not name:
-            continue
-        team_id = (p.get("team") or {}).get("id") or (athlete.get("team") or {}).get("id")
-        if not team_id:
-            continue
-        record = p.get("record")  # e.g. "(7-11, 3.69)"
-        pitchers[str(team_id)] = f"{name} {record}" if record else name
-    return pitchers
+    probables = competitor.get("probables") or []
+    if not probables:
+        return None
+    p = probables[0]
+    athlete = p.get("athlete") or {}
+    name = athlete.get("shortName") or athlete.get("displayName") or athlete.get("fullName")
+    if not name:
+        return None
+    record = p.get("record")  # e.g. "(7-1, 1.71)"
+    return f"{name} {record}" if record else name
 
 
 # ---------------------------------------------------------------------------
@@ -213,7 +214,15 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None):
     # is why the board's spread/run-line column was always empty. See
     # common.py's _SPREAD_MARKET_ALIASES, which maps "run_line" back to
     # our internal "spread" bucket once the rows come back.
-    odds_rows = fetch_all_odds(sharp_key, league="mlb", markets=("run_line", "moneyline"))
+    # date_from/date_to scope the request to just this one day -- without
+    # them SharpAPI returns everything currently posted across every date
+    # (thousands of rows on a busy day, per-player prop markets included),
+    # relying entirely on this script's own pagination to walk through all
+    # of it; narrowing server-side means fewer pages and less exposure to
+    # any pagination edge case cutting a page short.
+    day_str = day.isoformat()
+    odds_rows = fetch_all_odds(sharp_key, league="mlb", markets=("run_line", "moneyline"),
+                                date_from=day_str, date_to=day_str)
     log(f"  {len(odds_rows)} odds rows returned")
     team_cache = {}
     row_claims = {}
@@ -257,9 +266,8 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None):
         if away_wins is not None:
             team_records[away_team] = (away_wins, away_losses)
 
-        pitchers = _probable_pitchers(comp)
-        home_pitcher = pitchers.get(str(home_id)) if home_id else None
-        away_pitcher = pitchers.get(str(away_id)) if away_id else None
+        home_pitcher = _probable_pitcher(home)
+        away_pitcher = _probable_pitcher(away)
 
         odds = match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
         if previous_odds_by_id:
