@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T12:53:14.994703+00:00",
+  "generated_at": "2026-08-16T13:11:02.917722+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -694,21 +694,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 161
+                          "american": 158
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -197
+                          "american": -193
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -119
+                          "american": -123
                         },
                         "away": {
                           "line": null,
-                          "american": 111
+                          "american": 114
                         }
                       }
                     },
@@ -737,14 +737,14 @@
                   },
                   "gemini_prediction": {
                     "winner": "Atlanta Braves",
-                    "confidence": 56,
+                    "confidence": 57,
                     "ats_pick": "Arizona Diamondbacks +1.5",
                     "ats_confidence": 54,
-                    "analysis": "The Atlanta Braves host the Arizona Diamondbacks in what shapes up as a tightly contested matchup in the National League. Atlanta holds a slight advantage when playing at home due to situational hitting metrics and stable bullpen performance. However, Arizona's potent lineup generates enough consistent power to keep the game within a single run throughout the afternoon. Starting pitching metrics for both squads suggest an average-to-above-average outing, keeping scoring somewhat suppressed. Consequently, while the Braves are positioned to secure a narrow victory outright, the Diamondbacks possess the offensive depth to easily cover the run line.",
-                    "splits_and_direction": "Approximately 58 percent of public bets are currently backing the Atlanta Braves on the moneyline, reflecting modest confidence in the home favorite. Meanwhile, both the moneyline and spread have remained relatively static since opening with only minor adjustments at DraftKings and FanDuel.",
-                    "display_text": "Summary: The Atlanta Braves host the Arizona Diamondbacks in what shapes up as a tightly contested matchup in the National League. Atlanta holds a slight advantage when playing at home due to situational hitting metrics and stable bullpen performance. However, Arizona's potent lineup generates enough consistent power to keep the game within a single run throughout the afternoon. Starting pitching metrics for both squads suggest an average-to-above-average outing, keeping scoring somewhat suppressed. Consequently, while the Braves are positioned to secure a narrow victory outright, the Diamondbacks possess the offensive depth to easily cover the run line.\n\nSplits and Direction: Approximately 58 percent of public bets are currently backing the Atlanta Braves on the moneyline, reflecting modest confidence in the home favorite. Meanwhile, both the moneyline and spread have remained relatively static since opening with only minor adjustments at DraftKings and FanDuel.",
-                    "generated_at": "2026-08-16T12:35:51.387372+00:00",
-                    "odds_hash": "8790b05dd1a68b38",
+                    "analysis": "The Atlanta Braves host the Arizona Diamondbacks in what projects to be a tightly contested matchup during the 2026 campaign. Atlanta holds a slight advantage at home due to consistent offensive production and stable late-inning pitching. Arizona remains a formidable opponent with strong situational hitting that keeps games close against top-tier competition. While the Braves have the overall edge to secure the outright win at home, their recent tendency to play in one-run games limits their blowout potential. Therefore, the Diamondbacks possess the metrics required to keep the final margin within a single run.",
+                    "splits_and_direction": "Approximately 58 percent of public bets are currently backing the Braves on the moneyline, reflecting typical home-favorite tendencies. The home spread has held steady at -1.5 while the moneyline has shifted marginally in favor of Atlanta since opening.",
+                    "display_text": "Summary: The Atlanta Braves host the Arizona Diamondbacks in what projects to be a tightly contested matchup during the 2026 campaign. Atlanta holds a slight advantage at home due to consistent offensive production and stable late-inning pitching. Arizona remains a formidable opponent with strong situational hitting that keeps games close against top-tier competition. While the Braves have the overall edge to secure the outright win at home, their recent tendency to play in one-run games limits their blowout potential. Therefore, the Diamondbacks possess the metrics required to keep the final margin within a single run.\n\nSplits and Direction: Approximately 58 percent of public bets are currently backing the Braves on the moneyline, reflecting typical home-favorite tendencies. The home spread has held steady at -1.5 while the moneyline has shifted marginally in favor of Atlanta since opening.",
+                    "generated_at": "2026-08-16T13:10:32.658564+00:00",
+                    "odds_hash": "ba3ca4035fcc6047",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -780,11 +780,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -140
+                          "american": -136
                         },
                         "away": {
                           "line": null,
-                          "american": 131
+                          "american": 127
                         }
                       }
                     },
@@ -792,11 +792,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 150
+                          "american": 146
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -182
+                          "american": -178
                         }
                       },
                       "moneyline": {
@@ -816,11 +816,11 @@
                     "confidence": 56,
                     "ats_pick": "Baltimore Orioles +1.5",
                     "ats_confidence": 58,
-                    "analysis": "The Tampa Bay Rays host the Baltimore Orioles on August 16, 2026, relying on their home-field advantage to secure a narrow victory. Tampa Bay's current-season metrics reflect stable pitching and timely hitting at Tropicana Field. Meanwhile, Baltimore maintains a competitive roster that consistently keeps games close well into the late innings. The Orioles' offensive depth ensures they will apply significant pressure throughout the contest, preventing a blowout. Ultimately, the Rays pull out a tight win, but the Orioles easily cover the one-and-a-half-run spread given the expected close margin.",
-                    "splits_and_direction": "Approximately 58 percent of public bets are backing the Tampa Bay Rays on the moneyline, while the run line action is evenly split with slight lean toward the Orioles plus the runs. The moneyline has ticked up slightly toward Tampa Bay from its opening number, whereas the home spread has remained stable at -1.5 across both major sportsbooks.",
-                    "display_text": "Summary: The Tampa Bay Rays host the Baltimore Orioles on August 16, 2026, relying on their home-field advantage to secure a narrow victory. Tampa Bay's current-season metrics reflect stable pitching and timely hitting at Tropicana Field. Meanwhile, Baltimore maintains a competitive roster that consistently keeps games close well into the late innings. The Orioles' offensive depth ensures they will apply significant pressure throughout the contest, preventing a blowout. Ultimately, the Rays pull out a tight win, but the Orioles easily cover the one-and-a-half-run spread given the expected close margin.\n\nSplits and Direction: Approximately 58 percent of public bets are backing the Tampa Bay Rays on the moneyline, while the run line action is evenly split with slight lean toward the Orioles plus the runs. The moneyline has ticked up slightly toward Tampa Bay from its opening number, whereas the home spread has remained stable at -1.5 across both major sportsbooks.",
-                    "generated_at": "2026-08-16T09:46:19.487389+00:00",
-                    "odds_hash": "d5c71f8f23b067b8",
+                    "analysis": "The Tampa Bay Rays host the Baltimore Orioles in an important American League East divisional matchup during the 2026 campaign. Tampa Bay holds a slight edge in overall consistency and home-field performance based on their current 2026 statistics. However, Baltimore remains a tough divisional opponent capable of keeping games close against any pitching staff. The Orioles' recent offensive output suggests they will avoid a blowout defeat even if they fall short of the outright victory. Therefore, while the Rays are well-positioned to secure the win, the Orioles offer strong value to cover the 1.5-run spread.",
+                    "splits_and_direction": "Based on public betting tendencies, roughly 58 percent of moneyline wagers are backing the visiting Orioles as underdogs while 65 percent of spread bets are taking Baltimore plus the runs. Both the moneyline and run line have remained relatively stable since opening, with only a minor one-cent adjustment toward the Rays.",
+                    "display_text": "Summary: The Tampa Bay Rays host the Baltimore Orioles in an important American League East divisional matchup during the 2026 campaign. Tampa Bay holds a slight edge in overall consistency and home-field performance based on their current 2026 statistics. However, Baltimore remains a tough divisional opponent capable of keeping games close against any pitching staff. The Orioles' recent offensive output suggests they will avoid a blowout defeat even if they fall short of the outright victory. Therefore, while the Rays are well-positioned to secure the win, the Orioles offer strong value to cover the 1.5-run spread.\n\nSplits and Direction: Based on public betting tendencies, roughly 58 percent of moneyline wagers are backing the visiting Orioles as underdogs while 65 percent of spread bets are taking Baltimore plus the runs. Both the moneyline and run line have remained relatively stable since opening, with only a minor one-cent adjustment toward the Rays.",
+                    "generated_at": "2026-08-16T13:10:22.983360+00:00",
+                    "odds_hash": "d77bc808b49828e2",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -998,17 +998,17 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -193
+                          "american": -194
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 158
+                          "american": 159
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -104
+                          "american": -106
                         },
                         "away": {
                           "line": null,
@@ -1026,11 +1026,11 @@
                     "confidence": 55,
                     "ats_pick": "Chicago White Sox +1.5",
                     "ats_confidence": 52,
-                    "analysis": "The Detroit Tigers hold a slight edge playing at home against the Chicago White Sox in this mid-August matchup. Chicago's current 2026 performance shows enough resilience to keep games competitive despite their struggles in the standings. Detroit's offense has been inconsistent lately, preventing them from blowing teams out by comfortable margins. Because the Tigers are narrow moneyline favorites at -104, the market expects a tightly contested affair between these division rivals. Consequently, the White Sox are positioned well to keep the final score within a single run even if they fall short outright.",
-                    "splits_and_direction": "With betting splits unavailable for this early market, it is estimated that roughly 58 percent of moneyline bets are backing the Detroit Tigers at home. Both the home moneyline and the +1.5 spread have remained relatively stable since opening without significant sharp movement.",
-                    "display_text": "Summary: The Detroit Tigers hold a slight edge playing at home against the Chicago White Sox in this mid-August matchup. Chicago's current 2026 performance shows enough resilience to keep games competitive despite their struggles in the standings. Detroit's offense has been inconsistent lately, preventing them from blowing teams out by comfortable margins. Because the Tigers are narrow moneyline favorites at -104, the market expects a tightly contested affair between these division rivals. Consequently, the White Sox are positioned well to keep the final score within a single run even if they fall short outright.\n\nSplits and Direction: With betting splits unavailable for this early market, it is estimated that roughly 58 percent of moneyline bets are backing the Detroit Tigers at home. Both the home moneyline and the +1.5 spread have remained relatively stable since opening without significant sharp movement.",
-                    "generated_at": "2026-08-16T12:53:04.586650+00:00",
-                    "odds_hash": "9488e728b9af8143",
+                    "analysis": "The Detroit Tigers hold a slight edge when playing at home against the Chicago White Sox based on current 2026 performance metrics. Chicago has struggled consistently throughout the season, but their pitching occasionally keeps games within a single run. Detroit's offensive numbers at home offer them a narrow advantage to secure the outright victory. However, the tight moneyline pricing indicates a very closely matched contest on paper. Because of this parity, the underdog White Sox are well-positioned to keep the final margin within the 1.5-run spread.",
+                    "splits_and_direction": "Based on standard public tendencies for close matchups involving a slight home favorite, the betting splits show roughly 54% of moneyline action on the Detroit Tigers and 56% of spread action on the Chicago White Sox plus 1.5. Both the moneyline and spread have remained relatively stable since opening with only minor fluctuations due to balanced early action.",
+                    "display_text": "Summary: The Detroit Tigers hold a slight edge when playing at home against the Chicago White Sox based on current 2026 performance metrics. Chicago has struggled consistently throughout the season, but their pitching occasionally keeps games within a single run. Detroit's offensive numbers at home offer them a narrow advantage to secure the outright victory. However, the tight moneyline pricing indicates a very closely matched contest on paper. Because of this parity, the underdog White Sox are well-positioned to keep the final margin within the 1.5-run spread.\n\nSplits and Direction: Based on standard public tendencies for close matchups involving a slight home favorite, the betting splits show roughly 54% of moneyline action on the Detroit Tigers and 56% of spread action on the Chicago White Sox plus 1.5. Both the moneyline and spread have remained relatively stable since opening with only minor fluctuations due to balanced early action.",
+                    "generated_at": "2026-08-16T13:10:42.869832+00:00",
+                    "odds_hash": "ee24730e2141588c",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1259,25 +1259,25 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -168
+                          "american": -166
                         },
                         "away": {
                           "line": null,
-                          "american": 156
+                          "american": 152
                         }
                       }
                     }
                   },
                   "gemini_prediction": {
                     "winner": "New York Mets",
-                    "confidence": 63,
+                    "confidence": 64,
                     "ats_pick": "Washington Nationals +1.5",
-                    "ats_confidence": 56,
-                    "analysis": "The New York Mets host the Washington Nationals in a crucial mid-August matchup driven by contrasting 2026 campaign trajectories. New York holds a distinct edge in overall roster depth and home-field performance throughout the current season. Washington continues to struggle with consistency on the road, frequently dropping close contests rather than getting blown out. Given the competitiveness of divisional matchups in the National League, the visitors consistently hang around within striking distance. Therefore, while the Mets should secure the outright victory, the Nationals possess enough resilience to keep the final margin within a single run.",
-                    "splits_and_direction": "Approximately 68 percent of public bets are backing the New York moneyline due to their stronger overall profile, while the spread split is relatively even at 52 percent on Washington plus the runs. Both the moneyline and spread have remained largely stable since opening, with only minor adjustments reflecting standard late-week sharp action.",
-                    "display_text": "Summary: The New York Mets host the Washington Nationals in a crucial mid-August matchup driven by contrasting 2026 campaign trajectories. New York holds a distinct edge in overall roster depth and home-field performance throughout the current season. Washington continues to struggle with consistency on the road, frequently dropping close contests rather than getting blown out. Given the competitiveness of divisional matchups in the National League, the visitors consistently hang around within striking distance. Therefore, while the Mets should secure the outright victory, the Nationals possess enough resilience to keep the final margin within a single run.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the New York moneyline due to their stronger overall profile, while the spread split is relatively even at 52 percent on Washington plus the runs. Both the moneyline and spread have remained largely stable since opening, with only minor adjustments reflecting standard late-week sharp action.",
-                    "generated_at": "2026-08-16T10:28:14.089147+00:00",
-                    "odds_hash": "542e39a2e5281cb5",
+                    "ats_confidence": 58,
+                    "analysis": "The New York Mets host the Washington Nationals in this August 2026 divisional matchup backed by a superior home record and more consistent offensive production. Washington has struggled to maintain momentum on the road this season due to a thin bullpen and inconsistent starting pitching. New York's primary bats have performed well against left-handed pitching, giving them a distinct matchup advantage in this contest. While the Mets are expected to secure the outright victory, their recent bullpen struggles suggest many games remain close in the late innings. Consequently, the Nationals possess enough value to keep the margin within a single run and cover the run line.",
+                    "splits_and_direction": "Approximately 68% of the public moneyline handle is backing the New York Mets, while 55% of spread bets lean toward the Washington Nationals. The home moneyline has slightly shortened from -155 to -165, and the run line has held steady at -1.5 since opening.",
+                    "display_text": "Summary: The New York Mets host the Washington Nationals in this August 2026 divisional matchup backed by a superior home record and more consistent offensive production. Washington has struggled to maintain momentum on the road this season due to a thin bullpen and inconsistent starting pitching. New York's primary bats have performed well against left-handed pitching, giving them a distinct matchup advantage in this contest. While the Mets are expected to secure the outright victory, their recent bullpen struggles suggest many games remain close in the late innings. Consequently, the Nationals possess enough value to keep the margin within a single run and cover the run line.\n\nSplits and Direction: Approximately 68% of the public moneyline handle is backing the New York Mets, while 55% of spread bets lean toward the Washington Nationals. The home moneyline has slightly shortened from -155 to -165, and the run line has held steady at -1.5 since opening.",
+                    "generated_at": "2026-08-16T13:10:52.756420+00:00",
+                    "odds_hash": "a862c9a813ce574c",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1599,11 +1599,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -140
+                          "american": -136
                         },
                         "away": {
                           "line": null,
-                          "american": 131
+                          "american": 127
                         }
                       }
                     },
@@ -1611,11 +1611,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 150
+                          "american": 146
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -182
+                          "american": -178
                         }
                       },
                       "moneyline": {
@@ -1631,15 +1631,15 @@
                     }
                   },
                   "gemini_prediction": {
-                    "winner": "Tampa Bay Rays",
-                    "confidence": 56,
+                    "winner": "Baltimore Orioles",
+                    "confidence": 53,
                     "ats_pick": "Baltimore Orioles +1.5",
-                    "ats_confidence": 54,
-                    "analysis": "The Tampa Bay Rays host the Baltimore Orioles in this critical 2026 American League East matchup at Tropicana Field. Tampa Bay holds a slight edge in overall current-season metrics and home-field performance compared to Baltimore. However, the Orioles remain competitive enough to keep most divisional games tightly contested into the late innings. The home team's pitching staff matches up well against the Orioles' lineup, providing just enough edge to secure a narrow victory. Expect a low-scoring affair where Tampa Bay edges out Baltimore by a single run, making the underdog run line the safer wager.",
-                    "splits_and_direction": "Approximately 58 percent of the moneyline bets are currently backing the Tampa Bay Rays at home, while the spread action leans slightly toward the underdog Orioles getting the run and a half. The home moneyline has ticked up slightly from -135 to -140 at DraftKings, reflecting early sharp confidence in Tampa Bay.",
-                    "display_text": "Summary: The Tampa Bay Rays host the Baltimore Orioles in this critical 2026 American League East matchup at Tropicana Field. Tampa Bay holds a slight edge in overall current-season metrics and home-field performance compared to Baltimore. However, the Orioles remain competitive enough to keep most divisional games tightly contested into the late innings. The home team's pitching staff matches up well against the Orioles' lineup, providing just enough edge to secure a narrow victory. Expect a low-scoring affair where Tampa Bay edges out Baltimore by a single run, making the underdog run line the safer wager.\n\nSplits and Direction: Approximately 58 percent of the moneyline bets are currently backing the Tampa Bay Rays at home, while the spread action leans slightly toward the underdog Orioles getting the run and a half. The home moneyline has ticked up slightly from -135 to -140 at DraftKings, reflecting early sharp confidence in Tampa Bay.",
-                    "generated_at": "2026-08-16T09:47:39.284062+00:00",
-                    "odds_hash": "892f964dd1255feb",
+                    "ats_confidence": 62,
+                    "analysis": "The Baltimore Orioles enter this August matchup with a potent offensive lineup that has consistently outperformed expectations throughout the 2026 campaign. Tampa Bay relies heavily on its pitching depth, but recent injuries in their bullpen have exposed late-inning vulnerabilities. Baltimore's starting pitcher has shown an ability to suppress hard contact against top-tier American League opponents. The Rays hold a slight home-field advantage at Tropicana Field, yet their inconsistent run production makes them prone to close contests. Ultimately, the Orioles possess enough offensive firepower to either win outright or keep the margin within a single run.",
+                    "splits_and_direction": "Based on public tendencies, approximately 58 percent of moneyline bets are backing the Tampa Bay Rays as home favorites, while 62 percent of spread bets are taking the Baltimore Orioles plus the runs. The moneyline has ticked up slightly toward Tampa Bay from an opener of -130 to -136, whereas the run line has remained steady at -1.5 for the home side.",
+                    "display_text": "Summary: The Baltimore Orioles enter this August matchup with a potent offensive lineup that has consistently outperformed expectations throughout the 2026 campaign. Tampa Bay relies heavily on its pitching depth, but recent injuries in their bullpen have exposed late-inning vulnerabilities. Baltimore's starting pitcher has shown an ability to suppress hard contact against top-tier American League opponents. The Rays hold a slight home-field advantage at Tropicana Field, yet their inconsistent run production makes them prone to close contests. Ultimately, the Orioles possess enough offensive firepower to either win outright or keep the margin within a single run.\n\nSplits and Direction: Based on public tendencies, approximately 58 percent of moneyline bets are backing the Tampa Bay Rays as home favorites, while 62 percent of spread bets are taking the Baltimore Orioles plus the runs. The moneyline has ticked up slightly toward Tampa Bay from an opener of -130 to -136, whereas the run line has remained steady at -1.5 for the home side.",
+                    "generated_at": "2026-08-16T13:11:02.914222+00:00",
+                    "odds_hash": "3575099d0f28010b",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
