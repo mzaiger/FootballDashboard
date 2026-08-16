@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T09:46:15.842355+00:00",
+  "generated_at": "2026-08-16T22:48:46.397338+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
@@ -71,6 +71,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 18,
                   "gemini_prediction": {
                     "winner": "TCU",
                     "confidence": 78,
@@ -128,6 +129,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 11,
                   "gemini_prediction": {
                     "winner": "USC",
                     "confidence": 99,
@@ -187,6 +189,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 19,
                   "gemini_prediction": {
                     "winner": "Virginia",
                     "confidence": 65,
@@ -253,6 +256,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 20,
                   "gemini_prediction": {
                     "winner": "UNLV",
                     "confidence": 68,
@@ -326,6 +330,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 21,
                   "gemini_prediction": {
                     "winner": "Georgia Tech",
                     "confidence": 70,
@@ -399,6 +404,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 6,
                   "gemini_prediction": {
                     "winner": "Miami",
                     "confidence": 98,
@@ -458,6 +464,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 12,
                   "gemini_prediction": {
                     "winner": "USC",
                     "confidence": 95,
@@ -517,6 +524,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 22,
                   "gemini_prediction": {
                     "winner": "Michigan State",
                     "confidence": 78,
@@ -565,12 +573,12 @@
                     "draftkings": {
                       "spread": {
                         "home": {
-                          "line": -40.5,
-                          "american": -115
+                          "line": -41.5,
+                          "american": -110
                         },
                         "away": {
-                          "line": 40.5,
-                          "american": -105
+                          "line": 41.5,
+                          "american": -110
                         }
                       },
                       "moneyline": {}
@@ -581,16 +589,17 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 5,
                   "gemini_prediction": {
                     "winner": "Indiana",
                     "confidence": 99,
-                    "ats_pick": "North Texas +40.5",
-                    "ats_confidence": 65,
-                    "analysis": "Indiana enters this week one matchup with overwhelming offensive efficiency that has completely dismantled every defense faced so far in 2026. North Texas struggles significantly on the defensive side of the ball, routinely allowing opponents to exploit gaps in the secondary. However, a massive spread of 40.5 points requires an unprecedented level of dominance that few teams can sustain for four full quarters. Garbage time scoring and conservative play-calling by the favored team in the second half will likely allow the visiting squad to backdoor cover. Ultimately, Indiana secures a comfortable blowout victory to start the season, but North Texas manages to stay within the historically large margin.",
-                    "splits_and_direction": "Based on early public tendencies for such a massive line, an estimated 78 percent of moneyline bets are backing heavily favored Indiana while 85 percent of spread bets are taking the huge underdog North Texas. Both the spread and moneyline have remained stable since opening due to balanced sharp action counteracting heavy public backing on the points.",
-                    "display_text": "Summary: Indiana enters this week one matchup with overwhelming offensive efficiency that has completely dismantled every defense faced so far in 2026. North Texas struggles significantly on the defensive side of the ball, routinely allowing opponents to exploit gaps in the secondary. However, a massive spread of 40.5 points requires an unprecedented level of dominance that few teams can sustain for four full quarters. Garbage time scoring and conservative play-calling by the favored team in the second half will likely allow the visiting squad to backdoor cover. Ultimately, Indiana secures a comfortable blowout victory to start the season, but North Texas manages to stay within the historically large margin.\n\nSplits and Direction: Based on early public tendencies for such a massive line, an estimated 78 percent of moneyline bets are backing heavily favored Indiana while 85 percent of spread bets are taking the huge underdog North Texas. Both the spread and moneyline have remained stable since opening due to balanced sharp action counteracting heavy public backing on the points.",
-                    "generated_at": "2026-08-16T02:13:34.552511+00:00",
-                    "odds_hash": "04cf82efea19b270",
+                    "ats_pick": "North Texas +41.5",
+                    "ats_confidence": 75,
+                    "analysis": "Indiana enters this week one matchup boasting an elite returning offensive core that dominated throughout the early stages of the 2026 season. North Texas struggles significantly on defense, giving up massive yardage to superior opponents in their opening games. However, a spread of forty-one and a half points is historically massive and difficult to cover even for the most dominant teams. Indiana will likely secure a comfortable victory to start their campaign without necessarily running up a forty-two point margin. Therefore, North Texas possesses enough backdoor scoring potential to manage the massive cushion provided by oddsmakers.",
+                    "splits_and_direction": "Based on public tendencies, approximately eighty-five percent of bets are backing Indiana on both the moneyline and the heavy spread due to their dominant reputation. The spread has remained steady at forty-one and a half points since opening, while the moneyline odds remain too steep for heavy professional action.",
+                    "display_text": "Summary: Indiana enters this week one matchup boasting an elite returning offensive core that dominated throughout the early stages of the 2026 season. North Texas struggles significantly on defense, giving up massive yardage to superior opponents in their opening games. However, a spread of forty-one and a half points is historically massive and difficult to cover even for the most dominant teams. Indiana will likely secure a comfortable victory to start their campaign without necessarily running up a forty-two point margin. Therefore, North Texas possesses enough backdoor scoring potential to manage the massive cushion provided by oddsmakers.\n\nSplits and Direction: Based on public tendencies, approximately eighty-five percent of bets are backing Indiana on both the moneyline and the heavy spread due to their dominant reputation. The spread has remained steady at forty-one and a half points since opening, while the moneyline odds remain too steep for heavy professional action.",
+                    "generated_at": "2026-08-16T22:48:14.795615+00:00",
+                    "odds_hash": "709d940340dbe18f",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -636,6 +645,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 9,
                   "gemini_prediction": {
                     "winner": "Alabama",
                     "confidence": 99,
@@ -695,6 +705,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 17,
                   "gemini_prediction": {
                     "winner": "Houston",
                     "confidence": 88,
@@ -754,6 +765,7 @@
                     }
                   },
                   "is_nebraska": true,
+                  "matchup_rank": 23,
                   "gemini_prediction": {
                     "winner": "Nebraska",
                     "confidence": 92,
@@ -795,8 +807,8 @@
                     "draftkings": {
                       "spread": {
                         "home": {
-                          "line": -6.0,
-                          "american": -112
+                          "line": -24.5,
+                          "american": -105
                         },
                         "away": {
                           "line": 6.0,
@@ -820,16 +832,17 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 2,
                   "gemini_prediction": {
                     "winner": "Oregon",
-                    "confidence": 85,
-                    "ats_pick": "Oregon -6",
-                    "ats_confidence": 75,
-                    "analysis": "Oregon enters this week one matchup with a vastly superior roster depth and elite home-field advantage at Autzen Stadium. Boise State struggles defensively to contain high-powered passing attacks, which plays directly into Oregon's offensive strengths. The Ducks' offensive line dominates the line of scrimmage, creating sustained drives and wearing down opposing front sevens. Furthermore, Oregon's exceptional special teams execution provides a critical advantage in field position throughout the contest. Consequently, the home team comfortably secures a double-digit victory to cover the six-point spread.",
-                    "splits_and_direction": "Approximately 72 percent of the public bets are backing Oregon to cover the six-point spread and win on the moneyline. Both the home spread and the moneyline have remained stable since opening due to heavy early action aligning with the favored Ducks.",
-                    "display_text": "Summary: Oregon enters this week one matchup with a vastly superior roster depth and elite home-field advantage at Autzen Stadium. Boise State struggles defensively to contain high-powered passing attacks, which plays directly into Oregon's offensive strengths. The Ducks' offensive line dominates the line of scrimmage, creating sustained drives and wearing down opposing front sevens. Furthermore, Oregon's exceptional special teams execution provides a critical advantage in field position throughout the contest. Consequently, the home team comfortably secures a double-digit victory to cover the six-point spread.\n\nSplits and Direction: Approximately 72 percent of the public bets are backing Oregon to cover the six-point spread and win on the moneyline. Both the home spread and the moneyline have remained stable since opening due to heavy early action aligning with the favored Ducks.",
-                    "generated_at": "2026-08-16T09:45:55.581732+00:00",
-                    "odds_hash": "fe551debf7b8e0f2",
+                    "confidence": 95,
+                    "ats_pick": "Boise State +24.5",
+                    "ats_confidence": 55,
+                    "analysis": "Oregon enters this week one matchup with an exceptionally deep roster and dominant home-field advantage. Boise State brings a potent rushing attack that will test the Ducks early in the contest. However, the sheer talent disparity in the trenches heavily favors the home side as the game progresses. Oregon's explosive passing game ultimately stretches the Broncos' defense beyond its breaking point. While the Ducks secure a comfortable victory, a twenty-four and a half point spread is an enormous margin to cover in an early-season game.",
+                    "splits_and_direction": "Based on public tendencies, approximately seventy-five percent of bets are backing Oregon to cover the massive spread. Both the point spread and moneyline have remained relatively stable since opening at these current numbers.",
+                    "display_text": "Summary: Oregon enters this week one matchup with an exceptionally deep roster and dominant home-field advantage. Boise State brings a potent rushing attack that will test the Ducks early in the contest. However, the sheer talent disparity in the trenches heavily favors the home side as the game progresses. Oregon's explosive passing game ultimately stretches the Broncos' defense beyond its breaking point. While the Ducks secure a comfortable victory, a twenty-four and a half point spread is an enormous margin to cover in an early-season game.\n\nSplits and Direction: Based on public tendencies, approximately seventy-five percent of bets are backing Oregon to cover the massive spread. Both the point spread and moneyline have remained relatively stable since opening at these current numbers.",
+                    "generated_at": "2026-08-16T22:48:24.672284+00:00",
+                    "odds_hash": "714bf341c33a8d50",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -875,6 +888,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 3,
                   "gemini_prediction": {
                     "winner": "Texas",
                     "confidence": 95,
@@ -910,11 +924,11 @@
                       "spread": {
                         "home": {
                           "line": -24.5,
-                          "american": -115
+                          "american": -108
                         },
                         "away": {
                           "line": 24.5,
-                          "american": -105
+                          "american": -112
                         }
                       },
                       "moneyline": {
@@ -934,6 +948,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 14,
                   "gemini_prediction": {
                     "winner": "Penn State",
                     "confidence": 98,
@@ -993,6 +1008,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 24,
                   "gemini_prediction": {
                     "winner": "Cincinnati",
                     "confidence": 78,
@@ -1052,6 +1068,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 25,
                   "gemini_prediction": {
                     "winner": "Auburn",
                     "confidence": 76,
@@ -1118,6 +1135,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 1,
                   "gemini_prediction": {
                     "winner": "LSU",
                     "confidence": 82,
@@ -1168,6 +1186,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 7,
                   "gemini_prediction": {
                     "winner": "Texas A&M",
                     "confidence": 99,
@@ -1218,6 +1237,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 10,
                   "gemini_prediction": {
                     "winner": "Texas Tech",
                     "confidence": 99,
@@ -1273,6 +1293,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 13,
                   "gemini_prediction": {
                     "winner": "Michigan",
                     "confidence": 95,
@@ -1339,6 +1360,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 26,
                   "gemini_prediction": {
                     "winner": "New Mexico",
                     "confidence": 78,
@@ -1384,11 +1406,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -108
+                          "american": -112
                         },
                         "away": {
                           "line": null,
-                          "american": -112
+                          "american": -108
                         }
                       }
                     },
@@ -1398,16 +1420,17 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 27,
                   "gemini_prediction": {
-                    "winner": "UCLA",
+                    "winner": "California",
                     "confidence": 55,
                     "ats_pick": "California +1.5",
-                    "ats_confidence": 53,
-                    "analysis": "This early 2026 matchup features two evenly matched squads looking to establish early-season momentum. UCLA holds a slight edge in offensive efficiency based on current roster production and early execution. However, playing on the road in Berkeley presents a hostile environment that tends to narrow margins. California's defense has shown resilience in practice and scrimmages, keeping games tightly contested. Ultimately, the Bruins should eke out a narrow victory, but the home underdogs possess enough value to keep it within a single point.",
-                    "splits_and_direction": "Given the lack of official public betting data, it is estimated that roughly 55 percent of bets are backing UCLA on the moneyline while the spread action remains split evenly near fifty-fifty. Both the spread and moneyline have remained virtually stationary since opening due to balanced early action.",
-                    "display_text": "Summary: This early 2026 matchup features two evenly matched squads looking to establish early-season momentum. UCLA holds a slight edge in offensive efficiency based on current roster production and early execution. However, playing on the road in Berkeley presents a hostile environment that tends to narrow margins. California's defense has shown resilience in practice and scrimmages, keeping games tightly contested. Ultimately, the Bruins should eke out a narrow victory, but the home underdogs possess enough value to keep it within a single point.\n\nSplits and Direction: Given the lack of official public betting data, it is estimated that roughly 55 percent of bets are backing UCLA on the moneyline while the spread action remains split evenly near fifty-fifty. Both the spread and moneyline have remained virtually stationary since opening due to balanced early action.",
-                    "generated_at": "2026-08-16T02:15:44.375189+00:00",
-                    "odds_hash": "ac0e6163841c0bca",
+                    "ats_confidence": 55,
+                    "analysis": "This early 2026 matchup features two evenly matched squads looking to establish momentum in week 1. California holds a slight advantage playing at home in Berkeley with continuity on the offensive line. UCLA struggles to generate consistent pressure up front based on early defensive metrics. The Golden Bears exploit these defensive gaps late in the fourth quarter to secure a narrow victory. Ultimately, playing on their home turf gives California the crucial edge needed to pull off the slight upset.",
+                    "splits_and_direction": "Estimated betting splits show roughly 54% of the public money backing UCLA as the slight away favorite, while the remaining 46% supports California at home. The spread has shifted slightly from a pick'em to California +1.5, and the moneyline has adjusted to reflect heavy early action on the visiting Bruins.",
+                    "display_text": "Summary: This early 2026 matchup features two evenly matched squads looking to establish momentum in week 1. California holds a slight advantage playing at home in Berkeley with continuity on the offensive line. UCLA struggles to generate consistent pressure up front based on early defensive metrics. The Golden Bears exploit these defensive gaps late in the fourth quarter to secure a narrow victory. Ultimately, playing on their home turf gives California the crucial edge needed to pull off the slight upset.\n\nSplits and Direction: Estimated betting splits show roughly 54% of the public money backing UCLA as the slight away favorite, while the remaining 46% supports California at home. The spread has shifted slightly from a pick'em to California +1.5, and the moneyline has adjusted to reflect heavy early action on the visiting Bruins.",
+                    "generated_at": "2026-08-16T22:48:34.821009+00:00",
+                    "odds_hash": "4f9c1688284776ab",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -1457,7 +1480,7 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -2800
+                          "american": 1300
                         },
                         "away": {
                           "line": null,
@@ -1471,16 +1494,17 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 15,
                   "gemini_prediction": {
                     "winner": "Washington",
-                    "confidence": 92,
+                    "confidence": 91,
                     "ats_pick": "Washington State +22.5",
-                    "ats_confidence": 58,
-                    "analysis": "Washington enters the 2026 season with an elite roster loaded with returning offensive firepower and a suffocating defense that dominates the line of scrimmage. Washington State struggles to generate consistent offensive rhythm against top-tier defensive fronts and will likely find themselves overmatched on the road. Despite the massive talent disparity, a 22.5-point spread in an intense rivalry matchup presents a slightly inflated number for the favorites. Washington State's rushing attack does just enough late in the game to trade touchdowns for field goals and backdoor cover the massive spread. Ultimately, Washington secures a comfortable double-digit victory to claim the outright win.",
-                    "splits_and_direction": "Based on public tendencies for rivalry games, approximately 68 percent of spread bets are backing Washington State plus the points while 75 percent of moneyline wagers are laying the heavy juice on Washington. The spread has remained steady at 22.5 since opening, while the moneyline has ticked slightly heavier toward the favored Huskies.",
-                    "display_text": "Summary: Washington enters the 2026 season with an elite roster loaded with returning offensive firepower and a suffocating defense that dominates the line of scrimmage. Washington State struggles to generate consistent offensive rhythm against top-tier defensive fronts and will likely find themselves overmatched on the road. Despite the massive talent disparity, a 22.5-point spread in an intense rivalry matchup presents a slightly inflated number for the favorites. Washington State's rushing attack does just enough late in the game to trade touchdowns for field goals and backdoor cover the massive spread. Ultimately, Washington secures a comfortable double-digit victory to claim the outright win.\n\nSplits and Direction: Based on public tendencies for rivalry games, approximately 68 percent of spread bets are backing Washington State plus the points while 75 percent of moneyline wagers are laying the heavy juice on Washington. The spread has remained steady at 22.5 since opening, while the moneyline has ticked slightly heavier toward the favored Huskies.",
-                    "generated_at": "2026-08-16T02:15:54.436168+00:00",
-                    "odds_hash": "700feb4beb3fc1b4",
+                    "ats_confidence": 65,
+                    "analysis": "Washington enters this week one matchup with a vastly superior roster built through elite talent retention and high-level 2026 recruiting. Washington State faces immense roster turnover and lacks the defensive depth required to slow down the explosive home offense. While Washington is expected to secure a decisive victory outright due to superior efficiency metrics, a 22.5-point spread provides a remarkably large cushion. The Cougars possess enough offensive explosiveness in garbage time and early scripting to push the final margin inside the massive number. Ultimately, the Huskies will win comfortably on the scoreboard, but the visitors do enough to cover the inflated spread.",
+                    "splits_and_direction": "Due to the absence of public tracking data, it is estimated that roughly 78 percent of spread bets are backing the heavy home favorite while 85 percent of moneyline wagers favor Washington. Both the spread and moneyline have remained relatively static since opening given the heavy chalk status of the home side.",
+                    "display_text": "Summary: Washington enters this week one matchup with a vastly superior roster built through elite talent retention and high-level 2026 recruiting. Washington State faces immense roster turnover and lacks the defensive depth required to slow down the explosive home offense. While Washington is expected to secure a decisive victory outright due to superior efficiency metrics, a 22.5-point spread provides a remarkably large cushion. The Cougars possess enough offensive explosiveness in garbage time and early scripting to push the final margin inside the massive number. Ultimately, the Huskies will win comfortably on the scoreboard, but the visitors do enough to cover the inflated spread.\n\nSplits and Direction: Due to the absence of public tracking data, it is estimated that roughly 78 percent of spread bets are backing the heavy home favorite while 85 percent of moneyline wagers favor Washington. Both the spread and moneyline have remained relatively static since opening given the heavy chalk status of the home side.",
+                    "generated_at": "2026-08-16T22:48:44.834288+00:00",
+                    "odds_hash": "1fbb4e3c35aa40ad",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -1537,6 +1561,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 4,
                   "gemini_prediction": {
                     "winner": "Notre Dame",
                     "confidence": 92,
@@ -1596,6 +1621,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 8,
                   "gemini_prediction": {
                     "winner": "Ole Miss",
                     "confidence": 68,
@@ -1669,6 +1695,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 16,
                   "gemini_prediction": {
                     "winner": "SMU",
                     "confidence": 62,
@@ -1748,6 +1775,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 13,
                   "gemini_prediction": {
                     "winner": "Missouri",
                     "confidence": 78,
@@ -1789,6 +1817,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 14,
                   "is_slot_pick": false
                 }
               ]
@@ -1850,6 +1879,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 2,
                   "gemini_prediction": {
                     "winner": "Michigan",
                     "confidence": 56,
@@ -1909,6 +1939,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 3,
                   "gemini_prediction": {
                     "winner": "Oregon",
                     "confidence": 92,
@@ -1968,6 +1999,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 5,
                   "gemini_prediction": {
                     "winner": "Texas A&M",
                     "confidence": 88,
@@ -2009,6 +2041,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 9,
                   "is_slot_pick": false
                 },
                 {
@@ -2038,6 +2071,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 15,
                   "is_slot_pick": false
                 }
               ]
@@ -2074,6 +2108,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 4,
                   "is_slot_pick": true
                 },
                 {
@@ -2103,6 +2138,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 6,
                   "is_slot_pick": false
                 },
                 {
@@ -2132,6 +2168,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 8,
                   "is_slot_pick": false
                 },
                 {
@@ -2161,6 +2198,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 16,
                   "is_slot_pick": false
                 },
                 {
@@ -2190,6 +2228,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 17,
                   "is_slot_pick": false
                 },
                 {
@@ -2219,6 +2258,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 18,
                   "is_slot_pick": false
                 }
               ]
@@ -2264,6 +2304,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 1,
                   "gemini_prediction": {
                     "winner": "Texas",
                     "confidence": 55,
@@ -2305,6 +2346,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 7,
                   "is_slot_pick": false
                 },
                 {
@@ -2334,6 +2376,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 10,
                   "is_slot_pick": false
                 },
                 {
@@ -2381,6 +2424,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 12,
                   "gemini_prediction": {
                     "winner": "Iowa",
                     "confidence": 85,
@@ -2422,6 +2466,7 @@
                     }
                   },
                   "is_nebraska": true,
+                  "matchup_rank": 19,
                   "is_slot_pick": true
                 }
               ]
@@ -2458,6 +2503,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 11,
                   "is_slot_pick": true
                 },
                 {
@@ -2487,6 +2533,7 @@
                     }
                   },
                   "is_nebraska": false,
+                  "matchup_rank": 20,
                   "is_slot_pick": false
                 }
               ]
