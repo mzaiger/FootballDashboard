@@ -142,8 +142,8 @@
   .pick-toolbar{display:grid; grid-template-columns:repeat(4,1fr); gap:0.35rem; margin-top:0.6rem;}
   .payout-summary{
     grid-column: 1 / -1;
-    font-family:'JetBrains Mono',monospace; font-size:0.66rem; color:var(--dim);
-    text-align:center; margin-top:0.1rem;
+    font-family:'JetBrains Mono',monospace; font-size:0.82rem; font-weight:700; color:#ffffff;
+    text-align:center; margin-top:0.25rem;
   }
   .pick-btn{
     font-family:'Inter',sans-serif; font-size:0.68rem; font-weight:600;
@@ -188,7 +188,7 @@
   .team{display:inline-flex; align-items:center; gap:0.4rem;}
   .team-name-wrap{display:inline-flex; flex-direction:column; align-items:flex-start; line-height:1.2;}
   .team-name-line{display:inline-flex; align-items:baseline; gap:0.4rem;}
-  .team-name{font-size:0.88rem;}
+  .team-name{font-size:0.98rem;}
   .team-record{
     /* Oswald (condensed sans) instead of the monospace font used
        elsewhere -- monospace reads noticeably "spread out" at this size
@@ -197,7 +197,7 @@
     letter-spacing:0.01em; color:var(--dim);
   }
   .team-pitcher{
-    font-family:'Oswald',sans-serif; font-weight:500; font-size:0.68rem;
+    font-family:'Oswald',sans-serif; font-weight:500; font-size:0.76rem;
     letter-spacing:0.01em; color:var(--dim); opacity:0.85;
   }
   .rank{
@@ -217,7 +217,7 @@
 
   .subline{
     color:var(--dim); font-size:0.75rem; display:flex; gap:1rem; flex-wrap:wrap;
-    margin-bottom:0.9rem;
+    justify-content:center; margin-bottom:0.9rem;
   }
 
   table.odds{
@@ -276,11 +276,16 @@
     display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;
     flex:1; min-width:0;
   }
-  .gemini-toggle-winner{
-    color:var(--chalk); text-transform:none; letter-spacing:normal; font-weight:600; font-size:0.66rem;
-  }
+  .gemini-toggle-winner,
   .gemini-toggle-ats{
-    color:#ffffff; letter-spacing:0.04em; font-size:0.65rem;
+    display:flex; flex-direction:column; align-items:flex-end; line-height:1.25;
+    text-transform:none; letter-spacing:normal;
+  }
+  .gemini-pick-label{
+    color:var(--dim); font-weight:500; font-size:0.6rem; letter-spacing:0.03em;
+  }
+  .gemini-pick-team{
+    color:var(--chalk); font-weight:600; font-size:0.68rem; letter-spacing:0.02em;
   }
   .gemini-toggle-trailing{
     display:flex; align-items:center; gap:0.4rem; margin-left:auto; flex-shrink:0;
@@ -391,7 +396,7 @@
     flex:1 1 auto; order:2;
   }
   .filter-pill{
-    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.82rem;
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
     text-transform:uppercase; letter-spacing:0.04em;
     color:var(--dim); background:#000; border:1px solid var(--line); border-radius:6px;
     padding:0.1rem 0.22rem; cursor:pointer; transition:all 0.12s ease;
@@ -576,6 +581,7 @@
     <button type="button" class="filter-pill" id="bestMatchupOnly">Best Slot Matchups</button>
     <div class="filter-conf-group">
       <div class="conf-type-toggle">
+        <button type="button" class="conf-type-btn" data-conftype="all">All</button>
         <button type="button" class="conf-type-btn" data-conftype="ml">ML</button>
         <button type="button" class="conf-type-btn" data-conftype="ats">ATS</button>
       </div>

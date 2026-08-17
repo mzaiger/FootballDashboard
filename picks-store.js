@@ -670,8 +670,8 @@ function renderGeminiBlock(g) {
     <span class="gemini-toggle-main">Gemini Prediction Summary</span>
     <span class="gemini-toggle-trailing">
       <span class="gemini-picks-summary">
-        <span class="gemini-toggle-winner">ML: ${p.winner || 'TBD'} (${conf})</span>
-        ${p.ats_pick ? `<span class="gemini-toggle-ats">ATS: ${p.ats_pick} (${atsConf})</span>` : ''}
+        <span class="gemini-toggle-winner"><span class="gemini-pick-label">ML (${conf}):</span><span class="gemini-pick-team">${p.winner || 'TBD'}</span></span>
+        ${p.ats_pick ? `<span class="gemini-toggle-ats"><span class="gemini-pick-label">ATS (${atsConf}):</span><span class="gemini-pick-team">${p.ats_pick}</span></span>` : ''}
       </span>
       <span class="gemini-caret">▾</span>
     </span>
@@ -777,7 +777,8 @@ function getFilterState() {
   return {
     bestMatchupOnly: !!(stored && stored.bestMatchupOnly),
     minConf: (stored && Number.isInteger(stored.minConf)) ? stored.minConf : 0,
-    confType: (stored && (stored.confType === 'ats' || stored.confType === 'ml')) ? stored.confType : 'ml',
+    confType: (stored && (stored.confType === 'ats' || stored.confType === 'ml' || stored.confType === 'all'))
+      ? stored.confType : 'all',
   };
 }
 
@@ -785,6 +786,14 @@ function saveFilterState(state) {
   localStorage.setItem(FILTER_STATE_KEY, JSON.stringify(state));
 }
 
+// Gemini-confidence-based filter -- used on index.html/nfl.html/mlb.html,
+// where the ML/ATS/All toggle filters by GEMINI'S prediction confidence
+// for that market. A game only needs the SELECTED market's data to
+// qualify (an ML-only prediction still passes an ML filter even with no
+// ATS pick at all, and vice versa) -- it does NOT require both markets
+// to be present. 'all' passes a game if EITHER market clears the
+// threshold, so picking "All" with a confidence floor set still shows
+// every game with at least one strong pick, not just games with both.
 function gamePassesFilters(g, state) {
   if (state.bestMatchupOnly && !g.is_slot_pick) return false;
   if (state.minConf > 0) {
@@ -793,9 +802,38 @@ function gamePassesFilters(g, state) {
     if (state.confType === 'ats') {
       if (!pred.ats_pick) return false;
       if ((pred.ats_confidence ?? 0) < state.minConf) return false;
-    } else {
+    } else if (state.confType === 'ml') {
       if ((pred.confidence ?? 0) < state.minConf) return false;
+    } else {
+      // 'all' -- pass if EITHER market meets the threshold
+      const mlOk = (pred.confidence ?? 0) >= state.minConf;
+      const atsOk = pred.ats_pick && (pred.ats_confidence ?? 0) >= state.minConf;
+      if (!mlOk && !atsOk) return false;
     }
+  }
+  return true;
+}
+
+// Pick-market-based filter -- used on picks.html instead of
+// gamePassesFilters() above, since the Picks page's ML/ATS/All toggle
+// filters by which market YOUR OWN PICK was made on (not by Gemini's
+// prediction confidence for the game in general -- Gemini might not have
+// even picked the same side you did). The confidence floor, when set,
+// still checks Gemini's confidence for whichever market you actually
+// picked, so "ATS, 80+" shows only your spread picks where Gemini was
+// also at least 80% confident on its own ATS pick for that game.
+function pickPassesMarketFilter(sport, g, state) {
+  const pick = getPick(sport, g.id);
+  if (!pick) return false;
+  const pickIsSpread = pick.market === 'spread';
+  if (state.confType === 'ats' && !pickIsSpread) return false;
+  if (state.confType === 'ml' && pickIsSpread) return false;
+  if (state.minConf > 0) {
+    const pred = g.gemini_prediction;
+    if (!pred) return false;
+    const relevantConf = pickIsSpread ? pred.ats_confidence : pred.confidence;
+    if (pickIsSpread && !pred.ats_pick) return false;
+    if ((relevantConf ?? 0) < state.minConf) return false;
   }
   return true;
 }
@@ -822,7 +860,107 @@ function filterWeeksForDisplay(weeks, state) {
   });
 }
 
-// Call once per page, after the nav (with its #bestMatchupOnly,
+// Same shape/behavior as filterWeeksForDisplay() above, but for
+// picks.html specifically -- uses pickPassesMarketFilter() (filters by
+// which market YOUR pick was made on) instead of gamePassesFilters()
+// (which filters by Gemini's own prediction confidence, used on the
+// other three pages).
+function applyMarketFilterToWeeks(weeks, sport, state) {
+  if (!state.bestMatchupOnly && state.minConf <= 0 && state.confType === 'all') return weeks;
+  return weeks.map(week => {
+    const days = week.days
+      .map(day => {
+        const time_slots = day.time_slots
+          .map(slot => ({
+            ...slot,
+            games: slot.games.filter(g => {
+              if (state.bestMatchupOnly && !g.is_slot_pick) return false;
+              return pickPassesMarketFilter(sport, g, state);
+            }),
+          }))
+          .filter(slot => slot.games.length);
+        const game_count = time_slots.reduce((n, s) => n + s.games.length, 0);
+        return { ...day, time_slots, game_count };
+      })
+      .filter(day => day.time_slots.length);
+    const total_games = days.reduce((n, d) => n + d.game_count, 0);
+    return { ...week, days, total_games, _filtered: true };
+  });
+}
+
+
+// Gemini's own prediction accuracy (NOT your picks) across every GRADED
+// game in `datasets` -- ML: did Gemini's picked winner actually win?
+// ATS: did Gemini's picked side actually cover, using whichever spread
+// line is currently attached to the game (DraftKings, else FanDuel;
+// there's no separate "line at prediction time" stored for Gemini's own
+// pick the way there is for a user pick, so this uses today's line same
+// as everything else). A push (exact margin) doesn't count toward
+// either total -- it's not a right-or-wrong result for Gemini's pick.
+function _finalScore(gScore) {
+  if (!gScore || gScore.status !== 'final') return null;
+  if (gScore.home_score === null || gScore.home_score === undefined) return null;
+  if (gScore.away_score === null || gScore.away_score === undefined) return null;
+  return { home: gScore.home_score, away: gScore.away_score };
+}
+
+function computeGeminiAccuracy(datasets, scores) {
+  let mlTotal = 0, mlCorrect = 0, atsTotal = 0, atsCorrect = 0;
+  (datasets || []).forEach(({ sport, data }) => {
+    if (!data) return;
+    (data.weeks || []).forEach(week => (week.days || []).forEach(day => (day.time_slots || []).forEach(slot => {
+      (slot.games || []).forEach(g => {
+        const pred = g.gemini_prediction;
+        if (!pred) return;
+        const gScore = (scores[sport] || {})[String(g.id)];
+        const final = _finalScore(gScore);
+        if (!final) return;
+
+        if (pred.winner) {
+          const actualWinner = final.home > final.away ? g.home_team
+                              : final.away > final.home ? g.away_team
+                              : null;
+          if (actualWinner) {
+            mlTotal++;
+            if (pred.winner === actualWinner) mlCorrect++;
+          }
+        }
+
+        if (pred.ats_pick) {
+          const dkLine = g.odds && g.odds.draftkings && g.odds.draftkings.spread && g.odds.draftkings.spread.home
+            ? g.odds.draftkings.spread.home.line : null;
+          const fdLine = g.odds && g.odds.fanduel && g.odds.fanduel.spread && g.odds.fanduel.spread.home
+            ? g.odds.fanduel.spread.home.line : null;
+          const homeLine = (dkLine !== null && dkLine !== undefined) ? dkLine : fdLine;
+          if (homeLine !== null && homeLine !== undefined) {
+            const margin = (final.home - final.away) + homeLine;
+            if (margin !== 0) {
+              const coveringTeam = margin > 0 ? g.home_team : g.away_team;
+              atsTotal++;
+              if (pred.ats_pick === coveringTeam) atsCorrect++;
+            }
+          }
+        }
+      });
+    })));
+  });
+  return {
+    mlPct: mlTotal ? Math.round((mlCorrect / mlTotal) * 100) : null,
+    atsPct: atsTotal ? Math.round((atsCorrect / atsTotal) * 100) : null,
+  };
+}
+
+// (ML%|ATS%) display string for the accuracy circle -- whichever market
+// ISN'T the currently-selected confType filter shows "NA" rather than a
+// real number (e.g. filtering to ML picks only tells you nothing
+// meaningful about Gemini's ATS accuracy on those same games), matching
+// "All" showing both real numbers.
+function formatGeminiAccuracy(acc, confType) {
+  const mlStr = (confType === 'ats') ? 'NA' : (acc.mlPct === null ? '\u2014' : `${acc.mlPct}%`);
+  const atsStr = (confType === 'ml') ? 'NA' : (acc.atsPct === null ? '\u2014' : `${acc.atsPct}%`);
+  return `${mlStr}|${atsStr}`;
+}
+
 // #minConfSelect, and .conf-type-btn controls) is in the DOM. `onChange`
 // re-renders the board using the new filter state.
 function initFilterBar(onChange) {
