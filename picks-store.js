@@ -4,7 +4,7 @@
  * Picks are stored one cookie per game (pick_<sport>_<gameId>) rather than
  * one giant cookie, so any page can cheaply enumerate every active pick for
  * a sport without needing to know the full game list up front. Value is a
- * tiny JSON blob: {"market":"spread"|"moneyline","side":"home"|"away"}.
+ * tiny JSON blob: {"market":"spread"|"moneyline","side":"home"|"away"}.gemini-pick-label
  * Only one pick is allowed per game -- selecting a new option overwrites
  * the old one, and clicking the active option again clears it.
  *
@@ -432,7 +432,7 @@ function renderPayoutSummary(pick) {
     p100 = calcPayout(americanOdds, 100);
   }
   if (p10 === null || p10 === undefined || p100 === null || p100 === undefined) return '';
-  return `<div class="payout-summary">Win $${p10.toFixed(2)} on $10 &middot | $${p100.toFixed(2)} on $100</div>`;
+  return `<div class="payout-summary">Win $${p10.toFixed(2)} on $10 | $${p100.toFixed(2)} on $100</div>`;
 }
 
 // The 4-button toolbar (away/home x spread/moneyline) for one game card.
