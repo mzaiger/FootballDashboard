@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T01:20:25.210142+00:00",
+  "generated_at": "2026-08-17T02:16:51.193440+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -771,11 +771,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 139
+                          "american": 135
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -168
+                          "american": -163
                         }
                       },
                       "moneyline": {
@@ -1923,11 +1923,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 134
+                          "american": 128
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -162
+                          "american": -154
                         }
                       },
                       "moneyline": {
@@ -1978,11 +1978,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 139
+                          "american": 135
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -168
+                          "american": -163
                         }
                       },
                       "moneyline": {
@@ -2077,11 +2077,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": -115
+                          "american": -118
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -111
+                          "american": -102
                         }
                       },
                       "moneyline": {
@@ -2129,18 +2129,36 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": 129
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -156
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -156
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 129
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 152
+                          "american": 132
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -184
+                          "american": -160
                         }
                       },
                       "moneyline": {
@@ -2158,14 +2176,14 @@
                   "matchup_rank": 4,
                   "gemini_prediction": {
                     "winner": "Boston Red Sox",
-                    "confidence": 62,
-                    "ats_pick": "Boston Red Sox -1.5",
+                    "confidence": 58,
+                    "ats_pick": "Arizona Diamondbacks +1.5",
                     "ats_confidence": 55,
-                    "analysis": "The Boston Red Sox hold a distinct pitching advantage with A. Gamboa boasting an impressive 1.59 ERA on the 2026 season. Arizona counters with M. Bratt, who carries a respectable 3.74 ERA and a 1-1 record but lacks the shutdown dominance shown by Gamboa. Boston's lineup has performed solidly at home, positioning them well against the visiting Diamondbacks. Gamboa should be able to navigate the Arizona batting order efficiently and keep run-scoring opportunities to a minimum. Consequently, the Red Sox are well-equipped to secure the victory and cover the 1.5-run spread.",
-                    "splits_and_direction": "Given the lack of official public betting data, it is estimated that roughly 68 percent of moneyline bets are backing the favored Red Sox at -162 while the spread split is more balanced around 55 percent on Boston -1.5 due to the run line risk. Both the moneyline and spread have held steady at their opening numbers without significant sharp movement.",
-                    "display_text": "Summary: The Boston Red Sox hold a distinct pitching advantage with A. Gamboa boasting an impressive 1.59 ERA on the 2026 season. Arizona counters with M. Bratt, who carries a respectable 3.74 ERA and a 1-1 record but lacks the shutdown dominance shown by Gamboa. Boston's lineup has performed solidly at home, positioning them well against the visiting Diamondbacks. Gamboa should be able to navigate the Arizona batting order efficiently and keep run-scoring opportunities to a minimum. Consequently, the Red Sox are well-equipped to secure the victory and cover the 1.5-run spread.\n\nSplits and Direction: Given the lack of official public betting data, it is estimated that roughly 68 percent of moneyline bets are backing the favored Red Sox at -162 while the spread split is more balanced around 55 percent on Boston -1.5 due to the run line risk. Both the moneyline and spread have held steady at their opening numbers without significant sharp movement.",
-                    "generated_at": "2026-08-17T01:19:35.275103+00:00",
-                    "odds_hash": "e28900359930c20e",
+                    "analysis": "A. Gamboa enters this August matchup with an impressive 1.59 ERA, showcasing exceptional command and limiting opponent scoring opportunities effectively. M. Bratt counters for Arizona with a solid 3.74 ERA, keeping the Diamondbacks competitive in most of his appearances this season. Boston holds the home-field advantage at Fenway Park, which historically boosts their offensive output against left-handed pitching depth. However, the Arizona bullpen has demonstrated remarkable resilience in close road games throughout the 2026 campaign. Expect a tightly contested matchup where Boston edges out a victory, but Arizona keeps the final margin within a single run to cover the spread.",
+                    "splits_and_direction": "Approximately 68% of the public betting handle is currently backing the Boston Red Sox moneyline due to Gamboa's strong ERA, while roughly 55% of run-line bets lean toward the underdog Diamondbacks. Both the moneyline and spread have remained relatively stable since opening at DraftKings and FanDuel without significant movement.",
+                    "display_text": "Summary: A. Gamboa enters this August matchup with an impressive 1.59 ERA, showcasing exceptional command and limiting opponent scoring opportunities effectively. M. Bratt counters for Arizona with a solid 3.74 ERA, keeping the Diamondbacks competitive in most of his appearances this season. Boston holds the home-field advantage at Fenway Park, which historically boosts their offensive output against left-handed pitching depth. However, the Arizona bullpen has demonstrated remarkable resilience in close road games throughout the 2026 campaign. Expect a tightly contested matchup where Boston edges out a victory, but Arizona keeps the final margin within a single run to cover the spread.\n\nSplits and Direction: Approximately 68% of the public betting handle is currently backing the Boston Red Sox moneyline due to Gamboa's strong ERA, while roughly 55% of run-line bets lean toward the underdog Diamondbacks. Both the moneyline and spread have remained relatively stable since opening at DraftKings and FanDuel without significant movement.",
+                    "generated_at": "2026-08-17T02:16:31.401973+00:00",
+                    "odds_hash": "5737fb885514138b",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -2213,21 +2231,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -166
+                          "american": -162
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 130
+                          "american": 134
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 108
+                          "american": 104
                         },
                         "away": {
                           "line": null,
-                          "american": -126
+                          "american": -122
                         }
                       }
                     }
@@ -2238,11 +2256,11 @@
                     "confidence": 62,
                     "ats_pick": "Atlanta Braves -1.5",
                     "ats_confidence": 55,
-                    "analysis": "Martin Perez has put together an impressive 2026 campaign for the Braves with a strong 2.96 ERA over his starts. Conversely, Bailey Ober has struggled to find consistency for the Twins, carrying a mediocre 4.64 ERA into this mid-August matchup. The Braves boast superior current-season offensive metrics compared to the Twins' run-prevention limitations. Perez's ability to pitch deep into games should neutralize the middle tier of Minnesota's batting order. Consequently, Atlanta should secure a multi-run victory to cover the run line comfortably.",
-                    "splits_and_direction": "Approximately 58% of moneyline bets are currently backing the Braves, pushing their odds slightly shorter from -120 to -125. Meanwhile, the run line action is split evenly near 50-50, causing the spread to hold steady at the opening numbers.",
-                    "display_text": "Summary: Martin Perez has put together an impressive 2026 campaign for the Braves with a strong 2.96 ERA over his starts. Conversely, Bailey Ober has struggled to find consistency for the Twins, carrying a mediocre 4.64 ERA into this mid-August matchup. The Braves boast superior current-season offensive metrics compared to the Twins' run-prevention limitations. Perez's ability to pitch deep into games should neutralize the middle tier of Minnesota's batting order. Consequently, Atlanta should secure a multi-run victory to cover the run line comfortably.\n\nSplits and Direction: Approximately 58% of moneyline bets are currently backing the Braves, pushing their odds slightly shorter from -120 to -125. Meanwhile, the run line action is split evenly near 50-50, causing the spread to hold steady at the opening numbers.",
-                    "generated_at": "2026-08-17T01:20:05.073920+00:00",
-                    "odds_hash": "6ed0f067d17e82ae",
+                    "analysis": "Atlanta sends M. Perez to the mound carrying a strong 2.96 ERA over a solid 8-6 record this season. Minnesota counters with B. Ober, whose higher 4.64 ERA across a 7-4 record points toward vulnerability against potent lineups. The Braves possess the pitching advantage necessary to control the pace of this contest from the opening frame. Perez's ability to limit runs consistently gives the visitors a clear edge in suppressing the Twins' bats. Consequently, Atlanta is well-positioned to secure both the outright victory and a multi-run margin to cover the spread.",
+                    "splits_and_direction": "Approximately 58% of moneyline wagers and 54% of spread bets are currently backing the Atlanta Braves as the road favorite. The moneyline has ticked slightly downward from an opening of -130 to -125 at DraftKings, while the run line has remained steady at 1.5 runs.",
+                    "display_text": "Summary: Atlanta sends M. Perez to the mound carrying a strong 2.96 ERA over a solid 8-6 record this season. Minnesota counters with B. Ober, whose higher 4.64 ERA across a 7-4 record points toward vulnerability against potent lineups. The Braves possess the pitching advantage necessary to control the pace of this contest from the opening frame. Perez's ability to limit runs consistently gives the visitors a clear edge in suppressing the Twins' bats. Consequently, Atlanta is well-positioned to secure both the outright victory and a multi-run margin to cover the spread.\n\nSplits and Direction: Approximately 58% of moneyline wagers and 54% of spread bets are currently backing the Atlanta Braves as the road favorite. The moneyline has ticked slightly downward from an opening of -130 to -125 at DraftKings, while the run line has remained steady at 1.5 runs.",
+                    "generated_at": "2026-08-17T02:16:41.204225+00:00",
+                    "odds_hash": "6db87ee484a83f9b",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -2269,11 +2287,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 206
+                          "american": 201
                         },
                         "away": {
                           "line": null,
-                          "american": -256
+                          "american": -249
                         }
                       }
                     },
@@ -2281,11 +2299,11 @@
                       "spread": {
                         "home": {
                           "line": 2.5,
-                          "american": -113
+                          "american": -111
                         },
                         "away": {
                           "line": -2.5,
-                          "american": -113
+                          "american": -115
                         }
                       },
                       "moneyline": {
@@ -2303,14 +2321,14 @@
                   "matchup_rank": 6,
                   "gemini_prediction": {
                     "winner": "Los Angeles Dodgers",
-                    "confidence": 78,
+                    "confidence": 76,
                     "ats_pick": "Colorado Rockies +2.5",
                     "ats_confidence": 62,
-                    "analysis": "The Los Angeles Dodgers hold a distinct overall roster advantage during the 2026 campaign despite Blake Snell entering this road outing with a limited sample size and a 5.00 ERA. T. Sugano has compiled a solid 12-5 record for the Colorado Rockies, proving capable of keeping his team competitive at Coors Field. However, the potent Dodgers lineup should eventually crack Sugano given their high run-production metrics this season. Snell remains a formidable strikeout threat who can navigate the thin air against a weaker Colorado batting order. Ultimately, Los Angeles secures the outright victory, but the Rockies are well-positioned to keep the final margin within two runs due to Coors Field variance and Sugano's propensity for eating innings.",
-                    "splits_and_direction": "Approximately 78 percent of public bets are currently backing the heavily favored Dodgers on the moneyline at -256. The spread and moneyline odds have remained relatively steady since opening with no significant market shifts detected.",
-                    "display_text": "Summary: The Los Angeles Dodgers hold a distinct overall roster advantage during the 2026 campaign despite Blake Snell entering this road outing with a limited sample size and a 5.00 ERA. T. Sugano has compiled a solid 12-5 record for the Colorado Rockies, proving capable of keeping his team competitive at Coors Field. However, the potent Dodgers lineup should eventually crack Sugano given their high run-production metrics this season. Snell remains a formidable strikeout threat who can navigate the thin air against a weaker Colorado batting order. Ultimately, Los Angeles secures the outright victory, but the Rockies are well-positioned to keep the final margin within two runs due to Coors Field variance and Sugano's propensity for eating innings.\n\nSplits and Direction: Approximately 78 percent of public bets are currently backing the heavily favored Dodgers on the moneyline at -256. The spread and moneyline odds have remained relatively steady since opening with no significant market shifts detected.",
-                    "generated_at": "2026-08-17T01:20:25.205446+00:00",
-                    "odds_hash": "e99a881501c48c0a",
+                    "analysis": "The Los Angeles Dodgers bring a superior roster and high-powered offense into this matchup against the Colorado Rockies at Coors Field. Blake Snell takes the mound for Los Angeles, holding a 0-1 record with a 5.00 ERA while trying to find consistency this season. Tom Sugano counters for Colorado with a respectable 12-5 record and a 4.43 ERA, providing the home side with stable starting pitching. While the Dodgers are heavy favorites on the moneyline due to their overall depth and hitting superiority, Coors Field always introduces volatility. Consequently, the Rockies have enough offensive firepower at home to keep the final margin within the generous +2.5 run spread.",
+                    "splits_and_direction": "Approximately 78 percent of moneyline bets are backing the heavy-favorite Dodgers, while 65 percent of spread bets are taking the Rockies plus the runs based on available public data estimates. The moneyline has ticked up slightly in favor of Los Angeles, whereas the run line has remained steady at FanDuel's opening number of +2.5 for Colorado.",
+                    "display_text": "Summary: The Los Angeles Dodgers bring a superior roster and high-powered offense into this matchup against the Colorado Rockies at Coors Field. Blake Snell takes the mound for Los Angeles, holding a 0-1 record with a 5.00 ERA while trying to find consistency this season. Tom Sugano counters for Colorado with a respectable 12-5 record and a 4.43 ERA, providing the home side with stable starting pitching. While the Dodgers are heavy favorites on the moneyline due to their overall depth and hitting superiority, Coors Field always introduces volatility. Consequently, the Rockies have enough offensive firepower at home to keep the final margin within the generous +2.5 run spread.\n\nSplits and Direction: Approximately 78 percent of moneyline bets are backing the heavy-favorite Dodgers, while 65 percent of spread bets are taking the Rockies plus the runs based on available public data estimates. The moneyline has ticked up slightly in favor of Los Angeles, whereas the run line has remained steady at FanDuel's opening number of +2.5 for Colorado.",
+                    "generated_at": "2026-08-17T02:16:51.188669+00:00",
+                    "odds_hash": "340fa9fa305246f1",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -2358,11 +2376,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -220
+                          "american": -225
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 168
+                          "american": 172
                         }
                       },
                       "moneyline": {
@@ -2519,11 +2537,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 100
+                          "american": 102
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -120
+                          "american": -122
                         }
                       },
                       "moneyline": {
@@ -2541,11 +2559,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 105
+                          "american": 108
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -126
+                          "american": -130
                         }
                       },
                       "moneyline": {

@@ -1990,5 +1990,41 @@
     "generated_at": "2026-08-17T01:20:25.205446+00:00",
     "odds_hash": "e99a881501c48c0a",
     "model": "gemini-3.5-flash-lite"
+  },
+  "5737fb885514138b": {
+    "winner": "Boston Red Sox",
+    "confidence": 58,
+    "ats_pick": "Arizona Diamondbacks +1.5",
+    "ats_confidence": 55,
+    "analysis": "A. Gamboa enters this August matchup with an impressive 1.59 ERA, showcasing exceptional command and limiting opponent scoring opportunities effectively. M. Bratt counters for Arizona with a solid 3.74 ERA, keeping the Diamondbacks competitive in most of his appearances this season. Boston holds the home-field advantage at Fenway Park, which historically boosts their offensive output against left-handed pitching depth. However, the Arizona bullpen has demonstrated remarkable resilience in close road games throughout the 2026 campaign. Expect a tightly contested matchup where Boston edges out a victory, but Arizona keeps the final margin within a single run to cover the spread.",
+    "splits_and_direction": "Approximately 68% of the public betting handle is currently backing the Boston Red Sox moneyline due to Gamboa's strong ERA, while roughly 55% of run-line bets lean toward the underdog Diamondbacks. Both the moneyline and spread have remained relatively stable since opening at DraftKings and FanDuel without significant movement.",
+    "display_text": "Summary: A. Gamboa enters this August matchup with an impressive 1.59 ERA, showcasing exceptional command and limiting opponent scoring opportunities effectively. M. Bratt counters for Arizona with a solid 3.74 ERA, keeping the Diamondbacks competitive in most of his appearances this season. Boston holds the home-field advantage at Fenway Park, which historically boosts their offensive output against left-handed pitching depth. However, the Arizona bullpen has demonstrated remarkable resilience in close road games throughout the 2026 campaign. Expect a tightly contested matchup where Boston edges out a victory, but Arizona keeps the final margin within a single run to cover the spread.\n\nSplits and Direction: Approximately 68% of the public betting handle is currently backing the Boston Red Sox moneyline due to Gamboa's strong ERA, while roughly 55% of run-line bets lean toward the underdog Diamondbacks. Both the moneyline and spread have remained relatively stable since opening at DraftKings and FanDuel without significant movement.",
+    "generated_at": "2026-08-17T02:16:31.401973+00:00",
+    "odds_hash": "5737fb885514138b",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "6db87ee484a83f9b": {
+    "winner": "Atlanta Braves",
+    "confidence": 62,
+    "ats_pick": "Atlanta Braves -1.5",
+    "ats_confidence": 55,
+    "analysis": "Atlanta sends M. Perez to the mound carrying a strong 2.96 ERA over a solid 8-6 record this season. Minnesota counters with B. Ober, whose higher 4.64 ERA across a 7-4 record points toward vulnerability against potent lineups. The Braves possess the pitching advantage necessary to control the pace of this contest from the opening frame. Perez's ability to limit runs consistently gives the visitors a clear edge in suppressing the Twins' bats. Consequently, Atlanta is well-positioned to secure both the outright victory and a multi-run margin to cover the spread.",
+    "splits_and_direction": "Approximately 58% of moneyline wagers and 54% of spread bets are currently backing the Atlanta Braves as the road favorite. The moneyline has ticked slightly downward from an opening of -130 to -125 at DraftKings, while the run line has remained steady at 1.5 runs.",
+    "display_text": "Summary: Atlanta sends M. Perez to the mound carrying a strong 2.96 ERA over a solid 8-6 record this season. Minnesota counters with B. Ober, whose higher 4.64 ERA across a 7-4 record points toward vulnerability against potent lineups. The Braves possess the pitching advantage necessary to control the pace of this contest from the opening frame. Perez's ability to limit runs consistently gives the visitors a clear edge in suppressing the Twins' bats. Consequently, Atlanta is well-positioned to secure both the outright victory and a multi-run margin to cover the spread.\n\nSplits and Direction: Approximately 58% of moneyline wagers and 54% of spread bets are currently backing the Atlanta Braves as the road favorite. The moneyline has ticked slightly downward from an opening of -130 to -125 at DraftKings, while the run line has remained steady at 1.5 runs.",
+    "generated_at": "2026-08-17T02:16:41.204225+00:00",
+    "odds_hash": "6db87ee484a83f9b",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "340fa9fa305246f1": {
+    "winner": "Los Angeles Dodgers",
+    "confidence": 76,
+    "ats_pick": "Colorado Rockies +2.5",
+    "ats_confidence": 62,
+    "analysis": "The Los Angeles Dodgers bring a superior roster and high-powered offense into this matchup against the Colorado Rockies at Coors Field. Blake Snell takes the mound for Los Angeles, holding a 0-1 record with a 5.00 ERA while trying to find consistency this season. Tom Sugano counters for Colorado with a respectable 12-5 record and a 4.43 ERA, providing the home side with stable starting pitching. While the Dodgers are heavy favorites on the moneyline due to their overall depth and hitting superiority, Coors Field always introduces volatility. Consequently, the Rockies have enough offensive firepower at home to keep the final margin within the generous +2.5 run spread.",
+    "splits_and_direction": "Approximately 78 percent of moneyline bets are backing the heavy-favorite Dodgers, while 65 percent of spread bets are taking the Rockies plus the runs based on available public data estimates. The moneyline has ticked up slightly in favor of Los Angeles, whereas the run line has remained steady at FanDuel's opening number of +2.5 for Colorado.",
+    "display_text": "Summary: The Los Angeles Dodgers bring a superior roster and high-powered offense into this matchup against the Colorado Rockies at Coors Field. Blake Snell takes the mound for Los Angeles, holding a 0-1 record with a 5.00 ERA while trying to find consistency this season. Tom Sugano counters for Colorado with a respectable 12-5 record and a 4.43 ERA, providing the home side with stable starting pitching. While the Dodgers are heavy favorites on the moneyline due to their overall depth and hitting superiority, Coors Field always introduces volatility. Consequently, the Rockies have enough offensive firepower at home to keep the final margin within the generous +2.5 run spread.\n\nSplits and Direction: Approximately 78 percent of moneyline bets are backing the heavy-favorite Dodgers, while 65 percent of spread bets are taking the Rockies plus the runs based on available public data estimates. The moneyline has ticked up slightly in favor of Los Angeles, whereas the run line has remained steady at FanDuel's opening number of +2.5 for Colorado.",
+    "generated_at": "2026-08-17T02:16:51.188669+00:00",
+    "odds_hash": "340fa9fa305246f1",
+    "model": "gemini-3.5-flash-lite"
   }
 }
