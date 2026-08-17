@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T00:07:50.828948+00:00",
+  "generated_at": "2026-08-17T01:18:11.126274+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
@@ -573,8 +573,8 @@
                     "draftkings": {
                       "spread": {
                         "home": {
-                          "line": -40.5,
-                          "american": -115
+                          "line": -41.5,
+                          "american": -110
                         },
                         "away": {
                           "line": 41.5,
@@ -593,13 +593,13 @@
                   "gemini_prediction": {
                     "winner": "Indiana",
                     "confidence": 99,
-                    "ats_pick": "North Texas +40.5",
-                    "ats_confidence": 65,
-                    "analysis": "Indiana enters this week one matchup with overwhelming offensive efficiency that has completely dismantled every defense faced so far in 2026. North Texas struggles significantly on the defensive side of the ball, routinely allowing opponents to exploit gaps in the secondary. However, a massive spread of 40.5 points requires an unprecedented level of dominance that few teams can sustain for four full quarters. Garbage time scoring and conservative play-calling by the favored team in the second half will likely allow the visiting squad to backdoor cover. Ultimately, Indiana secures a comfortable blowout victory to start the season, but North Texas manages to stay within the historically large margin.",
-                    "splits_and_direction": "Based on early public tendencies for such a massive line, an estimated 78 percent of moneyline bets are backing heavily favored Indiana while 85 percent of spread bets are taking the huge underdog North Texas. Both the spread and moneyline have remained stable since opening due to balanced sharp action counteracting heavy public backing on the points.",
-                    "display_text": "Summary: Indiana enters this week one matchup with overwhelming offensive efficiency that has completely dismantled every defense faced so far in 2026. North Texas struggles significantly on the defensive side of the ball, routinely allowing opponents to exploit gaps in the secondary. However, a massive spread of 40.5 points requires an unprecedented level of dominance that few teams can sustain for four full quarters. Garbage time scoring and conservative play-calling by the favored team in the second half will likely allow the visiting squad to backdoor cover. Ultimately, Indiana secures a comfortable blowout victory to start the season, but North Texas manages to stay within the historically large margin.\n\nSplits and Direction: Based on early public tendencies for such a massive line, an estimated 78 percent of moneyline bets are backing heavily favored Indiana while 85 percent of spread bets are taking the huge underdog North Texas. Both the spread and moneyline have remained stable since opening due to balanced sharp action counteracting heavy public backing on the points.",
-                    "generated_at": "2026-08-16T02:13:34.552511+00:00",
-                    "odds_hash": "04cf82efea19b270",
+                    "ats_pick": "North Texas +41.5",
+                    "ats_confidence": 75,
+                    "analysis": "Indiana enters this week one matchup boasting an elite returning offensive core that dominated throughout the early stages of the 2026 season. North Texas struggles significantly on defense, giving up massive yardage to superior opponents in their opening games. However, a spread of forty-one and a half points is historically massive and difficult to cover even for the most dominant teams. Indiana will likely secure a comfortable victory to start their campaign without necessarily running up a forty-two point margin. Therefore, North Texas possesses enough backdoor scoring potential to manage the massive cushion provided by oddsmakers.",
+                    "splits_and_direction": "Based on public tendencies, approximately eighty-five percent of bets are backing Indiana on both the moneyline and the heavy spread due to their dominant reputation. The spread has remained steady at forty-one and a half points since opening, while the moneyline odds remain too steep for heavy professional action.",
+                    "display_text": "Summary: Indiana enters this week one matchup boasting an elite returning offensive core that dominated throughout the early stages of the 2026 season. North Texas struggles significantly on defense, giving up massive yardage to superior opponents in their opening games. However, a spread of forty-one and a half points is historically massive and difficult to cover even for the most dominant teams. Indiana will likely secure a comfortable victory to start their campaign without necessarily running up a forty-two point margin. Therefore, North Texas possesses enough backdoor scoring potential to manage the massive cushion provided by oddsmakers.\n\nSplits and Direction: Based on public tendencies, approximately eighty-five percent of bets are backing Indiana on both the moneyline and the heavy spread due to their dominant reputation. The spread has remained steady at forty-one and a half points since opening, while the moneyline odds remain too steep for heavy professional action.",
+                    "generated_at": "2026-08-16T22:48:14.795615+00:00",
+                    "odds_hash": "709d940340dbe18f",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
