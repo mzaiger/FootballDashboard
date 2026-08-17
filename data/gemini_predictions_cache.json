@@ -1834,5 +1834,77 @@
     "generated_at": "2026-08-16T23:23:17.356196+00:00",
     "odds_hash": "8b1f30c1a2546a61",
     "model": "gemini-3.5-flash-lite"
+  },
+  "73dcd08a09cae6a8": {
+    "winner": "Michigan",
+    "confidence": 95,
+    "ats_pick": "Western Michigan +26.5",
+    "ats_confidence": 55,
+    "analysis": "Michigan enters the 2026 season opener with overwhelming talent advantages across the roster despite the lack of historical data for the current year. Western Michigan struggles to generate the necessary offensive firepower to consistently threaten an elite Big Ten defensive front. The Wolverines will establish a dominant ground game early to control the clock and wear down the opposing defense. While Michigan should secure a comfortable victory, a 26.5-point margin is exceptionally large for a season-opening matchup. Consequently, Western Michigan does just enough late in the contest to backdoor cover the massive spread.",
+    "splits_and_direction": "Given that no official betting split data is available for this early 2026 contest, it is estimated that roughly 70 percent of public money is backing Michigan to cover the large spread. Both the spread and moneyline have remained relatively static since opening due to limited early market action.",
+    "display_text": "Summary: Michigan enters the 2026 season opener with overwhelming talent advantages across the roster despite the lack of historical data for the current year. Western Michigan struggles to generate the necessary offensive firepower to consistently threaten an elite Big Ten defensive front. The Wolverines will establish a dominant ground game early to control the clock and wear down the opposing defense. While Michigan should secure a comfortable victory, a 26.5-point margin is exceptionally large for a season-opening matchup. Consequently, Western Michigan does just enough late in the contest to backdoor cover the massive spread.\n\nSplits and Direction: Given that no official betting split data is available for this early 2026 contest, it is estimated that roughly 70 percent of public money is backing Michigan to cover the large spread. Both the spread and moneyline have remained relatively static since opening due to limited early market action.",
+    "generated_at": "2026-08-17T00:07:40.938910+00:00",
+    "odds_hash": "73dcd08a09cae6a8",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "65d784f60c2b963e": {
+    "winner": "Texas",
+    "confidence": 54,
+    "ats_pick": "Texas -1.5",
+    "ats_confidence": 53,
+    "analysis": "This early 2026 marquee matchup features two elite programs colliding in Week 2 with massive early-season playoff implications. Texas holds a slight edge playing at home in front of a hostile Austin crowd that impacts opposing offenses. The Longhorns' revamped offensive line has shown better continuity through early practices and scrimmages than Ohio State's front. Defensively, Texas possesses the secondary depth necessary to contain Ohio State's explosive perimeter targets in crucial third-down scenarios. Ultimately, home-field advantage proves to be the decisive factor in a tightly contested, high-scoring affair.",
+    "splits_and_direction": "Based on early public tendencies, roughly 58 percent of spread bets and 62 percent of moneyline wagers are backing the visiting Buckeyes as narrow favorites. The spread has moved slightly from an initial opening of Texas -2.5 down to -1.5, while the moneyline has experienced minimal shift due to heavy two-way action.",
+    "display_text": "Summary: This early 2026 marquee matchup features two elite programs colliding in Week 2 with massive early-season playoff implications. Texas holds a slight edge playing at home in front of a hostile Austin crowd that impacts opposing offenses. The Longhorns' revamped offensive line has shown better continuity through early practices and scrimmages than Ohio State's front. Defensively, Texas possesses the secondary depth necessary to contain Ohio State's explosive perimeter targets in crucial third-down scenarios. Ultimately, home-field advantage proves to be the decisive factor in a tightly contested, high-scoring affair.\n\nSplits and Direction: Based on early public tendencies, roughly 58 percent of spread bets and 62 percent of moneyline wagers are backing the visiting Buckeyes as narrow favorites. The spread has moved slightly from an initial opening of Texas -2.5 down to -1.5, while the moneyline has experienced minimal shift due to heavy two-way action.",
+    "generated_at": "2026-08-17T00:07:50.825064+00:00",
+    "odds_hash": "65d784f60c2b963e",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "747b2d76740adffd": {
+    "winner": "San Diego Padres",
+    "confidence": 62,
+    "ats_pick": "San Diego Padres -1.5",
+    "ats_confidence": 55,
+    "analysis": "C. Mize enters this August matchup holding a strong 3.18 ERA for the Padres, significantly outperforming his 5-7 record due to solid run prevention. Conversely, T. Bibee struggles heavily with run support and consistency, dragging a dismal 4-13 record and a 4.01 ERA for the Guardians. San Diego features superior current-season offensive metrics compared to Cleveland's lagging run production. Given the sizeable discrepancy in earned run averages and starting pitcher effectiveness, the Padres possess a clear advantage on the mound. Therefore, San Diego is well-positioned to secure both the outright victory and cover the 1.5-run spread.",
+    "splits_and_direction": "Approximately 58% of moneyline bets are backing the Padres at -108, while 65% of run line wagers favor the Guardians plus the 1.5 runs due to the home underdog bias. The away moneyline has shifted slightly from -105 to -108, and the home spread has remained stable at +1.5 with standard juice adjustments.",
+    "display_text": "Summary: C. Mize enters this August matchup holding a strong 3.18 ERA for the Padres, significantly outperforming his 5-7 record due to solid run prevention. Conversely, T. Bibee struggles heavily with run support and consistency, dragging a dismal 4-13 record and a 4.01 ERA for the Guardians. San Diego features superior current-season offensive metrics compared to Cleveland's lagging run production. Given the sizeable discrepancy in earned run averages and starting pitcher effectiveness, the Padres possess a clear advantage on the mound. Therefore, San Diego is well-positioned to secure both the outright victory and cover the 1.5-run spread.\n\nSplits and Direction: Approximately 58% of moneyline bets are backing the Padres at -108, while 65% of run line wagers favor the Guardians plus the 1.5 runs due to the home underdog bias. The away moneyline has shifted slightly from -105 to -108, and the home spread has remained stable at +1.5 with standard juice adjustments.",
+    "generated_at": "2026-08-17T00:08:29.592974+00:00",
+    "odds_hash": "747b2d76740adffd",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "07a505ace851d94a": {
+    "winner": "San Francisco Giants",
+    "confidence": 58,
+    "ats_pick": "Colorado Rockies +1.5",
+    "ats_confidence": 55,
+    "analysis": "San Francisco hosts Colorado in a matchup featuring two struggling pitchers trying to find consistency on the mound in 2026. Giants starter B. Tidwell holds a 4.33 ERA, showing slightly better baseline suppression metrics than Rockies starter G. Hughes who sits at an unsightly 6.69 ERA. However, Colorado's road bats occasionally provide enough offensive support to keep games surprisingly close against mediocre pitching. Given Hughes's severe struggles, San Francisco has the clear statistical edge to secure the outright victory at home. Yet, because the Giants' offense lacks dominant power, expecting a multi-run blowout is risky, making the Rockies a viable candidate to keep it within the run line.",
+    "splits_and_direction": "Approximately 63% of the public moneyline bets are currently backing the home Giants due to the favorable pitching matchup on paper. Both the moneyline and the home spread have remained relatively stable since opening without significant sharp movement.",
+    "display_text": "Summary: San Francisco hosts Colorado in a matchup featuring two struggling pitchers trying to find consistency on the mound in 2026. Giants starter B. Tidwell holds a 4.33 ERA, showing slightly better baseline suppression metrics than Rockies starter G. Hughes who sits at an unsightly 6.69 ERA. However, Colorado's road bats occasionally provide enough offensive support to keep games surprisingly close against mediocre pitching. Given Hughes's severe struggles, San Francisco has the clear statistical edge to secure the outright victory at home. Yet, because the Giants' offense lacks dominant power, expecting a multi-run blowout is risky, making the Rockies a viable candidate to keep it within the run line.\n\nSplits and Direction: Approximately 63% of the public moneyline bets are currently backing the home Giants due to the favorable pitching matchup on paper. Both the moneyline and the home spread have remained relatively stable since opening without significant sharp movement.",
+    "generated_at": "2026-08-17T00:08:39.698774+00:00",
+    "odds_hash": "07a505ace851d94a",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "ea46afa6c2ecde2a": {
+    "winner": "Seattle Mariners",
+    "confidence": 78,
+    "ats_pick": "Houston Astros +2.5",
+    "ats_confidence": 70,
+    "analysis": "Seattle enters this matchup with a significant advantage in the starting pitching department, as B. Woo has logged a substantial workload with an 8-8 record and a steady 4.15 ERA. Houston counters with H. Brown, who holds a 3-2 record and a respectable 3.68 ERA over fewer decisions due to limited starting opportunities this season. The Mariners' heavily favored -280 moneyline reflects their superior depth and consistency in the 2026 campaign compared to the Astros. However, the generous home spread of +2.5 provides ample cushion for Houston to stay within the margin even if they fall behind late. Ultimately, Seattle should secure the outright victory behind Woo's strong outing, while Houston comfortably covers the inflated run line.",
+    "splits_and_direction": "Approximately 78% of the public moneyline bets are backing the heavy favorite Seattle Mariners at -280, while the remaining 22% are taking a flier on the Houston Astros. Due to early and heavy action on the Mariners, the away moneyline has steepened from its opening number, and the home spread has widened to +2.5 as oddsmakers attempt to incentivize underdog action.",
+    "display_text": "Summary: Seattle enters this matchup with a significant advantage in the starting pitching department, as B. Woo has logged a substantial workload with an 8-8 record and a steady 4.15 ERA. Houston counters with H. Brown, who holds a 3-2 record and a respectable 3.68 ERA over fewer decisions due to limited starting opportunities this season. The Mariners' heavily favored -280 moneyline reflects their superior depth and consistency in the 2026 campaign compared to the Astros. However, the generous home spread of +2.5 provides ample cushion for Houston to stay within the margin even if they fall behind late. Ultimately, Seattle should secure the outright victory behind Woo's strong outing, while Houston comfortably covers the inflated run line.\n\nSplits and Direction: Approximately 78% of the public moneyline bets are backing the heavy favorite Seattle Mariners at -280, while the remaining 22% are taking a flier on the Houston Astros. Due to early and heavy action on the Mariners, the away moneyline has steepened from its opening number, and the home spread has widened to +2.5 as oddsmakers attempt to incentivize underdog action.",
+    "generated_at": "2026-08-17T00:08:49.754973+00:00",
+    "odds_hash": "ea46afa6c2ecde2a",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "ff0045329d14124f": {
+    "winner": "New York Mets",
+    "confidence": 62,
+    "ats_pick": "San Diego Padres +1.5",
+    "ats_confidence": 58,
+    "analysis": "New York starter N. McLean enters this matchup with a solid 3.42 ERA through his 2026 outings. San Diego counters with veteran W. Buehler, who holds a 7-5 record alongside a higher 4.88 ERA on the year. McLean gives the Mets a distinct pitching advantage in run prevention over the course of the game. However, the Padres possess enough offensive firepower to keep the contest within a single run. Therefore, while the Mets should secure the outright victory, the Padres are well-positioned to cover the +1.5 run line.",
+    "splits_and_direction": "Approximately 58% of public bets are currently backing the home Mets on the moneyline at -120 odds. Both the moneyline and spread have remained stable since opening with no significant market movement.",
+    "display_text": "Summary: New York starter N. McLean enters this matchup with a solid 3.42 ERA through his 2026 outings. San Diego counters with veteran W. Buehler, who holds a 7-5 record alongside a higher 4.88 ERA on the year. McLean gives the Mets a distinct pitching advantage in run prevention over the course of the game. However, the Padres possess enough offensive firepower to keep the contest within a single run. Therefore, while the Mets should secure the outright victory, the Padres are well-positioned to cover the +1.5 run line.\n\nSplits and Direction: Approximately 58% of public bets are currently backing the home Mets on the moneyline at -120 odds. Both the moneyline and spread have remained stable since opening with no significant market movement.",
+    "generated_at": "2026-08-17T00:08:59.225522+00:00",
+    "odds_hash": "ff0045329d14124f",
+    "model": "gemini-3.5-flash-lite"
   }
 }

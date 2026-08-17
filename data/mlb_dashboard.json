@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T23:23:17.359918+00:00",
+  "generated_at": "2026-08-17T00:08:59.229426+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -916,7 +916,7 @@
                   "away_abbr": "BOS",
                   "away_record": "66-58",
                   "away_pitcher": "P. Sandoval (1-2, 4.76)",
-                  "matchup_score": 38.5,
+                  "matchup_score": 40.4,
                   "channel": "MLB.TV, NESN",
                   "venue": "PNC Park",
                   "neutral_site": false,
@@ -987,12 +987,12 @@
                   "start_time_tbd": false,
                   "home_team": "Cleveland Guardians",
                   "home_abbr": "CLE",
-                  "home_record": "60-64",
-                  "home_pitcher": "T. Bibee (4-12, 3.99)",
+                  "home_record": "60-65",
+                  "home_pitcher": "T. Bibee (4-13, 4.01)",
                   "away_team": "San Diego Padres",
                   "away_abbr": "SD",
-                  "away_record": "66-58",
-                  "away_pitcher": "C. Mize (4-7, 3.38)",
+                  "away_record": "67-58",
+                  "away_pitcher": "C. Mize (5-7, 3.18)",
                   "matchup_score": 44.2,
                   "channel": "MLB.TV, CLEGuardians.TV, Padres.TV",
                   "venue": "Progressive Field",
@@ -1046,14 +1046,14 @@
                   "matchup_rank": 7,
                   "gemini_prediction": {
                     "winner": "San Diego Padres",
-                    "confidence": 56,
+                    "confidence": 62,
                     "ats_pick": "San Diego Padres -1.5",
-                    "ats_confidence": 52,
-                    "analysis": "San Diego travels to Cleveland for an interleague matchup featuring starting pitchers with contrasting season results. C. Mize enters this August contest holding a solid 3.38 ERA despite a sub-.500 record of 4-7, showing strong run-prevention skills. Conversely, T. Bibee struggles heavily on the mound for the Guardians, sitting at 4-12 with a 3.99 ERA while failing to provide consistent length or shutdown frames. The Padres offense possesses the depth required to capitalize on Bibee's high loss count and defensive vulnerabilities. Backing the Padres on the moneyline and run line aligns with the more reliable starting pitching metrics on display in 2026.",
-                    "splits_and_direction": "Approximately 58 percent of public bets are currently backing the Padres moneyline, while roughly 54 percent of spread wagers lean toward the Guardians plus the runs. The away moneyline has slightly tightened from an open of -105 to -108 on DraftKings, and the home run line has held steady at +1.5 with minor juice adjustments.",
-                    "display_text": "Summary: San Diego travels to Cleveland for an interleague matchup featuring starting pitchers with contrasting season results. C. Mize enters this August contest holding a solid 3.38 ERA despite a sub-.500 record of 4-7, showing strong run-prevention skills. Conversely, T. Bibee struggles heavily on the mound for the Guardians, sitting at 4-12 with a 3.99 ERA while failing to provide consistent length or shutdown frames. The Padres offense possesses the depth required to capitalize on Bibee's high loss count and defensive vulnerabilities. Backing the Padres on the moneyline and run line aligns with the more reliable starting pitching metrics on display in 2026.\n\nSplits and Direction: Approximately 58 percent of public bets are currently backing the Padres moneyline, while roughly 54 percent of spread wagers lean toward the Guardians plus the runs. The away moneyline has slightly tightened from an open of -105 to -108 on DraftKings, and the home run line has held steady at +1.5 with minor juice adjustments.",
-                    "generated_at": "2026-08-16T23:21:16.964805+00:00",
-                    "odds_hash": "90fd3ddaa36d26a3",
+                    "ats_confidence": 55,
+                    "analysis": "C. Mize enters this August matchup holding a strong 3.18 ERA for the Padres, significantly outperforming his 5-7 record due to solid run prevention. Conversely, T. Bibee struggles heavily with run support and consistency, dragging a dismal 4-13 record and a 4.01 ERA for the Guardians. San Diego features superior current-season offensive metrics compared to Cleveland's lagging run production. Given the sizeable discrepancy in earned run averages and starting pitcher effectiveness, the Padres possess a clear advantage on the mound. Therefore, San Diego is well-positioned to secure both the outright victory and cover the 1.5-run spread.",
+                    "splits_and_direction": "Approximately 58% of moneyline bets are backing the Padres at -108, while 65% of run line wagers favor the Guardians plus the 1.5 runs due to the home underdog bias. The away moneyline has shifted slightly from -105 to -108, and the home spread has remained stable at +1.5 with standard juice adjustments.",
+                    "display_text": "Summary: C. Mize enters this August matchup holding a strong 3.18 ERA for the Padres, significantly outperforming his 5-7 record due to solid run prevention. Conversely, T. Bibee struggles heavily with run support and consistency, dragging a dismal 4-13 record and a 4.01 ERA for the Guardians. San Diego features superior current-season offensive metrics compared to Cleveland's lagging run production. Given the sizeable discrepancy in earned run averages and starting pitcher effectiveness, the Padres possess a clear advantage on the mound. Therefore, San Diego is well-positioned to secure both the outright victory and cover the 1.5-run spread.\n\nSplits and Direction: Approximately 58% of moneyline bets are backing the Padres at -108, while 65% of run line wagers favor the Guardians plus the 1.5 runs due to the home underdog bias. The away moneyline has shifted slightly from -105 to -108, and the home spread has remained stable at +1.5 with standard juice adjustments.",
+                    "generated_at": "2026-08-17T00:08:29.592974+00:00",
+                    "odds_hash": "747b2d76740adffd",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1147,7 +1147,7 @@
                   "away_abbr": "CHW",
                   "away_record": "65-58",
                   "away_pitcher": "S. Burke (7-6, 3.15)",
-                  "matchup_score": 48.1,
+                  "matchup_score": 46.2,
                   "channel": "MLB.TV, Tigers.TV, CHSN",
                   "venue": "Comerica Park",
                   "neutral_site": false,
@@ -1615,7 +1615,7 @@
                   "away_team": "Colorado Rockies",
                   "away_abbr": "COL",
                   "away_record": "50-74",
-                  "away_pitcher": "G. Hughes (0-4, 5.61)",
+                  "away_pitcher": "G. Hughes (0-4, 6.69)",
                   "matchup_score": 94.2,
                   "channel": "MLB.TV, NBC Sports BA, Rockies.TV",
                   "venue": "Oracle Park",
@@ -1669,14 +1669,14 @@
                   "matchup_rank": 14,
                   "gemini_prediction": {
                     "winner": "San Francisco Giants",
-                    "confidence": 56,
+                    "confidence": 58,
                     "ats_pick": "Colorado Rockies +1.5",
-                    "ats_confidence": 54,
-                    "analysis": "The San Francisco Giants host the Colorado Rockies in an August matchup featuring two struggling starting pitchers. G. Hughes brings a rough 5.61 ERA for the Rockies, while B. Tidwell holds a 4.33 ERA for the Giants without securing a decision yet. Neither pitcher inspires heavy confidence, making this game volatile for the outright winner. San Francisco gets a slight edge at home due to slightly better overall team metrics and bullpen stabilization. However, the Rockies are well-positioned to keep the final margin within a single run given Hughes' tendency to pitch competitively despite giving up runs.",
-                    "splits_and_direction": "Approximately 63 percent of public moneyline bets are backing the home Giants, while the run line action is evenly divided at 50-50. Both the moneyline and spread have remained steady since opening without any notable line movement.",
-                    "display_text": "Summary: The San Francisco Giants host the Colorado Rockies in an August matchup featuring two struggling starting pitchers. G. Hughes brings a rough 5.61 ERA for the Rockies, while B. Tidwell holds a 4.33 ERA for the Giants without securing a decision yet. Neither pitcher inspires heavy confidence, making this game volatile for the outright winner. San Francisco gets a slight edge at home due to slightly better overall team metrics and bullpen stabilization. However, the Rockies are well-positioned to keep the final margin within a single run given Hughes' tendency to pitch competitively despite giving up runs.\n\nSplits and Direction: Approximately 63 percent of public moneyline bets are backing the home Giants, while the run line action is evenly divided at 50-50. Both the moneyline and spread have remained steady since opening without any notable line movement.",
-                    "generated_at": "2026-08-16T23:21:56.825270+00:00",
-                    "odds_hash": "4ee8dd08cab54c8a",
+                    "ats_confidence": 55,
+                    "analysis": "San Francisco hosts Colorado in a matchup featuring two struggling pitchers trying to find consistency on the mound in 2026. Giants starter B. Tidwell holds a 4.33 ERA, showing slightly better baseline suppression metrics than Rockies starter G. Hughes who sits at an unsightly 6.69 ERA. However, Colorado's road bats occasionally provide enough offensive support to keep games surprisingly close against mediocre pitching. Given Hughes's severe struggles, San Francisco has the clear statistical edge to secure the outright victory at home. Yet, because the Giants' offense lacks dominant power, expecting a multi-run blowout is risky, making the Rockies a viable candidate to keep it within the run line.",
+                    "splits_and_direction": "Approximately 63% of the public moneyline bets are currently backing the home Giants due to the favorable pitching matchup on paper. Both the moneyline and the home spread have remained relatively stable since opening without significant sharp movement.",
+                    "display_text": "Summary: San Francisco hosts Colorado in a matchup featuring two struggling pitchers trying to find consistency on the mound in 2026. Giants starter B. Tidwell holds a 4.33 ERA, showing slightly better baseline suppression metrics than Rockies starter G. Hughes who sits at an unsightly 6.69 ERA. However, Colorado's road bats occasionally provide enough offensive support to keep games surprisingly close against mediocre pitching. Given Hughes's severe struggles, San Francisco has the clear statistical edge to secure the outright victory at home. Yet, because the Giants' offense lacks dominant power, expecting a multi-run blowout is risky, making the Rockies a viable candidate to keep it within the run line.\n\nSplits and Direction: Approximately 63% of the public moneyline bets are currently backing the home Giants due to the favorable pitching matchup on paper. Both the moneyline and the home spread have remained relatively stable since opening without significant sharp movement.",
+                    "generated_at": "2026-08-17T00:08:39.698774+00:00",
+                    "odds_hash": "07a505ace851d94a",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1789,37 +1789,37 @@
                     "fanduel": {
                       "spread": {
                         "home": {
-                          "line": -1.5,
-                          "american": 172
+                          "line": 2.5,
+                          "american": -166
                         },
                         "away": {
-                          "line": 1.5,
-                          "american": -210
+                          "line": -2.5,
+                          "american": 124
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -124
+                          "american": 240
                         },
                         "away": {
                           "line": null,
-                          "american": 114
+                          "american": -280
                         }
                       }
                     }
                   },
                   "matchup_rank": 11,
                   "gemini_prediction": {
-                    "winner": "Houston Astros",
-                    "confidence": 56,
-                    "ats_pick": "Seattle Mariners",
-                    "ats_confidence": 58,
-                    "analysis": "Hunter Brown brings a steady 3.68 ERA for the Astros into this crucial mid-August divisional matchup against the Mariners. Bryan Woo counters for Seattle with an 8-8 record and a respectable 4.15 ERA over a heavy workload of starts this year. Houston holds a slight home-field advantage at Minute Maid Park where their offense typically finds more consistency. However, Woo has shown the capacity to keep games tight and limit damage against potent American League batting orders. Ultimately, the Astros should edge out a close victory, but the Mariners' pitching keeps the final margin within a single run.",
-                    "splits_and_direction": "Based on early public tendencies, roughly 58 percent of moneyline bets are backing the home Astros while the run-line action leans heavily toward the underdog Mariners. Both the home spread and the moneyline have remained steady since opening without any notable steam movement.",
-                    "display_text": "Summary: Hunter Brown brings a steady 3.68 ERA for the Astros into this crucial mid-August divisional matchup against the Mariners. Bryan Woo counters for Seattle with an 8-8 record and a respectable 4.15 ERA over a heavy workload of starts this year. Houston holds a slight home-field advantage at Minute Maid Park where their offense typically finds more consistency. However, Woo has shown the capacity to keep games tight and limit damage against potent American League batting orders. Ultimately, the Astros should edge out a close victory, but the Mariners' pitching keeps the final margin within a single run.\n\nSplits and Direction: Based on early public tendencies, roughly 58 percent of moneyline bets are backing the home Astros while the run-line action leans heavily toward the underdog Mariners. Both the home spread and the moneyline have remained steady since opening without any notable steam movement.",
-                    "generated_at": "2026-08-16T23:22:37.011924+00:00",
-                    "odds_hash": "03492c65a3525b4f",
+                    "winner": "Seattle Mariners",
+                    "confidence": 78,
+                    "ats_pick": "Houston Astros +2.5",
+                    "ats_confidence": 70,
+                    "analysis": "Seattle enters this matchup with a significant advantage in the starting pitching department, as B. Woo has logged a substantial workload with an 8-8 record and a steady 4.15 ERA. Houston counters with H. Brown, who holds a 3-2 record and a respectable 3.68 ERA over fewer decisions due to limited starting opportunities this season. The Mariners' heavily favored -280 moneyline reflects their superior depth and consistency in the 2026 campaign compared to the Astros. However, the generous home spread of +2.5 provides ample cushion for Houston to stay within the margin even if they fall behind late. Ultimately, Seattle should secure the outright victory behind Woo's strong outing, while Houston comfortably covers the inflated run line.",
+                    "splits_and_direction": "Approximately 78% of the public moneyline bets are backing the heavy favorite Seattle Mariners at -280, while the remaining 22% are taking a flier on the Houston Astros. Due to early and heavy action on the Mariners, the away moneyline has steepened from its opening number, and the home spread has widened to +2.5 as oddsmakers attempt to incentivize underdog action.",
+                    "display_text": "Summary: Seattle enters this matchup with a significant advantage in the starting pitching department, as B. Woo has logged a substantial workload with an 8-8 record and a steady 4.15 ERA. Houston counters with H. Brown, who holds a 3-2 record and a respectable 3.68 ERA over fewer decisions due to limited starting opportunities this season. The Mariners' heavily favored -280 moneyline reflects their superior depth and consistency in the 2026 campaign compared to the Astros. However, the generous home spread of +2.5 provides ample cushion for Houston to stay within the margin even if they fall behind late. Ultimately, Seattle should secure the outright victory behind Woo's strong outing, while Houston comfortably covers the inflated run line.\n\nSplits and Direction: Approximately 78% of the public moneyline bets are backing the heavy favorite Seattle Mariners at -280, while the remaining 22% are taking a flier on the Houston Astros. Due to early and heavy action on the Mariners, the away moneyline has steepened from its opening number, and the home spread has widened to +2.5 as oddsmakers attempt to incentivize underdog action.",
+                    "generated_at": "2026-08-17T00:08:49.754973+00:00",
+                    "odds_hash": "ea46afa6c2ecde2a",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -1851,7 +1851,7 @@
                   "home_team": "Cincinnati Reds",
                   "home_abbr": "CIN",
                   "home_record": "59-64",
-                  "home_pitcher": "R. Lowder (4-8, 5.15)",
+                  "home_pitcher": null,
                   "away_team": "St. Louis Cardinals",
                   "away_abbr": "STL",
                   "away_record": "63-61",
@@ -2114,7 +2114,7 @@
                   "away_abbr": "ARI",
                   "away_record": "66-59",
                   "away_pitcher": "M. Bratt (1-1, 3.74)",
-                  "matchup_score": 11.5,
+                  "matchup_score": 15.4,
                   "channel": "MLB.TV, DBACKS.TV, NESN",
                   "venue": "Fenway Park",
                   "neutral_site": false,
@@ -2277,9 +2277,9 @@
                   "home_pitcher": "N. McLean (8-8, 3.42)",
                   "away_team": "San Diego Padres",
                   "away_abbr": "SD",
-                  "away_record": "66-58",
+                  "away_record": "67-58",
                   "away_pitcher": "W. Buehler (7-5, 4.88)",
-                  "matchup_score": 46.2,
+                  "matchup_score": 42.3,
                   "channel": "MLB.TV, Padres.TV, SNY",
                   "venue": "Citi Field",
                   "neutral_site": false,
@@ -2298,11 +2298,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -121
+                          "american": -120
                         },
                         "away": {
                           "line": null,
-                          "american": 101
+                          "american": 100
                         }
                       }
                     },
@@ -2335,11 +2335,11 @@
                     "confidence": 62,
                     "ats_pick": "San Diego Padres +1.5",
                     "ats_confidence": 58,
-                    "analysis": "New York starting pitcher N. McLean has put together a solid 2026 campaign with a 3.42 ERA, showcasing strong command and consistency on the mound. In contrast, San Diego starter W. Buehler has experienced a more volatile season, carrying a 4.88 ERA across his outings. The Mets hold home-field advantage and possess a reliable pitching matchup that tilts the win probability in their favor. However, Buehler's veteran presence and the Padres' offensive capability suggest the game will remain tightly contested within a single run. Therefore, while the Mets are positioned to secure the outright victory, the Padres present good value to cover the 1.5-run spread.",
-                    "splits_and_direction": "Based on public betting tendencies toward the home favorite, approximately 58% of moneyline bets are currently backing the New York Mets, while 62% of spread tickets lean toward the San Diego Padres plus the runs. The home moneyline has seen slight upward movement from -115 to -121 at DraftKings, while the run line has remained steady at 1.5 runs.",
-                    "display_text": "Summary: New York starting pitcher N. McLean has put together a solid 2026 campaign with a 3.42 ERA, showcasing strong command and consistency on the mound. In contrast, San Diego starter W. Buehler has experienced a more volatile season, carrying a 4.88 ERA across his outings. The Mets hold home-field advantage and possess a reliable pitching matchup that tilts the win probability in their favor. However, Buehler's veteran presence and the Padres' offensive capability suggest the game will remain tightly contested within a single run. Therefore, while the Mets are positioned to secure the outright victory, the Padres present good value to cover the 1.5-run spread.\n\nSplits and Direction: Based on public betting tendencies toward the home favorite, approximately 58% of moneyline bets are currently backing the New York Mets, while 62% of spread tickets lean toward the San Diego Padres plus the runs. The home moneyline has seen slight upward movement from -115 to -121 at DraftKings, while the run line has remained steady at 1.5 runs.",
-                    "generated_at": "2026-08-16T23:22:56.853899+00:00",
-                    "odds_hash": "9ec63142823f3b2f",
+                    "analysis": "New York starter N. McLean enters this matchup with a solid 3.42 ERA through his 2026 outings. San Diego counters with veteran W. Buehler, who holds a 7-5 record alongside a higher 4.88 ERA on the year. McLean gives the Mets a distinct pitching advantage in run prevention over the course of the game. However, the Padres possess enough offensive firepower to keep the contest within a single run. Therefore, while the Mets should secure the outright victory, the Padres are well-positioned to cover the +1.5 run line.",
+                    "splits_and_direction": "Approximately 58% of public bets are currently backing the home Mets on the moneyline at -120 odds. Both the moneyline and spread have remained stable since opening with no significant market movement.",
+                    "display_text": "Summary: New York starter N. McLean enters this matchup with a solid 3.42 ERA through his 2026 outings. San Diego counters with veteran W. Buehler, who holds a 7-5 record alongside a higher 4.88 ERA on the year. McLean gives the Mets a distinct pitching advantage in run prevention over the course of the game. However, the Padres possess enough offensive firepower to keep the contest within a single run. Therefore, while the Mets should secure the outright victory, the Padres are well-positioned to cover the +1.5 run line.\n\nSplits and Direction: Approximately 58% of public bets are currently backing the home Mets on the moneyline at -120 odds. Both the moneyline and spread have remained stable since opening with no significant market movement.",
+                    "generated_at": "2026-08-17T00:08:59.225522+00:00",
+                    "odds_hash": "ff0045329d14124f",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -2351,7 +2351,7 @@
                   "home_team": "Cincinnati Reds",
                   "home_abbr": "CIN",
                   "home_record": "59-64",
-                  "home_pitcher": null,
+                  "home_pitcher": "R. Lowder (4-8, 5.15)",
                   "away_team": "St. Louis Cardinals",
                   "away_abbr": "STL",
                   "away_record": "63-61",
@@ -2394,11 +2394,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -168
+                          "american": -171
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 139
+                          "american": 141
                         }
                       },
                       "moneyline": {
