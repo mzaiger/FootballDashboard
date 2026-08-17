@@ -31,19 +31,13 @@
 // called "P1" (that off-by-one was showing "P1"/"P2" for what were
 // actually the Hall of Fame Game and the real P1 week).
 function preseasonWeekLabel(weekNum) {
-  return weekNum <= 1 ? 'HOF' : `P${weekNum - 1}`;
+  return weekNum <= 1 ? 'HOF' : `Preseason Week ${weekNum - 1}`;
 }
 
 function formatWeekLabel(weekNum, seasonType) {
-  return seasonType === 1 ? preseasonWeekLabel(weekNum) : `Week ${weekNum}`;
-}
-
-// Bare number/label with no "Week" word -- e.g. "P1" or "3" -- for building
-// a "Week ..."/"Weeks ..." title the same way the College page does
-// (`Week ${n}` / `Weeks ${a}–${b}`), just with the preseason "P"/"HOF"
-// label folded into the number instead of a plain integer.
-function formatWeekNumberLabel(weekNum, seasonType) {
-  return seasonType === 1 ? preseasonWeekLabel(weekNum) : `${weekNum}`;
+  if (seasonType === 1) return preseasonWeekLabel(weekNum);
+  if (seasonType === 3) return `Postseason Week ${weekNum}`;
+  return seasonType === 2 ? `Regular Season Week ${weekNum}` : `Week ${weekNum}`;
 }
 
 /*
@@ -277,7 +271,14 @@ function formatChannelForPill(channel) {
 }
 
 const PICK_COOKIE_PREFIX = 'pick_';
-const PICK_COOKIE_DAYS = 210;
+// Effectively "never expires" -- 400 days is the actual ceiling: Chrome
+// (and other Chromium-based browsers) caps every cookie's expiry at 400
+// days from when it's SET, regardless of what a larger value asks for, so
+// requesting anything past that doesn't buy any more real lifetime, it
+// just gets silently clamped down to 400 by the browser itself. A pick
+// that's never touched again will still expire after 400 days; there's
+// no way to set a browser cookie that truly never expires.
+const PICK_COOKIE_DAYS = 400;
 const PICK_LOCKED_STATUSES = ['final', 'in_progress', 'live', 'halftime'];
 
 function isPickLocked(gScore) {
@@ -307,8 +308,17 @@ function getPick(sport, gameId) {
   for (let raw of parts) {
     raw = raw.trim();
     if (raw.startsWith(target)) {
-      try { return JSON.parse(decodeURIComponent(raw.slice(target.length))); }
-      catch (e) { return null; }
+      const decoded = decodeURIComponent(raw.slice(target.length));
+      try {
+        const parsed = JSON.parse(decoded);
+        // Sliding expiry: reading a pick refreshes its 400-day clock, not
+        // just setting/changing it -- so a pick that's looked at again
+        // (any page load that renders its game) effectively never
+        // expires, rather than quietly expiring 400 days after it was
+        // FIRST made regardless of how often it's since been viewed.
+        _setCookie(_pickCookieName(sport, gameId), decoded, PICK_COOKIE_DAYS);
+        return parsed;
+      } catch (e) { return null; }
     }
   }
   return null;

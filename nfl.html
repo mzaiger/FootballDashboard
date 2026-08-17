@@ -373,6 +373,11 @@
   .odds td.picked.hit,
   .odds td.picked.miss{box-shadow:inset 0 0 0 2px var(--pick-yellow);}
   .pick-toolbar{display:grid; grid-template-columns:repeat(4,1fr); gap:0.35rem; margin-top:0.6rem;}
+  .payout-summary{
+    grid-column: 1 / -1;
+    font-family:'JetBrains Mono',monospace; font-size:0.66rem; color:var(--dim);
+    text-align:center; margin-top:0.1rem;
+  }
   .pick-btn{
     font-family:'Inter',sans-serif; font-size:0.68rem; font-weight:600;
     color:var(--dim); background:#161b20; border:1px solid var(--line);
@@ -403,12 +408,12 @@
        string (e.g. multiple networks) doesn't blow out the card width or
        push the score badge off to one side. */
     max-width: 18ch; white-space: normal; overflow-wrap: break-word;
-    text-align: center; line-height: 1.25;
+    text-align: left; line-height: 1.3;
   }
 
   .matchup{
     margin:0.85rem 0 0.6rem;
-    display:flex; align-items:center; flex-wrap:nowrap; gap:0.45rem;
+    display:flex; align-items:center; justify-content:center; flex-wrap:nowrap; gap:0.45rem;
     font-family:'Oswald',sans-serif; font-size:1.05rem; font-weight:600;
     white-space:nowrap; overflow-x:auto; scrollbar-width:none;
   }
@@ -418,8 +423,15 @@
   .team-name-line{display:inline-flex; align-items:baseline; gap:0.4rem;}
   .team-name{font-size:0.88rem;}
   .team-record{
-    font-family:'JetBrains Mono',monospace; font-weight:500; font-size:0.62rem;
-    letter-spacing:0.02em; color:var(--dim);
+    /* Oswald (condensed sans) instead of the monospace font used
+       elsewhere -- monospace reads noticeably "spread out" at this size
+       for a W-L record + pitcher line, condensed reads more compact. */
+    font-family:'Oswald',sans-serif; font-weight:500; font-size:0.68rem;
+    letter-spacing:0.01em; color:var(--dim);
+  }
+  .team-pitcher{
+    font-family:'Oswald',sans-serif; font-weight:500; font-size:0.68rem;
+    letter-spacing:0.01em; color:var(--dim); opacity:0.85;
   }
   .at{color:var(--dim); font-size:0.72rem; font-family:'JetBrains Mono',monospace; flex-shrink:0;}
 
@@ -731,7 +743,7 @@ function renderGame(g) {
     ${isPick ? '<div class="pick-banner">\u2b50 Time Slot Best Matchup</div>' : ''}
     <div class="card-top">
       <span class="score-badge">${matchupLabel(g)}</span>
-      <span class="channel-pill">${g.channel}</span>
+      <span class="channel-pill">${formatChannelForPill(g.channel)}</span>
     </div>
     <div class="matchup">
       <span class="team">${teamNameBlock(g.away_team, g.away_record, teamScoreBadge(gScore?.away_score, gScore?.status))}</span>
@@ -807,13 +819,11 @@ function renderWeek(week, seasonType) {
   // already no-ops on a falsy week number).
   const regionalWeekNum = seasonType === 2 ? week.week : null;
   if (!week.days.length) {
-    const emptyMsg = week._filtered
-      ? 'No games match the current filters.'
-      : 'No games found for this week yet — check back closer to kickoff.';
+    if (!week._filtered) return ''; // nothing scheduled this week at all -- don't show an empty section
     return `
     <section class="week-block">
       <div class="week-heading"><span class="week-name">${label}</span></div>
-      <div class="week-empty">${emptyMsg}</div>
+      <div class="week-empty">No games match the current filters.</div>
     </section>`;
   }
   return `
@@ -839,9 +849,9 @@ async function init() {
     // week the build itself resolved as current, plus the next one.
     const displayWeeks = selectDisplayWeeks(data.weeks, data.current_week);
 
-    const weekNums = displayWeeks.map(w => formatWeekNumberLabel(w.week, data.season_type));
-    document.getElementById('pageTitle').textContent = weekNums.length
-      ? (weekNums.length > 1 ? `Weeks ${weekNums[0]}\u2013${weekNums[weekNums.length - 1]} \u2014 ${data.season}` : `Week ${weekNums[0]} \u2014 ${data.season}`)
+    const weekLabels = displayWeeks.map(w => formatWeekLabel(w.week, data.season_type));
+    document.getElementById('pageTitle').textContent = weekLabels.length
+      ? (weekLabels.length > 1 ? `${weekLabels[0]} \u2013 ${weekLabels[weekLabels.length - 1]} \u2014 ${data.season}` : `${weekLabels[0]} \u2014 ${data.season}`)
       : `${data.season}`;
     document.getElementById('generatedAt').textContent = new Date(data.generated_at).toLocaleString();
 
@@ -859,7 +869,7 @@ async function init() {
       document.getElementById('totalGames').textContent = shownWeeks.reduce((n, w) => n + w.total_games, 0);
       daysEl.innerHTML = shownWeeks.map(w => renderWeek(w, data.season_type)).join('');
     };
-    statusPills = initStatusPills('nfl', 'open', renderBoard);
+    statusPills = initStatusPills('nfl', 'all', renderBoard);
     renderBoard();
     attachPickHandlers(daysEl, renderBoard);
     attachGeminiHandlers(daysEl);

@@ -140,6 +140,11 @@
   .odds td.picked.hit,
   .odds td.picked.miss{box-shadow:inset 0 0 0 2px var(--pick-yellow);}
   .pick-toolbar{display:grid; grid-template-columns:repeat(4,1fr); gap:0.35rem; margin-top:0.6rem;}
+  .payout-summary{
+    grid-column: 1 / -1;
+    font-family:'JetBrains Mono',monospace; font-size:0.66rem; color:var(--dim);
+    text-align:center; margin-top:0.1rem;
+  }
   .pick-btn{
     font-family:'Inter',sans-serif; font-size:0.68rem; font-weight:600;
     color:var(--dim); background:#161b20; border:1px solid var(--line);
@@ -170,12 +175,12 @@
        string (e.g. multiple networks) doesn't blow out the card width or
        push the score badge off to one side. */
     max-width: 18ch; white-space: normal; overflow-wrap: break-word;
-    text-align: center; line-height: 1.25;
+    text-align: left; line-height: 1.3;
   }
 
   .matchup{
     margin:0.85rem 0 0.6rem;
-    display:flex; align-items:center; flex-wrap:nowrap; gap:0.45rem;
+    display:flex; align-items:center; justify-content:center; flex-wrap:nowrap; gap:0.45rem;
     font-family:'Oswald',sans-serif; font-size:1.05rem; font-weight:600;
     white-space:nowrap; overflow-x:auto; scrollbar-width:none;
   }
@@ -185,8 +190,15 @@
   .team-name-line{display:inline-flex; align-items:baseline; gap:0.4rem;}
   .team-name{font-size:0.88rem;}
   .team-record{
-    font-family:'JetBrains Mono',monospace; font-weight:500; font-size:0.62rem;
-    letter-spacing:0.02em; color:var(--dim);
+    /* Oswald (condensed sans) instead of the monospace font used
+       elsewhere -- monospace reads noticeably "spread out" at this size
+       for a W-L record + pitcher line, condensed reads more compact. */
+    font-family:'Oswald',sans-serif; font-weight:500; font-size:0.68rem;
+    letter-spacing:0.01em; color:var(--dim);
+  }
+  .team-pitcher{
+    font-family:'Oswald',sans-serif; font-weight:500; font-size:0.68rem;
+    letter-spacing:0.01em; color:var(--dim); opacity:0.85;
   }
   .rank{
     font-size:0.68rem; color:var(--gold); border:1px solid rgba(224,166,60,0.4);
@@ -624,7 +636,7 @@
 <div class="status" id="statusMsg" style="display:none;"></div>
 
 <footer>
-  Matchup: N badge = this game's rank among every game this week (1 = most marquee), based on combined AP Top 25 rank of both teams (unranked teams count as 26).
+  Matchup: N badge = this game's rank among every game this week (1 = most marquee), based on a blend of 50% combined AP Top 25 rank (unranked teams count as 50) + 25% combined win rank (teams ranked by this season's record like an AP-style poll, best record = rank 1) + 25% posted spread -- each normalized 0-100 across the week before blending.
   &#11088; Time Slot Best Matchup = 50% combined AP rank (unranked teams count as 50) + 50% closest posted spread, blended within that time window. Nebraska overrides everything whenever it's playing in that window.
   Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule &amp; rankings via CollegeFootballData.com.
   &#10024; Gemini Prediction Summary is AI-generated from current-season stats and posted odds -- informational only, not betting advice.
@@ -733,7 +745,7 @@ function renderGame(g) {
     ${isPick ? '<div class="pick-banner">\u2b50 Time Slot Best Matchup</div>' : ''}
     <div class="card-top">
       <span class="score-badge">${matchupLabel(g)}</span>
-      <span class="channel-pill">${g.channel}</span>
+      <span class="channel-pill">${formatChannelForPill(g.channel)}</span>
     </div>
     <div class="matchup">
       <span class="team">${rankBadge(g.away_rank)}${teamNameBlock(g.away_team, g.away_record, teamScoreBadge(gScore?.away_score, gScore?.status))}</span>
@@ -790,13 +802,11 @@ function renderDay(day) {
 
 function renderWeek(week) {
   if (!week.days.length) {
-    const emptyMsg = week._filtered
-      ? 'No games match the current filters.'
-      : 'No main-channel games found for this week yet — check back closer to kickoff.';
+    if (!week._filtered) return ''; // nothing scheduled this week at all -- don't show an empty section
     return `
     <section class="week-block">
       <div class="week-heading"><span class="week-name">Week ${week.week}</span></div>
-      <div class="week-empty">${emptyMsg}</div>
+      <div class="week-empty">No games match the current filters.</div>
     </section>`;
   }
   return `
@@ -843,7 +853,7 @@ async function init() {
       document.getElementById('totalGames').textContent = shownWeeks.reduce((n, w) => n + w.total_games, 0);
       daysEl.innerHTML = shownWeeks.map(renderWeek).join('');
     };
-    statusPills = initStatusPills('cfb', 'open', renderBoard);
+    statusPills = initStatusPills('cfb', 'all', renderBoard);
     renderBoard();
     attachPickHandlers(daysEl, renderBoard);
     attachGeminiHandlers(daysEl);
