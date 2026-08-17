@@ -128,6 +128,9 @@ def _rate_limit_wait_seconds(header_value, default=5, max_wait=120):
     return max(1, min(raw, max_wait))
 
 
+MAX_PAGE_RETRIES = 3
+
+
 def fetch_all_odds(sharp_key, league, sportsbooks=("draftkings", "fanduel"),
                     markets=("spread", "moneyline"), date_from=None, date_to=None):
     """Pull every odds row for the given league/books/markets, following
@@ -139,6 +142,18 @@ def fetch_all_odds(sharp_key, league, sportsbooks=("draftkings", "fanduel"),
     through, which is both faster and less exposed to any pagination edge
     case than asking for everything currently posted and filtering
     client-side.
+
+    Each individual page request gets up to MAX_PAGE_RETRIES attempts
+    (short backoff between them) before giving up -- SharpAPI has been
+    observed occasionally returning a 400 on a cursor-based page request
+    (e.g. right after a rate-limit wait, or on an already-large query) that
+    succeeds on retry. If every attempt for a page fails, this returns
+    whatever rows were already collected instead of raising -- one bad
+    page for one day/request shouldn't crash the whole build; the caller
+    (each build script now fetches one day at a time) just moves on to its
+    next request. A 429 (rate limited) doesn't count against the retry
+    budget at all -- it's an expected throttle, not a failure, so it's
+    retried until it clears rather than giving up after 3 tries.
     """
     rows = []
     offset = 0
@@ -163,19 +178,45 @@ def fetch_all_odds(sharp_key, league, sportsbooks=("draftkings", "fanduel"),
         else:
             params["offset"] = offset
 
-        resp = requests.get(
-            f"{SHARPAPI_BASE}/odds",
-            headers={"X-API-Key": sharp_key},
-            params=params,
-            timeout=REQUEST_TIMEOUT,
-        )
-        if resp.status_code == 429:
-            wait = _rate_limit_wait_seconds(resp.headers.get("X-RateLimit-Reset"))
-            log(f"SharpAPI rate limited, sleeping {wait}s")
-            time.sleep(wait)
-            continue
-        resp.raise_for_status()
-        payload = resp.json()
+        payload = None
+        attempt = 0
+        while payload is None and attempt < MAX_PAGE_RETRIES:
+            attempt += 1
+            try:
+                resp = requests.get(
+                    f"{SHARPAPI_BASE}/odds",
+                    headers={"X-API-Key": sharp_key},
+                    params=params,
+                    timeout=REQUEST_TIMEOUT,
+                )
+            except requests.RequestException as e:
+                log(f"  WARNING: odds page request failed (attempt {attempt}/{MAX_PAGE_RETRIES}): {e}")
+                if attempt < MAX_PAGE_RETRIES:
+                    time.sleep(1.5 * attempt)
+                continue
+
+            if resp.status_code == 429:
+                wait = _rate_limit_wait_seconds(resp.headers.get("X-RateLimit-Reset"))
+                log(f"SharpAPI rate limited, sleeping {wait}s")
+                time.sleep(wait)
+                attempt -= 1  # doesn't count against the retry budget -- not a real failure
+                continue
+
+            try:
+                resp.raise_for_status()
+                payload = resp.json()
+            except requests.RequestException as e:
+                log(f"  WARNING: odds page fetch failed (attempt {attempt}/{MAX_PAGE_RETRIES}): "
+                    f"{e} -- {resp.text[:300]}")
+                if attempt < MAX_PAGE_RETRIES:
+                    time.sleep(1.5 * attempt)
+
+        if payload is None:
+            log(f"  WARNING: giving up on this odds page after {MAX_PAGE_RETRIES} attempts -- "
+                f"{len(rows)} row(s) already collected will still be used; any remaining pages "
+                f"for this request are skipped rather than crashing the whole build.")
+            break
+
         rows.extend(payload.get("data", []))
 
         # Pagination info is a TOP-LEVEL field of the response, a sibling
