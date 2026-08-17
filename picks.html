@@ -274,6 +274,24 @@
     background:radial-gradient(circle at 32% 28%, rgba(83,211,55,0.28), rgba(83,211,55,0.04));
     box-shadow:0 0 20px rgba(83,211,55,0.4), inset 0 0 14px rgba(83,211,55,0.18);
   }
+  .stat-money-circle{
+    color:var(--dim);
+    border:3px solid var(--line);
+    background:radial-gradient(circle at 32% 28%, rgba(138,149,161,0.14), rgba(138,149,161,0.02));
+  }
+  .stat-money-circle.positive{
+    color:var(--dk-green);
+    border-color:var(--dk-green);
+    background:radial-gradient(circle at 32% 28%, rgba(83,211,55,0.28), rgba(83,211,55,0.04));
+    box-shadow:0 0 20px rgba(83,211,55,0.4), inset 0 0 14px rgba(83,211,55,0.18);
+  }
+  .stat-money-circle.negative{
+    color:var(--loss-red);
+    border-color:var(--loss-red);
+    background:radial-gradient(circle at 32% 28%, rgba(226,88,74,0.28), rgba(226,88,74,0.04));
+    box-shadow:0 0 20px rgba(226,88,74,0.4), inset 0 0 14px rgba(226,88,74,0.18);
+  }
+  .stat-money-circle .num{ font-size:1.05rem; }
   .stat-title{
     font-family:'Oswald',sans-serif; font-weight:600;
     font-size:0.95rem; color:var(--chalk); text-transform:uppercase;
@@ -369,7 +387,7 @@
        string (e.g. multiple networks) doesn't blow out the card width or
        push the score badge off to one side. */
     max-width: 18ch; white-space: normal; overflow-wrap: break-word;
-    text-align: center; line-height: 1.25;
+    text-align: left; line-height: 1.3;
   }
 
   .rank{
@@ -379,7 +397,7 @@
 
   .matchup{
     margin:0.85rem 0 0.6rem;
-    display:flex; align-items:center; flex-wrap:nowrap; gap:0.45rem;
+    display:flex; align-items:center; justify-content:center; flex-wrap:nowrap; gap:0.45rem;
     font-family:'Oswald',sans-serif; font-size:1.05rem; font-weight:600;
     white-space:nowrap; overflow-x:auto; scrollbar-width:none;
   }
@@ -389,8 +407,15 @@
   .team-name-line{display:inline-flex; align-items:baseline; gap:0.4rem;}
   .team-name{font-size:0.88rem;}
   .team-record{
-    font-family:'JetBrains Mono',monospace; font-weight:500; font-size:0.62rem;
-    letter-spacing:0.02em; color:var(--dim);
+    /* Oswald (condensed sans) instead of the monospace font used
+       elsewhere -- monospace reads noticeably "spread out" at this size
+       for a W-L record + pitcher line, condensed reads more compact. */
+    font-family:'Oswald',sans-serif; font-weight:500; font-size:0.68rem;
+    letter-spacing:0.01em; color:var(--dim);
+  }
+  .team-pitcher{
+    font-family:'Oswald',sans-serif; font-weight:500; font-size:0.68rem;
+    letter-spacing:0.01em; color:var(--dim); opacity:0.85;
   }
   .at{color:var(--dim); font-size:0.72rem; font-family:'JetBrains Mono',monospace; flex-shrink:0;}
 
@@ -503,6 +528,11 @@
   body.row-view .gemini-panel{grid-row:4;}
 
   .pick-toolbar{display:grid; grid-template-columns:repeat(4,1fr); gap:0.35rem; margin-top:0.6rem;}
+  .payout-summary{
+    grid-column: 1 / -1;
+    font-family:'JetBrains Mono',monospace; font-size:0.66rem; color:var(--dim);
+    text-align:center; margin-top:0.1rem;
+  }
   .pick-btn{
     font-family:'Inter',sans-serif; font-size:0.68rem; font-weight:600;
     color:var(--dim); background:#161b20; border:1px solid var(--line);
@@ -560,6 +590,10 @@
       <div class="stat-badge">
         <div class="stat-circle stat-inactive-circle"><span class="num" id="inactiveFrac">—/—</span><span class="sub">Correct</span></div>
         <div class="stat-title">Inactive<span>Games already<br>graded</span></div>
+      </div>
+      <div class="stat-badge">
+        <div class="stat-circle stat-money-circle" id="moneyCircle"><span class="num" id="moneyAmount">$0</span></div>
+        <div class="stat-title">$10/pick<span>If graded picks<br>were $10 bets</span></div>
       </div>
     </div>
     <div class="meta-row">
@@ -630,9 +664,13 @@ function rankBadge(rank) {
 }
 
 function teamNameBlock(name, record, scoreBadge, pitcher) {
-  const recordText = pitcher ? `${record || ''}${record ? ' \u00b7 ' : ''}${pitcher}` : (record || '');
-  const recordHtml = recordText ? `<span class="team-record">${recordText}</span>` : '';
-  return `<span class="team-name-wrap"><span class="team-name-line"><span class="team-name">${name}</span>${scoreBadge || ''}</span>${recordHtml}</span>`;
+  // Pitcher and record each get their own line (pitcher directly under
+  // the team name, record under that) instead of being crammed onto one
+  // line together separated by a dot -- long pitcher names + a W-L/ERA
+  // record was overflowing a single line.
+  const pitcherHtml = pitcher ? `<span class="team-pitcher">${pitcher}</span>` : '';
+  const recordHtml = record ? `<span class="team-record">${record}</span>` : '';
+  return `<span class="team-name-wrap"><span class="team-name-line"><span class="team-name">${name}</span>${scoreBadge || ''}</span>${pitcherHtml}${recordHtml}</span>`;
 }
 
 function kickoffTime(iso, tbd) {
@@ -729,7 +767,7 @@ function renderGame(sport, g) {
     ${isSlotPick ? '<div class="pick-banner">\u2b50 Time Slot Best Matchup</div>' : ''}
     <div class="card-top">
       <span class="score-badge">${matchupLabel(g)}</span>
-      <span class="channel-pill">${g.channel}</span>
+      <span class="channel-pill">${formatChannelForPill(g.channel)}</span>
     </div>
     <div class="matchup">
       <span class="team">${awayLabel}</span>
@@ -856,6 +894,17 @@ function renderBoard() {
   document.getElementById('activeNum').textContent = record.active;
   document.getElementById('inactiveFrac').textContent = `${record.inactiveCorrect}/${record.inactiveTotal}`;
 
+  const netMoney = computeMoneyRecord(
+    [{ sport: 'cfb', data: cfbData }, { sport: 'nfl', data: nflData }, { sport: 'mlb', data: mlbData }],
+    SCORES
+  );
+  const moneyEl = document.getElementById('moneyAmount');
+  const moneyCircleEl = document.getElementById('moneyCircle');
+  const sign = netMoney > 0 ? '+' : (netMoney < 0 ? '\u2212' : '');
+  moneyEl.textContent = `${sign}$${Math.abs(netMoney).toFixed(2)}`;
+  moneyCircleEl.classList.toggle('positive', netMoney > 0);
+  moneyCircleEl.classList.toggle('negative', netMoney < 0);
+
   const cfbFiltered = filterDataset('cfb', cfbData);
   const nflFiltered = filterDataset('nfl', nflData);
   const mlbFiltered = filterDataset('mlb', mlbData);
@@ -913,7 +962,7 @@ async function init() {
       return;
     }
 
-    statusPills = initStatusPills('picks', 'closed', renderBoard);
+    statusPills = initStatusPills('picks', 'all', renderBoard);
     renderBoard();
     attachPickHandlers(document.getElementById('sections'), renderBoard);
     attachGeminiHandlers(document.getElementById('sections'));
