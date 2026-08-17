@@ -31,13 +31,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Build NCAAF ncaaf_dashboard.json
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-          SHARPAPI_KEY: ${{ secrets.SHARPAPI_KEY }}
-          GEMINI_KEY: ${{ secrets.GEMINI_KEY }}
-        run: python scripts/build_ncaaf_dashboard.py
-
       - name: Build NFL nfl_dashboard.json
         env:
           SHARPAPI_KEY: ${{ secrets.SHARPAPI_KEY }}
