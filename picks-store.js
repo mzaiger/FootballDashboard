@@ -96,27 +96,42 @@ function selectDisplayWeeks(weeks, currentWeek) {
 // number a "Week ..." label would use.
 function formatMlbDayLabel(week) {
   const dateStr = week && week.days && week.days[0] && week.days[0].date;
-  if (!dateStr) return week ? `${week.week}` : '';
-  const d = new Date(dateStr + 'T00:00:00');
-  return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  if (dateStr) {
+    const d = new Date(dateStr + 'T00:00:00');
+    return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  }
+  // No days (this day has zero games at all, e.g. an off-day) -- for
+  // MLB the "week" number itself always IS the date as YYYYMMDD (see
+  // build_mlb_dashboard.py's module docstring), so it can still be
+  // decoded into a real date directly instead of showing that raw
+  // 8-digit number.
+  const wk = week && week.week;
+  if (wk && /^\d{8}$/.test(String(wk))) {
+    const s = String(wk);
+    const d = new Date(`${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}T00:00:00`);
+    if (!isNaN(d)) return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  }
+  return '';
 }
 
 // MLB equivalent of selectDisplayWeeks(): returns just the days mlb.html
-// should render -- the day matching currentDayKey (YYYYMMDD), plus
-// whichever day comes right after it in the array. Uses array position
-// rather than "currentDayKey + 1" arithmetic because YYYYMMDD doesn't
-// increment cleanly across a month boundary (e.g. 20260831 + 1 is not
-// 20260901) -- the day that's actually "tomorrow" is whatever the build
-// script placed next in the sorted list, not currentDayKey+1.
+// should render -- the day immediately before currentDayKey (YYYYMMDD),
+// currentDayKey itself, and the day immediately after it in the array
+// (yesterday/today/tomorrow). Uses array position rather than
+// "currentDayKey +/- 1" arithmetic because YYYYMMDD doesn't increment
+// cleanly across a month boundary (e.g. 20260831 + 1 is not 20260901) --
+// the days that are actually "yesterday"/"tomorrow" are whatever the
+// build script placed immediately before/after in the sorted list, not
+// currentDayKey +/- 1.
 function selectDisplayDays(weeks, currentDayKey) {
   if (!weeks || !weeks.length) return [];
   const sorted = [...weeks].sort((a, b) => a.week - b.week);
   if (currentDayKey === undefined || currentDayKey === null) {
-    return sorted.slice(-2);
+    return sorted.slice(-3);
   }
   const idx = sorted.findIndex(w => w.week === currentDayKey);
-  if (idx === -1) return sorted.slice(-2);
-  return sorted.slice(idx, idx + 2);
+  if (idx === -1) return sorted.slice(-3);
+  return sorted.slice(Math.max(0, idx - 1), idx + 2);
 }
 
 /*
@@ -245,6 +260,22 @@ function matchupLabel(g) {
     : `Matchup: ${g.matchup_rank}`;
 }
 
+// The TV pill shows a comma-joined list of networks (see
+// broadcast_label() in build_nfl_dashboard.py / build_mlb_dashboard.py).
+// For 3+ networks, break it onto multiple lines two-at-a-time (e.g.
+// "ESPN, ABC" / "FOX, NBC") instead of letting it wrap wherever the pill's
+// width happens to cut it off mid-name.
+function formatChannelForPill(channel) {
+  if (!channel) return channel;
+  const parts = channel.split(', ');
+  if (parts.length <= 2) return channel;
+  const lines = [];
+  for (let i = 0; i < parts.length; i += 2) {
+    lines.push(parts.slice(i, i + 2).join(', '));
+  }
+  return lines.join('<br>');
+}
+
 const PICK_COOKIE_PREFIX = 'pick_';
 const PICK_COOKIE_DAYS = 210;
 const PICK_LOCKED_STATUSES = ['final', 'in_progress', 'live', 'halftime'];
@@ -299,6 +330,22 @@ function getAllPicks(sport) {
   return out;
 }
 
+// Standard American-odds payout formula -- this is what DraftKings and
+// FanDuel (and every other US book) both use for both moneyline AND
+// against-the-spread bets: the "line" (point spread / run line) only
+// decides win-or-lose, it's the "american" price attached to whichever
+// side you took (e.g. -110 for a typical spread, or the moneyline price
+// itself) that decides the payout. Returns PROFIT only (not the stake
+// back), rounded to cents; null if there's no valid price to calculate
+// from.
+function calcPayout(americanOdds, stake) {
+  if (americanOdds === undefined || americanOdds === null) return null;
+  const n = Number(americanOdds);
+  if (Number.isNaN(n) || n === 0) return null;
+  const profit = n > 0 ? stake * (n / 100) : stake * (100 / Math.abs(n));
+  return Math.round(profit * 100) / 100;
+}
+
 // Toggle a pick: clicking the already-active option clears it, clicking any
 // other option overwrites it (only one pick allowed per game at a time).
 // `oddsSnapshot`, when provided, is `{draftkings: entry|null, fanduel: entry|null}`
@@ -309,13 +356,26 @@ function getAllPicks(sport) {
 // moved) or no number at all (the book pulled the line after the game
 // closed). Live cells that were never picked keep showing today's live
 // line as always -- only the picked cell is pinned.
+//
+// payout10/payout100 (profit on a $10 / $100 bet, DraftKings' price if
+// present else FanDuel's) are calculated ONCE here, at pick time, and
+// stored in the cookie right alongside the locked-in line/price -- same
+// reasoning as locking the line itself: if a later rebuild changes or
+// removes this game's price entirely, the payout shown for an
+// already-made pick shouldn't silently change or disappear along with it.
 function togglePick(sport, gameId, market, side, oddsSnapshot) {
   const current = getPick(sport, gameId);
   if (current && current.market === market && current.side === side) {
     _deleteCookie(_pickCookieName(sport, gameId));
     return null;
   }
-  const value = { market, side, odds: oddsSnapshot || null };
+  const entry = oddsSnapshot ? (oddsSnapshot.draftkings || oddsSnapshot.fanduel) : null;
+  const americanOdds = entry ? entry.american : null;
+  const value = {
+    market, side, odds: oddsSnapshot || null,
+    payout10: calcPayout(americanOdds, 10),
+    payout100: calcPayout(americanOdds, 100),
+  };
   _setCookie(_pickCookieName(sport, gameId), JSON.stringify(value), PICK_COOKIE_DAYS);
   return value;
 }
@@ -343,6 +403,26 @@ function formatLockedLine(pick) {
   const n = Number(raw);
   if (Number.isNaN(n)) return '';
   return ` (${n > 0 ? '+' : ''}${n})`;
+}
+
+// Shown inside the pick toolbar, under the 4 buttons, once a pick has
+// been made -- what a $10 and a $100 bet on the picked side would pay out
+// (profit only, not counting the stake back), using whichever payout was
+// locked in at pick time (see togglePick above). Falls back to computing
+// live from the pick's stored odds snapshot for a pick made before that
+// locking existed (an older cookie won't have payout10/payout100 at all).
+function renderPayoutSummary(pick) {
+  if (!pick) return '';
+  let p10 = pick.payout10;
+  let p100 = pick.payout100;
+  if (p10 === undefined || p100 === undefined) {
+    const entry = pick.odds ? (pick.odds.draftkings || pick.odds.fanduel) : null;
+    const americanOdds = entry ? entry.american : null;
+    p10 = calcPayout(americanOdds, 10);
+    p100 = calcPayout(americanOdds, 100);
+  }
+  if (p10 === null || p10 === undefined || p100 === null || p100 === undefined) return '';
+  return `<div class="payout-summary">Win $${p10.toFixed(2)} on $10 &middot; $${p100.toFixed(2)} on $100</div>`;
 }
 
 // The 4-button toolbar (away/home x spread/moneyline) for one game card.
@@ -373,7 +453,9 @@ function renderPickToolbar(sport, g, gScore) {
     return `<button type="button" class="pick-btn${active ? ' active' : ''}" data-sport="${sport}" data-game="${g.id}" data-market="${o.market}" data-side="${o.side}" data-odds="${oddsAttr}"${locked ? ' disabled' : ''}>${active ? '\u2605 ' : ''}${o.label}${lockedSuffix}</button>`;
   }).join('');
 
-  return `<div class="pick-toolbar">${btns}</div>`;
+  const payoutHtml = pick ? renderPayoutSummary(pick) : '';
+
+  return `<div class="pick-toolbar">${btns}${payoutHtml}</div>`;
 }
 
 // CSS class to drop on an odds-table cell so the picked market/side lights
@@ -480,6 +562,45 @@ function computePickRecord(datasets, scores) {
     })));
   });
   return { active, inactiveTotal, inactiveCorrect };
+}
+
+// Net profit/loss across every GRADED pick ever made (any week, any
+// sport), as if every single pick had been a flat $10 bet -- for the
+// $10/pick badge on the Picks page. A win adds that pick's locked-in
+// payout10 (falling back to a live calcPayout() for a pick made before
+// payout tracking existed, same as renderPayoutSummary); a loss
+// subtracts the $10 stake. Ungraded picks contribute nothing yet.
+//
+// Known simplification: pickOutcome() (and oddsHitClass() underneath it)
+// treats a push/tie as 'hit', same as it does for cell coloring -- a true
+// push actually just returns your stake (net $0), not a full win payout,
+// so a game that lands on an exact push is counted here as a win instead
+// of a wash. Pushes are rare enough (an exact-margin spread finish) that
+// this is a reasonable approximation rather than a real accuracy problem.
+function computeMoneyRecord(datasets, scores) {
+  let net = 0;
+  (datasets || []).forEach(({ sport, data }) => {
+    if (!data) return;
+    (data.weeks || []).forEach(week => (week.days || []).forEach(day => (day.time_slots || []).forEach(slot => {
+      (slot.games || []).forEach(g => {
+        const pick = getPick(sport, g.id);
+        if (!pick) return;
+        const gScore = (scores[sport] || {})[String(g.id)];
+        const outcome = pickOutcome(sport, g, gScore);
+        if (outcome === 'hit') {
+          let p10 = pick.payout10;
+          if (p10 === undefined) {
+            const entry = pick.odds ? (pick.odds.draftkings || pick.odds.fanduel) : null;
+            p10 = calcPayout(entry ? entry.american : null, 10);
+          }
+          net += (p10 || 0);
+        } else if (outcome === 'miss') {
+          net -= 10;
+        }
+      });
+    })));
+  });
+  return Math.round(net * 100) / 100;
 }
 
 // Click-delegation for every .pick-btn inside containerEl. `onPick` runs
