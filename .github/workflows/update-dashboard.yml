@@ -2,15 +2,11 @@ name: Update Betting Dashboards
 
 on:
   schedule:
-    # 8am / 2pm / 8pm Central (Central Daylight Time = UTC-5, so that's
-    # 13:00 / 19:00 / 01:00 UTC). Central shifts to UTC-6 outside DST
-    # (roughly early Nov - early March), which would run this an hour
-    # later than intended those months -- shift these by 1 hour if that
-    # matters to you (GitHub Actions cron is always UTC, it doesn't
-    # follow DST on its own).
-    - cron: "0 13 * * *"
-    - cron: "0 19 * * *"
-    - cron: "0 1 * * *"
+    # Every 4 hours, on the hour (00:00/04:00/08:00/... UTC). GitHub
+    # Actions cron is always UTC and doesn't shift with Central time's own
+    # DST, so the actual Central-time hours this lands on drift by an hour
+    # for part of the year -- still 6 evenly-spaced runs a day either way.
+    - cron: "0 */4 * * *"
   workflow_dispatch: {}  # lets you trigger a manual run from the Actions tab
 
 concurrency:
