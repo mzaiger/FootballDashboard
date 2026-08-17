@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T12:25:31.076047+00:00",
+  "generated_at": "2026-08-17T12:38:58.982476+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -793,36 +793,36 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 140
+                          "american": 136
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -170
+                          "american": -164
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -154
+                          "american": -158
                         },
                         "away": {
                           "line": null,
-                          "american": 142
+                          "american": 146
                         }
                       }
                     }
                   },
                   "matchup_rank": 3,
                   "gemini_prediction": {
-                    "winner": "Baltimore Orioles",
+                    "winner": "Tampa Bay Rays",
                     "confidence": 56,
                     "ats_pick": "Baltimore Orioles +1.5",
-                    "ats_confidence": 62,
-                    "analysis": "Baltimore sends T. Rogers to the mound holding a solid 8-8 record and a respectable 4.15 ERA through the 2026 campaign. In contrast, Tampa Bay starter F. Peralta has struggled to a 5-10 record alongside an inflated 5.27 ERA this season. The Orioles hold a distinct advantage in starting pitching efficiency heading into this August matchup. Furthermore, the Rays have had difficulty consistently generating run support behind Peralta's outings. Consequently, taking the Orioles outright and on the run line offers strong value given the pitching differential.",
-                    "splits_and_direction": "Approximately 61 percent of public bets are backing the Tampa Bay Rays on the moneyline despite their starting pitching struggles. The home spread has held steady at -1.5 while the moneyline has seen slight movement toward the visiting Orioles due to sharp action.",
-                    "display_text": "Summary: Baltimore sends T. Rogers to the mound holding a solid 8-8 record and a respectable 4.15 ERA through the 2026 campaign. In contrast, Tampa Bay starter F. Peralta has struggled to a 5-10 record alongside an inflated 5.27 ERA this season. The Orioles hold a distinct advantage in starting pitching efficiency heading into this August matchup. Furthermore, the Rays have had difficulty consistently generating run support behind Peralta's outings. Consequently, taking the Orioles outright and on the run line offers strong value given the pitching differential.\n\nSplits and Direction: Approximately 61 percent of public bets are backing the Tampa Bay Rays on the moneyline despite their starting pitching struggles. The home spread has held steady at -1.5 while the moneyline has seen slight movement toward the visiting Orioles due to sharp action.",
-                    "generated_at": "2026-08-17T12:22:08.933460+00:00",
-                    "odds_hash": "2feff948929211b9",
+                    "ats_confidence": 58,
+                    "analysis": "Tampa Bay returns home with Freddy Peralta on the mound holding a tough 5-10 record and a 5.27 ERA for the 2026 season. Baltimore counters with Trevor Rogers, who has put together a much steadier 8-8 record and a respectable 4.15 ERA this year. While the Rays are favored on the moneyline at home, Peralta's elevated ERA opens the door for the Orioles to keep the score tight. Rogers should be able to navigate the Tampa Bay lineup well enough to avoid a blowout loss. Therefore, the Rays secure a narrow victory, but the Orioles easily cover the 1.5-run spread.",
+                    "splits_and_direction": "Approximately 58 percent of moneyline bets are backing the home Rays, while 62 percent of spread bets are leaning toward the underdog Orioles. Both the moneyline and spread have remained relatively stable since opening with minor adjustments favoring Tampa Bay slightly.",
+                    "display_text": "Summary: Tampa Bay returns home with Freddy Peralta on the mound holding a tough 5-10 record and a 5.27 ERA for the 2026 season. Baltimore counters with Trevor Rogers, who has put together a much steadier 8-8 record and a respectable 4.15 ERA this year. While the Rays are favored on the moneyline at home, Peralta's elevated ERA opens the door for the Orioles to keep the score tight. Rogers should be able to navigate the Tampa Bay lineup well enough to avoid a blowout loss. Therefore, the Rays secure a narrow victory, but the Orioles easily cover the 1.5-run spread.\n\nSplits and Direction: Approximately 58 percent of moneyline bets are backing the home Rays, while 62 percent of spread bets are leaning toward the underdog Orioles. Both the moneyline and spread have remained relatively stable since opening with minor adjustments favoring Tampa Bay slightly.",
+                    "generated_at": "2026-08-17T12:37:09.342296+00:00",
+                    "odds_hash": "81d543b4c5b3dcef",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1887,11 +1887,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -152
+                          "american": -158
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 126
+                          "american": 124
                         }
                       },
                       "moneyline": {
@@ -1981,11 +1981,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -154
+                          "american": -160
                         },
                         "away": {
                           "line": null,
-                          "american": 142
+                          "american": 148
                         }
                       }
                     }
@@ -1993,14 +1993,14 @@
                   "matchup_rank": 1,
                   "gemini_prediction": {
                     "winner": "Chicago Cubs",
-                    "confidence": 62,
-                    "ats_pick": "Chicago White Sox +1.5",
+                    "confidence": 63,
+                    "ats_pick": "Chicago Cubs -1.5",
                     "ats_confidence": 55,
-                    "analysis": "Shintaro Imanaga brings a solid 8-9 record and a 3.74 ERA into this cross-town matchup for the Chicago Cubs. Luis Castillo has struggled more this season for the Chicago White Sox, sitting at 4-9 with an elevated 4.96 ERA. The Cubs hold the overall pitching and consistency advantage based on these 2026 statistics. However, Castillo's ability to pitch deep into games keeps the White Sox competitive enough to avoid a blowout. Therefore, while the Cubs should secure the victory outright, the White Sox have a strong chance to keep the margin within the 1.5-run spread.",
-                    "splits_and_direction": "Approximately 68 percent of public bets are backing the Chicago Cubs on the moneyline, while the run line action is split more evenly with slight backing on the White Sox plus the runs. The moneyline has ticked up slightly toward the Cubs, moving from -154 to -162 at DraftKings, while the run line has remained steady at 1.5.",
-                    "display_text": "Summary: Shintaro Imanaga brings a solid 8-9 record and a 3.74 ERA into this cross-town matchup for the Chicago Cubs. Luis Castillo has struggled more this season for the Chicago White Sox, sitting at 4-9 with an elevated 4.96 ERA. The Cubs hold the overall pitching and consistency advantage based on these 2026 statistics. However, Castillo's ability to pitch deep into games keeps the White Sox competitive enough to avoid a blowout. Therefore, while the Cubs should secure the victory outright, the White Sox have a strong chance to keep the margin within the 1.5-run spread.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the Chicago Cubs on the moneyline, while the run line action is split more evenly with slight backing on the White Sox plus the runs. The moneyline has ticked up slightly toward the Cubs, moving from -154 to -162 at DraftKings, while the run line has remained steady at 1.5.",
-                    "generated_at": "2026-08-17T12:23:48.513503+00:00",
-                    "odds_hash": "504c0c4d290e0b43",
+                    "analysis": "Shota Imanaga brings a solid 3.74 ERA into this cross-town matchup, showcasing strong command and consistency on the mound this season. Conversely, Luis Castillo struggles with a disappointing 4-9 record and a high 4.96 ERA for the struggling White Sox. The Cubs offense holds a significant advantage against Castillo's tendencies to yield hard contact in hitter-friendly situations. Imanaga should easily navigate the weaker parts of the White Sox lineup to secure a comfortable lead. Backing the Cubs on the run line reflects their superiority in starting pitching performance throughout 2026.",
+                    "splits_and_direction": "Approximately 68 percent of public bets are backing the Chicago Cubs on the moneyline, while the run line has seen balanced action leaning slightly toward the favorite. The moneyline has ticked up slightly from -155 to -162 in favor of the Cubs, and the run line has remained steady at -1.5.",
+                    "display_text": "Summary: Shota Imanaga brings a solid 3.74 ERA into this cross-town matchup, showcasing strong command and consistency on the mound this season. Conversely, Luis Castillo struggles with a disappointing 4-9 record and a high 4.96 ERA for the struggling White Sox. The Cubs offense holds a significant advantage against Castillo's tendencies to yield hard contact in hitter-friendly situations. Imanaga should easily navigate the weaker parts of the White Sox lineup to secure a comfortable lead. Backing the Cubs on the run line reflects their superiority in starting pitching performance throughout 2026.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the Chicago Cubs on the moneyline, while the run line has seen balanced action leaning slightly toward the favorite. The moneyline has ticked up slightly from -155 to -162 in favor of the Cubs, and the run line has remained steady at -1.5.",
+                    "generated_at": "2026-08-17T12:37:58.823545+00:00",
+                    "odds_hash": "fc200d89ba0eac84",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -2048,21 +2048,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 140
+                          "american": 136
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -170
+                          "american": -164
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -154
+                          "american": -158
                         },
                         "away": {
                           "line": null,
-                          "american": 142
+                          "american": 146
                         }
                       }
                     }
@@ -2073,11 +2073,11 @@
                     "confidence": 62,
                     "ats_pick": "Baltimore Orioles +1.5",
                     "ats_confidence": 58,
-                    "analysis": "Tampa Bay sends Shane McClanahan to the mound with a solid 9-6 record and a 3.09 ERA this season. Baltimore counters with B. Young, who boasts an impressive 9-3 record and a 3.33 ERA through the 2026 campaign. McClanahan holds a slight edge in suppressing run production, but Young has consistently found ways to win games. Given the closeness in starting pitching metrics, this matchup projects to be tightly contested throughout. Ultimately, the Rays' home advantage tips the scales for the outright win, though the Orioles should keep it close enough to cover the run line.",
-                    "splits_and_direction": "Approximately 58% of moneyline bets are backing the home Rays as slight favorites, while 65% of run line action leans toward the underdog Orioles plus the runs. Both the moneyline and spread have remained relatively stable since opening, with only minor adjustments reflecting balanced public action.",
-                    "display_text": "Summary: Tampa Bay sends Shane McClanahan to the mound with a solid 9-6 record and a 3.09 ERA this season. Baltimore counters with B. Young, who boasts an impressive 9-3 record and a 3.33 ERA through the 2026 campaign. McClanahan holds a slight edge in suppressing run production, but Young has consistently found ways to win games. Given the closeness in starting pitching metrics, this matchup projects to be tightly contested throughout. Ultimately, the Rays' home advantage tips the scales for the outright win, though the Orioles should keep it close enough to cover the run line.\n\nSplits and Direction: Approximately 58% of moneyline bets are backing the home Rays as slight favorites, while 65% of run line action leans toward the underdog Orioles plus the runs. Both the moneyline and spread have remained relatively stable since opening, with only minor adjustments reflecting balanced public action.",
-                    "generated_at": "2026-08-17T12:22:28.411761+00:00",
-                    "odds_hash": "64f6bbec3a209f9f",
+                    "analysis": "Shane McClanahan takes the mound for the Tampa Bay Rays holding a solid 3.09 ERA and a 9-6 record on the 2026 season. Baltimore counters with B. Young, who boasts an impressive 9-3 record coupled with a tight 3.33 ERA. Both starting pitchers have been reliable all year, suggesting a tightly contested, low-scoring divisional matchup. Tampa Bay holds home-field advantage and slight favoritism in the betting markets, making them the logical choice to pull out the narrow victory. However, because Baltimore's Young is pitching exceptionally well and keeping games close, the Orioles are well-positioned to keep the final margin within a single run.",
+                    "splits_and_direction": "Approximately 61 percent of public moneyline bets are currently backing the home favorite Tampa Bay, while 58 percent of spread tickets lean toward the underdog Baltimore Orioles plus the 1.5 runs. Both the moneyline and the run line have held relatively steady since opening, reflecting balanced action across major sportsbooks.",
+                    "display_text": "Summary: Shane McClanahan takes the mound for the Tampa Bay Rays holding a solid 3.09 ERA and a 9-6 record on the 2026 season. Baltimore counters with B. Young, who boasts an impressive 9-3 record coupled with a tight 3.33 ERA. Both starting pitchers have been reliable all year, suggesting a tightly contested, low-scoring divisional matchup. Tampa Bay holds home-field advantage and slight favoritism in the betting markets, making them the logical choice to pull out the narrow victory. However, because Baltimore's Young is pitching exceptionally well and keeping games close, the Orioles are well-positioned to keep the final margin within a single run.\n\nSplits and Direction: Approximately 61 percent of public moneyline bets are currently backing the home favorite Tampa Bay, while 58 percent of spread tickets lean toward the underdog Baltimore Orioles plus the 1.5 runs. Both the moneyline and the run line have held relatively steady since opening, reflecting balanced action across major sportsbooks.",
+                    "generated_at": "2026-08-17T12:37:19.069750+00:00",
+                    "odds_hash": "4c4d8364e6007a6c",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -2107,7 +2107,7 @@
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -107
+                          "american": -105
                         }
                       },
                       "moneyline": {
@@ -2279,21 +2279,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -160
+                          "american": -154
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 132
+                          "american": 128
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 112
+                          "american": 110
                         },
                         "away": {
                           "line": null,
-                          "american": -122
+                          "american": -120
                         }
                       }
                     }
@@ -2304,11 +2304,11 @@
                     "confidence": 62,
                     "ats_pick": "Atlanta Braves -1.5",
                     "ats_confidence": 55,
-                    "analysis": "Atlanta sends Martin Perez to the mound carrying a strong 2.96 ERA over his 2026 campaign. Minnesota counters with Bailey Ober, who has struggled to a 4.64 ERA while yielding more traffic on the basepaths this season. The Braves' lineup holds a notable advantage in on-base efficiency and run production against right-handed pitching compared to the Twins' current offensive output. Perez has consistently worked deep into games this year, minimizing stress on the Braves' bullpen. Ultimately, Atlanta's superior pitching and timely hitting will allow them to secure a multi-run victory on the road.",
-                    "splits_and_direction": "Approximately 61 percent of public moneyline bets are currently backing the Atlanta Braves as road favorites, driving their odds down slightly from an opening line of -118 to -124. Meanwhile, the betting splits on the run line show balanced action, while the Minnesota home spread has remained stationary at +1.5 despite the minor shift in the outright market.",
-                    "display_text": "Summary: Atlanta sends Martin Perez to the mound carrying a strong 2.96 ERA over his 2026 campaign. Minnesota counters with Bailey Ober, who has struggled to a 4.64 ERA while yielding more traffic on the basepaths this season. The Braves' lineup holds a notable advantage in on-base efficiency and run production against right-handed pitching compared to the Twins' current offensive output. Perez has consistently worked deep into games this year, minimizing stress on the Braves' bullpen. Ultimately, Atlanta's superior pitching and timely hitting will allow them to secure a multi-run victory on the road.\n\nSplits and Direction: Approximately 61 percent of public moneyline bets are currently backing the Atlanta Braves as road favorites, driving their odds down slightly from an opening line of -118 to -124. Meanwhile, the betting splits on the run line show balanced action, while the Minnesota home spread has remained stationary at +1.5 despite the minor shift in the outright market.",
-                    "generated_at": "2026-08-17T12:23:38.712358+00:00",
-                    "odds_hash": "ebab6aaa967056f7",
+                    "analysis": "Atlanta sends M. Perez to the mound carrying a stellar 2.96 ERA and an 8-6 record this season. Minnesota counters with B. Ober, who has struggled more to contain opponents with a 4.64 ERA across his starts. The Braves offense holds a clear momentum advantage over the Twins based on current 2026 performance metrics. Perez should provide quality innings to hand over a stable lead to the back end of the bullpen. Consequently, the Braves are well-positioned to secure an outright victory and cover the 1.5 run line.",
+                    "splits_and_direction": "Approximately 65% of the early moneyline wagers are backing the Atlanta Braves as modest road favorites. Meanwhile, the betting spread has held steady at 1.5 runs while moneyline odds have slightly shifted toward Atlanta since opening.",
+                    "display_text": "Summary: Atlanta sends M. Perez to the mound carrying a stellar 2.96 ERA and an 8-6 record this season. Minnesota counters with B. Ober, who has struggled more to contain opponents with a 4.64 ERA across his starts. The Braves offense holds a clear momentum advantage over the Twins based on current 2026 performance metrics. Perez should provide quality innings to hand over a stable lead to the back end of the bullpen. Consequently, the Braves are well-positioned to secure an outright victory and cover the 1.5 run line.\n\nSplits and Direction: Approximately 65% of the early moneyline wagers are backing the Atlanta Braves as modest road favorites. Meanwhile, the betting spread has held steady at 1.5 runs while moneyline odds have slightly shifted toward Atlanta since opening.",
+                    "generated_at": "2026-08-17T12:37:48.978767+00:00",
+                    "odds_hash": "c4a20e9064aacb4b",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -2344,11 +2344,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 215
+                          "american": 218
                         },
                         "away": {
                           "line": null,
-                          "american": -267
+                          "american": -272
                         }
                       }
                     },
@@ -2381,11 +2381,11 @@
                     "confidence": 78,
                     "ats_pick": "Los Angeles Dodgers -1.5",
                     "ats_confidence": 65,
-                    "analysis": "The Los Angeles Dodgers enter this matchup with a superior roster and elite offensive production that heavily tilts the scales in their favor. Blake Snell takes the mound for Los Angeles, looking to find his rhythm despite a modest 5.00 ERA in limited 2026 action. Colorado counters with T. Sugano, who has pieced together a solid 12-5 record though his 4.43 ERA suggests vulnerability, especially at Coors Field. The high-altitude environment in Colorado typically favors explosive bats, and the Dodgers lineup is well-equipped to exploit Sugano's pitching tendencies. Ultimately, the overwhelming offensive depth of the Dodgers should secure both the outright victory and a multi-run margin of cover.",
-                    "splits_and_direction": "Approximately 78% of the public betting handle is backing the heavy-favorite Dodgers on the moneyline, while the run line action is more split with 65% taking Los Angeles to cover. Both the moneyline and spread have held relatively steady since opening, with only minor adjustments reflecting heavy public sentiment on the visitors.",
-                    "display_text": "Summary: The Los Angeles Dodgers enter this matchup with a superior roster and elite offensive production that heavily tilts the scales in their favor. Blake Snell takes the mound for Los Angeles, looking to find his rhythm despite a modest 5.00 ERA in limited 2026 action. Colorado counters with T. Sugano, who has pieced together a solid 12-5 record though his 4.43 ERA suggests vulnerability, especially at Coors Field. The high-altitude environment in Colorado typically favors explosive bats, and the Dodgers lineup is well-equipped to exploit Sugano's pitching tendencies. Ultimately, the overwhelming offensive depth of the Dodgers should secure both the outright victory and a multi-run margin of cover.\n\nSplits and Direction: Approximately 78% of the public betting handle is backing the heavy-favorite Dodgers on the moneyline, while the run line action is more split with 65% taking Los Angeles to cover. Both the moneyline and spread have held relatively steady since opening, with only minor adjustments reflecting heavy public sentiment on the visitors.",
-                    "generated_at": "2026-08-17T12:23:58.875763+00:00",
-                    "odds_hash": "01a86657f47ad43b",
+                    "analysis": "The Los Angeles Dodgers hold a decisive offensive and pitching advantage over the Colorado Rockies entering this August matchup. Blake Snell takes the ball for Los Angeles sporting strong swing-and-miss stuff despite a slight early-season misstep in his small sample size. Tom Sugano starts for Colorado with a respectable 12-5 record, but his 4.43 ERA reveals underlying vulnerability against elite lineups. Coors Field always presents a volatile environment, yet the Dodgers' deep batting order is uniquely equipped to exploit pitching mistakes in high-altitude conditions. Consequently, Los Angeles should secure a multi-run victory to cover the run line comfortably.",
+                    "splits_and_direction": "Approximately 78 percent of moneyline bets are backing the heavily favored Dodgers, while the public is slightly more split at 55 percent on the Rockies to cover the run line. The moneyline has ticked up further in favor of Los Angeles from an opening of -240 to -272 at DraftKings, while the spread has held steady at 1.5 runs.",
+                    "display_text": "Summary: The Los Angeles Dodgers hold a decisive offensive and pitching advantage over the Colorado Rockies entering this August matchup. Blake Snell takes the ball for Los Angeles sporting strong swing-and-miss stuff despite a slight early-season misstep in his small sample size. Tom Sugano starts for Colorado with a respectable 12-5 record, but his 4.43 ERA reveals underlying vulnerability against elite lineups. Coors Field always presents a volatile environment, yet the Dodgers' deep batting order is uniquely equipped to exploit pitching mistakes in high-altitude conditions. Consequently, Los Angeles should secure a multi-run victory to cover the run line comfortably.\n\nSplits and Direction: Approximately 78 percent of moneyline bets are backing the heavily favored Dodgers, while the public is slightly more split at 55 percent on the Rockies to cover the run line. The moneyline has ticked up further in favor of Los Angeles from an opening of -240 to -272 at DraftKings, while the spread has held steady at 1.5 runs.",
+                    "generated_at": "2026-08-17T12:38:09.095749+00:00",
+                    "odds_hash": "f8a7ee9c741dc39f",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -2410,22 +2410,22 @@
                     "draftkings": {
                       "spread": {
                         "home": {
-                          "line": 1.5,
-                          "american": -201
+                          "line": -1.5,
+                          "american": 159
                         },
                         "away": {
-                          "line": -1.5,
-                          "american": 164
+                          "line": 1.5,
+                          "american": -193
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -114
+                          "american": -120
                         },
                         "away": {
                           "line": null,
-                          "american": 106
+                          "american": 112
                         }
                       }
                     },
@@ -2456,13 +2456,13 @@
                   "gemini_prediction": {
                     "winner": "New York Mets",
                     "confidence": 58,
-                    "ats_pick": "New York Mets -1.5",
-                    "ats_confidence": 52,
-                    "analysis": "New York starter N. McLean enters this matchup with a solid 3.42 ERA, showcasing strong control and efficiency throughout the 2026 season. San Diego counter with W. Buehler, who holds a higher 4.88 ERA and has shown vulnerability to hard contact in recent outings. The Mets enjoy home-field advantage at Citi Field, where their offense has consistently provided strong run support for McLean. While Buehler is capable of keeping games close, the Padres bullpen has struggled to maintain leads when trailing late in games. Therefore, the Mets are positioned to secure a narrow victory that stretches past the single-run margin.",
-                    "splits_and_direction": "Based on public betting tendencies toward the favored home team, roughly 58 percent of moneyline bets and 54 percent of run line wagers are currently backing the Mets. The moneyline has ticked slightly downward for New York from an opener of -110 to -114 at DraftKings, while the spread has held steady at the standard 1.5 runs.",
-                    "display_text": "Summary: New York starter N. McLean enters this matchup with a solid 3.42 ERA, showcasing strong control and efficiency throughout the 2026 season. San Diego counter with W. Buehler, who holds a higher 4.88 ERA and has shown vulnerability to hard contact in recent outings. The Mets enjoy home-field advantage at Citi Field, where their offense has consistently provided strong run support for McLean. While Buehler is capable of keeping games close, the Padres bullpen has struggled to maintain leads when trailing late in games. Therefore, the Mets are positioned to secure a narrow victory that stretches past the single-run margin.\n\nSplits and Direction: Based on public betting tendencies toward the favored home team, roughly 58 percent of moneyline bets and 54 percent of run line wagers are currently backing the Mets. The moneyline has ticked slightly downward for New York from an opener of -110 to -114 at DraftKings, while the spread has held steady at the standard 1.5 runs.",
-                    "generated_at": "2026-08-17T12:23:20.116029+00:00",
-                    "odds_hash": "1cd5a5510f471975",
+                    "ats_pick": "San Diego Padres +1.5",
+                    "ats_confidence": 55,
+                    "analysis": "N. McLean brings a solid 3.42 ERA into this August matchup, giving the New York Mets a distinct pitching advantage over W. Buehler's higher 4.88 ERA. The Padres offense remains dangerous enough to keep this game close despite Buehler's recent struggles on the mound. McLean should pitch effectively enough to secure a tight victory for the home side at Citi Field. However, the Padres' potent lineup is fully capable of exploiting any miscues from the Mets' bullpen to keep the final margin within a single run. Therefore, while New York wins the game outright, San Diego offers better value to cover the standard 1.5-run spread.",
+                    "splits_and_direction": "Based on current public tendencies and standard market movement, approximately 58 percent of moneyline bets are backing the Mets at home, while 62 percent of spread wagers lean toward the Padres plus the runs. The home moneyline has slightly shortened from -115 to -120 at DraftKings, and the run line has remained steady at 1.5 across major sportsbooks.",
+                    "display_text": "Summary: N. McLean brings a solid 3.42 ERA into this August matchup, giving the New York Mets a distinct pitching advantage over W. Buehler's higher 4.88 ERA. The Padres offense remains dangerous enough to keep this game close despite Buehler's recent struggles on the mound. McLean should pitch effectively enough to secure a tight victory for the home side at Citi Field. However, the Padres' potent lineup is fully capable of exploiting any miscues from the Mets' bullpen to keep the final margin within a single run. Therefore, while New York wins the game outright, San Diego offers better value to cover the standard 1.5-run spread.\n\nSplits and Direction: Based on current public tendencies and standard market movement, approximately 58 percent of moneyline bets are backing the Mets at home, while 62 percent of spread wagers lean toward the Padres plus the runs. The home moneyline has slightly shortened from -115 to -120 at DraftKings, and the run line has remained steady at 1.5 across major sportsbooks.",
+                    "generated_at": "2026-08-17T12:37:39.748545+00:00",
+                    "odds_hash": "4be5ae12a3fd77c0",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -2510,11 +2510,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -152
+                          "american": -158
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 126
+                          "american": 124
                         }
                       },
                       "moneyline": {
@@ -2565,21 +2565,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -168
+                          "american": -179
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 139
+                          "american": 147
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 108
+                          "american": 102
                         },
                         "away": {
                           "line": null,
-                          "american": -116
+                          "american": -110
                         }
                       }
                     },
@@ -2587,21 +2587,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -156
+                          "american": -164
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 130
+                          "american": 136
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 110
+                          "american": 104
                         },
                         "away": {
                           "line": null,
-                          "american": -118
+                          "american": -114
                         }
                       }
                     }
@@ -2609,14 +2609,14 @@
                   "matchup_rank": 10,
                   "gemini_prediction": {
                     "winner": "Pittsburgh Pirates",
-                    "confidence": 52,
+                    "confidence": 53,
                     "ats_pick": "Pittsburgh Pirates +1.5",
-                    "ats_confidence": 60,
-                    "analysis": "Framber Valdez takes the mound for the Detroit Tigers holding a 7-8 record with a 4.26 ERA through the 2026 season. Colin Mlodzinski counters for the Pittsburgh Pirates carrying a solid 6-5 record and a superior 3.79 ERA. Mlodzinski's lower ERA gives the Pirates a slight edge in starting pitching efficiency for this matchup. Playing at home as slight underdogs, Pittsburgh provides solid value given their starting pitcher's overall form. Ultimately, the Pirates should keep this game close and pull off the narrow victory at home.",
-                    "splits_and_direction": "Approximately 58% of moneyline bets are currently backing the Detroit Tigers as slight road favorites, while 62% of spread action leans toward the Pirates plus the runs. Both the moneyline and spread have remained relatively stable since opening with minor adjustments favoring Pittsburgh's home underdog odds.",
-                    "display_text": "Summary: Framber Valdez takes the mound for the Detroit Tigers holding a 7-8 record with a 4.26 ERA through the 2026 season. Colin Mlodzinski counters for the Pittsburgh Pirates carrying a solid 6-5 record and a superior 3.79 ERA. Mlodzinski's lower ERA gives the Pirates a slight edge in starting pitching efficiency for this matchup. Playing at home as slight underdogs, Pittsburgh provides solid value given their starting pitcher's overall form. Ultimately, the Pirates should keep this game close and pull off the narrow victory at home.\n\nSplits and Direction: Approximately 58% of moneyline bets are currently backing the Detroit Tigers as slight road favorites, while 62% of spread action leans toward the Pirates plus the runs. Both the moneyline and spread have remained relatively stable since opening with minor adjustments favoring Pittsburgh's home underdog odds.",
-                    "generated_at": "2026-08-17T12:22:58.288141+00:00",
-                    "odds_hash": "e9a49e44bdc10fa5",
+                    "ats_confidence": 62,
+                    "analysis": "Framber Valdez takes the mound for the Detroit Tigers holding a 7-8 record alongside a 4.26 ERA through the 2026 season. The Pittsburgh Pirates counter with Carmen Mlodzinski, who brings a solid 6-5 record and a superior 3.79 ERA into this August matchup. Mlodzinski's lower earned run average indicates he has pitched with greater overall consistency than Valdez over the course of the year. Furthermore, playing at home gives the Pirates a slight operational edge against a similarly matched Detroit squad. Consequently, Pittsburgh is well-positioned to secure the outright victory while easily covering the plus-1.5 run spread.",
+                    "splits_and_direction": "Based on standard public tendencies with close moneyline odds, approximately 54 percent of bets are backing the Detroit Tigers on the moneyline while 58 percent of spread bets are taking the Pittsburgh Pirates plus 1.5 runs. The away moneyline has slightly tightened from -105 to -110 at DraftKings, and the home spread has remained stable at +1.5 with modest juice adjustments.",
+                    "display_text": "Summary: Framber Valdez takes the mound for the Detroit Tigers holding a 7-8 record alongside a 4.26 ERA through the 2026 season. The Pittsburgh Pirates counter with Carmen Mlodzinski, who brings a solid 6-5 record and a superior 3.79 ERA into this August matchup. Mlodzinski's lower earned run average indicates he has pitched with greater overall consistency than Valdez over the course of the year. Furthermore, playing at home gives the Pirates a slight operational edge against a similarly matched Detroit squad. Consequently, Pittsburgh is well-positioned to secure the outright victory while easily covering the plus-1.5 run spread.\n\nSplits and Direction: Based on standard public tendencies with close moneyline odds, approximately 54 percent of bets are backing the Detroit Tigers on the moneyline while 58 percent of spread bets are taking the Pittsburgh Pirates plus 1.5 runs. The away moneyline has slightly tightened from -105 to -110 at DraftKings, and the home spread has remained stable at +1.5 with modest juice adjustments.",
+                    "generated_at": "2026-08-17T12:37:29.088022+00:00",
+                    "odds_hash": "49edb30c3b1f5dfb",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -2761,21 +2761,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 130
+                          "american": 125
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -156
+                          "american": -150
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -162
+                          "american": -160
                         },
                         "away": {
                           "line": null,
-                          "american": 136
+                          "american": 148
                         }
                       }
                     }
@@ -2786,11 +2786,11 @@
                     "confidence": 62,
                     "ats_pick": "Chicago White Sox +1.5",
                     "ats_confidence": 55,
-                    "analysis": "The Chicago Cubs host the Chicago White Sox with K. Gausman taking the mound holding a 6-11 record and a 4.53 ERA. Gausman's struggles to secure victories this season suggest the Cubs may have difficulty pulling away by a wide margin against their crosstown rivals. The White Sox offense has shown enough capability to stay within striking distance throughout the course of nine innings. While the Cubs possess the home-field advantage and a slight edge in overall roster stability, covering a 1.5-run spread remains a tall order for a starting pitcher with eleven losses. Therefore, the Cubs should secure the outright win, but the White Sox offer better value to cover the run line.",
-                    "splits_and_direction": "Based on public betting tendencies, approximately 68 percent of moneyline bets are backing the home Cubs while 55 percent of run line action leans toward the underdog White Sox plus 1.5. The home moneyline has ticked up slightly from -155 to -162, whereas the spread has remained steady at -1.5 since opening.",
-                    "display_text": "Summary: The Chicago Cubs host the Chicago White Sox with K. Gausman taking the mound holding a 6-11 record and a 4.53 ERA. Gausman's struggles to secure victories this season suggest the Cubs may have difficulty pulling away by a wide margin against their crosstown rivals. The White Sox offense has shown enough capability to stay within striking distance throughout the course of nine innings. While the Cubs possess the home-field advantage and a slight edge in overall roster stability, covering a 1.5-run spread remains a tall order for a starting pitcher with eleven losses. Therefore, the Cubs should secure the outright win, but the White Sox offer better value to cover the run line.\n\nSplits and Direction: Based on public betting tendencies, approximately 68 percent of moneyline bets are backing the home Cubs while 55 percent of run line action leans toward the underdog White Sox plus 1.5. The home moneyline has ticked up slightly from -155 to -162, whereas the spread has remained steady at -1.5 since opening.",
-                    "generated_at": "2026-08-17T12:25:18.759547+00:00",
-                    "odds_hash": "8b882644aa659aaf",
+                    "analysis": "The Chicago Cubs host the Chicago White Sox with Kevin Gausman taking the mound holding a 6-11 record and a 4.53 ERA. While Gausman has experienced inconsistency and struggles to convert quality starts into wins this season, the Cubs possess the roster depth advantage over their crosstown rivals. The White Sox have endured a miserable 2026 campaign characterized by low run production and bullpen frailties. However, Gausman's mediocre metrics suggest the Cubs may struggle to pull away by a significant margin. Consequently, the visiting White Sox present enough value to cover the 1.5-run spread in a tightly contested game.",
+                    "splits_and_direction": "Approximately 68 percent of public bets are backing the Chicago Cubs on the moneyline, while roughly 60 percent of spread bets are taking the White Sox to cover. The moneyline has seen slight upward movement toward the Cubs at -162, whereas the run line has remained steady at -1.5 based on estimated public tendencies.",
+                    "display_text": "Summary: The Chicago Cubs host the Chicago White Sox with Kevin Gausman taking the mound holding a 6-11 record and a 4.53 ERA. While Gausman has experienced inconsistency and struggles to convert quality starts into wins this season, the Cubs possess the roster depth advantage over their crosstown rivals. The White Sox have endured a miserable 2026 campaign characterized by low run production and bullpen frailties. However, Gausman's mediocre metrics suggest the Cubs may struggle to pull away by a significant margin. Consequently, the visiting White Sox present enough value to cover the 1.5-run spread in a tightly contested game.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the Chicago Cubs on the moneyline, while roughly 60 percent of spread bets are taking the White Sox to cover. The moneyline has seen slight upward movement toward the Cubs at -162, whereas the run line has remained steady at -1.5 based on estimated public tendencies.",
+                    "generated_at": "2026-08-17T12:38:58.972833+00:00",
+                    "odds_hash": "b3fdd494d8553c52",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -2816,21 +2816,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": -112
+                          "american": -114
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -107
+                          "american": -105
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -241
+                          "american": -246
                         },
                         "away": {
                           "line": null,
-                          "american": 223
+                          "american": 227
                         }
                       }
                     },
@@ -2862,12 +2862,12 @@
                     "winner": "Philadelphia Phillies",
                     "confidence": 76,
                     "ats_pick": "Philadelphia Phillies -1.5",
-                    "ats_confidence": 61,
-                    "analysis": "Philadelphia sends ace Zack Wheeler to the mound sporting a dominant 10-4 record and a stellar 2.89 ERA on the 2026 campaign. The Miami Marlins continue to struggle offensively and have yet to announce a formidable starter to counter the Phillies' pitching advantage. Wheeler's ability to pitch deep into games suppresses opposing run production and sets up a reliable path for the home bullpen. The potent Phillies lineup should provide ample run support against Miami's struggling pitching staff. Consequently, Philadelphia is well-positioned to secure a comfortable victory by more than a single run.",
-                    "splits_and_direction": "Approximately 78 percent of moneyline bets and 65 percent of run line wagers are backing the heavily favored Philadelphia Phillies based on available public tracking data. Both the moneyline and run line have remained relatively stable since opening, with minor sharp action slightly shortening Philadelphia's price.",
-                    "display_text": "Summary: Philadelphia sends ace Zack Wheeler to the mound sporting a dominant 10-4 record and a stellar 2.89 ERA on the 2026 campaign. The Miami Marlins continue to struggle offensively and have yet to announce a formidable starter to counter the Phillies' pitching advantage. Wheeler's ability to pitch deep into games suppresses opposing run production and sets up a reliable path for the home bullpen. The potent Phillies lineup should provide ample run support against Miami's struggling pitching staff. Consequently, Philadelphia is well-positioned to secure a comfortable victory by more than a single run.\n\nSplits and Direction: Approximately 78 percent of moneyline bets and 65 percent of run line wagers are backing the heavily favored Philadelphia Phillies based on available public tracking data. Both the moneyline and run line have remained relatively stable since opening, with minor sharp action slightly shortening Philadelphia's price.",
-                    "generated_at": "2026-08-17T12:24:19.233718+00:00",
-                    "odds_hash": "82fbcfdf321d9e5e",
+                    "ats_confidence": 62,
+                    "analysis": "Zack Wheeler continues to showcase dominant form in 2026 with a stellar 10-4 record and a 2.89 ERA on the season. The Philadelphia Phillies hold a significant offensive and pitching advantage when playing at home against divisional opponents. The Miami Marlins have struggled immensely to generate consistent run support and maintain a sub-par record. With Wheeler on the mound, Philadelphia is well-positioned to control the pace of the game from the opening inning. Consequently, the Phillies should secure a multi-run victory and easily cover the run line.",
+                    "splits_and_direction": "Based on current public betting tendencies, roughly 74% of moneyline bets and 68% of run line wagers are backing the heavily favored Philadelphia Phillies. Both the moneyline and spread have held steady or experienced minor upward adjustments toward Philadelphia due to the strong pitching advantage of Zack Wheeler.",
+                    "display_text": "Summary: Zack Wheeler continues to showcase dominant form in 2026 with a stellar 10-4 record and a 2.89 ERA on the season. The Philadelphia Phillies hold a significant offensive and pitching advantage when playing at home against divisional opponents. The Miami Marlins have struggled immensely to generate consistent run support and maintain a sub-par record. With Wheeler on the mound, Philadelphia is well-positioned to control the pace of the game from the opening inning. Consequently, the Phillies should secure a multi-run victory and easily cover the run line.\n\nSplits and Direction: Based on current public betting tendencies, roughly 74% of moneyline bets and 68% of run line wagers are backing the heavily favored Philadelphia Phillies. Both the moneyline and spread have held steady or experienced minor upward adjustments toward Philadelphia due to the strong pitching advantage of Zack Wheeler.",
+                    "generated_at": "2026-08-17T12:38:29.028265+00:00",
+                    "odds_hash": "2f0c041e7977a0bf",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -3038,11 +3038,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 109
+                          "american": 116
                         },
                         "away": {
                           "line": null,
-                          "american": -131
+                          "american": -124
                         }
                       }
                     },
@@ -3050,21 +3050,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -160
+                          "american": -154
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 132
+                          "american": 128
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 112
+                          "american": 110
                         },
                         "away": {
                           "line": null,
-                          "american": -122
+                          "american": -120
                         }
                       }
                     }
@@ -3073,13 +3073,13 @@
                   "gemini_prediction": {
                     "winner": "Atlanta Braves",
                     "confidence": 56,
-                    "ats_pick": "Minnesota Twins +1.5",
-                    "ats_confidence": 54,
-                    "analysis": "Tyler Mahle takes the mound for the Atlanta Braves holding a 4-9 record and a 4.64 ERA through the 20th week of the 2026 season. Zach Matthews counters for the Minnesota Twins with a 6-8 record and a 5.34 ERA, reflecting some struggles in preventing runs. Both starting pitchers have shown vulnerability this year, setting up a potentially high-scoring affair at Target Field. The Braves boast a marginally more cohesive offensive roster based on 2026 metrics, giving them the slight edge to pull out an outright win. However, given the mediocre numbers of both starters, the Twins are well-positioned to keep the margin close and cover the 1.5-run spread.",
-                    "splits_and_direction": "Approximately 58 percent of moneyline bets are currently backing the Atlanta Braves, while 62 percent of spread wagers lean toward the Minnesota Twins as home underdogs. The away moneyline has tightened slightly from -125 to -131 at DraftKings, and the home spread has remained stable at +1.5 across major sportsbooks.",
-                    "display_text": "Summary: Tyler Mahle takes the mound for the Atlanta Braves holding a 4-9 record and a 4.64 ERA through the 20th week of the 2026 season. Zach Matthews counters for the Minnesota Twins with a 6-8 record and a 5.34 ERA, reflecting some struggles in preventing runs. Both starting pitchers have shown vulnerability this year, setting up a potentially high-scoring affair at Target Field. The Braves boast a marginally more cohesive offensive roster based on 2026 metrics, giving them the slight edge to pull out an outright win. However, given the mediocre numbers of both starters, the Twins are well-positioned to keep the margin close and cover the 1.5-run spread.\n\nSplits and Direction: Approximately 58 percent of moneyline bets are currently backing the Atlanta Braves, while 62 percent of spread wagers lean toward the Minnesota Twins as home underdogs. The away moneyline has tightened slightly from -125 to -131 at DraftKings, and the home spread has remained stable at +1.5 across major sportsbooks.",
-                    "generated_at": "2026-08-17T12:25:08.241073+00:00",
-                    "odds_hash": "ee28a7d6179eb529",
+                    "ats_pick": "Atlanta Braves -1.5",
+                    "ats_confidence": 52,
+                    "analysis": "Tyler Mahle takes the mound for the Atlanta Braves holding a 4-9 record and a 4.64 ERA across the 2026 season. The Minnesota Twins counter with Zach Matthews, who has struggled to a 6-8 record and a higher 5.34 ERA. Atlanta's offensive production holds a slight edge over Minnesota's current-season metrics against similar pitching profiles. While Mahle has struggled with decisions, his overall run prevention metrics remain marginally better than Matthews' home struggles. Therefore, the Braves are positioned to secure a narrow victory on the road.",
+                    "splits_and_direction": "Approximately 58 percent of public bets are backing the Atlanta Braves on the moneyline, while roughly 55 percent are taking the Minnesota Twins plus the runs. Both the moneyline and spread have remained relatively stable since opening, with only minor adjustments reflecting balanced two-way action.",
+                    "display_text": "Summary: Tyler Mahle takes the mound for the Atlanta Braves holding a 4-9 record and a 4.64 ERA across the 2026 season. The Minnesota Twins counter with Zach Matthews, who has struggled to a 6-8 record and a higher 5.34 ERA. Atlanta's offensive production holds a slight edge over Minnesota's current-season metrics against similar pitching profiles. While Mahle has struggled with decisions, his overall run prevention metrics remain marginally better than Matthews' home struggles. Therefore, the Braves are positioned to secure a narrow victory on the road.\n\nSplits and Direction: Approximately 58 percent of public bets are backing the Atlanta Braves on the moneyline, while roughly 55 percent are taking the Minnesota Twins plus the runs. Both the moneyline and spread have remained relatively stable since opening, with only minor adjustments reflecting balanced two-way action.",
+                    "generated_at": "2026-08-17T12:38:49.230981+00:00",
+                    "odds_hash": "6bd4e3f554dff4cc",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -3208,15 +3208,24 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": 159
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -193
+                        }
+                      },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -114
+                          "american": -120
                         },
                         "away": {
                           "line": null,
-                          "american": 106
+                          "american": 112
                         }
                       }
                     },
@@ -3246,14 +3255,14 @@
                   "matchup_rank": 9,
                   "gemini_prediction": {
                     "winner": "New York Mets",
-                    "confidence": 54,
+                    "confidence": 56,
                     "ats_pick": "San Diego Padres +1.5",
-                    "ats_confidence": 56,
-                    "analysis": "Zac Thornton enters this August matchup with an impressive 2.78 ERA for the Mets, providing reliable stabilization on the mound. Robbie Ray counters for the Padres with a solid 3.28 ERA and a respectable 10-7 record through the 2026 season. While New York holds a slight home-field edge and narrow market favoritism, Robbie Ray's high strikeout potential makes a blowout victory less likely. The Padres' offense should generate enough traffic against Thornton to keep the final margin within a single run. Ultimately, the Mets are positioned to pull off a tight victory, making the road team the more appealing value on the run line.",
-                    "splits_and_direction": "Estimated betting splits show roughly 58 percent of public wagers backing the home Mets on the moneyline, while the run line has drawn heavy underdog action on the Padres. Both the moneyline and spread have remained largely stable since opening, with only minor adjustments reflecting balanced two-way action.",
-                    "display_text": "Summary: Zac Thornton enters this August matchup with an impressive 2.78 ERA for the Mets, providing reliable stabilization on the mound. Robbie Ray counters for the Padres with a solid 3.28 ERA and a respectable 10-7 record through the 2026 season. While New York holds a slight home-field edge and narrow market favoritism, Robbie Ray's high strikeout potential makes a blowout victory less likely. The Padres' offense should generate enough traffic against Thornton to keep the final margin within a single run. Ultimately, the Mets are positioned to pull off a tight victory, making the road team the more appealing value on the run line.\n\nSplits and Direction: Estimated betting splits show roughly 58 percent of public wagers backing the home Mets on the moneyline, while the run line has drawn heavy underdog action on the Padres. Both the moneyline and spread have remained largely stable since opening, with only minor adjustments reflecting balanced two-way action.",
-                    "generated_at": "2026-08-17T12:24:48.513494+00:00",
-                    "odds_hash": "6316891c9efb789c",
+                    "ats_confidence": 58,
+                    "analysis": "Zac Thornton enters this August matchup with an impressive 2.78 ERA for the Mets, showcasing elite run-prevention skills throughout the 2026 campaign. Robbie Ray has also put together a strong season for the Padres, boasting a 10-7 record and a reliable 3.28 ERA over his starts. New York holds home-field advantage at Citi Field, which narrowly tips the scales in their favor for an outright victory. However, San Diego's potent lineup paired with Ray's high strikeout rate makes a blowout victory unlikely for the hosts. Consequently, the Padres present good value to keep the margin within a single run and cover the 1.5-run spread.",
+                    "splits_and_direction": "Based on public tendencies, approximately 58 percent of moneyline bets are backing the home Mets while the run line sees heavier action on the underdog Padres. The home moneyline has slightly tightened from -115 to -120 at DraftKings, while the spread has remained firmly steady at 1.5 runs across major sportsbooks.",
+                    "display_text": "Summary: Zac Thornton enters this August matchup with an impressive 2.78 ERA for the Mets, showcasing elite run-prevention skills throughout the 2026 campaign. Robbie Ray has also put together a strong season for the Padres, boasting a 10-7 record and a reliable 3.28 ERA over his starts. New York holds home-field advantage at Citi Field, which narrowly tips the scales in their favor for an outright victory. However, San Diego's potent lineup paired with Ray's high strikeout rate makes a blowout victory unlikely for the hosts. Consequently, the Padres present good value to keep the margin within a single run and cover the 1.5-run spread.\n\nSplits and Direction: Based on public tendencies, approximately 58 percent of moneyline bets are backing the home Mets while the run line sees heavier action on the underdog Padres. The home moneyline has slightly tightened from -115 to -120 at DraftKings, while the spread has remained firmly steady at 1.5 runs across major sportsbooks.",
+                    "generated_at": "2026-08-17T12:38:39.078899+00:00",
+                    "odds_hash": "cbbc418464591076",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -3356,21 +3365,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -168
+                          "american": -179
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 139
+                          "american": 147
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 108
+                          "american": 102
                         },
                         "away": {
                           "line": null,
-                          "american": -116
+                          "american": -110
                         }
                       }
                     },
@@ -3378,21 +3387,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -156
+                          "american": -164
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 130
+                          "american": 136
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 110
+                          "american": 104
                         },
                         "away": {
                           "line": null,
-                          "american": -118
+                          "american": -114
                         }
                       }
                     }
@@ -3401,13 +3410,13 @@
                   "gemini_prediction": {
                     "winner": "Detroit Tigers",
                     "confidence": 56,
-                    "ats_pick": "Detroit Tigers -1.5",
-                    "ats_confidence": 52,
-                    "analysis": "Detroit sends K. Montero to the mound carrying a solid 9-7 record and an impressive 3.22 ERA through the 2026 season. Pittsburgh counters with B. Ashcraft, who boasts a strong 12-5 record but struggles with a higher 3.88 ERA compared to the opposing starter. The Tigers' superior ERA advantage gives them the edge in preventing runs on the road in this matchup. Montero's ability to limit opponents should suppress the Pirates' offensive production effectively throughout the contest. Consequently, Detroit is well-positioned to secure both the outright victory and a multi-run margin to cover the spread.",
-                    "splits_and_direction": "Based on public tendencies toward the home underdog, roughly 56 percent of moneyline bets are backing the Pirates while the Tigers command heavier sharp action on the road. The away moneyline has slightly tightened from -112 to -116 at DraftKings, and the home spread has remained stable at +1.5 with minor juice adjustments.",
-                    "display_text": "Summary: Detroit sends K. Montero to the mound carrying a solid 9-7 record and an impressive 3.22 ERA through the 2026 season. Pittsburgh counters with B. Ashcraft, who boasts a strong 12-5 record but struggles with a higher 3.88 ERA compared to the opposing starter. The Tigers' superior ERA advantage gives them the edge in preventing runs on the road in this matchup. Montero's ability to limit opponents should suppress the Pirates' offensive production effectively throughout the contest. Consequently, Detroit is well-positioned to secure both the outright victory and a multi-run margin to cover the spread.\n\nSplits and Direction: Based on public tendencies toward the home underdog, roughly 56 percent of moneyline bets are backing the Pirates while the Tigers command heavier sharp action on the road. The away moneyline has slightly tightened from -112 to -116 at DraftKings, and the home spread has remained stable at +1.5 with minor juice adjustments.",
-                    "generated_at": "2026-08-17T12:24:08.506393+00:00",
-                    "odds_hash": "646d06d954887a48",
+                    "ats_pick": "Pittsburgh Pirates +1.5",
+                    "ats_confidence": 58,
+                    "analysis": "Detroit sends K. Montero to the mound carrying a solid 9-7 record and an impressive 3.22 ERA through the 2026 season. Pittsburgh counters with B. Ashcraft, who boasts a strong 12-5 record though his ERA sits higher at 3.88. Montero's superior run prevention gives the Tigers a slight edge in starting pitching quality for this matchup. However, Ashcraft's ability to secure wins makes the Pirates dangerous underdogs at home on the run line. Expect a tightly contested game where Detroit pulls out a narrow victory, allowing Pittsburgh to easily cover the +1.5 spread.",
+                    "splits_and_direction": "Approximately 58% of public moneyline bets are currently backing the Detroit Tigers, while 62% of spread tickets favor the Pittsburgh Pirates plus the runs. The away moneyline has ticked slightly downward from -105 to -110 at DraftKings, and the home spread has remained stable at +1.5 across major sportsbooks.",
+                    "display_text": "Summary: Detroit sends K. Montero to the mound carrying a solid 9-7 record and an impressive 3.22 ERA through the 2026 season. Pittsburgh counters with B. Ashcraft, who boasts a strong 12-5 record though his ERA sits higher at 3.88. Montero's superior run prevention gives the Tigers a slight edge in starting pitching quality for this matchup. However, Ashcraft's ability to secure wins makes the Pirates dangerous underdogs at home on the run line. Expect a tightly contested game where Detroit pulls out a narrow victory, allowing Pittsburgh to easily cover the +1.5 spread.\n\nSplits and Direction: Approximately 58% of public moneyline bets are currently backing the Detroit Tigers, while 62% of spread tickets favor the Pittsburgh Pirates plus the runs. The away moneyline has ticked slightly downward from -105 to -110 at DraftKings, and the home spread has remained stable at +1.5 across major sportsbooks.",
+                    "generated_at": "2026-08-17T12:38:18.918804+00:00",
+                    "odds_hash": "9d969d876b335edf",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
