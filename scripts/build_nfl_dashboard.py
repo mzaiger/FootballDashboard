@@ -445,23 +445,32 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odd
     log(f"  {len(events)} games")
 
     log("Fetching DraftKings/FanDuel NFL odds from SharpAPI...")
-    # date_from/date_to scope the request to this week's actual games
-    # instead of asking for everything currently posted league-wide --
-    # fewer rows/pages to page through, and less exposed to any
-    # pagination edge case.
-    game_dates = []
+    # Fetch ONE DAY AT A TIME across this week's actual game dates, rather
+    # than a single date_from/date_to spanning the whole week -- a full
+    # week of NFL spreads (moneyline + spread, including every alternate
+    # spread line SharpAPI posts per game -- our own main-line filter in
+    # match_odds_for_game runs client-side AFTER the fetch, so it doesn't
+    # reduce what gets pulled down) can run well over a thousand rows,
+    # which means more pages to walk through in one shot and more chances
+    # for something (a timeout, a rate limit, a dropped page) to leave a
+    # game's odds missing. Splitting by day keeps each individual fetch
+    # small (typically 1-3 games' worth on a weeknight, up to ~16 on a
+    # Sunday) and means one bad day can't affect any other day's odds.
+    game_dates = set()
     for event in events:
         raw = event.get("date")
         if not raw:
             continue
         try:
-            game_dates.append(datetime.fromisoformat(raw.replace("Z", "+00:00")))
+            game_dates.add(datetime.fromisoformat(raw.replace("Z", "+00:00")).strftime("%Y-%m-%d"))
         except ValueError:
             continue
-    date_from = min(game_dates).strftime("%Y-%m-%d") if game_dates else None
-    date_to = max(game_dates).strftime("%Y-%m-%d") if game_dates else None
-    odds_rows = fetch_all_odds(sharp_key, league="nfl", date_from=date_from, date_to=date_to)
-    log(f"  {len(odds_rows)} odds rows returned")
+    odds_rows = []
+    for d in sorted(game_dates):
+        day_rows = fetch_all_odds(sharp_key, league="nfl", markets=("spread", "moneyline"),
+                                   date_from=d, date_to=d)
+        odds_rows.extend(day_rows)
+    log(f"  {len(odds_rows)} odds rows returned across {len(game_dates)} day(s)")
     team_cache = {}
     row_claims = {}
 

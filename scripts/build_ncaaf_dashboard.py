@@ -58,10 +58,6 @@ WEEK1_START = date(2026, 8, 22)
 # or narrow what counts as a "main channel" game.
 MAIN_CHANNELS = {"ABC", "CBS", "NBC", "FOX", "ESPN", "ESPN2", "FS1"}
 
-# Unranked teams get this rank value for matchup-score purposes so ranked-vs-
-# unranked and unranked-vs-unranked games still sort sensibly (worst last).
-UNRANKED_VALUE = 50
-
 # Nebraska always gets pulled onto the board and always wins its time slot's
 # "Time Slot Most Watchable Game" pick, no matter its AP rank or spread
 # relative to anything else in that window.
@@ -188,11 +184,71 @@ def get_rank_lookup_with_fallback(cfbd_key, year, week, cache=None):
 # Matchup ranking
 # ---------------------------------------------------------------------------
 
-def matchup_score(home_rank, away_rank):
-    """Lower score = better/more marquee matchup (sum of ranks, unranked=26)."""
-    h = home_rank if home_rank is not None else UNRANKED_VALUE
-    a = away_rank if away_rank is not None else UNRANKED_VALUE
-    return h + a
+# A team with no CFBD-poll ranking gets this value -- one worse than the
+# worst possible AP Top 25 rank -- so it never outranks a team that's
+# actually ranked. Kept separate from win-rank's own "unranked" value
+# below since these two components are normalized independently before
+# being blended.
+UNRANKED_VALUE = 50
+
+# A team with no games played yet (or missing from the /records feed)
+# gets this win-rank value -- one worse than the most FBS teams that could
+# realistically appear on one board -- so it never outranks a team that
+# actually has a record.
+UNRANKED_WIN_RANK = 135
+
+
+def build_win_rank_lookup(records_payload):
+    """Rank every team with a known record by win percentage this season
+    (rank 1 = best record on the board), the same convention NFL's/MLB's
+    win-rank lookups use. Ties broken by raw win total, then by team name
+    for a stable, deterministic order. `records_payload` is CFBD's raw
+    /records response (a list of {"team": ..., "total": {"wins":...,
+    "losses":..., "ties":...}} entries)."""
+    entries = []
+    for entry in records_payload:
+        team = entry.get("team")
+        if not team:
+            continue
+        total = entry.get("total", {}) or {}
+        wins = total.get("wins") or 0
+        losses = total.get("losses") or 0
+        ties = total.get("ties") or 0
+        games_played = wins + losses + ties
+        pct = (wins + 0.5 * ties) / games_played if games_played else -1
+        entries.append((team, pct, wins, team))
+    entries.sort(key=lambda e: (-e[1], -e[2], e[3]))
+    return {team: i + 1 for i, (team, pct, wins, _) in enumerate(entries)}
+
+
+def _home_spread(odds):
+    line = odds.get("draftkings", {}).get("spread", {}).get("home", {}).get("line")
+    if line is None:
+        line = odds.get("fanduel", {}).get("spread", {}).get("home", {}).get("line")
+    return line
+
+
+def matchup_components(home_rank, away_rank, home_win_rank, away_win_rank, odds):
+    """Per-game (ap_component, win_component, spread_component) tuple for
+    build_week to collect across the whole week and normalize/blend at
+    once (see build_week's matchup_score assignment below) -- mirrors
+    NFL's/MLB's matchup_score pattern. Any component with no data for
+    this particular game (e.g. neither team ranked, or no line posted
+    yet) comes back None and normalize_minmax() treats it as a neutral
+    mid-scale value rather than penalizing the game for missing data.
+    """
+    ap_component = None
+    if home_rank is not None or away_rank is not None:
+        ap_component = (home_rank or UNRANKED_VALUE) + (away_rank or UNRANKED_VALUE)
+
+    win_component = None
+    if home_win_rank is not None or away_win_rank is not None:
+        win_component = (home_win_rank or UNRANKED_WIN_RANK) + (away_win_rank or UNRANKED_WIN_RANK)
+
+    spread = _home_spread(odds)
+    spread_component = abs(spread) if spread is not None else None
+
+    return ap_component, win_component, spread_component
 
 
 def derive_week(today, year):
@@ -277,32 +333,39 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, ranki
     ))
 
     if records_cache is not None and year in records_cache:
-        record_lookup = records_cache[year]
+        record_lookup, win_rank_lookup = records_cache[year]
     else:
         log("Fetching team records...")
-        record_lookup = build_record_lookup(get_records(cfbd_key, year))
+        records_payload = get_records(cfbd_key, year)
+        record_lookup = build_record_lookup(records_payload)
+        win_rank_lookup = build_win_rank_lookup(records_payload)
         log(f"  {len(record_lookup)} team records found")
         if records_cache is not None:
-            records_cache[year] = record_lookup
+            records_cache[year] = (record_lookup, win_rank_lookup)
 
     log("Fetching DraftKings/FanDuel NCAAF odds from SharpAPI...")
-    # date_from/date_to scope the request to this week's actual games
-    # instead of asking for everything currently posted league-wide --
-    # fewer rows/pages to page through, and less exposed to any
-    # pagination edge case.
-    game_dates = []
+    # Fetch ONE DAY AT A TIME across this week's actual game dates, rather
+    # than a single date_from/date_to spanning the whole week -- see the
+    # matching comment in build_nfl_dashboard.py's build_week() for why.
+    # CFB has far more games per week than NFL (60+ some weeks), so this
+    # matters even more here: a full week's spread+moneyline rows,
+    # including every alternate spread line SharpAPI posts per game, can
+    # run into the thousands in one request.
+    game_dates = set()
     for g in games:
         raw = g.get("startDate")
         if not raw:
             continue
         try:
-            game_dates.append(datetime.fromisoformat(raw.replace("Z", "+00:00")))
+            game_dates.add(datetime.fromisoformat(raw.replace("Z", "+00:00")).strftime("%Y-%m-%d"))
         except ValueError:
             continue
-    date_from = min(game_dates).strftime("%Y-%m-%d") if game_dates else None
-    date_to = max(game_dates).strftime("%Y-%m-%d") if game_dates else None
-    odds_rows = fetch_all_odds(sharp_key, league="ncaaf", date_from=date_from, date_to=date_to)
-    log(f"  {len(odds_rows)} odds rows returned")
+    odds_rows = []
+    for d in sorted(game_dates):
+        day_rows = fetch_all_odds(sharp_key, league="ncaaf", markets=("spread", "moneyline"),
+                                   date_from=d, date_to=d)
+        odds_rows.extend(day_rows)
+    log(f"  {len(odds_rows)} odds rows returned across {len(game_dates)} day(s)")
     team_cache = {}
     row_claims = {}
 
@@ -342,6 +405,8 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, ranki
 
         home_rank = rank_lookup.get(home_team)
         away_rank = rank_lookup.get(away_team)
+        home_win_rank = win_rank_lookup.get(home_team)
+        away_win_rank = win_rank_lookup.get(away_team)
 
         odds = match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
         if previous_odds_by_id:
@@ -359,7 +424,7 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, ranki
             "away_conference": g.get("awayConference"),
             "away_rank": away_rank,
             "away_record": record_lookup.get(away_team, "0-0"),
-            "matchup_score": matchup_score(home_rank, away_rank),
+            "matchup_score": None,  # filled in below, once every game's components are known
             "channel": outlet or "Not on Main TV",
             "venue": g.get("venue"),
             "neutral_site": g.get("neutralSite", False),
@@ -367,9 +432,29 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, ranki
             "is_nebraska": is_nebraska,
         }
         days.setdefault(day_key, {}).setdefault(slot, []).append(game_entry)
-        all_games.append(game_entry)
+        all_games.append((game_entry, home_win_rank, away_win_rank))
 
     log(f"  {skipped_no_tv} games skipped (not on a main channel)")
+
+    # Matchup score blends three components -- 50% combined AP Top 25
+    # rank, 25% combined win-rank (teams ranked by this season's record,
+    # like an AP-style poll), 25% posted spread -- each normalized 0-100
+    # across the whole week before blending, same pattern NFL/MLB use for
+    # their own blends.
+    ap_components, win_components, spread_components = [], [], []
+    for g, home_win_rank, away_win_rank in all_games:
+        a, w, s = matchup_components(g["home_rank"], g["away_rank"], home_win_rank, away_win_rank, g["odds"])
+        ap_components.append(a)
+        win_components.append(w)
+        spread_components.append(s)
+    ap_norm = normalize_minmax(ap_components)
+    win_norm = normalize_minmax(win_components)
+    spread_norm = normalize_minmax(spread_components)
+    all_games_flat = []
+    for (g, _, _), an, wn, sn in zip(all_games, ap_norm, win_norm, spread_norm):
+        g["matchup_score"] = round(100 * (0.5 * an + 0.25 * wn + 0.25 * sn), 1)
+        all_games_flat.append(g)
+    all_games = all_games_flat
 
     # Rank spans the WHOLE WEEK, across every day in it, not just
     # whichever time slot or day a game lands in.

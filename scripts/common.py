@@ -104,6 +104,30 @@ def time_slot_for(local_dt, is_tbd):
 # SharpAPI calls
 # ---------------------------------------------------------------------------
 
+def _rate_limit_wait_seconds(header_value, default=5, max_wait=120):
+    """Turn a 429 response's X-RateLimit-Reset header into a sane number
+    of seconds to sleep.
+
+    Observed in practice: this header comes back as an absolute Unix
+    epoch timestamp (seconds since 1970) for WHEN the limit resets, not a
+    countdown duration -- treating it directly as "seconds to sleep" (an
+    earlier version of this function did) meant a value like
+    "1786919580" (a real epoch timestamp in 2026) got slept AS 1786919580
+    SECONDS, i.e. over 55 years. Any header value implausibly large to be
+    a real countdown (more than a day) is treated as an epoch timestamp
+    and converted to "seconds from now" instead. The result is clamped to
+    [1, max_wait] either way, so a clock-skew edge case or a genuinely
+    long reset window can't hang the build for hours.
+    """
+    try:
+        raw = int(header_value)
+    except (TypeError, ValueError):
+        return default
+    if raw > 86400:  # implausible as a plain countdown -- treat as an epoch timestamp
+        raw = raw - int(time.time())
+    return max(1, min(raw, max_wait))
+
+
 def fetch_all_odds(sharp_key, league, sportsbooks=("draftkings", "fanduel"),
                     markets=("spread", "moneyline"), date_from=None, date_to=None):
     """Pull every odds row for the given league/books/markets, following
@@ -146,9 +170,9 @@ def fetch_all_odds(sharp_key, league, sportsbooks=("draftkings", "fanduel"),
             timeout=REQUEST_TIMEOUT,
         )
         if resp.status_code == 429:
-            wait = 30
+            wait = _rate_limit_wait_seconds(resp.headers.get("X-RateLimit-Reset"))
             log(f"SharpAPI rate limited, sleeping {wait}s")
-            time.sleep(max(wait, 1))
+            time.sleep(wait)
             continue
         resp.raise_for_status()
         payload = resp.json()

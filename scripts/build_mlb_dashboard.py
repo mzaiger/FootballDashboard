@@ -67,8 +67,10 @@ from gemini_predictions import attach_gemini_predictions
 ESPN_MLB_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard"
 REQUEST_TIMEOUT = 20
 
-NUM_DAYS_DEFAULT = 2  # "today" + "tomorrow" -- baseball plays daily, so this
-                       # is MLB's equivalent of NFL/CFB showing 2 weeks.
+NUM_DAYS_DEFAULT = 3  # "yesterday" + "today" + "tomorrow" -- baseball plays
+                       # daily, so unlike NFL/CFB's 2 weeks this shows one
+                       # day back (so last night's final scores are still
+                       # visible after they wrap up) through one day ahead.
 
 # A team with no games played yet gets this win-rank value -- one worse
 # than the worst possible real rank (30 teams in MLB) -- so it never
@@ -357,15 +359,28 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None):
 
 
 def build(sharp_key, gemini_key=None, start_date=None, num_days=NUM_DAYS_DEFAULT, previous_odds_by_id=None):
-    """Build `num_days` consecutive calendar days starting at `start_date`
+    """Build `num_days` consecutive calendar days centered on `start_date`
     (default: today, in DISPLAY_TIMEZONE) and wrap them into the full
-    output payload, "week"-shaped the same way NFL/CFB are."""
+    output payload, "week"-shaped the same way NFL/CFB are.
+
+    `start_date` itself always means "today" to the caller (main() below
+    records it as current_week) -- with the default num_days=3 the actual
+    build window starts one day BEFORE it (so yesterday's final scores are
+    still on the board) and runs through one day after.
+    """
     if start_date is None:
         start_date = datetime.now(ZoneInfo(DISPLAY_TIMEZONE)).date()
 
+    # Center the window on start_date rather than starting AT it -- with
+    # num_days=3 that's [start_date - 1, start_date, start_date + 1]; with
+    # an odd override it's still centered, and with an even override it
+    # leans one extra day into the future (matches "yesterday today
+    # tomorrow" reading naturally for the default case).
+    window_start = start_date - timedelta(days=(num_days - 1) // 2)
+
     days_out = []
     for offset in range(num_days):
-        d = start_date + timedelta(days=offset)
+        d = window_start + timedelta(days=offset)
         days_out.append(build_day(d, sharp_key, gemini_key, previous_odds_by_id=previous_odds_by_id))
 
     return {
@@ -378,9 +393,9 @@ def build(sharp_key, gemini_key=None, start_date=None, num_days=NUM_DAYS_DEFAULT
 
 def parse_args():
     p = argparse.ArgumentParser(description="Build the MLB betting dashboard JSON.")
-    p.add_argument("--start-date", default=None, help="First date to build, YYYY-MM-DD (default: today)")
+    p.add_argument("--start-date", default=None, help="The 'today' date to center the build window on, YYYY-MM-DD (default: today)")
     p.add_argument("--num-days", type=int, default=NUM_DAYS_DEFAULT,
-                    help=f"How many consecutive days to build starting at --start-date (default: {NUM_DAYS_DEFAULT})")
+                    help=f"How many consecutive days to build, centered on --start-date (default: {NUM_DAYS_DEFAULT})")
     p.add_argument("--out", default=None, help="Output path (default: data/mlb_dashboard.json)")
     return p.parse_args()
 
@@ -397,6 +412,14 @@ def main():
         log("GEMINI_KEY not set -- building without Gemini predictions.")
 
     start_date = date.fromisoformat(args.start_date) if args.start_date else None
+    # Resolve "today" here (not inside build()) so we can record it as
+    # current_week below -- with num_days=3 the build window is centered
+    # on this date (yesterday/today/tomorrow), so the FIRST day in
+    # output["weeks"] is now yesterday, not today; using that directly (as
+    # an earlier version of this script did) recorded current_week as
+    # yesterday's date, which broke mlb.html's "which day is current"
+    # resolution once the window stopped starting exactly at today.
+    resolved_today = start_date or datetime.now(ZoneInfo(DISPLAY_TIMEZONE)).date()
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "mlb_dashboard.json")
@@ -408,19 +431,20 @@ def main():
         log(f"Loaded odds for {len(previous_odds_by_id)} game(s) from the previous build "
             f"to carry forward if today's fetch comes back blank for any of them.")
 
-    output = build(sharp_key, gemini_key, start_date=start_date, num_days=args.num_days,
+    output = build(sharp_key, gemini_key, start_date=resolved_today, num_days=args.num_days,
                     previous_odds_by_id=previous_odds_by_id)
     fresh_day_nums = [w["week"] for w in output["weeks"]]
 
-    # Record which day THIS build resolved as "today" -- mlb.html uses this
-    # (plus the very next day present in the file) to decide what to
+    # Record which day is "today" -- mlb.html uses this (plus the day
+    # immediately before and after it in the file) to decide what to
     # display, instead of re-deriving "today" client-side.
-    output["current_week"] = fresh_day_nums[0]
+    output["current_week"] = int(resolved_today.strftime("%Y%m%d"))
 
     # Never drop old days -- merge today's freshly-built days on top of
     # whatever days were already on disk instead of replacing the file
     # wholesale, so odds/scores/predictions from every past day stay
-    # available (Picks shows all of them; mlb.html only shows today + tomorrow).
+    # available (Picks shows all of them; mlb.html only shows yesterday
+    # through tomorrow).
     output["weeks"] = merge_weeks(existing_data, output["weeks"])
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
