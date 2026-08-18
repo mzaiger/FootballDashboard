@@ -3814,5 +3814,53 @@
     "generated_at": "2026-08-18T08:35:39.012914+00:00",
     "odds_hash": "78f99f64a6bbb34e",
     "model": "gemini-3.5-flash-lite"
+  },
+  "a36f1d119d9d3d71": {
+    "winner": "Boston Red Sox",
+    "confidence": 64,
+    "ats_pick": "Boston Red Sox -1.5",
+    "ats_confidence": 58,
+    "analysis": "Boston sends A. Gamboa to the mound carrying an impressive 1.47 ERA through the 2026 season. Arizona counters with M. Bratt, who holds a 4.17 ERA and a sub-par 1-2 record over his appearances. The Red Sox lineup holds a clear pitching matchup advantage at home against the Diamondbacks' current rotation limitations. Gamboa's ability to suppress runs should comfortably limit Arizona's offensive output throughout the contest. Consequently, Boston is well-positioned to secure a multi-run victory that covers the run line.",
+    "splits_and_direction": "Approximately 68 percent of public bets are backing the Red Sox on the moneyline, reflecting confidence in their home pitching advantage. Both the moneyline and spread have held relatively steady since opening without significant steam movement.",
+    "display_text": "Summary: Boston sends A. Gamboa to the mound carrying an impressive 1.47 ERA through the 2026 season. Arizona counters with M. Bratt, who holds a 4.17 ERA and a sub-par 1-2 record over his appearances. The Red Sox lineup holds a clear pitching matchup advantage at home against the Diamondbacks' current rotation limitations. Gamboa's ability to suppress runs should comfortably limit Arizona's offensive output throughout the contest. Consequently, Boston is well-positioned to secure a multi-run victory that covers the run line.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the Red Sox on the moneyline, reflecting confidence in their home pitching advantage. Both the moneyline and spread have held relatively steady since opening without significant steam movement.",
+    "generated_at": "2026-08-18T09:01:10.629361+00:00",
+    "odds_hash": "a36f1d119d9d3d71",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "abaf3c26824bff55": {
+    "winner": "Boston Red Sox",
+    "confidence": 68,
+    "ats_pick": "Boston Red Sox -1.5",
+    "ats_confidence": 55,
+    "analysis": "Ranger Suarez enters this matchup with a stellar 3.25 ERA, anchoring the Boston rotation with consistent, high-quality outings. Merrill Kelly has struggled significantly in 2026, carrying a bloated 5.11 ERA and an 8-10 record through his starts. The Red Sox offense at home should comfortably exploit Kelly's recent vulnerabilities and command issues. Boston's bullpen further widens the advantage given Arizona's inability to consistently lock down late-inning leads this year. Consequently, the Red Sox are well-positioned to secure a comfortable victory by more than a single run at Fenway Park.",
+    "splits_and_direction": "Approximately 68 percent of public bets are backing the heavily favored Red Sox on the moneyline, reflecting confidence in Suarez at home. The home spread has held steady at -1.5 while the moneyline has ticked up slightly toward Boston based on early action.",
+    "display_text": "Summary: Ranger Suarez enters this matchup with a stellar 3.25 ERA, anchoring the Boston rotation with consistent, high-quality outings. Merrill Kelly has struggled significantly in 2026, carrying a bloated 5.11 ERA and an 8-10 record through his starts. The Red Sox offense at home should comfortably exploit Kelly's recent vulnerabilities and command issues. Boston's bullpen further widens the advantage given Arizona's inability to consistently lock down late-inning leads this year. Consequently, the Red Sox are well-positioned to secure a comfortable victory by more than a single run at Fenway Park.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the heavily favored Red Sox on the moneyline, reflecting confidence in Suarez at home. The home spread has held steady at -1.5 while the moneyline has ticked up slightly toward Boston based on early action.",
+    "generated_at": "2026-08-18T09:02:03.549743+00:00",
+    "odds_hash": "abaf3c26824bff55",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "ef8461afaffe594e": {
+    "winner": "Boston Red Sox",
+    "confidence": 62,
+    "ats_pick": "Arizona Diamondbacks +1.5",
+    "ats_confidence": 58,
+    "analysis": "The Boston Red Sox host the Arizona Diamondbacks in an interleague matchup featuring two strong starting pitchers. Boston's P. Tolle brings an impressive 8-6 record and a 2.97 ERA into this contest, anchoring a reliable pitching staff. Meanwhile, Arizona counters with B. Pfaadt, who has been exceptional in 2026 with a 7-1 record and a 3.11 ERA. Given the stellar pitching metrics on both sides, runs are expected to be at a premium throughout the game. Although Boston is favored at home on the moneyline, Pfaadt's efficiency suggests the Diamondbacks will keep the game tightly contested within a single run. Therefore, the Red Sox should edge out a narrow victory, but the Diamondbacks offer strong value to cover the 1.5-run spread.",
+    "splits_and_direction": "Based on public tendencies toward home favorites, approximately 62 percent of moneyline bets are backing the Boston Red Sox while 38 percent take the Arizona Diamondbacks. Both the moneyline and spread have remained relatively stable since opening, with minor sharp action slightly shortening Boston's odds from -170 to -174.",
+    "display_text": "Summary: The Boston Red Sox host the Arizona Diamondbacks in an interleague matchup featuring two strong starting pitchers. Boston's P. Tolle brings an impressive 8-6 record and a 2.97 ERA into this contest, anchoring a reliable pitching staff. Meanwhile, Arizona counters with B. Pfaadt, who has been exceptional in 2026 with a 7-1 record and a 3.11 ERA. Given the stellar pitching metrics on both sides, runs are expected to be at a premium throughout the game. Although Boston is favored at home on the moneyline, Pfaadt's efficiency suggests the Diamondbacks will keep the game tightly contested within a single run. Therefore, the Red Sox should edge out a narrow victory, but the Diamondbacks offer strong value to cover the 1.5-run spread.\n\nSplits and Direction: Based on public tendencies toward home favorites, approximately 62 percent of moneyline bets are backing the Boston Red Sox while 38 percent take the Arizona Diamondbacks. Both the moneyline and spread have remained relatively stable since opening, with minor sharp action slightly shortening Boston's odds from -170 to -174.",
+    "generated_at": "2026-08-18T09:02:13.672672+00:00",
+    "odds_hash": "ef8461afaffe594e",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "8842cea92d321572": {
+    "winner": "Los Angeles Dodgers",
+    "confidence": 76,
+    "ats_pick": "Los Angeles Dodgers -1.5",
+    "ats_confidence": 68,
+    "analysis": "The Los Angeles Dodgers hold a decisive advantage in pitching and overall 2026 performance heading into this matchup at Coors Field. R. Sasaki enters with a respectable 4.46 ERA, showing the ability to suppress runs despite the notoriously hitter-friendly environment. Conversely, K. Freeland struggles heavily this season with a 4-10 record and an inflated 6.27 ERA that leaves the Colorado Rockies vulnerable to big innings. The Dodgers' potent lineup is well-equipped to exploit Freeland's recent command issues and capitalize on the Rockies' bullpen weaknesses. Ultimately, the superior talent and offensive depth of Los Angeles will propel them to a comfortable victory that covers the run line.",
+    "splits_and_direction": "Based on public betting tendencies toward the heavy favorites, approximately 78% of moneyline bets and 65% of run line wagers are backing the Dodgers. The away moneyline has moved slightly from -175 to -193, while the home spread has remained steady at +1.5 across major sportsbooks.",
+    "display_text": "Summary: The Los Angeles Dodgers hold a decisive advantage in pitching and overall 2026 performance heading into this matchup at Coors Field. R. Sasaki enters with a respectable 4.46 ERA, showing the ability to suppress runs despite the notoriously hitter-friendly environment. Conversely, K. Freeland struggles heavily this season with a 4-10 record and an inflated 6.27 ERA that leaves the Colorado Rockies vulnerable to big innings. The Dodgers' potent lineup is well-equipped to exploit Freeland's recent command issues and capitalize on the Rockies' bullpen weaknesses. Ultimately, the superior talent and offensive depth of Los Angeles will propel them to a comfortable victory that covers the run line.\n\nSplits and Direction: Based on public betting tendencies toward the heavy favorites, approximately 78% of moneyline bets and 65% of run line wagers are backing the Dodgers. The away moneyline has moved slightly from -175 to -193, while the home spread has remained steady at +1.5 across major sportsbooks.",
+    "generated_at": "2026-08-18T09:02:23.567707+00:00",
+    "odds_hash": "8842cea92d321572",
+    "model": "gemini-3.5-flash-lite"
   }
 }

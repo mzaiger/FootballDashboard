@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T08:35:39.025101+00:00",
+  "generated_at": "2026-08-18T09:02:23.575108+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -2190,11 +2190,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -171
+                          "american": -174
                         },
                         "away": {
                           "line": null,
-                          "american": 141
+                          "american": 143
                         }
                       }
                     },
@@ -2227,11 +2227,11 @@
                     "confidence": 64,
                     "ats_pick": "Boston Red Sox -1.5",
                     "ats_confidence": 58,
-                    "analysis": "A. Gamboa enters this matchup with an exceptional 1.47 ERA, anchoring the Boston pitching staff with stellar control and efficiency this season. M. Bratt has struggled somewhat more for Arizona, carrying a 4.17 ERA and a sub-par 1-2 record through his appearances. The Red Sox boast the home-field advantage and a more reliable run-prevention profile from their starting rotation. While the Diamondbacks can put up runs, Gamboa's suppression of opposing bats should stifle their lineup early. Consequently, Boston is well-positioned to secure both the outright victory and cover the run line.",
-                    "splits_and_direction": "Based on public tendencies toward the favored home team, roughly 68 percent of moneyline bets and 55 percent of run line wagers are backing the Boston Red Sox. The home moneyline has slightly shortened from -165 to -171 at DraftKings, while the spread has held firm at -1.5.",
-                    "display_text": "Summary: A. Gamboa enters this matchup with an exceptional 1.47 ERA, anchoring the Boston pitching staff with stellar control and efficiency this season. M. Bratt has struggled somewhat more for Arizona, carrying a 4.17 ERA and a sub-par 1-2 record through his appearances. The Red Sox boast the home-field advantage and a more reliable run-prevention profile from their starting rotation. While the Diamondbacks can put up runs, Gamboa's suppression of opposing bats should stifle their lineup early. Consequently, Boston is well-positioned to secure both the outright victory and cover the run line.\n\nSplits and Direction: Based on public tendencies toward the favored home team, roughly 68 percent of moneyline bets and 55 percent of run line wagers are backing the Boston Red Sox. The home moneyline has slightly shortened from -165 to -171 at DraftKings, while the spread has held firm at -1.5.",
-                    "generated_at": "2026-08-18T08:31:18.407382+00:00",
-                    "odds_hash": "0820c1115c8b521a",
+                    "analysis": "Boston sends A. Gamboa to the mound carrying an impressive 1.47 ERA through the 2026 season. Arizona counters with M. Bratt, who holds a 4.17 ERA and a sub-par 1-2 record over his appearances. The Red Sox lineup holds a clear pitching matchup advantage at home against the Diamondbacks' current rotation limitations. Gamboa's ability to suppress runs should comfortably limit Arizona's offensive output throughout the contest. Consequently, Boston is well-positioned to secure a multi-run victory that covers the run line.",
+                    "splits_and_direction": "Approximately 68 percent of public bets are backing the Red Sox on the moneyline, reflecting confidence in their home pitching advantage. Both the moneyline and spread have held relatively steady since opening without significant steam movement.",
+                    "display_text": "Summary: Boston sends A. Gamboa to the mound carrying an impressive 1.47 ERA through the 2026 season. Arizona counters with M. Bratt, who holds a 4.17 ERA and a sub-par 1-2 record over his appearances. The Red Sox lineup holds a clear pitching matchup advantage at home against the Diamondbacks' current rotation limitations. Gamboa's ability to suppress runs should comfortably limit Arizona's offensive output throughout the contest. Consequently, Boston is well-positioned to secure a multi-run victory that covers the run line.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the Red Sox on the moneyline, reflecting confidence in their home pitching advantage. Both the moneyline and spread have held relatively steady since opening without significant steam movement.",
+                    "generated_at": "2026-08-18T09:01:10.629361+00:00",
+                    "odds_hash": "a36f1d119d9d3d71",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -2356,11 +2356,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -105
+                          "american": 100
                         },
                         "away": {
                           "line": -1.5,
-                          "american": -114
+                          "american": -120
                         }
                       },
                       "moneyline": {
@@ -2903,11 +2903,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -171
+                          "american": -174
                         },
                         "away": {
                           "line": null,
-                          "american": 141
+                          "american": 143
                         }
                       }
                     },
@@ -2937,14 +2937,14 @@
                   "matchup_rank": 3,
                   "gemini_prediction": {
                     "winner": "Boston Red Sox",
-                    "confidence": 64,
+                    "confidence": 68,
                     "ats_pick": "Boston Red Sox -1.5",
-                    "ats_confidence": 58,
-                    "analysis": "The Boston Red Sox host the Arizona Diamondbacks at Fenway Park with Ranger Suarez on the mound holding a solid 3.25 ERA. Merril Kelly struggles on the road this season for Arizona, carrying an 8-10 record and an elevated 5.11 ERA into this matchup. Boston's offense has shown better consistency at home, putting pressure on opposing starters early in games. Suarez provides a steady presence that should neutralize the Diamondbacks' bats through at least six solid innings. Ultimately, the Red Sox pitching advantage and home-field strength justify a multi-run victory.",
-                    "splits_and_direction": "Approximately 68 percent of public bets are backing the Boston Red Sox on the moneyline, while the run line has seen moderate action on Boston -1.5 based on estimated betting trends. Both the moneyline and the run line have remained relatively stable since opening, with only minor adjustments reflecting early sharp money on the home favorite.",
-                    "display_text": "Summary: The Boston Red Sox host the Arizona Diamondbacks at Fenway Park with Ranger Suarez on the mound holding a solid 3.25 ERA. Merril Kelly struggles on the road this season for Arizona, carrying an 8-10 record and an elevated 5.11 ERA into this matchup. Boston's offense has shown better consistency at home, putting pressure on opposing starters early in games. Suarez provides a steady presence that should neutralize the Diamondbacks' bats through at least six solid innings. Ultimately, the Red Sox pitching advantage and home-field strength justify a multi-run victory.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the Boston Red Sox on the moneyline, while the run line has seen moderate action on Boston -1.5 based on estimated betting trends. Both the moneyline and the run line have remained relatively stable since opening, with only minor adjustments reflecting early sharp money on the home favorite.",
-                    "generated_at": "2026-08-18T04:35:46.815488+00:00",
-                    "odds_hash": "8eec16df2486af5e",
+                    "ats_confidence": 55,
+                    "analysis": "Ranger Suarez enters this matchup with a stellar 3.25 ERA, anchoring the Boston rotation with consistent, high-quality outings. Merrill Kelly has struggled significantly in 2026, carrying a bloated 5.11 ERA and an 8-10 record through his starts. The Red Sox offense at home should comfortably exploit Kelly's recent vulnerabilities and command issues. Boston's bullpen further widens the advantage given Arizona's inability to consistently lock down late-inning leads this year. Consequently, the Red Sox are well-positioned to secure a comfortable victory by more than a single run at Fenway Park.",
+                    "splits_and_direction": "Approximately 68 percent of public bets are backing the heavily favored Red Sox on the moneyline, reflecting confidence in Suarez at home. The home spread has held steady at -1.5 while the moneyline has ticked up slightly toward Boston based on early action.",
+                    "display_text": "Summary: Ranger Suarez enters this matchup with a stellar 3.25 ERA, anchoring the Boston rotation with consistent, high-quality outings. Merrill Kelly has struggled significantly in 2026, carrying a bloated 5.11 ERA and an 8-10 record through his starts. The Red Sox offense at home should comfortably exploit Kelly's recent vulnerabilities and command issues. Boston's bullpen further widens the advantage given Arizona's inability to consistently lock down late-inning leads this year. Consequently, the Red Sox are well-positioned to secure a comfortable victory by more than a single run at Fenway Park.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the heavily favored Red Sox on the moneyline, reflecting confidence in Suarez at home. The home spread has held steady at -1.5 while the moneyline has ticked up slightly toward Boston based on early action.",
+                    "generated_at": "2026-08-18T09:02:03.549743+00:00",
+                    "odds_hash": "abaf3c26824bff55",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -3912,35 +3912,35 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -155
-                        },
                         "home": {
                           "line": -1.5,
                           "american": 128
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -155
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 141
-                        },
                         "home": {
                           "line": null,
                           "american": -171
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 141
                         }
                       }
                     },
                     "fanduel": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -162
-                        },
                         "home": {
                           "line": -1.5,
                           "american": 134
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -162
                         }
                       },
                       "moneyline": {
@@ -3999,13 +3999,13 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": -131
-                        },
                         "home": {
                           "line": null,
                           "american": 109
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -131
                         }
                       }
                     },
@@ -4021,13 +4021,13 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": -126
-                        },
                         "home": {
                           "line": null,
                           "american": 108
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -126
                         }
                       }
                     }
@@ -4066,23 +4066,23 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": -1.5,
-                          "american": 141
-                        },
                         "home": {
                           "line": 1.5,
                           "american": -171
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 141
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": -118
-                        },
                         "home": {
                           "line": null,
                           "american": -102
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -118
                         }
                       }
                     },
@@ -4143,13 +4143,13 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -175
-                        },
                         "home": {
                           "line": -1.5,
                           "american": 144
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -175
                         }
                       },
                       "moneyline": {
@@ -4239,23 +4239,23 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -171
+                          "american": -174
                         },
                         "away": {
                           "line": null,
-                          "american": 141
+                          "american": 143
                         }
                       }
                     },
                     "fanduel": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -144
-                        },
                         "home": {
                           "line": -1.5,
                           "american": 120
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -144
                         }
                       },
                       "moneyline": {
@@ -4276,11 +4276,11 @@
                     "confidence": 62,
                     "ats_pick": "Arizona Diamondbacks +1.5",
                     "ats_confidence": 58,
-                    "analysis": "P. Tolle enters this August matchup with an impressive 8-6 record and a stellar 2.97 ERA for the Boston Red Sox. B. Pfaadt counters for the Arizona Diamondbacks with an equally formidable 7-1 record and a 3.11 ERA, signaling a tight pitching duel. While Boston holds home-field advantage and a slight edge in starting pitching depth on paper, Arizona's potent offense keeps them competitive throughout the contest. Pfaadt's exceptional efficiency this season suggests he can keep the Red Sox bats quiet enough to prevent a blowout. Consequently, the Red Sox should edge out a narrow victory, but the Diamondbacks are well-positioned to cover the 1.5-run spread.",
-                    "splits_and_direction": "Based on public betting tendencies toward the favored home team, roughly 62% of moneyline bets are backing the Boston Red Sox while 57% of spread action leans toward the Arizona Diamondbacks plus the runs. The home moneyline has ticked up slightly from -165 to -171 at DraftKings, and the run line has remained steady at -1.5.",
-                    "display_text": "Summary: P. Tolle enters this August matchup with an impressive 8-6 record and a stellar 2.97 ERA for the Boston Red Sox. B. Pfaadt counters for the Arizona Diamondbacks with an equally formidable 7-1 record and a 3.11 ERA, signaling a tight pitching duel. While Boston holds home-field advantage and a slight edge in starting pitching depth on paper, Arizona's potent offense keeps them competitive throughout the contest. Pfaadt's exceptional efficiency this season suggests he can keep the Red Sox bats quiet enough to prevent a blowout. Consequently, the Red Sox should edge out a narrow victory, but the Diamondbacks are well-positioned to cover the 1.5-run spread.\n\nSplits and Direction: Based on public betting tendencies toward the favored home team, roughly 62% of moneyline bets are backing the Boston Red Sox while 57% of spread action leans toward the Arizona Diamondbacks plus the runs. The home moneyline has ticked up slightly from -165 to -171 at DraftKings, and the run line has remained steady at -1.5.",
-                    "generated_at": "2026-08-18T08:33:58.629255+00:00",
-                    "odds_hash": "e2980f855aa036d0",
+                    "analysis": "The Boston Red Sox host the Arizona Diamondbacks in an interleague matchup featuring two strong starting pitchers. Boston's P. Tolle brings an impressive 8-6 record and a 2.97 ERA into this contest, anchoring a reliable pitching staff. Meanwhile, Arizona counters with B. Pfaadt, who has been exceptional in 2026 with a 7-1 record and a 3.11 ERA. Given the stellar pitching metrics on both sides, runs are expected to be at a premium throughout the game. Although Boston is favored at home on the moneyline, Pfaadt's efficiency suggests the Diamondbacks will keep the game tightly contested within a single run. Therefore, the Red Sox should edge out a narrow victory, but the Diamondbacks offer strong value to cover the 1.5-run spread.",
+                    "splits_and_direction": "Based on public tendencies toward home favorites, approximately 62 percent of moneyline bets are backing the Boston Red Sox while 38 percent take the Arizona Diamondbacks. Both the moneyline and spread have remained relatively stable since opening, with minor sharp action slightly shortening Boston's odds from -170 to -174.",
+                    "display_text": "Summary: The Boston Red Sox host the Arizona Diamondbacks in an interleague matchup featuring two strong starting pitchers. Boston's P. Tolle brings an impressive 8-6 record and a 2.97 ERA into this contest, anchoring a reliable pitching staff. Meanwhile, Arizona counters with B. Pfaadt, who has been exceptional in 2026 with a 7-1 record and a 3.11 ERA. Given the stellar pitching metrics on both sides, runs are expected to be at a premium throughout the game. Although Boston is favored at home on the moneyline, Pfaadt's efficiency suggests the Diamondbacks will keep the game tightly contested within a single run. Therefore, the Red Sox should edge out a narrow victory, but the Diamondbacks offer strong value to cover the 1.5-run spread.\n\nSplits and Direction: Based on public tendencies toward home favorites, approximately 62 percent of moneyline bets are backing the Boston Red Sox while 38 percent take the Arizona Diamondbacks. Both the moneyline and spread have remained relatively stable since opening, with minor sharp action slightly shortening Boston's odds from -170 to -174.",
+                    "generated_at": "2026-08-18T09:02:13.672672+00:00",
+                    "odds_hash": "ef8461afaffe594e",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -4311,23 +4311,23 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -104
-                        },
                         "home": {
                           "line": -1.5,
                           "american": -116
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -104
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 205
-                        },
                         "home": {
                           "line": null,
                           "american": -254
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 205
                         }
                       }
                     },
@@ -4343,13 +4343,13 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 198
-                        },
                         "home": {
                           "line": null,
                           "american": -240
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 198
                         }
                       }
                     }
@@ -4398,13 +4398,13 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": -118
-                        },
                         "home": {
                           "line": null,
                           "american": -102
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -118
                         }
                       }
                     },
@@ -4420,13 +4420,13 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": -116
-                        },
                         "home": {
                           "line": null,
                           "american": -102
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -116
                         }
                       }
                     }
@@ -4475,35 +4475,35 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 119
-                        },
                         "home": {
                           "line": null,
                           "american": -144
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 119
                         }
                       }
                     },
                     "fanduel": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -176
-                        },
                         "home": {
                           "line": -1.5,
                           "american": 146
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -176
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 120
-                        },
                         "home": {
                           "line": null,
                           "american": -142
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 120
                         }
                       }
                     }
@@ -4552,13 +4552,13 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 134
-                        },
                         "home": {
                           "line": null,
                           "american": -162
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 134
                         }
                       }
                     },
@@ -4574,13 +4574,13 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 128
-                        },
                         "home": {
                           "line": null,
                           "american": -152
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 128
                         }
                       }
                     }
@@ -4619,13 +4619,13 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": -1.5,
-                          "american": -125
-                        },
                         "home": {
                           "line": 1.5,
                           "american": 104
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": -125
                         }
                       },
                       "moneyline": {
@@ -4640,15 +4640,24 @@
                       }
                     },
                     "fanduel": {
-                      "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": -180
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": 100
                         },
+                        "away": {
+                          "line": -1.5,
+                          "american": -120
+                        }
+                      },
+                      "moneyline": {
                         "home": {
                           "line": null,
                           "american": 152
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -180
                         }
                       }
                     }
@@ -4656,14 +4665,14 @@
                   "matchup_rank": 8,
                   "gemini_prediction": {
                     "winner": "Los Angeles Dodgers",
-                    "confidence": 74,
+                    "confidence": 76,
                     "ats_pick": "Los Angeles Dodgers -1.5",
                     "ats_confidence": 68,
-                    "analysis": "The Los Angeles Dodgers hold a distinct pitching advantage with R. Sasaki posting a solid 4.46 ERA on the 2026 season compared to K. Freeland's struggles resulting in a 6.27 ERA for the Colorado Rockies. Coors Field usually inflates offensive numbers, but the Dodgers' potent lineup is well-equipped to exploit Freeland's high home run and hit rates. Sasaki's strikeout stuff should play effectively despite the altitude, limiting the damage from the Rockies' bats. Furthermore, the Dodgers' bullpen enters this contest with superior 2026 metrics in shutdown percentage and relief ERA than their Colorado counterparts. Expect the Dodgers to build an early lead and comfortably cover the 1.5 run spread by the final out.",
-                    "splits_and_direction": "Approximately 74 percent of public moneyline bets are backing the heavy road favorite Dodgers at -193, while the spread betting split heavily favors the Dodgers covering -1.5 at roughly 65 percent of tickets. The moneyline has ticked up slightly toward Los Angeles from an opener of -175 due to heavy public backing, and the run line has remained steady at 1.5 with standard juice adjustments.",
-                    "display_text": "Summary: The Los Angeles Dodgers hold a distinct pitching advantage with R. Sasaki posting a solid 4.46 ERA on the 2026 season compared to K. Freeland's struggles resulting in a 6.27 ERA for the Colorado Rockies. Coors Field usually inflates offensive numbers, but the Dodgers' potent lineup is well-equipped to exploit Freeland's high home run and hit rates. Sasaki's strikeout stuff should play effectively despite the altitude, limiting the damage from the Rockies' bats. Furthermore, the Dodgers' bullpen enters this contest with superior 2026 metrics in shutdown percentage and relief ERA than their Colorado counterparts. Expect the Dodgers to build an early lead and comfortably cover the 1.5 run spread by the final out.\n\nSplits and Direction: Approximately 74 percent of public moneyline bets are backing the heavy road favorite Dodgers at -193, while the spread betting split heavily favors the Dodgers covering -1.5 at roughly 65 percent of tickets. The moneyline has ticked up slightly toward Los Angeles from an opener of -175 due to heavy public backing, and the run line has remained steady at 1.5 with standard juice adjustments.",
-                    "generated_at": "2026-08-18T08:35:39.012914+00:00",
-                    "odds_hash": "78f99f64a6bbb34e",
+                    "analysis": "The Los Angeles Dodgers hold a decisive advantage in pitching and overall 2026 performance heading into this matchup at Coors Field. R. Sasaki enters with a respectable 4.46 ERA, showing the ability to suppress runs despite the notoriously hitter-friendly environment. Conversely, K. Freeland struggles heavily this season with a 4-10 record and an inflated 6.27 ERA that leaves the Colorado Rockies vulnerable to big innings. The Dodgers' potent lineup is well-equipped to exploit Freeland's recent command issues and capitalize on the Rockies' bullpen weaknesses. Ultimately, the superior talent and offensive depth of Los Angeles will propel them to a comfortable victory that covers the run line.",
+                    "splits_and_direction": "Based on public betting tendencies toward the heavy favorites, approximately 78% of moneyline bets and 65% of run line wagers are backing the Dodgers. The away moneyline has moved slightly from -175 to -193, while the home spread has remained steady at +1.5 across major sportsbooks.",
+                    "display_text": "Summary: The Los Angeles Dodgers hold a decisive advantage in pitching and overall 2026 performance heading into this matchup at Coors Field. R. Sasaki enters with a respectable 4.46 ERA, showing the ability to suppress runs despite the notoriously hitter-friendly environment. Conversely, K. Freeland struggles heavily this season with a 4-10 record and an inflated 6.27 ERA that leaves the Colorado Rockies vulnerable to big innings. The Dodgers' potent lineup is well-equipped to exploit Freeland's recent command issues and capitalize on the Rockies' bullpen weaknesses. Ultimately, the superior talent and offensive depth of Los Angeles will propel them to a comfortable victory that covers the run line.\n\nSplits and Direction: Based on public betting tendencies toward the heavy favorites, approximately 78% of moneyline bets and 65% of run line wagers are backing the Dodgers. The away moneyline has moved slightly from -175 to -193, while the home spread has remained steady at +1.5 across major sportsbooks.",
+                    "generated_at": "2026-08-18T09:02:23.567707+00:00",
+                    "odds_hash": "8842cea92d321572",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -4719,13 +4728,13 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": -120
-                        },
                         "home": {
                           "line": null,
                           "american": 102
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -120
                         }
                       }
                     }
@@ -4774,13 +4783,13 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 134
-                        },
                         "home": {
                           "line": null,
                           "american": -162
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 134
                         }
                       }
                     },
@@ -4918,13 +4927,13 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -136
-                        },
                         "home": {
                           "line": -1.5,
                           "american": 113
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -136
                         }
                       },
                       "moneyline": {
@@ -4995,23 +5004,23 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -175
-                        },
                         "home": {
                           "line": -1.5,
                           "american": 144
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -175
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 119
-                        },
                         "home": {
                           "line": null,
                           "american": -143
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 119
                         }
                       }
                     },
@@ -5027,13 +5036,13 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 116
-                        },
                         "home": {
                           "line": null,
                           "american": -136
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 116
                         }
                       }
                     }
