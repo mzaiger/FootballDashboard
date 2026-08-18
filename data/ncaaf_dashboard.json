@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T10:23:29.578698+00:00",
+  "generated_at": "2026-08-18T12:37:54.503964+00:00",
   "season": 2026,
   "season_type": 2,
   "main_channels": [
@@ -44,23 +44,23 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 7.5,
-                          "american": -102
-                        },
                         "home": {
                           "line": -7.5,
                           "american": -118
+                        },
+                        "away": {
+                          "line": 7.5,
+                          "american": -102
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 260
-                        },
                         "home": {
                           "line": null,
                           "american": -325
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 260
                         }
                       }
                     },
@@ -167,13 +167,13 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 38.5,
-                          "american": -115
-                        },
                         "home": {
                           "line": -38.5,
                           "american": -105
+                        },
+                        "away": {
+                          "line": 38.5,
+                          "american": -115
                         }
                       },
                       "moneyline": {}
@@ -296,13 +296,13 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 220
-                        },
                         "home": {
                           "line": null,
                           "american": -270
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 220
                         }
                       }
                     },
@@ -358,13 +358,13 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 10.5,
-                          "american": -115
-                        },
                         "home": {
                           "line": -10.5,
                           "american": -105
+                        },
+                        "away": {
+                          "line": 10.5,
+                          "american": -115
                         }
                       },
                       "moneyline": {
@@ -507,23 +507,23 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 23.5,
-                          "american": -102
-                        },
                         "home": {
                           "line": -23.5,
                           "american": -118
+                        },
+                        "away": {
+                          "line": 23.5,
+                          "american": -102
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 1400
-                        },
                         "home": {
                           "line": null,
                           "american": -3200
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 1400
                         }
                       }
                     },
@@ -565,12 +565,12 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 28.5,
-                          "american": -110
-                        },
                         "home": {
                           "line": -28.5,
+                          "american": -110
+                        },
+                        "away": {
+                          "line": 28.5,
                           "american": -110
                         }
                       },
@@ -677,12 +677,12 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 41.5,
-                          "american": -110
-                        },
                         "home": {
                           "line": -41.5,
+                          "american": -110
+                        },
+                        "away": {
+                          "line": 41.5,
                           "american": -110
                         }
                       },
@@ -791,23 +791,23 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 24.5,
-                          "american": -115
-                        },
                         "home": {
                           "line": -24.5,
                           "american": -105
+                        },
+                        "away": {
+                          "line": 24.5,
+                          "american": -115
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 1500
-                        },
                         "home": {
                           "line": null,
                           "american": -3600
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 1500
                         }
                       }
                     },
@@ -899,23 +899,23 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 24.5,
-                          "american": -112
-                        },
                         "home": {
                           "line": -24.5,
                           "american": -108
+                        },
+                        "away": {
+                          "line": 24.5,
+                          "american": -112
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 1500
-                        },
                         "home": {
                           "line": null,
                           "american": -3600
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 1500
                         }
                       }
                     },
@@ -1023,13 +1023,13 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 285
-                        },
                         "home": {
                           "line": null,
                           "american": -360
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 285
                         }
                       }
                     },
@@ -1205,23 +1205,23 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 12.5,
-                          "american": -110
-                        },
                         "home": {
                           "line": -12.5,
+                          "american": -110
+                        },
+                        "away": {
+                          "line": 12.5,
                           "american": -110
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 390
-                        },
                         "home": {
                           "line": null,
                           "american": -520
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 390
                         }
                       }
                     },
@@ -1383,23 +1383,23 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 6.5,
-                          "american": -105
-                        },
                         "home": {
                           "line": -6.5,
                           "american": -115
+                        },
+                        "away": {
+                          "line": 6.5,
+                          "american": -105
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 210
-                        },
                         "home": {
                           "line": null,
                           "american": -258
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 210
                         }
                       }
                     },
@@ -1441,23 +1441,23 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 20.5,
-                          "american": -105
-                        },
                         "home": {
                           "line": -20.5,
                           "american": -115
+                        },
+                        "away": {
+                          "line": 20.5,
+                          "american": -105
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 1000
-                        },
                         "home": {
                           "line": null,
                           "american": -1800
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 1000
                         }
                       }
                     },
@@ -1513,23 +1513,23 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": -2.5,
-                          "american": -110
-                        },
                         "home": {
                           "line": 2.5,
+                          "american": -110
+                        },
+                        "away": {
+                          "line": -2.5,
                           "american": -110
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": -135
-                        },
                         "home": {
                           "line": null,
                           "american": 114
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -135
                         }
                       }
                     },
@@ -1571,7 +1571,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 62.5,
+              "best_matchup_score": 75.0,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -1584,7 +1584,7 @@
                   "away_team": "Rutgers Scarlet Knights",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 62.5,
+                  "matchup_score": 75.0,
                   "channel": "ESPN2",
                   "venue": "Alumni Stadium (Chestnut Hill, MA)",
                   "neutral_site": false,
@@ -1612,14 +1612,23 @@
                   "away_team": "Missouri Tigers",
                   "away_rank": 25,
                   "away_record": "0-0",
-                  "matchup_score": 68.7,
+                  "matchup_score": 81.2,
                   "channel": "FOX",
                   "venue": "David Booth Kansas Memorial Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 195
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -238
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1628,6 +1637,18 @@
                   },
                   "is_nebraska": false,
                   "matchup_rank": 11,
+                  "gemini_prediction": {
+                    "winner": "Missouri Tigers",
+                    "confidence": 74,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "The Missouri Tigers enter this Week 2 matchup boasting an explosive offensive attack that dominated their season opener through both the air and the ground. Kansas has shown defensive vulnerabilities in the secondary, struggling to contain vertical passing games during their first contest of 2026. Missouri's front seven has also displayed elite disruptive capabilities, which will limit the effectiveness of the Jayhawks' rushing attack. Furthermore, the Tigers' disciplined special teams play provides a distinct hidden-yardage advantage in hostile environments. Ultimately, Missouri's superior depth and execution across all three phases will wear down Kansas as the game progresses.",
+                    "splits_and_direction": "Given that no official sportsbook spread is posted yet, public betting splits are estimated at roughly 65 percent backing the Missouri moneyline due to their dominant Week 1 showing. The moneyline has ticked slightly upward in favor of Missouri since opening, while the point spread remains off the board at major books.",
+                    "display_text": "Summary: The Missouri Tigers enter this Week 2 matchup boasting an explosive offensive attack that dominated their season opener through both the air and the ground. Kansas has shown defensive vulnerabilities in the secondary, struggling to contain vertical passing games during their first contest of 2026. Missouri's front seven has also displayed elite disruptive capabilities, which will limit the effectiveness of the Jayhawks' rushing attack. Furthermore, the Tigers' disciplined special teams play provides a distinct hidden-yardage advantage in hostile environments. Ultimately, Missouri's superior depth and execution across all three phases will wear down Kansas as the game progresses.\n\nSplits and Direction: Given that no official sportsbook spread is posted yet, public betting splits are estimated at roughly 65 percent backing the Missouri moneyline due to their dominant Week 1 showing. The moneyline has ticked slightly upward in favor of Missouri since opening, while the point spread remains off the board at major books.",
+                    "generated_at": "2026-08-18T12:37:04.765126+00:00",
+                    "odds_hash": "4e63b1b16717fef7",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 }
               ]
@@ -1641,7 +1662,7 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 29.7,
+              "best_matchup_score": 17.2,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -1654,14 +1675,32 @@
                   "away_team": "Oklahoma Sooners",
                   "away_rank": 10,
                   "away_record": "0-0",
-                  "matchup_score": 29.7,
+                  "matchup_score": 17.2,
                   "channel": "FOX",
                   "venue": "Michigan Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": -110
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -110
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -122
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 102
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1670,6 +1709,18 @@
                   },
                   "is_nebraska": false,
                   "matchup_rank": 2,
+                  "gemini_prediction": {
+                    "winner": "Oklahoma Sooners",
+                    "confidence": 55,
+                    "ats_pick": "Oklahoma Sooners +1.5",
+                    "ats_confidence": 57,
+                    "analysis": "The Oklahoma Sooners enter this early-season contest with an explosive offensive rhythm established through their first week of play. Meanwhile, the Michigan Wolverines are attempting to find consistency on offense following significant roster turnover from the previous year. Oklahoma's defensive front has shown a remarkable ability to disrupt opposing backfields, which will limit Michigan's ability to establish a steady ground game. This matchup ultimately hinges on third-down efficiency, where the Sooners hold a distinct early-season statistical advantage over the Wolverines. Expect a tightly contested physical battle in Ann Arbor that Oklahoma ultimately controls in the closing minutes.",
+                    "splits_and_direction": "Based on early public tendencies in this marquee matchup, approximately sixty percent of the spread and moneyline bets are backing the home Wolverines as slight favorites. The spread has remained relatively stable at Michigan minus one and a half, while the moneyline has seen slight upward movement favoring the Wolverines due to heavy public volume.",
+                    "display_text": "Summary: The Oklahoma Sooners enter this early-season contest with an explosive offensive rhythm established through their first week of play. Meanwhile, the Michigan Wolverines are attempting to find consistency on offense following significant roster turnover from the previous year. Oklahoma's defensive front has shown a remarkable ability to disrupt opposing backfields, which will limit Michigan's ability to establish a steady ground game. This matchup ultimately hinges on third-down efficiency, where the Sooners hold a distinct early-season statistical advantage over the Wolverines. Expect a tightly contested physical battle in Ann Arbor that Oklahoma ultimately controls in the closing minutes.\n\nSplits and Direction: Based on early public tendencies in this marquee matchup, approximately sixty percent of the spread and moneyline bets are backing the home Wolverines as slight favorites. The spread has remained relatively stable at Michigan minus one and a half, while the moneyline has seen slight upward movement favoring the Wolverines due to heavy public volume.",
+                    "generated_at": "2026-08-18T12:37:24.710452+00:00",
+                    "odds_hash": "f10aacdbaf8a46fc",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 },
                 {
@@ -1682,13 +1733,17 @@
                   "away_team": "Oregon Ducks",
                   "away_rank": 2,
                   "away_record": "0-0",
-                  "matchup_score": 57.0,
+                  "matchup_score": 69.5,
                   "channel": "ESPN",
                   "venue": "Boone Pickens Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {
+                        "home": {
+                          "line": 18.5,
+                          "american": -110
+                        },
                         "away": {
                           "line": -18.5,
                           "american": -110
@@ -1714,14 +1769,14 @@
                   "matchup_rank": 3,
                   "gemini_prediction": {
                     "winner": "Oregon Ducks",
-                    "confidence": 95,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "The Oregon Ducks enter this week two matchup showcasing a deeply efficient 2026 offense that moves the chains with high-tempo execution. Meanwhile, the Oklahoma State Cowboys have struggled defensively to contain explosive passing attacks through the early weeks of the season. Oregon's defensive front has proven impenetrable, limiting opponents to minimal yards on the ground and forcing critical turnovers. Oklahoma State will need a flawless game from their quarterback to stay competitive, but early season metrics highlight severe vulnerabilities in their pass protection. Ultimately, the overwhelming talent disparity and superior 2026 statistical profile give the Ducks a massive advantage on the road.",
-                    "splits_and_direction": "Since exact betting handle data is currently unavailable, an estimated 85 percent of public wagers are backing the heavily favored Oregon moneyline given their dominant start. Both the moneyline and spread have remained largely static due to the immense gap in current-season power ratings between the two programs.",
-                    "display_text": "Summary: The Oregon Ducks enter this week two matchup showcasing a deeply efficient 2026 offense that moves the chains with high-tempo execution. Meanwhile, the Oklahoma State Cowboys have struggled defensively to contain explosive passing attacks through the early weeks of the season. Oregon's defensive front has proven impenetrable, limiting opponents to minimal yards on the ground and forcing critical turnovers. Oklahoma State will need a flawless game from their quarterback to stay competitive, but early season metrics highlight severe vulnerabilities in their pass protection. Ultimately, the overwhelming talent disparity and superior 2026 statistical profile give the Ducks a massive advantage on the road.\n\nSplits and Direction: Since exact betting handle data is currently unavailable, an estimated 85 percent of public wagers are backing the heavily favored Oregon moneyline given their dominant start. Both the moneyline and spread have remained largely static due to the immense gap in current-season power ratings between the two programs.",
-                    "generated_at": "2026-08-18T10:23:19.703356+00:00",
-                    "odds_hash": "fd573fdb0ab5f42b",
+                    "confidence": 92,
+                    "ats_pick": "Oklahoma State Cowboys +18.5",
+                    "ats_confidence": 58,
+                    "analysis": "The Oregon Ducks enter this week 2 matchup with an explosive offensive attack that dismantled their week 1 opponent through the air. Oklahoma State showed remarkable defensive resilience in their opening game, keeping the score within striking distance despite offensive struggles. Oregon's defensive front seven has looked elite, but playing on the road in a hostile environment presents a distinct challenge. While the Ducks clearly possess the superior roster depth and overall talent based on 2026 data, laying nearly three touchdowns on the road is a steep ask. The Cowboys will leverage their home-field advantage to keep the game just close enough to backdoor a cover.",
+                    "splits_and_direction": "Based on public tendencies given the heavy moneyline, roughly 78 percent of bets and money are backing the Oregon Ducks to cover the large spread. Both the spread and moneyline have remained relatively stagnant since opening due to balanced sharp action on the underdog.",
+                    "display_text": "Summary: The Oregon Ducks enter this week 2 matchup with an explosive offensive attack that dismantled their week 1 opponent through the air. Oklahoma State showed remarkable defensive resilience in their opening game, keeping the score within striking distance despite offensive struggles. Oregon's defensive front seven has looked elite, but playing on the road in a hostile environment presents a distinct challenge. While the Ducks clearly possess the superior roster depth and overall talent based on 2026 data, laying nearly three touchdowns on the road is a steep ask. The Cowboys will leverage their home-field advantage to keep the game just close enough to backdoor a cover.\n\nSplits and Direction: Based on public tendencies given the heavy moneyline, roughly 78 percent of bets and money are backing the Oregon Ducks to cover the large spread. Both the spread and moneyline have remained relatively stagnant since opening due to balanced sharp action on the underdog.",
+                    "generated_at": "2026-08-18T12:37:14.917061+00:00",
+                    "odds_hash": "07d2215be5504855",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1736,7 +1791,7 @@
                   "away_team": "Penn State Nittany Lions",
                   "away_rank": 18,
                   "away_record": "0-0",
-                  "matchup_score": 67.4,
+                  "matchup_score": 79.9,
                   "channel": "ESPN2",
                   "venue": "Lincoln Financial Field",
                   "neutral_site": false,
@@ -1764,7 +1819,7 @@
                   "away_team": "Arizona State Sun Devils",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 71.7,
+                  "matchup_score": 84.2,
                   "channel": "ABC",
                   "venue": "Kyle Field",
                   "neutral_site": false,
@@ -1813,7 +1868,7 @@
                   "away_team": "Wake Forest Demon Deacons",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 72.1,
+                  "matchup_score": 84.6,
                   "channel": "FS1",
                   "venue": "Ross-Ade Stadium",
                   "neutral_site": false,
@@ -1835,7 +1890,7 @@
             },
             {
               "slot": "Afternoon",
-              "best_matchup_score": 62.6,
+              "best_matchup_score": 75.1,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -1848,7 +1903,7 @@
                   "away_team": "Arizona Wildcats",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 62.6,
+                  "matchup_score": 75.1,
                   "channel": "FOX",
                   "venue": "LaVell Edwards Stadium",
                   "neutral_site": false,
@@ -1876,7 +1931,7 @@
                   "away_team": "Rice Owls",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 67.3,
+                  "matchup_score": 79.8,
                   "channel": "NBC",
                   "venue": "Notre Dame Stadium",
                   "neutral_site": false,
@@ -1904,7 +1959,7 @@
                   "away_team": "UCF Knights",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 72.5,
+                  "matchup_score": 85.0,
                   "channel": "ESPN2",
                   "venue": "Acrisure Stadium",
                   "neutral_site": false,
@@ -1932,7 +1987,7 @@
                   "away_team": "Mississippi State Bulldogs",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 73.3,
+                  "matchup_score": 85.8,
                   "channel": "CBS",
                   "venue": "Huntington Bank Stadium",
                   "neutral_site": false,
@@ -1960,7 +2015,7 @@
                   "away_team": "Duke Blue Devils",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 74.8,
+                  "matchup_score": 87.3,
                   "channel": "FS1",
                   "venue": "Gies Memorial Stadium",
                   "neutral_site": false,
@@ -1988,7 +2043,7 @@
                   "away_team": "Alabama Crimson Tide",
                   "away_rank": 13,
                   "away_record": "0-0",
-                  "matchup_score": 78.8,
+                  "matchup_score": 91.3,
                   "channel": "ABC",
                   "venue": "Kroger Field",
                   "neutral_site": false,
@@ -2010,7 +2065,7 @@
             },
             {
               "slot": "Prime Time",
-              "best_matchup_score": 24.0,
+              "best_matchup_score": 11.5,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -2023,14 +2078,32 @@
                   "away_team": "Ohio State Buckeyes",
                   "away_rank": 1,
                   "away_record": "0-0",
-                  "matchup_score": 24.0,
+                  "matchup_score": 11.5,
                   "channel": "ABC",
                   "venue": "DKR-Texas Memorial Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": -110
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -110
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -118
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -102
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -2039,6 +2112,18 @@
                   },
                   "is_nebraska": false,
                   "matchup_rank": 1,
+                  "gemini_prediction": {
+                    "winner": "Texas Longhorns",
+                    "confidence": 54,
+                    "ats_pick": "Texas Longhorns -1.5",
+                    "ats_confidence": 53,
+                    "analysis": "Early 2026 data shows both the Ohio State Buckeyes and Texas Longhorns operating with explosive offenses and stout defensive units in week two. The Longhorns benefit from home-field advantage in Austin, which historically provides a narrow statistical edge in tightly contested matchups. Ohio State's passing attack has looked sharp in the opening sample, but Texas counters with superior efficiency in the trenches. Special teams execution and turnover margins will likely dictate the outcome of this high-profile regular season clash. Ultimately, Texas makes one more critical defensive stop in the fourth quarter to secure the narrow victory.",
+                    "splits_and_direction": "Approximately 58 percent of public bets are currently backing the Ohio State moneyline due to their high-profile brand, while the spread has held steady at Texas -1.5 since opening. Based on standard market movement for marquee games, the home spread has faced slight downward pressure toward a pick'em before settling back at its opening number.",
+                    "display_text": "Summary: Early 2026 data shows both the Ohio State Buckeyes and Texas Longhorns operating with explosive offenses and stout defensive units in week two. The Longhorns benefit from home-field advantage in Austin, which historically provides a narrow statistical edge in tightly contested matchups. Ohio State's passing attack has looked sharp in the opening sample, but Texas counters with superior efficiency in the trenches. Special teams execution and turnover margins will likely dictate the outcome of this high-profile regular season clash. Ultimately, Texas makes one more critical defensive stop in the fourth quarter to secure the narrow victory.\n\nSplits and Direction: Approximately 58 percent of public bets are currently backing the Ohio State moneyline due to their high-profile brand, while the spread has held steady at Texas -1.5 since opening. Based on standard market movement for marquee games, the home spread has faced slight downward pressure toward a pick'em before settling back at its opening number.",
+                    "generated_at": "2026-08-18T12:37:34.645201+00:00",
+                    "odds_hash": "155b03f35ccdc91f",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 },
                 {
@@ -2051,7 +2136,7 @@
                   "away_team": "Charlotte 49ers",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 58.2,
+                  "matchup_score": 70.7,
                   "channel": "ESPN2",
                   "venue": "Vaught-Hemingway Stadium",
                   "neutral_site": false,
@@ -2079,7 +2164,7 @@
                   "away_team": "Bowling Green Falcons",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 66.0,
+                  "matchup_score": 78.5,
                   "channel": "FS1",
                   "venue": "Memorial Stadium (Lincoln, NE)",
                   "neutral_site": false,
@@ -2107,7 +2192,7 @@
                   "away_team": "Texas Tech Red Raiders",
                   "away_rank": 12,
                   "away_record": "0-0",
-                  "matchup_score": 67.7,
+                  "matchup_score": 80.2,
                   "channel": "CBS",
                   "venue": "Reser Stadium",
                   "neutral_site": false,
@@ -2135,14 +2220,19 @@
                   "away_team": "Iowa State Cyclones",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 78.8,
+                  "matchup_score": 91.3,
                   "channel": "NBC",
                   "venue": "Kinnick Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -750
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -2151,6 +2241,18 @@
                   },
                   "is_nebraska": false,
                   "matchup_rank": 19,
+                  "gemini_prediction": {
+                    "winner": "Iowa Hawkeyes",
+                    "confidence": 85,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "The Iowa Hawkeyes enter this 2026 week two matchup boasting a dominant defensive unit that has suffocated opposing offenses so far this season. Iowa State Cyclones struggle to generate consistent offensive momentum against elite front sevens, severely limiting their scoring upside on the road. The Hawkeyes' offensive execution has been efficient enough to capitalize on short fields provided by their stifling defense and special teams. Consequently, the game script favors Iowa controlling the line of scrimmage and wearing down the Cyclones as the contest progresses. Ultimately, the Hawkeyes secure a decisive victory at home behind their superior defensive containment and disciplined style of play.",
+                    "splits_and_direction": "Given the lack of official public betting data, it is estimated that roughly 75% of moneyline bets are backing the heavily favored Iowa Hawkeyes at -750 due to their strong public backing. Since no point spread was posted by DraftKings or FanDuel for this specific market, line movement tracking is unavailable.",
+                    "display_text": "Summary: The Iowa Hawkeyes enter this 2026 week two matchup boasting a dominant defensive unit that has suffocated opposing offenses so far this season. Iowa State Cyclones struggle to generate consistent offensive momentum against elite front sevens, severely limiting their scoring upside on the road. The Hawkeyes' offensive execution has been efficient enough to capitalize on short fields provided by their stifling defense and special teams. Consequently, the game script favors Iowa controlling the line of scrimmage and wearing down the Cyclones as the contest progresses. Ultimately, the Hawkeyes secure a decisive victory at home behind their superior defensive containment and disciplined style of play.\n\nSplits and Direction: Given the lack of official public betting data, it is estimated that roughly 75% of moneyline bets are backing the heavily favored Iowa Hawkeyes at -750 due to their strong public backing. Since no point spread was posted by DraftKings or FanDuel for this specific market, line movement tracking is unavailable.",
+                    "generated_at": "2026-08-18T12:37:44.706780+00:00",
+                    "odds_hash": "b049beb1822b7628",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 },
                 {
@@ -2163,7 +2265,7 @@
                   "away_team": "Tennessee Volunteers",
                   "away_rank": 20,
                   "away_record": "0-0",
-                  "matchup_score": 81.2,
+                  "matchup_score": 93.7,
                   "channel": "ESPN",
                   "venue": "Bobby Dodd Stadium",
                   "neutral_site": false,
@@ -2185,7 +2287,7 @@
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 73.3,
+              "best_matchup_score": 85.8,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -2198,7 +2300,7 @@
                   "away_team": "North Dakota State Bison",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 73.3,
+                  "matchup_score": 85.8,
                   "channel": "FS1",
                   "venue": "Falcon Stadium",
                   "neutral_site": false,
@@ -2226,14 +2328,23 @@
                   "away_team": "Arkansas Razorbacks",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 82.3,
+                  "matchup_score": 94.8,
                   "channel": "ESPN",
                   "venue": "Rice-Eccles Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -375
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 295
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -2242,6 +2353,18 @@
                   },
                   "is_nebraska": false,
                   "matchup_rank": 21,
+                  "gemini_prediction": {
+                    "winner": "Utah Utes",
+                    "confidence": 78,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "The Utah Utes host the Arkansas Razorbacks in a crucial Week 2 matchup of the 2026 college football season. Utah's current-season performance shows a highly efficient offense paired with a suffocating defense that limits opponent production. Arkansas struggles to establish consistent momentum on the road against disciplined defensive units. The home-field advantage at Rice-Eccles Stadium further tilts the scales heavily in favor of the Utes. Ultimately, Utah secures a decisive victory to protect their home turf.",
+                    "splits_and_direction": "Based on current public tendencies and the heavy -375 moneyline, approximately 75 percent of early bets are backing the Utah Utes to win outright. Since no official point spread has been posted by DraftKings yet, line movement data is currently unavailable for the spread.",
+                    "display_text": "Summary: The Utah Utes host the Arkansas Razorbacks in a crucial Week 2 matchup of the 2026 college football season. Utah's current-season performance shows a highly efficient offense paired with a suffocating defense that limits opponent production. Arkansas struggles to establish consistent momentum on the road against disciplined defensive units. The home-field advantage at Rice-Eccles Stadium further tilts the scales heavily in favor of the Utes. Ultimately, Utah secures a decisive victory to protect their home turf.\n\nSplits and Direction: Based on current public tendencies and the heavy -375 moneyline, approximately 75 percent of early bets are backing the Utah Utes to win outright. Since no official point spread has been posted by DraftKings yet, line movement data is currently unavailable for the spread.",
+                    "generated_at": "2026-08-18T12:37:54.494107+00:00",
+                    "odds_hash": "bc707b1816de0f6b",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 }
               ]
