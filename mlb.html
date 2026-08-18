@@ -217,10 +217,6 @@
     grid-column:2; grid-row:1 / 3; justify-self:start; align-self:center;
     margin-right:0.8rem;
   }
-  .channel-pill{
-    width: auto;       /* or max-content */
-  width: 550px; 
-  }
   body.row-view .matchup{
     grid-column:3; grid-row:1;
     margin:0; overflow-x:visible; white-space:normal; flex-wrap:wrap;
@@ -411,7 +407,7 @@
        and wraps instead of overflowing, so a long combined national-TV
        string (e.g. multiple networks) doesn't blow out the card width or
        push the score badge off to one side. */
-    max-width: 18ch; white-space: normal; overflow-wrap: break-word;
+    max-width: 25ch; white-space: normal; overflow-wrap: break-word;
     text-align: left; line-height: 1.3;
   }
 
