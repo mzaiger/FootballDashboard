@@ -414,8 +414,6 @@ function formatLockedLine(pick) {
   if (Number.isNaN(n)) return '';
   return ` (${n > 0 ? '+' : ''}${n})`;
 }
-  if (p10 === null || p10 === undefined || p100 === null || p100 === undefined) return '';
-  return `<div class="payout-summary">Win $${p10.toFixed(2)} on $10</div>`;
 // Shown inside the pick toolbar, under the 4 buttons, once a pick has
 // been made -- what a $10 and a $100 bet on the picked side would pay out
 // (profit only, not counting the stake back), using whichever payout was
@@ -433,7 +431,8 @@ function renderPayoutSummary(pick) {
     p100 = calcPayout(americanOdds, 100);
   }
 }
-
+  if (p10 === null || p10 === undefined || p100 === null || p100 === undefined) return '';
+  return `<div class="payout-summary">Win $${p10.toFixed(2)} on $10</div>`;
 // The 4-button toolbar (away/home x spread/moneyline) for one game card.
 // Once a game is final (gScore.status === 'final'), the buttons render
 // disabled -- the pick made (if any) still shows, but can no longer be
