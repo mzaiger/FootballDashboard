@@ -463,7 +463,7 @@ function renderPickToolbar(sport, g, gScore) {
 
   const payoutHtml = pick ? renderPayoutSummary(pick) : '';
 
-  return `<div class="pick-toolbar">${btns}${payoutHtml}</div>`;
+  return `<div class="pick-toolbar">${payoutHtml}${btns}</div>`;
 }
 
 // CSS class to drop on an odds-table cell so the picked market/side lights
