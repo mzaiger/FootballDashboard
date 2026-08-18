@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T01:04:43.199571+00:00",
+  "generated_at": "2026-08-18T01:14:48.661144+00:00",
   "cfb": {},
   "nfl": {
     "401873271": {
@@ -295,62 +295,62 @@
     "401816563": {
       "home_score": 7,
       "away_score": 6,
-      "status": "in_progress",
-      "status_detail": "Top 9th"
+      "status": "final",
+      "status_detail": "Final"
     },
     "401816565": {
       "home_score": 4,
       "away_score": 3,
       "status": "in_progress",
-      "status_detail": "Top 7th"
+      "status_detail": "Bot 7th"
     },
     "401816567": {
       "home_score": 4,
       "away_score": 5,
       "status": "in_progress",
-      "status_detail": "Top 9th"
+      "status_detail": "Bot 9th"
     },
     "401816564": {
       "home_score": 1,
-      "away_score": 5,
+      "away_score": 8,
       "status": "in_progress",
-      "status_detail": "Top 6th"
+      "status_detail": "Bot 6th"
     },
     "401816562": {
-      "home_score": 7,
+      "home_score": 8,
       "away_score": 1,
       "status": "in_progress",
-      "status_detail": "Top 6th"
+      "status_detail": "Bot 6th"
     },
     "401816566": {
       "home_score": 2,
       "away_score": 1,
       "status": "in_progress",
-      "status_detail": "Bot 7th"
+      "status_detail": "Bot 8th"
     },
     "401816568": {
       "home_score": 6,
-      "away_score": 1,
+      "away_score": 2,
       "status": "in_progress",
-      "status_detail": "Top 4th"
+      "status_detail": "Top 5th"
     },
     "401816581": {
       "home_score": 4,
       "away_score": 0,
       "status": "in_progress",
-      "status_detail": "Top 2nd"
+      "status_detail": "Bot 2nd"
     },
     "401816569": {
       "home_score": 2,
       "away_score": 3,
       "status": "in_progress",
-      "status_detail": "Top 4th"
+      "status_detail": "Bot 4th"
     },
     "401816570": {
       "home_score": 0,
       "away_score": 1,
       "status": "in_progress",
-      "status_detail": "Top 2nd"
+      "status_detail": "Top 3rd"
     }
   }
 }
