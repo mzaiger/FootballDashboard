@@ -170,6 +170,11 @@
     font-family:'Oswald',sans-serif; font-weight:600; font-size:0.78rem;
     text-transform:uppercase; letter-spacing:0.06em; color:var(--dim);
   }
+  .big-stat .label .filter-note{
+    display:block; margin-top:0.2rem;
+    font-size:0.68rem; font-weight:500; letter-spacing:0.03em;
+    text-transform:none; color:#a78bfa; opacity:0.85;
+  }
   .big-stat .pct{
     font-family:'Oswald',sans-serif; font-weight:700; font-size:3rem;
     color:#a78bfa; line-height:1.1; margin-top:0.35rem;
@@ -281,12 +286,12 @@
 <main>
   <div class="big-stats" id="bigStats">
     <div class="big-stat">
-      <div class="label">Moneyline (Straight Up)</div>
+      <div class="label" id="mlLabel">ML Accuracy</div>
       <div class="pct" id="mlPct">&mdash;</div>
       <div class="frac" id="mlFrac">Loading&hellip;</div>
     </div>
     <div class="big-stat">
-      <div class="label">Against The Spread</div>
+      <div class="label" id="atsLabel">ATS Accuracy</div>
       <div class="pct" id="atsPct">&mdash;</div>
       <div class="frac" id="atsFrac">Loading&hellip;</div>
     </div>
@@ -397,16 +402,40 @@ function fmtPct(pct) {
   return pct === null ? '&mdash;' : `${pct}%`;
 }
 
+// Builds the (line 1) base label plus any active-filter sub-lines for one
+// of the two big stat cards -- (Best Matchup) then (NN%+ Confidence), in
+// that order, each only shown when it actually applies to THIS card's
+// market. `applies` is false when this card is showing "NA" because the
+// other market is the only one selected (e.g. the ML card while confType
+// is 'ats') -- in that case neither filter note is shown, since the
+// filters aren't doing anything meaningful for a market that isn't even
+// being counted.
+function buildLabelHTML(baseLabel, state, applies) {
+  let html = baseLabel;
+  if (applies && state.bestMatchupOnly) {
+    html += '<span class="filter-note">(Best Matchup)</span>';
+  }
+  if (applies && state.minConf > 0) {
+    html += `<span class="filter-note">(${state.minConf}%+ Confidence)</span>`;
+  }
+  return html;
+}
+
 function renderAccuracy(datasets, scores, state) {
   const overall = computeGeminiAccuracyAllTime(datasets, scores, state);
 
-  document.getElementById('mlPct').innerHTML = state.confType === 'ats' ? 'NA' : fmtPct(overall.mlPct);
-  document.getElementById('mlFrac').textContent = state.confType === 'ats'
+  const mlApplies = state.confType !== 'ats';
+  const atsApplies = state.confType !== 'ml';
+
+  document.getElementById('mlLabel').innerHTML = buildLabelHTML('ML Accuracy', state, mlApplies);
+  document.getElementById('mlPct').innerHTML = mlApplies ? fmtPct(overall.mlPct) : 'NA';
+  document.getElementById('mlFrac').textContent = !mlApplies
     ? 'Excluded by ATS-only filter'
     : (overall.mlTotal ? `${overall.mlCorrect}/${overall.mlTotal} correct` : 'No graded games match these filters');
 
-  document.getElementById('atsPct').innerHTML = state.confType === 'ml' ? 'NA' : fmtPct(overall.atsPct);
-  document.getElementById('atsFrac').textContent = state.confType === 'ml'
+  document.getElementById('atsLabel').innerHTML = buildLabelHTML('ATS Accuracy', state, atsApplies);
+  document.getElementById('atsPct').innerHTML = atsApplies ? fmtPct(overall.atsPct) : 'NA';
+  document.getElementById('atsFrac').textContent = !atsApplies
     ? 'Excluded by ML-only filter'
     : (overall.atsTotal ? `${overall.atsCorrect}/${overall.atsTotal} correct` : 'No graded games match these filters');
 
