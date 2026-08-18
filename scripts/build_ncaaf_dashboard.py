@@ -413,8 +413,6 @@ def get_espn_current_state():
             f"falling back to season_type={SEASON_TYPE_FALLBACK}.")
         season_type = SEASON_TYPE_FALLBACK
     log(f"ESPN reports current week {week}, season_type {season_type} for {today_str}.")
-    if season_type is 1:
-        season_type = 2
     return week, season_type
 
 
