@@ -3862,5 +3862,41 @@
     "generated_at": "2026-08-18T09:02:23.567707+00:00",
     "odds_hash": "8842cea92d321572",
     "model": "gemini-3.5-flash-lite"
+  },
+  "9838fad498eacd0c": {
+    "winner": "Milwaukee Brewers",
+    "confidence": 58,
+    "ats_pick": "Seattle Mariners +1.5",
+    "ats_confidence": 55,
+    "analysis": "Kyle Harrison brings a strong 9-3 record and a solid 3.47 ERA into this matchup for the Milwaukee Brewers. Bryce Miller counters for the Seattle Mariners with a respectable 3.39 ERA despite his sub-.500 record. Milwaukee's home-field advantage gives them the edge to secure a narrow victory in a tightly contested pitching duel. However, Miller's ability to limit run production keeps Seattle close throughout the contest. Consequently, the Mariners are well-positioned to keep the final margin within a single run, making them the smart choice to cover the run line.",
+    "splits_and_direction": "Approximately 68% of the public moneyline bets are backing the home Brewers due to Harrison's superior win-loss record, while 55% of run line wagers take the Mariners as underdogs. The home moneyline has ticked up slightly from -150 to -163 at DraftKings, and the run line has remained steady at 1.5 runs.",
+    "display_text": "Summary: Kyle Harrison brings a strong 9-3 record and a solid 3.47 ERA into this matchup for the Milwaukee Brewers. Bryce Miller counters for the Seattle Mariners with a respectable 3.39 ERA despite his sub-.500 record. Milwaukee's home-field advantage gives them the edge to secure a narrow victory in a tightly contested pitching duel. However, Miller's ability to limit run production keeps Seattle close throughout the contest. Consequently, the Mariners are well-positioned to keep the final margin within a single run, making them the smart choice to cover the run line.\n\nSplits and Direction: Approximately 68% of the public moneyline bets are backing the home Brewers due to Harrison's superior win-loss record, while 55% of run line wagers take the Mariners as underdogs. The home moneyline has ticked up slightly from -150 to -163 at DraftKings, and the run line has remained steady at 1.5 runs.",
+    "generated_at": "2026-08-18T09:51:02.770363+00:00",
+    "odds_hash": "9838fad498eacd0c",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "c26ce29cec4fc8a2": {
+    "winner": "Atlanta Braves",
+    "confidence": 56,
+    "ats_pick": "Atlanta Braves -1.5",
+    "ats_confidence": 52,
+    "analysis": "Tyler Mahle enters this August matchup holding a 4-9 record and a 4.64 ERA for the Atlanta Braves. Zach Matthews counters for the Minnesota Twins with a 6-8 record and a higher 5.34 ERA. Neither starting pitcher has dominated this season, but the Braves feature a more productive offensive supporting cast against right-handed starters. Minnesota struggles to generate consistent run support behind Matthews given his high ERA and ongoing command issues. Atlanta should capitalize on these pitching vulnerabilities to secure a narrow victory on the road.",
+    "splits_and_direction": "Based on public tendencies and the road favorite status, roughly 62% of moneyline bets are currently backing the Atlanta Braves. Both the moneyline and the run line have held relatively steady with minor adjustments toward the visiting Braves since opening.",
+    "display_text": "Summary: Tyler Mahle enters this August matchup holding a 4-9 record and a 4.64 ERA for the Atlanta Braves. Zach Matthews counters for the Minnesota Twins with a 6-8 record and a higher 5.34 ERA. Neither starting pitcher has dominated this season, but the Braves feature a more productive offensive supporting cast against right-handed starters. Minnesota struggles to generate consistent run support behind Matthews given his high ERA and ongoing command issues. Atlanta should capitalize on these pitching vulnerabilities to secure a narrow victory on the road.\n\nSplits and Direction: Based on public tendencies and the road favorite status, roughly 62% of moneyline bets are currently backing the Atlanta Braves. Both the moneyline and the run line have held relatively steady with minor adjustments toward the visiting Braves since opening.",
+    "generated_at": "2026-08-18T09:51:12.615911+00:00",
+    "odds_hash": "c26ce29cec4fc8a2",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "c02ab37c6fbf3a5c": {
+    "winner": "Seattle Mariners",
+    "confidence": 56,
+    "ats_pick": "Seattle Mariners +1.5",
+    "ats_confidence": 62,
+    "analysis": "Logan Gilbert brings a strong 3.28 ERA and a 9-7 record into this matchup, giving the Mariners a distinct pitching advantage on the road. Dustin May has struggled to find consistency this year, holding a 4.13 ERA and a matching 6-7 record for the Brewers. Seattle's offense should be able to capitalize against May and put pressure on Milwaukee's bullpen early in the game. While playing on the road in Milwaukee is always a tough test, Gilbert's ability to suppress runs keeps the Mariners ahead. Consequently, the Mariners are well-positioned to not only win outright as underdogs but easily cover the 1.5-run spread.",
+    "splits_and_direction": "Based on public tendencies, roughly 58 percent of moneyline bets are backing the home Brewers due to their favorite status, while 64 percent of run line action is taking the Mariners plus the 1.5 runs. The moneyline has shifted slightly from an opening of -150 to -163 on Milwaukee, and the spread has remained steady at 1.5 with minor juice adjustments.",
+    "display_text": "Summary: Logan Gilbert brings a strong 3.28 ERA and a 9-7 record into this matchup, giving the Mariners a distinct pitching advantage on the road. Dustin May has struggled to find consistency this year, holding a 4.13 ERA and a matching 6-7 record for the Brewers. Seattle's offense should be able to capitalize against May and put pressure on Milwaukee's bullpen early in the game. While playing on the road in Milwaukee is always a tough test, Gilbert's ability to suppress runs keeps the Mariners ahead. Consequently, the Mariners are well-positioned to not only win outright as underdogs but easily cover the 1.5-run spread.\n\nSplits and Direction: Based on public tendencies, roughly 58 percent of moneyline bets are backing the home Brewers due to their favorite status, while 64 percent of run line action is taking the Mariners plus the 1.5 runs. The moneyline has shifted slightly from an opening of -150 to -163 on Milwaukee, and the spread has remained steady at 1.5 with minor juice adjustments.",
+    "generated_at": "2026-08-18T09:51:22.774629+00:00",
+    "odds_hash": "c02ab37c6fbf3a5c",
+    "model": "gemini-3.5-flash-lite"
   }
 }
