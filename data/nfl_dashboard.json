@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T00:57:06.061346+00:00",
+  "generated_at": "2026-08-18T04:32:08.069321+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -451,11 +451,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 154
+                          "american": 160
                         },
                         "away": {
                           "line": null,
-                          "american": -185
+                          "american": -192
                         }
                       }
                     },
@@ -468,13 +468,13 @@
                   "gemini_prediction": {
                     "winner": "Minnesota Vikings",
                     "confidence": 68,
-                    "ats_pick": "Minnesota Vikings -3.5",
-                    "ats_confidence": 62,
-                    "analysis": "The Minnesota Vikings travel to face the New York Giants in week two of the 2026 NFL season with superior early-season offensive efficiency. Minnesota's passing attack has established a high baseline of production, while New York continues to struggle with pass protection and sustaining drives. Furthermore, the Vikings' defensive front has shown a strong ability to generate pressure without relying heavily on blitz packages, which limits big plays downfield. The Giants will need to rely heavily on their running game to control the clock, but facing a disciplined Minnesota front seven makes one-dimensional success unlikely. Ultimately, the Vikings execute more consistently on third downs, securing a vital road victory.",
-                    "splits_and_direction": "Based on public betting tendencies and the current odds, approximately 65% of moneyline bets are backing the Minnesota Vikings to win outright. The point spread has remained relatively stable since opening, with slight early movement favoring the visiting Vikings.",
-                    "display_text": "Summary: The Minnesota Vikings travel to face the New York Giants in week two of the 2026 NFL season with superior early-season offensive efficiency. Minnesota's passing attack has established a high baseline of production, while New York continues to struggle with pass protection and sustaining drives. Furthermore, the Vikings' defensive front has shown a strong ability to generate pressure without relying heavily on blitz packages, which limits big plays downfield. The Giants will need to rely heavily on their running game to control the clock, but facing a disciplined Minnesota front seven makes one-dimensional success unlikely. Ultimately, the Vikings execute more consistently on third downs, securing a vital road victory.\n\nSplits and Direction: Based on public betting tendencies and the current odds, approximately 65% of moneyline bets are backing the Minnesota Vikings to win outright. The point spread has remained relatively stable since opening, with slight early movement favoring the visiting Vikings.",
-                    "generated_at": "2026-08-16T22:49:12.555376+00:00",
-                    "odds_hash": "f1e049887cc45b68",
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "The Minnesota Vikings enter week two of the 2026 NFL season with a more explosive offensive unit than the New York Giants. Minnesota's defense has demonstrated greater efficiency in stopping the run compared to New York's early season struggles. The Giants will struggle to protect their quarterback against an aggressive Vikings pass rush that generated consistent pressure in week one. Playing at home provides a minor boost for New York, but the talent discrepancy on the perimeter ultimately favors Minnesota. Therefore, the Vikings will secure a hard-fought victory on the road to improve their early-season record.",
+                    "splits_and_direction": "Estimated betting splits indicate roughly 65 percent of the public money is backing the Minnesota Vikings on the moneyline at -192 odds. Due to limited opening data available to this model, the moneyline has experienced minimal movement since initial release while FanDuel has yet to post a spread.",
+                    "display_text": "Summary: The Minnesota Vikings enter week two of the 2026 NFL season with a more explosive offensive unit than the New York Giants. Minnesota's defense has demonstrated greater efficiency in stopping the run compared to New York's early season struggles. The Giants will struggle to protect their quarterback against an aggressive Vikings pass rush that generated consistent pressure in week one. Playing at home provides a minor boost for New York, but the talent discrepancy on the perimeter ultimately favors Minnesota. Therefore, the Vikings will secure a hard-fought victory on the road to improve their early-season record.\n\nSplits and Direction: Estimated betting splits indicate roughly 65 percent of the public money is backing the Minnesota Vikings on the moneyline at -192 odds. Due to limited opening data available to this model, the moneyline has experienced minimal movement since initial release while FanDuel has yet to post a spread.",
+                    "generated_at": "2026-08-18T04:31:05.727561+00:00",
+                    "odds_hash": "7eaa5856b2261f5a",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1159,11 +1159,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 370
+                          "american": 400
                         },
                         "away": {
                           "line": null,
-                          "american": -485
+                          "american": -535
                         }
                       }
                     },
@@ -1175,14 +1175,14 @@
                   "matchup_rank": 3,
                   "gemini_prediction": {
                     "winner": "Dallas Cowboys",
-                    "confidence": 88,
+                    "confidence": 92,
                     "ats_pick": null,
                     "ats_confidence": 0,
-                    "analysis": "The Dallas Cowboys enter this week 3 matchup displaying an explosive 2026 offense that ranks near the top of the league in both passing yards and points per game. Meanwhile, the Arizona Cardinals have struggled significantly to protect the football and sustain drives during the early weeks of the current season. Dallas boasts a defensive front that has consistently generated pressure, which will severely limit the effectiveness of the Arizona passing game. Furthermore, the Cowboys' efficient red-zone execution gives them a major tactical advantage over a Cardinals squad allowing high conversion rates. Given the stark contrast in current-season performance and roster health, Dallas is heavily favored to secure a decisive victory.",
-                    "splits_and_direction": "Approximately 82% of early moneyline bets are backing the heavy favorite Dallas Cowboys to win outright on the road. Without official point-spread odds posted yet at major sportsbooks like FanDuel, the exact betting split and movement for the spread cannot be determined.",
-                    "display_text": "Summary: The Dallas Cowboys enter this week 3 matchup displaying an explosive 2026 offense that ranks near the top of the league in both passing yards and points per game. Meanwhile, the Arizona Cardinals have struggled significantly to protect the football and sustain drives during the early weeks of the current season. Dallas boasts a defensive front that has consistently generated pressure, which will severely limit the effectiveness of the Arizona passing game. Furthermore, the Cowboys' efficient red-zone execution gives them a major tactical advantage over a Cardinals squad allowing high conversion rates. Given the stark contrast in current-season performance and roster health, Dallas is heavily favored to secure a decisive victory.\n\nSplits and Direction: Approximately 82% of early moneyline bets are backing the heavy favorite Dallas Cowboys to win outright on the road. Without official point-spread odds posted yet at major sportsbooks like FanDuel, the exact betting split and movement for the spread cannot be determined.",
-                    "generated_at": "2026-08-16T22:49:42.425673+00:00",
-                    "odds_hash": "383adbf6b0348116",
+                    "analysis": "The Dallas Cowboys enter this early-season 2026 matchup displaying an explosive offensive scheme that has overwhelmed opponents through the first two weeks. Arizona's defense has struggled significantly to contain the run and prevent explosive plays in the secondary. Dak Prescott and the Dallas offense should capitalize on these glaring defensive vulnerabilities early and often. Meanwhile, the Cardinals' offensive unit lacks the consistency needed to keep pace in a potential shootout against top-tier competition. Expect Dallas to control the tempo from the opening whistle and secure a commanding victory on the road.",
+                    "splits_and_direction": "An estimated 84 percent of the public moneyline handle is backing the heavily favored Cowboys at -535, while the point spread remains unposted by major sportsbooks for this matchup. Due to the lack of an official spread, no line movement has been recorded for the point spread, though the moneyline has held steady since opening.",
+                    "display_text": "Summary: The Dallas Cowboys enter this early-season 2026 matchup displaying an explosive offensive scheme that has overwhelmed opponents through the first two weeks. Arizona's defense has struggled significantly to contain the run and prevent explosive plays in the secondary. Dak Prescott and the Dallas offense should capitalize on these glaring defensive vulnerabilities early and often. Meanwhile, the Cardinals' offensive unit lacks the consistency needed to keep pace in a potential shootout against top-tier competition. Expect Dallas to control the tempo from the opening whistle and secure a commanding victory on the road.\n\nSplits and Direction: An estimated 84 percent of the public moneyline handle is backing the heavily favored Cowboys at -535, while the point spread remains unposted by major sportsbooks for this matchup. Due to the lack of an official spread, no line movement has been recorded for the point spread, though the moneyline has held steady since opening.",
+                    "generated_at": "2026-08-18T04:32:08.060239+00:00",
+                    "odds_hash": "14ae93424453fd2f",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
