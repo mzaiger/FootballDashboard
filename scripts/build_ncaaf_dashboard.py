@@ -2,15 +2,21 @@
 """
 College Football Betting Dashboard builder.
 
-Pulls this week's TV schedule + AP rankings from CollegeFootballData.com (CFBD),
-ranks each matchup by combined team rank (lower = marquee game), then attaches
-DraftKings / FanDuel spread + moneyline odds from SharpAPI (via common.py).
-Exports everything to data/ncaaf_dashboard.json for the static index.html front-end
-to consume.
+Pulls this week's schedule, broadcast network, team records, and the AP
+Top 25 poll from ESPN's public (unofficial, no-key-required) scoreboard
+and rankings APIs, ranks each matchup by a blend of combined AP rank,
+combined win-rank, and posted spread, then attaches DraftKings / FanDuel
+spread + moneyline odds from SharpAPI (via common.py). Exports everything
+to data/ncaaf_dashboard.json for the static index.html front-end to
+consume.
+
+Previously this pulled from CollegeFootballData.com (CFBD), which
+required its own API key and has a much tighter rate limit than ESPN's
+public endpoint. CFBD is no longer used anywhere in this script.
 
 Env vars required:
-    CFBD_API_KEY     - key from https://collegefootballdata.com/key
-    SHARPAPI_KEY      - key from https://sharpapi.io
+    SHARPAPI_KEY - key from https://sharpapi.io
+    (no key needed for ESPN's public scoreboard/rankings endpoints)
 
 Usage:
     python scripts/build_ncaaf_dashboard.py
@@ -18,9 +24,10 @@ Usage:
 """
 
 import argparse
-import json
 import os
+import re
 import sys
+import json
 from datetime import datetime, timezone, date
 from zoneinfo import ZoneInfo
 
@@ -46,113 +53,203 @@ from gemini_predictions import attach_gemini_predictions
 # Config
 # ---------------------------------------------------------------------------
 
-CFBD_BASE = "https://api.collegefootballdata.com"
-
-# Season 1 kicks off the week of Aug 22, 2026 (per user). Used to auto-derive
-# the current CFBD week number if --week isn't passed explicitly.
-SEASON_YEAR_DEFAULT = 2026
-WEEK1_START = date(2026, 8, 22)
-
-# "Main channels" = national broadcast + flagship cable. Games on ESPNU, ACCN,
-# SECN, ESPN+, streaming-only, etc. are filtered out. Edit this list to widen
-# or narrow what counts as a "main channel" game.
-MAIN_CHANNELS = {"ABC", "CBS", "NBC", "FOX", "ESPN", "ESPN2", "FS1"}
-
-# Nebraska always gets pulled onto the board and always wins its time slot's
-# "Time Slot Most Watchable Game" pick, no matter its AP rank or spread
-# relative to anything else in that window.
-NEBRASKA_TEAM = "Nebraska"
-
+ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard"
+ESPN_RANKINGS_URL = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/rankings"
 REQUEST_TIMEOUT = 20
 
+# groups=80 = FBS only (see https://github.com/pseudo-r/Public-ESPN-API);
+# without it, and without a high limit, the scoreboard endpoint silently
+# truncates to a top-25-ish subset of games instead of the full slate.
+FBS_GROUP = "80"
+SCOREBOARD_LIMIT = 500
+
+# seasontype: 1=preseason, 2=regular season, 3=postseason. FBS doesn't
+# really have a preseason slate the way the NFL does -- ESPN just serves
+# the upcoming week's games under season_type 2 even before week 1 has
+# kicked off -- so 2 is the sane default here (only used as a last-resort
+# fallback if ESPN's response is ever missing a season type entirely; see
+# get_espn_current_state()).
+SEASON_TYPE_FALLBACK = 2
+SEASON_YEAR_DEFAULT = 2026
+
+# "Main channels" = national broadcast + flagship cable. Games on ESPNU,
+# SECN, ESPN+, streaming-only, etc. are filtered out. Edit this set to
+# widen or narrow what counts as a "main channel" game.
+MAIN_CHANNELS = {"ABC", "CBS", "NBC", "FOX", "ESPN", "ESPN2", "FS1"}
+
+# Nebraska always gets pulled onto the board and always wins its time
+# slot's "Time Slot Most Watchable Game" pick, no matter its AP rank or
+# spread relative to anything else in that window.
+NEBRASKA_TEAM = "Nebraska"
+
+# A team with no AP-poll ranking gets this value -- one worse than the
+# worst possible AP Top 25 rank -- so it never outranks a team that's
+# actually ranked. Kept separate from win-rank's own "unranked" value
+# below since these two components are normalized independently before
+# being blended.
+UNRANKED_VALUE = 50
+
+# A team with no games played yet (or missing a record) gets this
+# win-rank value -- one worse than the most FBS teams that could
+# realistically appear on one board -- so it never outranks a team that
+# actually has a record.
+UNRANKED_WIN_RANK = 135
+
 
 # ---------------------------------------------------------------------------
-# CFBD calls
+# ESPN calls
 # ---------------------------------------------------------------------------
 
-def cfbd_get(path, key, params=None):
+def get_scoreboard(year, week, season_type):
     resp = requests.get(
-        f"{CFBD_BASE}{path}",
-        headers={"Authorization": f"Bearer {key}", "Accept": "application/json"},
-        params=params or {},
+        ESPN_SCOREBOARD_URL,
+        params={"dates": year, "week": week, "seasontype": season_type,
+                "groups": FBS_GROUP, "limit": SCOREBOARD_LIMIT},
         timeout=REQUEST_TIMEOUT,
     )
     resp.raise_for_status()
     return resp.json()
 
 
-def get_games(key, year, week, season_type="regular"):
-    return cfbd_get(
-        "/games",
-        key,
-        {"year": year, "week": week, "seasonType": season_type, "classification": "fbs"},
+def get_rankings(year, week, season_type):
+    resp = requests.get(
+        ESPN_RANKINGS_URL,
+        params={"year": year, "week": week, "seasontype": season_type},
+        timeout=REQUEST_TIMEOUT,
     )
+    resp.raise_for_status()
+    return resp.json()
 
 
-def get_media(key, year, week, season_type="regular"):
-    return cfbd_get(
-        "/games/media",
-        key,
-        {"year": year, "week": week, "seasonType": season_type, "classification": "fbs"},
-    )
+def broadcast_names(event):
+    """All national broadcast name strings for a game, RAW (not yet split
+    or joined) -- across every ESPN payload shape that can carry them.
+    Used both for display (broadcast_label, joined with ", ") and for the
+    main-channel filter (on_main_channel, which further splits each
+    string -- see there for why)."""
+    names = []
+
+    for b in event.get("broadcasts", []):
+        for n in b.get("names", []):
+            if n and n not in names:
+                names.append(n)
+
+    for comp in event.get("competitions", []):
+        for b in comp.get("broadcasts", []):
+            for n in b.get("names", []):
+                if n and n not in names:
+                    names.append(n)
+            media_name = b.get("media", {}).get("shortName")
+            if media_name and media_name not in names:
+                names.append(media_name)
+
+    for gb in event.get("geoBroadcasts", []):
+        short = gb.get("media", {}).get("shortName")
+        if short and short not in names:
+            names.append(short)
+
+    return names
 
 
-def get_rankings(key, year, week, season_type="regular"):
-    return cfbd_get("/rankings", key, {"year": year, "week": week, "seasonType": season_type})
+def broadcast_label(event):
+    """Display string for a game's TV pill -- ", " instead of "/" between
+    multiple networks (matches NFL/MLB's broadcast_label)."""
+    names = broadcast_names(event)
+    return ", ".join(names) if names else None
 
 
-def get_records(key, year):
-    return cfbd_get("/records", key, {"year": year})
+_CHANNEL_SPLIT_RE = re.compile(r"[/,]")
 
 
-def build_record_lookup(records_payload):
-    """{team_name: 'W-L' string} (or 'W-L-T' if the team has a tie) from
-    CFBD's /records payload, for displaying under each team's name on the
-    board. Season-to-date, so it fills in as the year progresses."""
-    lookup = {}
-    for entry in records_payload:
-        team = entry.get("team")
-        if not team:
+def _channel_tokens(names):
+    """Split each raw broadcast name into individual channel tokens.
+
+    ESPN sometimes packs more than one network into a SINGLE string
+    inside one broadcast object (e.g. "ESPN2/ACCNX" as one entry in
+    `names`) instead of giving each network its own list entry. A plain
+    `outlet in MAIN_CHANNELS` check (which works fine for NFL, where this
+    doesn't happen) would silently miss those combined-string games, so
+    every raw name here gets split on "/" and "," before being checked
+    against MAIN_CHANNELS.
+    """
+    tokens = []
+    for n in names:
+        if not n:
             continue
-        total = entry.get("total", {}) or {}
-        wins = total.get("wins") if total.get("wins") is not None else 0
-        losses = total.get("losses") if total.get("losses") is not None else 0
-        ties = total.get("ties") or 0
+        for part in _CHANNEL_SPLIT_RE.split(n):
+            part = part.strip()
+            if part and part not in tokens:
+                tokens.append(part)
+    return tokens
 
-        lookup[team] = f"{wins}-{losses}-{ties}" if ties else f"{wins}-{losses}"
-    return lookup
+
+def on_main_channel(event, channels):
+    return any(tok in channels for tok in _channel_tokens(broadcast_names(event)))
+
+
+def _parse_espn_record(competitor):
+    """Extract (wins, losses, ties, summary) from an ESPN scoreboard
+    competitor's `records` list, or (None, None, None, None) if no
+    overall record is present yet (e.g. before that team's first game)."""
+    for rec in competitor.get("records", []):
+        if rec.get("type") == "total" or rec.get("name") == "overall":
+            summary = rec.get("summary")
+            if not summary:
+                continue
+            parts = summary.split("-")
+            try:
+                wins, losses = int(parts[0]), int(parts[1])
+                ties = int(parts[2]) if len(parts) > 2 else 0
+                return wins, losses, ties, summary
+            except (ValueError, IndexError):
+                return None, None, None, summary
+    return None, None, None, None
+
+
+def build_win_rank_lookup(team_records):
+    """Rank every team with a known record by win percentage this season
+    (rank 1 = best record on the board), the same convention NFL's/MLB's
+    win-rank lookups use. Ties broken by raw win total, then by team id
+    for a stable, deterministic order. `team_records` is
+    {team_id: (wins, losses, ties)}. Returns {team_id: rank}."""
+    entries = []
+    for team_id, (wins, losses, ties) in team_records.items():
+        games_played = wins + losses + ties
+        pct = (wins + 0.5 * ties) / games_played if games_played else -1
+        entries.append((team_id, pct, wins))
+    entries.sort(key=lambda e: (-e[1], -e[2], e[0]))
+    return {team_id: i + 1 for i, (team_id, pct, wins) in enumerate(entries)}
 
 
 def build_rank_lookup(rankings_payload, poll_name="AP Top 25"):
-    """Return {team_name: rank} from the first matching poll release."""
+    """{team_id: rank} from the first matching poll ("AP Top 25" by
+    default). Falls back to any poll present if AP specifically isn't
+    found (mirrors the old CFBD fallback -- AP is occasionally slower to
+    post than the Coaches poll early in the week)."""
     lookup = {}
-    for release in rankings_payload:
-        for poll in release.get("polls", []):
-            if poll.get("poll") == poll_name:
-                for entry in poll.get("ranks", []):
-                    lookup[entry["school"]] = entry["rank"]
-                return lookup  # first release for the requested week is what we want
-    # Fallback: if AP Top 25 isn't present yet (early preseason), try any poll
-    for release in rankings_payload:
-        for poll in release.get("polls", []):
-            for entry in poll.get("ranks", []):
-                lookup.setdefault(entry["school"], entry["rank"])
+    for release in rankings_payload.get("rankings", []):
+        if release.get("name") == poll_name or release.get("shortName") == "AP Poll":
+            for entry in release.get("ranks", []):
+                team_id = entry.get("team", {}).get("id")
+                if team_id is not None:
+                    lookup[team_id] = entry.get("current")
+            if lookup:
+                return lookup
+    for release in rankings_payload.get("rankings", []):
+        for entry in release.get("ranks", []):
+            team_id = entry.get("team", {}).get("id")
+            if team_id is not None:
+                lookup.setdefault(team_id, entry.get("current"))
         if lookup:
             return lookup
     return lookup
 
 
-def get_rank_lookup_with_fallback(cfbd_key, year, week, cache=None):
-    """Get {team_name: rank} for `week`, carrying forward from the most
-    recent earlier week if `week`'s poll hasn't been released yet.
-
-    CFBD only publishes each week's AP poll after that week's games are
-    played (e.g. the "Week 2" poll comes out once Week 1 wraps up). When
-    we're building a future week ahead of time -- like showing "this week
-    + next week" before this week has kicked off -- the later week's poll
-    genuinely doesn't exist yet. Rather than show no rankings at all, this
-    steps backward (week-1, week-2, ... down to week 1) and reuses the
-    most recent released poll as a best-available approximation.
+def get_rank_lookup_with_fallback(year, week, cache=None):
+    """{team_id: rank} for `week`, carrying forward from the most recent
+    earlier week if `week`'s poll hasn't been released yet (e.g. building
+    "this week + next week" before this week has kicked off, when next
+    week's poll genuinely doesn't exist yet).
 
     `cache` is an optional {week: rankings_payload} dict so build() can
     share fetched weeks across build_week() calls instead of re-fetching
@@ -163,7 +260,7 @@ def get_rank_lookup_with_fallback(cfbd_key, year, week, cache=None):
 
     def payload_for(w):
         if w not in cache:
-            cache[w] = get_rankings(cfbd_key, year, w)
+            cache[w] = get_rankings(year, w, 2)
         return cache[w]
 
     lookup = build_rank_lookup(payload_for(week))
@@ -183,43 +280,6 @@ def get_rank_lookup_with_fallback(cfbd_key, year, week, cache=None):
 # ---------------------------------------------------------------------------
 # Matchup ranking
 # ---------------------------------------------------------------------------
-
-# A team with no CFBD-poll ranking gets this value -- one worse than the
-# worst possible AP Top 25 rank -- so it never outranks a team that's
-# actually ranked. Kept separate from win-rank's own "unranked" value
-# below since these two components are normalized independently before
-# being blended.
-UNRANKED_VALUE = 50
-
-# A team with no games played yet (or missing from the /records feed)
-# gets this win-rank value -- one worse than the most FBS teams that could
-# realistically appear on one board -- so it never outranks a team that
-# actually has a record.
-UNRANKED_WIN_RANK = 135
-
-
-def build_win_rank_lookup(records_payload):
-    """Rank every team with a known record by win percentage this season
-    (rank 1 = best record on the board), the same convention NFL's/MLB's
-    win-rank lookups use. Ties broken by raw win total, then by team name
-    for a stable, deterministic order. `records_payload` is CFBD's raw
-    /records response (a list of {"team": ..., "total": {"wins":...,
-    "losses":..., "ties":...}} entries)."""
-    entries = []
-    for entry in records_payload:
-        team = entry.get("team")
-        if not team:
-            continue
-        total = entry.get("total", {}) or {}
-        wins = total.get("wins") or 0
-        losses = total.get("losses") or 0
-        ties = total.get("ties") or 0
-        games_played = wins + losses + ties
-        pct = (wins + 0.5 * ties) / games_played if games_played else -1
-        entries.append((team, pct, wins, team))
-    entries.sort(key=lambda e: (-e[1], -e[2], e[3]))
-    return {team: i + 1 for i, (team, pct, wins, _) in enumerate(entries)}
-
 
 def _home_spread(odds):
     line = odds.get("draftkings", {}).get("spread", {}).get("home", {}).get("line")
@@ -249,13 +309,6 @@ def matchup_components(home_rank, away_rank, home_win_rank, away_win_rank, odds)
     spread_component = abs(spread) if spread is not None else None
 
     return ap_component, win_component, spread_component
-
-
-def derive_week(today, year):
-    if today < WEEK1_START:
-        return 1, True  # preseason: default to week 1, flag it
-    days_since = (today - WEEK1_START).days
-    return (days_since // 7) + 1, False
 
 
 def _closest_spread_abs(game_entry):
@@ -312,48 +365,174 @@ def choose_slot_pick(games_sorted):
 
 
 # ---------------------------------------------------------------------------
+# "Current week" resolution -- same pattern as build_nfl_dashboard.py
+# ---------------------------------------------------------------------------
+
+def _extract_season_type(payload):
+    raw = payload.get("season", {}).get("type")
+    if isinstance(raw, bool):
+        return None
+    if isinstance(raw, int):
+        return raw
+    if isinstance(raw, dict):
+        val = raw.get("type", raw.get("id"))
+        try:
+            return int(val)
+        except (TypeError, ValueError):
+            pass
+
+    leagues = payload.get("leagues") or [{}]
+    raw2 = (leagues[0].get("season") or {}).get("type")
+    if isinstance(raw2, int):
+        return raw2
+    if isinstance(raw2, dict):
+        val = raw2.get("type", raw2.get("id"))
+        try:
+            return int(val)
+        except (TypeError, ValueError):
+            pass
+    return None
+
+
+def get_espn_current_state():
+    """Ask ESPN what CFB week AND season type "today" falls under, off the
+    real calendar date -- same approach as build_nfl_dashboard.py's own
+    get_espn_current_state(). Returns (week_number, season_type)."""
+    today_str = datetime.now(timezone.utc).strftime("%Y%m%d")
+    resp = requests.get(
+        ESPN_SCOREBOARD_URL,
+        params={"dates": today_str, "groups": FBS_GROUP, "limit": SCOREBOARD_LIMIT},
+        timeout=REQUEST_TIMEOUT,
+    )
+    resp.raise_for_status()
+    payload = resp.json()
+    week = payload.get("week", {}).get("number", 1)
+    season_type = _extract_season_type(payload)
+    if season_type is None:
+        log(f"  NOTE: ESPN's response didn't include a season type for {today_str} -- "
+            f"falling back to season_type={SEASON_TYPE_FALLBACK}.")
+        season_type = SEASON_TYPE_FALLBACK
+    log(f"ESPN reports current week {week}, season_type {season_type} for {today_str}.")
+    return week, season_type
+
+
+def get_espn_current_week_for(season_type):
+    today_str = datetime.now(timezone.utc).strftime("%Y%m%d")
+    resp = requests.get(
+        ESPN_SCOREBOARD_URL,
+        params={"seasontype": season_type, "dates": today_str, "groups": FBS_GROUP, "limit": SCOREBOARD_LIMIT},
+        timeout=REQUEST_TIMEOUT,
+    )
+    resp.raise_for_status()
+    week = resp.json().get("week", {}).get("number", 1)
+    log(f"ESPN reports current week as {week} for {today_str} (forced season_type {season_type}).")
+    return week
+
+
+def highest_stored_week_info(existing_data):
+    best_week, best_kickoff = None, None
+    for w in (existing_data or {}).get("weeks", []):
+        games = [g for day in w.get("days", []) for slot in day.get("time_slots", []) for g in slot.get("games", [])]
+        kickoffs = []
+        for g in games:
+            raw = g.get("start_time")
+            if not raw:
+                continue
+            try:
+                kickoffs.append(datetime.fromisoformat(raw.replace("Z", "+00:00")))
+            except ValueError:
+                continue
+        last_kickoff = max(kickoffs) if kickoffs else None
+        if best_week is None or w.get("week", 0) > best_week:
+            best_week, best_kickoff = w.get("week"), last_kickoff
+    return best_week, best_kickoff
+
+
+def earliest_unelapsed_stored_week(existing_data):
+    now = datetime.now(timezone.utc)
+    for w in sorted((existing_data or {}).get("weeks", []), key=lambda w: w.get("week", 0)):
+        games = [g for day in w.get("days", []) for slot in day.get("time_slots", []) for g in slot.get("games", [])]
+        kickoffs = []
+        for g in games:
+            raw = g.get("start_time")
+            if not raw:
+                continue
+            try:
+                kickoffs.append(datetime.fromisoformat(raw.replace("Z", "+00:00")))
+            except ValueError:
+                continue
+        if kickoffs and max(kickoffs) >= now:
+            return w.get("week")
+    return None
+
+
+def resolve_current(existing_data, forced_season_type=None):
+    """Same logic as build_nfl_dashboard.py's resolve_current() -- ESPN's
+    own answer, guarded by a floor check (don't sit behind an
+    already-built future week) and an anti-regression check (weeks only
+    move forward during a season)."""
+    if forced_season_type is not None:
+        espn_week = get_espn_current_week_for(forced_season_type)
+        season_type = forced_season_type
+    else:
+        espn_week, season_type = get_espn_current_state()
+
+    floor_week = earliest_unelapsed_stored_week(existing_data)
+    if floor_week is not None and espn_week < floor_week - 1:
+        fallback_week = floor_week - 1
+        log(f"  NOTE: ESPN reports week {espn_week} as current, but week {floor_week} is "
+            f"already built with games still ahead of us -- using week {fallback_week} "
+            f"instead so both show.")
+        return fallback_week, season_type
+
+    stored_current_week = (existing_data or {}).get("current_week")
+    stored_season_type = (existing_data or {}).get("season_type")
+    if (stored_current_week is not None and stored_season_type == season_type
+            and espn_week < stored_current_week):
+        log(f"  NOTE: ESPN reports week {espn_week} as current, but we already advanced to "
+            f"week {stored_current_week} on a previous run (season_type {season_type}) -- "
+            f"keeping {stored_current_week} instead of regressing.")
+        return stored_current_week, season_type
+
+    highest_week, highest_last_kickoff = highest_stored_week_info(existing_data)
+    now = datetime.now(timezone.utc)
+    if (highest_week is not None and highest_last_kickoff is not None
+            and highest_last_kickoff < now and espn_week <= highest_week):
+        fallback_week = highest_week + 1
+        log(f"  NOTE: every game in stored week {highest_week} has already kicked off, but ESPN "
+            f"still reports week {espn_week} as current -- using week {fallback_week} instead.")
+        return fallback_week, season_type
+
+    return espn_week, season_type
+
+
+# ---------------------------------------------------------------------------
 # Main build
 # ---------------------------------------------------------------------------
 
-def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, rankings_cache=None, records_cache=None, previous_odds_by_id=None):
+def build_week(year, week, season_type, sharp_key, channels, gemini_key=None, rankings_cache=None, previous_odds_by_id=None):
     """Build a single week's worth of games. Returns the per-week dict
     (no generated_at/season wrapper -- that's added once, by build())."""
-    log(f"Fetching games for {year} week {week}...")
-    games = get_games(cfbd_key, year, week)
-    log(f"  {len(games)} games")
-
-    log("Fetching TV/media info...")
-    media = get_media(cfbd_key, year, week)
-    media_by_game = {m["id"]: m for m in media if m.get("id")}
+    log(f"Fetching CFB schedule for {year}, week {week}, seasontype {season_type}...")
+    scoreboard = get_scoreboard(year, week, season_type)
+    events = scoreboard.get("events", [])
+    log(f"  {len(events)} games")
 
     log("Fetching AP rankings...")
-    rank_lookup, rank_source_week = get_rank_lookup_with_fallback(cfbd_key, year, week, cache=rankings_cache)
+    rank_lookup, rank_source_week = get_rank_lookup_with_fallback(year, week, cache=rankings_cache)
     log(f"  {len(rank_lookup)} ranked teams found" + (
         f" (from week {rank_source_week}'s poll)" if rank_source_week not in (None, week) else ""
     ))
 
-    if records_cache is not None and year in records_cache:
-        record_lookup, win_rank_lookup = records_cache[year]
-    else:
-        log("Fetching team records...")
-        records_payload = get_records(cfbd_key, year)
-        record_lookup = build_record_lookup(records_payload)
-        win_rank_lookup = build_win_rank_lookup(records_payload)
-        log(f"  {len(record_lookup)} team records found")
-        if records_cache is not None:
-            records_cache[year] = (record_lookup, win_rank_lookup)
-
     log("Fetching DraftKings/FanDuel NCAAF odds from SharpAPI...")
     # Fetch ONE DAY AT A TIME across this week's actual game dates, rather
-    # than a single date_from/date_to spanning the whole week -- see the
-    # matching comment in build_nfl_dashboard.py's build_week() for why.
-    # CFB has far more games per week than NFL (60+ some weeks), so this
-    # matters even more here: a full week's spread+moneyline rows,
-    # including every alternate spread line SharpAPI posts per game, can
-    # run into the thousands in one request.
+    # than a single date_from/date_to spanning the whole week -- CFB has
+    # far more games per week than NFL (60+ some weeks), so a full week's
+    # spread+moneyline rows, including every alternate line SharpAPI
+    # posts per game, can run into the thousands in one request.
     game_dates = set()
-    for g in games:
-        raw = g.get("startDate")
+    for event in events:
+        raw = event.get("date")
         if not raw:
             continue
         try:
@@ -372,67 +551,80 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, ranki
     days = {}
     all_games = []  # flat list, mirrors what's in `days`, for the Gemini pass below
     skipped_no_tv = 0
+    team_records = {}  # {team_id: (wins, losses, ties)} -- accumulated as we go
 
-    for g in games:
-        game_id = g.get("id")
-        media_info = media_by_game.get(game_id)
-        outlet = (media_info or {}).get("outlet")
-        if outlet:
-            # ", " instead of "/", matching NFL/MLB's broadcast_label --
-            # CFBD's own outlet field is normally a single network, but
-            # this is a no-op unless it ever isn't.
-            outlet = outlet.replace("/", ", ")
-        home_team, away_team = g.get("homeTeam"), g.get("awayTeam")
-        is_nebraska = NEBRASKA_TEAM in (home_team, away_team)
+    for event in events:
+        competitions = event.get("competitions", [])
+        if not competitions:
+            continue
+        comp = competitions[0]
+        competitors = comp.get("competitors", [])
+        home = next((c for c in competitors if c.get("homeAway") == "home"), None)
+        away = next((c for c in competitors if c.get("homeAway") == "away"), None)
+        if not home or not away:
+            continue
 
-        on_main_channel = bool(outlet) and outlet in channels
+        home_team = home["team"].get("displayName")
+        away_team = away["team"].get("displayName")
+        home_id = home["team"].get("id")
+        away_id = away["team"].get("id")
+        is_nebraska = NEBRASKA_TEAM in (home_team or "", away_team or "")
+
+        outlet = broadcast_label(event)
+        main_channel = on_main_channel(event, channels)
         # Nebraska always makes the board, even if it's on a non-main
-        # channel (or nothing found in the media feed at all) -- everything
-        # else still requires a main-channel broadcast.
-        if not on_main_channel and not is_nebraska:
+        # channel (or nothing found in the broadcast feed at all) --
+        # everything else still requires a main-channel broadcast.
+        if not main_channel and not is_nebraska:
             skipped_no_tv += 1
             continue
 
-        start_raw = g.get("startDate")
+        start_raw = event.get("date")
         try:
             start_dt_utc = datetime.fromisoformat(start_raw.replace("Z", "+00:00"))
         except (TypeError, ValueError):
             continue
-        is_tbd = g.get("startTimeTBD", False)
+        status = event.get("status", {}).get("type", {})
+        is_tbd = bool(status.get("isTBDFlex")) or "TBD" in (event.get("shortName") or "")
         local_dt = start_dt_utc.astimezone(ZoneInfo(DISPLAY_TIMEZONE))
         day_key = local_dt.date().isoformat()
         slot = time_slot_for(local_dt, is_tbd)
 
-        home_rank = rank_lookup.get(home_team)
-        away_rank = rank_lookup.get(away_team)
-        home_win_rank = win_rank_lookup.get(home_team)
-        away_win_rank = win_rank_lookup.get(away_team)
+        home_wins, home_losses, home_ties, home_record = _parse_espn_record(home)
+        away_wins, away_losses, away_ties, away_record = _parse_espn_record(away)
+        if home_wins is not None and home_id is not None:
+            team_records[home_id] = (home_wins, home_losses, home_ties)
+        if away_wins is not None and away_id is not None:
+            team_records[away_id] = (away_wins, away_losses, away_ties)
+
+        home_rank = rank_lookup.get(home_id)
+        away_rank = rank_lookup.get(away_id)
 
         odds = match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
         if previous_odds_by_id:
-            odds = carry_forward_odds(odds, previous_odds_by_id.get(game_id))
+            odds = carry_forward_odds(odds, previous_odds_by_id.get(event.get("id")))
 
         game_entry = {
-            "id": game_id,
+            "id": event.get("id"),
             "start_time": start_raw,
             "start_time_tbd": is_tbd,
             "home_team": home_team,
-            "home_conference": g.get("homeConference"),
             "home_rank": home_rank,
-            "home_record": record_lookup.get(home_team, "0-0"),
+            "home_record": home_record or "0-0",
             "away_team": away_team,
-            "away_conference": g.get("awayConference"),
             "away_rank": away_rank,
-            "away_record": record_lookup.get(away_team, "0-0"),
+            "away_record": away_record or "0-0",
             "matchup_score": None,  # filled in below, once every game's components are known
             "channel": outlet or "Not on Main TV",
-            "venue": g.get("venue"),
-            "neutral_site": g.get("neutralSite", False),
+            "venue": comp.get("venue", {}).get("fullName"),
+            "neutral_site": comp.get("neutralSite", False),
             "odds": odds,
             "is_nebraska": is_nebraska,
+            "_home_id": home_id,
+            "_away_id": away_id,
         }
         days.setdefault(day_key, {}).setdefault(slot, []).append(game_entry)
-        all_games.append((game_entry, home_win_rank, away_win_rank))
+        all_games.append(game_entry)
 
     log(f"  {skipped_no_tv} games skipped (not on a main channel)")
 
@@ -441,8 +633,11 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, ranki
     # like an AP-style poll), 25% posted spread -- each normalized 0-100
     # across the whole week before blending, same pattern NFL/MLB use for
     # their own blends.
+    win_rank_lookup = build_win_rank_lookup(team_records)
     ap_components, win_components, spread_components = [], [], []
-    for g, home_win_rank, away_win_rank in all_games:
+    for g in all_games:
+        home_win_rank = win_rank_lookup.get(g["_home_id"])
+        away_win_rank = win_rank_lookup.get(g["_away_id"])
         a, w, s = matchup_components(g["home_rank"], g["away_rank"], home_win_rank, away_win_rank, g["odds"])
         ap_components.append(a)
         win_components.append(w)
@@ -450,11 +645,11 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, ranki
     ap_norm = normalize_minmax(ap_components)
     win_norm = normalize_minmax(win_components)
     spread_norm = normalize_minmax(spread_components)
-    all_games_flat = []
-    for (g, _, _), an, wn, sn in zip(all_games, ap_norm, win_norm, spread_norm):
+    for g, an, wn, sn in zip(all_games, ap_norm, win_norm, spread_norm):
         g["matchup_score"] = round(100 * (0.5 * an + 0.25 * wn + 0.25 * sn), 1)
-        all_games_flat.append(g)
-    all_games = all_games_flat
+        # Internal-only fields, not part of the public JSON shape.
+        del g["_home_id"]
+        del g["_away_id"]
 
     # Rank spans the WHOLE WEEK, across every day in it, not just
     # whichever time slot or day a game lands in.
@@ -469,9 +664,6 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, ranki
         for slot_name in TIME_SLOT_ORDER:
             if slot_name not in slots_for_day:
                 continue
-            # "Best ranking of each group": sort each window's games by
-            # matchup_score ascending, so the most marquee game in that
-            # window (lowest combined AP rank) leads.
             games_sorted = sorted(slots_for_day[slot_name], key=lambda x: x["matchup_score"])
             best_score = games_sorted[0]["matchup_score"] if games_sorted else None
             pick_idx, pick_reason = choose_slot_pick(games_sorted)
@@ -499,18 +691,19 @@ def build_week(year, week, cfbd_key, sharp_key, channels, gemini_key=None, ranki
     }
 
 
-def build(year, week_start, cfbd_key, sharp_key, channels, gemini_key=None, num_weeks=2, previous_odds_by_id=None):
+def build(year, week_start, season_type, sharp_key, channels, gemini_key=None, num_weeks=2, previous_odds_by_id=None):
     """Build `num_weeks` consecutive weeks starting at week_start (default:
     this week + next week) and wrap them into the full output payload."""
     weeks = []
     rankings_cache = {}
-    records_cache = {}
     for offset in range(num_weeks):
-        weeks.append(build_week(year, week_start + offset, cfbd_key, sharp_key, channels, gemini_key, rankings_cache=rankings_cache, records_cache=records_cache, previous_odds_by_id=previous_odds_by_id))
+        weeks.append(build_week(year, week_start + offset, season_type, sharp_key, channels,
+                                 gemini_key, rankings_cache=rankings_cache, previous_odds_by_id=previous_odds_by_id))
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "season": year,
+        "season_type": season_type,
         "main_channels": sorted(channels),
         "display_timezone": DISPLAY_TIMEZONE,
         "weeks": weeks,
@@ -519,9 +712,11 @@ def build(year, week_start, cfbd_key, sharp_key, channels, gemini_key=None, num_
 
 def parse_args():
     p = argparse.ArgumentParser(description="Build the NCAAF betting dashboard JSON.")
-    p.add_argument("--year", type=int, default=None, help="Season year (default: auto)")
-    p.add_argument("--week", type=int, default=None, help="Starting CFBD week number (default: auto from Aug 22 start); this week and the following week are both built")
+    p.add_argument("--year", type=int, default=SEASON_YEAR_DEFAULT, help="Season year")
+    p.add_argument("--week", type=int, default=None, help="Starting week number (default: ESPN's current week); this week and the following week are both built")
     p.add_argument("--num-weeks", type=int, default=2, help="How many consecutive weeks to build starting at --week (default: 2)")
+    p.add_argument("--season-type", type=int, default=None,
+                    help="1=preseason, 2=regular season, 3=postseason (default: auto-detected from ESPN each run)")
     p.add_argument("--out", default=None, help="Output path (default: data/ncaaf_dashboard.json)")
     return p.parse_args()
 
@@ -529,10 +724,7 @@ def parse_args():
 def main():
     args = parse_args()
 
-    cfbd_key = os.environ.get("CFBD_API_KEY")
     sharp_key = os.environ.get("SHARPAPI_KEY")
-    if not cfbd_key:
-        sys.exit("Missing CFBD_API_KEY environment variable (get one at collegefootballdata.com/key)")
     if not sharp_key:
         sys.exit("Missing SHARPAPI_KEY environment variable (get one at sharpapi.io)")
 
@@ -540,44 +732,39 @@ def main():
     if not gemini_key:
         log("GEMINI_KEY not set -- building without Gemini predictions.")
 
-    today = datetime.now(timezone.utc).date()
-    year = args.year or SEASON_YEAR_DEFAULT
-    if args.week is not None:
-        week, preseason = args.week, False
-    else:
-        week, preseason = derive_week(today, year)
-        if preseason:
-            log(f"Today ({today}) is before the {year} week-1 start ({WEEK1_START}); defaulting to week 1.")
-
+    week = args.week
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "ncaaf_dashboard.json")
     out_path = os.path.abspath(out_path)
 
     existing_data = load_existing_dashboard(out_path)
 
+    season_type = args.season_type
+    if week is None:
+        week, season_type = resolve_current(existing_data, forced_season_type=args.season_type)
+    elif season_type is None:
+        _, season_type = get_espn_current_state()
+
     previous_odds_by_id = load_previous_odds_by_game(out_path)
     if previous_odds_by_id:
         log(f"Loaded odds for {len(previous_odds_by_id)} game(s) from the previous build "
             f"to carry forward if today's fetch comes back blank for any of them.")
 
-    output = build(year, week, cfbd_key, sharp_key, MAIN_CHANNELS, gemini_key,
+    output = build(args.year, week, season_type, sharp_key, MAIN_CHANNELS, gemini_key,
                     num_weeks=args.num_weeks, previous_odds_by_id=previous_odds_by_id)
+    fresh_week_nums = [w["week"] for w in output["weeks"]]
 
     # Record which week THIS build resolved as "current" -- College/NFL use
     # this (plus current_week + 1) to decide what to display, instead of
     # re-deriving "current" client-side from individual game timestamps.
-    # It's just whatever `week` above ended up being (either --week, or
-    # derive_week()'s date-based answer), so it always reflects the same
-    # source of truth the actual fetch used.
     output["current_week"] = week
 
     # Never drop old weeks -- merge today's freshly-built weeks on top of
     # whatever weeks were already on disk instead of replacing the file
     # wholesale, so lines/scores/predictions from every past week stay
-    # available (Picks shows all of them; College only shows current_week
-    # and current_week + 1).
-    all_weeks = merge_weeks(existing_data, output["weeks"])
-    output["weeks"] = all_weeks
+    # available (Picks and Accuracy show all of them; College only shows
+    # current_week and current_week + 1).
+    output["weeks"] = merge_weeks(existing_data, output["weeks"])
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
@@ -585,7 +772,8 @@ def main():
 
     total_games = sum(w["total_games"] for w in output["weeks"])
     week_nums = [w["week"] for w in output["weeks"]]
-    log(f"Wrote {total_games} games across {len(week_nums)} week(s) total ({week_nums}) to {out_path}")
+    log(f"Wrote {total_games} games across {len(week_nums)} week(s) total ({week_nums}) to {out_path}; "
+        f"freshly built this run: {fresh_week_nums} (season_type={season_type})")
 
 
 if __name__ == "__main__":
