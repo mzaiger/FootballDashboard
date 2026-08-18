@@ -17,7 +17,7 @@ shows every pick you've ever made, no matter how long ago.
 
 Every page has:
 - A **hamburger menu** on mobile (upper-left) for the NCAAF / NCAAMB / NFL
-  / MLB / Picks nav links; shown inline on desktop.
+  / MLB / Accuracy / Picks nav links; shown inline on desktop.
 - **Open / Closed / All pills**, showing counts, next to the nav — Open =
   game hasn't started, Closed = game has started or finished. Defaults to
   **All** on every page; your choice is remembered per-page.
@@ -30,7 +30,7 @@ Every page has:
 | Page | `index.html` | `nfl.html` | `mlb.html` | `ncaamb.html` |
 | Data | `data/ncaaf_dashboard.json` | `data/nfl_dashboard.json` | `data/mlb_dashboard.json` | — |
 | Builder | `scripts/build_ncaaf_dashboard.py` | `scripts/build_nfl_dashboard.py` | `scripts/build_mlb_dashboard.py` | — |
-| Schedule/TV source | [CollegeFootballData.com](https://collegefootballdata.com/key) (CFBD) | ESPN's public scoreboard API (no key needed) | ESPN's public scoreboard API (no key needed) | — |
+| Schedule/TV source | ESPN's public scoreboard + rankings APIs (no key needed) | ESPN's public scoreboard API (no key needed) | ESPN's public scoreboard API (no key needed) | — |
 | Grouped by | Week → day | Week → day | Day (each "week" in the JSON is one calendar day — see MLB section below) | — |
 | Matchup ranking | 50% combined AP Top 25 rank + 25% combined win rank + 25% posted spread | Chiefs, then Broncos, then 50% spread + 50% combined win rank | Combined win rank only (run line is ~always ±1.5, so it isn't a useful signal) | — |
 | Odds | [SharpAPI](https://sharpapi.io) (DraftKings + FanDuel) | same | same | — |
@@ -220,6 +220,28 @@ so there's no way to set one that truly never expires) and get a fresh
 400-day clock every time the pick is read again, not just when it's made
 or changed — so a pick you keep coming back to effectively never expires.
 
+## The Accuracy page
+
+`accuracy.html` shows how accurate Gemini's predictions have been, across
+**every graded prediction it has ever made** in any of the three dashboard
+files — not just games you picked. It combines `data/ncaaf_dashboard.json`,
+`data/nfl_dashboard.json`, and `data/mlb_dashboard.json` (each of which
+keeps every week/day ever built) with `data/scores.json` to grade every
+prediction against the actual final score.
+
+Its own filter bar (separate from the board pages' filter, so changing one
+doesn't affect the other) controls:
+- **Best Matchups** — restrict to each time slot's single top-ranked game
+- **Both / ML / ATS** — which market Gemini's own confidence score is
+  checked against
+- **Confidence** — a minimum threshold (0–100, in steps of 5) on that
+  market's confidence
+
+For example, "Best Matchups" + "ATS" + "65+" shows Gemini's all-time ATS
+accuracy on just the single best matchup in every time slot it's ever
+been at least 65% confident on. A "By Sport" table breaks the same numbers
+down into NCAAF / NFL / MLB individually.
+
 ## Gemini predictions
 
 `scripts/gemini_predictions.py` calls the Gemini API once per game with
@@ -237,9 +259,10 @@ pip install -r requirements.txt
 
 Environment variables:
 - `SHARPAPI_KEY` — required, from [sharpapi.io](https://sharpapi.io)
-- `CFBD_KEY` — required for NCAAF only, from
-  [collegefootballdata.com/key](https://collegefootballdata.com/key)
 - `GEMINI_KEY` — optional, enables Gemini predictions
+
+NCAAF no longer needs its own key — it pulls schedule, broadcast, records,
+and the AP Top 25 poll from ESPN's public API, same as NFL and MLB.
 
 ```
 python scripts/build_ncaaf_dashboard.py

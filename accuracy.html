@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sports Dashboard - Accuracy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0d10;
+    --bg-panel: #12161b;
+    --line: #232a31;
+    --chalk: #e8ecef;
+    --dim: #8a95a1;
+    --gold: #e0a63c;
+    --dk-green: #53d337;
+    --loss-red: #e2584a;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse at top, #131a1f 0%, var(--bg) 55%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0 1px, transparent 1px 64px);
+    color:var(--chalk);
+    font-family:'JetBrains Mono', monospace;
+    min-height:100vh;
+    padding-bottom:4rem;
+  }
+
+  .nav-bar{
+    position:sticky; top:0; z-index:100;
+    background:var(--bg);
+    border-bottom:1px solid transparent;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .nav-bar.stuck{
+    border-bottom-color:var(--line);
+    box-shadow:0 8px 20px -12px rgba(0,0,0,0.6);
+  }
+  .site-nav{
+    max-width:1180px; margin:0 auto; padding:0.9rem 1.5rem;
+    display:flex; flex-wrap:wrap; gap:.5rem; align-items:center;
+    position:relative;
+  }
+  .hamburger-btn{
+    display:none; order:1;
+    background:transparent; border:1px solid var(--line); border-radius:6px;
+    color:var(--chalk); font-size:1.1rem; line-height:1;
+    padding:0.32rem 0.55rem; cursor:pointer;
+  }
+  .nav-links{display:flex; gap:1.25rem; align-items:center; order:1;}
+  .site-nav a{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.82rem;
+    text-transform:uppercase; letter-spacing:0.04em;
+    color:var(--dim); text-decoration:none;
+    padding:0.3rem 0; border-bottom:2px solid transparent;
+  }
+  .site-nav a:hover{color:var(--chalk);}
+  .site-nav a.active{color:var(--gold); border-bottom-color:var(--gold);}
+
+  .filter-bar-inner{
+    display:flex; flex-wrap:wrap; gap:0.6rem; align-items:center;
+    justify-content:center;
+    flex:1 1 auto; order:2; margin-left:auto;
+  }
+  .filter-pill{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.04em;
+    color:var(--dim); background:#000; border:1px solid var(--line); border-radius:6px;
+    padding:0.1rem 0.22rem; cursor:pointer; transition:all 0.12s ease;
+  }
+  .filter-pill:hover{color:var(--chalk);}
+  .filter-pill.active{background:var(--gold); color:#1a1400; border-color:var(--gold);}
+
+  .filter-conf-group{
+    display:flex; align-items:center; gap:0.5rem;
+    border:1px solid var(--line); border-radius:8px;
+    padding:0.1rem 0.22rem;
+  }
+  .conf-type-toggle{
+    display:flex; gap:0.2rem; background:var(--bg); border-radius:6px; padding:0.1rem;
+  }
+  .conf-type-btn{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
+    text-transform:uppercase; letter-spacing:0.03em;
+    color:var(--dim); background:transparent; border:none; border-radius:5px;
+    padding:0.1rem 0.22rem; cursor:pointer; transition:all 0.12s ease;
+  }
+  .conf-type-btn:hover{color:var(--chalk);}
+  .conf-type-btn.active{background:var(--gold); color:#1a1400;}
+  .filter-conf{display:flex; align-items:center; gap:0.35rem;}
+  .filter-conf label{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
+    text-transform:uppercase; letter-spacing:0.03em; color:var(--dim);
+  }
+  .filter-conf select{
+    background:var(--bg); color:var(--chalk); border:none;
+    border-radius:5px; padding:0.18rem 0.4rem; font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem; cursor:pointer;
+  }
+
+  @media (max-width: 760px){
+    .hamburger-btn{display:flex; align-items:center; justify-content:center;}
+    .nav-links{
+      display:none; position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; align-items:flex-start; gap:0.6rem;
+      background:var(--bg-panel); border:1px solid var(--line); border-top:none;
+      padding:0.85rem 1.5rem; z-index:150;
+    }
+    .nav-links.open{display:flex;}
+    .filter-bar-inner{order:2; flex:1 1 100%; justify-content:flex-start; margin-left:0;}
+  }
+
+  .hero{
+    padding:2.5rem 1.5rem 1.75rem;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(120deg, rgba(167,139,250,0.16), transparent 55%);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:1180px;margin:0 auto;position:relative;}
+  .eyebrow{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.22em;
+    font-size:0.72rem;
+    color:#a78bfa;
+    font-weight:600;
+  }
+  h1{
+    font-family:'Oswald',sans-serif;
+    font-weight:700;
+    font-size:clamp(2rem, 5vw, 3.1rem);
+    margin:0.35rem 0 0.5rem;
+    letter-spacing:-0.01em;
+  }
+  .meta-row{
+    display:flex; flex-wrap:wrap; gap:1.25rem;
+    color:var(--dim); font-size:0.82rem; margin-top:0.5rem;
+  }
+  .meta-row b{color:var(--chalk); font-weight:600;}
+
+  main{max-width:1180px;margin:0 auto; padding:0 1.5rem;}
+
+  .big-stats{
+    display:flex; flex-wrap:wrap; gap:1.5rem;
+    margin:2rem 0;
+  }
+  .big-stat{
+    flex:1 1 260px;
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:14px;
+    padding:1.5rem 1.75rem;
+    position:relative; overflow:hidden;
+  }
+  .big-stat::before{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 85% -10%, rgba(167,139,250,0.16), transparent 60%);
+    pointer-events:none;
+  }
+  .big-stat .label{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.78rem;
+    text-transform:uppercase; letter-spacing:0.06em; color:var(--dim);
+  }
+  .big-stat .pct{
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:3rem;
+    color:#a78bfa; line-height:1.1; margin-top:0.35rem;
+  }
+  .big-stat .frac{
+    font-size:0.82rem; color:var(--dim); margin-top:0.25rem;
+  }
+
+  .breakdown{
+    margin:2rem 0 3rem;
+  }
+  .breakdown h2{
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:1.1rem;
+    text-transform:uppercase; letter-spacing:0.04em; margin:0 0 0.75rem;
+  }
+  table.breakdown-table{
+    width:100%; border-collapse:collapse;
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:10px;
+    overflow:hidden;
+  }
+  table.breakdown-table th, table.breakdown-table td{
+    padding:0.65rem 0.9rem; text-align:left; border-bottom:1px solid var(--line);
+    font-size:0.85rem;
+  }
+  table.breakdown-table th{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.04em; color:var(--dim);
+  }
+  table.breakdown-table tr:last-child td{border-bottom:none;}
+  table.breakdown-table td.sport-name{
+    font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:0.03em;
+  }
+  table.breakdown-table td.pct-cell{color:#a78bfa; font-weight:600;}
+
+  .status{
+    max-width:1180px; margin:2rem auto; padding:0 1.5rem;
+    color:var(--dim); font-size:0.9rem;
+  }
+
+  footer{
+    max-width:1180px; margin:3rem auto 0; padding:1.5rem;
+    color:var(--dim); font-size:0.78rem; line-height:1.6;
+    border-top:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-bar">
+<nav class="site-nav">
+  <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">NCAAF</a>
+    <a href="ncaamb.html">NCAAMB</a>
+    <a href="nfl.html">NFL</a>
+    <a href="mlb.html">MLB</a>
+    <a href="accuracy.html" class="active">Accuracy</a>
+    <a href="picks.html">Picks</a>
+  </div>
+  <div class="filter-bar-inner">
+    <button type="button" class="filter-pill" id="bestMatchupOnly">Best Matchups</button>
+    <div class="filter-conf-group">
+      <div class="conf-type-toggle">
+        <button type="button" class="conf-type-btn" data-conftype="both">Both</button>
+        <button type="button" class="conf-type-btn" data-conftype="ml">ML</button>
+        <button type="button" class="conf-type-btn" data-conftype="ats">ATS</button>
+      </div>
+      <div class="filter-conf">
+        <label for="minConfSelect">Confidence:</label>
+        <select id="minConfSelect">
+          <option value="0">Any</option>
+          <option value="5">5+</option>
+          <option value="10">10+</option>
+          <option value="15">15+</option>
+          <option value="20">20+</option>
+          <option value="25">25+</option>
+          <option value="30">30+</option>
+          <option value="35">35+</option>
+          <option value="40">40+</option>
+          <option value="45">45+</option>
+          <option value="50">50+</option>
+          <option value="55">55+</option>
+          <option value="60">60+</option>
+          <option value="65">65+</option>
+          <option value="70">70+</option>
+          <option value="75">75+</option>
+          <option value="80">80+</option>
+          <option value="85">85+</option>
+          <option value="90">90+</option>
+          <option value="95">95+</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">All-Time &middot; Every Prediction</div>
+    <h1>Gemini Accuracy</h1>
+    <div class="meta-row">
+      <span>Every graded prediction Gemini has ever made across NCAAF, NFL, and MLB &mdash; not just the games you picked.</span>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="big-stats" id="bigStats">
+    <div class="big-stat">
+      <div class="label">Moneyline (Straight Up)</div>
+      <div class="pct" id="mlPct">&mdash;</div>
+      <div class="frac" id="mlFrac">Loading&hellip;</div>
+    </div>
+    <div class="big-stat">
+      <div class="label">Against The Spread</div>
+      <div class="pct" id="atsPct">&mdash;</div>
+      <div class="frac" id="atsFrac">Loading&hellip;</div>
+    </div>
+  </div>
+
+  <div class="breakdown">
+    <h2>By Sport</h2>
+    <table class="breakdown-table">
+      <thead>
+        <tr><th>Sport</th><th>ML Accuracy</th><th>ATS Accuracy</th><th>Graded Games</th></tr>
+      </thead>
+      <tbody id="breakdownBody"></tbody>
+    </table>
+  </div>
+
+  <div class="status" id="statusMsg" style="display:none;"></div>
+</main>
+
+<footer>
+  "Graded" means the game is final and Gemini made a prediction for that market before kickoff. A push (spread
+  margin lands exactly on the line) doesn't count toward or against ATS accuracy. The Confidence filter checks
+  Gemini's own confidence score for the selected market (or either market, on "Both") &mdash; it has nothing to do
+  with which games you picked. "Best Matchups" restricts to each time slot's single top-ranked matchup. Every
+  week ever built is included here, not just the current board.
+</footer>
+
+<script src="picks-store.js"></script>
+<script>
+(function(){
+  const bar = document.querySelector('.nav-bar');
+  if (!bar) return;
+  const onScroll = () => bar.classList.toggle('stuck', window.scrollY > 2);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
+<script>
+const NCAAF_URL = 'data/ncaaf_dashboard.json';
+const NFL_URL = 'data/nfl_dashboard.json';
+const MLB_URL = 'data/mlb_dashboard.json';
+const SCORES_ALL_URL = 'data/scores.json';
+
+// This page's own filter state -- deliberately a separate localStorage key
+// from the board pages' 'fb_filter_state' (see getFilterState() in
+// picks-store.js), so changing the confidence/best-matchup/ML-ATS filter
+// here never changes what index.html/nfl.html/mlb.html show, and vice
+// versa. gamePassesFilters()/filterWeeksForDisplay() in picks-store.js
+// just take a plain {bestMatchupOnly, minConf, confType} object, so this
+// page's state works with them unchanged.
+const ACCURACY_FILTER_KEY = 'fb_accuracy_filter_state';
+
+function getAccuracyFilterState() {
+  let stored = null;
+  try {
+    stored = JSON.parse(localStorage.getItem(ACCURACY_FILTER_KEY));
+  } catch (e) { /* ignore malformed value */ }
+  return {
+    bestMatchupOnly: !!(stored && stored.bestMatchupOnly),
+    minConf: (stored && Number.isInteger(stored.minConf)) ? stored.minConf : 0,
+    confType: (stored && (stored.confType === 'ats' || stored.confType === 'ml' || stored.confType === 'both'))
+      ? stored.confType : 'both',
+  };
+}
+
+function saveAccuracyFilterState(state) {
+  localStorage.setItem(ACCURACY_FILTER_KEY, JSON.stringify(state));
+}
+
+function initAccuracyFilterBar(onChange) {
+  const state = getAccuracyFilterState();
+
+  const bestMatchupEl = document.getElementById('bestMatchupOnly');
+  const minConfEl = document.getElementById('minConfSelect');
+  const confTypeBtns = document.querySelectorAll('.conf-type-btn');
+
+  if (bestMatchupEl) bestMatchupEl.classList.toggle('active', state.bestMatchupOnly);
+  if (minConfEl) minConfEl.value = String(state.minConf);
+  confTypeBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.conftype === state.confType));
+
+  if (bestMatchupEl) {
+    bestMatchupEl.addEventListener('click', () => {
+      state.bestMatchupOnly = !state.bestMatchupOnly;
+      saveAccuracyFilterState(state);
+      bestMatchupEl.classList.toggle('active', state.bestMatchupOnly);
+      onChange(state);
+    });
+  }
+  if (minConfEl) {
+    minConfEl.addEventListener('change', () => {
+      state.minConf = parseInt(minConfEl.value, 10) || 0;
+      saveAccuracyFilterState(state);
+      onChange(state);
+    });
+  }
+  confTypeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.confType = btn.dataset.conftype;
+      saveAccuracyFilterState(state);
+      confTypeBtns.forEach(b => b.classList.toggle('active', b === btn));
+      onChange(state);
+    });
+  });
+
+  return state;
+}
+
+function fmtPct(pct) {
+  return pct === null ? '&mdash;' : `${pct}%`;
+}
+
+function renderAccuracy(datasets, scores, state) {
+  const overall = computeGeminiAccuracyAllTime(datasets, scores, state);
+
+  document.getElementById('mlPct').innerHTML = state.confType === 'ats' ? 'NA' : fmtPct(overall.mlPct);
+  document.getElementById('mlFrac').textContent = state.confType === 'ats'
+    ? 'Excluded by ATS-only filter'
+    : (overall.mlTotal ? `${overall.mlCorrect}/${overall.mlTotal} correct` : 'No graded games match these filters');
+
+  document.getElementById('atsPct').innerHTML = state.confType === 'ml' ? 'NA' : fmtPct(overall.atsPct);
+  document.getElementById('atsFrac').textContent = state.confType === 'ml'
+    ? 'Excluded by ML-only filter'
+    : (overall.atsTotal ? `${overall.atsCorrect}/${overall.atsTotal} correct` : 'No graded games match these filters');
+
+  const sportLabels = { cfb: 'NCAAF', nfl: 'NFL', mlb: 'MLB' };
+  const rows = datasets.map(({ sport, data }) => {
+    const acc = computeGeminiAccuracyAllTime([{ sport, data }], scores, state);
+    const games = Math.max(acc.mlTotal, acc.atsTotal);
+    return `<tr>
+      <td class="sport-name">${sportLabels[sport] || sport}</td>
+      <td class="pct-cell">${state.confType === 'ats' ? 'NA' : fmtPct(acc.mlPct)}</td>
+      <td class="pct-cell">${state.confType === 'ml' ? 'NA' : fmtPct(acc.atsPct)}</td>
+      <td>${games || 0}</td>
+    </tr>`;
+  });
+  document.getElementById('breakdownBody').innerHTML = rows.join('');
+}
+
+async function init() {
+  const statusEl = document.getElementById('statusMsg');
+  try {
+    const [ncaaf, nfl, mlb, scoresRes] = await Promise.all([
+      fetch(NCAAF_URL, { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch(NFL_URL, { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch(MLB_URL, { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch(SCORES_ALL_URL, { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null),
+    ]);
+
+    if (!ncaaf && !nfl && !mlb) throw new Error('none of the three dashboard files could be loaded');
+
+    // Every week ANY of these dashboards has ever built stays in its
+    // `weeks` array (build scripts merge forward, never drop old weeks --
+    // only the board pages themselves trim down to current_week +
+    // current_week+1 for display). So no extra "history" file is needed
+    // here; the full all-time slate is already sitting in each JSON.
+    const datasets = [
+      { sport: 'cfb', data: ncaaf },
+      { sport: 'nfl', data: nfl },
+      { sport: 'mlb', data: mlb },
+    ].filter(d => d.data);
+
+    const scores = scoresRes || { cfb: {}, nfl: {}, mlb: {} };
+
+    const rerender = (state) => renderAccuracy(datasets, scores, state);
+    const initialState = initAccuracyFilterBar(rerender);
+    rerender(initialState);
+  } catch (err) {
+    statusEl.style.display = 'block';
+    statusEl.textContent = `Couldn't load prediction history (${err.message}). Run the build scripts first.`;
+  }
+}
+
+initHamburgerMenu();
+init();
+</script>
+</body>
+</html>

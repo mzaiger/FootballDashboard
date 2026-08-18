@@ -945,7 +945,28 @@ function computeGeminiAccuracy(datasets, scores) {
   return {
     mlPct: mlTotal ? Math.round((mlCorrect / mlTotal) * 100) : null,
     atsPct: atsTotal ? Math.round((atsCorrect / atsTotal) * 100) : null,
+    // Raw counts, in addition to the rounded percentages above -- added
+    // for accuracy.html's all-time breakdown (which wants to show
+    // "89/142" alongside "63%"), but harmless for existing callers
+    // (picks.html) which only read the *Pct fields.
+    mlTotal, mlCorrect, atsTotal, atsCorrect,
   };
+}
+
+// Same computation as computeGeminiAccuracy(), but first drops any game
+// that doesn't pass gamePassesFilters(g, filterState) -- i.e. Gemini's
+// OWN prediction confidence / best-matchup-slot status, not anything to
+// do with a user's picks. This is what accuracy.html uses to answer
+// "how accurate has Gemini been on every {ML/ATS/Both} prediction it's
+// ever made, optionally restricted to {65+}% confidence and/or each
+// slot's single best matchup" -- across the full history in each
+// dashboard's `weeks` array, not just the current board.
+function computeGeminiAccuracyAllTime(datasets, scores, filterState) {
+  const filtered = (datasets || []).map(({ sport, data }) => ({
+    sport,
+    data: data ? { ...data, weeks: filterWeeksForDisplay(data.weeks || [], filterState) } : data,
+  }));
+  return computeGeminiAccuracy(filtered, scores);
 }
 
 // (ML%|ATS%) display string for the accuracy circle -- whichever market
