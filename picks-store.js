@@ -432,7 +432,7 @@ function renderPayoutSummary(pick) {
     p100 = calcPayout(americanOdds, 100);
   }
   if (p10 === null || p10 === undefined || p100 === null || p100 === undefined) return '';
-  return `<div class="payout-summary">Win $${p10.toFixed(2)} on $10 | $${p100.toFixed(2)} on $100</div>`;
+  return `<div class="payout-summary">Win $${p10.toFixed(2)} on $10</div>`;
 }
 
 // The 4-button toolbar (away/home x spread/moneyline) for one game card.
