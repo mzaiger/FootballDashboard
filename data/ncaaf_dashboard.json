@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T16:37:05.179467+00:00",
+  "generated_at": "2026-08-18T20:19:03.352439+00:00",
   "season": 2026,
   "season_type": 2,
   "main_channels": [
@@ -70,7 +70,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 7,
+                  "matchup_rank": 9,
                   "gemini_prediction": {
                     "winner": "TCU Horned Frogs",
                     "confidence": 78,
@@ -135,7 +135,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 5,
+                  "matchup_rank": 6,
                   "gemini_prediction": {
                     "winner": "Virginia Cavaliers",
                     "confidence": 68,
@@ -184,7 +184,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 22,
+                  "matchup_rank": 24,
                   "gemini_prediction": {
                     "winner": "USC Trojans",
                     "confidence": 99,
@@ -203,7 +203,7 @@
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 83.1,
+              "best_matchup_score": 60.4,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -216,13 +216,22 @@
                   "away_team": "Memphis Tigers",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 83.1,
+                  "matchup_score": 60.4,
                   "channel": "FOX",
                   "venue": "Allegiant Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
+                      "spread": {
+                        "home": {
+                          "line": -6.0,
+                          "american": -110
+                        },
+                        "away": {
+                          "line": 6.0,
+                          "american": -110
+                        }
+                      },
                       "moneyline": {
                         "home": {
                           "line": null,
@@ -240,17 +249,17 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 25,
+                  "matchup_rank": 8,
                   "gemini_prediction": {
                     "winner": "UNLV Rebels",
                     "confidence": 65,
-                    "ats_pick": "UNLV Rebels -5.5",
+                    "ats_pick": "UNLV Rebels -6",
                     "ats_confidence": 60,
-                    "analysis": "The UNLV Rebels enter this week 1 matchup with a potent offensive scheme that exploits opponent weaknesses early in the 2026 season. Memphis struggles to contain dynamic dual-threat quarterbacks, which plays directly into the strengths of the UNLV offense. Furthermore, the Rebels' defensive front has shown exceptional ability to disrupt opposing rushing attacks during early season practices and scrimmages. Playing at home provides a distinct advantage for UNLV in this high-stakes non-conference clash. Ultimately, the Rebels possess superior depth across both lines of scrimmage to pull away late in the contest.",
-                    "splits_and_direction": "Given the lack of official public betting data, it is estimated that roughly 62 percent of bets are backing the home favorite UNLV on the moneyline. Both the moneyline and the unposted spread have remained relatively stable since opening markets without significant sharp movement.",
-                    "display_text": "Summary: The UNLV Rebels enter this week 1 matchup with a potent offensive scheme that exploits opponent weaknesses early in the 2026 season. Memphis struggles to contain dynamic dual-threat quarterbacks, which plays directly into the strengths of the UNLV offense. Furthermore, the Rebels' defensive front has shown exceptional ability to disrupt opposing rushing attacks during early season practices and scrimmages. Playing at home provides a distinct advantage for UNLV in this high-stakes non-conference clash. Ultimately, the Rebels possess superior depth across both lines of scrimmage to pull away late in the contest.\n\nSplits and Direction: Given the lack of official public betting data, it is estimated that roughly 62 percent of bets are backing the home favorite UNLV on the moneyline. Both the moneyline and the unposted spread have remained relatively stable since opening markets without significant sharp movement.",
-                    "generated_at": "2026-08-18T10:19:39.508703+00:00",
-                    "odds_hash": "eaf103f943ab4f28",
+                    "analysis": "The UNLV Rebels showcase an explosive offensive attack that will test the Memphis defense early and often in this week 1 matchup. Memphis enters this game with notable question marks in their secondary, which UNLV's passing game is well-equipped to exploit. Furthermore, the Rebels hold a distinct advantage playing at home where their crowd noise historically disrupts opposing playcalls. While Memphis possesses a dynamic playmaker at quarterback, their overall roster depth on defense falls short of containing UNLV for four full quarters. Ultimately, the Rebels control the line of scrimmage on both sides of the ball to secure a comfortable victory.",
+                    "splits_and_direction": "Given the lack of official public betting data, it is estimated that roughly 62% of bets are backing UNLV as the home favorite due to their strong late-season perception. Both the spread and moneyline have remained stable since opening with no significant market movement.",
+                    "display_text": "Summary: The UNLV Rebels showcase an explosive offensive attack that will test the Memphis defense early and often in this week 1 matchup. Memphis enters this game with notable question marks in their secondary, which UNLV's passing game is well-equipped to exploit. Furthermore, the Rebels hold a distinct advantage playing at home where their crowd noise historically disrupts opposing playcalls. While Memphis possesses a dynamic playmaker at quarterback, their overall roster depth on defense falls short of containing UNLV for four full quarters. Ultimately, the Rebels control the line of scrimmage on both sides of the ball to secure a comfortable victory.\n\nSplits and Direction: Given the lack of official public betting data, it is estimated that roughly 62% of bets are backing UNLV as the home favorite due to their strong late-season perception. Both the spread and moneyline have remained stable since opening with no significant market movement.",
+                    "generated_at": "2026-08-18T20:18:10.897397+00:00",
+                    "odds_hash": "5e544c7548a4beea",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -288,11 +297,11 @@
                       "spread": {
                         "home": {
                           "line": -7.0,
-                          "american": -108
+                          "american": -110
                         },
                         "away": {
                           "line": 7.0,
-                          "american": -112
+                          "american": -110
                         }
                       },
                       "moneyline": {
@@ -312,7 +321,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 23,
+                  "matchup_rank": 25,
                   "gemini_prediction": {
                     "winner": "Georgia Tech Yellow Jackets",
                     "confidence": 78,
@@ -384,7 +393,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 9,
+                  "matchup_rank": 11,
                   "gemini_prediction": {
                     "winner": "Michigan State Spartans",
                     "confidence": 78,
@@ -424,7 +433,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 10,
+                  "matchup_rank": 12,
                   "is_slot_pick": false
                 },
                 {
@@ -533,7 +542,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 12,
+                  "matchup_rank": 14,
                   "gemini_prediction": {
                     "winner": "Nebraska Cornhuskers",
                     "confidence": 95,
@@ -587,7 +596,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 15,
+                  "matchup_rank": 17,
                   "gemini_prediction": {
                     "winner": "Alabama Crimson Tide",
                     "confidence": 95,
@@ -645,7 +654,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 16,
+                  "matchup_rank": 18,
                   "gemini_prediction": {
                     "winner": "Houston Cougars",
                     "confidence": 92,
@@ -694,7 +703,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 20,
+                  "matchup_rank": 22,
                   "gemini_prediction": {
                     "winner": "Indiana Hoosiers",
                     "confidence": 98,
@@ -833,6 +842,64 @@
                   "is_slot_pick": false
                 },
                 {
+                  "id": "401856636",
+                  "start_time": "2026-09-05T19:30Z",
+                  "start_time_tbd": false,
+                  "home_team": "Auburn Tigers",
+                  "home_rank": null,
+                  "home_record": "0-0",
+                  "away_team": "Baylor Bears",
+                  "away_rank": null,
+                  "away_record": "0-0",
+                  "matchup_score": 57.4,
+                  "channel": "ABC",
+                  "venue": "Mercedes-Benz Stadium",
+                  "neutral_site": true,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {
+                        "home": {
+                          "line": -7.0,
+                          "american": -110
+                        },
+                        "away": {
+                          "line": 7.0,
+                          "american": -110
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -285
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 230
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_nebraska": false,
+                  "matchup_rank": 5,
+                  "gemini_prediction": {
+                    "winner": "Auburn Tigers",
+                    "confidence": 78,
+                    "ats_pick": "Auburn Tigers -7",
+                    "ats_confidence": 65,
+                    "analysis": "The Auburn Tigers enter week one with a fully healthy 2026 roster that boasts explosive offensive returning talent. Baylor struggles to find defensive stability in the trenches, which the Tigers exploit early and often. Auburn's secondary shuts down the deep passing game of the Bears, forcing multiple turnovers. Sustained offensive drives allow the home team to control the clock and wear down the opposing defense. Ultimately, the Tigers pull away in the second half to secure a decisive victory that covers the seven-point spread.",
+                    "splits_and_direction": "Approximately 68 percent of the early moneyline handle is backing Auburn at -285, while 62 percent of spread bets are laying the 7 points with the Tigers. Due to heavy public action on the home favorite, the spread has ticked up from an opening line of -6 to -7 at DraftKings.",
+                    "display_text": "Summary: The Auburn Tigers enter week one with a fully healthy 2026 roster that boasts explosive offensive returning talent. Baylor struggles to find defensive stability in the trenches, which the Tigers exploit early and often. Auburn's secondary shuts down the deep passing game of the Bears, forcing multiple turnovers. Sustained offensive drives allow the home team to control the clock and wear down the opposing defense. Ultimately, the Tigers pull away in the second half to secure a decisive victory that covers the seven-point spread.\n\nSplits and Direction: Approximately 68 percent of the early moneyline handle is backing Auburn at -285, while 62 percent of spread bets are laying the 7 points with the Tigers. Due to heavy public action on the home favorite, the spread has ticked up from an opening line of -6 to -7 at DraftKings.",
+                    "generated_at": "2026-08-18T20:18:23.491660+00:00",
+                    "odds_hash": "6dc15d35a97fdc9d",
+                    "model": "gemini-3.5-flash-lite"
+                  },
+                  "is_slot_pick": false
+                },
+                {
                   "id": "401856667",
                   "start_time": "2026-09-05T19:30Z",
                   "start_time_tbd": false,
@@ -867,7 +934,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 11,
+                  "matchup_rank": 13,
                   "gemini_prediction": {
                     "winner": "Texas Longhorns",
                     "confidence": 95,
@@ -925,7 +992,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 18,
+                  "matchup_rank": 20,
                   "gemini_prediction": {
                     "winner": "Penn State Nittany Lions",
                     "confidence": 95,
@@ -936,55 +1003,6 @@
                     "display_text": "Summary: Penn State enters this week one matchup with a vastly superior roster and exceptional returning talent from their 2025 campaign. Marshall struggles to match the depth and physicality of a premier Big Ten program on the road. The Nittany Lions offense should methodically wear down the Thundering Herd defense over four quarters. However, a 24.5-point spread is exceptionally large for an opening week game with potential early-season rust. Marshall manages to backdoor cover late in the fourth quarter against Penn State reserves.\n\nSplits and Direction: Given the lack of official early betting split data, public tendencies suggest roughly 75 percent of moneyline bets are backing heavily favored Penn State while the spread leans toward Marshall due to the inflated number. Both the point spread and moneyline have remained relatively static since opening at DraftKings without significant sharp movement.",
                     "generated_at": "2026-08-18T10:21:19.608916+00:00",
                     "odds_hash": "26888efdb54b4b08",
-                    "model": "gemini-3.5-flash-lite"
-                  },
-                  "is_slot_pick": false
-                },
-                {
-                  "id": "401856636",
-                  "start_time": "2026-09-05T19:30Z",
-                  "start_time_tbd": false,
-                  "home_team": "Auburn Tigers",
-                  "home_rank": null,
-                  "home_record": "0-0",
-                  "away_team": "Baylor Bears",
-                  "away_rank": null,
-                  "away_record": "0-0",
-                  "matchup_score": 79.5,
-                  "channel": "ABC",
-                  "venue": "Mercedes-Benz Stadium",
-                  "neutral_site": true,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": -285
-                        },
-                        "away": {
-                          "line": null,
-                          "american": 230
-                        }
-                      }
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_nebraska": false,
-                  "matchup_rank": 24,
-                  "gemini_prediction": {
-                    "winner": "Auburn Tigers",
-                    "confidence": 75,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "The Auburn Tigers hold home-field advantage for this Week 1 matchup against the Baylor Bears. Auburn's current-season roster depth and overall execution give them a distinct edge in offensive production. Baylor struggles defensively to contain high-tempo attacks, which plays directly into Auburn's scheme. While the Bears will keep it competitive early, the Tigers pull away in the second half. Consequently, Auburn secures the outright victory on their home turf.",
-                    "splits_and_direction": "Based on early public tendencies, approximately 65 percent of moneyline bets are backing the Auburn Tigers to defend home field. Due to lack of official bookmaker data, estimated line movement shows a steady hold at the opening -285 moneyline.",
-                    "display_text": "Summary: The Auburn Tigers hold home-field advantage for this Week 1 matchup against the Baylor Bears. Auburn's current-season roster depth and overall execution give them a distinct edge in offensive production. Baylor struggles defensively to contain high-tempo attacks, which plays directly into Auburn's scheme. While the Bears will keep it competitive early, the Tigers pull away in the second half. Consequently, Auburn secures the outright victory on their home turf.\n\nSplits and Direction: Based on early public tendencies, approximately 65 percent of moneyline bets are backing the Auburn Tigers to defend home field. Due to lack of official bookmaker data, estimated line movement shows a steady hold at the opening -285 moneyline.",
-                    "generated_at": "2026-08-18T10:21:30.748004+00:00",
-                    "odds_hash": "9c0741ebb1d104c6",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1089,7 +1107,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 14,
+                  "matchup_rank": 16,
                   "gemini_prediction": {
                     "winner": "Michigan Wolverines",
                     "confidence": 95,
@@ -1138,7 +1156,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 17,
+                  "matchup_rank": 19,
                   "gemini_prediction": {
                     "winner": "Texas A&M Aggies",
                     "confidence": 99,
@@ -1178,7 +1196,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 19,
+                  "matchup_rank": 21,
                   "is_slot_pick": false
                 }
               ]
@@ -1231,7 +1249,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 6,
+                  "matchup_rank": 7,
                   "gemini_prediction": {
                     "winner": "New Mexico Lobos",
                     "confidence": 82,
@@ -1344,7 +1362,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 21,
+                  "matchup_rank": 23,
                   "gemini_prediction": {
                     "winner": "Washington Huskies",
                     "confidence": 88,
@@ -1443,11 +1461,11 @@
                       "spread": {
                         "home": {
                           "line": -20.5,
-                          "american": -115
+                          "american": -112
                         },
                         "away": {
                           "line": 20.5,
-                          "american": -105
+                          "american": -108
                         }
                       },
                       "moneyline": {
@@ -1467,7 +1485,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 8,
+                  "matchup_rank": 10,
                   "gemini_prediction": {
                     "winner": "Notre Dame Fighting Irish",
                     "confidence": 92,
@@ -1539,7 +1557,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 13,
+                  "matchup_rank": 15,
                   "gemini_prediction": {
                     "winner": "SMU Mustangs",
                     "confidence": 65,
