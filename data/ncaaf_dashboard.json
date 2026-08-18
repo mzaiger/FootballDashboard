@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-08-18T09:57:25.650960+00:00",
+  "season": 2026,
+  "season_type": 1,
+  "main_channels": [
+    "ABC",
+    "CBS",
+    "ESPN",
+    "ESPN2",
+    "FOX",
+    "FS1",
+    "NBC"
+  ],
+  "display_timezone": "America/Chicago",
+  "weeks": [
+    {
+      "week": 1,
+      "total_games": 0,
+      "days": []
+    },
+    {
+      "week": 2,
+      "total_games": 0,
+      "days": []
+    }
+  ],
+  "current_week": 1
+}

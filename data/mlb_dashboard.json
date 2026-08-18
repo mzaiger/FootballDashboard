@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T09:51:22.782358+00:00",
+  "generated_at": "2026-08-18T10:00:05.720018+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -2257,11 +2257,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -157
+                          "american": -133
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 130
+                          "american": 110
                         }
                       },
                       "moneyline": {
@@ -3124,21 +3124,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -153
+                          "american": -133
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 126
+                          "american": 110
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 112
+                          "american": 114
                         },
                         "away": {
                           "line": null,
-                          "american": -135
+                          "american": -138
                         }
                       }
                     },
@@ -3171,11 +3171,11 @@
                     "confidence": 56,
                     "ats_pick": "Atlanta Braves -1.5",
                     "ats_confidence": 52,
-                    "analysis": "Tyler Mahle enters this August matchup holding a 4-9 record and a 4.64 ERA for the Atlanta Braves. Zach Matthews counters for the Minnesota Twins with a 6-8 record and a higher 5.34 ERA. Neither starting pitcher has dominated this season, but the Braves feature a more productive offensive supporting cast against right-handed starters. Minnesota struggles to generate consistent run support behind Matthews given his high ERA and ongoing command issues. Atlanta should capitalize on these pitching vulnerabilities to secure a narrow victory on the road.",
-                    "splits_and_direction": "Based on public tendencies and the road favorite status, roughly 62% of moneyline bets are currently backing the Atlanta Braves. Both the moneyline and the run line have held relatively steady with minor adjustments toward the visiting Braves since opening.",
-                    "display_text": "Summary: Tyler Mahle enters this August matchup holding a 4-9 record and a 4.64 ERA for the Atlanta Braves. Zach Matthews counters for the Minnesota Twins with a 6-8 record and a higher 5.34 ERA. Neither starting pitcher has dominated this season, but the Braves feature a more productive offensive supporting cast against right-handed starters. Minnesota struggles to generate consistent run support behind Matthews given his high ERA and ongoing command issues. Atlanta should capitalize on these pitching vulnerabilities to secure a narrow victory on the road.\n\nSplits and Direction: Based on public tendencies and the road favorite status, roughly 62% of moneyline bets are currently backing the Atlanta Braves. Both the moneyline and the run line have held relatively steady with minor adjustments toward the visiting Braves since opening.",
-                    "generated_at": "2026-08-18T09:51:12.615911+00:00",
-                    "odds_hash": "c26ce29cec4fc8a2",
+                    "analysis": "Tyler Mahle takes the mound for the Atlanta Braves holding a 4-9 record and a 4.64 ERA across the 2026 season. The Minnesota Twins counter with Zack Matthews, who brings a 6-8 record and a higher 5.34 ERA into this August matchup. Atlanta holds a slight statistical advantage in overall run differential and offensive depth compared to Minnesota's struggling pitching staff. While Mahle has experienced his share of struggles, Matthews has surrendered significantly more base runners and earned runs this year. Ultimately, the Braves' superior ability to capitalize on the Twins' bullpen deficiencies should secure them a victory by multiple runs.",
+                    "splits_and_direction": "Approximately 58% of moneyline bets are currently backing the Atlanta Braves, while the public is split evenly on the run line. The away moneyline has shifted slightly from -130 to -138 at DraftKings, indicating steady early action on Atlanta.",
+                    "display_text": "Summary: Tyler Mahle takes the mound for the Atlanta Braves holding a 4-9 record and a 4.64 ERA across the 2026 season. The Minnesota Twins counter with Zack Matthews, who brings a 6-8 record and a higher 5.34 ERA into this August matchup. Atlanta holds a slight statistical advantage in overall run differential and offensive depth compared to Minnesota's struggling pitching staff. While Mahle has experienced his share of struggles, Matthews has surrendered significantly more base runners and earned runs this year. Ultimately, the Braves' superior ability to capitalize on the Twins' bullpen deficiencies should secure them a victory by multiple runs.\n\nSplits and Direction: Approximately 58% of moneyline bets are currently backing the Atlanta Braves, while the public is split evenly on the run line. The away moneyline has shifted slightly from -130 to -138 at DraftKings, indicating steady early action on Atlanta.",
+                    "generated_at": "2026-08-18T10:00:03.845898+00:00",
+                    "odds_hash": "ac843bbcd81d67d2",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -3608,11 +3608,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 134
+                          "american": 138
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -162
+                          "american": -166
                         }
                       },
                       "moneyline": {

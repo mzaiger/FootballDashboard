@@ -3898,5 +3898,17 @@
     "generated_at": "2026-08-18T09:51:22.774629+00:00",
     "odds_hash": "c02ab37c6fbf3a5c",
     "model": "gemini-3.5-flash-lite"
+  },
+  "ac843bbcd81d67d2": {
+    "winner": "Atlanta Braves",
+    "confidence": 56,
+    "ats_pick": "Atlanta Braves -1.5",
+    "ats_confidence": 52,
+    "analysis": "Tyler Mahle takes the mound for the Atlanta Braves holding a 4-9 record and a 4.64 ERA across the 2026 season. The Minnesota Twins counter with Zack Matthews, who brings a 6-8 record and a higher 5.34 ERA into this August matchup. Atlanta holds a slight statistical advantage in overall run differential and offensive depth compared to Minnesota's struggling pitching staff. While Mahle has experienced his share of struggles, Matthews has surrendered significantly more base runners and earned runs this year. Ultimately, the Braves' superior ability to capitalize on the Twins' bullpen deficiencies should secure them a victory by multiple runs.",
+    "splits_and_direction": "Approximately 58% of moneyline bets are currently backing the Atlanta Braves, while the public is split evenly on the run line. The away moneyline has shifted slightly from -130 to -138 at DraftKings, indicating steady early action on Atlanta.",
+    "display_text": "Summary: Tyler Mahle takes the mound for the Atlanta Braves holding a 4-9 record and a 4.64 ERA across the 2026 season. The Minnesota Twins counter with Zack Matthews, who brings a 6-8 record and a higher 5.34 ERA into this August matchup. Atlanta holds a slight statistical advantage in overall run differential and offensive depth compared to Minnesota's struggling pitching staff. While Mahle has experienced his share of struggles, Matthews has surrendered significantly more base runners and earned runs this year. Ultimately, the Braves' superior ability to capitalize on the Twins' bullpen deficiencies should secure them a victory by multiple runs.\n\nSplits and Direction: Approximately 58% of moneyline bets are currently backing the Atlanta Braves, while the public is split evenly on the run line. The away moneyline has shifted slightly from -130 to -138 at DraftKings, indicating steady early action on Atlanta.",
+    "generated_at": "2026-08-18T10:00:03.845898+00:00",
+    "odds_hash": "ac843bbcd81d67d2",
+    "model": "gemini-3.5-flash-lite"
   }
 }
