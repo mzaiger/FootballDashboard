@@ -775,8 +775,8 @@ function getFilterState() {
   return {
     bestMatchupOnly: !!(stored && stored.bestMatchupOnly),
     minConf: (stored && Number.isInteger(stored.minConf)) ? stored.minConf : 0,
-    confType: (stored && (stored.confType === 'ats' || stored.confType === 'ml' || stored.confType === 'all'))
-      ? stored.confType : 'all',
+    confType: (stored && (stored.confType === 'ats' || stored.confType === 'ml' || stored.confType === 'both'))
+      ? stored.confType : 'both',
   };
 }
 
@@ -864,7 +864,7 @@ function filterWeeksForDisplay(weeks, state) {
 // (which filters by Gemini's own prediction confidence, used on the
 // other three pages).
 function applyMarketFilterToWeeks(weeks, sport, state) {
-  if (!state.bestMatchupOnly && state.minConf <= 0 && state.confType === 'all') return weeks;
+  if (!state.bestMatchupOnly && state.minConf <= 0 && state.confType === 'both') return weeks;
   return weeks.map(week => {
     const days = week.days
       .map(day => {
