@@ -296,6 +296,12 @@
   }
   .meta-row b{color:var(--chalk); font-weight:600;}
 
+  .stat-badges-title{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.78rem;
+    text-transform:uppercase; letter-spacing:0.08em; color:var(--dim);
+    margin-top:1.6rem;
+  }
+
   .stat-badges{
     display:flex; flex-wrap:wrap; gap:1.75rem;
     margin-top:1.1rem; align-items:center;
@@ -680,22 +686,23 @@
   <div class="hero-inner">
     <div class="eyebrow">Your Board &middot; Saved Picks</div>
     <h1>My Picks</h1>
+    <div class="stat-badges-title">My Week's Stats</div>
     <div class="stat-badges">
       <div class="stat-badge">
         <div class="stat-circle stat-active-circle"><span class="num" id="activeNum">—</span></div>
         <div class="stat-title">Open<span>Awaiting final<br>results</span></div>
       </div>
       <div class="stat-badge">
-        <div class="stat-circle stat-inactive-circle"><span class="num" id="inactiveFrac">—/—</span><span class="sub">Correct</span></div>
-        <div class="stat-title">Closed<span>Games already<br>graded</span></div>
+        <div class="stat-circle stat-inactive-circle"><span class="num" id="myAccuracyPct">—</span><span class="sub" id="myAccuracyFrac">—/—</span></div>
+        <div class="stat-title">My<span>Accuracy</span></div>
       </div>
       <div class="stat-badge">
         <div class="stat-circle stat-money-circle" id="moneyCircle"><span class="num" id="moneyAmount">$0</span></div>
         <div class="stat-title">$10/bet<span>Winnings if<br>bets were $10</span></div>
       </div>
       <div class="stat-badge">
-        <div class="stat-circle stat-gemini-circle"><span class="num" id="geminiAccuracy">—|—</span><span class="sub" id="geminiAccuracySub">ML|ATS</span></div>
-        <div class="stat-title">Gemini<span>Prediction<br>accuracy</span></div>
+        <div class="stat-circle stat-gemini-circle"><span class="num" id="geminiAccuracy">—</span><span class="sub" id="geminiAccuracySub">—/—</span></div>
+        <div class="stat-title">Gemini<span id="geminiMarketTag">(Both)</span></div>
       </div>
     </div>
     <div class="meta-row">
@@ -1008,15 +1015,28 @@ function renderBoard() {
   // All four stat circles are computed from THIS SAME final filtered set
   // (status + best-slot + market/confidence all applied), not the raw
   // unfiltered dashboards -- so e.g. filtering to ML picks at 80+
-  // confidence updates Open/Closed/$10/Gemini accuracy to reflect just
-  // those games, not everything you've ever picked.
+  // confidence updates Open/My Accuracy/$10/Gemini accuracy to reflect
+  // just those games, not everything you've ever picked. The displayed
+  // pick list below (dayGroups) uses this same set, all-time.
   const shownDatasets = [{ sport: 'cfb', data: cfbShown }, { sport: 'nfl', data: nflShown }, { sport: 'mlb', data: mlbShown }];
 
-  const record = computePickRecord(shownDatasets, SCORES);
-  document.getElementById('activeNum').textContent = record.active;
-  document.getElementById('inactiveFrac').textContent = `${record.inactiveCorrect}/${record.inactiveTotal}`;
+  // The 4 badges specifically are ALSO restricted to the current
+  // Wednesday-through-Tuesday window on top of that -- "how did I do
+  // this week, and how much would $10/pick have made me" -- while the
+  // pick list underneath stays all-time.
+  const { start: weekStart, end: weekEnd } = currentWedTueWindow();
+  const weekStatsDatasets = shownDatasets.map(({ sport, data }) => ({
+    sport,
+    data: data ? { ...data, weeks: filterWeeksToDateWindow(data.weeks, weekStart, weekEnd) } : data,
+  }));
 
-  const netMoney = computeMoneyRecord(shownDatasets, SCORES);
+  const record = computePickRecord(weekStatsDatasets, SCORES);
+  document.getElementById('activeNum').textContent = record.active;
+  const myPct = record.inactiveTotal ? Math.round((record.inactiveCorrect / record.inactiveTotal) * 100) : null;
+  document.getElementById('myAccuracyPct').textContent = myPct === null ? '\u2014' : `${myPct}%`;
+  document.getElementById('myAccuracyFrac').textContent = `${record.inactiveCorrect}/${record.inactiveTotal}`;
+
+  const netMoney = computeMoneyRecord(weekStatsDatasets, SCORES);
   const moneyEl = document.getElementById('moneyAmount');
   const moneyCircleEl = document.getElementById('moneyCircle');
   const sign = netMoney > 0 ? '+' : (netMoney < 0 ? '\u2212' : '');
@@ -1024,8 +1044,11 @@ function renderBoard() {
   moneyCircleEl.classList.toggle('positive', netMoney > 0);
   moneyCircleEl.classList.toggle('negative', netMoney < 0);
 
-  const geminiAcc = computeGeminiAccuracy(shownDatasets, SCORES);
-  document.getElementById('geminiAccuracy').textContent = formatGeminiAccuracy(geminiAcc, filterState.confType);
+  const geminiAcc = computeGeminiAccuracy(weekStatsDatasets, SCORES);
+  const single = singleGeminiAccuracy(geminiAcc, filterState.confType);
+  document.getElementById('geminiAccuracy').textContent = single.pct === null ? '\u2014' : `${single.pct}%`;
+  document.getElementById('geminiAccuracySub').textContent = single.total ? `${single.correct}/${single.total}` : '\u2014/\u2014';
+  document.getElementById('geminiMarketTag').textContent = `(${single.sub})`;
 
   const dayGroups = buildUnifiedDayGroups([
     { sport: 'cfb', data: cfbShown },

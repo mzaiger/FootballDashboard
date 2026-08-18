@@ -887,6 +887,22 @@ function applyMarketFilterToWeeks(weeks, sport, state) {
 }
 
 
+// Gemini's own `ats_pick` field is meant to be exactly one of the two
+// team names, but an earlier prompt version showed Gemini an example
+// with the line attached ("Team B +3.5"), and predictions are cached by
+// a hash of the matchup/odds/model (see gemini_predictions.py) so some
+// already-stored predictions can still have a trailing "+3.5"/"-3.5"
+// baked in even now that the prompt no longer shows that shape. A strict
+// `pred.ats_pick === coveringTeam` check fails on every single one of
+// those (the team name plus a number never equals the bare team name),
+// which is what was driving ATS accuracy to 0% -- so the line suffix is
+// stripped before comparing, rather than requiring an exact match
+// against whatever raw string Gemini happened to return.
+function _normalizeAtsPick(pick) {
+  if (!pick) return pick;
+  return pick.replace(/\s*[+-]\d+(\.\d+)?\s*$/, '').trim();
+}
+
 // Gemini's own prediction accuracy (NOT your picks) across every GRADED
 // game in `datasets` -- ML: did Gemini's picked winner actually win?
 // ATS: did Gemini's picked side actually cover, using whichever spread
@@ -904,6 +920,10 @@ function _finalScore(gScore) {
 
 function computeGeminiAccuracy(datasets, scores) {
   let mlTotal = 0, mlCorrect = 0, atsTotal = 0, atsCorrect = 0;
+  // Distinct games (not predictions) that have SOME Gemini prediction
+  // but haven't finished yet -- one count per game, even if it has both
+  // a winner pick and an ATS pick still pending.
+  const ungradedGameIds = new Set();
   (datasets || []).forEach(({ sport, data }) => {
     if (!data) return;
     (data.weeks || []).forEach(week => (week.days || []).forEach(day => (day.time_slots || []).forEach(slot => {
@@ -912,7 +932,10 @@ function computeGeminiAccuracy(datasets, scores) {
         if (!pred) return;
         const gScore = (scores[sport] || {})[String(g.id)];
         const final = _finalScore(gScore);
-        if (!final) return;
+        if (!final) {
+          if (pred.winner || pred.ats_pick) ungradedGameIds.add(`${sport}:${g.id}`);
+          return;
+        }
 
         if (pred.winner) {
           const actualWinner = final.home > final.away ? g.home_team
@@ -935,7 +958,7 @@ function computeGeminiAccuracy(datasets, scores) {
             if (margin !== 0) {
               const coveringTeam = margin > 0 ? g.home_team : g.away_team;
               atsTotal++;
-              if (pred.ats_pick === coveringTeam) atsCorrect++;
+              if (_normalizeAtsPick(pred.ats_pick) === coveringTeam) atsCorrect++;
             }
           }
         }
@@ -950,6 +973,7 @@ function computeGeminiAccuracy(datasets, scores) {
     // "89/142" alongside "63%"), but harmless for existing callers
     // (picks.html) which only read the *Pct fields.
     mlTotal, mlCorrect, atsTotal, atsCorrect,
+    ungraded: ungradedGameIds.size,
   };
 }
 
@@ -969,15 +993,97 @@ function computeGeminiAccuracyAllTime(datasets, scores, filterState) {
   return computeGeminiAccuracy(filtered, scores);
 }
 
-// (ML%|ATS%) display string for the accuracy circle -- whichever market
-// ISN'T the currently-selected confType filter shows "NA" rather than a
-// real number (e.g. filtering to ML picks only tells you nothing
-// meaningful about Gemini's ATS accuracy on those same games), matching
-// "All" showing both real numbers.
-function formatGeminiAccuracy(acc, confType) {
-  const mlStr = (confType === 'ats') ? 'NA' : (acc.mlPct === null ? '\u2014' : `${acc.mlPct}%`);
-  const atsStr = (confType === 'ml') ? 'NA' : (acc.atsPct === null ? '\u2014' : `${acc.atsPct}%`);
-  return `${mlStr}|${atsStr}`;
+// Grades the user's OWN saved picks (cookie-based, via getPick()) against
+// final scores, across the full all-time history in every dataset's
+// `weeks` array -- accuracy.html's "My Accuracy" pill/table. Gemini's OWN
+// confidence score never gates this (a pick you made is graded the same
+// whether or not Gemini happened to be confident about that game) -- only
+// bestMatchupOnly and the market selector apply. The market selector
+// picks by the PICK's own market ('moneyline' for ml, 'spread' for ats),
+// not by anything on the Gemini prediction. "Ungraded" is every pick made
+// on a game that hasn't finished yet -- not counted toward the percentage,
+// shown separately.
+function computeMyAccuracyAllTime(datasets, scores, filterState) {
+  let correct = 0, total = 0, ungraded = 0;
+  const wantMarket = filterState && filterState.confType === 'ml' ? 'moneyline'
+    : filterState && filterState.confType === 'ats' ? 'spread'
+    : null; // null = both markets count
+
+  (datasets || []).forEach(({ sport, data }) => {
+    if (!data) return;
+    (data.weeks || []).forEach(week => (week.days || []).forEach(day => (day.time_slots || []).forEach(slot => {
+      (slot.games || []).forEach(g => {
+        if (filterState && filterState.bestMatchupOnly && !g.is_slot_pick) return;
+        const pick = getPick(sport, g.id);
+        if (!pick) return;
+        if (wantMarket && pick.market !== wantMarket) return;
+
+        const gScore = (scores[sport] || {})[String(g.id)];
+        const outcome = pickOutcome(sport, g, gScore);
+        if (outcome === 'hit') { total++; correct++; }
+        else if (outcome === 'miss') { total++; }
+        else { ungraded++; }
+      });
+    })));
+  });
+
+  return {
+    pct: total ? Math.round((correct / total) * 100) : null,
+    correct, total, ungraded,
+  };
+}
+
+// Single-percentage accuracy for the Picks page's Gemini-accuracy stat
+// circle: 'ml'/'ats' show that market's own accuracy; 'both' pools ML and
+// ATS together into one combined correct/total rather than showing two
+// numbers side by side (accuracy.html shows both markets separately in
+// its own two-card layout -- this is Picks-specific). `correct`/`total`
+// come along for the circle's second line ("x/x").
+function singleGeminiAccuracy(acc, confType) {
+  if (confType === 'ml') {
+    return { pct: acc.mlPct, sub: 'ML', correct: acc.mlCorrect || 0, total: acc.mlTotal || 0 };
+  }
+  if (confType === 'ats') {
+    return { pct: acc.atsPct, sub: 'ATS', correct: acc.atsCorrect || 0, total: acc.atsTotal || 0 };
+  }
+  const total = (acc.mlTotal || 0) + (acc.atsTotal || 0);
+  const correct = (acc.mlCorrect || 0) + (acc.atsCorrect || 0);
+  return { pct: total ? Math.round((correct / total) * 100) : null, sub: 'Both', correct, total };
+}
+
+// Wednesday-through-Tuesday window containing `now` (defaults to right
+// now) -- the fixed weekly cadence the Picks page's 4 stat circles use,
+// so "this week" always means the same 7-day span regardless of which
+// sport's own week/day boundaries a game happens to fall under.
+function currentWedTueWindow(now) {
+  const ref = now || new Date();
+  const day = ref.getDay(); // 0=Sun...6=Sat
+  const daysSinceWednesday = (day - 3 + 7) % 7;
+  const start = new Date(ref.getFullYear(), ref.getMonth(), ref.getDate() - daysSinceWednesday, 0, 0, 0, 0);
+  const end = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 6, 23, 59, 59, 999);
+  return { start, end };
+}
+
+// Restricts `weeks` (any dashboard's full weeks array) down to just the
+// games whose start_time falls inside [start, end] -- used to scope the
+// Picks page's 4 stat circles to the current Wed-Tue window without
+// touching the actual displayed pick list (which stays all-time/filtered
+// as before).
+function filterWeeksToDateWindow(weeks, start, end) {
+  return (weeks || []).map(week => ({
+    ...week,
+    days: (week.days || []).map(day => ({
+      ...day,
+      time_slots: (day.time_slots || []).map(slot => ({
+        ...slot,
+        games: (slot.games || []).filter(g => {
+          if (!g.start_time) return false;
+          const t = new Date(g.start_time);
+          return t >= start && t <= end;
+        }),
+      })),
+    })),
+  }));
 }
 
 // #minConfSelect, and .conf-type-btn controls) is in the DOM. `onChange`

@@ -170,11 +170,12 @@
     font-family:'Oswald',sans-serif; font-weight:600; font-size:0.78rem;
     text-transform:uppercase; letter-spacing:0.06em; color:var(--dim);
   }
-  .big-stat .label .filter-note{
+  .filter-note{
     display:block; margin-top:0.2rem;
     font-size:0.68rem; font-weight:500; letter-spacing:0.03em;
     text-transform:none; color:#a78bfa; opacity:0.85;
   }
+  th .filter-note{ margin-top:0.15rem; font-size:0.62rem; }
   .big-stat .pct{
     font-family:'Oswald',sans-serif; font-weight:700; font-size:3rem;
     color:#a78bfa; line-height:1.1; margin-top:0.35rem;
@@ -182,9 +183,25 @@
   .big-stat .frac{
     font-size:0.82rem; color:var(--dim); margin-top:0.25rem;
   }
+  .my-accuracy-block{
+    margin-top:1.1rem; padding-top:0.9rem;
+    border-top:1px solid var(--line);
+  }
+  .my-accuracy-block .my-accuracy-label{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.05em; color:var(--dim);
+  }
+  .my-accuracy-block .my-accuracy-value{
+    margin-top:0.3rem; font-size:1.5rem; font-weight:700;
+    color:var(--gold); font-family:'Oswald',sans-serif;
+  }
+  .my-accuracy-block .my-accuracy-frac{
+    font-size:0.8rem; color:var(--dim); font-weight:500;
+    font-family:'JetBrains Mono',monospace; margin-left:0.4rem;
+  }
 
   .breakdown{
-    margin:2rem 0 3rem;
+    margin:2rem 0 2.5rem;
   }
   .breakdown h2{
     font-family:'Oswald',sans-serif; font-weight:700; font-size:1.1rem;
@@ -289,21 +306,51 @@
       <div class="label" id="mlLabel">ML Accuracy</div>
       <div class="pct" id="mlPct">&mdash;</div>
       <div class="frac" id="mlFrac">Loading&hellip;</div>
+      <div class="my-accuracy-block">
+        <div class="my-accuracy-label">My Accuracy</div>
+        <div class="my-accuracy-value" id="mlMyPct">&mdash;<span class="my-accuracy-frac" id="mlMyFrac">(&mdash;/&mdash;)</span></div>
+      </div>
     </div>
     <div class="big-stat">
       <div class="label" id="atsLabel">ATS Accuracy</div>
       <div class="pct" id="atsPct">&mdash;</div>
       <div class="frac" id="atsFrac">Loading&hellip;</div>
+      <div class="my-accuracy-block">
+        <div class="my-accuracy-label">My Accuracy</div>
+        <div class="my-accuracy-value" id="atsMyPct">&mdash;<span class="my-accuracy-frac" id="atsMyFrac">(&mdash;/&mdash;)</span></div>
+      </div>
     </div>
   </div>
 
   <div class="breakdown">
-    <h2>By Sport</h2>
+    <h2>Gemini Accuracy by Sports</h2>
     <table class="breakdown-table">
       <thead>
-        <tr><th>Sport</th><th>ML Accuracy</th><th>ATS Accuracy</th><th>Graded Games</th></tr>
+        <tr>
+          <th>Sport</th>
+          <th id="geminiByMlHeader">ML Accuracy</th>
+          <th id="geminiByAtsHeader">ATS Accuracy</th>
+          <th>Games</th>
+          <th>Ungraded Games</th>
+        </tr>
       </thead>
-      <tbody id="breakdownBody"></tbody>
+      <tbody id="geminiBreakdownBody"></tbody>
+    </table>
+  </div>
+
+  <div class="breakdown">
+    <h2>My Accuracy by Sports</h2>
+    <table class="breakdown-table">
+      <thead>
+        <tr>
+          <th>Sport</th>
+          <th id="myByMlHeader">ML Accuracy</th>
+          <th id="myByAtsHeader">ATS Accuracy</th>
+          <th>Games</th>
+          <th>Ungraded Games</th>
+        </tr>
+      </thead>
+      <tbody id="myBreakdownBody"></tbody>
     </table>
   </div>
 
@@ -311,11 +358,13 @@
 </main>
 
 <footer>
-  "Graded" means the game is final and Gemini made a prediction for that market before kickoff. A push (spread
-  margin lands exactly on the line) doesn't count toward or against ATS accuracy. The Confidence filter checks
-  Gemini's own confidence score for the selected market (or either market, on "Both") &mdash; it has nothing to do
-  with which games you picked. "Best Matchups" restricts to each time slot's single top-ranked matchup. Every
-  week ever built is included here, not just the current board.
+  "Graded" means the game is final. For Gemini's numbers, a push (spread margin lands exactly on the line)
+  doesn't count toward or against ATS accuracy. The Confidence filter checks Gemini's own confidence score for
+  the selected market (or either market, on "Both") &mdash; it only affects Gemini's numbers, never "My
+  Accuracy" (a bet you made is graded the same regardless of how confident Gemini was). "Best Matchups"
+  restricts both to each time slot's single top-ranked matchup, and applies to both Gemini's and your own
+  numbers. "Ungraded Games" are picks/predictions made on a game that hasn't finished yet. Every week ever
+  built is included here, not just the current board.
 </footer>
 
 <script src="picks-store.js"></script>
@@ -402,23 +451,30 @@ function fmtPct(pct) {
   return pct === null ? '&mdash;' : `${pct}%`;
 }
 
-// Builds the (line 1) base label plus any active-filter sub-lines for one
-// of the two big stat cards -- (Best Matchup) then (NN%+ Confidence), in
-// that order, each only shown when it actually applies to THIS card's
-// market. `applies` is false when this card is showing "NA" because the
-// other market is the only one selected (e.g. the ML card while confType
-// is 'ats') -- in that case neither filter note is shown, since the
-// filters aren't doing anything meaningful for a market that isn't even
-// being counted.
-function buildLabelHTML(baseLabel, state, applies) {
+// Builds the (line 1) base label plus any active-filter sub-lines for a
+// stat card or table column header -- (Best Matchups) then
+// (NN%+ Confidence), in that order, each only shown when it actually
+// applies. `applies` is false when this column is showing "NA" because
+// the other market is the only one selected (e.g. the ML column while
+// confType is 'ats') -- in that case neither filter note is shown, since
+// the filters aren't doing anything meaningful for a market that isn't
+// even being counted. `includeConfidence` is false for "My Accuracy"
+// labels/columns -- Gemini's own confidence never gates a bet you
+// actually made, so tagging a My-Accuracy header with a confidence
+// threshold that isn't actually being applied to it would be misleading.
+function buildLabelHTML(baseLabel, state, applies, includeConfidence) {
   let html = baseLabel;
   if (applies && state.bestMatchupOnly) {
-    html += '<span class="filter-note">(Best Matchup)</span>';
+    html += '<span class="filter-note">(Best Matchups)</span>';
   }
-  if (applies && state.minConf > 0) {
+  if (includeConfidence && applies && state.minConf > 0) {
     html += `<span class="filter-note">(${state.minConf}%+ Confidence)</span>`;
   }
   return html;
+}
+
+function fmtMyPct(pct) {
+  return pct === null ? '&mdash;' : `${pct}%`;
 }
 
 function renderAccuracy(datasets, scores, state) {
@@ -427,30 +483,69 @@ function renderAccuracy(datasets, scores, state) {
   const mlApplies = state.confType !== 'ats';
   const atsApplies = state.confType !== 'ml';
 
-  document.getElementById('mlLabel').innerHTML = buildLabelHTML('ML Accuracy', state, mlApplies);
+  document.getElementById('mlLabel').innerHTML = buildLabelHTML('ML Accuracy', state, mlApplies, true);
   document.getElementById('mlPct').innerHTML = mlApplies ? fmtPct(overall.mlPct) : 'NA';
   document.getElementById('mlFrac').textContent = !mlApplies
     ? 'Excluded by ATS-only filter'
     : (overall.mlTotal ? `${overall.mlCorrect}/${overall.mlTotal} correct` : 'No graded games match these filters');
 
-  document.getElementById('atsLabel').innerHTML = buildLabelHTML('ATS Accuracy', state, atsApplies);
+  document.getElementById('atsLabel').innerHTML = buildLabelHTML('ATS Accuracy', state, atsApplies, true);
   document.getElementById('atsPct').innerHTML = atsApplies ? fmtPct(overall.atsPct) : 'NA';
   document.getElementById('atsFrac').textContent = !atsApplies
     ? 'Excluded by ML-only filter'
     : (overall.atsTotal ? `${overall.atsCorrect}/${overall.atsTotal} correct` : 'No graded games match these filters');
 
+  // "My Accuracy" sub-lines inside the same two cards -- graded against
+  // the user's OWN saved picks, restricted to that card's market
+  // (moneyline for the ML card, spread for the ATS card), honoring
+  // bestMatchupOnly but ignoring the confidence threshold entirely (see
+  // computeMyAccuracyAllTime).
+  const myMl = computeMyAccuracyAllTime(datasets, scores, { ...state, confType: 'ml' });
+  document.getElementById('mlMyPct').innerHTML = fmtMyPct(myMl.pct);
+  document.getElementById('mlMyFrac').textContent = `(${myMl.correct}/${myMl.total})`;
+
+  const myAts = computeMyAccuracyAllTime(datasets, scores, { ...state, confType: 'ats' });
+  document.getElementById('atsMyPct').innerHTML = fmtMyPct(myAts.pct);
+  document.getElementById('atsMyFrac').textContent = `(${myAts.correct}/${myAts.total})`;
+
+  // Gemini Accuracy by Sports -- same Best Matchups + Confidence tags as
+  // the top cards, since both filters affect Gemini's own numbers.
+  document.getElementById('geminiByMlHeader').innerHTML = buildLabelHTML('ML Accuracy', state, mlApplies, true);
+  document.getElementById('geminiByAtsHeader').innerHTML = buildLabelHTML('ATS Accuracy', state, atsApplies, true);
+
   const sportLabels = { cfb: 'NCAAF', nfl: 'NFL', mlb: 'MLB' };
-  const rows = datasets.map(({ sport, data }) => {
+  const geminiRows = datasets.map(({ sport, data }) => {
     const acc = computeGeminiAccuracyAllTime([{ sport, data }], scores, state);
     const games = Math.max(acc.mlTotal, acc.atsTotal);
     return `<tr>
       <td class="sport-name">${sportLabels[sport] || sport}</td>
-      <td class="pct-cell">${state.confType === 'ats' ? 'NA' : fmtPct(acc.mlPct)}</td>
-      <td class="pct-cell">${state.confType === 'ml' ? 'NA' : fmtPct(acc.atsPct)}</td>
+      <td class="pct-cell">${mlApplies ? fmtPct(acc.mlPct) : 'NA'}</td>
+      <td class="pct-cell">${atsApplies ? fmtPct(acc.atsPct) : 'NA'}</td>
       <td>${games || 0}</td>
+      <td>${acc.ungraded || 0}</td>
     </tr>`;
   });
-  document.getElementById('breakdownBody').innerHTML = rows.join('');
+  document.getElementById('geminiBreakdownBody').innerHTML = geminiRows.join('');
+
+  // My Accuracy by Sports -- Best Matchups tag only, NEVER a confidence
+  // tag (see buildLabelHTML's includeConfidence param above).
+  document.getElementById('myByMlHeader').innerHTML = buildLabelHTML('ML Accuracy', state, true, false);
+  document.getElementById('myByAtsHeader').innerHTML = buildLabelHTML('ATS Accuracy', state, true, false);
+
+  const myRows = datasets.map(({ sport, data }) => {
+    const myMlSport = computeMyAccuracyAllTime([{ sport, data }], scores, { ...state, confType: 'ml' });
+    const myAtsSport = computeMyAccuracyAllTime([{ sport, data }], scores, { ...state, confType: 'ats' });
+    const games = myMlSport.total + myAtsSport.total;
+    const ungraded = myMlSport.ungraded + myAtsSport.ungraded;
+    return `<tr>
+      <td class="sport-name">${sportLabels[sport] || sport}</td>
+      <td class="pct-cell">${fmtMyPct(myMlSport.pct)}</td>
+      <td class="pct-cell">${fmtMyPct(myAtsSport.pct)}</td>
+      <td>${games}</td>
+      <td>${ungraded}</td>
+    </tr>`;
+  });
+  document.getElementById('myBreakdownBody').innerHTML = myRows.join('');
 }
 
 async function init() {

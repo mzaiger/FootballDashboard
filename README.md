@@ -199,14 +199,22 @@ been a flat $10 bet.
 
 `picks.html` shows every game you've picked across every sport, grouped
 **Day → Time Slot → Sport → Matchup rank** (all sports for a given day
-shown together, not in separate sport sections), plus three stat badges at
-the top:
+shown together, not in separate sport sections), plus a **My Week's
+Stats** row of 4 badges at the top. Unlike the pick list underneath
+(which is all-time), these 4 badges are scoped to the current
+**Wednesday-through-Tuesday window** — so they answer "how did I do
+this week, and how much would $10/pick have made me this week":
 
-- **Active** — picks made, game not graded yet
-- **Inactive** — `correct/total` across every graded pick (win or push
-  counts as correct)
-- **$10/pick** — net $, as if every graded pick had been a $10 bet (see
-  "Payout calculator" above)
+- **Open** — picks made this week, game not graded yet
+- **My Accuracy** — percentage (with `correct/total` underneath) across
+  every one of your own graded picks this week (win or push counts as
+  correct)
+- **$10/bet** — net $ this week, as if every graded pick had been a $10
+  bet (see "Payout calculator" above)
+- **Gemini** — Gemini's own accuracy this week on just the games you
+  actually picked, in whichever market (ML/ATS/Both) the filter bar has
+  selected — percentage on top, `correct/total` underneath, with the
+  active market shown under "Gemini"
 
 ### How picks store their line
 
@@ -222,25 +230,37 @@ or changed — so a pick you keep coming back to effectively never expires.
 
 ## The Accuracy page
 
-`accuracy.html` shows how accurate Gemini's predictions have been, across
-**every graded prediction it has ever made** in any of the three dashboard
-files — not just games you picked. It combines `data/ncaaf_dashboard.json`,
-`data/nfl_dashboard.json`, and `data/mlb_dashboard.json` (each of which
-keeps every week/day ever built) with `data/scores.json` to grade every
-prediction against the actual final score.
+`accuracy.html` shows two things side by side: how accurate **Gemini's**
+predictions have been, and how accurate **your own saved picks** have
+been — across **every graded prediction/pick ever made** in any of the
+three dashboard files, not just what's on the current board. It combines
+`data/ncaaf_dashboard.json`, `data/nfl_dashboard.json`, and
+`data/mlb_dashboard.json` (each of which keeps every week/day ever built)
+with `data/scores.json` to grade every prediction and every saved pick
+against the actual final score. "My Accuracy" is read from the same
+pick cookies the Picks page uses, so it works without any extra setup.
 
 Its own filter bar (separate from the board pages' filter, so changing one
 doesn't affect the other) controls:
-- **Best Matchups** — restrict to each time slot's single top-ranked game
+- **Best Matchups** — restrict to each time slot's single top-ranked game;
+  affects both Gemini's numbers and your own
 - **Both / ML / ATS** — which market Gemini's own confidence score is
-  checked against
-- **Confidence** — a minimum threshold (0–100, in steps of 5) on that
-  market's confidence
+  checked against (also picks which of your own pick markets "My
+  Accuracy" counts)
+- **Confidence** — a minimum threshold (0–100, in steps of 5) on Gemini's
+  confidence for that market; affects **only Gemini's numbers**, never
+  "My Accuracy" — a bet you made is graded the same regardless of how
+  confident Gemini happened to be about that game
 
 For example, "Best Matchups" + "ATS" + "65+" shows Gemini's all-time ATS
 accuracy on just the single best matchup in every time slot it's ever
-been at least 65% confident on. A "By Sport" table breaks the same numbers
-down into NCAAF / NFL / MLB individually.
+been at least 65% confident on (and, right alongside it, your own ATS
+accuracy on just those best-matchup games, unaffected by the 65+). Any
+active filters show up right on the ML/ATS labels and table column
+headers so it's always clear what's being counted. Two "by Sports"
+tables break the same numbers down into NCAAF / NFL / MLB individually,
+each with an "Ungraded Games" column for predictions/picks made on a
+game that hasn't finished yet.
 
 ## Gemini predictions
 
