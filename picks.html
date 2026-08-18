@@ -694,7 +694,7 @@
         <div class="stat-title">$10/bet<span>Winnings if<br>bets were $10</span></div>
       </div>
       <div class="stat-badge">
-        <div class="stat-circle stat-gemini-circle"><span class="num" id="geminiAccuracy">—|—</span><span class="sub" id="geminiAccuracySub">ML|ATS</span></div>
+        <div class="stat-circle stat-gemini-circle"><span class="num" id="geminiAccuracy">—</span><span class="sub" id="geminiAccuracySub">—</span></div>
         <div class="stat-title">Gemini<span>Prediction<br>accuracy</span></div>
       </div>
     </div>
@@ -1025,7 +1025,9 @@ function renderBoard() {
   moneyCircleEl.classList.toggle('negative', netMoney < 0);
 
   const geminiAcc = computeGeminiAccuracy(shownDatasets, SCORES);
-  document.getElementById('geminiAccuracy').textContent = formatGeminiAccuracy(geminiAcc, filterState.confType);
+  const single = singleGeminiAccuracy(geminiAcc, filterState.confType);
+  document.getElementById('geminiAccuracy').textContent = single.pct === null ? '\u2014' : `${single.pct}%`;
+  document.getElementById('geminiAccuracySub').textContent = single.sub;
 
   const dayGroups = buildUnifiedDayGroups([
     { sport: 'cfb', data: cfbShown },
