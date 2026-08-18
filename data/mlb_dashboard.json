@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T10:00:05.720018+00:00",
+  "generated_at": "2026-08-18T10:27:01.841393+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -2125,11 +2125,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": -108
+                          "american": -110
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -111
+                          "american": -110
                         }
                       },
                       "moneyline": {
@@ -2202,11 +2202,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 126
+                          "american": 122
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -152
+                          "american": -146
                         }
                       },
                       "moneyline": {
@@ -2279,11 +2279,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -162
+                          "american": -156
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 134
+                          "american": 130
                         }
                       },
                       "moneyline": {
@@ -2356,11 +2356,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": 100
+                          "american": -102
                         },
                         "away": {
                           "line": -1.5,
-                          "american": -120
+                          "american": -118
                         }
                       },
                       "moneyline": {
@@ -2838,11 +2838,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": -108
+                          "american": -110
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -111
+                          "american": -110
                         }
                       },
                       "moneyline": {
@@ -2915,11 +2915,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 126
+                          "american": 122
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -152
+                          "american": -146
                         }
                       },
                       "moneyline": {
@@ -2992,11 +2992,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -170
+                          "american": -176
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 140
+                          "american": 146
                         }
                       },
                       "moneyline": {
@@ -3146,11 +3146,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -162
+                          "american": -156
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 134
+                          "american": 130
                         }
                       },
                       "moneyline": {
@@ -3300,11 +3300,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": 100
+                          "american": -102
                         },
                         "away": {
                           "line": -1.5,
-                          "american": -120
+                          "american": -118
                         }
                       },
                       "moneyline": {
@@ -3608,11 +3608,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 138
+                          "american": 136
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -166
+                          "american": -164
                         }
                       },
                       "moneyline": {
@@ -3685,11 +3685,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 128
+                          "american": 130
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -154
+                          "american": -156
                         }
                       },
                       "moneyline": {
@@ -3991,11 +3991,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -153
+                          "american": -157
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 126
+                          "american": 130
                         }
                       },
                       "moneyline": {
@@ -4013,11 +4013,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -162
+                          "american": -156
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 134
+                          "american": 130
                         }
                       },
                       "moneyline": {
@@ -4251,11 +4251,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 126
+                          "american": 122
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -152
+                          "american": -146
                         }
                       },
                       "moneyline": {
@@ -4335,11 +4335,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": -108
+                          "american": -110
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -111
+                          "american": -110
                         }
                       },
                       "moneyline": {
@@ -4412,11 +4412,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -170
+                          "american": -176
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 140
+                          "american": 146
                         }
                       },
                       "moneyline": {
@@ -4643,11 +4643,11 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": 100
+                          "american": -102
                         },
                         "away": {
                           "line": -1.5,
-                          "american": -120
+                          "american": -118
                         }
                       },
                       "moneyline": {
@@ -4797,11 +4797,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 134
+                          "american": 136
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -162
+                          "american": -164
                         }
                       },
                       "moneyline": {
@@ -4874,11 +4874,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 128
+                          "american": 130
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -154
+                          "american": -156
                         }
                       },
                       "moneyline": {
