@@ -17,7 +17,7 @@
  * Week label formatting, shared by nfl.html and picks.html.
  *
  * ESPN numbers NFL preseason weeks 1-4 the same as it numbers regular
- * season weeks 1-4, so a bare "Week 1" is ambiguous between the Hall of
+ * season weeks 1-4, so a bare "Week 1" is ambiguous between the Hall ofF
  * Fame/preseason opener and the real regular-season opener. When a
  * dashboard's season_type is 1 (preseason), this renders "P1"-"P4"
  * instead; season_type 2 (regular) and 3 (postseason) just render
@@ -430,9 +430,9 @@ function renderPayoutSummary(pick) {
     p10 = calcPayout(americanOdds, 10);
     p100 = calcPayout(americanOdds, 100);
   }
-}
   if (p10 === null || p10 === undefined || p100 === null || p100 === undefined) return '';
   return `<div class="payout-summary">Win $${p10.toFixed(2)} on $10</div>`;
+}
 // The 4-button toolbar (away/home x spread/moneyline) for one game card.
 // Once a game is final (gScore.status === 'final'), the buttons render
 // disabled -- the pick made (if any) still shows, but can no longer be
