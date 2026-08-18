@@ -40,6 +40,7 @@ If missing, predictions are skipped entirely.
 import hashlib
 import json
 import os
+import re
 import threading
 import time
 from datetime import datetime, timezone
@@ -242,7 +243,10 @@ Using ONLY statistics, injuries, roster status, and performance from the
 {season} season, determine:
 
 1. Who wins outright.
-2. Who covers the spread (only if a spread is posted above; otherwise null).
+2. Who covers the spread (only if a spread is posted above; otherwise
+   null). Answer with the exact team name only, written exactly as it
+   appears above under "Away Team"/"Home Team" -- do not append the line
+   number or a "+"/"-" sign to it.
 3. A confidence score from 1-100 for the outright winner pick.
 4. A confidence score from 0-100 for the ATS pick.
 5. A five-sentence explanation of the reasoning.
@@ -257,7 +261,9 @@ data only.
 Return ONLY a valid JSON object with exactly these keys:
 - "winner": string
 - "confidence": integer 1-100
-- "ats_pick": string or null
+- "ats_pick": string or null -- the exact team name only (as written
+  above under "Away Team"/"Home Team"), never the team name plus the
+  line number
 - "ats_confidence": integer 0-100
 - "analysis": string with exactly five sentences
 - "splits_and_direction": string with exactly two sentences covering the
@@ -271,7 +277,7 @@ based on the odds and public tendencies and say so briefly rather than
 leaving the field empty.
 
 Example shape:
-{{"winner": "Team A", "confidence": 72, "ats_pick": "Team B +3.5", "ats_confidence": 64, "analysis": "Sentence one. Sentence two. Sentence three. Sentence four. Sentence five.", "splits_and_direction": "Sentence one about the split. Sentence two about line direction."}}"""
+{{"winner": "Team A", "confidence": 72, "ats_pick": "Team B", "ats_confidence": 64, "analysis": "Sentence one. Sentence two. Sentence three. Sentence four. Sentence five.", "splits_and_direction": "Sentence one about the split. Sentence two about line direction."}}"""
 
 
 #---------------------------------------------------------------------------
@@ -303,6 +309,21 @@ def _clean_nullable_string(value):
     return s
 
 
+# Strips a trailing spread-line-looking suffix ("+3.5", "-1.5", "+7") off
+# an ats_pick string. The prompt now tells Gemini to return the bare team
+# name, but this is a defensive net in case a response ever still comes
+# back with the line attached -- accuracy grading (both here and on the
+# front end) compares ats_pick against a plain team name, so a trailing
+# number would silently make every ATS grade wrong.
+_ATS_PICK_LINE_SUFFIX_RE = re.compile(r"\s*[+-]\d+(?:\.\d+)?\s*$")
+
+
+def _strip_ats_line_suffix(pick):
+    if pick is None:
+        return None
+    return _ATS_PICK_LINE_SUFFIX_RE.sub("", pick).strip() or None
+
+
 def _normalize_prediction(raw):
     """Forces the prediction into the expected shape with both confidence fields."""
     if not isinstance(raw, dict):
@@ -314,7 +335,7 @@ def _normalize_prediction(raw):
 
     confidence = max(1, min(100, _as_int(raw.get("confidence"), 50)))
 
-    ats_pick = _clean_nullable_string(raw.get("ats_pick"))
+    ats_pick = _strip_ats_line_suffix(_clean_nullable_string(raw.get("ats_pick")))
     if ats_pick is None:
         ats_confidence = 0
     else:
