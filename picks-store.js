@@ -1019,26 +1019,78 @@ function _finalScore(gScore) {
   return { home: gScore.home_score, away: gScore.away_score };
 }
 
-function computeGeminiAccuracy(datasets, scores) {
+// Same idea as filterWeeksForDisplay, but ONLY applies bestMatchupOnly --
+// never minConf. Used by the accuracy.html all-time aggregations
+// (computeGeminiAccuracyAllTime / computeGeminiMoneyRecordAllTime) instead
+// of filterWeeksForDisplay, because confidence needs to be checked
+// independently per market (ML confidence for the ML total, ATS
+// confidence for the ATS total) rather than as a single either-market
+// gate on which games are even considered -- see computeGeminiAccuracy's
+// comment for why the either-market gate was inflating counts.
+function filterWeeksByBestMatchupOnly(weeks, state) {
+  if (!state || !state.bestMatchupOnly) return weeks;
+  return weeks.map(week => {
+    const days = week.days
+      .map(day => {
+        const time_slots = day.time_slots
+          .map(slot => ({ ...slot, games: slot.games.filter(g => g.is_slot_pick) }))
+          .filter(slot => slot.games.length);
+        const game_count = time_slots.reduce((n, s) => n + s.games.length, 0);
+        return { ...day, time_slots, game_count };
+      })
+      .filter(day => day.time_slots.length);
+    const total_games = days.reduce((n, d) => n + d.game_count, 0);
+    return { ...week, days, total_games, _filtered: true };
+  });
+}
+
+// Gemini's own prediction accuracy (NOT your picks) across every GRADED
+// game in `datasets` -- ML: did Gemini's picked winner actually win?
+// ATS: did Gemini's picked side actually cover, using whichever spread
+// line is currently attached to the game (DraftKings, else FanDuel;
+// there's no separate "line at prediction time" stored for Gemini's own
+// pick the way there is for a user pick, so this uses today's line same
+// as everything else). A push (exact margin) doesn't count toward
+// either total -- it's not a right-or-wrong result for Gemini's pick.
+//
+// minConf, when > 0, gates ML and ATS COMPLETELY INDEPENDENTLY of each
+// other: a game only counts toward mlTotal if Gemini's OWN ml confidence
+// clears the bar, and only counts toward atsTotal if its OWN ats
+// confidence clears the bar -- regardless of what the page's Both/ML/ATS
+// toggle is set to. That toggle only controls which of these two
+// (already-independently-computed) numbers gets displayed vs shown as
+// NA; it never changes the numbers themselves. (Previously this was
+// implemented as a single either-market gate applied before counting --
+// under "Both" that let a game with only a high ML confidence sneak an
+// under-the-bar ATS pick into atsTotal, which is why switching to "ATS"
+// alone could show a smaller total than "Both" did. That's fixed by
+// gating here, per market, instead.)
+function computeGeminiAccuracy(datasets, scores, minConf) {
   let mlTotal = 0, mlCorrect = 0, atsTotal = 0, atsCorrect = 0;
   // Distinct games (not predictions) that have SOME Gemini prediction
   // but haven't finished yet -- one count per game, even if it has both
   // a winner pick and an ATS pick still pending.
   const ungradedGameIds = new Set();
+  const conf = minConf || 0;
   (datasets || []).forEach(({ sport, data }) => {
     if (!data) return;
     (data.weeks || []).forEach(week => (week.days || []).forEach(day => (day.time_slots || []).forEach(slot => {
       (slot.games || []).forEach(g => {
         const pred = g.gemini_prediction;
         if (!pred) return;
+
+        const mlEligible = !!pred.winner && (pred.confidence ?? 0) >= conf;
+        const atsEligible = !!pred.ats_pick && (pred.ats_confidence ?? 0) >= conf;
+        if (!mlEligible && !atsEligible) return;
+
         const gScore = (scores[sport] || {})[String(g.id)];
         const final = _finalScore(gScore);
         if (!final) {
-          if (pred.winner || pred.ats_pick) ungradedGameIds.add(`${sport}:${g.id}`);
+          if (mlEligible || atsEligible) ungradedGameIds.add(`${sport}:${g.id}`);
           return;
         }
 
-        if (pred.winner) {
+        if (mlEligible) {
           const actualWinner = final.home > final.away ? g.home_team
                               : final.away > final.home ? g.away_team
                               : null;
@@ -1048,7 +1100,7 @@ function computeGeminiAccuracy(datasets, scores) {
           }
         }
 
-        if (pred.ats_pick) {
+        if (atsEligible) {
           const dkLine = g.odds && g.odds.draftkings && g.odds.draftkings.spread && g.odds.draftkings.spread.home
             ? g.odds.draftkings.spread.home.line : null;
           const fdLine = g.odds && g.odds.fanduel && g.odds.fanduel.spread && g.odds.fanduel.spread.home
@@ -1089,30 +1141,34 @@ function computeGeminiAccuracy(datasets, scores) {
 function computeGeminiAccuracyAllTime(datasets, scores, filterState) {
   const filtered = (datasets || []).map(({ sport, data }) => ({
     sport,
-    data: data ? { ...data, weeks: filterWeeksForDisplay(data.weeks || [], filterState) } : data,
+    data: data ? { ...data, weeks: filterWeeksByBestMatchupOnly(data.weeks || [], filterState) } : data,
   }));
-  return computeGeminiAccuracy(filtered, scores);
+  return computeGeminiAccuracy(filtered, scores, filterState && filterState.minConf);
 }
 
 // Hypothetical "if you'd flat-bet $10 on every Gemini pick" net across all
 // history -- the Gemini-side counterpart to computeMoneyRecordAllTime
-// (which does the same math for the user's own actual picks). Unlike the
-// user's version, this DOES honor bestMatchupOnly, minConf, AND the
-// ML/ATS/Both market toggle exactly the way computeGeminiAccuracyAllTime
-// does -- those filters change which predictions Gemini "made" in this
-// hypothetical, so they should change which bets get counted here too.
-// There's no locked-in price the way a real user pick has, so (same as
-// computeGeminiAccuracy) this always prices off whatever odds are
-// currently attached to the game -- DraftKings first, FanDuel fallback.
-// A push (spread) or a tie (moneyline) contributes neither a win nor a
-// loss, matching how those are excluded from the accuracy totals too.
+// (which does the same math for the user's own actual picks). This DOES
+// honor bestMatchupOnly and minConf, same as computeGeminiAccuracy --
+// minConf gates ML and ATS independently by each market's OWN confidence,
+// never by an either-market gate (see computeGeminiAccuracy's comment for
+// why). wantMl/wantAts (from the page's Both/ML/ATS toggle) control which
+// market's dollars get summed into `net` -- that's a legitimate "which
+// column is this money for" selection, not a filter on which games
+// qualify. There's no locked-in price the way a real user pick has, so
+// (same as computeGeminiAccuracy) this always prices off whatever odds
+// are currently attached to the game -- DraftKings first, FanDuel
+// fallback. A push (spread) or a tie (moneyline) contributes neither a
+// win nor a loss, matching how those are excluded from the accuracy
+// totals too.
 function computeGeminiMoneyRecordAllTime(datasets, scores, filterState) {
   const filtered = (datasets || []).map(({ sport, data }) => ({
     sport,
-    data: data ? { ...data, weeks: filterWeeksForDisplay(data.weeks || [], filterState) } : data,
+    data: data ? { ...data, weeks: filterWeeksByBestMatchupOnly(data.weeks || [], filterState) } : data,
   }));
   const wantMl = !filterState || filterState.confType !== 'ats';
   const wantAts = !filterState || filterState.confType !== 'ml';
+  const conf = (filterState && filterState.minConf) || 0;
 
   let net = 0, graded = 0;
   (filtered || []).forEach(({ sport, data }) => {
@@ -1125,7 +1181,7 @@ function computeGeminiMoneyRecordAllTime(datasets, scores, filterState) {
         const final = _finalScore(gScore);
         if (!final) return; // not graded yet -- no $ counted either direction
 
-        if (wantMl && pred.winner) {
+        if (wantMl && pred.winner && (pred.confidence ?? 0) >= conf) {
           const actualWinner = final.home > final.away ? g.home_team
                               : final.away > final.home ? g.away_team
                               : null;
@@ -1141,7 +1197,7 @@ function computeGeminiMoneyRecordAllTime(datasets, scores, filterState) {
           }
         }
 
-        if (wantAts && pred.ats_pick) {
+        if (wantAts && pred.ats_pick && (pred.ats_confidence ?? 0) >= conf) {
           const dkLine = g.odds?.draftkings?.spread?.home?.line;
           const fdLine = g.odds?.fanduel?.spread?.home?.line;
           const homeLine = (dkLine !== null && dkLine !== undefined) ? dkLine : fdLine;

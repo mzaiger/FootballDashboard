@@ -32,7 +32,7 @@ Every page has:
 | Builder | `scripts/build_ncaaf_dashboard.py` | `scripts/build_nfl_dashboard.py` | `scripts/build_mlb_dashboard.py` | — |
 | Schedule/TV source | ESPN's public scoreboard + rankings APIs (no key needed) | ESPN's public scoreboard API (no key needed) | ESPN's public scoreboard API (no key needed) | — |
 | Grouped by | Week → day | Week → day | Day (each "week" in the JSON is one calendar day — see MLB section below) | — |
-| Matchup ranking | 50% combined AP Top 25 rank + 25% combined win rank + 25% posted spread | Chiefs, then Broncos, then 50% spread + 50% combined win rank | Combined win rank only (run line is ~always ±1.5, so it isn't a useful signal) | — |
+| Matchup ranking | 50% combined AP Top 25 rank + 25% combined win rank + 25% posted spread | 50% posted spread + 50% combined win rank | Combined win rank only (run line is ~always ±1.5, so it isn't a useful signal) | — |
 | Odds | [SharpAPI](https://sharpapi.io) (DraftKings + FanDuel) | same | same | — |
 
 NCAAMB is nav-only right now — no builder, no data, just a "coming soon"
@@ -152,6 +152,23 @@ repost lines day-to-day, and this keeps the board from flashing
 overwrites the old one immediately. Old weeks/days are merged onto, never
 replaced by, a fresh build — nothing already on disk is ever dropped.
 
+### Odds and Gemini predictions freeze once a game starts
+
+Each build script reads `data/scores.json` (the same overlay file
+`fetch_scores.py` writes hourly) and checks it for every game before
+touching that game's odds or Gemini prediction. `fetch_scores.py` only
+ever writes an entry for a game once its status leaves "not started" —
+so ANY entry there, live or final, means kickoff/first pitch has already
+happened. For a game in that state, the build script skips re-fetching
+odds and skips calling Gemini entirely, reusing exactly what was saved
+in the previous build instead. This is deliberate: a sportsbook's
+in-game line moves constantly and doesn't reflect the pregame market a
+pick or prediction was actually made against, and re-calling Gemini
+against a moving in-game (or final) line doesn't make sense either. Once
+a game is frozen this way it stays frozen — nothing about it updates
+again until the next time that particular JSON gets rebuilt fresh (e.g.
+a new season/week).
+
 ## NFL week labels: HOF / Preseason Week N / Regular Season Week N
 
 ESPN numbers the NFL preseason as week 1 = the Hall of Fame Game, week 2 =
@@ -244,13 +261,18 @@ Its own filter bar (separate from the board pages' filter, so changing one
 doesn't affect the other) controls:
 - **Best Matchups** — restrict to each time slot's single top-ranked game;
   affects both Gemini's numbers and your own
-- **Both / ML / ATS** — which market Gemini's own confidence score is
-  checked against (also picks which of your own pick markets "My
-  Accuracy" counts)
-- **Confidence** — a minimum threshold (0–100, in steps of 5) on Gemini's
-  confidence for that market; affects **only Gemini's numbers**, never
-  "My Accuracy" — a bet you made is graded the same regardless of how
-  confident Gemini happened to be about that game
+- **Both / ML / ATS** — which of Gemini's two numbers to actually show;
+  the hidden one reads "NA" rather than being excluded. This toggle
+  never changes which games count toward either number — ML accuracy is
+  always every graded prediction whose OWN ml confidence clears the
+  Confidence floor below, and ATS accuracy is always every graded
+  prediction whose OWN ats confidence clears it, entirely independently
+  of each other and of this toggle. (Also picks which of your own pick
+  markets "My Accuracy" counts — see below.)
+- **Confidence** — a minimum threshold (0–100, in steps of 5), checked
+  per market as described above; affects **only Gemini's numbers**,
+  never "My Accuracy" — a bet you made is graded the same regardless of
+  how confident Gemini happened to be about that game
 
 For example, "Best Matchups" + "ATS" + "65+" shows Gemini's all-time ATS
 accuracy on just the single best matchup in every time slot it's ever
@@ -261,6 +283,30 @@ headers so it's always clear what's being counted. Two "by Sports"
 tables break the same numbers down into NCAAF / NFL / MLB individually,
 each with an "Ungraded Games" column for predictions/picks made on a
 game that hasn't finished yet.
+
+### Total Winnings
+
+Alongside accuracy, the page shows **Total Winnings** — same flat-$10-
+per-pick math as the Picks page's `$10/bet` badge, but all-time and
+split two ways:
+
+- **Gemini Total Winnings** — hypothetical: what a flat $10 bet on every
+  one of Gemini's own picks would have paid, priced off whatever
+  DraftKings/FanDuel odds are currently attached to that game (there's no
+  "locked-in" price for a prediction the way a real pick has one). This
+  number honors **Best Matchups**, **Confidence**, and **Both/ML/ATS**
+  exactly like Gemini's accuracy numbers do, since those filters change
+  which predictions Gemini "made" in the first place.
+- **My Total Winnings** — real: your own picks, priced at whatever line
+  was locked in at pick time. Like "My Accuracy," this only responds to
+  **Best Matchups** — Confidence and the Both/ML/ATS toggle never affect
+  it, since what a bet actually pays doesn't depend on how confident
+  Gemini was or which market column it happens to be shown under.
+
+Both "by Sports" tables also show winnings per market — a signed,
+whole-dollar amount (no cents, to keep the layout stable as totals grow)
+underneath each market's `correct/total` fraction in the ML and ATS
+columns, filtered the same way as their column's accuracy number.
 
 ## Gemini predictions
 
