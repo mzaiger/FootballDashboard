@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T00:14:47.232795+00:00",
+  "generated_at": "2026-08-19T00:34:46.273205+00:00",
   "cfb": {},
   "nfl": {
     "401873271": {
@@ -354,87 +354,87 @@
     },
     "401816574": {
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 3,
       "status": "in_progress",
-      "status_detail": "End 6th"
+      "status_detail": "Top 7th"
     },
     "401816572": {
-      "home_score": 3,
+      "home_score": 4,
       "away_score": 1,
       "status": "in_progress",
-      "status_detail": "Bot 7th"
+      "status_detail": "Bot 8th"
     },
     "401816573": {
       "home_score": 1,
-      "away_score": 2,
+      "away_score": 3,
       "status": "in_progress",
-      "status_detail": "Bot 5th"
+      "status_detail": "Bot 6th"
     },
     "401816576": {
       "home_score": 7,
       "away_score": 1,
       "status": "in_progress",
-      "status_detail": "Mid 5th"
+      "status_detail": "End 6th"
     },
     "401816577": {
       "home_score": 0,
-      "away_score": 1,
+      "away_score": 2,
       "status": "in_progress",
-      "status_detail": "End 6th"
+      "status_detail": "Bot 7th"
     },
     "401816578": {
       "home_score": 3,
       "away_score": 8,
       "status": "in_progress",
-      "status_detail": "Top 5th"
+      "status_detail": "Bot 6th"
     },
     "401816571": {
-      "home_score": 4,
+      "home_score": 5,
       "away_score": 4,
       "status": "in_progress",
-      "status_detail": "Bot 3rd"
+      "status_detail": "Top 5th"
     },
     "401816575": {
       "home_score": 0,
-      "away_score": 1,
+      "away_score": 3,
       "status": "in_progress",
-      "status_detail": "Bot 4th"
+      "status_detail": "Top 5th"
     },
     "401816580": {
       "home_score": 0,
       "away_score": 1,
       "status": "in_progress",
-      "status_detail": "Bot 3rd"
+      "status_detail": "Bot 4th"
     },
     "401816583": {
       "home_score": 1,
       "away_score": 0,
       "status": "in_progress",
-      "status_detail": "Bot 2nd"
+      "status_detail": "Bot 3rd"
     },
     "401816596": {
       "home_score": 2,
       "away_score": 0,
       "status": "in_progress",
-      "status_detail": "Top 3rd"
+      "status_detail": "End 4th"
     },
     "401816582": {
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 2,
+      "away_score": 1,
       "status": "in_progress",
-      "status_detail": "Top 1st"
+      "status_detail": "Top 2nd"
     },
     "401816584": {
-      "home_score": 0,
+      "home_score": 1,
       "away_score": 0,
       "status": "in_progress",
-      "status_detail": "Top 1st"
+      "status_detail": "Bot 2nd"
     },
     "401816579": {
       "home_score": 0,
       "away_score": 0,
       "status": "in_progress",
-      "status_detail": "Top 1st"
+      "status_detail": "Top 2nd"
     }
   }
 }
