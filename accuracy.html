@@ -232,7 +232,7 @@
     margin-top:0.15rem; letter-spacing:0.01em;
   }
   table.breakdown-table td.pct-cell .cell-money{
-    display:block; font-weight:600; font-size:0.72rem;
+    display:block; font-weight:600; font-size:0.66rem;
     margin-top:0.15rem; letter-spacing:0.01em;
   }
   #myBreakdownBody .pct-cell{ color:var(--gold); }
@@ -589,7 +589,7 @@ function renderAccuracy(datasets, scores, state) {
     if (!moneyResult || !moneyResult.graded) return '';
     const sign = moneyResult.net > 0 ? '+' : (moneyResult.net < 0 ? '\u2212' : '');
     const cls = moneyResult.net > 0 ? 'money-positive' : (moneyResult.net < 0 ? 'money-negative' : 'money-neutral');
-    return `<span class="cell-money ${cls}">${sign}$${Math.abs(moneyResult.net).toFixed(2)} (${moneyResult.graded}/pick)</span>`;
+    return `<span class="cell-money ${cls}">${sign}$${Math.round(Math.abs(moneyResult.net))}</span>`;
   }
 
   const geminiRows = datasets.map(({ sport, data }) => {
