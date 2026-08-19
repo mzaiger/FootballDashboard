@@ -353,7 +353,6 @@
     background:radial-gradient(circle at 32% 28%, rgba(167,139,250,0.28), rgba(167,139,250,0.04));
     box-shadow:0 0 20px rgba(167,139,250,0.4), inset 0 0 14px rgba(167,139,250,0.18);
   }
-  .stat-gemini-circle .num{ font-size:0.92rem; }
   .stat-title{
     font-family:'Oswald',sans-serif; font-weight:600;
     font-size:0.95rem; color:var(--chalk); text-transform:uppercase;
@@ -702,7 +701,7 @@
       </div>
       <div class="stat-badge">
         <div class="stat-circle stat-gemini-circle"><span class="num" id="geminiAccuracy">—</span><span class="sub" id="geminiAccuracySub">—/—</span></div>
-        <div class="stat-title">Gemini<span id="geminiMarketTag">(Both)</span></div>
+        <div class="stat-title">Gemini<span>Accuracy</span></div>
       </div>
     </div>
     <div class="meta-row">
@@ -926,7 +925,8 @@ function buildUnifiedDayGroups(datasets) {
     });
   });
 
-  return [...byDate.keys()].sort().map(date => {
+  // Most recent day first -- every pick ever made, newest to oldest.
+  return [...byDate.keys()].sort().reverse().map(date => {
     const entry = byDate.get(date);
     const slots = SLOT_ORDER.filter(name => entry.slotMap.has(name)).map(name => {
       const sportMap = entry.slotMap.get(name);
@@ -1044,11 +1044,9 @@ function renderBoard() {
   moneyCircleEl.classList.toggle('positive', netMoney > 0);
   moneyCircleEl.classList.toggle('negative', netMoney < 0);
 
-  const geminiAcc = computeGeminiAccuracy(weekStatsDatasets, SCORES);
-  const single = singleGeminiAccuracy(geminiAcc, filterState.confType);
+  const single = singleGeminiAccuracy(weekStatsDatasets, SCORES, filterState);
   document.getElementById('geminiAccuracy').textContent = single.pct === null ? '\u2014' : `${single.pct}%`;
   document.getElementById('geminiAccuracySub').textContent = single.total ? `${single.correct}/${single.total}` : '\u2014/\u2014';
-  document.getElementById('geminiMarketTag').textContent = `(${single.sub})`;
 
   const dayGroups = buildUnifiedDayGroups([
     { sport: 'cfb', data: cfbShown },

@@ -542,6 +542,58 @@ function pickOutcome(sport, g, gScore) {
   return oddsHitClass(sport, g.id, book, pick.market, pick.side, entry, gScore) || '';
 }
 
+// Grades a saved pick against the FINAL score only (gScore.status must be
+// exactly 'final') -- unlike oddsHitClass()/pickOutcome() just above
+// (used for the live BOARD's cell coloring, which intentionally also
+// colors in-progress/halftime games using the CURRENT score so you can
+// watch a live pick track in real time), every STATS use -- Open/My
+// Accuracy/$10 on picks.html, and My Accuracy on accuracy.html -- only
+// counts a pick as decided once the game has genuinely finished, so a
+// game still in progress (whose score can still flip) stays uncounted
+// instead of being scored as a win or loss prematurely. This also reads
+// the locked-in line straight off the pick's own odds snapshot
+// (book-preference-ordered: draftkings then fanduel) rather than going
+// through getLockedOddsEntry(), which could grab the wrong book's
+// snapshot when today's live odds still happened to carry an entry for
+// a different book than the one actually picked.
+// Returns 'hit' | 'miss' | null (not final yet, or nothing to grade against).
+function _myPickResult(g, gScore, pick) {
+  const final = _finalScore(gScore);
+  if (!final) return null;
+
+  const sideScore = pick.side === 'home' ? final.home : final.away;
+  const otherScore = pick.side === 'home' ? final.away : final.home;
+
+  if (pick.market === 'moneyline') {
+    if (sideScore === otherScore) return 'hit'; // tie -> push, same convention oddsHitClass uses
+    return sideScore > otherScore ? 'hit' : 'miss';
+  }
+
+  if (pick.market === 'spread') {
+    let line = null;
+    if (pick.odds) {
+      const entry = pick.odds.draftkings || pick.odds.fanduel;
+      if (entry && entry.line !== undefined && entry.line !== null) line = Number(entry.line);
+    }
+    if (line === null) {
+      // Pick made before line-locking existed (or the snapshot just
+      // didn't capture a line) -- fall back to today's live line for the
+      // picked side.
+      const dk = g.odds && g.odds.draftkings && g.odds.draftkings.spread && g.odds.draftkings.spread[pick.side];
+      const fd = g.odds && g.odds.fanduel && g.odds.fanduel.spread && g.odds.fanduel.spread[pick.side];
+      const src = dk || fd;
+      line = (src && src.line !== undefined && src.line !== null) ? Number(src.line) : null;
+    }
+    if (line === null || Number.isNaN(line)) return null;
+
+    const result = (sideScore - otherScore) + line;
+    if (result === 0) return 'hit'; // push -> hit, same convention oddsHitClass uses
+    return result > 0 ? 'hit' : 'miss';
+  }
+
+  return null;
+}
+
 // Summary across every pick ever made (any week, any sport), for the
 // badges at the top of the Picks page. `datasets` is an array of
 // {sport, data} (the full, unfiltered dashboard JSON for each sport);
@@ -560,9 +612,10 @@ function computePickRecord(datasets, scores) {
     if (!data) return;
     (data.weeks || []).forEach(week => (week.days || []).forEach(day => (day.time_slots || []).forEach(slot => {
       (slot.games || []).forEach(g => {
-        if (!getPick(sport, g.id)) return;
+        const pick = getPick(sport, g.id);
+        if (!pick) return;
         const gScore = (scores[sport] || {})[String(g.id)];
-        const outcome = pickOutcome(sport, g, gScore);
+        const outcome = _myPickResult(g, gScore, pick);
         if (outcome === 'hit') { inactiveTotal++; inactiveCorrect++; }
         else if (outcome === 'miss') { inactiveTotal++; }
         else { active++; }
@@ -579,12 +632,12 @@ function computePickRecord(datasets, scores) {
 // payout tracking existed, same as renderPayoutSummary); a loss
 // subtracts the $10 stake. Ungraded picks contribute nothing yet.
 //
-// Known simplification: pickOutcome() (and oddsHitClass() underneath it)
-// treats a push/tie as 'hit', same as it does for cell coloring -- a true
-// push actually just returns your stake (net $0), not a full win payout,
-// so a game that lands on an exact push is counted here as a win instead
-// of a wash. Pushes are rare enough (an exact-margin spread finish) that
-// this is a reasonable approximation rather than a real accuracy problem.
+// Known simplification: _myPickResult() treats a push/tie as 'hit', same
+// as oddsHitClass() does for cell coloring -- a true push actually just
+// returns your stake (net $0), not a full win payout, so a game that
+// lands on an exact push is counted here as a win instead of a wash.
+// Pushes are rare enough (an exact-margin spread finish) that this is a
+// reasonable approximation rather than a real accuracy problem.
 function computeMoneyRecord(datasets, scores) {
   let net = 0;
   (datasets || []).forEach(({ sport, data }) => {
@@ -594,7 +647,7 @@ function computeMoneyRecord(datasets, scores) {
         const pick = getPick(sport, g.id);
         if (!pick) return;
         const gScore = (scores[sport] || {})[String(g.id)];
-        const outcome = pickOutcome(sport, g, gScore);
+        const outcome = _myPickResult(g, gScore, pick);
         if (outcome === 'hit') {
           let p10 = pick.payout10;
           if (p10 === undefined) {
@@ -995,14 +1048,17 @@ function computeGeminiAccuracyAllTime(datasets, scores, filterState) {
 
 // Grades the user's OWN saved picks (cookie-based, via getPick()) against
 // final scores, across the full all-time history in every dataset's
-// `weeks` array -- accuracy.html's "My Accuracy" pill/table. Gemini's OWN
-// confidence score never gates this (a pick you made is graded the same
-// whether or not Gemini happened to be confident about that game) -- only
-// bestMatchupOnly and the market selector apply. The market selector
-// picks by the PICK's own market ('moneyline' for ml, 'spread' for ats),
-// not by anything on the Gemini prediction. "Ungraded" is every pick made
-// on a game that hasn't finished yet -- not counted toward the percentage,
-// shown separately.
+// `weeks` array -- accuracy.html's "My Accuracy" pill/table, and (via the
+// weekly-windowed dataset it's called with) picks.html's own My Accuracy
+// circle. Gemini's OWN confidence score never gates this (a pick you made
+// is graded the same whether or not Gemini happened to be confident about
+// that game) -- only bestMatchupOnly and the market selector apply. The
+// market selector picks by the PICK's own market ('moneyline' for ml,
+// 'spread' for ats), not by anything on the Gemini prediction. Uses
+// _myPickResult(), which only counts a game once it's truly final (not
+// live/in-progress) -- see that function for why. "Ungraded" is every
+// pick made on a game that isn't final yet -- not counted toward the
+// percentage, shown separately.
 function computeMyAccuracyAllTime(datasets, scores, filterState) {
   let correct = 0, total = 0, ungraded = 0;
   const wantMarket = filterState && filterState.confType === 'ml' ? 'moneyline'
@@ -1019,7 +1075,7 @@ function computeMyAccuracyAllTime(datasets, scores, filterState) {
         if (wantMarket && pick.market !== wantMarket) return;
 
         const gScore = (scores[sport] || {})[String(g.id)];
-        const outcome = pickOutcome(sport, g, gScore);
+        const outcome = _myPickResult(g, gScore, pick);
         if (outcome === 'hit') { total++; correct++; }
         else if (outcome === 'miss') { total++; }
         else { ungraded++; }
@@ -1033,22 +1089,83 @@ function computeMyAccuracyAllTime(datasets, scores, filterState) {
   };
 }
 
+// Gemini's accuracy specifically on the games YOU picked -- not every
+// graded prediction Gemini's ever made (see computeGeminiAccuracyAllTime
+// for that, used on accuracy.html's main pills/tables). For each of your
+// own picks, this grades Gemini's call in THAT SAME market only (a
+// moneyline pick checks Gemini's winner pick; a spread pick checks
+// Gemini's ats_pick) -- so "Both" pools together "my ML picks graded
+// against Gemini's ML calls" + "my ATS picks graded against Gemini's ATS
+// calls", rather than grading every picked game on BOTH markets
+// regardless of which one was actually bet (which is what inflated this
+// number before -- e.g. 5 actual ML picks showing a much bigger ML total,
+// because every ATS-picked game was ALSO being graded as an ML
+// prediction). Uses the exact same final-only gate as
+// _myPickResult()/computeMyAccuracyAllTime, so this circle and "My
+// Accuracy" always cover the exact same set of games (modulo a picked
+// game that has no Gemini prediction attached at all, which can't be
+// graded here but still counts for My Accuracy).
+function computeGeminiAccuracyOnMyPicks(datasets, scores, filterState) {
+  let correct = 0, total = 0;
+  const wantMarket = filterState && filterState.confType === 'ml' ? 'moneyline'
+    : filterState && filterState.confType === 'ats' ? 'spread'
+    : null;
+
+  (datasets || []).forEach(({ sport, data }) => {
+    if (!data) return;
+    (data.weeks || []).forEach(week => (week.days || []).forEach(day => (day.time_slots || []).forEach(slot => {
+      (slot.games || []).forEach(g => {
+        if (filterState && filterState.bestMatchupOnly && !g.is_slot_pick) return;
+        const pick = getPick(sport, g.id);
+        if (!pick) return;
+        if (wantMarket && pick.market !== wantMarket) return;
+
+        const gScore = (scores[sport] || {})[String(g.id)];
+        const final = _finalScore(gScore);
+        if (!final) return; // not final yet -- excluded, same as My Accuracy
+
+        const pred = g.gemini_prediction;
+        if (!pred) return;
+
+        if (pick.market === 'moneyline') {
+          if (!pred.winner) return;
+          const actualWinner = final.home > final.away ? g.home_team
+            : final.away > final.home ? g.away_team
+            : null;
+          if (!actualWinner) return;
+          total++;
+          if (pred.winner === actualWinner) correct++;
+        } else if (pick.market === 'spread') {
+          if (!pred.ats_pick) return;
+          const dkLine = g.odds && g.odds.draftkings && g.odds.draftkings.spread && g.odds.draftkings.spread.home
+            ? g.odds.draftkings.spread.home.line : null;
+          const fdLine = g.odds && g.odds.fanduel && g.odds.fanduel.spread && g.odds.fanduel.spread.home
+            ? g.odds.fanduel.spread.home.line : null;
+          const homeLine = (dkLine !== null && dkLine !== undefined) ? dkLine : fdLine;
+          if (homeLine === null || homeLine === undefined) return;
+          const margin = (final.home - final.away) + homeLine;
+          if (margin === 0) return; // push -- not a right/wrong result for Gemini's pick
+          const coveringTeam = margin > 0 ? g.home_team : g.away_team;
+          total++;
+          if (_normalizeAtsPick(pred.ats_pick) === coveringTeam) correct++;
+        }
+      });
+    })));
+  });
+
+  return { pct: total ? Math.round((correct / total) * 100) : null, correct, total };
+}
+
 // Single-percentage accuracy for the Picks page's Gemini-accuracy stat
-// circle: 'ml'/'ats' show that market's own accuracy; 'both' pools ML and
-// ATS together into one combined correct/total rather than showing two
-// numbers side by side (accuracy.html shows both markets separately in
-// its own two-card layout -- this is Picks-specific). `correct`/`total`
-// come along for the circle's second line ("x/x").
-function singleGeminiAccuracy(acc, confType) {
-  if (confType === 'ml') {
-    return { pct: acc.mlPct, sub: 'ML', correct: acc.mlCorrect || 0, total: acc.mlTotal || 0 };
-  }
-  if (confType === 'ats') {
-    return { pct: acc.atsPct, sub: 'ATS', correct: acc.atsCorrect || 0, total: acc.atsTotal || 0 };
-  }
-  const total = (acc.mlTotal || 0) + (acc.atsTotal || 0);
-  const correct = (acc.mlCorrect || 0) + (acc.atsCorrect || 0);
-  return { pct: total ? Math.round((correct / total) * 100) : null, sub: 'Both', correct, total };
+// circle -- Gemini's accuracy on just the games you picked (see
+// computeGeminiAccuracyOnMyPicks), in whichever market the filter bar has
+// selected. `sub` is 'ML'/'ATS'/'Both' for the tag under the circle;
+// `correct`/`total` are the circle's second line ("x/x").
+function singleGeminiAccuracy(datasets, scores, filterState) {
+  const confType = filterState.confType;
+  const acc = computeGeminiAccuracyOnMyPicks(datasets, scores, filterState);
+  const sub = confType === 'ml' ? 'ML' : confType === 'ats' ? 'ATS' : 'Both';
+  return { pct: acc.pct, sub, correct: acc.correct, total: acc.total };
 }
 
 // Wednesday-through-Tuesday window containing `now` (defaults to right
