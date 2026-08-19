@@ -665,17 +665,25 @@ function computeMoneyRecord(datasets, scores) {
 }
 
 // All-time version of computeMoneyRecord for accuracy.html's "Total
-// Winnings" stat/column -- same flat-$10-per-pick math, but filtered by
-// the page's OWN filterState the same way computeMyAccuracyAllTime is:
-// bestMatchupOnly restricts to slot-pick games, while Gemini's confidence
-// threshold (minConf) is deliberately ignored, since a bet you made isn't
-// graded (or paid) differently based on how confident Gemini happened to
-// be about that game -- same reasoning documented on
-// computeMyAccuracyAllTime. The market/confType toggle is ALSO ignored
-// here, matching how the "My Accuracy by Sports" table always shows both
-// markets combined rather than being gated by that selector.
+// Winnings" stat and the by-sport table -- same flat-$10-per-pick math,
+// filtered by the page's OWN filterState the same way
+// computeMyAccuracyAllTime is: bestMatchupOnly restricts to slot-pick
+// games, while Gemini's confidence threshold (minConf) is deliberately
+// ignored, since a bet you made isn't graded (or paid) differently based
+// on how confident Gemini happened to be about that game -- same
+// reasoning documented on computeMyAccuracyAllTime.
+//
+// filterState.confType DOES restrict which of your picks count here (by
+// the PICK's own market, 'moneyline' for ml / 'spread' for ats -- same
+// convention as computeMyAccuracyAllTime), so callers that want the
+// always-combined top-line total should pass confType:'both' explicitly
+// rather than forwarding the page's live toggle value.
 function computeMoneyRecordAllTime(datasets, scores, filterState) {
   let net = 0, graded = 0;
+  const wantMarket = filterState && filterState.confType === 'ml' ? 'moneyline'
+    : filterState && filterState.confType === 'ats' ? 'spread'
+    : null; // null = both markets count
+
   (datasets || []).forEach(({ sport, data }) => {
     if (!data) return;
     (data.weeks || []).forEach(week => (week.days || []).forEach(day => (day.time_slots || []).forEach(slot => {
@@ -683,6 +691,7 @@ function computeMoneyRecordAllTime(datasets, scores, filterState) {
         if (filterState && filterState.bestMatchupOnly && !g.is_slot_pick) return;
         const pick = getPick(sport, g.id);
         if (!pick) return;
+        if (wantMarket && pick.market !== wantMarket) return;
         const gScore = (scores[sport] || {})[String(g.id)];
         const outcome = _myPickResult(g, gScore, pick);
         if (outcome === 'hit') {
