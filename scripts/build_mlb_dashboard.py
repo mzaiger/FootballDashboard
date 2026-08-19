@@ -51,7 +51,9 @@ from common import (
     carry_forward_odds,
     fetch_all_odds,
     load_existing_dashboard,
+    load_previous_game_entries,
     load_previous_odds_by_game,
+    load_started_game_ids,
     log,
     match_odds_for_game,
     merge_weeks,
@@ -203,7 +205,8 @@ def build_win_rank_lookup(team_records):
 # Main build -- one calendar day at a time
 # ---------------------------------------------------------------------------
 
-def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None):
+def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None,
+              previous_entries_by_id=None, started_game_ids=None):
     """Build a single day's worth of games. Returns a "week"-shaped dict
     (week=YYYYMMDD int, days=[<this single day>]) so it slots into the
     same merge_weeks()/front-end code the NFL/CFB dashboards use."""
@@ -236,6 +239,9 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None):
     slots = {}  # slot_name -> list of game entries
     all_games = []
     team_records = {}  # {team_name: (wins, losses)}
+    started_game_ids = started_game_ids or set()
+    previous_entries_by_id = previous_entries_by_id or {}
+    frozen_prediction_skip_ids = set()  # passed to attach_gemini_predictions below
 
     for event in events:
         competitions = event.get("competitions", [])
@@ -275,11 +281,24 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None):
         home_pitcher = _probable_pitcher(home)
         away_pitcher = _probable_pitcher(away)
 
-        odds = match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
-        if previous_odds_by_id:
-            odds = carry_forward_odds(odds, previous_odds_by_id.get(event.get("id")))
-
         game_id = event.get("id")
+        gid_str = str(game_id)
+        already_started = gid_str in started_game_ids
+        previous_entry = previous_entries_by_id.get(gid_str)
+
+        # Once a game has ANY score recorded in scores.json (live or
+        # final -- see load_started_game_ids), freeze its odds and Gemini
+        # prediction at exactly whatever was last saved instead of
+        # re-fetching/re-matching/re-calling: an in-game line moves
+        # constantly and doesn't reflect the pregame market the pick/
+        # prediction was actually made against.
+        if already_started and previous_entry is not None:
+            odds = previous_entry.get("odds") or {}
+            frozen_prediction_skip_ids.add(gid_str)
+        else:
+            odds = match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
+            if previous_odds_by_id:
+                odds = carry_forward_odds(odds, previous_odds_by_id.get(event.get("id")))
 
         game_entry = {
             "id": game_id,
@@ -299,6 +318,8 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None):
             "neutral_site": comp.get("neutralSite", False),
             "odds": odds,
         }
+        if already_started and previous_entry is not None and previous_entry.get("gemini_prediction"):
+            game_entry["gemini_prediction"] = previous_entry["gemini_prediction"]
         slots.setdefault(slot, []).append(game_entry)
         all_games.append(game_entry)
 
@@ -326,7 +347,8 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None):
     assign_matchup_ranks(all_games)
 
     attach_gemini_predictions(all_games, sport="mlb", season=day.year,
-                               week=day.isoformat(), gemini_key=gemini_key)
+                               week=day.isoformat(), gemini_key=gemini_key,
+                               skip_ids=frozen_prediction_skip_ids)
 
     time_slots = []
     for slot_name in TIME_SLOT_ORDER:
@@ -358,7 +380,8 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None):
     }
 
 
-def build(sharp_key, gemini_key=None, start_date=None, num_days=NUM_DAYS_DEFAULT, previous_odds_by_id=None):
+def build(sharp_key, gemini_key=None, start_date=None, num_days=NUM_DAYS_DEFAULT, previous_odds_by_id=None,
+          previous_entries_by_id=None, started_game_ids=None):
     """Build `num_days` consecutive calendar days centered on `start_date`
     (default: today, in DISPLAY_TIMEZONE) and wrap them into the full
     output payload, "week"-shaped the same way NFL/CFB are.
@@ -381,7 +404,8 @@ def build(sharp_key, gemini_key=None, start_date=None, num_days=NUM_DAYS_DEFAULT
     days_out = []
     for offset in range(num_days):
         d = window_start + timedelta(days=offset)
-        days_out.append(build_day(d, sharp_key, gemini_key, previous_odds_by_id=previous_odds_by_id))
+        days_out.append(build_day(d, sharp_key, gemini_key, previous_odds_by_id=previous_odds_by_id,
+                                   previous_entries_by_id=previous_entries_by_id, started_game_ids=started_game_ids))
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -397,6 +421,7 @@ def parse_args():
     p.add_argument("--num-days", type=int, default=NUM_DAYS_DEFAULT,
                     help=f"How many consecutive days to build, centered on --start-date (default: {NUM_DAYS_DEFAULT})")
     p.add_argument("--out", default=None, help="Output path (default: data/mlb_dashboard.json)")
+    p.add_argument("--scores", default=None, help="Path to scores.json, used to freeze odds/Gemini predictions for started games (default: data/scores.json)")
     return p.parse_args()
 
 
@@ -424,6 +449,8 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "mlb_dashboard.json")
     out_path = os.path.abspath(out_path)
+    scores_path = args.scores or os.path.join(script_dir, "..", "data", "scores.json")
+    scores_path = os.path.abspath(scores_path)
 
     existing_data = load_existing_dashboard(out_path)
     previous_odds_by_id = load_previous_odds_by_game(out_path)
@@ -431,8 +458,15 @@ def main():
         log(f"Loaded odds for {len(previous_odds_by_id)} game(s) from the previous build "
             f"to carry forward if today's fetch comes back blank for any of them.")
 
+    previous_entries_by_id = load_previous_game_entries(out_path)
+    started_game_ids = load_started_game_ids(scores_path, "mlb")
+    if started_game_ids:
+        log(f"{len(started_game_ids)} MLB game(s) already have a score recorded in {scores_path} -- "
+            f"freezing odds and Gemini predictions for those instead of updating them.")
+
     output = build(sharp_key, gemini_key, start_date=resolved_today, num_days=args.num_days,
-                    previous_odds_by_id=previous_odds_by_id)
+                    previous_odds_by_id=previous_odds_by_id,
+                    previous_entries_by_id=previous_entries_by_id, started_game_ids=started_game_ids)
     fresh_day_nums = [w["week"] for w in output["weeks"]]
 
     # Record which day is "today" -- mlb.html uses this (plus the day

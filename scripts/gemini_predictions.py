@@ -463,7 +463,7 @@ def _call_gemini(prompt, gemini_key):
 # Public entry point
 #---------------------------------------------------------------------------
 
-def attach_gemini_predictions(games, sport, season, week, gemini_key):
+def attach_gemini_predictions(games, sport, season, week, gemini_key, skip_ids=None):
     """
     Mutates each dict in `games` by adding a "gemini_prediction" key for any
     game with at least one posted line.
@@ -472,10 +472,21 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key):
     sequentially (~1/min) for new/changed games, then saves the cache.
     If the daily quota runs out mid-slate, stops calling and leaves the
     rest for a future run.
+
+    skip_ids, if given, is a set of game ids (as strings) to leave
+    completely untouched -- no cache lookup, no Gemini call, no
+    force-refresh override even on a Thursday. The caller is expected to
+    have already set g["gemini_prediction"] on these (typically to
+    whatever was frozen from the previous build) before calling this, for
+    a game that's already started: its pregame line is frozen, so there's
+    nothing new to grade the prediction against, and a moving in-game
+    line shouldn't trigger a fresh call anyway.
     """
     if not gemini_key:
         log("No GEMINI_KEY set -- skipping Gemini predictions.")
         return
+
+    skip_ids = skip_ids or set()
 
     # Thursday: always refresh, ignoring the cache entirely. Every other
     # day of the week, behave as before -- reuse a cached prediction
@@ -486,6 +497,9 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key):
     to_call = []
 
     for g in games:
+        if str(g.get("id")) in skip_ids:
+            continue
+
         odds = g.get("odds") or {}
 
         has_odds = any(

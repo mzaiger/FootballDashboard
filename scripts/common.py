@@ -590,6 +590,63 @@ def load_previous_odds_by_game(path):
     return lookup
 
 
+def load_previous_game_entries(path):
+    """Read a previous build's output JSON and return {game_id: game_dict}
+    (keyed by the game id as a STRING, to match how scores.json keys its
+    game ids) for every game found in it.
+
+    Fuller sibling of load_previous_odds_by_game -- used specifically to
+    freeze a started game's odds AND Gemini prediction at exactly whatever
+    was last saved (see load_started_game_ids / freeze-once-started below),
+    rather than just carrying forward odds. Returns {} if the file doesn't
+    exist yet or can't be parsed.
+    """
+    if not path or not os.path.exists(path):
+        return {}
+    try:
+        with open(path) as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError) as e:
+        log(f"  NOTE: couldn't read previous output at {path} ({e}) -- nothing to freeze against.")
+        return {}
+
+    lookup = {}
+    for week in data.get("weeks", []):
+        for day in week.get("days", []):
+            for slot in day.get("time_slots", []):
+                for g in slot.get("games", []):
+                    gid = g.get("id")
+                    if gid is not None:
+                        lookup[str(gid)] = g
+    return lookup
+
+
+def load_started_game_ids(scores_path, sport_key):
+    """Return a set of game ids (as strings) that already have a score
+    recorded in data/scores.json for the given sport ('cfb'/'nfl'/'mlb').
+
+    fetch_scores.py only ever writes an entry once a game's ESPN status
+    leaves "pre" (see fetch_scores.py) -- so "has an entry here" is
+    equivalent to "kickoff has already happened, game is live or final".
+    Used to freeze odds and Gemini predictions once a game starts: a
+    sportsbook's in-game line moves constantly and doesn't reflect the
+    pregame market our picks/predictions were made against, and
+    re-calling Gemini against a moving in-game line mid-game (or after
+    the game's over) doesn't make sense either. Returns an empty set if
+    scores.json doesn't exist yet or can't be parsed -- just means
+    nothing gets frozen this run.
+    """
+    if not scores_path or not os.path.exists(scores_path):
+        return set()
+    try:
+        with open(scores_path) as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError) as e:
+        log(f"  NOTE: couldn't read {scores_path} ({e}) -- treating no games as started.")
+        return set()
+    return set((data.get(sport_key) or {}).keys())
+
+
 def carry_forward_odds(new_odds, previous_odds):
     """
     Fill in any (book, market, side) odds entry that's missing from

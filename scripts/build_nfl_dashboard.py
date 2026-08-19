@@ -47,7 +47,9 @@ from common import (
     carry_forward_odds,
     fetch_all_odds,
     load_existing_dashboard,
+    load_previous_game_entries,
     load_previous_odds_by_game,
+    load_started_game_ids,
     log,
     match_odds_for_game,
     merge_weeks,
@@ -417,7 +419,8 @@ def get_espn_current_week_for(season_type):
 # Main build
 # ---------------------------------------------------------------------------
 
-def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odds_by_id=None):
+def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odds_by_id=None,
+               previous_entries_by_id=None, started_game_ids=None):
     """Build a single week's worth of games. Returns the per-week dict
     (no generated_at/season wrapper -- that's added once, by build())."""
     log(f"Fetching NFL schedule for {year}, week {week}, seasontype {season_type}...")
@@ -460,6 +463,9 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odd
     all_games = []  # flat list, mirrors what's in `days`, for the Gemini pass below
     team_records = {}       # {team_name: (wins, losses, ties)} -- accumulated as we go
     raw_components_by_id = {}  # {game_id: (dk_spread, fd_spread)}
+    started_game_ids = started_game_ids or set()
+    previous_entries_by_id = previous_entries_by_id or {}
+    frozen_prediction_skip_ids = set()  # passed to attach_gemini_predictions below
 
     for event in events:
         competitions = event.get("competitions", [])
@@ -495,13 +501,27 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odd
         if away_wins is not None:
             team_records[away_team] = (away_wins, away_losses, away_ties)
 
-        odds = match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
-        if previous_odds_by_id:
-            odds = carry_forward_odds(odds, previous_odds_by_id.get(event.get("id")))
+        game_id = event.get("id")
+        gid_str = str(game_id)
+        already_started = gid_str in started_game_ids
+        previous_entry = previous_entries_by_id.get(gid_str)
+
+        # Once a game has ANY score recorded in scores.json (live or
+        # final -- see load_started_game_ids), freeze its odds and Gemini
+        # prediction at exactly whatever was last saved instead of
+        # re-fetching/re-matching/re-calling: an in-game line moves
+        # constantly and doesn't reflect the pregame market the pick/
+        # prediction was actually made against.
+        if already_started and previous_entry is not None:
+            odds = previous_entry.get("odds") or {}
+            frozen_prediction_skip_ids.add(gid_str)
+        else:
+            odds = match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
+            if previous_odds_by_id:
+                odds = carry_forward_odds(odds, previous_odds_by_id.get(event.get("id")))
         dk_spread = _dk_home_spread(odds)
         fd_spread = _fd_home_spread(odds)
 
-        game_id = event.get("id")
         raw_components_by_id[game_id] = (dk_spread, fd_spread)
 
         game_entry = {
@@ -520,6 +540,8 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odd
             "neutral_site": comp.get("neutralSite", False),
             "odds": odds,
         }
+        if already_started and previous_entry is not None and previous_entry.get("gemini_prediction"):
+            game_entry["gemini_prediction"] = previous_entry["gemini_prediction"]
         days.setdefault(day_key, {}).setdefault(slot, []).append(game_entry)
         all_games.append(game_entry)
 
@@ -544,7 +566,8 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odd
     # whichever time slot or day a game lands in.
     assign_matchup_ranks(all_games)
 
-    attach_gemini_predictions(all_games, sport="nfl", season=year, week=week, gemini_key=gemini_key)
+    attach_gemini_predictions(all_games, sport="nfl", season=year, week=week, gemini_key=gemini_key,
+                               skip_ids=frozen_prediction_skip_ids)
 
     day_list = []
     for day_key in sorted(days.keys()):
@@ -587,12 +610,16 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odd
     }
 
 
-def build(year, week_start, season_type, sharp_key, gemini_key=None, num_weeks=2, previous_odds_by_id=None):
+def build(year, week_start, season_type, sharp_key, gemini_key=None, num_weeks=2, previous_odds_by_id=None,
+          previous_entries_by_id=None, started_game_ids=None):
     """Build `num_weeks` consecutive weeks starting at week_start (default:
     this week + next week) and wrap them into the full output payload."""
     weeks = []
     for offset in range(num_weeks):
-        weeks.append(build_week(year, week_start + offset, season_type, sharp_key, gemini_key, previous_odds_by_id=previous_odds_by_id))
+        weeks.append(build_week(year, week_start + offset, season_type, sharp_key, gemini_key,
+                                 previous_odds_by_id=previous_odds_by_id,
+                                 previous_entries_by_id=previous_entries_by_id,
+                                 started_game_ids=started_game_ids))
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -611,6 +638,7 @@ def parse_args():
     p.add_argument("--season-type", type=int, default=None,
                     help="1=preseason, 2=regular season, 3=postseason (default: auto-detected from ESPN each run)")
     p.add_argument("--out", default=None, help="Output path (default: data/nfl_dashboard.json)")
+    p.add_argument("--scores", default=None, help="Path to scores.json, used to freeze odds/Gemini predictions for started games (default: data/scores.json)")
     return p.parse_args()
 
 
@@ -629,6 +657,8 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "nfl_dashboard.json")
     out_path = os.path.abspath(out_path)
+    scores_path = args.scores or os.path.join(script_dir, "..", "data", "scores.json")
+    scores_path = os.path.abspath(scores_path)
 
     existing_data = load_existing_dashboard(out_path)
 
@@ -646,8 +676,15 @@ def main():
         log(f"Loaded odds for {len(previous_odds_by_id)} game(s) from the previous build "
             f"to carry forward if today's fetch comes back blank for any of them.")
 
+    previous_entries_by_id = load_previous_game_entries(out_path)
+    started_game_ids = load_started_game_ids(scores_path, "nfl")
+    if started_game_ids:
+        log(f"{len(started_game_ids)} NFL game(s) already have a score recorded in {scores_path} -- "
+            f"freezing odds and Gemini predictions for those instead of updating them.")
+
     output = build(args.year, week, season_type, sharp_key, gemini_key,
-                    num_weeks=args.num_weeks, previous_odds_by_id=previous_odds_by_id)
+                    num_weeks=args.num_weeks, previous_odds_by_id=previous_odds_by_id,
+                    previous_entries_by_id=previous_entries_by_id, started_game_ids=started_game_ids)
     fresh_week_nums = [w["week"] for w in output["weeks"]]
 
     # Record which week THIS build resolved as "current" -- College/NFL use
