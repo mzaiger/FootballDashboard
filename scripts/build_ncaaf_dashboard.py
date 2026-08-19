@@ -412,9 +412,15 @@ def get_espn_current_state():
         log(f"  NOTE: ESPN's response didn't include a season type for {today_str} -- "
             f"falling back to season_type={SEASON_TYPE_FALLBACK}.")
         season_type = SEASON_TYPE_FALLBACK
+    if season_type == 1:
+        # FBS doesn't have a real "preseason" slate the way the NFL does --
+        # if ESPN ever does report 1 (preseason) for a given date, treat it
+        # the same as the "no season type in the response at all" case
+        # above and fall back straight to the regular season.
+        log("  NOTE: ESPN reported season_type=1 (preseason), which doesn't apply to "
+            "college football -- using season_type=2 (regular season) instead.")
+        season_type = SEASON_TYPE_FALLBACK
     log(f"ESPN reports current week {week}, season_type {season_type} for {today_str}.")
-    if season_type is 1:
-        season_type = 2
     return week, season_type
 
 
