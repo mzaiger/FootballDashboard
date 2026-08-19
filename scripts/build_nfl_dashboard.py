@@ -75,11 +75,6 @@ REQUEST_TIMEOUT = 20
 SEASON_TYPE_FALLBACK = 1
 SEASON_YEAR_DEFAULT = 2026
 
-# Time Slot Best Matchup team priority: if either of these teams is playing
-# in a window, they win the slot pick over the blended spread/wins score.
-# Checked in order -- Chiefs first, then Broncos.
-SLOT_PICK_TEAM_PRIORITY = ["Kansas City Chiefs", "Denver Broncos"]
-
 # A team with no games played yet (e.g. before its season opener) gets this
 # win-rank value -- one worse than the worst possible real rank (32 teams
 # in the league) -- so it never outranks a team that actually has a record,
@@ -217,20 +212,6 @@ def _dk_home_spread(odds):
 
 def _fd_home_spread(odds):
     return odds.get("fanduel", {}).get("spread", {}).get("home", {}).get("line")
-
-
-def pick_slot_team_priority(games_in_window):
-    """
-    Given all games in a time-slot window, return the game featuring
-    Kansas City or Denver if one is playing, else None. Checked in
-    SLOT_PICK_TEAM_PRIORITY order so Chiefs win out over Broncos if both
-    happen to be on at once.
-    """
-    for priority_team in SLOT_PICK_TEAM_PRIORITY:
-        for g in games_in_window:
-            if g["home_team"] == priority_team or g["away_team"] == priority_team:
-                return g
-    return None
 
 
 # ---------------------------------------------------------------------------
@@ -575,17 +556,14 @@ def build_week(year, week, season_type, sharp_key, gemini_key=None, previous_odd
             games_sorted = sorted(slots_for_day[slot_name], key=lambda x: x["matchup_score"])
             best_score = games_sorted[0]["matchup_score"] if games_sorted else None
 
-            # Slot Pick: prefer the Chiefs or Broncos game if either is
-            # playing in this window; otherwise fall back to the game with
-            # the best blended (50% spread + 50% win-rank) score --
+            # Slot Pick: best blended (50% spread + 50% win-rank) score --
             # games_sorted is already sorted that way, so index 0 is it.
-            team_priority_pick = pick_slot_team_priority(games_sorted)
             pick_reason = None
-            for g in games_sorted:
-                is_pick = (g is team_priority_pick) if team_priority_pick else (g is games_sorted[0] if games_sorted else False)
+            for i, g in enumerate(games_sorted):
+                is_pick = (i == 0)
                 g["is_slot_pick"] = is_pick
                 if is_pick:
-                    pick_reason = "team_priority" if team_priority_pick else "blended_score"
+                    pick_reason = "blended_score"
 
             time_slots.append({
                 "slot": slot_name,
