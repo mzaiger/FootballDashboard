@@ -231,6 +231,10 @@
     display:block; color:var(--dim); font-weight:500; font-size:0.72rem;
     margin-top:0.15rem; letter-spacing:0.01em;
   }
+  table.breakdown-table td.pct-cell .cell-money{
+    display:block; font-weight:600; font-size:0.72rem;
+    margin-top:0.15rem; letter-spacing:0.01em;
+  }
   #myBreakdownBody .pct-cell{ color:var(--gold); }
 
   .status{
@@ -361,7 +365,6 @@
           <th id="geminiByAtsHeader">ATS Accuracy</th>
           <th>Closed</th>
           <th>Open</th>
-          <th id="geminiByWinningsHeader">Winnings ($10/pick)</th>
         </tr>
       </thead>
       <tbody id="geminiBreakdownBody"></tbody>
@@ -378,7 +381,6 @@
           <th id="myByAtsHeader">ATS Accuracy</th>
           <th>Closed</th>
           <th>Open</th>
-          <th id="myByWinningsHeader">Winnings ($10/pick)</th>
         </tr>
       </thead>
       <tbody id="myBreakdownBody"></tbody>
@@ -561,7 +563,7 @@ function renderAccuracy(datasets, scores, state) {
     : 'No graded predictions match these filters';
 
   document.getElementById('myWinningsLabel').innerHTML = buildLabelHTML('My Total Winnings', state, true, false);
-  const myWinnings = computeMoneyRecordAllTime(datasets, scores, state);
+  const myWinnings = computeMoneyRecordAllTime(datasets, scores, { ...state, confType: 'both' });
   const mwEl = document.getElementById('myWinningsAmount');
   const mwSign = myWinnings.net > 0 ? '+' : (myWinnings.net < 0 ? '\u2212' : '');
   mwEl.textContent = `${mwSign}$${Math.abs(myWinnings.net).toFixed(2)}`;
@@ -575,27 +577,38 @@ function renderAccuracy(datasets, scores, state) {
   // the top cards, since both filters affect Gemini's own numbers.
   document.getElementById('geminiByMlHeader').innerHTML = buildLabelHTML('ML Accuracy', state, mlApplies, true);
   document.getElementById('geminiByAtsHeader').innerHTML = buildLabelHTML('ATS Accuracy', state, atsApplies, true);
-  document.getElementById('geminiByWinningsHeader').innerHTML = buildLabelHTML('Winnings ($10/pick)', state, true, true);
 
   const sportLabels = { cfb: 'NCAAF', nfl: 'NFL', mlb: 'MLB' };
+
+  // Small helper: formats a {net, graded} money result as a signed,
+  // colored line for placement under a cell's correct-picks fraction.
+  // Returns '' (nothing rendered) when the market isn't applicable or
+  // there's nothing graded yet, so cells without winnings data don't get
+  // an empty dangling line.
+  function moneyLineHTML(moneyResult) {
+    if (!moneyResult || !moneyResult.graded) return '';
+    const sign = moneyResult.net > 0 ? '+' : (moneyResult.net < 0 ? '\u2212' : '');
+    const cls = moneyResult.net > 0 ? 'money-positive' : (moneyResult.net < 0 ? 'money-negative' : 'money-neutral');
+    return `<span class="cell-money ${cls}">${sign}$${Math.abs(moneyResult.net).toFixed(2)} (${moneyResult.graded}/pick)</span>`;
+  }
+
   const geminiRows = datasets.map(({ sport, data }) => {
     const acc = computeGeminiAccuracyAllTime([{ sport, data }], scores, state);
     const closed = Math.max(acc.mlTotal, acc.atsTotal);
-    const mlCell = mlApplies ? `${fmtPct(acc.mlPct)}${acc.mlTotal ? `<span class="cell-frac">${acc.mlCorrect}/${acc.mlTotal}</span>` : ''}` : 'NA';
-    const atsCell = atsApplies ? `${fmtPct(acc.atsPct)}${acc.atsTotal ? `<span class="cell-frac">${acc.atsCorrect}/${acc.atsTotal}</span>` : ''}` : 'NA';
-    const sportWinnings = computeGeminiMoneyRecordAllTime([{ sport, data }], scores, state);
-    const gwSign = sportWinnings.net > 0 ? '+' : (sportWinnings.net < 0 ? '\u2212' : '');
-    const gwClass = sportWinnings.net > 0 ? 'pct-cell money-positive' : (sportWinnings.net < 0 ? 'pct-cell money-negative' : 'pct-cell money-neutral');
-    const winningsCell = sportWinnings.graded
-      ? `${gwSign}$${Math.abs(sportWinnings.net).toFixed(2)}<span class="cell-frac">${sportWinnings.graded} graded pick${sportWinnings.graded === 1 ? '' : 's'}</span>`
-      : '&mdash;';
+    const mlMoney = mlApplies ? computeGeminiMoneyRecordAllTime([{ sport, data }], scores, { ...state, confType: 'ml' }) : null;
+    const atsMoney = atsApplies ? computeGeminiMoneyRecordAllTime([{ sport, data }], scores, { ...state, confType: 'ats' }) : null;
+    const mlCell = mlApplies
+      ? `${fmtPct(acc.mlPct)}${acc.mlTotal ? `<span class="cell-frac">${acc.mlCorrect}/${acc.mlTotal}</span>` : ''}${moneyLineHTML(mlMoney)}`
+      : 'NA';
+    const atsCell = atsApplies
+      ? `${fmtPct(acc.atsPct)}${acc.atsTotal ? `<span class="cell-frac">${acc.atsCorrect}/${acc.atsTotal}</span>` : ''}${moneyLineHTML(atsMoney)}`
+      : 'NA';
     return `<tr>
       <td class="sport-name">${sportLabels[sport] || sport}</td>
       <td class="pct-cell">${mlCell}</td>
       <td class="pct-cell">${atsCell}</td>
       <td>${closed || 0}</td>
       <td>${acc.ungraded || 0}</td>
-      <td class="${gwClass}">${winningsCell}</td>
     </tr>`;
   });
   document.getElementById('geminiBreakdownBody').innerHTML = geminiRows.join('');
@@ -604,28 +617,22 @@ function renderAccuracy(datasets, scores, state) {
   // tag (see buildLabelHTML's includeConfidence param above).
   document.getElementById('myByMlHeader').innerHTML = buildLabelHTML('ML Accuracy', state, true, false);
   document.getElementById('myByAtsHeader').innerHTML = buildLabelHTML('ATS Accuracy', state, true, false);
-  document.getElementById('myByWinningsHeader').innerHTML = buildLabelHTML('Winnings ($10/pick)', state, true, false);
 
   const myRows = datasets.map(({ sport, data }) => {
     const myMlSport = computeMyAccuracyAllTime([{ sport, data }], scores, { ...state, confType: 'ml' });
     const myAtsSport = computeMyAccuracyAllTime([{ sport, data }], scores, { ...state, confType: 'ats' });
     const closed = myMlSport.total + myAtsSport.total;
     const open = myMlSport.ungraded + myAtsSport.ungraded;
-    const mlCell = `${fmtMyPct(myMlSport.pct)}${myMlSport.total ? `<span class="cell-frac">${myMlSport.correct}/${myMlSport.total}</span>` : ''}`;
-    const atsCell = `${fmtMyPct(myAtsSport.pct)}${myAtsSport.total ? `<span class="cell-frac">${myAtsSport.correct}/${myAtsSport.total}</span>` : ''}`;
-    const sportWinnings = computeMoneyRecordAllTime([{ sport, data }], scores, state);
-    const wSign = sportWinnings.net > 0 ? '+' : (sportWinnings.net < 0 ? '\u2212' : '');
-    const wClass = sportWinnings.net > 0 ? 'pct-cell money-positive' : (sportWinnings.net < 0 ? 'pct-cell money-negative' : 'pct-cell money-neutral');
-    const winningsCell = sportWinnings.graded
-      ? `${wSign}$${Math.abs(sportWinnings.net).toFixed(2)}<span class="cell-frac">${sportWinnings.graded} graded pick${sportWinnings.graded === 1 ? '' : 's'}</span>`
-      : '&mdash;';
+    const myMlMoney = computeMoneyRecordAllTime([{ sport, data }], scores, { ...state, confType: 'ml' });
+    const myAtsMoney = computeMoneyRecordAllTime([{ sport, data }], scores, { ...state, confType: 'ats' });
+    const mlCell = `${fmtMyPct(myMlSport.pct)}${myMlSport.total ? `<span class="cell-frac">${myMlSport.correct}/${myMlSport.total}</span>` : ''}${moneyLineHTML(myMlMoney)}`;
+    const atsCell = `${fmtMyPct(myAtsSport.pct)}${myAtsSport.total ? `<span class="cell-frac">${myAtsSport.correct}/${myAtsSport.total}</span>` : ''}${moneyLineHTML(myAtsMoney)}`;
     return `<tr>
       <td class="sport-name">${sportLabels[sport] || sport}</td>
       <td class="pct-cell">${mlCell}</td>
       <td class="pct-cell">${atsCell}</td>
       <td>${closed}</td>
       <td>${open}</td>
-      <td class="${wClass}">${winningsCell}</td>
     </tr>`;
   });
   document.getElementById('myBreakdownBody').innerHTML = myRows.join('');
