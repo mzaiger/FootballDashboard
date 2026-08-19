@@ -190,6 +190,18 @@
   }
   .big-stat-col.my-accuracy-col .pct{ color:var(--gold); }
 
+  .money-stat{
+    flex:1 1 100%;
+    align-items:center;
+  }
+  .money-stat .big-stat-col{ flex:1 1 auto; }
+  .money-positive{ color:var(--dk-green) !important; }
+  .money-negative{ color:var(--loss-red) !important; }
+  .money-neutral{ color:var(--dim) !important; }
+  table.breakdown-table td.money-positive .cell-frac,
+  table.breakdown-table td.money-negative .cell-frac,
+  table.breakdown-table td.money-neutral .cell-frac{ color:var(--dim); }
+
   .breakdown{
     margin:2rem 0 2.5rem;
   }
@@ -324,6 +336,21 @@
     </div>
   </div>
 
+  <div class="big-stats">
+    <div class="big-stat money-stat">
+      <div class="big-stat-col">
+        <div class="label" id="winningsLabel">Gemini Total Winnings</div>
+        <div class="pct" id="winningsAmount">&mdash;</div>
+        <div class="frac" id="winningsFrac">Loading&hellip;</div>
+      </div>
+      <div class="big-stat-col my-accuracy-col">
+        <div class="label" id="myWinningsLabel">My Total Winnings</div>
+        <div class="pct" id="myWinningsAmount">&mdash;</div>
+        <div class="frac" id="myWinningsFrac">Loading&hellip;</div>
+      </div>
+    </div>
+  </div>
+
   <div class="breakdown">
     <h2>Gemini Accuracy by Sports</h2>
     <table class="breakdown-table">
@@ -334,6 +361,7 @@
           <th id="geminiByAtsHeader">ATS Accuracy</th>
           <th>Closed</th>
           <th>Open</th>
+          <th id="geminiByWinningsHeader">Winnings ($10/pick)</th>
         </tr>
       </thead>
       <tbody id="geminiBreakdownBody"></tbody>
@@ -350,6 +378,7 @@
           <th id="myByAtsHeader">ATS Accuracy</th>
           <th>Closed</th>
           <th>Open</th>
+          <th id="myByWinningsHeader">Winnings ($10/pick)</th>
         </tr>
       </thead>
       <tbody id="myBreakdownBody"></tbody>
@@ -366,7 +395,12 @@
   Accuracy" (a bet you made is graded the same regardless of how confident Gemini was). "Best Matchups"
   restricts both to each time slot's single top-ranked matchup, and applies to both Gemini's and your own
   numbers. "Open" games are picks/predictions made on a game that hasn't finished yet. Every week ever
-  built is included here, not just the current board.
+  built is included here, not just the current board. "Winnings" treats every graded pick/prediction as a
+  flat $10 bet. For Gemini, that's hypothetical (a $10 bet on whatever Gemini predicted) and honors Best
+  Matchups, Confidence, and the ML/ATS/Both toggle exactly like Gemini's accuracy numbers do. For "My"
+  winnings, it's your own real picks priced at the odds locked in when you made them, and &mdash; like My
+  Accuracy &mdash; is affected by Best Matchups only, never by Confidence or the ML/ATS/Both toggle, since
+  what a bet pays doesn't depend on how confident Gemini was or which column it's displayed under.
 </footer>
 
 <script src="picks-store.js"></script>
@@ -510,10 +544,38 @@ function renderAccuracy(datasets, scores, state) {
   document.getElementById('atsMyPct').textContent = fmtMyPct(myAts.pct);
   document.getElementById('atsMyFrac').textContent = myAts.total ? `${myAts.correct}/${myAts.total} correct` : 'No picks match these filters';
 
+  // Total Winnings -- Gemini's side is a hypothetical "flat $10 on every
+  // Gemini pick" and DOES honor Best Matchups/Confidence/ML-ATS-Both,
+  // same as Gemini's accuracy numbers above. My side reuses the same
+  // Best-Matchups-only rule as My Accuracy (see computeMoneyRecordAllTime
+  // for why confidence/market are ignored there).
+  document.getElementById('winningsLabel').innerHTML = buildLabelHTML('Gemini Total Winnings', state, true, true);
+  const geminiWinnings = computeGeminiMoneyRecordAllTime(datasets, scores, state);
+  const gwEl = document.getElementById('winningsAmount');
+  const gwSign = geminiWinnings.net > 0 ? '+' : (geminiWinnings.net < 0 ? '\u2212' : '');
+  gwEl.textContent = `${gwSign}$${Math.abs(geminiWinnings.net).toFixed(2)}`;
+  gwEl.classList.remove('money-positive', 'money-negative', 'money-neutral');
+  gwEl.classList.add(geminiWinnings.net > 0 ? 'money-positive' : (geminiWinnings.net < 0 ? 'money-negative' : 'money-neutral'));
+  document.getElementById('winningsFrac').textContent = geminiWinnings.graded
+    ? `across ${geminiWinnings.graded} graded pick${geminiWinnings.graded === 1 ? '' : 's'}`
+    : 'No graded predictions match these filters';
+
+  document.getElementById('myWinningsLabel').innerHTML = buildLabelHTML('My Total Winnings', state, true, false);
+  const myWinnings = computeMoneyRecordAllTime(datasets, scores, state);
+  const mwEl = document.getElementById('myWinningsAmount');
+  const mwSign = myWinnings.net > 0 ? '+' : (myWinnings.net < 0 ? '\u2212' : '');
+  mwEl.textContent = `${mwSign}$${Math.abs(myWinnings.net).toFixed(2)}`;
+  mwEl.classList.remove('money-positive', 'money-negative', 'money-neutral');
+  mwEl.classList.add(myWinnings.net > 0 ? 'money-positive' : (myWinnings.net < 0 ? 'money-negative' : 'money-neutral'));
+  document.getElementById('myWinningsFrac').textContent = myWinnings.graded
+    ? `across ${myWinnings.graded} graded pick${myWinnings.graded === 1 ? '' : 's'}`
+    : 'No graded picks match these filters';
+
   // Gemini Accuracy by Sports -- same Best Matchups + Confidence tags as
   // the top cards, since both filters affect Gemini's own numbers.
   document.getElementById('geminiByMlHeader').innerHTML = buildLabelHTML('ML Accuracy', state, mlApplies, true);
   document.getElementById('geminiByAtsHeader').innerHTML = buildLabelHTML('ATS Accuracy', state, atsApplies, true);
+  document.getElementById('geminiByWinningsHeader').innerHTML = buildLabelHTML('Winnings ($10/pick)', state, true, true);
 
   const sportLabels = { cfb: 'NCAAF', nfl: 'NFL', mlb: 'MLB' };
   const geminiRows = datasets.map(({ sport, data }) => {
@@ -521,12 +583,19 @@ function renderAccuracy(datasets, scores, state) {
     const closed = Math.max(acc.mlTotal, acc.atsTotal);
     const mlCell = mlApplies ? `${fmtPct(acc.mlPct)}${acc.mlTotal ? `<span class="cell-frac">${acc.mlCorrect}/${acc.mlTotal}</span>` : ''}` : 'NA';
     const atsCell = atsApplies ? `${fmtPct(acc.atsPct)}${acc.atsTotal ? `<span class="cell-frac">${acc.atsCorrect}/${acc.atsTotal}</span>` : ''}` : 'NA';
+    const sportWinnings = computeGeminiMoneyRecordAllTime([{ sport, data }], scores, state);
+    const gwSign = sportWinnings.net > 0 ? '+' : (sportWinnings.net < 0 ? '\u2212' : '');
+    const gwClass = sportWinnings.net > 0 ? 'pct-cell money-positive' : (sportWinnings.net < 0 ? 'pct-cell money-negative' : 'pct-cell money-neutral');
+    const winningsCell = sportWinnings.graded
+      ? `${gwSign}$${Math.abs(sportWinnings.net).toFixed(2)}<span class="cell-frac">${sportWinnings.graded} graded pick${sportWinnings.graded === 1 ? '' : 's'}</span>`
+      : '&mdash;';
     return `<tr>
       <td class="sport-name">${sportLabels[sport] || sport}</td>
       <td class="pct-cell">${mlCell}</td>
       <td class="pct-cell">${atsCell}</td>
       <td>${closed || 0}</td>
       <td>${acc.ungraded || 0}</td>
+      <td class="${gwClass}">${winningsCell}</td>
     </tr>`;
   });
   document.getElementById('geminiBreakdownBody').innerHTML = geminiRows.join('');
@@ -535,6 +604,7 @@ function renderAccuracy(datasets, scores, state) {
   // tag (see buildLabelHTML's includeConfidence param above).
   document.getElementById('myByMlHeader').innerHTML = buildLabelHTML('ML Accuracy', state, true, false);
   document.getElementById('myByAtsHeader').innerHTML = buildLabelHTML('ATS Accuracy', state, true, false);
+  document.getElementById('myByWinningsHeader').innerHTML = buildLabelHTML('Winnings ($10/pick)', state, true, false);
 
   const myRows = datasets.map(({ sport, data }) => {
     const myMlSport = computeMyAccuracyAllTime([{ sport, data }], scores, { ...state, confType: 'ml' });
@@ -543,12 +613,19 @@ function renderAccuracy(datasets, scores, state) {
     const open = myMlSport.ungraded + myAtsSport.ungraded;
     const mlCell = `${fmtMyPct(myMlSport.pct)}${myMlSport.total ? `<span class="cell-frac">${myMlSport.correct}/${myMlSport.total}</span>` : ''}`;
     const atsCell = `${fmtMyPct(myAtsSport.pct)}${myAtsSport.total ? `<span class="cell-frac">${myAtsSport.correct}/${myAtsSport.total}</span>` : ''}`;
+    const sportWinnings = computeMoneyRecordAllTime([{ sport, data }], scores, state);
+    const wSign = sportWinnings.net > 0 ? '+' : (sportWinnings.net < 0 ? '\u2212' : '');
+    const wClass = sportWinnings.net > 0 ? 'pct-cell money-positive' : (sportWinnings.net < 0 ? 'pct-cell money-negative' : 'pct-cell money-neutral');
+    const winningsCell = sportWinnings.graded
+      ? `${wSign}$${Math.abs(sportWinnings.net).toFixed(2)}<span class="cell-frac">${sportWinnings.graded} graded pick${sportWinnings.graded === 1 ? '' : 's'}</span>`
+      : '&mdash;';
     return `<tr>
       <td class="sport-name">${sportLabels[sport] || sport}</td>
       <td class="pct-cell">${mlCell}</td>
       <td class="pct-cell">${atsCell}</td>
       <td>${closed}</td>
       <td>${open}</td>
+      <td class="${wClass}">${winningsCell}</td>
     </tr>`;
   });
   document.getElementById('myBreakdownBody').innerHTML = myRows.join('');

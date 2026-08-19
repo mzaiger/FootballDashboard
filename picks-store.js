@@ -664,6 +664,45 @@ function computeMoneyRecord(datasets, scores) {
   return Math.round(net * 100) / 100;
 }
 
+// All-time version of computeMoneyRecord for accuracy.html's "Total
+// Winnings" stat/column -- same flat-$10-per-pick math, but filtered by
+// the page's OWN filterState the same way computeMyAccuracyAllTime is:
+// bestMatchupOnly restricts to slot-pick games, while Gemini's confidence
+// threshold (minConf) is deliberately ignored, since a bet you made isn't
+// graded (or paid) differently based on how confident Gemini happened to
+// be about that game -- same reasoning documented on
+// computeMyAccuracyAllTime. The market/confType toggle is ALSO ignored
+// here, matching how the "My Accuracy by Sports" table always shows both
+// markets combined rather than being gated by that selector.
+function computeMoneyRecordAllTime(datasets, scores, filterState) {
+  let net = 0, graded = 0;
+  (datasets || []).forEach(({ sport, data }) => {
+    if (!data) return;
+    (data.weeks || []).forEach(week => (week.days || []).forEach(day => (day.time_slots || []).forEach(slot => {
+      (slot.games || []).forEach(g => {
+        if (filterState && filterState.bestMatchupOnly && !g.is_slot_pick) return;
+        const pick = getPick(sport, g.id);
+        if (!pick) return;
+        const gScore = (scores[sport] || {})[String(g.id)];
+        const outcome = _myPickResult(g, gScore, pick);
+        if (outcome === 'hit') {
+          let p10 = pick.payout10;
+          if (p10 === undefined) {
+            const entry = pick.odds ? (pick.odds.draftkings || pick.odds.fanduel) : null;
+            p10 = calcPayout(entry ? entry.american : null, 10);
+          }
+          net += (p10 || 0);
+          graded++;
+        } else if (outcome === 'miss') {
+          net -= 10;
+          graded++;
+        }
+      });
+    })));
+  });
+  return { net: Math.round(net * 100) / 100, graded };
+}
+
 // Click-delegation for every .pick-btn inside containerEl. `onPick` runs
 // after each toggle so the caller can re-render with the new cookie state.
 function attachPickHandlers(containerEl, onPick) {
@@ -1044,6 +1083,80 @@ function computeGeminiAccuracyAllTime(datasets, scores, filterState) {
     data: data ? { ...data, weeks: filterWeeksForDisplay(data.weeks || [], filterState) } : data,
   }));
   return computeGeminiAccuracy(filtered, scores);
+}
+
+// Hypothetical "if you'd flat-bet $10 on every Gemini pick" net across all
+// history -- the Gemini-side counterpart to computeMoneyRecordAllTime
+// (which does the same math for the user's own actual picks). Unlike the
+// user's version, this DOES honor bestMatchupOnly, minConf, AND the
+// ML/ATS/Both market toggle exactly the way computeGeminiAccuracyAllTime
+// does -- those filters change which predictions Gemini "made" in this
+// hypothetical, so they should change which bets get counted here too.
+// There's no locked-in price the way a real user pick has, so (same as
+// computeGeminiAccuracy) this always prices off whatever odds are
+// currently attached to the game -- DraftKings first, FanDuel fallback.
+// A push (spread) or a tie (moneyline) contributes neither a win nor a
+// loss, matching how those are excluded from the accuracy totals too.
+function computeGeminiMoneyRecordAllTime(datasets, scores, filterState) {
+  const filtered = (datasets || []).map(({ sport, data }) => ({
+    sport,
+    data: data ? { ...data, weeks: filterWeeksForDisplay(data.weeks || [], filterState) } : data,
+  }));
+  const wantMl = !filterState || filterState.confType !== 'ats';
+  const wantAts = !filterState || filterState.confType !== 'ml';
+
+  let net = 0, graded = 0;
+  (filtered || []).forEach(({ sport, data }) => {
+    if (!data) return;
+    (data.weeks || []).forEach(week => (week.days || []).forEach(day => (day.time_slots || []).forEach(slot => {
+      (slot.games || []).forEach(g => {
+        const pred = g.gemini_prediction;
+        if (!pred) return;
+        const gScore = (scores[sport] || {})[String(g.id)];
+        const final = _finalScore(gScore);
+        if (!final) return; // not graded yet -- no $ counted either direction
+
+        if (wantMl && pred.winner) {
+          const actualWinner = final.home > final.away ? g.home_team
+                              : final.away > final.home ? g.away_team
+                              : null;
+          if (actualWinner) {
+            const side = pred.winner === g.home_team ? 'home' : (pred.winner === g.away_team ? 'away' : null);
+            const entry = side && (g.odds?.draftkings?.moneyline?.[side] || g.odds?.fanduel?.moneyline?.[side]);
+            const american = entry ? entry.american : null;
+            if (american !== null && american !== undefined) {
+              if (pred.winner === actualWinner) net += (calcPayout(american, 10) || 0);
+              else net -= 10;
+              graded++;
+            }
+          }
+        }
+
+        if (wantAts && pred.ats_pick) {
+          const dkLine = g.odds?.draftkings?.spread?.home?.line;
+          const fdLine = g.odds?.fanduel?.spread?.home?.line;
+          const homeLine = (dkLine !== null && dkLine !== undefined) ? dkLine : fdLine;
+          if (homeLine !== null && homeLine !== undefined) {
+            const margin = (final.home - final.away) + homeLine;
+            if (margin !== 0) {
+              const coveringTeam = margin > 0 ? g.home_team : g.away_team;
+              const normPick = _normalizeAtsPick(pred.ats_pick);
+              const side = normPick === g.home_team ? 'home' : (normPick === g.away_team ? 'away' : null);
+              const entry = side && (g.odds?.draftkings?.spread?.[side] || g.odds?.fanduel?.spread?.[side]);
+              const american = entry ? entry.american : null;
+              if (american !== null && american !== undefined) {
+                if (normPick === coveringTeam) net += (calcPayout(american, 10) || 0);
+                else net -= 10;
+                graded++;
+              }
+            }
+          }
+        }
+      });
+    })));
+  });
+
+  return { net: Math.round(net * 100) / 100, graded };
 }
 
 // Grades the user's OWN saved picks (cookie-based, via getPick()) against
