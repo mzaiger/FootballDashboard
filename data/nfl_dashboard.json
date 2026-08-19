@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T08:34:06.818914+00:00",
+  "generated_at": "2026-08-19T11:59:05.184077+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -280,7 +280,7 @@
             {
               "slot": "Prime Time",
               "best_matchup_score": 38.5,
-              "pick_reason": "team_priority",
+              "pick_reason": "blended_score",
               "games": [
                 {
                   "id": "401873278",
@@ -484,7 +484,7 @@
             {
               "slot": "Afternoon",
               "best_matchup_score": 53.8,
-              "pick_reason": "team_priority",
+              "pick_reason": "blended_score",
               "games": [
                 {
                   "id": "401873283",
@@ -757,7 +757,7 @@
             {
               "slot": "Prime Time",
               "best_matchup_score": 42.0,
-              "pick_reason": "team_priority",
+              "pick_reason": "blended_score",
               "games": [
                 {
                   "id": "401873287",
@@ -784,7 +784,7 @@
                     }
                   },
                   "matchup_rank": 5,
-                  "is_slot_pick": false
+                  "is_slot_pick": true
                 },
                 {
                   "id": "401873613",
@@ -811,7 +811,7 @@
                     }
                   },
                   "matchup_rank": 6,
-                  "is_slot_pick": true
+                  "is_slot_pick": false
                 },
                 {
                   "id": "401873288",
@@ -1049,7 +1049,7 @@
             {
               "slot": "Prime Time",
               "best_matchup_score": 25.0,
-              "pick_reason": "team_priority",
+              "pick_reason": "blended_score",
               "games": [
                 {
                   "id": "401873289",
@@ -1076,7 +1076,7 @@
                     }
                   },
                   "matchup_rank": 1,
-                  "is_slot_pick": false
+                  "is_slot_pick": true
                 },
                 {
                   "id": "401873296",
@@ -1103,7 +1103,7 @@
                     }
                   },
                   "matchup_rank": 10,
-                  "is_slot_pick": true
+                  "is_slot_pick": false
                 },
                 {
                   "id": "401873293",
