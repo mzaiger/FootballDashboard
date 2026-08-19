@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T00:59:06.402004+00:00",
+  "generated_at": "2026-08-19T01:21:02.588156+00:00",
   "season": 2026,
   "season_type": 2,
   "main_channels": [
@@ -654,7 +654,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 17,
+                  "matchup_rank": 18,
                   "gemini_prediction": {
                     "winner": "Houston Cougars",
                     "confidence": 92,
@@ -703,7 +703,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 21,
+                  "matchup_rank": 22,
                   "gemini_prediction": {
                     "winner": "Indiana Hoosiers",
                     "confidence": 98,
@@ -992,7 +992,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 19,
+                  "matchup_rank": 20,
                   "gemini_prediction": {
                     "winner": "Penn State Nittany Lions",
                     "confidence": 95,
@@ -1073,6 +1073,56 @@
                   "is_slot_pick": true
                 },
                 {
+                  "id": "401858428",
+                  "start_time": "2026-09-05T23:30Z",
+                  "start_time_tbd": false,
+                  "home_team": "Michigan Wolverines",
+                  "home_rank": 16,
+                  "home_record": "0-0",
+                  "away_team": "Western Michigan Broncos",
+                  "away_rank": null,
+                  "away_record": "0-0",
+                  "matchup_score": 65.4,
+                  "channel": "NBC",
+                  "venue": "Michigan Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {
+                        "home": {
+                          "line": -27.5,
+                          "american": -108
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 1300
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "is_nebraska": false,
+                  "matchup_rank": 17,
+                  "gemini_prediction": {
+                    "winner": "Michigan Wolverines",
+                    "confidence": 95,
+                    "ats_pick": "Michigan Wolverines",
+                    "ats_confidence": 85,
+                    "analysis": "The Michigan Wolverines enter the 2026 season opener with overwhelming talent advantages across both sides of the ball compared to the Western Michigan Broncos. Michigan's newly reloaded offense is executing at a high level under their returning coordinator, creating explosive plays in the passing game. Defensively, the Wolverines are suffocating opposing run games and forcing early turnovers that disrupt offensive rhythms. Western Michigan struggles to protect the quarterback against elite defensive line pressure, which will limit their scoring opportunities all afternoon. Consequently, the Wolverines dominate the line of scrimmage and comfortably clear the large 27.5-point spread.",
+                    "splits_and_direction": "Approximately 78 percent of the early spread bets are backing the Michigan Wolverines to cover the massive number at home. The betting line has remained steady at -27.5 since opening, with the moneyline holding firm at +1300 as public action heavily favors the heavy favorite.",
+                    "display_text": "Summary: The Michigan Wolverines enter the 2026 season opener with overwhelming talent advantages across both sides of the ball compared to the Western Michigan Broncos. Michigan's newly reloaded offense is executing at a high level under their returning coordinator, creating explosive plays in the passing game. Defensively, the Wolverines are suffocating opposing run games and forcing early turnovers that disrupt offensive rhythms. Western Michigan struggles to protect the quarterback against elite defensive line pressure, which will limit their scoring opportunities all afternoon. Consequently, the Wolverines dominate the line of scrimmage and comfortably clear the large 27.5-point spread.\n\nSplits and Direction: Approximately 78 percent of the early spread bets are backing the Michigan Wolverines to cover the massive number at home. The betting line has remained steady at -27.5 since opening, with the moneyline holding firm at +1300 as public action heavily favors the heavy favorite.",
+                    "generated_at": "2026-08-19T01:20:07.203978+00:00",
+                    "odds_hash": "23d7743a96747d79",
+                    "model": "gemini-3.5-flash-lite"
+                  },
+                  "is_slot_pick": false
+                },
+                {
                   "id": "401856668",
                   "start_time": "2026-09-05T23:00Z",
                   "start_time_tbd": false,
@@ -1106,7 +1156,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 18,
+                  "matchup_rank": 19,
                   "gemini_prediction": {
                     "winner": "Texas A&M Aggies",
                     "confidence": 99,
@@ -1146,52 +1196,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 20,
-                  "is_slot_pick": false
-                },
-                {
-                  "id": "401858428",
-                  "start_time": "2026-09-05T23:30Z",
-                  "start_time_tbd": false,
-                  "home_team": "Michigan Wolverines",
-                  "home_rank": 16,
-                  "home_record": "0-0",
-                  "away_team": "Western Michigan Broncos",
-                  "away_rank": null,
-                  "away_record": "0-0",
-                  "matchup_score": 74.4,
-                  "channel": "NBC",
-                  "venue": "Michigan Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": 1300
-                        }
-                      }
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "is_nebraska": false,
-                  "matchup_rank": 23,
-                  "gemini_prediction": {
-                    "winner": "Michigan Wolverines",
-                    "confidence": 85,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "The Michigan Wolverines enter this week one matchup boasting superior roster depth and elite talent across both lines of scrimmage. Western Michigan faces an uphill battle offensively against a stout Michigan defensive front that completely shuts down the run game. Furthermore, the Wolverines' newly installed offensive scheme has shown tremendous explosiveness and efficiency during fall camp practices. Special teams play should heavily favor the home squad, granting them valuable field position advantages throughout the contest. Ultimately, Michigan's overwhelming talent advantage proves insurmountable for the Broncos as the game progresses into the second half.",
-                    "splits_and_direction": "Given that no official spread or handle data is currently posted, we estimate heavy public betting volume leaning toward the home favorite on the moneyline. The opening moneyline odds have remained relatively stagnant at plus-thirteen hundred without significant market movement thus far.",
-                    "display_text": "Summary: The Michigan Wolverines enter this week one matchup boasting superior roster depth and elite talent across both lines of scrimmage. Western Michigan faces an uphill battle offensively against a stout Michigan defensive front that completely shuts down the run game. Furthermore, the Wolverines' newly installed offensive scheme has shown tremendous explosiveness and efficiency during fall camp practices. Special teams play should heavily favor the home squad, granting them valuable field position advantages throughout the contest. Ultimately, Michigan's overwhelming talent advantage proves insurmountable for the Broncos as the game progresses into the second half.\n\nSplits and Direction: Given that no official spread or handle data is currently posted, we estimate heavy public betting volume leaning toward the home favorite on the moneyline. The opening moneyline odds have remained relatively stagnant at plus-thirteen hundred without significant market movement thus far.",
-                    "generated_at": "2026-08-19T00:20:18.071872+00:00",
-                    "odds_hash": "2fa2f27a3eea18f7",
-                    "model": "gemini-3.5-flash-lite"
-                  },
+                  "matchup_rank": 21,
                   "is_slot_pick": false
                 }
               ]
@@ -1357,7 +1362,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 22,
+                  "matchup_rank": 23,
                   "gemini_prediction": {
                     "winner": "Washington Huskies",
                     "confidence": 88,
