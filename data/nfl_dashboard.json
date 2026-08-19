@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T22:16:06.392713+00:00",
+  "generated_at": "2026-08-19T22:29:10.256586+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -671,6 +671,18 @@
                     }
                   },
                   "matchup_rank": 11,
+                  "gemini_prediction": {
+                    "winner": "Los Angeles Chargers",
+                    "confidence": 58,
+                    "ats_pick": "Los Angeles Chargers -2.5",
+                    "ats_confidence": 55,
+                    "analysis": "The Los Angeles Chargers host the San Francisco 49ers in an intriguing Week 3 matchup featuring two competitive rosters. Los Angeles holds home-field advantage and has displayed strong offensive execution in the early weeks of the 2026 campaign. San Francisco brings a resilient squad into this contest, though health concerns on the defensive side of the ball create vulnerabilities. The Chargers' ability to convert in the red zone should ultimately prove to be the decisive factor in a tightly contested game. Therefore, Los Angeles secures a narrow outright victory and covers the modest home spread.",
+                    "splits_and_direction": "Given the early point in the 2026 season and lack of official public reports, we estimate roughly 58 percent of moneyline bets are backing the underdog 49ers while 52 percent of spread action leans toward the Chargers. The moneyline has ticked up slightly toward Los Angeles from -135 to -142 due to steady home-favorite backing, while the estimated spread has remained relatively stable at -2.5.",
+                    "display_text": "Summary: The Los Angeles Chargers host the San Francisco 49ers in an intriguing Week 3 matchup featuring two competitive rosters. Los Angeles holds home-field advantage and has displayed strong offensive execution in the early weeks of the 2026 campaign. San Francisco brings a resilient squad into this contest, though health concerns on the defensive side of the ball create vulnerabilities. The Chargers' ability to convert in the red zone should ultimately prove to be the decisive factor in a tightly contested game. Therefore, Los Angeles secures a narrow outright victory and covers the modest home spread.\n\nSplits and Direction: Given the early point in the 2026 season and lack of official public reports, we estimate roughly 58 percent of moneyline bets are backing the underdog 49ers while 52 percent of spread action leans toward the Chargers. The moneyline has ticked up slightly toward Los Angeles from -135 to -142 due to steady home-favorite backing, while the estimated spread has remained relatively stable at -2.5.",
+                    "generated_at": "2026-08-16T23:20:24.796333+00:00",
+                    "odds_hash": "b7a52e0f94f7d84e",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 }
               ]
@@ -958,6 +970,18 @@
                     }
                   },
                   "matchup_rank": 16,
+                  "gemini_prediction": {
+                    "winner": "Miami Dolphins",
+                    "confidence": 56,
+                    "ats_pick": "Miami Dolphins -2.5",
+                    "ats_confidence": 53,
+                    "analysis": "The Miami Dolphins host the New York Giants in week 3 of the 2026 NFL season. Miami's offensive scheme has shown greater explosiveness through the early weeks of the current campaign. New York continues to struggle with consistency on the defensive side of the ball. Playing at home gives the Dolphins a distinct advantage in crowd noise and operational rhythm. Ultimately, Miami does just enough to secure a narrow victory and cover the short home spread.",
+                    "splits_and_direction": "Based on standard public tendencies without official live market data, approximately 58 percent of moneyline bets are backing the home Dolphins. The point spread has remained relatively stable since opening at Miami minus two and a half.",
+                    "display_text": "Summary: The Miami Dolphins host the New York Giants in week 3 of the 2026 NFL season. Miami's offensive scheme has shown greater explosiveness through the early weeks of the current campaign. New York continues to struggle with consistency on the defensive side of the ball. Playing at home gives the Dolphins a distinct advantage in crowd noise and operational rhythm. Ultimately, Miami does just enough to secure a narrow victory and cover the short home spread.\n\nSplits and Direction: Based on standard public tendencies without official live market data, approximately 58 percent of moneyline bets are backing the home Dolphins. The point spread has remained relatively stable since opening at Miami minus two and a half.",
+                    "generated_at": "2026-08-16T22:49:32.150958+00:00",
+                    "odds_hash": "4835e0c3a972ac3b",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 }
               ]
@@ -1089,6 +1113,18 @@
                     }
                   },
                   "matchup_rank": 3,
+                  "gemini_prediction": {
+                    "winner": "Dallas Cowboys",
+                    "confidence": 92,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "The Dallas Cowboys enter this early-season 2026 matchup displaying an explosive offensive scheme that has overwhelmed opponents through the first two weeks. Arizona's defense has struggled significantly to contain the run and prevent explosive plays in the secondary. Dak Prescott and the Dallas offense should capitalize on these glaring defensive vulnerabilities early and often. Meanwhile, the Cardinals' offensive unit lacks the consistency needed to keep pace in a potential shootout against top-tier competition. Expect Dallas to control the tempo from the opening whistle and secure a commanding victory on the road.",
+                    "splits_and_direction": "An estimated 84 percent of the public moneyline handle is backing the heavily favored Cowboys at -535, while the point spread remains unposted by major sportsbooks for this matchup. Due to the lack of an official spread, no line movement has been recorded for the point spread, though the moneyline has held steady since opening.",
+                    "display_text": "Summary: The Dallas Cowboys enter this early-season 2026 matchup displaying an explosive offensive scheme that has overwhelmed opponents through the first two weeks. Arizona's defense has struggled significantly to contain the run and prevent explosive plays in the secondary. Dak Prescott and the Dallas offense should capitalize on these glaring defensive vulnerabilities early and often. Meanwhile, the Cardinals' offensive unit lacks the consistency needed to keep pace in a potential shootout against top-tier competition. Expect Dallas to control the tempo from the opening whistle and secure a commanding victory on the road.\n\nSplits and Direction: An estimated 84 percent of the public moneyline handle is backing the heavily favored Cowboys at -535, while the point spread remains unposted by major sportsbooks for this matchup. Due to the lack of an official spread, no line movement has been recorded for the point spread, though the moneyline has held steady since opening.",
+                    "generated_at": "2026-08-18T04:32:08.060239+00:00",
+                    "odds_hash": "14ae93424453fd2f",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 }
               ]
