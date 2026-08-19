@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T20:23:05.943732+00:00",
+  "generated_at": "2026-08-19T22:16:06.392713+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -124,7 +124,6 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 5,
                   "gemini_prediction": {
                     "winner": "Los Angeles Chargers",
                     "confidence": 61,
@@ -137,6 +136,7 @@
                     "odds_hash": "c70ed9fdeb375ac1",
                     "model": "gemini-3.5-flash-lite"
                   },
+                  "matchup_rank": 5,
                   "is_slot_pick": false
                 },
                 {
@@ -226,7 +226,6 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 13,
                   "gemini_prediction": {
                     "winner": "Las Vegas Raiders",
                     "confidence": 56,
@@ -239,6 +238,7 @@
                     "odds_hash": "386ae396b530f96c",
                     "model": "gemini-3.5-flash-lite"
                   },
+                  "matchup_rank": 13,
                   "is_slot_pick": false
                 },
                 {
@@ -464,7 +464,6 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 12,
                   "gemini_prediction": {
                     "winner": "Minnesota Vikings",
                     "confidence": 68,
@@ -477,6 +476,7 @@
                     "odds_hash": "7eaa5856b2261f5a",
                     "model": "gemini-3.5-flash-lite"
                   },
+                  "matchup_rank": 12,
                   "is_slot_pick": false
                 }
               ]
@@ -519,7 +519,6 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 8,
                   "gemini_prediction": {
                     "winner": "Los Angeles Rams",
                     "confidence": 75,
@@ -532,6 +531,7 @@
                     "odds_hash": "27ad95a98a7bae37",
                     "model": "gemini-3.5-flash-lite"
                   },
+                  "matchup_rank": 8,
                   "is_slot_pick": true
                 },
                 {
@@ -628,7 +628,6 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 11,
                   "gemini_prediction": {
                     "winner": "Seattle Seahawks",
                     "confidence": 68,
@@ -641,6 +640,7 @@
                     "odds_hash": "1f987399be774425",
                     "model": "gemini-3.5-flash-lite"
                   },
+                  "matchup_rank": 11,
                   "is_slot_pick": false
                 }
               ]
