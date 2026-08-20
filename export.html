@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sports Dashboard - Export</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0d10;
+    --bg-panel: #12161b;
+    --line: #232a31;
+    --turf: #2f8f5b;
+    --turf-bright: #43c179;
+    --chalk: #e8ecef;
+    --dim: #8a95a1;
+    --gold: #e0a63c;
+    --dk-green: #53d337;
+    --fd-blue: #1493ff;
+    --loss-red: #e2584a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse at top, #131a1f 0%, var(--bg) 55%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0 1px, transparent 1px 64px);
+    color:var(--chalk);
+    font-family:'JetBrains Mono', monospace;
+    min-height:100vh;
+    padding-bottom:4rem;
+  }
+  .nav-bar{
+    position:sticky; top:0; z-index:100;
+    background:var(--bg);
+    border-bottom:1px solid transparent;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .nav-bar.stuck{
+    border-bottom-color:var(--line);
+    box-shadow:0 8px 20px -12px rgba(0,0,0,0.6);
+  }
+  .site-nav{
+    max-width:1180px; margin:0 auto; padding:0.9rem 1.5rem;
+    display:flex; flex-wrap:wrap; gap:1.55rem; align-items:center;
+    position:relative;
+  }
+  .hamburger-btn{
+    display:none; order:1;
+    background:transparent; border:1px solid var(--line); border-radius:6px;
+    color:var(--chalk); font-size:1.1rem; line-height:1;
+    padding:0.32rem 0.55rem; cursor:pointer;
+  }
+  .nav-links{display:flex; gap:1.25rem; align-items:center; order:1;}
+  .site-nav a{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.82rem;
+    text-transform:uppercase; letter-spacing:0.04em;
+    color:var(--dim); text-decoration:none;
+    padding:0.3rem 0; border-bottom:2px solid transparent;
+  }
+  .site-nav a:hover{color:var(--chalk);}
+  .site-nav a.active{color:var(--turf-bright); border-bottom-color:var(--turf-bright);}
+
+  @media (max-width: 760px){
+    .hamburger-btn{display:flex; align-items:center; justify-content:center;}
+    .nav-links{
+      display:none; position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; align-items:flex-start; gap:0.6rem;
+      background:var(--bg-panel); border:1px solid var(--line); border-top:none;
+      padding:0.85rem 1.5rem; z-index:150;
+    }
+    .nav-links.open{display:flex;}
+  }
+
+  .hero{
+    padding:2.5rem 1.5rem 1.75rem;
+    border-bottom:1px solid var(--line);
+    position:relative; overflow:hidden;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(120deg, rgba(47,143,91,0.16), transparent 55%);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:1180px;margin:0 auto;position:relative;}
+  .eyebrow{
+    font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.22em;
+    font-size:0.72rem; color:var(--turf-bright); font-weight:600;
+  }
+  h1{
+    font-family:'Oswald',sans-serif; font-weight:700;
+    font-size:clamp(2rem, 5vw, 3.1rem);
+    margin:0.35rem 0 0.5rem;
+  }
+  .hero p{color:var(--dim); font-size:0.9rem; max-width:38rem; margin:0;}
+
+  main{max-width:1180px; margin:0 auto; padding:2rem 1.5rem;}
+
+  .format-picker{
+    display:flex; align-items:center; gap:0.9rem; margin-bottom:2rem;
+  }
+  .format-picker span{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.82rem;
+    text-transform:uppercase; letter-spacing:0.04em; color:var(--dim);
+  }
+  .format-toggle{
+    display:flex; gap:0.25rem; background:var(--bg-panel);
+    border:1px solid var(--line); border-radius:8px; padding:0.2rem;
+  }
+  .format-btn{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.8rem;
+    text-transform:uppercase; letter-spacing:0.04em;
+    color:var(--dim); background:transparent; border:none; border-radius:6px;
+    padding:0.35rem 0.9rem; cursor:pointer; transition:all 0.12s ease;
+  }
+  .format-btn:hover{color:var(--chalk);}
+  .format-btn.active{background:var(--gold); color:#1a1400;}
+
+  section.export-group{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:12px;
+    padding:1.4rem 1.6rem; margin-bottom:1.5rem;
+  }
+  section.export-group h2{
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:1.05rem;
+    text-transform:uppercase; letter-spacing:0.03em; margin:0 0 0.3rem;
+    color:var(--turf-bright);
+  }
+  section.export-group p{color:var(--dim); font-size:0.82rem; margin:0 0 1.1rem; line-height:1.5;}
+
+  .export-cards{display:flex; flex-wrap:wrap; gap:0.9rem;}
+  .export-card{
+    flex:1 1 200px; background:#000; border:1px solid var(--line); border-radius:10px;
+    padding:1rem 1.1rem; display:flex; flex-direction:column; gap:0.6rem;
+  }
+  .export-card .card-title{
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:0.95rem;
+  }
+  .export-card .card-sub{color:var(--dim); font-size:0.75rem;}
+  .export-btn{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.78rem;
+    text-transform:uppercase; letter-spacing:0.04em;
+    color:#0e130f; background:var(--turf-bright); border:none; border-radius:6px;
+    padding:0.55rem 0.9rem; cursor:pointer; transition:opacity 0.12s ease;
+  }
+  .export-btn:hover{opacity:0.85;}
+  .export-btn:disabled{background:var(--line); color:var(--dim); cursor:not-allowed;}
+  .export-btn.picks-btn{background:var(--gold);}
+
+  .status-line{
+    font-size:0.78rem; color:var(--dim); margin-top:0.6rem; min-height:1.1rem;
+  }
+  .status-line.error{color:var(--loss-red);}
+  .status-line.ok{color:var(--dk-green);}
+</style>
+</head>
+<body>
+
+<div class="nav-bar">
+<nav class="site-nav">
+  <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">NCAAF</a>
+    <a href="ncaamb.html">NCAAMB</a>
+    <a href="nfl.html">NFL</a>
+    <a href="mlb.html">MLB</a>
+    <a href="accuracy.html">Accuracy</a>
+    <a href="export.html" class="active">Export</a>
+    <a href="picks.html">Picks</a>
+  </div>
+</nav>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Data Export</div>
+    <h1>Export</h1>
+    <p>Download the raw board data for any sport, or export every pick you've made with its result and payout. Pick a format below, then export.</p>
+  </div>
+</div>
+
+<main>
+  <div class="format-picker">
+    <span>Format:</span>
+    <div class="format-toggle">
+      <button type="button" class="format-btn active" data-format="json">JSON</button>
+      <button type="button" class="format-btn" data-format="csv">CSV</button>
+    </div>
+  </div>
+
+  <section class="export-group">
+    <h2>Sport Data</h2>
+    <p>Every game currently on the board for that sport (schedule, odds, records, matchup rank). JSON exports the exact file the site itself reads; CSV flattens it to one row per game.</p>
+    <div class="export-cards">
+      <div class="export-card">
+        <div class="card-title">NCAAF</div>
+        <div class="card-sub">College football</div>
+        <button type="button" class="export-btn" data-sport="cfb">Export</button>
+      </div>
+      <div class="export-card">
+        <div class="card-title">NFL</div>
+        <div class="card-sub">Pro football</div>
+        <button type="button" class="export-btn" data-sport="nfl">Export</button>
+      </div>
+      <div class="export-card">
+        <div class="card-title">MLB</div>
+        <div class="card-sub">Baseball</div>
+        <button type="button" class="export-btn" data-sport="mlb">Export</button>
+      </div>
+    </div>
+    <div class="status-line" id="sportStatus"></div>
+  </section>
+
+  <section class="export-group">
+    <h2>My Picks</h2>
+    <p>Every pick you've saved, across all sports -- matchup, which side you took, whether it was ATS or ML, the spread or money line you locked in, and how much a $10 bet on it won or lost (blank if the game hasn't finished yet).</p>
+    <div class="export-cards">
+      <div class="export-card">
+        <div class="card-title">All Picks</div>
+        <div class="card-sub">NCAAF + NFL + MLB</div>
+        <button type="button" class="export-btn picks-btn" id="exportPicksBtn">Export</button>
+      </div>
+    </div>
+    <div class="status-line" id="picksStatus"></div>
+  </section>
+</main>
+
+<script src="picks-store.js"></script>
+<script>
+(function(){
+  const bar = document.querySelector('.nav-bar');
+  if (!bar) return;
+  const onScroll = () => bar.classList.toggle('stuck', window.scrollY > 2);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+initHamburgerMenu();
+</script>
+<script src="site-key.js"></script>
+<script>
+const SPORT_URLS = { cfb: 'data/ncaaf_dashboard.json', nfl: 'data/nfl_dashboard.json', mlb: 'data/mlb_dashboard.json' };
+const SPORT_LABEL = { cfb: 'NCAAF', nfl: 'NFL', mlb: 'MLB' };
+const SCORES_URL = 'data/scores.json';
+
+let currentFormat = 'json';
+
+document.querySelectorAll('.format-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.format-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFormat = btn.dataset.format;
+  });
+});
+
+function setStatus(id, msg, cls) {
+  const el = document.getElementById(id);
+  el.textContent = msg || '';
+  el.className = 'status-line' + (cls ? ' ' + cls : '');
+}
+
+function downloadBlob(filename, content, mime) {
+  const blob = new Blob([content], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+// Basic RFC4180-ish CSV escaping: wrap in quotes and double up any quotes
+// whenever a value contains a comma, quote, or newline.
+function csvCell(val) {
+  if (val === null || val === undefined) return '';
+  const s = String(val);
+  if (/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+  return s;
+}
+
+function toCsv(rows, columns) {
+  const header = columns.map(csvCell).join(',');
+  const lines = rows.map(row => columns.map(col => csvCell(row[col])).join(','));
+  return [header, ...lines].join('\r\n');
+}
+
+// ---------------------------------------------------------------------
+// Sport data export
+// ---------------------------------------------------------------------
+
+function flattenSportGames(sport, data) {
+  const rows = [];
+  (data.weeks || []).forEach(period => {
+    const periodLabel = sport === 'mlb'
+      ? (period.day_label || period.date || '')
+      : `Week ${period.week}`;
+    (period.days || []).forEach(day => {
+      (day.time_slots || []).forEach(slot => {
+        (slot.games || []).forEach(g => {
+          const dk = g.odds && g.odds.draftkings || {};
+          const fd = g.odds && g.odds.fanduel || {};
+          rows.push({
+            'Period': periodLabel,
+            'Date': day.date || '',
+            'Weekday': day.weekday || '',
+            'Time Slot': slot.slot || '',
+            'Away Team': g.away_team || '',
+            'Away Record': g.away_record || '',
+            'Home Team': g.home_team || '',
+            'Home Record': g.home_record || '',
+            'Channel': g.channel || '',
+            'Venue': g.venue || '',
+            'Start Time (UTC)': g.start_time || '',
+            'DK Spread Away': dk.spread && dk.spread.away ? dk.spread.away.line : '',
+            'DK Spread Home': dk.spread && dk.spread.home ? dk.spread.home.line : '',
+            'DK ML Away': dk.moneyline && dk.moneyline.away ? dk.moneyline.away.american : '',
+            'DK ML Home': dk.moneyline && dk.moneyline.home ? dk.moneyline.home.american : '',
+            'FD Spread Away': fd.spread && fd.spread.away ? fd.spread.away.line : '',
+            'FD Spread Home': fd.spread && fd.spread.home ? fd.spread.home.line : '',
+            'FD ML Away': fd.moneyline && fd.moneyline.away ? fd.moneyline.away.american : '',
+            'FD ML Home': fd.moneyline && fd.moneyline.home ? fd.moneyline.home.american : '',
+            'Matchup Rank': g.matchup_rank != null ? g.matchup_rank : '',
+            'Slot Pick': g.is_slot_pick ? 'Yes' : 'No',
+          });
+        });
+      });
+    });
+  });
+  return rows;
+}
+
+const SPORT_CSV_COLUMNS = [
+  'Period', 'Date', 'Weekday', 'Time Slot', 'Away Team', 'Away Record',
+  'Home Team', 'Home Record', 'Channel', 'Venue', 'Start Time (UTC)',
+  'DK Spread Away', 'DK Spread Home', 'DK ML Away', 'DK ML Home',
+  'FD Spread Away', 'FD Spread Home', 'FD ML Away', 'FD ML Home',
+  'Matchup Rank', 'Slot Pick',
+];
+
+document.querySelectorAll('.export-btn[data-sport]').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const sport = btn.dataset.sport;
+    setStatus('sportStatus', `Fetching ${SPORT_LABEL[sport]} data...`);
+    try {
+      const res = await fetch(SPORT_URLS[sport], { cache: 'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      if (currentFormat === 'json') {
+        downloadBlob(`${sport}_dashboard.json`, JSON.stringify(data, null, 2), 'application/json');
+      } else {
+        const rows = flattenSportGames(sport, data);
+        downloadBlob(`${sport}_dashboard.csv`, toCsv(rows, SPORT_CSV_COLUMNS), 'text/csv');
+      }
+      setStatus('sportStatus', `Downloaded ${SPORT_LABEL[sport]} (${currentFormat.toUpperCase()}).`, 'ok');
+    } catch (e) {
+      setStatus('sportStatus', `Couldn't export ${SPORT_LABEL[sport]}: ${e.message}`, 'error');
+    }
+  });
+});
+
+// ---------------------------------------------------------------------
+// Picks export
+// ---------------------------------------------------------------------
+
+const PICKS_CSV_COLUMNS = [
+  'Sport', 'Period', 'Date', 'Weekday', 'Time Slot', 'Away Team', 'Home Team',
+  'Channel', 'Pick Type', 'Your Pick', 'Spread', 'Money Line', 'Result',
+  'Amount Won/Lost ($10 bet)',
+];
+
+function buildPickRows(sport, data, scores) {
+  const rows = [];
+  const label = SPORT_LABEL[sport];
+  (data.weeks || []).forEach(period => {
+    const periodLabel = sport === 'mlb'
+      ? (period.day_label || period.date || '')
+      : `Week ${period.week}`;
+    (period.days || []).forEach(day => {
+      (day.time_slots || []).forEach(slot => {
+        (slot.games || []).forEach(g => {
+          const pick = getPick(sport, g.id);
+          if (!pick) return;
+          const gScore = (scores[sport] || {})[String(g.id)];
+          const outcome = _myPickResult(g, gScore, pick);
+          const entry = pick.odds ? (pick.odds.draftkings || pick.odds.fanduel) : null;
+          const pickedTeam = pick.side === 'home' ? g.home_team : g.away_team;
+          let payout10 = pick.payout10;
+          if (payout10 === undefined) payout10 = calcPayout(entry ? entry.american : null, 10);
+          let amount = '';
+          let result = 'Pending';
+          if (outcome === 'hit') { result = 'Win'; amount = payout10 != null ? payout10 : ''; }
+          else if (outcome === 'miss') { result = 'Loss'; amount = -10; }
+          rows.push({
+            'Sport': label,
+            'Period': periodLabel,
+            'Date': day.date || '',
+            'Weekday': day.weekday || '',
+            'Time Slot': slot.slot || '',
+            'Away Team': g.away_team || '',
+            'Home Team': g.home_team || '',
+            'Channel': g.channel || '',
+            'Pick Type': pick.market === 'spread' ? 'ATS' : 'ML',
+            'Your Pick': `${pickedTeam || ''} (${pick.side === 'home' ? 'Home' : 'Away'})`,
+            'Spread': pick.market === 'spread' && entry ? entry.line : '',
+            'Money Line': pick.market === 'moneyline' && entry ? entry.american : '',
+            'Result': result,
+            'Amount Won/Lost ($10 bet)': amount,
+          });
+        });
+      });
+    });
+  });
+  return rows;
+}
+
+document.getElementById('exportPicksBtn').addEventListener('click', async () => {
+  setStatus('picksStatus', 'Gathering picks...');
+  try {
+    const sports = ['cfb', 'nfl', 'mlb'];
+    const [datasets, scoresRes] = await Promise.all([
+      Promise.all(sports.map(async sport => {
+        try {
+          const res = await fetch(SPORT_URLS[sport], { cache: 'no-store' });
+          if (!res.ok) return { sport, data: null };
+          return { sport, data: await res.json() };
+        } catch (e) { return { sport, data: null }; }
+      })),
+      fetch(SCORES_URL, { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).catch(() => ({})),
+    ]);
+    const scores = scoresRes || {};
+
+    let allRows = [];
+    datasets.forEach(({ sport, data }) => {
+      if (!data) return;
+      allRows = allRows.concat(buildPickRows(sport, data, scores));
+    });
+
+    if (allRows.length === 0) {
+      setStatus('picksStatus', "No saved picks found on this board's current data -- a pick made on a game that's since aged off the board won't show up here.", 'error');
+      return;
+    }
+
+    if (currentFormat === 'json') {
+      downloadBlob('my_picks.json', JSON.stringify(allRows, null, 2), 'application/json');
+    } else {
+      downloadBlob('my_picks.csv', toCsv(allRows, PICKS_CSV_COLUMNS), 'text/csv');
+    }
+    setStatus('picksStatus', `Exported ${allRows.length} pick(s) (${currentFormat.toUpperCase()}).`, 'ok');
+  } catch (e) {
+    setStatus('picksStatus', `Couldn't export picks: ${e.message}`, 'error');
+  }
+});
+</script>
+</body>
+</html>

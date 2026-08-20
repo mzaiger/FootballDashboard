@@ -271,15 +271,22 @@ function formatChannelForPill(channel) {
 }
 
 const PICK_COOKIE_PREFIX = 'pick_';
-// Effectively "never expires" -- 400 days is the actual ceiling: Chrome
-// (and other Chromium-based browsers) caps every cookie's expiry at 400
-// days from when it's SET, regardless of what a larger value asks for, so
-// requesting anything past that doesn't buy any more real lifetime, it
-// just gets silently clamped down to 400 by the browser itself. A pick
-// that's never touched again will still expire after 400 days; there's
-// no way to set a browser cookie that truly never expires.
-const PICK_COOKIE_DAYS = 400;
 const PICK_LOCKED_STATUSES = ['final', 'in_progress', 'live', 'halftime'];
+
+// Picks expire every August 1st (UTC) instead of on a rolling day-count --
+// that's shortly before each new season's week 1 (Aug 22), so last
+// season's picks clear out on their own before the new one starts. Chrome
+// (and other Chromium-based browsers) caps a cookie's expiry at 400 days
+// out from when it's SET regardless of the date requested, but Aug 1 is
+// always well within 400 days of "now" for this use, so it's never
+// clamped in practice.
+function _nextAug1Utc() {
+  const now = new Date();
+  const year = now.getUTCFullYear();
+  let aug1 = new Date(Date.UTC(year, 7, 1, 0, 0, 0));
+  if (now >= aug1) aug1 = new Date(Date.UTC(year + 1, 7, 1, 0, 0, 0));
+  return aug1;
+}
 
 function isPickLocked(gScore) {
   if (!gScore || !gScore.status) return false;
@@ -293,8 +300,8 @@ function _pickCookieName(sport, gameId) {
   return `${PICK_COOKIE_PREFIX}${sport}_${gameId}`;
 }
 
-function _setCookie(name, value, days) {
-  const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
+function _setCookie(name, value) {
+  const expires = _nextAug1Utc().toUTCString();
   document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
 }
 
@@ -311,12 +318,10 @@ function getPick(sport, gameId) {
       const decoded = decodeURIComponent(raw.slice(target.length));
       try {
         const parsed = JSON.parse(decoded);
-        // Sliding expiry: reading a pick refreshes its 400-day clock, not
-        // just setting/changing it -- so a pick that's looked at again
-        // (any page load that renders its game) effectively never
-        // expires, rather than quietly expiring 400 days after it was
-        // FIRST made regardless of how often it's since been viewed.
-        _setCookie(_pickCookieName(sport, gameId), decoded, PICK_COOKIE_DAYS);
+        // Refresh the Aug 1 expiry on every read too, not just on
+        // set/change -- harmless once the target date is fixed, and
+        // keeps behavior consistent if this ever changes again.
+        _setCookie(_pickCookieName(sport, gameId), decoded);
         return parsed;
       } catch (e) { return null; }
     }
@@ -386,7 +391,7 @@ function togglePick(sport, gameId, market, side, oddsSnapshot) {
     payout10: calcPayout(americanOdds, 10),
     payout100: calcPayout(americanOdds, 100),
   };
-  _setCookie(_pickCookieName(sport, gameId), JSON.stringify(value), PICK_COOKIE_DAYS);
+  _setCookie(_pickCookieName(sport, gameId), JSON.stringify(value));
   return value;
 }
 

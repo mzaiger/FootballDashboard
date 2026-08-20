@@ -86,6 +86,11 @@
     text-transform:uppercase; letter-spacing:0.02em;
   }
   .day-heading .date{color:var(--dim); font-size:0.85rem;}
+  @media (max-width: 480px){
+    .day-heading{gap:0.5rem;}
+    .day-heading .weekday{font-size:1.2rem;}
+    .day-heading .date{font-size:0.65rem;}
+  }
   .day-heading .count{
     margin-left:auto; color:var(--dim); font-size:0.78rem;
   }
@@ -576,6 +581,7 @@
     <a href="nfl.html">NFL</a>
     <a href="mlb.html">MLB</a>
     <a href="accuracy.html">Accuracy</a>
+    <a href="export.html">Export</a>
     <a href="picks.html">Picks</a>
   </div>
   <div class="filter-bar-inner">
@@ -875,5 +881,6 @@ initViewToggle();
 initHamburgerMenu();
 init();
 </script>
+<script src="site-key.js"></script>
 </body>
 </html>

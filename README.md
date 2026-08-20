@@ -17,13 +17,41 @@ shows every pick you've ever made, no matter how long ago.
 
 Every page has:
 - A **hamburger menu** on mobile (upper-left) for the NCAAF / NCAAMB / NFL
-  / MLB / Accuracy / Picks nav links; shown inline on desktop.
+  / MLB / Accuracy / Export / Picks nav links; shown inline on desktop.
 - **Open / Closed / All pills**, showing counts, next to the nav — Open =
   game hasn't started, Closed = game has started or finished. Defaults to
   **All** on every page; your choice is remembered per-page.
 - A **Tiles/Rows toggle** — Tiles is the original card grid, Rows lays the
   same games out as a compact list. Defaults to Rows on desktop and Tiles
   on mobile, remembers whichever you pick after that (stored per device).
+- A floating **Key** button (bottom-right, via `site-key.js`) that opens a
+  glossary of every abbreviation on the site (ML, ATS, DK, FD, AP, and the
+  sport names) plus a note on the cookie expiry policy.
+
+### Export page
+
+`export.html` lets you download the board data or your own picks as
+**JSON** or **CSV** (pick the format at the top of the page):
+- **Sport Data** — the full current NCAAF/NFL/MLB dataset. JSON downloads
+  the exact file the site itself reads; CSV flattens it to one row per
+  game (teams, records, channel, DK/FD spread + moneyline, matchup rank).
+- **My Picks** — every pick saved in your cookies, across all three
+  sports, with the matchup, pick type (ATS/ML), which side you took, the
+  spread or money line you locked in, and how much a $10 bet on it won or
+  lost (blank/"Pending" if the game hasn't finished). A pick on a game
+  that's since aged off the live board's JSON won't appear, since the
+  export needs that game's data to fill in the row.
+
+### Season year
+
+NCAAF and NFL no longer need a manual year bump each season. Both
+`build_ncaaf_dashboard.py` and `build_nfl_dashboard.py` derive the current
+season year from today's date (`current_season_year()` in each script):
+games from July onward belong to the season starting that same calendar
+year; games from January–June belong to the season that started the
+*previous* calendar year (bowl/playoff season). Pass `--year` explicitly
+to override it for a one-off manual run. MLB was already date-driven and
+didn't need this.
 
 | | NCAAF | NFL | MLB | NCAAMB |
 |---|---|---|---|---|
@@ -238,12 +266,11 @@ this week, and how much would $10/pick have made me this week":
 Clicking a pick button stores a cookie with the market/side you picked,
 plus a snapshot of that book's line **at the moment you clicked** — so
 grading stays correct even if the book later stops publishing that line
-entirely. Unpicked cells always show today's live odds. Cookies are set
-for 400 days (the actual ceiling — Chrome and other Chromium browsers cap
-every cookie's expiry at 400 days no matter what a larger value asks for,
-so there's no way to set one that truly never expires) and get a fresh
-400-day clock every time the pick is read again, not just when it's made
-or changed — so a pick you keep coming back to effectively never expires.
+entirely. Unpicked cells always show today's live odds. Cookies expire
+every **August 1st (UTC)** — shortly before each new season's week 1 —
+so last season's picks clear out on their own before the new one starts,
+rather than sticking around indefinitely. This is also noted in the Key
+(see below) on every page.
 
 ## The Accuracy page
 
