@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T19:34:47.265338+00:00",
+  "generated_at": "2026-08-20T19:44:45.040843+00:00",
   "cfb": {},
   "nfl": {
     "401873271": {
@@ -533,40 +533,40 @@
       "status_detail": "Final/10"
     },
     "401816603": {
-      "home_score": 6,
+      "home_score": 9,
       "away_score": 10,
-      "status": "in_progress",
-      "status_detail": "Bot 9th"
+      "status": "final",
+      "status_detail": "Final"
     },
     "401816602": {
       "home_score": 5,
       "away_score": 2,
       "status": "in_progress",
-      "status_detail": "Bot 8th"
+      "status_detail": "Top 9th"
     },
     "401816604": {
       "home_score": 1,
       "away_score": 5,
       "status": "in_progress",
-      "status_detail": "End 8th"
+      "status_detail": "Bot 9th"
     },
     "401816606": {
-      "home_score": 3,
+      "home_score": 5,
       "away_score": 0,
       "status": "in_progress",
-      "status_detail": "Bot 4th"
+      "status_detail": "Top 5th"
     },
     "401816608": {
       "home_score": 6,
-      "away_score": 3,
+      "away_score": 4,
       "status": "in_progress",
-      "status_detail": "Top 4th"
+      "status_detail": "Bot 4th"
     },
     "401877087": {
       "home_score": 0,
       "away_score": 1,
       "status": "in_progress",
-      "status_detail": "Bot 6th"
+      "status_detail": "Top 7th"
     }
   }
 }
