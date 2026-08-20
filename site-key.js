@@ -7,16 +7,16 @@
 (function () {
   const STYLE = `
     #keyFabBtn{
-      position:fixed; right:1rem; bottom:1rem; z-index:400;
-      font-family:'Oswald',sans-serif; font-weight:600; font-size:0.78rem;
+      position:fixed; top:0.35rem; right:0.35rem; z-index:400;
+      font-family:'Oswald',sans-serif; font-weight:600; font-size:0.62rem;
       text-transform:uppercase; letter-spacing:0.04em;
       color:#e8ecef; background:#12161b; border:1px solid #2a323a;
-      border-radius:999px; padding:0.5rem 0.9rem; cursor:pointer;
-      box-shadow:0 6px 18px -6px rgba(0,0,0,0.6);
-      display:flex; align-items:center; gap:0.35rem;
+      border-radius:999px; padding:0.28rem 0.55rem; cursor:pointer;
+      box-shadow:0 4px 12px -6px rgba(0,0,0,0.6);
+      display:flex; align-items:center; gap:0.25rem;
     }
     #keyFabBtn:hover{border-color:#e0a63c; color:#e0a63c;}
-    #keyFabBtn .key-fab-icon{font-size:0.9rem;}
+    #keyFabBtn .key-fab-icon{font-size:0.72rem;}
     #keyModalOverlay{
       display:none; position:fixed; inset:0; z-index:500;
       background:rgba(4,6,8,0.72);
