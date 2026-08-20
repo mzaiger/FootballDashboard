@@ -464,9 +464,14 @@ def match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims)
         # up randomly picking whichever alternate line happened to match
         # first. Moneyline has no alternates, so this only applies to spread.
         if market == "spread":
-            if row.get("is_main_line") is not True:
+            # 1. Explicitly drop known alternate lines
+            if row.get("is_alternate_line"):
                 continue
-
+    
+            # 2. Explicitly require the main line flag (or accept None as a strict fallback)
+            if row.get("is_main_line") is False:
+                continue
+                
         # Prefer SharpAPI's own selection_type field ("home"/"away", always
         # relative to THIS row's own home_team/away_team) over parsing the
         # `selection` text -- selection is sometimes an abbreviated form
