@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T22:46:27.420658+00:00",
+  "generated_at": "2026-08-20T01:04:19.221460+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -673,13 +673,13 @@
                   "matchup_rank": 11,
                   "gemini_prediction": {
                     "winner": "Los Angeles Chargers",
-                    "confidence": 62,
+                    "confidence": 58,
                     "ats_pick": null,
                     "ats_confidence": 0,
-                    "analysis": "The Los Angeles Chargers enter this week 3 matchup with strong offensive execution that has driven their early success. San Francisco 49ers defense has shown vulnerabilities in stopping the intermediate passing game during the opening weeks of the season. Los Angeles holds a slight edge in red-zone efficiency, which should prove decisive in a tightly contested game. The 49ers will rely heavily on their running game, but the Chargers have fortified their front seven against the rush. Ultimately, home-field advantage tips the scale in favor of the Chargers to secure a narrow victory.",
-                    "splits_and_direction": "Based on standard public betting tendencies without official data, approximately 58 percent of moneyline bets are currently backing the home Chargers. The moneyline has seen a slight shift from the opening odds as early money came in on Los Angeles.",
-                    "display_text": "Summary: The Los Angeles Chargers enter this week 3 matchup with strong offensive execution that has driven their early success. San Francisco 49ers defense has shown vulnerabilities in stopping the intermediate passing game during the opening weeks of the season. Los Angeles holds a slight edge in red-zone efficiency, which should prove decisive in a tightly contested game. The 49ers will rely heavily on their running game, but the Chargers have fortified their front seven against the rush. Ultimately, home-field advantage tips the scale in favor of the Chargers to secure a narrow victory.\n\nSplits and Direction: Based on standard public betting tendencies without official data, approximately 58 percent of moneyline bets are currently backing the home Chargers. The moneyline has seen a slight shift from the opening odds as early money came in on Los Angeles.",
-                    "generated_at": "2026-08-19T22:46:07.499936+00:00",
+                    "analysis": "The Los Angeles Chargers return home for a pivotal Week 3 matchup in the 2026 NFL season with early momentum on their side. San Francisco 49ers travel for this contest carrying adjustments needed from their opening two games of the current campaign. Both rosters feature heavily productive offensive units that have displayed strong efficiency through the air to start the year. Defensively, the Chargers have shown slightly better containment in the red zone compared to the early defensive lapses of the 49ers. Ultimately, home-field advantage and a marginally more balanced current-season execution give Los Angeles the edge to secure a close victory.",
+                    "splits_and_direction": "Exact betting splits data is not available, but public tendencies lean toward the home underdog status of the Chargers while sharp money backs the 49ers. The moneyline has seen minor shifts toward Los Angeles at -142 since opening, and no official spread has been posted by all major sportsbooks yet.",
+                    "display_text": "Summary: The Los Angeles Chargers return home for a pivotal Week 3 matchup in the 2026 NFL season with early momentum on their side. San Francisco 49ers travel for this contest carrying adjustments needed from their opening two games of the current campaign. Both rosters feature heavily productive offensive units that have displayed strong efficiency through the air to start the year. Defensively, the Chargers have shown slightly better containment in the red zone compared to the early defensive lapses of the 49ers. Ultimately, home-field advantage and a marginally more balanced current-season execution give Los Angeles the edge to secure a close victory.\n\nSplits and Direction: Exact betting splits data is not available, but public tendencies lean toward the home underdog status of the Chargers while sharp money backs the 49ers. The moneyline has seen minor shifts toward Los Angeles at -142 since opening, and no official spread has been posted by all major sportsbooks yet.",
+                    "generated_at": "2026-08-20T01:03:51.462234+00:00",
                     "odds_hash": "b7a52e0f94f7d84e",
                     "model": "gemini-3.5-flash-lite"
                   },
@@ -973,12 +973,12 @@
                   "gemini_prediction": {
                     "winner": "Miami Dolphins",
                     "confidence": 58,
-                    "ats_pick": "Miami Dolphins",
-                    "ats_confidence": 55,
-                    "analysis": "The Miami Dolphins return home for this Week 3 matchup seeking to leverage their offensive efficiency displayed during the early 2026 campaign. New York Giants travel with a restructured roster that has shown flashes of defensive resilience but struggles to maintain offensive consistency on the road. Miami's home-field advantage provides a crucial boost in what projects to be a tightly contested, low-scoring affair. The Dolphins' ability to exploit opponent turnovers will likely dictate the narrow margin of victory in the fourth quarter. Ultimately, Miami does enough on special teams and late-game execution to secure the outright win and cover the modest spread.",
-                    "splits_and_direction": "Based on current public tendencies, approximately 58 percent of moneyline bets and 54 percent of spread wagers are backing the home Dolphins. The point spread has slightly tightened from an open of Miami -3 down to -2.5, while the moneyline has adjusted marginally in response to early balanced action.",
-                    "display_text": "Summary: The Miami Dolphins return home for this Week 3 matchup seeking to leverage their offensive efficiency displayed during the early 2026 campaign. New York Giants travel with a restructured roster that has shown flashes of defensive resilience but struggles to maintain offensive consistency on the road. Miami's home-field advantage provides a crucial boost in what projects to be a tightly contested, low-scoring affair. The Dolphins' ability to exploit opponent turnovers will likely dictate the narrow margin of victory in the fourth quarter. Ultimately, Miami does enough on special teams and late-game execution to secure the outright win and cover the modest spread.\n\nSplits and Direction: Based on current public tendencies, approximately 58 percent of moneyline bets and 54 percent of spread wagers are backing the home Dolphins. The point spread has slightly tightened from an open of Miami -3 down to -2.5, while the moneyline has adjusted marginally in response to early balanced action.",
-                    "generated_at": "2026-08-19T22:46:17.679337+00:00",
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "The New York Giants travel to face the Miami Dolphins in an interconference matchup during the early portion of the 2026 NFL season. Miami holds home-field advantage and enters this week 3 contest as a slight favorite according to current DraftKings odds. Both teams are navigating the challenges of the current 2026 campaign, making roster execution vital for success in this game. The Dolphins' offensive scheme should be able to exploit certain vulnerabilities in the Giants' defensive unit. Ultimately, playing at home gives Miami the narrow edge needed to secure a hard-fought victory.",
+                    "splits_and_direction": "Based on early public tendencies, roughly 58 percent of moneyline bets are currently backing the Miami Dolphins at -125. Both the moneyline and spread have remained relatively stable since opening without significant market movement.",
+                    "display_text": "Summary: The New York Giants travel to face the Miami Dolphins in an interconference matchup during the early portion of the 2026 NFL season. Miami holds home-field advantage and enters this week 3 contest as a slight favorite according to current DraftKings odds. Both teams are navigating the challenges of the current 2026 campaign, making roster execution vital for success in this game. The Dolphins' offensive scheme should be able to exploit certain vulnerabilities in the Giants' defensive unit. Ultimately, playing at home gives Miami the narrow edge needed to secure a hard-fought victory.\n\nSplits and Direction: Based on early public tendencies, roughly 58 percent of moneyline bets are currently backing the Miami Dolphins at -125. Both the moneyline and spread have remained relatively stable since opening without significant market movement.",
+                    "generated_at": "2026-08-20T01:04:01.347325+00:00",
                     "odds_hash": "4835e0c3a972ac3b",
                     "model": "gemini-3.5-flash-lite"
                   },
@@ -1118,10 +1118,10 @@
                     "confidence": 88,
                     "ats_pick": null,
                     "ats_confidence": 0,
-                    "analysis": "The Dallas Cowboys enter this week three matchup displaying an elite offensive rhythm backed by exceptional quarterback play and efficient red-zone execution. Arizona's defense has struggled significantly through the first two weeks of the 2026 season, giving up explosive plays and failing to generate consistent pass rush. Meanwhile, the Dallas defensive unit continues to shut down opposing ground attacks, forcing opponents into predictable passing situations. Although playing on the road introduces minor challenges, the sheer talent discrepancy on both sides of the ball heavily favors the visiting squad. Expect the Cowboys to control the tempo from the opening whistle and secure a decisive victory over the Cardinals.",
-                    "splits_and_direction": "Approximately 82% of public bets on the moneyline are backing the heavily favored Dallas Cowboys. The moneyline has significantly shortened for Dallas since opening, reflecting overwhelming public confidence.",
-                    "display_text": "Summary: The Dallas Cowboys enter this week three matchup displaying an elite offensive rhythm backed by exceptional quarterback play and efficient red-zone execution. Arizona's defense has struggled significantly through the first two weeks of the 2026 season, giving up explosive plays and failing to generate consistent pass rush. Meanwhile, the Dallas defensive unit continues to shut down opposing ground attacks, forcing opponents into predictable passing situations. Although playing on the road introduces minor challenges, the sheer talent discrepancy on both sides of the ball heavily favors the visiting squad. Expect the Cowboys to control the tempo from the opening whistle and secure a decisive victory over the Cardinals.\n\nSplits and Direction: Approximately 82% of public bets on the moneyline are backing the heavily favored Dallas Cowboys. The moneyline has significantly shortened for Dallas since opening, reflecting overwhelming public confidence.",
-                    "generated_at": "2026-08-19T22:46:27.416219+00:00",
+                    "analysis": "The Dallas Cowboys enter this week three matchup displaying an explosive 2026 offense that has consistently overwhelmed opposing defenses through the air and on the ground. Meanwhile, the Arizona Cardinals have struggled defensively in the early portion of the current season, lacking the personnel to stop elite tier quarterbacks. Dallas features a disciplined defensive front that should easily neutralize the limited Arizona rushing attack. Given the heavy -535 moneyline odds, the oddsmakers heavily favor the vastly superior roster construction of the Cowboys. Therefore, Dallas secures a comfortable victory on the road to continue their dominant start to the 2026 campaign.",
+                    "splits_and_direction": "Based on public betting tendencies, roughly 82 percent of moneyline bets are backing the heavy favorite Dallas Cowboys. The moneyline has shifted from an opener of -500 up to -535 in favor of the Cowboys.",
+                    "display_text": "Summary: The Dallas Cowboys enter this week three matchup displaying an explosive 2026 offense that has consistently overwhelmed opposing defenses through the air and on the ground. Meanwhile, the Arizona Cardinals have struggled defensively in the early portion of the current season, lacking the personnel to stop elite tier quarterbacks. Dallas features a disciplined defensive front that should easily neutralize the limited Arizona rushing attack. Given the heavy -535 moneyline odds, the oddsmakers heavily favor the vastly superior roster construction of the Cowboys. Therefore, Dallas secures a comfortable victory on the road to continue their dominant start to the 2026 campaign.\n\nSplits and Direction: Based on public betting tendencies, roughly 82 percent of moneyline bets are backing the heavy favorite Dallas Cowboys. The moneyline has shifted from an opener of -500 up to -535 in favor of the Cowboys.",
+                    "generated_at": "2026-08-20T01:04:11.493643+00:00",
                     "odds_hash": "14ae93424453fd2f",
                     "model": "gemini-3.5-flash-lite"
                   },
@@ -1173,7 +1173,501 @@
           ]
         }
       ]
+    },
+    {
+      "week": 4,
+      "total_games": 16,
+      "days": [
+        {
+          "date": "2026-08-27",
+          "weekday": "Thursday",
+          "game_count": 4,
+          "time_slots": [
+            {
+              "slot": "Prime Time",
+              "best_matchup_score": 25.0,
+              "pick_reason": "blended_score",
+              "games": [
+                {
+                  "id": "401873298",
+                  "start_time": "2026-08-27T23:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Buffalo Bills",
+                  "home_abbr": "BUF",
+                  "home_record": "1-0",
+                  "away_team": "Pittsburgh Steelers",
+                  "away_abbr": "PIT",
+                  "away_record": "1-0",
+                  "matchup_score": 25.0,
+                  "channel": "NFL Net, KDKA-TV",
+                  "venue": "Highmark Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 1,
+                  "is_slot_pick": true
+                },
+                {
+                  "id": "401873299",
+                  "start_time": "2026-08-28T00:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Cleveland Browns",
+                  "home_abbr": "CLE",
+                  "home_record": "0-1",
+                  "away_team": "New England Patriots",
+                  "away_abbr": "NE",
+                  "away_record": "0-0-1",
+                  "matchup_score": 53.4,
+                  "channel": "Prime Video",
+                  "venue": "Huntington Bank Field",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 10,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401873641",
+                  "start_time": "2026-08-28T00:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Las Vegas Raiders",
+                  "home_abbr": "LV",
+                  "home_record": "0-1",
+                  "away_team": "San Francisco 49ers",
+                  "away_abbr": "SF",
+                  "away_record": "0-1",
+                  "matchup_score": 73.9,
+                  "channel": "ESPN Unlmtd, Fox 5 Vegas, KPIX",
+                  "venue": "Allegiant Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 14,
+                  "is_slot_pick": false
+                }
+              ]
+            },
+            {
+              "slot": "Late Night",
+              "best_matchup_score": 29.5,
+              "pick_reason": "blended_score",
+              "games": [
+                {
+                  "id": "401873300",
+                  "start_time": "2026-08-28T02:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Los Angeles Chargers",
+                  "home_abbr": "LAC",
+                  "home_record": "1-0",
+                  "away_team": "Los Angeles Rams",
+                  "away_abbr": "LAR",
+                  "away_record": "1-0",
+                  "matchup_score": 29.5,
+                  "channel": "NFL Net, CBS LA, KCAL",
+                  "venue": "SoFi Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 5,
+                  "is_slot_pick": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "date": "2026-08-28",
+          "weekday": "Friday",
+          "game_count": 10,
+          "time_slots": [
+            {
+              "slot": "Prime Time",
+              "best_matchup_score": 27.3,
+              "pick_reason": "blended_score",
+              "games": [
+                {
+                  "id": "401873302",
+                  "start_time": "2026-08-28T22:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Baltimore Ravens",
+                  "home_abbr": "BAL",
+                  "home_record": "1-0",
+                  "away_team": "Washington Commanders",
+                  "away_abbr": "WSH",
+                  "away_record": "1-0",
+                  "matchup_score": 27.3,
+                  "channel": "NFL Net, WBAL-TV, WUSA9",
+                  "venue": "M&T Bank Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 2,
+                  "is_slot_pick": true
+                },
+                {
+                  "id": "401873614",
+                  "start_time": "2026-08-29T01:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Denver Broncos",
+                  "home_abbr": "DEN",
+                  "home_record": "1-0",
+                  "away_team": "Minnesota Vikings",
+                  "away_abbr": "MIN",
+                  "away_record": "1-0",
+                  "matchup_score": 28.4,
+                  "channel": "NFL Net, KUSA-TV (9NEWS)",
+                  "venue": "Empower Field at Mile High",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 3,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401873306",
+                  "start_time": "2026-08-28T23:30Z",
+                  "start_time_tbd": false,
+                  "home_team": "Jacksonville Jaguars",
+                  "home_abbr": "JAX",
+                  "home_record": "1-0",
+                  "away_team": "Tampa Bay Buccaneers",
+                  "away_abbr": "TB",
+                  "away_record": "1-0",
+                  "matchup_score": 31.8,
+                  "channel": "FOX30",
+                  "venue": "EverBank Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 6,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401874048",
+                  "start_time": "2026-08-29T00:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Dallas Cowboys",
+                  "home_abbr": "DAL",
+                  "home_record": "1-0",
+                  "away_team": "New Orleans Saints",
+                  "away_abbr": "NO",
+                  "away_record": "0-1",
+                  "matchup_score": 46.6,
+                  "channel": "ESPN Unlmtd, Fox 8",
+                  "venue": "AT&T Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 7,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401873301",
+                  "start_time": "2026-08-29T00:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Philadelphia Eagles",
+                  "home_abbr": "PHI",
+                  "home_record": "0-1",
+                  "away_team": "Cincinnati Bengals",
+                  "away_abbr": "CIN",
+                  "away_record": "1-0",
+                  "matchup_score": 48.9,
+                  "channel": "CBS",
+                  "venue": "Lincoln Financial Field",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 8,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401874102",
+                  "start_time": "2026-08-29T00:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Green Bay Packers",
+                  "home_abbr": "GB",
+                  "home_record": "0-1",
+                  "away_team": "Arizona Cardinals",
+                  "away_abbr": "ARI",
+                  "away_record": "1-1",
+                  "matchup_score": 52.3,
+                  "channel": "Packers TV Network",
+                  "venue": "Lambeau Field",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 9,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401873307",
+                  "start_time": "2026-08-28T23:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Carolina Panthers",
+                  "home_abbr": "CAR",
+                  "home_record": "1-1",
+                  "away_team": "Houston Texans",
+                  "away_abbr": "HOU",
+                  "away_record": "0-1",
+                  "matchup_score": 54.5,
+                  "channel": "KTRK (ABC)",
+                  "venue": "Bank of America Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 12,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401873304",
+                  "start_time": "2026-08-28T23:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Miami Dolphins",
+                  "home_abbr": "MIA",
+                  "home_record": "0-1",
+                  "away_team": "Atlanta Falcons",
+                  "away_abbr": "ATL",
+                  "away_record": "0-1",
+                  "matchup_score": 61.4,
+                  "channel": "CBS Miami",
+                  "venue": "Hard Rock Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 13,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401873305",
+                  "start_time": "2026-08-29T00:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Kansas City Chiefs",
+                  "home_abbr": "KC",
+                  "home_record": "0-1",
+                  "away_team": "Seattle Seahawks",
+                  "away_abbr": "SEA",
+                  "away_record": "0-1",
+                  "matchup_score": 73.9,
+                  "channel": "ESPN Unlmtd, KSHB, KING 5",
+                  "venue": "Arrowhead Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 15,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401873303",
+                  "start_time": "2026-08-28T23:30Z",
+                  "start_time_tbd": false,
+                  "home_team": "New York Jets",
+                  "home_abbr": "NYJ",
+                  "home_record": "0-1",
+                  "away_team": "New York Giants",
+                  "away_abbr": "NYG",
+                  "away_record": "0-1",
+                  "matchup_score": 75.0,
+                  "channel": "WCBS",
+                  "venue": "MetLife Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 16,
+                  "is_slot_pick": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "date": "2026-08-29",
+          "weekday": "Saturday",
+          "game_count": 2,
+          "time_slots": [
+            {
+              "slot": "Noon",
+              "best_matchup_score": 53.4,
+              "pick_reason": "blended_score",
+              "games": [
+                {
+                  "id": "401873308",
+                  "start_time": "2026-08-29T17:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Indianapolis Colts",
+                  "home_abbr": "IND",
+                  "home_record": "0-0-1",
+                  "away_team": "Detroit Lions",
+                  "away_abbr": "DET",
+                  "away_record": "0-1",
+                  "matchup_score": 53.4,
+                  "channel": "NFL Net, CBS4, Lions TV Network",
+                  "venue": "Lucas Oil Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 11,
+                  "is_slot_pick": true
+                }
+              ]
+            },
+            {
+              "slot": "Prime Time",
+              "best_matchup_score": 28.4,
+              "pick_reason": "blended_score",
+              "games": [
+                {
+                  "id": "401874394",
+                  "start_time": "2026-08-29T22:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Tennessee Titans",
+                  "home_abbr": "TEN",
+                  "home_record": "1-0",
+                  "away_team": "Chicago Bears",
+                  "away_abbr": "CHI",
+                  "away_record": "1-0",
+                  "matchup_score": 28.4,
+                  "channel": "NFL Net, FOX32",
+                  "venue": "Nissan Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 4,
+                  "is_slot_pick": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
-  "current_week": 2
+  "current_week": 3
 }
