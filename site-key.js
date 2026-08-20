@@ -7,7 +7,7 @@
 (function () {
   const STYLE = `
     #keyFabBtn{
-      position:fixed; top:0.35rem; right:0.35rem; z-index:400;
+      position:fixed; right:1rem; bottom:1rem; z-index:400;
       font-family:'Oswald',sans-serif; font-weight:600; font-size:0.62rem;
       text-transform:uppercase; letter-spacing:0.04em;
       color:#e8ecef; background:#12161b; border:1px solid #2a323a;
