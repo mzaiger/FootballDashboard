@@ -49,10 +49,10 @@
     #keyModal dd{margin:0 0 0.45rem; display:inline; color:#c3cad1; font-size:0.85rem;}
     #keyModal .key-row{margin-bottom:0.2rem;}
     #keyModal .key-note{
-      font-size:0.78rem; color:#8a95a1; line-height:1.5;
+      font-size:0.78rem; color:#e8ecef; line-height:1.5;
       border-top:1px dashed #2a323a; padding-top:0.9rem; margin-top:0.2rem;
+      margin-bottom:0.9rem;
     }
-    #keyModal .key-note + .key-note{border-top:none; padding-top:0;}
   `;
 
   function injectStyle() {
