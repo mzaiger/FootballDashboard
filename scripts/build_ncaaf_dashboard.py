@@ -72,7 +72,17 @@ SCOREBOARD_LIMIT = 500
 # fallback if ESPN's response is ever missing a season type entirely; see
 # get_espn_current_state()).
 SEASON_TYPE_FALLBACK = 2
-SEASON_YEAR_DEFAULT = 2026
+
+
+def current_season_year():
+    """Auto-derive the CFB season year from today's date so this never
+    needs a manual update when a new season starts. A CFB season is named
+    for the year it kicks off in (August); games played Jan-June belong to
+    the season that started the PREVIOUS calendar year (bowl season /
+    off-season). Games from July onward belong to the season starting
+    that same year."""
+    today = datetime.now(timezone.utc).date()
+    return today.year if today.month >= 7 else today.year - 1
 
 # "Main channels" = national broadcast + flagship cable. Games on ESPNU,
 # SECN, ESPN+, streaming-only, etc. are filtered out. Edit this set to
@@ -746,7 +756,7 @@ def build(year, week_start, season_type, sharp_key, channels, gemini_key=None, n
 
 def parse_args():
     p = argparse.ArgumentParser(description="Build the NCAAF betting dashboard JSON.")
-    p.add_argument("--year", type=int, default=SEASON_YEAR_DEFAULT, help="Season year")
+    p.add_argument("--year", type=int, default=None, help="Season year (default: auto-derived from today's date)")
     p.add_argument("--week", type=int, default=None, help="Starting week number (default: ESPN's current week); this week and the following week are both built")
     p.add_argument("--num-weeks", type=int, default=2, help="How many consecutive weeks to build starting at --week (default: 2)")
     p.add_argument("--season-type", type=int, default=None,
@@ -793,7 +803,8 @@ def main():
         log(f"{len(started_game_ids)} NCAAF game(s) already have a score recorded in {scores_path} -- "
             f"freezing odds and Gemini predictions for those instead of updating them.")
 
-    output = build(args.year, week, season_type, sharp_key, MAIN_CHANNELS, gemini_key,
+    year = args.year or current_season_year()
+    output = build(year, week, season_type, sharp_key, MAIN_CHANNELS, gemini_key,
                     num_weeks=args.num_weeks, previous_odds_by_id=previous_odds_by_id,
                     previous_entries_by_id=previous_entries_by_id, started_game_ids=started_game_ids)
     fresh_week_nums = [w["week"] for w in output["weeks"]]

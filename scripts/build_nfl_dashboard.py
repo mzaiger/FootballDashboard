@@ -75,7 +75,17 @@ REQUEST_TIMEOUT = 20
 # moved on to P3/regular season -- season type now comes from ESPN itself,
 # fresh, every run, unless --season-type is explicitly passed.
 SEASON_TYPE_FALLBACK = 1
-SEASON_YEAR_DEFAULT = 2026
+
+
+def current_season_year():
+    """Auto-derive the NFL season year from today's date so this never
+    needs a manual update when a new season starts. An NFL season is named
+    for the year it kicks off in (Aug/Sep); games played Jan-June belong to
+    the season that started the PREVIOUS calendar year (playoffs / Super
+    Bowl / off-season). Games from July onward belong to the season
+    starting that same year."""
+    today = datetime.now(timezone.utc).date()
+    return today.year if today.month >= 7 else today.year - 1
 
 # A team with no games played yet (e.g. before its season opener) gets this
 # win-rank value -- one worse than the worst possible real rank (32 teams
@@ -632,7 +642,7 @@ def build(year, week_start, season_type, sharp_key, gemini_key=None, num_weeks=2
 
 def parse_args():
     p = argparse.ArgumentParser(description="Build the NFL betting dashboard JSON.")
-    p.add_argument("--year", type=int, default=SEASON_YEAR_DEFAULT, help="Season year")
+    p.add_argument("--year", type=int, default=None, help="Season year (default: auto-derived from today's date)")
     p.add_argument("--week", type=int, required=False, help="Starting NFL week number (default: ESPN's current week); this week and the following week are both built")
     p.add_argument("--num-weeks", type=int, default=2, help="How many consecutive weeks to build starting at --week (default: 2)")
     p.add_argument("--season-type", type=int, default=None,
@@ -682,7 +692,8 @@ def main():
         log(f"{len(started_game_ids)} NFL game(s) already have a score recorded in {scores_path} -- "
             f"freezing odds and Gemini predictions for those instead of updating them.")
 
-    output = build(args.year, week, season_type, sharp_key, gemini_key,
+    year = args.year or current_season_year()
+    output = build(year, week, season_type, sharp_key, gemini_key,
                     num_weeks=args.num_weeks, previous_odds_by_id=previous_odds_by_id,
                     previous_entries_by_id=previous_entries_by_id, started_game_ids=started_game_ids)
     fresh_week_nums = [w["week"] for w in output["weeks"]]
