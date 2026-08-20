@@ -81,6 +81,7 @@
           <div class="key-row"><dt>MLB</dt><dd>Major League Baseball.</dd></div>
         </dl>
         <div class="key-note">Matchup / Slot Pick badges rank games by a blend of team rank, record, and posted spread -- see each page's footer for the exact formula.</div>
+        <div class="key-note"><b>+ / - odds:</b> a minus number is the favorite -- it's how much you'd need to bet to win $100 (e.g. -150 means bet $150 to win $100). A plus number is the underdog -- it's how much you'd win on a $100 bet (e.g. +150 means bet $100 to win $150). For a $10 bet: on -150, profit is 10 / (150/100) = $6.67; on +150, profit is 10 * (150/100) = $15. Either way you also get your original $10 back on a win. This applies the same way to ATS spread prices (usually around -110) and to moneyline prices.</div>
         <div class="key-note">Picks are saved in your browser's cookies and expire every <b>August 1st</b>, just before the next season's week 1 -- so last season's picks clear out on their own before the new one starts.</div>
       </div>
     `;
