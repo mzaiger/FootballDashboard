@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T20:54:44.268618+00:00",
+  "generated_at": "2026-08-21T21:04:45.939983+00:00",
   "cfb": {},
   "nfl": {
     "401873271": {
@@ -599,10 +599,10 @@
       "status_detail": "Final"
     },
     "401816617": {
-      "home_score": 1,
+      "home_score": 2,
       "away_score": 0,
       "status": "in_progress",
-      "status_detail": "Bot 3rd"
+      "status_detail": "Top 4th"
     }
   }
 }
