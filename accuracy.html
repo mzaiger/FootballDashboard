@@ -540,11 +540,11 @@ function renderAccuracy(datasets, scores, state) {
   // card), honoring bestMatchupOnly but ignoring the confidence
   // threshold entirely (see computeMyAccuracyAllTime).
   const myMl = computeMyAccuracyAllTime(datasets, scores, { ...state, confType: 'ml' });
-  document.getElementById('mlMyPct').textContent = fmtMyPct(myMl.pct);
+  document.getElementById('mlMyPct').innerHTML = fmtMyPct(myMl.pct);
   document.getElementById('mlMyFrac').textContent = myMl.total ? `${myMl.correct}/${myMl.total} correct` : 'No picks match these filters';
 
   const myAts = computeMyAccuracyAllTime(datasets, scores, { ...state, confType: 'ats' });
-  document.getElementById('atsMyPct').textContent = fmtMyPct(myAts.pct);
+  document.getElementById('atsMyPct').innerHTML = fmtMyPct(myAts.pct);
   document.getElementById('atsMyFrac').textContent = myAts.total ? `${myAts.correct}/${myAts.total} correct` : 'No picks match these filters';
 
   // Total Winnings -- Gemini's side is a hypothetical "flat $10 on every
