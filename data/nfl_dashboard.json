@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T12:42:08.305057+00:00",
+  "generated_at": "2026-08-21T16:28:08.474340+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -956,11 +956,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -125
+                          "american": 120
                         },
                         "away": {
                           "line": null,
-                          "american": 105
+                          "american": -142
                         }
                       }
                     },
@@ -971,15 +971,15 @@
                   },
                   "matchup_rank": 16,
                   "gemini_prediction": {
-                    "winner": "Miami Dolphins",
-                    "confidence": 58,
+                    "winner": "New York Giants",
+                    "confidence": 56,
                     "ats_pick": null,
                     "ats_confidence": 0,
-                    "analysis": "The New York Giants travel to Hard Rock Stadium in Week 3 of the 2026 NFL season to face the Miami Dolphins. Miami enters this matchup with home-field advantage and a slight edge in early-season offensive execution. New York has struggled to establish consistency through the air, putting pressure on their defense to keep them in games. The Dolphins possess enough explosive playmakers to pressure the Giants secondary throughout four quarters. Ultimately, home-field advantage and superior red-zone efficiency should push Miami over the top in a closely contested battle.",
-                    "splits_and_direction": "Based on early public tendencies, approximately 58% of moneyline bets are currently backing the home Dolphins as slight favorites. No official point spread is widely posted yet, so specific spread ticket counts and line movements remain unavailable.",
-                    "display_text": "Summary: The New York Giants travel to Hard Rock Stadium in Week 3 of the 2026 NFL season to face the Miami Dolphins. Miami enters this matchup with home-field advantage and a slight edge in early-season offensive execution. New York has struggled to establish consistency through the air, putting pressure on their defense to keep them in games. The Dolphins possess enough explosive playmakers to pressure the Giants secondary throughout four quarters. Ultimately, home-field advantage and superior red-zone efficiency should push Miami over the top in a closely contested battle.\n\nSplits and Direction: Based on early public tendencies, approximately 58% of moneyline bets are currently backing the home Dolphins as slight favorites. No official point spread is widely posted yet, so specific spread ticket counts and line movements remain unavailable.",
-                    "generated_at": "2026-08-20T21:04:16.349781+00:00",
-                    "odds_hash": "4835e0c3a972ac3b",
+                    "analysis": "Early-season data from the 2026 campaign shows the New York Giants displaying slightly more offensive cohesion than the Miami Dolphins. The Giants have managed to move the chains more efficiently through the air while limiting costly turnovers in their first two contests. Meanwhile, the Miami Dolphins have struggled to establish a consistent running game, putting excessive pressure on their passing attack. Defensively, New York has shown a better ability to generate pressure on opposing quarterbacks without over-blitzing. Consequently, the Giants are positioned to secure a narrow victory on the road in this week three matchup.",
+                    "splits_and_direction": "Given that no official point spread has been posted yet, our best estimate based on current public tendencies and the minus-142 away moneyline is that roughly sixty percent of early moneyline bets are backing the New York Giants. Both the moneyline and spread markets remain in their opening states as books await further market action and injury clarifications.",
+                    "display_text": "Summary: Early-season data from the 2026 campaign shows the New York Giants displaying slightly more offensive cohesion than the Miami Dolphins. The Giants have managed to move the chains more efficiently through the air while limiting costly turnovers in their first two contests. Meanwhile, the Miami Dolphins have struggled to establish a consistent running game, putting excessive pressure on their passing attack. Defensively, New York has shown a better ability to generate pressure on opposing quarterbacks without over-blitzing. Consequently, the Giants are positioned to secure a narrow victory on the road in this week three matchup.\n\nSplits and Direction: Given that no official point spread has been posted yet, our best estimate based on current public tendencies and the minus-142 away moneyline is that roughly sixty percent of early moneyline bets are backing the New York Giants. Both the moneyline and spread markets remain in their opening states as books await further market action and injury clarifications.",
+                    "generated_at": "2026-08-21T16:27:07.654088+00:00",
+                    "odds_hash": "e0ba4b062b3cd254",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
