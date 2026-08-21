@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T21:05:04.936458+00:00",
+  "generated_at": "2026-08-21T01:05:29.873473+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -1262,11 +1262,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 330
+                          "american": 340
                         },
                         "away": {
                           "line": null,
-                          "american": -425
+                          "american": -440
                         }
                       }
                     },
@@ -1278,14 +1278,14 @@
                   "matchup_rank": 14,
                   "gemini_prediction": {
                     "winner": "San Francisco 49ers",
-                    "confidence": 85,
+                    "confidence": 88,
                     "ats_pick": null,
                     "ats_confidence": 0,
-                    "analysis": "The San Francisco 49ers enter this week 4 matchup displaying elite offensive efficiency and a stout defense through the first three games of the 2026 season. Las Vegas has struggled mightily on defense, yielding significant yardage and points to opposing offenses in their early-season contests. San Francisco's rushing attack and disciplined passing game will exploit the numerous weaknesses in the Raiders' defensive scheme. Furthermore, the 49ers' defensive front is well-equipped to disrupt the Raiders' inconsistent offensive line and force crucial turnovers. Ultimately, the immense talent discrepancy heavily favors the visiting team in this divisional-like clash.",
-                    "splits_and_direction": "Approximately 78 percent of the moneyline bets are heavily backing the San Francisco 49ers to secure the outright victory despite the steep odds. Since odds are not posted for the spread and FanDuel has no lines yet, the moneyline has held steady at the opening number without significant movement.",
-                    "display_text": "Summary: The San Francisco 49ers enter this week 4 matchup displaying elite offensive efficiency and a stout defense through the first three games of the 2026 season. Las Vegas has struggled mightily on defense, yielding significant yardage and points to opposing offenses in their early-season contests. San Francisco's rushing attack and disciplined passing game will exploit the numerous weaknesses in the Raiders' defensive scheme. Furthermore, the 49ers' defensive front is well-equipped to disrupt the Raiders' inconsistent offensive line and force crucial turnovers. Ultimately, the immense talent discrepancy heavily favors the visiting team in this divisional-like clash.\n\nSplits and Direction: Approximately 78 percent of the moneyline bets are heavily backing the San Francisco 49ers to secure the outright victory despite the steep odds. Since odds are not posted for the spread and FanDuel has no lines yet, the moneyline has held steady at the opening number without significant movement.",
-                    "generated_at": "2026-08-20T21:05:04.930921+00:00",
-                    "odds_hash": "4fc1022ce665d555",
+                    "analysis": "The San Francisco 49ers enter week 4 of the 2026 NFL season exhibiting a highly potent offense and a disciplined defense. Conversely, the Las Vegas Raiders have struggled significantly to find consistent rhythm on either side of the ball through the opening weeks. San Francisco's elite execution in the red zone creates a massive tactical mismatch against Las Vegas's porous defensive front. Furthermore, the 49ers have successfully limited opposing playmakers while generating consistent pressure with their front four. Given the stark disparity in current-season efficiency metrics, the visitors hold a decisive edge in this matchup.",
+                    "splits_and_direction": "Based on standard public betting tendencies for heavy favorites, an estimated 78 percent of moneyline bets are currently backing the San Francisco 49ers. Since no point spread has been officially posted yet by major sportsbooks, line movement tracking remains unavailable for the spread while the moneyline has held steady at its opening number.",
+                    "display_text": "Summary: The San Francisco 49ers enter week 4 of the 2026 NFL season exhibiting a highly potent offense and a disciplined defense. Conversely, the Las Vegas Raiders have struggled significantly to find consistent rhythm on either side of the ball through the opening weeks. San Francisco's elite execution in the red zone creates a massive tactical mismatch against Las Vegas's porous defensive front. Furthermore, the 49ers have successfully limited opposing playmakers while generating consistent pressure with their front four. Given the stark disparity in current-season efficiency metrics, the visitors hold a decisive edge in this matchup.\n\nSplits and Direction: Based on standard public betting tendencies for heavy favorites, an estimated 78 percent of moneyline bets are currently backing the San Francisco 49ers. Since no point spread has been officially posted yet by major sportsbooks, line movement tracking remains unavailable for the spread while the moneyline has held steady at its opening number.",
+                    "generated_at": "2026-08-21T01:05:09.922956+00:00",
+                    "odds_hash": "cd81e8d16fa28e67",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1314,7 +1314,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 164
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -198
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1322,6 +1331,18 @@
                     }
                   },
                   "matchup_rank": 5,
+                  "gemini_prediction": {
+                    "winner": "Los Angeles Rams",
+                    "confidence": 68,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "The Los Angeles Rams enter week 4 showcasing a more potent and explosive offensive scheme compared to their stadium-sharing rivals. Their defensive front has also exhibited superior pressure rates against opposing quarterbacks through the early portion of the 2026 season. Meanwhile, the Los Angeles Chargers have struggled with consistency on third-down conversions and red-zone efficiency. Turnovers have plagued the Chargers in their opening games, giving the Rams a distinct advantage in the turnover battle. Consequently, the Rams are well-positioned to secure a hard-fought victory in this cross-tenant matchup.",
+                    "splits_and_direction": "With no official point spread posted by DraftKings for this matchup, betting splits are currently estimated based on the moneyline odds with roughly 65 percent of public wagers backing the Rams to win outright. The moneyline has seen slight movement toward the visiting Rams since opening, shifting from -185 to the current -198 as sharp action aligns with the favorites.",
+                    "display_text": "Summary: The Los Angeles Rams enter week 4 showcasing a more potent and explosive offensive scheme compared to their stadium-sharing rivals. Their defensive front has also exhibited superior pressure rates against opposing quarterbacks through the early portion of the 2026 season. Meanwhile, the Los Angeles Chargers have struggled with consistency on third-down conversions and red-zone efficiency. Turnovers have plagued the Chargers in their opening games, giving the Rams a distinct advantage in the turnover battle. Consequently, the Rams are well-positioned to secure a hard-fought victory in this cross-tenant matchup.\n\nSplits and Direction: With no official point spread posted by DraftKings for this matchup, betting splits are currently estimated based on the moneyline odds with roughly 65 percent of public wagers backing the Rams to win outright. The moneyline has seen slight movement toward the visiting Rams since opening, shifting from -185 to the current -198 as sharp action aligns with the favorites.",
+                    "generated_at": "2026-08-21T01:05:19.915206+00:00",
+                    "odds_hash": "489adde79e3be51d",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": true
                 }
               ]
@@ -1571,7 +1592,16 @@
                   "odds": {
                     "draftkings": {
                       "spread": {},
-                      "moneyline": {}
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 140
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -166
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {},
@@ -1579,6 +1609,18 @@
                     }
                   },
                   "matchup_rank": 15,
+                  "gemini_prediction": {
+                    "winner": "Seattle Seahawks",
+                    "confidence": 65,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "The Seattle Seahawks enter this Week 4 matchup demonstrating exceptional offensive efficiency and defensive resilience through the early part of the 2026 season. Conversely, the Kansas City Chiefs have struggled to find consistent rhythm on offense while dealing with key injuries across their roster. Seattle's superior passing attack matches up favorably against a vulnerable Kansas City secondary that has given up explosive plays all year. Furthermore, the Seahawks' pass rush has been among the most disruptive units in the league, which will severely limit the Chiefs' ability to sustain drives. Expect Seattle to control the tempo of the game and secure a decisive road victory.",
+                    "splits_and_direction": "Given that FanDuel has not posted odds yet and DraftKings lists Seattle as a -166 favorite, public betting splits are currently estimated at roughly 65 percent backing the Seahawks on the moneyline based on standard public tendencies. Due to the lack of consensus lines across multiple major sportsbooks, specific spread betting percentages and line movement data remain unavailable at this time.",
+                    "display_text": "Summary: The Seattle Seahawks enter this Week 4 matchup demonstrating exceptional offensive efficiency and defensive resilience through the early part of the 2026 season. Conversely, the Kansas City Chiefs have struggled to find consistent rhythm on offense while dealing with key injuries across their roster. Seattle's superior passing attack matches up favorably against a vulnerable Kansas City secondary that has given up explosive plays all year. Furthermore, the Seahawks' pass rush has been among the most disruptive units in the league, which will severely limit the Chiefs' ability to sustain drives. Expect Seattle to control the tempo of the game and secure a decisive road victory.\n\nSplits and Direction: Given that FanDuel has not posted odds yet and DraftKings lists Seattle as a -166 favorite, public betting splits are currently estimated at roughly 65 percent backing the Seahawks on the moneyline based on standard public tendencies. Due to the lack of consensus lines across multiple major sportsbooks, specific spread betting percentages and line movement data remain unavailable at this time.",
+                    "generated_at": "2026-08-21T01:05:29.866531+00:00",
+                    "odds_hash": "de7778b9cff976e2",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 },
                 {

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T21:03:18.150977+00:00",
+  "generated_at": "2026-08-21T01:02:03.771968+00:00",
   "season": 2026,
   "season_type": 2,
   "main_channels": [
@@ -24,7 +24,7 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 61.0,
+              "best_matchup_score": 61.5,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -37,7 +37,7 @@
                   "away_team": "North Carolina Tar Heels",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 61.0,
+                  "matchup_score": 61.5,
                   "channel": "ESPN",
                   "venue": "Aviva Stadium",
                   "neutral_site": true,
@@ -89,7 +89,7 @@
             },
             {
               "slot": "Afternoon",
-              "best_matchup_score": 58.4,
+              "best_matchup_score": 59.0,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -102,7 +102,7 @@
                   "away_team": "NC State Wolfpack",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 58.4,
+                  "matchup_score": 59.0,
                   "channel": "ESPN",
                   "venue": "Scott Stadium",
                   "neutral_site": false,
@@ -135,7 +135,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 6,
+                  "matchup_rank": 7,
                   "gemini_prediction": {
                     "winner": "Virginia Cavaliers",
                     "confidence": 62,
@@ -160,7 +160,7 @@
                   "away_team": "San Jos\u00e9 State Spartans",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 76.1,
+                  "matchup_score": 76.2,
                   "channel": "NBC",
                   "venue": "Los Angeles Memorial Coliseum",
                   "neutral_site": false,
@@ -184,7 +184,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 24,
+                  "matchup_rank": 25,
                   "gemini_prediction": {
                     "winner": "USC Trojans",
                     "confidence": 99,
@@ -203,7 +203,7 @@
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 60.4,
+              "best_matchup_score": 60.9,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -216,7 +216,7 @@
                   "away_team": "Memphis Tigers",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 60.4,
+                  "matchup_score": 60.9,
                   "channel": "FOX",
                   "venue": "Allegiant Stadium",
                   "neutral_site": false,
@@ -275,7 +275,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 77.6,
+              "best_matchup_score": 78.1,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -288,7 +288,7 @@
                   "away_team": "Colorado Buffaloes",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 77.6,
+                  "matchup_score": 78.1,
                   "channel": "ESPN",
                   "venue": "Bobby Dodd Stadium",
                   "neutral_site": false,
@@ -321,7 +321,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 25,
+                  "matchup_rank": 26,
                   "gemini_prediction": {
                     "winner": "Georgia Tech Yellow Jackets",
                     "confidence": 75,
@@ -347,7 +347,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 62.3,
+              "best_matchup_score": 62.8,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -360,7 +360,7 @@
                   "away_team": "Toledo Rockets",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 62.3,
+                  "matchup_score": 62.8,
                   "channel": "FS1",
                   "venue": "Spartan Stadium",
                   "neutral_site": false,
@@ -470,7 +470,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 26,
+                  "matchup_rank": 27,
                   "gemini_prediction": {
                     "winner": "USC Trojans",
                     "confidence": 92,
@@ -496,7 +496,7 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 63.8,
+              "best_matchup_score": 64.1,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -509,7 +509,7 @@
                   "away_team": "Ohio Bobcats",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 63.8,
+                  "matchup_score": 64.1,
                   "channel": "FS1",
                   "venue": "Memorial Stadium (Lincoln, NE)",
                   "neutral_site": false,
@@ -542,7 +542,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 14,
+                  "matchup_rank": 15,
                   "gemini_prediction": {
                     "winner": "Nebraska Cornhuskers",
                     "confidence": 95,
@@ -567,7 +567,7 @@
                   "away_team": "East Carolina Pirates",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 64.9,
+                  "matchup_score": 65.1,
                   "channel": "ABC",
                   "venue": "Bryant-Denny Stadium",
                   "neutral_site": false,
@@ -621,7 +621,7 @@
                   "away_team": "Oregon State Beavers",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 68.4,
+                  "matchup_score": 68.7,
                   "channel": "ESPN",
                   "venue": "TDECU Stadium",
                   "neutral_site": false,
@@ -654,7 +654,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 18,
+                  "matchup_rank": 20,
                   "gemini_prediction": {
                     "winner": "Houston Cougars",
                     "confidence": 88,
@@ -703,7 +703,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 22,
+                  "matchup_rank": 23,
                   "gemini_prediction": {
                     "winner": "Indiana Hoosiers",
                     "confidence": 99,
@@ -722,7 +722,7 @@
             },
             {
               "slot": "Afternoon",
-              "best_matchup_score": 53.2,
+              "best_matchup_score": 53.8,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -735,7 +735,7 @@
                   "away_team": "Boston College Eagles",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 53.2,
+                  "matchup_score": 53.8,
                   "channel": "FOX",
                   "venue": "Nippert Stadium",
                   "neutral_site": false,
@@ -793,7 +793,7 @@
                   "away_team": "Boise State Broncos",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 56.7,
+                  "matchup_score": 57.0,
                   "channel": "CBS",
                   "venue": "Autzen Stadium",
                   "neutral_site": false,
@@ -851,7 +851,7 @@
                   "away_team": "Baylor Bears",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 57.4,
+                  "matchup_score": 58.0,
                   "channel": "ABC",
                   "venue": "Mercedes-Benz Stadium",
                   "neutral_site": true,
@@ -909,7 +909,7 @@
                   "away_team": "Texas State Bobcats",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 63.6,
+                  "matchup_score": 63.8,
                   "channel": "ESPN",
                   "venue": "DKR-Texas Memorial Stadium",
                   "neutral_site": false,
@@ -959,7 +959,7 @@
                   "away_team": "Marshall Thundering Herd",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 70.5,
+                  "matchup_score": 70.8,
                   "channel": "FS1",
                   "venue": "Beaver Stadium",
                   "neutral_site": false,
@@ -992,7 +992,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 20,
+                  "matchup_rank": 21,
                   "gemini_prediction": {
                     "winner": "Penn State Nittany Lions",
                     "confidence": 95,
@@ -1011,7 +1011,7 @@
             },
             {
               "slot": "Prime Time",
-              "best_matchup_score": 56.7,
+              "best_matchup_score": 57.2,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -1024,7 +1024,7 @@
                   "away_team": "Clemson Tigers",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 56.7,
+                  "matchup_score": 57.2,
                   "channel": "ABC",
                   "venue": "Tiger Stadium (LA)",
                   "neutral_site": false,
@@ -1082,7 +1082,7 @@
                   "away_team": "Western Michigan Broncos",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 65.4,
+                  "matchup_score": 65.6,
                   "channel": "NBC",
                   "venue": "Michigan Stadium",
                   "neutral_site": false,
@@ -1107,7 +1107,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 17,
+                  "matchup_rank": 18,
                   "gemini_prediction": {
                     "winner": "Michigan Wolverines",
                     "confidence": 98,
@@ -1196,14 +1196,14 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 21,
+                  "matchup_rank": 22,
                   "is_slot_pick": false
                 }
               ]
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 58.4,
+              "best_matchup_score": 58.8,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -1216,7 +1216,7 @@
                   "away_team": "Central Michigan Chippewas",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 58.4,
+                  "matchup_score": 58.8,
                   "channel": "FS1",
                   "venue": "University Stadium (NM)",
                   "neutral_site": false,
@@ -1249,7 +1249,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 7,
+                  "matchup_rank": 6,
                   "gemini_prediction": {
                     "winner": "New Mexico Lobos",
                     "confidence": 80,
@@ -1274,13 +1274,17 @@
                   "away_team": "UCLA Bruins",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 89.0,
+                  "matchup_score": 64.0,
                   "channel": "ESPN",
                   "venue": "California Memorial Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
                       "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -115
+                        },
                         "away": {
                           "line": -1.5,
                           "american": -105
@@ -1303,17 +1307,17 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 27,
+                  "matchup_rank": 14,
                   "gemini_prediction": {
-                    "winner": "UCLA Bruins",
-                    "confidence": 53,
-                    "ats_pick": "UCLA Bruins",
-                    "ats_confidence": 52,
-                    "analysis": "This early-season 2026 matchup features two evenly matched conference rivals squaring off in Week 1. Current-season metrics indicate that the UCLA Bruins possess a slight edge in offensive efficiency based on their early roster adjustments. The California Golden Bears hold home-field advantage, which historically narrows visiting margins in this rivalry. However, the Bruins' execution in high-leverage situations should allow them to edge out a narrow victory. Ultimately, UCLA will do just enough on the road to secure the outright win in a closely contested battle.",
-                    "splits_and_direction": "Exact betting-splits data is not yet available, but public moneyline action is currently leaning slightly toward the visiting UCLA Bruins as a short favorite. Both the moneyline and point spread have remained relatively stagnant since opening with near-pick'em odds.",
-                    "display_text": "Summary: This early-season 2026 matchup features two evenly matched conference rivals squaring off in Week 1. Current-season metrics indicate that the UCLA Bruins possess a slight edge in offensive efficiency based on their early roster adjustments. The California Golden Bears hold home-field advantage, which historically narrows visiting margins in this rivalry. However, the Bruins' execution in high-leverage situations should allow them to edge out a narrow victory. Ultimately, UCLA will do just enough on the road to secure the outright win in a closely contested battle.\n\nSplits and Direction: Exact betting-splits data is not yet available, but public moneyline action is currently leaning slightly toward the visiting UCLA Bruins as a short favorite. Both the moneyline and point spread have remained relatively stagnant since opening with near-pick'em odds.",
-                    "generated_at": "2026-08-20T21:01:27.972252+00:00",
-                    "odds_hash": "29aff88a483389f8",
+                    "winner": "California Golden Bears",
+                    "confidence": 55,
+                    "ats_pick": "California Golden Bears",
+                    "ats_confidence": 55,
+                    "analysis": "The California Golden Bears host the UCLA Bruins in a tightly contested week one matchup of the 2026 college football season. California enters the contest with a slight statistical advantage in offensive efficiency based on early 2026 data. UCLA's defense has shown vulnerabilities in stopping the run, which the Golden Bears are well-equipped to exploit at home. Special teams performance heavily favors California, providing a crucial edge in field position throughout the game. Ultimately, the home-field advantage proves decisive as California edges out a narrow victory to cover the short spread.",
+                    "splits_and_direction": "Based on standard public tendencies for a pick 'em style game, approximately 53% of moneyline bets and 55% of spread tickets are currently backing the underdog home team. Due to early balanced action, both the spread and moneyline have remained relatively stagnant since opening with California listed as a slight home underdog.",
+                    "display_text": "Summary: The California Golden Bears host the UCLA Bruins in a tightly contested week one matchup of the 2026 college football season. California enters the contest with a slight statistical advantage in offensive efficiency based on early 2026 data. UCLA's defense has shown vulnerabilities in stopping the run, which the Golden Bears are well-equipped to exploit at home. Special teams performance heavily favors California, providing a crucial edge in field position throughout the game. Ultimately, the home-field advantage proves decisive as California edges out a narrow victory to cover the short spread.\n\nSplits and Direction: Based on standard public tendencies for a pick 'em style game, approximately 53% of moneyline bets and 55% of spread tickets are currently backing the underdog home team. Due to early balanced action, both the spread and moneyline have remained relatively stagnant since opening with California listed as a slight home underdog.",
+                    "generated_at": "2026-08-21T01:01:08.201782+00:00",
+                    "odds_hash": "0c27aba20c3259c6",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -1329,7 +1333,7 @@
           "time_slots": [
             {
               "slot": "Afternoon",
-              "best_matchup_score": 73.5,
+              "best_matchup_score": 73.8,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -1342,7 +1346,7 @@
                   "away_team": "Washington State Cougars",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 73.5,
+                  "matchup_score": 73.8,
                   "channel": "NBC",
                   "venue": "Husky Stadium",
                   "neutral_site": false,
@@ -1367,7 +1371,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 23,
+                  "matchup_rank": 24,
                   "gemini_prediction": {
                     "winner": "Washington Huskies",
                     "confidence": 85,
@@ -1386,7 +1390,7 @@
             },
             {
               "slot": "Prime Time",
-              "best_matchup_score": 15.2,
+              "best_matchup_score": 15.8,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -1399,7 +1403,7 @@
                   "away_team": "Louisville Cardinals",
                   "away_rank": 24,
                   "away_record": "0-0",
-                  "matchup_score": 15.2,
+                  "matchup_score": 15.8,
                   "channel": "ABC",
                   "venue": "Nissan Stadium",
                   "neutral_site": true,
@@ -1457,7 +1461,7 @@
                   "away_team": "Wisconsin Badgers",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 61.8,
+                  "matchup_score": 62.2,
                   "channel": "NBC",
                   "venue": "Lambeau Field",
                   "neutral_site": true,
@@ -1516,7 +1520,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 64.5,
+              "best_matchup_score": 65.1,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -1529,7 +1533,7 @@
                   "away_team": "SMU Mustangs",
                   "away_rank": 19,
                   "away_record": "0-0",
-                  "matchup_score": 64.5,
+                  "matchup_score": 65.1,
                   "channel": "ESPN",
                   "venue": "Doak Campbell Stadium",
                   "neutral_site": false,
@@ -1562,7 +1566,7 @@
                     }
                   },
                   "is_nebraska": false,
-                  "matchup_rank": 15,
+                  "matchup_rank": 17,
                   "gemini_prediction": {
                     "winner": "SMU Mustangs",
                     "confidence": 58,
