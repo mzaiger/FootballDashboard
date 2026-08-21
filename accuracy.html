@@ -522,13 +522,13 @@ function renderAccuracy(datasets, scores, state) {
   const mlApplies = state.confType !== 'ats';
   const atsApplies = state.confType !== 'ml';
 
-  document.getElementById('mlLabel').innerHTML = buildLabelHTML('ML Accuracy', state, mlApplies, true);
+  document.getElementById('mlLabel').innerHTML = buildLabelHTML('Gemini ML Accuracy', state, mlApplies, true);
   document.getElementById('mlPct').innerHTML = mlApplies ? fmtPct(overall.mlPct) : 'NA';
   document.getElementById('mlFrac').textContent = !mlApplies
     ? 'Excluded by ATS-only filter'
     : (overall.mlTotal ? `${overall.mlCorrect}/${overall.mlTotal} correct` : 'No graded games match these filters');
 
-  document.getElementById('atsLabel').innerHTML = buildLabelHTML('ATS Accuracy', state, atsApplies, true);
+  document.getElementById('atsLabel').innerHTML = buildLabelHTML('Gemini ATS Accuracy', state, atsApplies, true);
   document.getElementById('atsPct').innerHTML = atsApplies ? fmtPct(overall.atsPct) : 'NA';
   document.getElementById('atsFrac').textContent = !atsApplies
     ? 'Excluded by ML-only filter'
