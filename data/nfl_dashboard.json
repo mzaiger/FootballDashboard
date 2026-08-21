@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T01:05:29.873473+00:00",
+  "generated_at": "2026-08-21T04:38:06.847555+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -600,7 +600,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 68.6,
+              "best_matchup_score": 61.2,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -609,11 +609,11 @@
                   "start_time_tbd": false,
                   "home_team": "Houston Texans",
                   "home_abbr": "HOU",
-                  "home_record": "0-1",
+                  "home_record": "0-2",
                   "away_team": "Las Vegas Raiders",
                   "away_abbr": "LV",
-                  "away_record": "0-1",
-                  "matchup_score": 68.6,
+                  "away_record": "1-1",
+                  "matchup_score": 61.2,
                   "channel": "ESPN, KTRK (ABC), Fox 5 Vegas",
                   "venue": "Reliant Stadium",
                   "neutral_site": false,
@@ -627,7 +627,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 14,
+                  "matchup_rank": 13,
                   "is_slot_pick": true
                 }
               ]
@@ -670,7 +670,6 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 11,
                   "gemini_prediction": {
                     "winner": "Los Angeles Chargers",
                     "confidence": 58,
@@ -683,6 +682,7 @@
                     "odds_hash": "b7a52e0f94f7d84e",
                     "model": "gemini-3.5-flash-lite"
                   },
+                  "matchup_rank": 11,
                   "is_slot_pick": true
                 }
               ]
@@ -723,7 +723,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 5,
+                  "matchup_rank": 4,
                   "is_slot_pick": true
                 },
                 {
@@ -736,7 +736,7 @@
                   "away_team": "Green Bay Packers",
                   "away_abbr": "GB",
                   "away_record": "0-1",
-                  "matchup_score": 47.3,
+                  "matchup_score": 48.4,
                   "channel": "NFL Net, Packers TV Network, KUSA-TV (9NEWS)",
                   "venue": "Empower Field at Mile High",
                   "neutral_site": false,
@@ -831,7 +831,7 @@
                   "away_team": "Buffalo Bills",
                   "away_abbr": "BUF",
                   "away_record": "1-0",
-                  "matchup_score": 41.0,
+                  "matchup_score": 42.0,
                   "channel": "NFL Net",
                   "venue": "Huntington Bank Field",
                   "neutral_site": false,
@@ -845,7 +845,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 4,
+                  "matchup_rank": 5,
                   "is_slot_pick": false
                 },
                 {
@@ -858,7 +858,7 @@
                   "away_team": "Washington Commanders",
                   "away_abbr": "WSH",
                   "away_record": "1-0",
-                  "matchup_score": 54.8,
+                  "matchup_score": 55.9,
                   "channel": "Lions TV Network, WUSA9",
                   "venue": "Ford Field",
                   "neutral_site": false,
@@ -885,7 +885,7 @@
                   "away_team": "Atlanta Falcons",
                   "away_abbr": "ATL",
                   "away_record": "0-1",
-                  "matchup_score": 55.9,
+                  "matchup_score": 58.0,
                   "channel": "CBS4",
                   "venue": "Lucas Oil Stadium",
                   "neutral_site": false,
@@ -899,7 +899,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 8,
+                  "matchup_rank": 10,
                   "is_slot_pick": false
                 }
               ]
@@ -933,7 +933,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 9,
+                  "matchup_rank": 8,
                   "is_slot_pick": true
                 },
                 {
@@ -1028,7 +1028,7 @@
                   "away_team": "Kansas City Chiefs",
                   "away_abbr": "KC",
                   "away_record": "0-1",
-                  "matchup_score": 55.9,
+                  "matchup_score": 56.9,
                   "channel": "ESPN Unlmtd, KSHB",
                   "venue": "Raymond James Stadium",
                   "neutral_site": false,
@@ -1042,7 +1042,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 10,
+                  "matchup_rank": 9,
                   "is_slot_pick": false
                 },
                 {
@@ -1055,7 +1055,7 @@
                   "away_team": "Philadelphia Eagles",
                   "away_abbr": "PHI",
                   "away_record": "0-1",
-                  "matchup_score": 68.6,
+                  "matchup_score": 69.7,
                   "channel": "NFL Net, WBZ, NBC 10",
                   "venue": "Gillette Stadium",
                   "neutral_site": false,
@@ -1165,7 +1165,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 13,
+                  "matchup_rank": 14,
                   "is_slot_pick": true
                 }
               ]
@@ -1225,7 +1225,7 @@
                   "away_team": "New England Patriots",
                   "away_abbr": "NE",
                   "away_record": "0-0-1",
-                  "matchup_score": 53.4,
+                  "matchup_score": 55.7,
                   "channel": "Prime Video",
                   "venue": "Huntington Bank Field",
                   "neutral_site": false,
@@ -1248,11 +1248,11 @@
                   "start_time_tbd": false,
                   "home_team": "Las Vegas Raiders",
                   "home_abbr": "LV",
-                  "home_record": "0-1",
+                  "home_record": "1-1",
                   "away_team": "San Francisco 49ers",
                   "away_abbr": "SF",
                   "away_record": "0-1",
-                  "matchup_score": 73.9,
+                  "matchup_score": 64.8,
                   "channel": "ESPN Unlmtd, Fox 5 Vegas, KPIX",
                   "venue": "Allegiant Stadium",
                   "neutral_site": false,
@@ -1504,7 +1504,7 @@
                   "away_team": "Arizona Cardinals",
                   "away_abbr": "ARI",
                   "away_record": "1-1",
-                  "matchup_score": 52.3,
+                  "matchup_score": 53.4,
                   "channel": "Packers TV Network",
                   "venue": "Lambeau Field",
                   "neutral_site": false,
@@ -1530,8 +1530,8 @@
                   "home_record": "1-1",
                   "away_team": "Houston Texans",
                   "away_abbr": "HOU",
-                  "away_record": "0-1",
-                  "matchup_score": 54.5,
+                  "away_record": "0-2",
+                  "matchup_score": 55.7,
                   "channel": "KTRK (ABC)",
                   "venue": "Bank of America Stadium",
                   "neutral_site": false,
@@ -1545,7 +1545,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 12,
+                  "matchup_rank": 11,
                   "is_slot_pick": false
                 },
                 {
@@ -1558,7 +1558,7 @@
                   "away_team": "Atlanta Falcons",
                   "away_abbr": "ATL",
                   "away_record": "0-1",
-                  "matchup_score": 61.4,
+                  "matchup_score": 62.5,
                   "channel": "CBS Miami",
                   "venue": "Hard Rock Stadium",
                   "neutral_site": false,
@@ -1573,54 +1573,6 @@
                     }
                   },
                   "matchup_rank": 13,
-                  "is_slot_pick": false
-                },
-                {
-                  "id": "401873305",
-                  "start_time": "2026-08-29T00:00Z",
-                  "start_time_tbd": false,
-                  "home_team": "Kansas City Chiefs",
-                  "home_abbr": "KC",
-                  "home_record": "0-1",
-                  "away_team": "Seattle Seahawks",
-                  "away_abbr": "SEA",
-                  "away_record": "0-1",
-                  "matchup_score": 73.9,
-                  "channel": "ESPN Unlmtd, KSHB, KING 5",
-                  "venue": "Arrowhead Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {
-                        "home": {
-                          "line": null,
-                          "american": 140
-                        },
-                        "away": {
-                          "line": null,
-                          "american": -166
-                        }
-                      }
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "matchup_rank": 15,
-                  "gemini_prediction": {
-                    "winner": "Seattle Seahawks",
-                    "confidence": 65,
-                    "ats_pick": null,
-                    "ats_confidence": 0,
-                    "analysis": "The Seattle Seahawks enter this Week 4 matchup demonstrating exceptional offensive efficiency and defensive resilience through the early part of the 2026 season. Conversely, the Kansas City Chiefs have struggled to find consistent rhythm on offense while dealing with key injuries across their roster. Seattle's superior passing attack matches up favorably against a vulnerable Kansas City secondary that has given up explosive plays all year. Furthermore, the Seahawks' pass rush has been among the most disruptive units in the league, which will severely limit the Chiefs' ability to sustain drives. Expect Seattle to control the tempo of the game and secure a decisive road victory.",
-                    "splits_and_direction": "Given that FanDuel has not posted odds yet and DraftKings lists Seattle as a -166 favorite, public betting splits are currently estimated at roughly 65 percent backing the Seahawks on the moneyline based on standard public tendencies. Due to the lack of consensus lines across multiple major sportsbooks, specific spread betting percentages and line movement data remain unavailable at this time.",
-                    "display_text": "Summary: The Seattle Seahawks enter this Week 4 matchup demonstrating exceptional offensive efficiency and defensive resilience through the early part of the 2026 season. Conversely, the Kansas City Chiefs have struggled to find consistent rhythm on offense while dealing with key injuries across their roster. Seattle's superior passing attack matches up favorably against a vulnerable Kansas City secondary that has given up explosive plays all year. Furthermore, the Seahawks' pass rush has been among the most disruptive units in the league, which will severely limit the Chiefs' ability to sustain drives. Expect Seattle to control the tempo of the game and secure a decisive road victory.\n\nSplits and Direction: Given that FanDuel has not posted odds yet and DraftKings lists Seattle as a -166 favorite, public betting splits are currently estimated at roughly 65 percent backing the Seahawks on the moneyline based on standard public tendencies. Due to the lack of consensus lines across multiple major sportsbooks, specific spread betting percentages and line movement data remain unavailable at this time.",
-                    "generated_at": "2026-08-21T01:05:29.866531+00:00",
-                    "odds_hash": "de7778b9cff976e2",
-                    "model": "gemini-3.5-flash-lite"
-                  },
                   "is_slot_pick": false
                 },
                 {
@@ -1647,7 +1599,55 @@
                       "moneyline": {}
                     }
                   },
+                  "matchup_rank": 15,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401873305",
+                  "start_time": "2026-08-29T00:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Kansas City Chiefs",
+                  "home_abbr": "KC",
+                  "home_record": "0-1",
+                  "away_team": "Seattle Seahawks",
+                  "away_abbr": "SEA",
+                  "away_record": "0-1",
+                  "matchup_score": 75.0,
+                  "channel": "ESPN Unlmtd, KSHB, KING 5",
+                  "venue": "Arrowhead Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 140
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -166
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
                   "matchup_rank": 16,
+                  "gemini_prediction": {
+                    "winner": "Seattle Seahawks",
+                    "confidence": 65,
+                    "ats_pick": null,
+                    "ats_confidence": 0,
+                    "analysis": "The Seattle Seahawks enter this Week 4 matchup demonstrating exceptional offensive efficiency and defensive resilience through the early part of the 2026 season. Conversely, the Kansas City Chiefs have struggled to find consistent rhythm on offense while dealing with key injuries across their roster. Seattle's superior passing attack matches up favorably against a vulnerable Kansas City secondary that has given up explosive plays all year. Furthermore, the Seahawks' pass rush has been among the most disruptive units in the league, which will severely limit the Chiefs' ability to sustain drives. Expect Seattle to control the tempo of the game and secure a decisive road victory.",
+                    "splits_and_direction": "Given that FanDuel has not posted odds yet and DraftKings lists Seattle as a -166 favorite, public betting splits are currently estimated at roughly 65 percent backing the Seahawks on the moneyline based on standard public tendencies. Due to the lack of consensus lines across multiple major sportsbooks, specific spread betting percentages and line movement data remain unavailable at this time.",
+                    "display_text": "Summary: The Seattle Seahawks enter this Week 4 matchup demonstrating exceptional offensive efficiency and defensive resilience through the early part of the 2026 season. Conversely, the Kansas City Chiefs have struggled to find consistent rhythm on offense while dealing with key injuries across their roster. Seattle's superior passing attack matches up favorably against a vulnerable Kansas City secondary that has given up explosive plays all year. Furthermore, the Seahawks' pass rush has been among the most disruptive units in the league, which will severely limit the Chiefs' ability to sustain drives. Expect Seattle to control the tempo of the game and secure a decisive road victory.\n\nSplits and Direction: Given that FanDuel has not posted odds yet and DraftKings lists Seattle as a -166 favorite, public betting splits are currently estimated at roughly 65 percent backing the Seahawks on the moneyline based on standard public tendencies. Due to the lack of consensus lines across multiple major sportsbooks, specific spread betting percentages and line movement data remain unavailable at this time.",
+                    "generated_at": "2026-08-21T01:05:29.866531+00:00",
+                    "odds_hash": "de7778b9cff976e2",
+                    "model": "gemini-3.5-flash-lite"
+                  },
                   "is_slot_pick": false
                 }
               ]
@@ -1661,7 +1661,7 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 53.4,
+              "best_matchup_score": 55.7,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -1674,7 +1674,7 @@
                   "away_team": "Detroit Lions",
                   "away_abbr": "DET",
                   "away_record": "0-1",
-                  "matchup_score": 53.4,
+                  "matchup_score": 55.7,
                   "channel": "NFL Net, CBS4, Lions TV Network",
                   "venue": "Lucas Oil Stadium",
                   "neutral_site": false,
@@ -1688,7 +1688,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 11,
+                  "matchup_rank": 12,
                   "is_slot_pick": true
                 }
               ]

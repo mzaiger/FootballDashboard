@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T01:02:03.771968+00:00",
+  "generated_at": "2026-08-21T04:34:04.023495+00:00",
   "season": 2026,
   "season_type": 2,
   "main_channels": [
@@ -203,7 +203,7 @@
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 60.9,
+              "best_matchup_score": 60.6,
               "pick_reason": "watchability",
               "games": [
                 {
@@ -216,7 +216,7 @@
                   "away_team": "Memphis Tigers",
                   "away_rank": null,
                   "away_record": "0-0",
-                  "matchup_score": 60.9,
+                  "matchup_score": 60.6,
                   "channel": "FOX",
                   "venue": "Allegiant Stadium",
                   "neutral_site": false,
@@ -224,11 +224,11 @@
                     "draftkings": {
                       "spread": {
                         "home": {
-                          "line": -6.0,
+                          "line": -5.5,
                           "american": -110
                         },
                         "away": {
-                          "line": 6.0,
+                          "line": 5.5,
                           "american": -110
                         }
                       },
@@ -253,13 +253,13 @@
                   "gemini_prediction": {
                     "winner": "UNLV Rebels",
                     "confidence": 68,
-                    "ats_pick": "UNLV Rebels",
-                    "ats_confidence": 65,
-                    "analysis": "The UNLV Rebels enter this week 1 matchup with high offensive momentum following their productive 2026 spring camp and returning personnel. Memphis presents a stiff challenge on the road, but the Tigers have notable question marks along their offensive line. UNLV's defensive front should disrupt the Memphis passing game enough to create pivotal scoring opportunities. Playing at home gives the Rebels a distinct advantage in managing the tempo of the game. Ultimately, UNLV will execute better in the red zone and pull away late to cover the spread.",
-                    "splits_and_direction": "Approximately 68 percent of the early spread bets are backing the home favorite UNLV Rebels to cover the six-point margin. The point spread has remained steady at UNLV -6 while the moneyline has seen slight upward movement toward the Rebels at -218 based on available public betting trends.",
-                    "display_text": "Summary: The UNLV Rebels enter this week 1 matchup with high offensive momentum following their productive 2026 spring camp and returning personnel. Memphis presents a stiff challenge on the road, but the Tigers have notable question marks along their offensive line. UNLV's defensive front should disrupt the Memphis passing game enough to create pivotal scoring opportunities. Playing at home gives the Rebels a distinct advantage in managing the tempo of the game. Ultimately, UNLV will execute better in the red zone and pull away late to cover the spread.\n\nSplits and Direction: Approximately 68 percent of the early spread bets are backing the home favorite UNLV Rebels to cover the six-point margin. The point spread has remained steady at UNLV -6 while the moneyline has seen slight upward movement toward the Rebels at -218 based on available public betting trends.",
-                    "generated_at": "2026-08-20T20:58:38.022216+00:00",
-                    "odds_hash": "bca90d1614740ec7",
+                    "ats_pick": "Memphis Tigers",
+                    "ats_confidence": 62,
+                    "analysis": "The UNLV Rebels showcase a formidable offensive rhythm in the 2026 campaign that continually puts pressure on opposing defenses. Memphis Tigers bring a resilient defense to this matchup, capable of keeping the game within a single possession throughout four quarters. UNLV holds a slight home-field advantage which helps dictate the tempo early in the contest. Memphis maintains an efficient rushing attack that will chew up clock and limit the total number of possessions for both squads. Consequently, the UNLV Rebels should secure a narrow victory while the Memphis Tigers comfortably cover the 5.5-point spread.",
+                    "splits_and_direction": "Based on early public tendencies without official data, approximately 65 percent of bets are backing the UNLV Rebels to cover the home spread. Both the spread and moneyline have remained stable since opening with no significant market movement reported.",
+                    "display_text": "Summary: The UNLV Rebels showcase a formidable offensive rhythm in the 2026 campaign that continually puts pressure on opposing defenses. Memphis Tigers bring a resilient defense to this matchup, capable of keeping the game within a single possession throughout four quarters. UNLV holds a slight home-field advantage which helps dictate the tempo early in the contest. Memphis maintains an efficient rushing attack that will chew up clock and limit the total number of possessions for both squads. Consequently, the UNLV Rebels should secure a narrow victory while the Memphis Tigers comfortably cover the 5.5-point spread.\n\nSplits and Direction: Based on early public tendencies without official data, approximately 65 percent of bets are backing the UNLV Rebels to cover the home spread. Both the spread and moneyline have remained stable since opening with no significant market movement reported.",
+                    "generated_at": "2026-08-21T04:33:08.947623+00:00",
+                    "odds_hash": "8240592da5234ed0",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
