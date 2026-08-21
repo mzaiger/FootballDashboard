@@ -25,6 +25,12 @@ spread + 50% combined win-rank (teams ranked by this season's record),
 the same blend build_nfl_dashboard.py uses for its own (non Chiefs/Broncos)
 games.
 
+Off-season handling: if today falls BEFORE the first date on ESPN's
+calendar (leagues[].calendar), the build window snaps forward to that
+first game date -- so as soon as ESPN publishes the schedule, the board
+centers on opening night instead of sitting blank until the day before
+tip-off. See resolve_effective_today() below.
+
 Env vars required:
     SHARPAPI_KEY - key from https://sharpapi.io
     (no key needed for ESPN's public scoreboard endpoint)
@@ -122,6 +128,54 @@ def get_scoreboard(date_str):
         data["events"] = []
 
     return data
+
+
+def calendar_game_dates(scoreboard):
+    """Every scheduled game date in the scoreboard payload's
+    leagues[].calendar array, as date objects. ESPN ships this as a flat
+    list of ISO timestamps ("2026-10-21T07:00Z") -- one per day the league
+    has anything scheduled -- so the FIRST entry is the season's first
+    game date. Parse only the leading YYYY-MM-DD: the stamps are midnight
+    ET, so the date component IS the game date (no timezone conversion
+    wanted -- converting would shift late-night ET stamps back a day for
+    Pacific viewers)."""
+    dates = []
+    for league in scoreboard.get("leagues") or []:
+        for entry in league.get("calendar") or []:
+            if isinstance(entry, str) and len(entry) >= 10:
+                try:
+                    dates.append(date.fromisoformat(entry[:10]))
+                except ValueError:
+                    continue
+        if dates:
+            break
+    return sorted(set(dates))
+
+
+def resolve_effective_today(default_today):
+    """Off-season guard: if today falls BEFORE the first date on ESPN's
+    calendar -- i.e. the entire schedule is still ahead of us -- snap the
+    build window forward to that first game date instead of building three
+    empty days around a dead calendar date. Without this, the board sits
+    blank from the final buzzer of last season until the day before
+    opening night; with it, the board centers on the opener as soon as
+    ESPN publishes the schedule. Falls back to the real date on any
+    network/parse failure so a bad calendar never breaks a normal
+    mid-season build."""
+    try:
+        scoreboard = get_scoreboard(default_today.strftime("%Y%m%d"))
+    except requests.RequestException as exc:
+        log(f"  NOTE: couldn't fetch ESPN calendar ({exc}) -- keeping {default_today} as 'today'.")
+        return default_today
+
+    upcoming = [d for d in calendar_game_dates(scoreboard) if d >= default_today]
+    if not upcoming or min(upcoming) == default_today:
+        return default_today  # season live or over-and-no-new-schedule yet
+
+    first_game_day = min(upcoming)
+    log(f"  Off-season detected: ESPN's calendar has nothing until {first_game_day} "
+        f"-- treating {first_game_day} as 'today' for this build.")
+    return first_game_day
 
 
 def broadcast_label(event):
@@ -405,6 +459,12 @@ def main():
 
     start_date = date.fromisoformat(args.start_date) if args.start_date else None
     resolved_today = start_date or datetime.now(ZoneInfo(DISPLAY_TIMEZONE)).date()
+
+    # Off-season clamp (skipped when --start-date forces a date): if ESPN's
+    # calendar says nothing happens until some future opening date, build
+    # around THAT date so the board shows the opener instead of blank.
+    if start_date is None:
+        resolved_today = resolve_effective_today(resolved_today)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "nba_dashboard.json")
