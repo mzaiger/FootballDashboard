@@ -95,13 +95,33 @@ def current_season_year():
 # ---------------------------------------------------------------------------
 
 def get_scoreboard(date_str):
+    """Fetch one day's scoreboard. IMPORTANT: ESPN's scoreboard endpoint
+    does NOT return an empty event list for a date with no games -- it
+    silently snaps forward to the next date that actually has something
+    scheduled (verified directly: requesting a date weeks before the
+    regular season tips off still returns that later date's game, with
+    the response's own "day"/"date" field showing the date ESPN actually
+    used, not the one requested). Guard against that here: if the
+    response's own date doesn't match what was asked for, treat it as
+    "no games that day" rather than silently mislabeling a future game as
+    if it happened on the requested date.
+    """
     resp = requests.get(
         ESPN_NBA_SCOREBOARD_URL,
         params={"dates": date_str, "limit": 100},
         timeout=REQUEST_TIMEOUT,
     )
     resp.raise_for_status()
-    return resp.json()
+    data = resp.json()
+
+    returned_date = (data.get("day") or {}).get("date")
+    requested_date = f"{date_str[0:4]}-{date_str[4:6]}-{date_str[6:8]}"
+    if returned_date and returned_date != requested_date:
+        log(f"  ESPN returned {returned_date}'s slate instead of the requested {requested_date} "
+            f"(nothing scheduled that day) -- treating {requested_date} as having zero games.")
+        data["events"] = []
+
+    return data
 
 
 def broadcast_label(event):
