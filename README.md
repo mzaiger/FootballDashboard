@@ -1,23 +1,24 @@
 # Sports Dashboard
 
-Daily-refreshed betting dashboards across four sports (NCAAF, NFL, MLB, and
-a placeholder NCAAMB page), plus a Picks page that tracks every pick you've
-made across all of them. Each sport's board groups games by week (or, for
-MLB, by day) → day → kickoff window (Morning / Noon / Afternoon / Prime
-Time / Late Night), ranked within each window by best matchup, with
-**DraftKings** and **FanDuel** spreads/run-lines + moneylines attached to
-every game.
+Daily-refreshed betting dashboards across five sports (NCAAF, NFL, MLB,
+NBA, and NCAAMB), plus a Picks page that tracks every pick you've made
+across all of them. Each sport's board groups games by week (or, for
+MLB/NBA/NCAAMB, by day) → day → kickoff window (Morning / Noon /
+Afternoon / Prime Time / Late Night), ranked within each window by best
+matchup, with **DraftKings** and **FanDuel** spreads/run-lines +
+moneylines attached to every game.
 
 The underlying JSON files keep **every week/day ever built, forever** —
 nothing is ever deleted, and a SharpAPI fetch that comes back blank never
 overwrites a previously-fetched line (see "Odds never get erased" below).
 Each board only *displays* a small rolling window (current + next week for
-NCAAF/NFL, yesterday–today–tomorrow for MLB); the [Picks page](#the-picks-page)
-shows every pick you've ever made, no matter how long ago.
+NCAAF/NFL, yesterday–today–tomorrow for MLB/NBA/NCAAMB); the
+[Picks page](#the-picks-page) shows every pick you've ever made, no matter
+how long ago.
 
 Every page has:
 - A **hamburger menu** on mobile (upper-left) for the NCAAF / NCAAMB / NFL
-  / MLB / Accuracy / Export / Picks nav links; shown inline on desktop.
+  / MLB / NBA / Accuracy / Export / Picks nav links; shown inline on desktop.
 - **Open / Closed / All pills**, showing counts, next to the nav — Open =
   game hasn't started, Closed = game has started or finished. Defaults to
   **All** on every page; your choice is remembered per-page.
@@ -32,10 +33,11 @@ Every page has:
 
 `export.html` lets you download the board data or your own picks as
 **JSON** or **CSV** (pick the format at the top of the page):
-- **Sport Data** — the full current NCAAF/NFL/MLB dataset. JSON downloads
-  the exact file the site itself reads; CSV flattens it to one row per
-  game (teams, records, channel, DK/FD spread + moneyline, matchup rank).
-- **My Picks** — every pick saved in your cookies, across all three
+- **Sport Data** — the full current NCAAF/NFL/MLB/NBA/NCAAMB dataset.
+  JSON downloads the exact file the site itself reads; CSV flattens it to
+  one row per game (teams, records, channel, DK/FD spread + moneyline,
+  matchup rank).
+- **My Picks** — every pick saved in your cookies, across all five
   sports, with the matchup, pick type (ATS/ML), which side you took, the
   spread or money line you locked in, and how much a $10 bet on it won or
   lost (blank/"Pending" if the game hasn't finished). A pick on a game
@@ -44,31 +46,45 @@ Every page has:
 
 ### Season year
 
-NCAAF and NFL no longer need a manual year bump each season. Both
-`build_ncaaf_dashboard.py` and `build_nfl_dashboard.py` derive the current
-season year from today's date (`current_season_year()` in each script):
-games from July onward belong to the season starting that same calendar
-year; games from January–June belong to the season that started the
-*previous* calendar year (bowl/playoff season). Pass `--year` explicitly
-to override it for a one-off manual run. MLB was already date-driven and
-didn't need this.
+NCAAF, NFL, NBA, and NCAAMB all derive their current season year from
+today's date automatically — none of them need a manual year bump when a
+new season starts:
+- **NCAAF/NFL** (`current_season_year()` in each script): games from July
+  onward belong to the season starting that same calendar year; games
+  from January–June belong to the season that started the *previous*
+  calendar year (bowl/playoff season). Pass `--year` explicitly to
+  override it for a one-off manual run.
+- **NBA**: games from October onward belong to the season starting that
+  same calendar year; games from January–September belong to the season
+  that started the previous calendar year (playoffs stretch into June;
+  nothing else is scheduled the rest of the summer).
+- **NCAAMB**: games from August onward belong to the season starting that
+  same calendar year (exhibitions can start in late October, but August
+  is a safe off-season cutover); games from January–July belong to the
+  season that started the previous calendar year.
 
-| | NCAAF | NFL | MLB | NCAAMB |
-|---|---|---|---|---|
-| Page | `index.html` | `nfl.html` | `mlb.html` | `ncaamb.html` |
-| Data | `data/ncaaf_dashboard.json` | `data/nfl_dashboard.json` | `data/mlb_dashboard.json` | — |
-| Builder | `scripts/build_ncaaf_dashboard.py` | `scripts/build_nfl_dashboard.py` | `scripts/build_mlb_dashboard.py` | — |
-| Schedule/TV source | ESPN's public scoreboard + rankings APIs (no key needed) | ESPN's public scoreboard API (no key needed) | ESPN's public scoreboard API (no key needed) | — |
-| Grouped by | Week → day | Week → day | Day (each "week" in the JSON is one calendar day — see MLB section below) | — |
-| Matchup ranking | 50% combined AP Top 25 rank + 25% combined win rank + 25% posted spread | 50% posted spread + 50% combined win rank | Combined win rank only (run line is ~always ±1.5, so it isn't a useful signal) | — |
-| Odds | [SharpAPI](https://sharpapi.io) (DraftKings + FanDuel) | same | same | — |
+MLB was already date-driven and didn't need this.
 
-NCAAMB is nav-only right now — no builder, no data, just a "coming soon"
-placeholder page.
+| | NCAAF | NFL | MLB | NBA | NCAAMB |
+|---|---|---|---|---|---|
+| Page | `index.html` | `nfl.html` | `mlb.html` | `nba.html` | `ncaamb.html` |
+| Data | `data/ncaaf_dashboard.json` | `data/nfl_dashboard.json` | `data/mlb_dashboard.json` | `data/nba_dashboard.json` | `data/ncaamb_dashboard.json` |
+| Builder | `scripts/build_ncaaf_dashboard.py` | `scripts/build_nfl_dashboard.py` | `scripts/build_mlb_dashboard.py` | `scripts/build_nba_dashboard.py` | `scripts/build_ncaamb_dashboard.py` |
+| Schedule/TV source | ESPN's public scoreboard + rankings APIs (no key needed) | ESPN's public scoreboard API (no key needed) | ESPN's public scoreboard API (no key needed) | ESPN's public scoreboard API (no key needed) | ESPN's public scoreboard API (no key needed) |
+| TV filter | Main channels only (ABC/CBS/NBC/FOX/ESPN/ESPN2/FS1) | none — all games | none — all games | none — all games | Main channels only (same set as NCAAF) |
+| Grouped by | Week → day | Week → day | Day (each "week" in the JSON is one calendar day — see MLB section below) | Day (same day-based scheme as MLB) | Day (same day-based scheme as MLB) |
+| Matchup ranking | 50% combined AP Top 25 rank + 25% combined win rank + 25% posted spread | 50% posted spread + 50% combined win rank | Combined win rank only (run line is ~always ±1.5, so it isn't a useful signal) | 50% posted spread + 50% combined win rank | 50% combined AP Top 25 rank + 25% combined win rank + 25% posted spread (same blend as NCAAF) |
+| Odds | [SharpAPI](https://sharpapi.io) (DraftKings + FanDuel) | same | same | same (SharpAPI league code `nba`) | same (SharpAPI league code `ncaab`) |
 
-All three real builders share matching odds-fetching / team-matching /
+All five builders share matching odds-fetching / team-matching /
 time-slot-bucketing / matchup-ranking logic from `scripts/common.py`, so a
-fix in one benefits all three.
+fix in one benefits all five. NBA and NCAAMB both reuse the exact
+day-based `weeks → days → time_slots → games` scheme MLB introduced (see
+"MLB: day-based instead of week-based" below) rather than a real "week N"
+concept, since both play/schedule day-to-day. NCAAMB additionally reuses
+NCAAF's main-channel TV filter and AP-poll blend, since like CFB, most of
+a given day's slate is on ESPNU/ESPN+/conference networks and not worth
+boarding, and there's a real AP Top 25 to rank by.
 
 Every game with a posted DraftKings or FanDuel line also gets a **Gemini
 Prediction Summary** — a collapsible button on the card showing an AI
@@ -112,20 +128,22 @@ above), computed once per week/day, not per time slot. Each kickoff
 window also has its own **Time Slot Best Matchup** pick (starred, yellow
 border) using its own slot-local logic (see each builder's docstring).
 
-## MLB: day-based instead of week-based
+## MLB/NBA/NCAAMB: day-based instead of week-based
 
-Baseball plays every day, so `build_mlb_dashboard.py` doesn't have a
-"week" concept — instead, each entry in `mlb_dashboard.json`'s `weeks`
-array holds exactly **one calendar day**, and that entry's `week` number
-is that day's date as an integer (`YYYYMMDD`, e.g. `20260817`) rather than
-a real week number. This lets it reuse the exact same
-`weeks → days → time_slots → games` shape (and all the merge/filter code
-that already exists for that shape) while still meaning "one day" per
-entry.
+Baseball, pro basketball, and college basketball all play/schedule most
+days of the week, so `build_mlb_dashboard.py`, `build_nba_dashboard.py`,
+and `build_ncaamb_dashboard.py` don't have a "week" concept — instead,
+each entry in their `weeks` array holds exactly **one calendar day**, and
+that entry's `week` number is that day's date as an integer (`YYYYMMDD`,
+e.g. `20260817`) rather than a real week number. This lets all three reuse
+the exact same `weeks → days → time_slots → games` shape (and all the
+merge/filter code that already exists for that shape) while still meaning
+"one day" per entry. NBA and NCAAMB copy this scheme directly from MLB,
+which introduced it first.
 
-The board shows **yesterday through tomorrow** (3 days) by default, so
+Each board shows **yesterday through tomorrow** (3 days) by default, so
 last night's final scores are still visible after the games wrap up, not
-just today/tomorrow. `current_week` in the JSON always means "today" —
+just today/tomorrow. `current_week` in each JSON always means "today" —
 the actual build window is centered on it.
 
 ## Odds fetching
@@ -277,11 +295,12 @@ rather than sticking around indefinitely. This is also noted in the Key
 `accuracy.html` shows two things side by side: how accurate **Gemini's**
 predictions have been, and how accurate **your own saved picks** have
 been — across **every graded prediction/pick ever made** in any of the
-three dashboard files, not just what's on the current board. It combines
-`data/ncaaf_dashboard.json`, `data/nfl_dashboard.json`, and
-`data/mlb_dashboard.json` (each of which keeps every week/day ever built)
-with `data/scores.json` to grade every prediction and every saved pick
-against the actual final score. "My Accuracy" is read from the same
+five dashboard files, not just what's on the current board. It combines
+`data/ncaaf_dashboard.json`, `data/nfl_dashboard.json`,
+`data/mlb_dashboard.json`, `data/nba_dashboard.json`, and
+`data/ncaamb_dashboard.json` (each of which keeps every week/day ever
+built) with `data/scores.json` to grade every prediction and every saved
+pick against the actual final score. "My Accuracy" is read from the same
 pick cookies the Picks page uses, so it works without any extra setup.
 
 Its own filter bar (separate from the board pages' filter, so changing one
@@ -307,9 +326,9 @@ been at least 65% confident on (and, right alongside it, your own ATS
 accuracy on just those best-matchup games, unaffected by the 65+). Any
 active filters show up right on the ML/ATS labels and table column
 headers so it's always clear what's being counted. Two "by Sports"
-tables break the same numbers down into NCAAF / NFL / MLB individually,
-each with an "Ungraded Games" column for predictions/picks made on a
-game that hasn't finished yet.
+tables break the same numbers down into NCAAF / NFL / MLB / NBA / NCAAMB
+individually, each with an "Ungraded Games" column for predictions/picks
+made on a game that hasn't finished yet.
 
 ### Total Winnings
 
@@ -340,9 +359,30 @@ columns, filtered the same way as their column's accuracy number.
 `scripts/gemini_predictions.py` calls the Gemini API once per game with
 current-season stats + posted odds (and, for MLB, the actual calendar date
 and probable starting pitchers when announced) and caches the result by a
-hash of the matchup + odds + model, so re-running a build doesn't re-spend
-a Gemini call on a game whose numbers haven't changed. Set `GEMINI_KEY` to
-enable; omit it and the build still runs, just without predictions.
+hash of the matchup + odds + model fallback chain, so re-running a build
+doesn't re-spend a Gemini call on a game whose numbers haven't changed.
+Set `GEMINI_KEY` to enable; omit it and the build still runs, just
+without predictions.
+
+**Model fallback chain** — each call tries these in order, falling back
+immediately to the next one the instant a model comes back rate-limited,
+over quota, or unavailable, instead of waiting/retrying on the same model:
+
+1. `gemini-3.5-flash-lite`
+2. `gemini-3.1-flash-lite`
+3. `gemini-2.5-flash-lite`
+4. `gemini-2.0-flash-lite`
+
+If every model in the chain is rate-limited on a given run, that run stops
+calling Gemini entirely; the remaining games are picked up on the next run
+(the cache preserves whatever was already completed).
+
+**Weekly full refresh** — every Wednesday (UTC), every not-yet-started NFL
+game with posted odds gets a brand-new Gemini call regardless of whether
+its cache entry is still valid. Every Thursday (UTC), CFB gets the same
+treatment. MLB/NBA/NCAAMB don't have a scheduled refresh day. Either way,
+a game that's already started or finished is never touched by this — its
+prediction (and odds) stay frozen at whatever was saved before kickoff.
 
 ## Setup
 
@@ -361,6 +401,8 @@ and the AP Top 25 poll from ESPN's public API, same as NFL and MLB.
 python scripts/build_ncaaf_dashboard.py
 python scripts/build_nfl_dashboard.py
 python scripts/build_mlb_dashboard.py
+python scripts/build_nba_dashboard.py
+python scripts/build_ncaamb_dashboard.py
 python scripts/fetch_scores.py
 ```
 

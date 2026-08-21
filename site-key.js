@@ -74,10 +74,11 @@
           <div class="key-row"><dt>ATS</dt><dd>Against The Spread -- bet on a team to cover the posted point spread.</dd></div>
           <div class="key-row"><dt>DK</dt><dd>DraftKings sportsbook.</dd></div>
           <div class="key-row"><dt>FD</dt><dd>FanDuel sportsbook.</dd></div>
-          <div class="key-row"><dt>AP</dt><dd>The AP (Associated Press) Top 25 poll, used for college football rankings.</dd></div>
+          <div class="key-row"><dt>AP</dt><dd>The AP (Associated Press) Top 25 poll, used for college football and college basketball rankings.</dd></div>
           <div class="key-row"><dt>CFB / NCAAF</dt><dd>College football.</dd></div>
           <div class="key-row"><dt>NCAAMB</dt><dd>College basketball (men's).</dd></div>
           <div class="key-row"><dt>NFL</dt><dd>National Football League (pro football).</dd></div>
+          <div class="key-row"><dt>NBA</dt><dd>National Basketball Association (pro basketball).</dd></div>
           <div class="key-row"><dt>MLB</dt><dd>Major League Baseball.</dd></div>
         </dl>
         <div class="key-note">Matchup / Slot Pick badges rank games by a blend of team rank, record, and posted spread -- see each page's footer for the exact formula.</div>

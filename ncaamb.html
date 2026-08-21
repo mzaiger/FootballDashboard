@@ -11,11 +11,15 @@
     --bg: #0a0d10;
     --bg-panel: #12161b;
     --line: #232a31;
-    --turf: #8f6a2f;
-    --turf-bright: #c19a43;
+    --turf: #2f6a8f;
+    --turf-bright: #43a0c1;
     --chalk: #e8ecef;
     --dim: #8a95a1;
     --gold: #e0a63c;
+    --dk-green: #53d337;
+    --fd-blue: #1493ff;
+    --loss-red: #e2584a;
+    --pick-yellow: #ffd60a;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -26,6 +30,7 @@
     color:var(--chalk);
     font-family:'JetBrains Mono', monospace;
     min-height:100vh;
+    padding-bottom:4rem;
   }
 
   .nav-bar{
@@ -40,7 +45,7 @@
   }
   .site-nav{
     max-width:1180px; margin:0 auto; padding:0.9rem 1.5rem;
-    display:flex; flex-wrap:wrap; gap:1.55rem; align-items:center;
+    display:flex; flex-wrap:wrap; gap:.5rem; align-items:center;
     position:relative;
   }
   .hamburger-btn{
@@ -58,7 +63,85 @@
   }
   .site-nav a:hover{color:var(--chalk);}
   .site-nav a.active{color:var(--turf-bright); border-bottom-color:var(--turf-bright);}
+  .status-pills{display:flex; gap:0.1rem; align-items:center; order:3;}
+  .status-pill{
+    display:flex; align-items:center; gap:0.3rem;
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.03em;
+    color:var(--dim); background:#000; border:1px solid var(--line); border-radius:6px;
+    padding:0.1rem 0.22rem; cursor:pointer; transition:all 0.12s ease;
+  }
+  .status-pill:hover{color:var(--chalk);}
+  .status-pill.active{background:var(--turf); color:#04140a; border-color:var(--turf);}
+  .pill-count{font-family:'JetBrains Mono',monospace; font-weight:500; opacity:0.85;}
+  .view-toggle{
+    display:flex; gap:0.25rem; background:var(--bg-panel);
+    border:1px solid var(--line); border-radius:8px; padding:0.2rem;
+    order:4; margin-left:auto;
+  }
+  .view-toggle .view-btn{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.04em;
+    color:var(--dim); background:transparent; border:none; border-radius:6px;
+    padding:0.1rem 0.22rem; cursor:pointer; transition:all 0.12s ease;
+  }
+  .view-toggle .view-btn:hover{color:var(--chalk);}
+  .view-toggle .view-btn.active{background:var(--turf); color:#04140a;}
 
+  /* Filter options now live inline in the nav bar itself (same sticky
+     element, same background) instead of a separate bar underneath --
+     order:2 puts them between the menu links and the status pills on
+     desktop; the mobile media query below reorders them onto their own
+     second line. */
+  .filter-bar-inner{
+    display:flex; flex-wrap:wrap; gap:0.6rem; align-items:center;
+    justify-content:center;
+    flex:1 1 auto; order:2;
+  }
+  .filter-pill{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.04em;
+    color:var(--dim); background:#000; border:1px solid var(--line); border-radius:6px;
+    padding:0.1rem 0.22rem; cursor:pointer; transition:all 0.12s ease;
+  }
+  .filter-pill:hover{color:var(--chalk);}
+  .filter-pill.active{background:var(--turf); color:#04140a; border-color:var(--turf);}
+
+  .filter-conf-group{
+    display:flex; align-items:center; gap:0.5rem;
+    border:1px solid var(--line); border-radius:8px;
+    padding:0.1rem 0.22rem;
+  }
+  .conf-type-toggle{
+    display:flex; gap:0.2rem; background:var(--bg); border-radius:6px; padding:0.1rem;
+  }
+  .conf-type-btn{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
+    text-transform:uppercase; letter-spacing:0.03em;
+    color:var(--dim); background:transparent; border:none; border-radius:5px;
+    padding:0.1rem 0.22rem; cursor:pointer; transition:all 0.12s ease;
+  }
+  .conf-type-btn:hover{color:var(--chalk);}
+  .conf-type-btn.active{background:var(--turf); color:#04140a;}
+  .filter-conf{display:flex; align-items:center; gap:0.35rem;}
+  .filter-conf label{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
+    text-transform:uppercase; letter-spacing:0.03em; color:var(--dim);
+  }
+  .filter-conf select{
+    background:var(--bg); color:var(--chalk); border:none;
+    border-radius:5px; padding:0.18rem 0.4rem; font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem; cursor:pointer;
+  }
+
+  /* Below this width the links + filters + toggle can't fit on one line --
+     drop the filters to their own full-width second line inside the same
+     sticky nav bar (order swap so links/toggle stay on line 1). */
+  /* Below this width the links + filters + pills + toggle can't fit on one
+     line. Hamburger replaces the inline nav links (which become a
+     dropdown), and Best-Slot-Matchups/Confidence drop to their own full-
+     width second line, while Hamburger/Open/Closed/All/Tiles/Rows stay
+     together on line 1. */
   @media (max-width: 760px){
     .hamburger-btn{display:flex; align-items:center; justify-content:center;}
     .nav-links{
@@ -68,23 +151,430 @@
       padding:0.85rem 1.5rem; z-index:150;
     }
     .nav-links.open{display:flex;}
+    .status-pills{order:2;}
+    .view-toggle{order:3; margin-left:0;}
+    .filter-bar-inner{order:4; flex:1 1 100%; justify-content:flex-start;}
   }
 
-  .coming-soon{
-    max-width:1180px; margin:0 auto; padding:6rem 1.5rem;
+
+  .week-block{margin-top:2.25rem;}
+  .week-block:first-child{margin-top:1.5rem;}
+  .week-heading{
+    display:flex; align-items:baseline; gap:0.75rem;
+    padding-bottom:0.5rem; margin-bottom:0.25rem;
+    border-bottom:1px dashed var(--line);
+  }
+  .week-heading .week-name{
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:1.15rem;
+    text-transform:uppercase; letter-spacing:0.05em; color:var(--gold);
+  }
+  .week-heading .week-count{margin-left:auto; color:var(--dim); font-size:0.78rem;}
+  .week-empty{color:var(--dim); font-size:0.85rem; padding:0.5rem 0 1.5rem;}
+
+  /* Rows view: same card markup, laid out as a column-aligned table instead of
+     tiles. Every row is a CSS grid using the same fixed column tracks (Rank /
+     TV / Team / Odds / Buttons), so all rows line up with each other going
+     down the page no matter which day or time slot they're in. The row list
+     is inset from the page edges rather than running edge-to-edge. */
+  body.row-view .site-nav,
+  body.row-view .hero-inner,
+  body.row-view footer,
+  body.row-view .status{
+    max-width:1760px;
+  }
+  body.row-view main{
+    max-width:1480px;
+    padding:0 3.25rem;
+  }
+  body.row-view .grid{
+    display:flex; flex-direction:column; gap:0.85rem;
+    margin:0 1.75rem;
+  }
+  body.row-view .card{
+    display:grid;
+    grid-template-columns:auto auto minmax(200px,1fr) 280px 190px;
+    grid-template-rows:auto auto;
+    align-items:center;
+    column-gap:0.3rem;
+    padding:0.45rem 0.9rem;
+    position:relative;
+  }
+  body.row-view .card.slot-pick{padding-top:1rem;}
+  body.row-view .pick-banner{
+    position:absolute; top:-0.35rem; left:0.9rem;
+    width:188px;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; min-height:60vh;
+    gap:0.05rem; line-height:1.15; text-align:center;
+    border-radius:6px; padding:0.3rem 0.4rem; margin:0; white-space:normal;
+    font-size:0.58rem; z-index:2;
   }
-  .coming-soon .eyebrow{
-    font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.22em;
-    font-size:0.72rem; color:var(--gold); font-weight:600;
+  body.row-view .card-top{display:contents;}
+  body.row-view .card-top .score-badge{
+    grid-column:1; grid-row:1 / 3; justify-self:start; align-self:center;
+    margin-right:1rem;
   }
-  .coming-soon h1{
+  body.row-view .card-top .channel-pill{
+    grid-column:2; grid-row:1 / 3; justify-self:start; align-self:center;
+    margin-right:0.8rem;
+  }
+  body.row-view .matchup{
+    grid-column:3; grid-row:1;
+    margin:0; overflow-x:visible; white-space:normal; flex-wrap:wrap;
+  }
+  body.row-view .subline{
+    grid-column:3; grid-row:2;
+    margin:0; flex-direction:row; gap:0.6rem;
+  }
+  body.row-view table.odds,
+  body.row-view .no-odds{
+    grid-column:4; grid-row:1 / 3;
+    width:100%;
+  }
+  body.row-view table.odds{table-layout:fixed; font-size:0.7rem;}
+  body.row-view table.odds th{font-size:0.6rem; padding-bottom:0.2rem;}
+  body.row-view table.odds td{padding:0.18rem 0;}
+  body.row-view .book{font-size:0.64rem;}
+  body.row-view table.odds th:first-child,
+  body.row-view table.odds td:first-child{width:20px;}
+  body.row-view .no-odds{font-size:0.68rem;}
+  body.row-view .pick-toolbar{
+    grid-column:5; grid-row:1 / 3;
+    margin:0; width:100%;
+    grid-template-columns:repeat(2,1fr); gap:0.3rem;
+  }
+  body.row-view .pick-btn{min-width:0; font-size:0.62rem; padding:0.32rem 0.2rem; overflow-wrap:break-word;}
+  /* Below this width there isn't enough room for a true single-line row even
+     with the wider container, so let each row scroll horizontally instead
+     of wrapping onto a second line. */
+  @media (max-width: 1400px){
+    body.row-view .grid{overflow-x:visible;}
+    body.row-view .card{overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none;}
+    body.row-view .card::-webkit-scrollbar{display:none;}
+  }
+  @media (max-width: 900px){
+    body.row-view main{padding:0 1.5rem;}
+    body.row-view .grid{margin:0;}
+    body.row-view .card{
+      display:flex; flex-direction:column; align-items:stretch; overflow-x:visible;
+    }
+    body.row-view .card-top{display:flex; justify-content:space-between; align-items:center; width:auto;}
+    body.row-view .card-top .score-badge,
+    body.row-view .card-top .channel-pill{grid-column:auto; grid-row:auto;}
+    body.row-view .matchup,
+    body.row-view .subline,
+    body.row-view table.odds,
+    body.row-view .no-odds,
+    body.row-view .pick-toolbar{width:auto; grid-column:auto; grid-row:auto;}
+  }
+
+  .hero{
+    padding:2.5rem 1.5rem 1.75rem;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(120deg, rgba(47,95,143,0.18), transparent 55%);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:1180px;margin:0 auto;position:relative;}
+  .eyebrow{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.22em;
+    font-size:0.72rem;
+    color:var(--turf-bright);
+    font-weight:600;
+  }
+  h1{
+    font-family:'Oswald',sans-serif;
+    font-weight:700;
+    font-size:clamp(2rem, 5vw, 3.1rem);
+    margin:0.35rem 0 0.5rem;
+    letter-spacing:-0.01em;
+  }
+  .meta-row{
+    display:flex; flex-wrap:wrap; gap:1.25rem;
+    color:var(--dim); font-size:0.82rem; margin-top:0.5rem;
+  }
+  .meta-row b{color:var(--chalk); font-weight:600;}
+  .channels{
+    display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.9rem;
+  }
+  .chan-pill{
+    border:1px solid var(--line); border-radius:999px;
+    padding:0.15rem 0.65rem; font-size:0.72rem; color:var(--dim);
+  }
+
+  main{max-width:1180px;margin:0 auto; padding:0 1.5rem;}
+
+  .day-block{margin-top:2.5rem;}
+  .day-heading{
+    display:flex; align-items:baseline; gap:0.75rem;
+    padding-bottom:0.6rem; margin-bottom:1.1rem;
+    border-bottom:2px solid var(--turf);
+  }
+  .day-heading .weekday{
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:1.5rem;
+    text-transform:uppercase; letter-spacing:0.02em;
+  }
+  .day-heading .date{color:var(--dim); font-size:0.85rem;}
+  @media (max-width: 480px){
+    .day-heading{gap:0.5rem;}
+    .day-heading .weekday{font-size:1.2rem;}
+    .day-heading .date{font-size:0.65rem;}
+  }
+  .day-heading .count{
+    margin-left:auto; color:var(--dim); font-size:0.78rem;
+  }
+
+  .slot-block{margin-bottom:1.75rem;}
+  .slot-block:last-child{margin-bottom:0;}
+  .slot-heading{
+    display:flex; align-items:baseline; gap:0.6rem; flex-wrap:wrap;
+    margin-bottom:0.7rem;
+  }
+  .slot-heading .slot-name{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.95rem;
+    text-transform:uppercase; letter-spacing:0.08em; color:var(--turf-bright);
+  }
+  .slot-heading .slot-icon{font-size:0.9rem;}
+  .slot-heading::after{
+    content:""; flex:1; height:1px; background:var(--line);
+  }
+  .slot-heading .slot-count{color:var(--dim); font-size:0.72rem;}
+  .slot-heading a.slot-regional-link{
+    font-size:0.72rem; color:var(--turf-bright); text-decoration:none;
+    white-space:nowrap;
+  }
+  .slot-heading a.slot-regional-link:hover{text-decoration:underline;}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(340px, 1fr));
+    gap:1rem;
+  }
+
+  .card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:1.1rem 1.2rem 1.2rem;
+    position:relative;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .card:hover{border-color:#39424b; transform:translateY(-1px);}
+  .card.close-game{border-color:rgba(224,166,60,0.55); box-shadow:0 0 0 1px rgba(224,166,60,0.12), 0 8px 24px -12px rgba(224,166,60,0.25);}
+  .card.slot-pick{
+    border:2px solid var(--pick-yellow);
+    box-shadow:0 0 0 1px rgba(255,214,10,0.25), 0 10px 26px -12px rgba(255,214,10,0.4);
+    padding-top:2.4rem;
+  }
+  .pick-banner{
+    position:absolute; top:0; left:0; right:0;
+    background:var(--pick-yellow); color:#1a1400;
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:0.7rem;
+    text-transform:uppercase; letter-spacing:0.1em; text-align:center;
+    padding:0.3rem 0.5rem; border-radius:9px 9px 0 0;
+  }
+  .odds td.picked{background:rgba(255,214,10,0.16); color:var(--pick-yellow); font-weight:700; border-radius:4px;}
+  .odds td.hit{background:rgba(62,207,106,0.18); color:#3ecf6a; font-weight:700; border-radius:4px;}
+  .odds td.miss{background:rgba(226,88,74,0.16); color:var(--loss-red); font-weight:700; border-radius:4px;}
+  .odds td.picked.hit,
+  .odds td.picked.miss{box-shadow:inset 0 0 0 2px var(--pick-yellow);}
+  .pick-toolbar{display:grid; grid-template-columns:repeat(4,1fr); gap:0.35rem; margin-top:0.6rem;}
+  .payout-summary{
+    grid-column: 1 / -1;
+    font-family:'JetBrains Mono',monospace; font-size:0.7rem; font-weight:700; color:#ffffff;
+    text-align:center; margin-top:0.25rem;
+  }
+  .pick-btn{
+    font-family:'Inter',sans-serif; font-size:0.68rem; font-weight:600;
+    color:var(--dim); background:#161b20; border:1px solid var(--line);
+    border-radius:6px; padding:0.4rem 0.2rem; cursor:pointer;
+    text-align:center; line-height:1.15; transition:all 0.12s ease;
+  }
+  .pick-btn:hover{border-color:var(--pick-yellow); color:var(--chalk);}
+  .pick-btn.active{background:var(--pick-yellow); border-color:var(--pick-yellow); color:#1a1400;}
+  .pick-btn:disabled{opacity:0.55; cursor:not-allowed;}
+  .pick-btn:disabled:hover{border-color:var(--line); color:var(--dim);}
+  .pick-btn.active:disabled{color:#1a1400;}
+  .pick-btn.active:disabled:hover{border-color:var(--pick-yellow);}
+
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem;}
+  .score-badge{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.68rem;
+    text-transform:uppercase; letter-spacing:0.08em; color:var(--turf-bright);
+    border:1px solid rgba(67,148,193,0.35); border-radius:999px;
+    padding:0.2rem 0.55rem; white-space:nowrap;
+  }
+  .close-game .score-badge{color:var(--gold); border-color:rgba(224,166,60,0.45);}
+  .channel-pill{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
+    background:var(--turf); color:#04140a; border-radius:5px;
+    padding:0.2rem 0.5rem; letter-spacing:0.02em;
+    /* Capped to roughly the width of the Matchup badge ("Matchup: XX")
+       and wraps instead of overflowing, so a long combined national-TV
+       string (e.g. multiple networks) doesn't blow out the card width or
+       push the score badge off to one side. */
+    max-width: 35ch; white-space: normal; overflow-wrap: break-word;
+    text-align: left; line-height: 1.3;
+  }
+
+  .matchup{
+    margin:0.85rem 0 0.6rem;
+    display:flex; align-items:center; justify-content:center; flex-wrap:nowrap; gap:0.45rem;
+    font-family:'Oswald',sans-serif; font-size:1.05rem; font-weight:600;
+    white-space:nowrap; overflow-x:auto; scrollbar-width:none;
+  }
+  .matchup::-webkit-scrollbar{display:none;}
+  .team{display:inline-flex; align-items:center; gap:0.4rem;}
+  .team-name-wrap{display:inline-flex; flex-direction:column; align-items:flex-start; line-height:1.2;}
+  .team-name-line{display:inline-flex; align-items:baseline; gap:0.4rem;}
+  .team-name{font-size:0.98rem;}
+  .team-record{
+    /* Oswald (condensed sans) instead of the monospace font used
+       elsewhere -- monospace reads noticeably "spread out" at this size
+       for a W-L record + pitcher line, condensed reads more compact. */
+    font-family:'Oswald',sans-serif; font-weight:500; font-size:0.68rem;
+    letter-spacing:0.01em; color:var(--dim);
+  }
+  .team-pitcher{
+    font-family:'Oswald',sans-serif; font-weight:500; font-size:0.76rem;
+    letter-spacing:0.01em; color:var(--dim); opacity:0.85;
+  }
+  .rank{
+    font-size:0.68rem; color:var(--gold); border:1px solid rgba(224,166,60,0.4);
+    border-radius:4px; padding:0.05rem 0.3rem; min-width:1.6rem; text-align:center;
+    flex-shrink:0;
+  }
+  .at{color:var(--dim); font-size:0.72rem; font-family:'JetBrains Mono',monospace; flex-shrink:0;}
+
+  @media (max-width: 480px){
+    .matchup{
+      flex-wrap:wrap; white-space:normal; overflow-x:visible;
+      font-size:1rem;
+    }
+    .at{margin:0 0.1rem;}
+  }
+
+  .subline{
+    color:var(--dim); font-size:0.75rem; display:flex; gap:1rem; flex-wrap:wrap;
+    justify-content:center; margin-bottom:0.9rem;
+  }
+
+  table.odds{
+    width:100%; border-collapse:collapse; font-size:0.78rem;
+  }
+  table.odds th{
+    text-align:right; color:var(--dim); font-weight:500;
+    font-size:0.66rem; text-transform:uppercase; letter-spacing:0.05em;
+    padding-bottom:0.35rem;
+  }
+  table.odds th:first-child, table.odds td:first-child{text-align:left;}
+  table.odds td{
+    text-align:right; padding:0.3rem 0; border-top:1px solid var(--line);
+  }
+  .book{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.72rem;
+  }
+  .book.dk{color:var(--dk-green);}
+  .book.fd{color:var(--fd-blue);}
+  .num.neg{color:var(--loss-red);}
+  .num-am{display:block; font-size:0.7rem; margin-top:0.1rem;}
+  .empty-cell{color:#3d454d;}
+
+  .no-odds{color:var(--dim); font-size:0.75rem; padding:0.4rem 0;}
+
+  .team-score{
     font-family:'Oswald',sans-serif; font-weight:700;
-    font-size:clamp(2rem, 6vw, 3.5rem);
-    margin:0.5rem 0; letter-spacing:-0.01em;
   }
-  .coming-soon p{color:var(--dim); font-size:0.95rem; max-width:32rem;}
+  .team-score.live{color:#ff5f56;}
+  .team-score.final{color:#3ecf6a;}
+  .score-status-line{
+    flex-basis:100%; font-family:'Oswald',sans-serif; font-size:0.68rem;
+    font-weight:600; letter-spacing:0.02em; color:#ff5f56; display:flex;
+    align-items:center; gap:0.35rem;
+  }
+  .live-dot{
+    width:0.5rem; height:0.5rem; border-radius:50%; background:#ff5f56;
+    display:inline-block; animation:live-pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes live-pulse{
+    0%,100%{opacity:1;} 50%{opacity:0.35;}
+  }
+
+  .gemini-toggle{
+    width:100%; margin-top:0.6rem;
+    display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; row-gap:0.3rem;
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem;
+    color:var(--dim); background:#161b20; border:1px solid var(--line);
+    border-radius:6px; padding:0.45rem 0.6rem; cursor:pointer;
+    text-align:left; transition:all 0.12s ease;
+  }
+  .gemini-toggle:hover{border-color:#8b5cf6; color:var(--chalk);}
+  .gemini-toggle.open{border-color:#8b5cf6; color:#c4b5fd; background:rgba(139,92,246,0.1);}
+  .gemini-toggle-icon{font-size:0.85rem; flex-shrink:0;}
+  .gemini-toggle-main{
+    display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;
+    flex:1; min-width:0;
+  }
+  .gemini-toggle-winner,
+  .gemini-toggle-ats{
+    display:flex; flex-direction:column; align-items:flex-end; line-height:1.25;
+    text-transform:none; letter-spacing:normal;
+  }
+  .gemini-pick-label{
+    color:var(--chalk); font-weight:500; font-size:.75rem; letter-spacing:0.03em;
+  }
+  .gemini-pick-team{
+    color:var(--chalk); font-weight:600; font-size:.75rem; letter-spacing:0.02em;
+  }
+  .gemini-toggle-trailing{
+    display:flex; align-items:center; gap:0.4rem; margin-left:auto; flex-shrink:0;
+  }
+  /* Tiles view: always drop the Pick/ATS summary to its own line under the
+     "Gemini Prediction Summary" label instead of only wrapping when it
+     doesn't fit on the first line. Row view lays this button out
+     differently (see body.row-view rules below), so this is scoped off. */
+  body:not(.row-view) .gemini-toggle-trailing{
+    flex-basis:100%; margin-left:0; justify-content:space-between;
+  }
+  .gemini-conf{color:#a78bfa; font-family:'JetBrains Mono',monospace; font-weight:700; text-transform:none;}
+  .gemini-caret{font-size:0.6rem; transition:transform .12s ease; color:inherit;}
+  .gemini-toggle.open .gemini-caret{transform:rotate(180deg);}
+  .gemini-panel{
+    margin-top:0.5rem; padding:0.7rem 0.8rem;
+    background:#14101c; border:1px solid rgba(139,92,246,0.3); border-radius:8px;
+  }
+  .gemini-panel-row{
+    display:flex; justify-content:space-between; gap:0.75rem;
+    font-size:0.75rem; padding:0.15rem 0; color:var(--dim);
+  }
+  .gemini-panel-row .gemini-value{color:var(--chalk); font-weight:600; text-align:right;}
+  .gemini-analysis{
+    margin:0.55rem 0 0; color:var(--chalk); font-size:0.78rem; line-height:1.55;
+  }
+  .gemini-picks-summary {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 28px;              /* separation — bump up or down to taste */
+    flex-wrap: wrap;
+  }
+  body.row-view .gemini-toggle,
+  body.row-view .gemini-panel{grid-column:1 / -1;}
+  body.row-view .gemini-toggle{grid-row:3;}
+  body.row-view .gemini-panel{grid-row:4;}
+
+  footer{
+    max-width:1180px; margin:3rem auto 0; padding:0 1.5rem;
+    color:var(--dim); font-size:0.75rem; border-top:1px solid var(--line); padding-top:1rem;
+  }
+  footer a{color:var(--turf-bright);}
+  .status{max-width:1180px;margin:2rem auto;padding:0 1.5rem;color:var(--dim);}
 </style>
 </head>
 <body>
@@ -97,19 +587,88 @@
     <a href="ncaamb.html" class="active">NCAAMB</a>
     <a href="nfl.html">NFL</a>
     <a href="mlb.html">MLB</a>
+    <a href="nba.html">NBA</a>
     <a href="accuracy.html">Accuracy</a>
     <a href="export.html">Export</a>
     <a href="picks.html">Picks</a>
   </div>
+  <div class="filter-bar-inner">
+    <button type="button" class="filter-pill" id="bestMatchupOnly">Best Matchups</button>
+    <div class="filter-conf-group">
+      <div class="conf-type-toggle">
+        <button type="button" class="conf-type-btn" data-conftype="both">Both</button>
+        <button type="button" class="conf-type-btn" data-conftype="ml">ML</button>
+        <button type="button" class="conf-type-btn" data-conftype="ats">ATS</button>
+      </div>
+      <div class="filter-conf">
+        <label for="minConfSelect">Confidence:</label>
+        <select id="minConfSelect">
+          <option value="0">Any</option>
+          <option value="5">5+</option>
+          <option value="10">10+</option>
+          <option value="15">15+</option>
+          <option value="20">20+</option>
+          <option value="25">25+</option>
+          <option value="30">30+</option>
+          <option value="35">35+</option>
+          <option value="40">40+</option>
+          <option value="45">45+</option>
+          <option value="50">50+</option>
+          <option value="55">55+</option>
+          <option value="60">60+</option>
+          <option value="65">65+</option>
+          <option value="70">70+</option>
+          <option value="75">75+</option>
+          <option value="80">80+</option>
+          <option value="85">85+</option>
+          <option value="90">90+</option>
+          <option value="95">95+</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="status-pills">
+    <button type="button" class="status-pill" data-status="open">Open <span class="pill-count" id="openCount">0</span></button>
+    <button type="button" class="status-pill" data-status="closed">Closed <span class="pill-count" id="closedCount">0</span></button>
+    <button type="button" class="status-pill" data-status="all">All <span class="pill-count" id="allCount">0</span></button>
+  </div>
+  <div class="view-toggle">
+    <button type="button" class="view-btn" data-mode="tiles">Tiles</button>
+    <button type="button" class="view-btn" data-mode="rows">Rows</button>
+  </div>
 </nav>
 </div>
 
-<div class="coming-soon">
-  <div class="eyebrow">College Basketball</div>
-  <h1>Coming Soon</h1>
-  <p>The NCAAMB board isn't built yet -- check back once college basketball season gets closer.</p>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">NCAAMB &middot; TV Schedule + Odds Board</div>
+    <h1 id="pageTitle">Loading day&hellip;</h1>
+    <div class="meta-row">
+      <span>Last updated: <b id="generatedAt">—</b></span>
+      <span><b id="totalGames">—</b> games on main channels</span>
+    </div>
+    <div class="channels" id="channelList"></div>
+  </div>
 </div>
 
+<main id="days"></main>
+
+<div class="status" id="statusMsg" style="display:none;"></div>
+
+<footer>
+  Matchup: N badge = this game's rank among every game that day (1 = most marquee), based on 50% DraftKings/FanDuel point spread + 50% combined win rank (teams ranked by record, best record = rank 1) -- both normalized 0-100 and blended before ranking.
+  &#11088; Time Slot Best Matchup = the game with the best blended matchup score in that window.
+  Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule, broadcast network, &amp; records via ESPN's public scoreboard API.
+  <br><br>
+  &#10024; Gemini Prediction Summary is AI-generated from current-season stats and posted odds -- informational only, not betting advice.
+  <br><br>
+  &#11088; Best Matchup Only shows just each window's starred pick. Conf filters to games where Gemini's confidence
+  (ML or ATS, whichever is selected) is at least that number; a game with no Gemini prediction, or no ATS pick posted
+  when ATS is selected, is filtered out once Conf is above Any.
+</footer>
+
+<script src="picks-store.js"></script>
 <script>
 (function(){
   const bar = document.querySelector('.nav-bar');
@@ -118,25 +677,225 @@
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 })();
+</script>
+<script>
+const SPORT = 'ncaamb';
+const DATA_URL = 'data/ncaamb_dashboard.json';
+let SCORES = {};
+let CURRENT_SEASON = null;
 
-(function(){
-  const btn = document.getElementById('hamburgerBtn');
-  const nav = document.getElementById('navLinks');
-  if (!btn || !nav) return;
-  btn.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('open');
-    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+function fmtAmerican(n) {
+  if (n === null || n === undefined || n === '') return null;
+  const num = Number(n);
+  if (Number.isNaN(num)) return null;
+  return num > 0 ? `+${num}` : `${num}`;
+}
+
+function fmtLine(n) {
+  if (n === null || n === undefined || n === '') return null;
+  const num = Number(n);
+  if (Number.isNaN(num)) return null;
+  return num > 0 ? `+${num}` : `${num}`;
+}
+
+function oddsCell(entry) {
+  if (!entry || (entry.line === undefined && entry.american === undefined)) {
+    return '<span class="empty-cell">—</span>';
+  }
+  const line = fmtLine(entry.line);
+  const am = fmtAmerican(entry.american);
+  const negCls = (typeof entry.american === 'number' && entry.american < 0) ? 'neg' : '';
+  if (line !== null && am !== null) return `${line}<span class="num num-am ${negCls}">(${am})</span>`;
+  if (am !== null) return `<span class="num ${negCls}">${am}</span>`;
+  if (line !== null) return line;
+  return '<span class="empty-cell">—</span>';
+}
+
+function rankBadge(rank) {
+  return rank ? `<span class="rank">#${rank}</span> ` : '';
+}
+
+function teamNameBlock(name, record, scoreBadge) {
+  const recordHtml = record ? `<span class="team-record">${record}</span>` : '';
+  return `<span class="team-name-wrap"><span class="team-name-line"><span class="team-name">${name}</span>${scoreBadge || ''}</span>${recordHtml}</span>`;
+}
+
+function kickoffTime(iso, tbd) {
+  if (tbd) return 'Time TBD';
+  try {
+    const d = new Date(iso);
+    return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+  } catch (e) { return ''; }
+}
+
+function renderGame(g) {
+  // matchup_score is a blended 0-100 score (50% spread + 50% win rank,
+  // both normalized) -- treat the bottom ~1/5th of the 0-100 scale as a
+  // "close/marquee" game. Adjust to taste.
+  const closeGame = g.matchup_score !== null && g.matchup_score !== undefined && g.matchup_score <= 20;
+  const isPick = !!g.is_slot_pick;
+  const gScore = SCORES[String(g.id)];
+  const books = ['draftkings', 'fanduel'];
+  const bookLabel = { draftkings: 'DK', fanduel: 'FD' };
+  const bookCls = { draftkings: 'dk', fanduel: 'fd' };
+
+  const hasAnyOdds = books.some(b =>
+    Object.keys((g.odds?.[b]?.spread) || {}).length ||
+    Object.keys((g.odds?.[b]?.moneyline) || {}).length
+  );
+
+  let rows = '';
+  books.forEach(b => {
+    const spread = g.odds?.[b]?.spread || {};
+    const ml = g.odds?.[b]?.moneyline || {};
+    const cellCls = (market, side, entry) =>
+      `${pickCellClass(SPORT, g, market, side)} ${oddsHitClass(SPORT, g.id, b, market, side, entry, gScore)}`.trim();
+    rows += `<tr>
+      <td class="book ${bookCls[b]}">${bookLabel[b]}</td>
+      <td class="${cellCls('spread', 'away', spread.away)}">${oddsCell(spread.away)}</td>
+      <td class="${cellCls('spread', 'home', spread.home)}">${oddsCell(spread.home)}</td>
+      <td class="${cellCls('moneyline', 'away', ml.away)}">${oddsCell(ml.away)}</td>
+      <td class="${cellCls('moneyline', 'home', ml.home)}">${oddsCell(ml.home)}</td>
+    </tr>`;
   });
-  nav.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => nav.classList.remove('open'));
-  });
-  document.addEventListener('click', (e) => {
-    if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
-      nav.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
+
+  const oddsBlock = hasAnyOdds
+    ? `<table class="odds">
+        <thead><tr><th></th><th>Away Spd</th><th>Home Spd</th><th>Away ML</th><th>Home ML</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`
+    : `<div class="no-odds">Odds not yet posted</div>`;
+
+
+  return `
+  <div class="card ${closeGame ? 'close-game' : ''} ${isPick ? 'slot-pick' : ''}">
+    ${isPick ? '<div class="pick-banner">\u2b50 Time Slot Best Matchup</div>' : ''}
+    <div class="card-top">
+      <span class="score-badge">${matchupLabel(g)}</span>
+      <span class="channel-pill">${formatChannelForPill(g.channel)}</span>
+    </div>
+    <div class="matchup">
+      <span class="team">${rankBadge(g.away_rank)}${teamNameBlock(g.away_team, g.away_record, teamScoreBadge(gScore?.away_score, gScore?.status))}</span>
+      <span class="at">@</span>
+      <span class="team">${rankBadge(g.home_rank)}${teamNameBlock(g.home_team, g.home_record, teamScoreBadge(gScore?.home_score, gScore?.status))}</span>
+    </div>
+    <div class="subline">
+      <span>${kickoffTime(g.start_time, g.start_time_tbd)}</span>
+      <span>${g.venue || ''}</span>
+      ${renderLiveStatusLine(gScore)}
+    </div>
+    ${oddsBlock}
+    ${renderPickToolbar(SPORT, g, gScore)}
+    ${renderGeminiBlock(g)}
+  </div>`;
+}
+
+const SLOT_ICON = {
+  'Morning': '\u{1F305}',
+  'Noon': '\u2600\uFE0F',
+  'Afternoon': '\u{1F324}\uFE0F',
+  'Prime Time': '\u{1F306}',
+  'Late Night': '\u{1F319}',
+  'Time TBD': '\u2753'
+};
+
+function renderSlot(slot) {
+  return `
+  <div class="slot-block">
+    <div class="slot-heading">
+      <span class="slot-icon">${SLOT_ICON[slot.slot] || ''}</span>
+      <span class="slot-name">${slot.slot}</span>
+      <span class="slot-count">${slot.games.length} game${slot.games.length === 1 ? '' : 's'}</span>
+    </div>
+    <div class="grid">
+      ${slot.games.map(renderGame).join('')}
+    </div>
+  </div>`;
+}
+
+function renderDay(day) {
+  const d = new Date(day.date + 'T00:00:00');
+  const dateStr = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+  return `
+  <section class="day-block">
+    <div class="day-heading">
+      <span class="weekday">${day.weekday}</span>
+      <span class="date">${dateStr}</span>
+      <span class="count">${day.game_count} game${day.game_count === 1 ? '' : 's'}</span>
+    </div>
+    ${day.time_slots.map(renderSlot).join('')}
+  </section>`;
+}
+
+function renderWeek(week) {
+  if (!week.days.length) {
+    if (!week._filtered) return ''; // nothing scheduled this day at all -- don't show an empty section
+    return `
+    <section class="week-block">
+      <div class="week-heading"><span class="week-name">${formatMlbDayLabel(week)}</span></div>
+      <div class="week-empty">No games match the current filters.</div>
+    </section>`;
+  }
+  const label = formatMlbDayLabel(week);
+  return `
+  <section class="week-block">
+    <div class="week-heading">
+      <span class="week-name">${label}</span>
+      <span class="week-count">${week.total_games} game${week.total_games === 1 ? '' : 's'}</span>
+    </div>
+    ${week.days.map(renderDay).join('')}
+  </section>`;
+}
+
+async function init() {
+  const statusEl = document.getElementById('statusMsg');
+  try {
+    const res = await fetch(DATA_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    SCORES = await fetchScores('ncaamb');
+    CURRENT_SEASON = data.season;
+
+    // mlb_dashboard.json holds every day ever built; only show the day
+    // the build itself resolved as "today" -- yesterday, today, and tomorrow.
+    const displayWeeks = selectDisplayDays(data.weeks, data.current_week);
+
+    const dayLabels = displayWeeks.map(formatMlbDayLabel);
+    document.getElementById('pageTitle').textContent = dayLabels.length
+      ? dayLabels.join(' \u2014 ')
+      : `${data.season}`;
+    document.getElementById('generatedAt').textContent = new Date(data.generated_at).toLocaleString();
+    document.getElementById('channelList').innerHTML =
+      (data.main_channels || []).map(c => `<span class="chan-pill">${c}</span>`).join('');
+
+    const daysEl = document.getElementById('days');
+    if (!displayWeeks.some(w => w.days.length)) {
+      statusEl.style.display = 'block';
+      statusEl.textContent = 'No main-channel games found for yesterday through tomorrow — check back closer to tip-off.';
+      return;
     }
-  });
-})();
+    let statusPills;
+    const renderBoard = () => {
+      const filteredWeeks = filterWeeksForDisplay(displayWeeks, getFilterState());
+      updateStatusPillCounts(filteredWeeks, SCORES);
+      const shownWeeks = applyStatusFilterToWeeks(filteredWeeks, statusPills.get(), SCORES);
+      document.getElementById('totalGames').textContent = shownWeeks.reduce((n, w) => n + w.total_games, 0);
+      daysEl.innerHTML = shownWeeks.map(renderWeek).join('');
+    };
+    statusPills = initStatusPills('ncaamb', 'all', renderBoard);
+    renderBoard();
+    attachPickHandlers(daysEl, renderBoard);
+    attachGeminiHandlers(daysEl);
+    initFilterBar(renderBoard);
+  } catch (err) {
+    statusEl.style.display = 'block';
+    statusEl.textContent = `Couldn't load data/ncaamb_dashboard.json (${err.message}). Run scripts/build_ncaamb_dashboard.py first.`;
+  }
+}
+
+initViewToggle();
+initHamburgerMenu();
+init();
 </script>
 <script src="site-key.js"></script>
 </body>

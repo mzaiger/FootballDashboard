@@ -164,6 +164,7 @@
     <a href="ncaamb.html">NCAAMB</a>
     <a href="nfl.html">NFL</a>
     <a href="mlb.html">MLB</a>
+    <a href="nba.html">NBA</a>
     <a href="accuracy.html">Accuracy</a>
     <a href="export.html" class="active">Export</a>
     <a href="picks.html">Picks</a>
@@ -207,6 +208,16 @@
         <div class="card-sub">Baseball</div>
         <button type="button" class="export-btn" data-sport="mlb">Export</button>
       </div>
+      <div class="export-card">
+        <div class="card-title">NBA</div>
+        <div class="card-sub">Pro basketball</div>
+        <button type="button" class="export-btn" data-sport="nba">Export</button>
+      </div>
+      <div class="export-card">
+        <div class="card-title">NCAAMB</div>
+        <div class="card-sub">College basketball</div>
+        <button type="button" class="export-btn" data-sport="ncaamb">Export</button>
+      </div>
     </div>
     <div class="status-line" id="sportStatus"></div>
   </section>
@@ -217,7 +228,7 @@
     <div class="export-cards">
       <div class="export-card">
         <div class="card-title">All Picks</div>
-        <div class="card-sub">NCAAF + NFL + MLB</div>
+        <div class="card-sub">NCAAF + NFL + MLB + NBA + NCAAMB</div>
         <button type="button" class="export-btn picks-btn" id="exportPicksBtn">Export</button>
       </div>
     </div>
@@ -238,8 +249,8 @@ initHamburgerMenu();
 </script>
 <script src="site-key.js"></script>
 <script>
-const SPORT_URLS = { cfb: 'data/ncaaf_dashboard.json', nfl: 'data/nfl_dashboard.json', mlb: 'data/mlb_dashboard.json' };
-const SPORT_LABEL = { cfb: 'NCAAF', nfl: 'NFL', mlb: 'MLB' };
+const SPORT_URLS = { cfb: 'data/ncaaf_dashboard.json', nfl: 'data/nfl_dashboard.json', mlb: 'data/mlb_dashboard.json', nba: 'data/nba_dashboard.json', ncaamb: 'data/ncaamb_dashboard.json' };
+const SPORT_LABEL = { cfb: 'NCAAF', nfl: 'NFL', mlb: 'MLB', nba: 'NBA', ncaamb: 'NCAAMB' };
 // SCORES_URL is already declared in picks-store.js (loaded above)
 
 let currentFormat = 'json';
@@ -417,7 +428,7 @@ function buildPickRows(sport, data, scores) {
 document.getElementById('exportPicksBtn').addEventListener('click', async () => {
   setStatus('picksStatus', 'Gathering picks...');
   try {
-    const sports = ['cfb', 'nfl', 'mlb'];
+    const sports = ['cfb', 'nfl', 'mlb', 'nba', 'ncaamb'];
     const [datasets, scoresRes] = await Promise.all([
       Promise.all(sports.map(async sport => {
         try {

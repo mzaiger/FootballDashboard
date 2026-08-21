@@ -22,6 +22,8 @@
   .cfb-theme{ --turf: #2f8f5b; --turf-bright: #43c179; }
   .nfl-theme{ --turf: #2f5f8f; --turf-bright: #4394c1; }
   .mlb-theme{ --turf: #8f4a2f; --turf-bright: #c17a43; }
+  .nba-theme{ --turf: #8f2f6a; --turf-bright: #c1439a; }
+  .ncaamb-theme{ --turf: #2f6a8f; --turf-bright: #43a0c1; }
 
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -637,6 +639,7 @@
     <a href="ncaamb.html">NCAAMB</a>
     <a href="nfl.html">NFL</a>
     <a href="mlb.html">MLB</a>
+    <a href="nba.html">NBA</a>
     <a href="accuracy.html">Accuracy</a>
     <a href="export.html">Export</a>
     <a href="picks.html" class="active">Picks</a>
@@ -746,7 +749,10 @@
 const NCAAF_URL = 'data/ncaaf_dashboard.json';
 const NFL_URL = 'data/nfl_dashboard.json';
 const MLB_URL = 'data/mlb_dashboard.json';
-let SCORES = { cfb: {}, nfl: {}, mlb: {} };
+const NBA_URL = 'data/nba_dashboard.json';
+const NCAAMB_URL = 'data/ncaamb_dashboard.json';
+const SPORT_URLS = { cfb: NCAAF_URL, nfl: NFL_URL, mlb: MLB_URL, nba: NBA_URL, ncaamb: NCAAMB_URL };
+let SCORES = { cfb: {}, nfl: {}, mlb: {}, nba: {}, ncaamb: {} };
 
 function fmtAmerican(n) {
   if (n === null || n === undefined || n === '') return null;
@@ -869,10 +875,10 @@ function renderGame(sport, g) {
     : `<div class="no-odds">Odds not yet posted</div>`;
 
 
-  const awayLabel = sport === 'cfb'
+  const awayLabel = (sport === 'cfb' || sport === 'ncaamb')
     ? `${rankBadge(g.away_rank)}${teamNameBlock(g.away_team, g.away_record, teamScoreBadge(gScore?.away_score, gScore?.status))}`
     : teamNameBlock(g.away_team, g.away_record, teamScoreBadge(gScore?.away_score, gScore?.status), sport === 'mlb' ? g.away_pitcher : undefined);
-  const homeLabel = sport === 'cfb'
+  const homeLabel = (sport === 'cfb' || sport === 'ncaamb')
     ? `${rankBadge(g.home_rank)}${teamNameBlock(g.home_team, g.home_record, teamScoreBadge(gScore?.home_score, gScore?.status))}`
     : teamNameBlock(g.home_team, g.home_record, teamScoreBadge(gScore?.home_score, gScore?.status), sport === 'mlb' ? g.home_pitcher : undefined);
 
@@ -902,9 +908,9 @@ function renderGame(sport, g) {
 }
 
 const SLOT_ORDER = ['Morning', 'Noon', 'Afternoon', 'Prime Time', 'Late Night', 'Time TBD'];
-const SPORT_ORDER = ['cfb', 'nfl', 'mlb'];
-const SPORT_LABEL = { cfb: 'NCAAF', nfl: 'NFL', mlb: 'MLB' };
-const SPORT_THEME = { cfb: 'cfb-theme', nfl: 'nfl-theme', mlb: 'mlb-theme' };
+const SPORT_ORDER = ['cfb', 'nfl', 'mlb', 'nba', 'ncaamb'];
+const SPORT_LABEL = { cfb: 'NCAAF', nfl: 'NFL', mlb: 'MLB', nba: 'NBA', ncaamb: 'NCAAMB' };
+const SPORT_THEME = { cfb: 'cfb-theme', nfl: 'nfl-theme', mlb: 'mlb-theme', nba: 'nba-theme', ncaamb: 'ncaamb-theme' };
 
 // Flattens { cfb: filteredData, nfl: ..., mlb: ... } (each already run through
 // filterDataset() + applyStatusFilterToWeeks(), same weeks->days->time_slots
@@ -990,9 +996,7 @@ function renderUnifiedDay(dayGroup) {
   </section>`;
 }
 
-let cfbData = null;
-let nflData = null;
-let mlbData = null;
+let DATA = { cfb: null, nfl: null, mlb: null, nba: null, ncaamb: null };
 let statusPills;
 
 function renderBoard() {
@@ -1000,25 +1004,21 @@ function renderBoard() {
   const statusEl = document.getElementById('statusMsg');
   const filterState = getFilterState();
 
-  const cfbFiltered = filterDataset('cfb', cfbData);
-  const nflFiltered = filterDataset('nfl', nflData);
-  const mlbFiltered = filterDataset('mlb', mlbData);
-
   // Best-Slot-Matchups / ML-ATS-All / Confidence -- filters by which
   // market YOUR pick was made on (see pickPassesMarketFilter), not by
-  // Gemini's own prediction confidence the way the other 3 pages do.
-  const cfbMarket = cfbFiltered ? { ...cfbFiltered, weeks: applyMarketFilterToWeeks(cfbFiltered.weeks, 'cfb', filterState) } : null;
-  const nflMarket = nflFiltered ? { ...nflFiltered, weeks: applyMarketFilterToWeeks(nflFiltered.weeks, 'nfl', filterState) } : null;
-  const mlbMarket = mlbFiltered ? { ...mlbFiltered, weeks: applyMarketFilterToWeeks(mlbFiltered.weeks, 'mlb', filterState) } : null;
+  // Gemini's own prediction confidence the way the other boards do.
+  const statusVal = statusPills ? statusPills.get() : 'all';
+  const shown = {};
+  SPORT_ORDER.forEach(sp => {
+    const filtered = filterDataset(sp, DATA[sp]);
+    const market = filtered ? { ...filtered, weeks: applyMarketFilterToWeeks(filtered.weeks, sp, filterState) } : null;
+    shown[sp] = market ? { ...market, weeks: applyStatusFilterToWeeks(market.weeks, statusVal, SCORES[sp]) } : null;
+  });
 
   updateStatusPillCounts(
-    [...(cfbMarket?.weeks || []), ...(nflMarket?.weeks || []), ...(mlbMarket?.weeks || [])],
-    { ...(SCORES.cfb || {}), ...(SCORES.nfl || {}), ...(SCORES.mlb || {}) }
+    SPORT_ORDER.flatMap(sp => shown[sp]?.weeks || []),
+    Object.assign({}, ...SPORT_ORDER.map(sp => SCORES[sp] || {}))
   );
-  const statusVal = statusPills ? statusPills.get() : 'all';
-  const cfbShown = cfbMarket ? { ...cfbMarket, weeks: applyStatusFilterToWeeks(cfbMarket.weeks, statusVal, SCORES.cfb) } : null;
-  const nflShown = nflMarket ? { ...nflMarket, weeks: applyStatusFilterToWeeks(nflMarket.weeks, statusVal, SCORES.nfl) } : null;
-  const mlbShown = mlbMarket ? { ...mlbMarket, weeks: applyStatusFilterToWeeks(mlbMarket.weeks, statusVal, SCORES.mlb) } : null;
 
   // All four stat circles are computed from THIS SAME final filtered set
   // (status + best-slot + market/confidence all applied), not the raw
@@ -1026,7 +1026,7 @@ function renderBoard() {
   // confidence updates Open/My Accuracy/$10/Gemini accuracy to reflect
   // just those games, not everything you've ever picked. The displayed
   // pick list below (dayGroups) uses this same set, all-time.
-  const shownDatasets = [{ sport: 'cfb', data: cfbShown }, { sport: 'nfl', data: nflShown }, { sport: 'mlb', data: mlbShown }];
+  const shownDatasets = SPORT_ORDER.map(sp => ({ sport: sp, data: shown[sp] }));
 
   // The 4 badges specifically are ALSO restricted to the current
   // Wednesday-through-Tuesday window on top of that -- "how did I do
@@ -1056,16 +1056,12 @@ function renderBoard() {
   document.getElementById('geminiAccuracy').textContent = single.pct === null ? '\u2014' : `${single.pct}%`;
   document.getElementById('geminiAccuracySub').textContent = single.total ? `${single.correct}/${single.total}` : '\u2014/\u2014';
 
-  const dayGroups = buildUnifiedDayGroups([
-    { sport: 'cfb', data: cfbShown },
-    { sport: 'nfl', data: nflShown },
-    { sport: 'mlb', data: mlbShown },
-  ]);
+  const dayGroups = buildUnifiedDayGroups(shownDatasets);
 
   if (!dayGroups.length) {
     sectionsEl.innerHTML = '';
     statusEl.style.display = 'block';
-    statusEl.textContent = "No picks yet. Head to NCAAF, NFL, or MLB, pick a spread or moneyline on any game, and it'll show up here.";
+    statusEl.textContent = "No picks yet. Head to NCAAF, NFL, MLB, NBA, or NCAAMB, pick a spread or moneyline on any game, and it'll show up here.";
     return;
   }
   statusEl.style.display = 'none';
@@ -1075,26 +1071,21 @@ function renderBoard() {
 async function init() {
   const statusEl = document.getElementById('statusMsg');
   try {
-    const [cfbRes, nflRes, mlbRes] = await Promise.allSettled([
-      fetch(NCAAF_URL, { cache: 'no-store' }),
-      fetch(NFL_URL, { cache: 'no-store' }),
-      fetch(MLB_URL, { cache: 'no-store' }),
-    ]);
+    const results = await Promise.allSettled(
+      SPORT_ORDER.map(sp => fetch(SPORT_URLS[sp], { cache: 'no-store' }))
+    );
 
-    if (cfbRes.status === 'fulfilled' && cfbRes.value.ok) {
-      cfbData = await cfbRes.value.json();
-    }
-    if (nflRes.status === 'fulfilled' && nflRes.value.ok) {
-      nflData = await nflRes.value.json();
-    }
-    if (mlbRes.status === 'fulfilled' && mlbRes.value.ok) {
-      mlbData = await mlbRes.value.json();
-    }
+    await Promise.all(SPORT_ORDER.map(async (sp, i) => {
+      const res = results[i];
+      if (res.status === 'fulfilled' && res.value.ok) {
+        DATA[sp] = await res.value.json();
+      }
+    }));
 
-    const [cfbScores, nflScores, mlbScores] = await Promise.all([fetchScores('cfb'), fetchScores('nfl'), fetchScores('mlb')]);
-    SCORES = { cfb: cfbScores, nfl: nflScores, mlb: mlbScores };
+    const scoresList = await Promise.all(SPORT_ORDER.map(sp => fetchScores(sp)));
+    SCORES = Object.fromEntries(SPORT_ORDER.map((sp, i) => [sp, scoresList[i]]));
 
-    if (!cfbData && !nflData && !mlbData) {
+    if (SPORT_ORDER.every(sp => !DATA[sp])) {
       statusEl.style.display = 'block';
       statusEl.textContent = "Couldn't load any board's data. Run the build scripts first.";
       return;
