@@ -1,35 +1,38 @@
 #!/usr/bin/env python3
 """
-NCAA Men's College Basketball (NCAAMB) Betting Dashboard builder.
+NCAAMB (Division I men's college basketball) Betting Dashboard builder.
 
-Pulls the day's schedule + broadcast + team records + AP Top 25 rank
-straight off ESPN's public (unofficial, no-key-required) men's college
-basketball scoreboard API (each competitor in the scoreboard payload
-already carries its own `curatedRank.current` AP rank -- no separate
-rankings-endpoint call needed, unlike build_ncaaf_dashboard.py, which has
-to fetch a week's poll separately), then attaches DraftKings / FanDuel
-spread + moneyline odds from SharpAPI (via common.py). Exports everything
-to data/ncaamb_dashboard.json for the static ncaamb.html front-end.
+Pulls the day's schedule + broadcast + team records from ESPN's public
+(unofficial, no-key-required) men's college basketball scoreboard API,
+then attaches DraftKings / FanDuel spread + moneyline odds from SharpAPI
+(via common.py). Exports everything to data/ncaamb_dashboard.json for the
+static ncaamb.html front-end.
 
-Like MLB (and NBA), college basketball plays most days of the week (no
-real "week N" concept), so this script moves one calendar day at a time
-instead of one week at a time -- see build_mlb_dashboard.py's own module
-docstring for the full "week"=YYYYMMDD-int rationale, which this script
-follows exactly.
+Like MLB/NBA, college basketball plays near-daily once the season starts
+(no real "week N" concept on a day-granularity board), so this script --
+like build_mlb_dashboard.py / build_nba_dashboard.py -- moves one calendar
+day at a time instead of one week at a time. Each "week" entry in
+ncaamb_dashboard.json holds exactly one calendar day, and the "week"
+number is that day's date as an integer (YYYYMMDD). See
+build_mlb_dashboard.py's module docstring for the full rationale.
 
-Like build_ncaaf_dashboard.py, ONLY games broadcasting on a main national/
-cable channel make the board (see MAIN_CHANNELS below) -- everything else
-(ESPNU/ESPN+/conference-network/streaming-only games, which is most of a
-given day's slate) is filtered out.
-
-The matchup score blends the same three components build_ncaaf_dashboard.py
-uses -- 50% combined AP Top 25 rank, 25% combined win-rank (teams ranked by
-this season's record), 25% posted spread -- normalized 0-100 across the
-whole day before blending.
+Differences from the NBA builder:
+  * Only "main channel" national-TV games make the board (same idea as
+    build_ncaaf_dashboard.py; ESPN sometimes packs multiple networks into
+    ONE string inside a broadcast object, so names are split on "/" and
+    "," before being checked against MAIN_CHANNELS).
+  * Games are ranked with college football's three-component blend --
+    50% combined AP Top 25 rank + 25% combined win-rank + 25% posted
+    spread -- instead of the NBA's two-component blend, since AP rank is
+    the marquee signal in college hoops the same way it is in CFB.
+  * Off-season guard: if today falls before the first date on ESPN's
+    calendar (leagues[].calendar), the build window snaps forward to that
+    first game date so the board shows opening night instead of three
+    blank days. See resolve_effective_today() below.
 
 Env vars required:
     SHARPAPI_KEY - key from https://sharpapi.io
-    (no key needed for ESPN's public scoreboard endpoint)
+    (no key needed for ESPN's public scoreboard/rankings endpoints)
 
 Usage:
     python scripts/build_ncaamb_dashboard.py
@@ -37,10 +40,10 @@ Usage:
 """
 
 import argparse
+import json
 import os
 import re
 import sys
-import json
 from datetime import date, datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
@@ -68,55 +71,50 @@ from gemini_predictions import attach_gemini_predictions
 # Config
 # ---------------------------------------------------------------------------
 
-ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
+ESPN_NCAAMB_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
+ESPN_NCAAMB_RANKINGS_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/rankings"
 REQUEST_TIMEOUT = 20
 
-# groups=50 = Division I (all conferences); without it, and without a high
-# limit, the scoreboard endpoint silently truncates to a top-25-ish subset
-# of the day's games instead of the full D-I slate -- same convention
-# build_ncaaf_dashboard.py uses (groups=80 there is FBS's own group id).
-DIVISION_I_GROUP = "50"
+NUM_DAYS_DEFAULT = 3  # "yesterday" + "today" + "tomorrow", same window NBA/MLB use.
+
+# groups=50 = Division I men's basketball only (verified against the live
+# endpoint -- without it the scoreboard mixes in lower divisions), and
+# limit=500 because a November Saturday can carry 100+ D1 games and the
+# endpoint silently truncates to a subset without a high limit.
+D1_GROUP = "50"
 SCOREBOARD_LIMIT = 500
 
-NUM_DAYS_DEFAULT = 3  # "yesterday" + "today" + "tomorrow", same window MLB/NBA use.
-
 # "Main channels" = national broadcast + flagship cable, same set
-# build_ncaaf_dashboard.py uses. Games on ESPNU, ESPN+, conference
-# networks (ACCN/SECN/BTN/etc.), streaming-only, etc. are filtered out.
+# build_ncaaf_dashboard.py uses. Games on ESPNU, ACCN, ESPN+, streaming-
+# only, etc. are filtered out. During conference-tournament / March
+# Madness weeks you may want to widen this, e.g.:
+#   MAIN_CHANNELS |= {"TNT", "TBS", "truTV", "CBSSN"}
+# (ESPN's shortName for CBS Sports Network is "CBSSN".)
 MAIN_CHANNELS = {"ABC", "CBS", "NBC", "FOX", "ESPN", "ESPN2", "FS1"}
-
-# ESPN reports curatedRank.current = 99 for an unranked team rather than
-# omitting the field -- treat that (or anything past a real Top 25 spot)
-# as "not ranked" rather than as a very bad-but-real rank.
-UNRANKED_CURATED_RANK = 99
 
 # A team with no AP-poll ranking gets this value -- one worse than the
 # worst possible AP Top 25 rank -- so it never outranks a team that's
-# actually ranked. Kept separate from win-rank's own "unranked" value
-# below since these two components are normalized independently before
-# being blended (same convention build_ncaaf_dashboard.py uses).
+# actually ranked. Normalized 0-100 before blending anyway, so the exact
+# number only sets the "unranked" floor.
 UNRANKED_VALUE = 26
 
-# A team with no games played yet (or missing a record) gets this
-# win-rank value -- one worse than the number of D-I teams that could
-# realistically appear on one day's board -- so it never outranks a team
-# that actually has a record.
-UNRANKED_WIN_RANK = 200
+# A team with no games played yet gets this win-rank value -- safely worse
+# than any real rank among D1's ~360 teams -- so it never outranks a team
+# that actually has a record, same convention as NFL/NBA/NCAAF's own
+# "unranked" win-rank values.
+UNRANKED_WIN_RANK = 365
 
 
 def current_season_year():
-    """Auto-derive the NCAAMB season's starting year from today's date,
-    so this never needs a manual update when a new season starts. A
-    college basketball season is named for the year it tips off in
-    (November); games played January-July belong to the season that
-    started the PREVIOUS calendar year (the season runs into April, with
-    nothing else on the schedule until the following November). Games
-    from August onward (exhibitions can start in late October, but
-    August is a safe off-season cutover with nothing scheduled) belong
-    to the season starting that same year -- mirrors
-    build_ncaaf_dashboard.py's own current_season_year()."""
+    """Auto-derive the CBB season's starting year from today's date, so
+    this never needs a manual update when a new season starts. A CBB
+    season is named for the year it tips off in; the first games
+    (exhibitions + opening night) land in late October/early November,
+    and everything through the title game the following April belongs to
+    that season. October onward -> the season starting this year;
+    January-September -> the season that started the PREVIOUS year."""
     today = datetime.now(timezone.utc).date()
-    return today.year if today.month >= 8 else today.year - 1
+    return today.year if today.month >= 10 else today.year - 1
 
 
 # ---------------------------------------------------------------------------
@@ -124,21 +122,17 @@ def current_season_year():
 # ---------------------------------------------------------------------------
 
 def get_scoreboard(date_str):
-    """Fetch one day's scoreboard. IMPORTANT: ESPN's scoreboard endpoint
-    does NOT return an empty event list for a date with no games -- it
-    silently snaps forward to the next date that actually has something
-    scheduled (verified directly against the NBA endpoint, which shares
-    the same site.api.espn.com scoreboard architecture: requesting a date
-    weeks before the season starts still returned a later date's game,
-    with the response's own "day"/"date" field showing the date ESPN
-    actually used, not the one requested). Guard against that here: if
-    the response's own date doesn't match what was asked for, treat it as
-    "no games that day" rather than silently mislabeling a future game as
-    if it happened on the requested date.
-    """
+    """Fetch one day's scoreboard. ESPN's scoreboard endpoint does NOT
+    return an empty event list for a date with no games -- it silently
+    snaps forward to the next date that actually has something scheduled.
+    The NBA payload exposes that via a "day"."date" echo, but the college
+    basketball payload carries NO such field (verified live), so the
+    guard here only fires when ESPN does include one; the real safety net
+    for this sport is build_day()'s local-date filter, which drops any
+    event whose LOCAL date isn't the day being built."""
     resp = requests.get(
-        ESPN_SCOREBOARD_URL,
-        params={"dates": date_str, "groups": DIVISION_I_GROUP, "limit": SCOREBOARD_LIMIT},
+        ESPN_NCAAMB_SCOREBOARD_URL,
+        params={"dates": date_str, "groups": D1_GROUP, "limit": SCOREBOARD_LIMIT},
         timeout=REQUEST_TIMEOUT,
     )
     resp.raise_for_status()
@@ -154,13 +148,75 @@ def get_scoreboard(date_str):
     return data
 
 
+def get_rankings(date_str):
+    """Fetch the AP Top 25 release covering `date_str` (YYYYMMDD). The
+    rankings endpoint accepts a dates= filter (verified live) and returns
+    the release nearest that date -- during the off-season that's the
+    final release of the last completed season, which is harmless: the
+    off-season clamp centers builds on next season's opener, and the
+    first AP poll of a new season drops shortly before opening night."""
+    resp = requests.get(
+        ESPN_NCAAMB_RANKINGS_URL,
+        params={"dates": date_str},
+        timeout=REQUEST_TIMEOUT,
+    )
+    resp.raise_for_status()
+    return resp.json()
+
+
+def calendar_game_dates(scoreboard):
+    """Every scheduled game date in the scoreboard payload's
+    leagues[].calendar array, as date objects. ESPN ships this as a flat
+    list of ISO timestamps ("2026-11-03T08:00Z") -- one per day the
+    league has anything scheduled -- so the FIRST entry is the season's
+    first game date. Parse only the leading YYYY-MM-DD: the date
+    component IS the game date (no timezone conversion wanted --
+    converting would shift the stamps back a day for viewers west of the
+    stamps' own timezone)."""
+    dates = []
+    for league in scoreboard.get("leagues") or []:
+        for entry in league.get("calendar") or []:
+            if isinstance(entry, str) and len(entry) >= 10:
+                try:
+                    dates.append(date.fromisoformat(entry[:10]))
+                except ValueError:
+                    continue
+        if dates:
+            break
+    return sorted(set(dates))
+
+
+def resolve_effective_today(default_today):
+    """Off-season guard: if today falls BEFORE the first date on ESPN's
+    calendar -- i.e. the entire schedule is still ahead of us -- snap the
+    build window forward to that first game date instead of building three
+    empty days around a dead calendar date. Without this, the board sits
+    blank from the title game until the day before opening night; with
+    it, the board centers on the opener as soon as ESPN publishes the
+    schedule. Falls back to the real date on any network/parse failure so
+    a bad calendar never breaks a normal mid-season build."""
+    try:
+        scoreboard = get_scoreboard(default_today.strftime("%Y%m%d"))
+    except requests.RequestException as exc:
+        log(f"  NOTE: couldn't fetch ESPN calendar ({exc}) -- keeping {default_today} as 'today'.")
+        return default_today
+
+    upcoming = [d for d in calendar_game_dates(scoreboard) if d >= default_today]
+    if not upcoming or min(upcoming) == default_today:
+        return default_today  # season live or over-and-no-new-schedule yet
+
+    first_game_day = min(upcoming)
+    log(f"  Off-season detected: ESPN's calendar has nothing until {first_game_day} "
+        f"-- treating {first_game_day} as 'today' for this build.")
+    return first_game_day
+
+
 def broadcast_names(event):
     """All national broadcast name strings for a game, RAW (not yet split
     or joined) -- across every ESPN payload shape that can carry them.
-    Used both for display (broadcast_label) and for the main-channel
-    filter (on_main_channel, which further splits each string -- see
-    there for why). Mirrors build_ncaaf_dashboard.py's own
-    broadcast_names()."""
+    Used both for display (broadcast_label, joined with ", ") and for the
+    main-channel filter (on_main_channel, which further splits each
+    string -- see there for why)."""
     names = []
 
     for b in event.get("broadcasts", []):
@@ -186,6 +242,8 @@ def broadcast_names(event):
 
 
 def broadcast_label(event):
+    """Display string for a game's TV pill -- ", " instead of "/" between
+    multiple networks (matches NFL/NBA/MLB's broadcast_label)."""
     names = broadcast_names(event)
     return ", ".join(names) if names else None
 
@@ -194,9 +252,15 @@ _CHANNEL_SPLIT_RE = re.compile(r"[/,]")
 
 
 def _channel_tokens(names):
-    """Split each raw broadcast name into individual channel tokens (ESPN
-    sometimes packs more than one network into a single string, e.g.
-    "ESPN2/ACCNX") -- see build_ncaaf_dashboard.py's identical helper."""
+    """Split each raw broadcast name into individual channel tokens.
+
+    ESPN sometimes packs more than one network into a SINGLE string
+    inside one broadcast object (e.g. "ESPN2/ACCNX" as one entry in
+    `names`) instead of giving each network its own list entry. A plain
+    `outlet in MAIN_CHANNELS` check would silently miss those
+    combined-string games, so every raw name here gets split on "/" and
+    "," before being checked against MAIN_CHANNELS.
+    """
     tokens = []
     for n in names:
         if not n:
@@ -208,14 +272,14 @@ def _channel_tokens(names):
     return tokens
 
 
-def on_main_channel(event, channels):
-    return any(tok in channels for tok in _channel_tokens(broadcast_names(event)))
+def on_main_channel(event):
+    return any(tok in MAIN_CHANNELS for tok in _channel_tokens(broadcast_names(event)))
 
 
 def _parse_espn_record(competitor):
     """Extract (wins, losses, summary) from an ESPN scoreboard competitor's
     `records` list, or (None, None, None) if no overall record is present
-    yet (e.g. before the season opener)."""
+    yet (e.g. before opening night)."""
     for rec in competitor.get("records", []):
         if rec.get("type") == "total" or rec.get("name") == "overall":
             summary = rec.get("summary")
@@ -230,46 +294,67 @@ def _parse_espn_record(competitor):
     return None, None, None
 
 
-def _curated_rank(competitor):
-    """AP-style current rank for this competitor, straight off the
-    scoreboard payload's own curatedRank.current field, or None if
-    unranked (ESPN reports 99 for unranked rather than omitting the
-    field)."""
-    rank = (competitor.get("curatedRank") or {}).get("current")
-    if rank is None or rank >= UNRANKED_CURATED_RANK:
-        return None
-    return rank
+def build_rank_lookup(rankings_payload, poll_name="AP Top 25"):
+    """{team_id: rank} from the first matching poll ("AP Top 25" by
+    default). Falls back to any poll present if AP specifically isn't
+    found (AP is occasionally slower to post than the Coaches poll early
+    in the season)."""
+    lookup = {}
+    for release in rankings_payload.get("rankings", []):
+        if release.get("name") == poll_name or release.get("shortName") == "AP Poll":
+            for entry in release.get("ranks", []):
+                team_id = entry.get("team", {}).get("id")
+                if team_id is not None:
+                    lookup[team_id] = entry.get("current")
+            if lookup:
+                return lookup
+    for release in rankings_payload.get("rankings", []):
+        for entry in release.get("ranks", []):
+            team_id = entry.get("team", {}).get("id")
+            if team_id is not None:
+                lookup.setdefault(team_id, entry.get("current"))
+        if lookup:
+            return lookup
+    return lookup
+
+
+def get_rank_lookup(day):
+    """{team_id: AP rank} for the poll nearest `day`. Returns {} (every
+    team unranked, build still succeeds) on any network/parse failure so
+    a rankings outage never kills a build."""
+    try:
+        return build_rank_lookup(get_rankings(day.strftime("%Y%m%d")))
+    except (requests.RequestException, ValueError) as exc:
+        log(f"  NOTE: couldn't fetch AP rankings for {day.isoformat()} ({exc}) -- all teams unranked.")
+        return {}
 
 
 # ---------------------------------------------------------------------------
-# Matchup ranking -- same 3-component blend build_ncaaf_dashboard.py uses
+# Matchup ranking -- 50% combined AP Top 25 rank + 25% combined win rank +
+# 25% posted spread, same blend pattern build_ncaaf_dashboard.py uses.
 # ---------------------------------------------------------------------------
 
 def build_win_rank_lookup(team_records):
     """Rank every team with a known record by win percentage (rank 1 =
     best record on the board). Ties broken by raw win total, then by team
-    name for a stable, deterministic order. `team_records` is
-    {team_name: (wins, losses)}. Returns {team_name: rank}."""
+    id for a stable, deterministic order. `team_records` is
+    {team_id: (wins, losses)}. Returns {team_id: rank}."""
     entries = []
-    for team, (wins, losses) in team_records.items():
+    for team_id, (wins, losses) in team_records.items():
         games_played = wins + losses
         pct = wins / games_played if games_played else -1
-        entries.append((team, pct, wins, team))
-    entries.sort(key=lambda e: (-e[1], -e[2], e[3]))
-    return {team: i + 1 for i, (team, pct, wins, _) in enumerate(entries)}
-
-
-def _home_spread(odds):
-    line = odds.get("draftkings", {}).get("spread", {}).get("home", {}).get("line")
-    if line is None:
-        line = odds.get("fanduel", {}).get("spread", {}).get("home", {}).get("line")
-    return line
+        entries.append((team_id, pct, wins))
+    entries.sort(key=lambda e: (-e[1], -e[2], e[0]))
+    return {team_id: i + 1 for i, (team_id, pct, wins) in enumerate(entries)}
 
 
 def matchup_components(home_rank, away_rank, home_win_rank, away_win_rank, odds):
-    """Per-game (ap_component, win_component, spread_component) tuple,
-    collected across the whole day and normalized/blended at once -- see
-    build_ncaaf_dashboard.py's identical helper."""
+    """Per-game (ap_component, win_component, spread_component) tuple for
+    build_day to collect across the whole day and normalize/blend at
+    once. Any component with no data for this particular game (e.g.
+    neither team ranked, or no line posted yet) comes back None and
+    normalize_minmax() treats it as a neutral mid-scale value rather than
+    penalizing the game for missing data."""
     ap_component = None
     if home_rank is not None or away_rank is not None:
         ap_component = (home_rank or UNRANKED_VALUE) + (away_rank or UNRANKED_VALUE)
@@ -284,27 +369,36 @@ def matchup_components(home_rank, away_rank, home_win_rank, away_win_rank, odds)
     return ap_component, win_component, spread_component
 
 
+def _home_spread(odds):
+    line = odds.get("draftkings", {}).get("spread", {}).get("home", {}).get("line")
+    if line is None:
+        line = odds.get("fanduel", {}).get("spread", {}).get("home", {}).get("line")
+    return line
+
+
 # ---------------------------------------------------------------------------
 # Main build -- one calendar day at a time
 # ---------------------------------------------------------------------------
 
-def build_day(day, sharp_key, channels, gemini_key=None, previous_odds_by_id=None,
-              previous_entries_by_id=None, started_game_ids=None):
-    """Build a single day's worth of main-channel games. Returns a
-    "week"-shaped dict (week=YYYYMMDD int, days=[<this single day>]) so
-    it slots into the same merge_weeks()/front-end code the other
-    dashboards use."""
+def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None,
+              previous_entries_by_id=None, started_game_ids=None, rank_lookup=None):
+    """Build a single day's worth of games. Returns a "week"-shaped dict
+    (week=YYYYMMDD int, days=[<this single day>]) so it slots into the
+    same merge_weeks()/front-end code the other dashboards use."""
     date_str = day.strftime("%Y%m%d")
     log(f"Fetching NCAAMB schedule for {date_str}...")
     scoreboard = get_scoreboard(date_str)
     events = scoreboard.get("events", [])
     log(f"  {len(events)} games")
 
+    log("Fetching AP rankings...")
+    if rank_lookup is None:
+        rank_lookup = get_rank_lookup(day)
+    log(f"  {len(rank_lookup)} ranked teams found")
+
     log("Fetching DraftKings/FanDuel NCAAMB odds from SharpAPI...")
-    # SharpAPI's own league code for college basketball is "ncaab" (not
-    # "ncaamb" -- that's just this project's own page/file naming).
     day_str = day.isoformat()
-    odds_rows = fetch_all_odds(sharp_key, league="ncaab", markets=("spread", "moneyline"),
+    odds_rows = fetch_all_odds(sharp_key, league="ncaamb", markets=("spread", "moneyline"),
                                 date_from=day_str, date_to=day_str)
     log(f"  {len(odds_rows)} odds rows returned")
     team_cache = {}
@@ -312,11 +406,13 @@ def build_day(day, sharp_key, channels, gemini_key=None, previous_odds_by_id=Non
 
     slots = {}  # slot_name -> list of game entries
     all_games = []
-    team_records = {}  # {team_name: (wins, losses)}
     skipped_no_tv = 0
+    skipped_wrong_day = 0
+    team_records = {}  # {team_id: (wins, losses)}
     started_game_ids = started_game_ids or set()
     previous_entries_by_id = previous_entries_by_id or {}
     frozen_prediction_skip_ids = set()  # passed to attach_gemini_predictions below
+    build_day_key = day.isoformat()
 
     for event in events:
         competitions = event.get("competitions", [])
@@ -329,40 +425,53 @@ def build_day(day, sharp_key, channels, gemini_key=None, previous_odds_by_id=Non
         if not home or not away:
             continue
 
-        if not on_main_channel(event, channels):
+        outlet = broadcast_label(event)
+        if not on_main_channel(event):
             skipped_no_tv += 1
             continue
-
-        outlet = broadcast_label(event)
 
         start_raw = event.get("date")
         try:
             start_dt_utc = datetime.fromisoformat(start_raw.replace("Z", "+00:00"))
         except (TypeError, ValueError):
             continue
-        status = event.get("status", {}).get("type", {})
-        is_tbd = "TBD" in (event.get("shortName") or "")
+        # The CBB payload has no `day.date` echo to detect ESPN's silent
+        # snap-forward (see get_scoreboard) -- so drop any event whose
+        # LOCAL date isn't the day being built. This is what keeps a
+        # future slate from being mislabeled as this day's games.
         local_dt = start_dt_utc.astimezone(ZoneInfo(DISPLAY_TIMEZONE))
+        if local_dt.date().isoformat() != build_day_key:
+            skipped_wrong_day += 1
+            continue
+        is_tbd = "TBD" in (event.get("shortName") or "")
         slot = time_slot_for(local_dt, is_tbd)
 
-        home_team = home["team"]["displayName"]
-        away_team = away["team"]["displayName"]
+        home_team = home["team"].get("displayName")
+        away_team = away["team"].get("displayName")
+        home_id = home["team"].get("id")
+        away_id = away["team"].get("id")
 
         home_wins, home_losses, home_record = _parse_espn_record(home)
         away_wins, away_losses, away_record = _parse_espn_record(away)
-        if home_wins is not None:
-            team_records[home_team] = (home_wins, home_losses)
-        if away_wins is not None:
-            team_records[away_team] = (away_wins, away_losses)
+        if home_wins is not None and home_id is not None:
+            team_records[home_id] = (home_wins, home_losses)
+        if away_wins is not None and away_id is not None:
+            team_records[away_id] = (away_wins, away_losses)
 
-        home_rank = _curated_rank(home)
-        away_rank = _curated_rank(away)
+        home_rank = rank_lookup.get(home_id)
+        away_rank = rank_lookup.get(away_id)
 
         game_id = event.get("id")
         gid_str = str(game_id)
         already_started = gid_str in started_game_ids
         previous_entry = previous_entries_by_id.get(gid_str)
 
+        # Once a game has ANY score recorded in scores.json (live or
+        # final -- see load_started_game_ids), freeze its odds and Gemini
+        # prediction at exactly whatever was last saved instead of
+        # re-fetching/re-matching/re-calling: an in-game line moves
+        # constantly and doesn't reflect the pregame market the pick/
+        # prediction was actually made against.
         if already_started and previous_entry is not None:
             odds = previous_entry.get("odds") or {}
             frozen_prediction_skip_ids.add(gid_str)
@@ -376,11 +485,9 @@ def build_day(day, sharp_key, channels, gemini_key=None, previous_odds_by_id=Non
             "start_time": start_raw,
             "start_time_tbd": is_tbd,
             "home_team": home_team,
-            "home_abbr": home["team"].get("abbreviation"),
             "home_rank": home_rank,
             "home_record": home_record or "0-0",
             "away_team": away_team,
-            "away_abbr": away["team"].get("abbreviation"),
             "away_rank": away_rank,
             "away_record": away_record or "0-0",
             "matchup_score": None,  # filled in below, once every game's components are known
@@ -388,22 +495,27 @@ def build_day(day, sharp_key, channels, gemini_key=None, previous_odds_by_id=Non
             "venue": comp.get("venue", {}).get("fullName"),
             "neutral_site": comp.get("neutralSite", False),
             "odds": odds,
+            "_home_id": home_id,
+            "_away_id": away_id,
         }
         if already_started and previous_entry is not None and previous_entry.get("gemini_prediction"):
             game_entry["gemini_prediction"] = previous_entry["gemini_prediction"]
         slots.setdefault(slot, []).append(game_entry)
         all_games.append(game_entry)
 
-    log(f"  {skipped_no_tv} games skipped (not on a main channel)")
+    if skipped_no_tv:
+        log(f"  {skipped_no_tv} game(s) skipped (not on a main channel)")
+    if skipped_wrong_day:
+        log(f"  {skipped_wrong_day} game(s) skipped (ESPN returned a different date's slate)")
 
-    # Blend 50% combined AP Top 25 rank + 25% combined win-rank + 25%
-    # posted spread -- each normalized 0-100 across the whole day before
-    # blending, same pattern build_ncaaf_dashboard.py uses per week.
+    # Blend 50% AP rank + 25% win rank + 25% posted spread -- each
+    # normalized 0-100 across the whole day before blending, same pattern
+    # build_ncaaf_dashboard.py uses for its weekly blend.
     win_rank_lookup = build_win_rank_lookup(team_records)
     ap_components, win_components, spread_components = [], [], []
     for g in all_games:
-        home_win_rank = win_rank_lookup.get(g["home_team"])
-        away_win_rank = win_rank_lookup.get(g["away_team"])
+        home_win_rank = win_rank_lookup.get(g["_home_id"])
+        away_win_rank = win_rank_lookup.get(g["_away_id"])
         a, w, s = matchup_components(g["home_rank"], g["away_rank"], home_win_rank, away_win_rank, g["odds"])
         ap_components.append(a)
         win_components.append(w)
@@ -413,6 +525,9 @@ def build_day(day, sharp_key, channels, gemini_key=None, previous_odds_by_id=Non
     spread_norm = normalize_minmax(spread_components)
     for g, an, wn, sn in zip(all_games, ap_norm, win_norm, spread_norm):
         g["matchup_score"] = round(100 * (0.5 * an + 0.25 * wn + 0.25 * sn), 1)
+        # Internal-only fields, not part of the public JSON shape.
+        del g["_home_id"]
+        del g["_away_id"]
 
     # Rank spans the WHOLE DAY, not just whichever time slot a game lands
     # in -- computed here, once per day, before games get split up into
@@ -434,7 +549,7 @@ def build_day(day, sharp_key, channels, gemini_key=None, previous_odds_by_id=Non
         time_slots.append({
             "slot": slot_name,
             "best_matchup_score": best_score,
-            "pick_reason": "ap_win_spread" if games_sorted else None,
+            "pick_reason": "ap_wins_spread" if games_sorted else None,
             "games": games_sorted,
         })
 
@@ -453,8 +568,8 @@ def build_day(day, sharp_key, channels, gemini_key=None, previous_odds_by_id=Non
     }
 
 
-def build(sharp_key, channels, gemini_key=None, start_date=None, num_days=NUM_DAYS_DEFAULT,
-          previous_odds_by_id=None, previous_entries_by_id=None, started_game_ids=None):
+def build(sharp_key, gemini_key=None, start_date=None, num_days=NUM_DAYS_DEFAULT, previous_odds_by_id=None,
+          previous_entries_by_id=None, started_game_ids=None):
     """Build `num_days` consecutive calendar days centered on `start_date`
     (default: today, in DISPLAY_TIMEZONE) and wrap them into the full
     output payload, "week"-shaped the same way CFB/NFL/MLB/NBA are."""
@@ -463,16 +578,22 @@ def build(sharp_key, channels, gemini_key=None, start_date=None, num_days=NUM_DA
 
     window_start = start_date - timedelta(days=(num_days - 1) // 2)
 
+    # One rankings fetch shared across the whole build window -- the AP
+    # poll updates weekly, so every day in a 3-day window uses the same
+    # release (the one nearest the window's center date).
+    rank_lookup = get_rank_lookup(start_date)
+
     days_out = []
     for offset in range(num_days):
         d = window_start + timedelta(days=offset)
-        days_out.append(build_day(d, sharp_key, channels, gemini_key, previous_odds_by_id=previous_odds_by_id,
-                                   previous_entries_by_id=previous_entries_by_id, started_game_ids=started_game_ids))
+        days_out.append(build_day(d, sharp_key, gemini_key, previous_odds_by_id=previous_odds_by_id,
+                                   previous_entries_by_id=previous_entries_by_id, started_game_ids=started_game_ids,
+                                   rank_lookup=rank_lookup))
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "season": current_season_year(),
-        "main_channels": sorted(channels),
+        "season": start_date.year if start_date.month >= 10 else start_date.year - 1,
+        "main_channels": sorted(MAIN_CHANNELS),
         "display_timezone": DISPLAY_TIMEZONE,
         "weeks": days_out,
     }
@@ -502,6 +623,12 @@ def main():
     start_date = date.fromisoformat(args.start_date) if args.start_date else None
     resolved_today = start_date or datetime.now(ZoneInfo(DISPLAY_TIMEZONE)).date()
 
+    # Off-season clamp (skipped when --start-date forces a date): if ESPN's
+    # calendar says nothing happens until some future opening date, build
+    # around THAT date so the board shows the opener instead of blank.
+    if start_date is None:
+        resolved_today = resolve_effective_today(resolved_today)
+
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "ncaamb_dashboard.json")
     out_path = os.path.abspath(out_path)
@@ -520,7 +647,7 @@ def main():
         log(f"{len(started_game_ids)} NCAAMB game(s) already have a score recorded in {scores_path} -- "
             f"freezing odds and Gemini predictions for those instead of updating them.")
 
-    output = build(sharp_key, MAIN_CHANNELS, gemini_key, start_date=resolved_today, num_days=args.num_days,
+    output = build(sharp_key, gemini_key, start_date=resolved_today, num_days=args.num_days,
                     previous_odds_by_id=previous_odds_by_id,
                     previous_entries_by_id=previous_entries_by_id, started_game_ids=started_game_ids)
     fresh_day_nums = [w["week"] for w in output["weeks"]]
