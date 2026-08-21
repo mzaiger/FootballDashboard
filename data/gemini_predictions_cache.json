@@ -3682,5 +3682,29 @@
     "generated_at": "2026-08-21T22:38:09.224833+00:00",
     "odds_hash": "244d2a71064e73d5",
     "model": "gemini-3.5-flash-lite"
+  },
+  "a5530c8169af224b": {
+    "winner": "Seattle Mariners",
+    "confidence": 55,
+    "ats_pick": "Seattle Mariners",
+    "ats_confidence": 53,
+    "analysis": "Emmett Hancock brings a solid 3.30 ERA into this August matchup, demonstrating strong command at home for the Mariners. Matthew Boyd has compiled a respectable 8-2 record for the Cubs, though his 4.02 ERA suggests some vulnerability in run prevention. Seattle's offense should be able to capitalize on Boyd's higher ERA compared to their starter. The Mariners play with great defensive consistency at home when Hancock is on the mound. Ultimately, Seattle's pitching advantage tilts the narrow projected margin in their favor.",
+    "splits_and_direction": "Approximately 58% of the public moneyline bets are currently backing the Chicago Cubs at near pick-em odds, while 62% of spread bettors are taking Seattle plus the 1.5 runs. The home moneyline has slightly shifted from opening numbers toward the Mariners as sharp action trickles in on Hancock.",
+    "display_text": "Summary: Emmett Hancock brings a solid 3.30 ERA into this August matchup, demonstrating strong command at home for the Mariners. Matthew Boyd has compiled a respectable 8-2 record for the Cubs, though his 4.02 ERA suggests some vulnerability in run prevention. Seattle's offense should be able to capitalize on Boyd's higher ERA compared to their starter. The Mariners play with great defensive consistency at home when Hancock is on the mound. Ultimately, Seattle's pitching advantage tilts the narrow projected margin in their favor.\n\nSplits and Direction: Approximately 58% of the public moneyline bets are currently backing the Chicago Cubs at near pick-em odds, while 62% of spread bettors are taking Seattle plus the 1.5 runs. The home moneyline has slightly shifted from opening numbers toward the Mariners as sharp action trickles in on Hancock.",
+    "generated_at": "2026-08-21T22:49:06.658519+00:00",
+    "odds_hash": "a5530c8169af224b",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "c4114c36a1796dc7": {
+    "winner": "Seattle Mariners",
+    "confidence": 55,
+    "ats_pick": "Seattle Mariners",
+    "ats_confidence": 53,
+    "analysis": "Chicago starter D. Peterson enters this matchup struggling through an underwhelming 2026 campaign with a 5.29 ERA and a mediocre 7-7 record. Seattle holds a distinct home-field advantage while deploying K. Anderson, whose stabilization efforts give them the upper hand in starting pitching depth. The Cubs' offense has been inconsistent on the road throughout the 2026 season, struggling to generate timely hits against right-handed starters. Meanwhile, the Mariners' bullpen has shown resilience in tight home games, preserving leads effectively in the middle innings. Ultimately, Seattle's home-field edge and Peterson's high ERA make the Mariners the safer side to back in both the outright and run-line markets.",
+    "splits_and_direction": "Approximately 58% of public moneyline bets and 55% of spread wagers are currently backing the home Mariners as slight favorites. The home moneyline has shifted slightly from an opener of -110 to -105 at DraftKings, while the spread has held steady at +1.5 across major sportsbooks.",
+    "display_text": "Summary: Chicago starter D. Peterson enters this matchup struggling through an underwhelming 2026 campaign with a 5.29 ERA and a mediocre 7-7 record. Seattle holds a distinct home-field advantage while deploying K. Anderson, whose stabilization efforts give them the upper hand in starting pitching depth. The Cubs' offense has been inconsistent on the road throughout the 2026 season, struggling to generate timely hits against right-handed starters. Meanwhile, the Mariners' bullpen has shown resilience in tight home games, preserving leads effectively in the middle innings. Ultimately, Seattle's home-field edge and Peterson's high ERA make the Mariners the safer side to back in both the outright and run-line markets.\n\nSplits and Direction: Approximately 58% of public moneyline bets and 55% of spread wagers are currently backing the home Mariners as slight favorites. The home moneyline has shifted slightly from an opener of -110 to -105 at DraftKings, while the spread has held steady at +1.5 across major sportsbooks.",
+    "generated_at": "2026-08-21T22:49:16.784016+00:00",
+    "odds_hash": "c4114c36a1796dc7",
+    "model": "gemini-3.5-flash-lite"
   }
 }

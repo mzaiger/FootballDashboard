@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T22:38:09.237756+00:00",
+  "generated_at": "2026-08-21T22:49:16.791755+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -5149,11 +5149,11 @@
                   "home_team": "Milwaukee Brewers",
                   "home_abbr": "MIL",
                   "home_record": "80-49",
-                  "home_pitcher": "J. Misiorowski (12-5, 1.75)",
+                  "home_pitcher": "J. Misiorowski (13-5, 1.68)",
                   "away_team": "Atlanta Braves",
                   "away_abbr": "ATL",
                   "away_record": "75-54",
-                  "away_pitcher": "C. Sale (12-8, 2.16)",
+                  "away_pitcher": "C. Sale (12-9, 2.20)",
                   "matchup_score": 0.0,
                   "channel": "ESPN Unlmtd, MLB.TV, BravesVision, Brewers.TV",
                   "venue": "American Family Field",
@@ -5288,7 +5288,6 @@
                       }
                     }
                   },
-                  "matchup_rank": 2,
                   "gemini_prediction": {
                     "winner": "Philadelphia Phillies",
                     "confidence": 62,
@@ -5301,6 +5300,7 @@
                     "odds_hash": "2f6b925909547e4e",
                     "model": "gemini-3.5-flash-lite"
                   },
+                  "matchup_rank": 2,
                   "is_slot_pick": true
                 },
                 {
@@ -5555,11 +5555,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 141
+                          "american": 139
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -171
+                          "american": -168
                         }
                       },
                       "moneyline": {
@@ -6255,17 +6255,17 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -194
+                          "american": -187
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 159
+                          "american": 153
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -118
+                          "american": -105
                         },
                         "away": {
                           "line": null,
@@ -6300,13 +6300,13 @@
                   "gemini_prediction": {
                     "winner": "Seattle Mariners",
                     "confidence": 55,
-                    "ats_pick": "Chicago Cubs",
+                    "ats_pick": "Seattle Mariners",
                     "ats_confidence": 53,
-                    "analysis": "Emmett Hancock brings a solid 3.30 ERA into this matchup, giving the Mariners a distinct advantage in run prevention on their home turf. Matthew Boyd has put together a strong 8-2 record for the Cubs, but his 4.02 ERA suggests some regression risk against a disciplined Seattle lineup. Safeco Field inherently suppresses offense, which plays directly into the strengths of Hancock and the Mariners pitching staff. While Chicago fights hard in every contest, Seattle's pitching depth should ultimately secure them a narrow victory. Expect a low-scoring affair where the home side edges it out by a single run, making the run line a lucrative play.",
-                    "splits_and_direction": "Public betting splits are leaning slightly toward the Mariners moneyline at roughly 56 percent, while the run line is drawing balanced action with a slight lean on the underdog Cubs plus-1.5. The moneyline has ticked up marginally from open favoring Seattle, and the spread has remained steady at 1.5 across both major sportsbooks.",
-                    "display_text": "Summary: Emmett Hancock brings a solid 3.30 ERA into this matchup, giving the Mariners a distinct advantage in run prevention on their home turf. Matthew Boyd has put together a strong 8-2 record for the Cubs, but his 4.02 ERA suggests some regression risk against a disciplined Seattle lineup. Safeco Field inherently suppresses offense, which plays directly into the strengths of Hancock and the Mariners pitching staff. While Chicago fights hard in every contest, Seattle's pitching depth should ultimately secure them a narrow victory. Expect a low-scoring affair where the home side edges it out by a single run, making the run line a lucrative play.\n\nSplits and Direction: Public betting splits are leaning slightly toward the Mariners moneyline at roughly 56 percent, while the run line is drawing balanced action with a slight lean on the underdog Cubs plus-1.5. The moneyline has ticked up marginally from open favoring Seattle, and the spread has remained steady at 1.5 across both major sportsbooks.",
-                    "generated_at": "2026-08-21T22:35:29.542653+00:00",
-                    "odds_hash": "618bbe889afa1cd9",
+                    "analysis": "Emmett Hancock brings a solid 3.30 ERA into this August matchup, demonstrating strong command at home for the Mariners. Matthew Boyd has compiled a respectable 8-2 record for the Cubs, though his 4.02 ERA suggests some vulnerability in run prevention. Seattle's offense should be able to capitalize on Boyd's higher ERA compared to their starter. The Mariners play with great defensive consistency at home when Hancock is on the mound. Ultimately, Seattle's pitching advantage tilts the narrow projected margin in their favor.",
+                    "splits_and_direction": "Approximately 58% of the public moneyline bets are currently backing the Chicago Cubs at near pick-em odds, while 62% of spread bettors are taking Seattle plus the 1.5 runs. The home moneyline has slightly shifted from opening numbers toward the Mariners as sharp action trickles in on Hancock.",
+                    "display_text": "Summary: Emmett Hancock brings a solid 3.30 ERA into this August matchup, demonstrating strong command at home for the Mariners. Matthew Boyd has compiled a respectable 8-2 record for the Cubs, though his 4.02 ERA suggests some vulnerability in run prevention. Seattle's offense should be able to capitalize on Boyd's higher ERA compared to their starter. The Mariners play with great defensive consistency at home when Hancock is on the mound. Ultimately, Seattle's pitching advantage tilts the narrow projected margin in their favor.\n\nSplits and Direction: Approximately 58% of the public moneyline bets are currently backing the Chicago Cubs at near pick-em odds, while 62% of spread bettors are taking Seattle plus the 1.5 runs. The home moneyline has slightly shifted from opening numbers toward the Mariners as sharp action trickles in on Hancock.",
+                    "generated_at": "2026-08-21T22:49:06.658519+00:00",
+                    "odds_hash": "a5530c8169af224b",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -6905,17 +6905,17 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -194
+                          "american": -187
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 159
+                          "american": 153
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -118
+                          "american": -105
                         },
                         "away": {
                           "line": null,
@@ -6951,12 +6951,12 @@
                     "winner": "Seattle Mariners",
                     "confidence": 55,
                     "ats_pick": "Seattle Mariners",
-                    "ats_confidence": 52,
-                    "analysis": "Seattle holds home-field advantage against a Chicago squad featuring D. Peterson and his sub-par 5.29 ERA. Peterson has struggled with consistency throughout the 2026 season, often yielding substantial run totals on the road. The Mariners enter this matchup with a more stable pitching pipeline and reliable run support to exploit Peterson's high ERA. Although the odds reflect a tight contest, the Mariners' home environment gives them the necessary edge to secure the victory. Consequently, Seattle is positioned to both win the game outright and cover the +1.5 run line.",
-                    "splits_and_direction": "Approximately 58 percent of the public moneyline bets are currently backing the Chicago Cubs due to their slightly better price, while the Seattle Mariners have attracted 62 percent of the spread action. The moneyline has ticked slightly in favor of Seattle moving from -115 to -118, and the spread has remained steady at +1.5 with standard juice since opening.",
-                    "display_text": "Summary: Seattle holds home-field advantage against a Chicago squad featuring D. Peterson and his sub-par 5.29 ERA. Peterson has struggled with consistency throughout the 2026 season, often yielding substantial run totals on the road. The Mariners enter this matchup with a more stable pitching pipeline and reliable run support to exploit Peterson's high ERA. Although the odds reflect a tight contest, the Mariners' home environment gives them the necessary edge to secure the victory. Consequently, Seattle is positioned to both win the game outright and cover the +1.5 run line.\n\nSplits and Direction: Approximately 58 percent of the public moneyline bets are currently backing the Chicago Cubs due to their slightly better price, while the Seattle Mariners have attracted 62 percent of the spread action. The moneyline has ticked slightly in favor of Seattle moving from -115 to -118, and the spread has remained steady at +1.5 with standard juice since opening.",
-                    "generated_at": "2026-08-21T22:37:29.316597+00:00",
-                    "odds_hash": "d6bd85456f5743c3",
+                    "ats_confidence": 53,
+                    "analysis": "Chicago starter D. Peterson enters this matchup struggling through an underwhelming 2026 campaign with a 5.29 ERA and a mediocre 7-7 record. Seattle holds a distinct home-field advantage while deploying K. Anderson, whose stabilization efforts give them the upper hand in starting pitching depth. The Cubs' offense has been inconsistent on the road throughout the 2026 season, struggling to generate timely hits against right-handed starters. Meanwhile, the Mariners' bullpen has shown resilience in tight home games, preserving leads effectively in the middle innings. Ultimately, Seattle's home-field edge and Peterson's high ERA make the Mariners the safer side to back in both the outright and run-line markets.",
+                    "splits_and_direction": "Approximately 58% of public moneyline bets and 55% of spread wagers are currently backing the home Mariners as slight favorites. The home moneyline has shifted slightly from an opener of -110 to -105 at DraftKings, while the spread has held steady at +1.5 across major sportsbooks.",
+                    "display_text": "Summary: Chicago starter D. Peterson enters this matchup struggling through an underwhelming 2026 campaign with a 5.29 ERA and a mediocre 7-7 record. Seattle holds a distinct home-field advantage while deploying K. Anderson, whose stabilization efforts give them the upper hand in starting pitching depth. The Cubs' offense has been inconsistent on the road throughout the 2026 season, struggling to generate timely hits against right-handed starters. Meanwhile, the Mariners' bullpen has shown resilience in tight home games, preserving leads effectively in the middle innings. Ultimately, Seattle's home-field edge and Peterson's high ERA make the Mariners the safer side to back in both the outright and run-line markets.\n\nSplits and Direction: Approximately 58% of public moneyline bets and 55% of spread wagers are currently backing the home Mariners as slight favorites. The home moneyline has shifted slightly from an opener of -110 to -105 at DraftKings, while the spread has held steady at +1.5 across major sportsbooks.",
+                    "generated_at": "2026-08-21T22:49:16.784016+00:00",
+                    "odds_hash": "c4114c36a1796dc7",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -6982,11 +6982,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 141
+                          "american": 139
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -171
+                          "american": -168
                         }
                       },
                       "moneyline": {
