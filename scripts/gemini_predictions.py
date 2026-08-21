@@ -1,6 +1,7 @@
 """
-Gemini prediction helper, shared by build_ncaaf_dashboard.py (CFB) and
-build_nfl_dashboard.py (NFL).
+Gemini prediction helper, shared by build_ncaaf_dashboard.py (CFB),
+build_nfl_dashboard.py (NFL), build_mlb_dashboard.py (MLB),
+build_nba_dashboard.py (NBA), and build_ncaamb_dashboard.py (NCAAMB).
 
 For every game that has at least one posted line (DraftKings or FanDuel,
 spread or moneyline), asks Gemini for:
@@ -12,26 +13,48 @@ spread or moneyline), asks Gemini for:
 
 Uses only current-season data.
 
-Model: gemini-3.5-flash-lite (its quota pool is separate from 3.6 flash).
+Model fallback chain (tried top to bottom, falling back immediately
+whenever a model reports itself rate-limited, over quota, or otherwise
+unavailable -- see GEMINI_MODELS / _call_gemini):
+    1. gemini-3.5-flash-lite
+    2. gemini-3.1-flash-lite
+    3. gemini-2.5-flash-lite
+    4. gemini-2.0-flash-lite
 
 Rate limiting:
 - 1 API call every 10 seconds (6/minute)
-- retries wait a full minute
+- non-rate-limit errors (network errors, 5xx, an unusable response) retry
+  the SAME model, waiting a full minute between attempts
+- a rate limit / quota / not-found response (4xx) on any given model is
+  NOT retried -- it falls straight through to the next model in the
+  chain instead
 - games are processed sequentially, one at a time
-- if Gemini reports the *daily* quota (RequestsPerDay) is exhausted, the
-  run stops calling immediately; uncalled games are picked up on the next
-  run (the cache preserves progress).
+- if every model in the chain is rate-limited/unavailable for a given
+  call, the run stops calling immediately; uncalled games are picked up
+  on the next run (the cache preserves progress)
 
 Caching:
 Predictions are cached in data/gemini_predictions_cache.json, keyed by a
-hash of (model, sport, season, week, matchup, DK odds, FD odds). If none
-of those change between runs, the cached prediction is reused and no API
-call is made.
+hash of (fallback-chain version, sport, season, week, matchup, DK odds,
+FD odds) -- NOT by which specific model in the chain actually answered a
+given call, so a game that happened to fall back to gemini-2.5-flash-lite
+one run still hits the cache normally on the next run even if
+gemini-3.5-flash-lite is healthy again by then. Changing the chain itself
+(GEMINI_MODELS) invalidates every cached prediction, same as changing
+models used to under the old single-model scheme.
 
-On Thursdays (UTC), the cache is ignored entirely and every game with a
-posted line gets a fresh call, regardless of whether its odds hash
-matches an existing cache entry. Any other day, caching works as
-described above.
+Weekly full-refresh schedule:
+- NFL: every Wednesday (UTC), the cache is ignored entirely for every
+  NFL game that HASN'T already started -- each gets a fresh call
+  regardless of whether its odds hash matches an existing cache entry.
+  Games already underway or final are left completely alone (see
+  skip_ids below), so a Wednesday refresh mid-week never touches a
+  game that's already been decided.
+- CFB: same, but on Thursday (UTC) instead of Wednesday.
+- MLB/NBA/NCAAMB: no scheduled full-refresh day -- caching behaves as
+  described above on every day of the week for these three.
+Any day that isn't that sport's refresh day, caching works as described
+above (reuse whenever the odds hash matches).
 
 Env var required: GEMINI_KEY.
 If missing, predictions are skipped entirely.
@@ -50,14 +73,25 @@ import requests
 from common import log
 
 
-GEMINI_MODEL = "gemini-3.5-flash-lite"
-GEMINI_API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
+# Tried top to bottom; falls back to the next entry the instant a model
+# reports itself rate-limited, over quota, or unavailable (any 4xx --
+# including a 404 for a model Google has since discontinued, e.g.
+# gemini-2.0-flash-lite was retired on June 1, 2026, so that last rung
+# may always 404 depending on when this runs; it's kept in the chain
+# anyway as a last-ditch attempt in case it's ever restored or the
+# account still has grandfathered access).
+GEMINI_MODELS = (
+    "gemini-3.5-flash-lite",
+    "gemini-3.1-flash-lite",
+    "gemini-2.5-flash-lite",
+    "gemini-2.0-flash-lite",
+)
 GEMINI_TIMEOUT = 30
 
 # One request every 10 seconds (6/minute).
 MIN_CALL_INTERVAL = 10.0
 
-# Retries wait a full minute.
+# Retries (same model, non-rate-limit errors only) wait a full minute.
 RETRY_DELAY_SECONDS = 60.0
 MAX_RETRIES = 5
 
@@ -66,7 +100,17 @@ CACHE_PATH = os.path.abspath(os.path.join(_SCRIPT_DIR, "..", "data", "gemini_pre
 
 
 class DailyQuotaExceeded(RuntimeError):
-    """Gemini's per-day request quota (RPD) is exhausted; retrying today is pointless."""
+    """Every model in GEMINI_MODELS is rate-limited, over quota, or
+    unavailable right now; retrying today is pointless."""
+
+
+class _ModelUnavailable(Exception):
+    """Raised internally when a single model in the fallback chain
+    returns a 4xx response -- rate limited (429), daily quota exhausted,
+    the model name doesn't exist / has been retired (404), or any other
+    client-side rejection. Signals _call_gemini to move on to the next
+    model in GEMINI_MODELS immediately rather than burning retries on a
+    model that just told us no."""
 
 
 _daily_quota_exhausted = threading.Event()
@@ -117,13 +161,17 @@ def _save_cache(cache):
 
 def _odds_hash(sport, season, week, away_team, home_team, odds, away_pitcher=None, home_pitcher=None):
     """
-    Cache key that changes iff the model, matchup, its odds, or (for MLB)
-    the probable starting pitchers change. Including the model means
-    switching models gets fresh predictions instead of reusing another
-    model's cached output. For MLB, `week` is actually the game's date
-    (see attach_gemini_predictions) so two different days' games between
-    the same two teams still hash differently, and a late pitcher swap
-    triggers a fresh call instead of serving a stale cached prediction.
+    Cache key that changes iff the fallback-chain version, matchup, its
+    odds, or (for MLB) the probable starting pitchers change. Using the
+    whole GEMINI_MODELS tuple (rather than one specific model) as the
+    version marker means a game that fell back to a lower model on a
+    previous run still hits the cache normally -- only actually changing
+    the chain (adding/removing/reordering a model) invalidates the cache,
+    same as switching models did under the old single-model scheme. For
+    MLB, `week` is actually the game's date (see attach_gemini_predictions)
+    so two different days' games between the same two teams still hash
+    differently, and a late pitcher swap triggers a fresh call instead of
+    serving a stale cached prediction.
     """
     dk_spread = (odds.get("draftkings", {}).get("spread", {}).get("home") or {})
     dk_ml_away = (odds.get("draftkings", {}).get("moneyline", {}).get("away") or {})
@@ -134,7 +182,7 @@ def _odds_hash(sport, season, week, away_team, home_team, odds, away_pitcher=Non
     fd_ml_home = (odds.get("fanduel", {}).get("moneyline", {}).get("home") or {})
 
     key_material = "|".join(str(x) for x in [
-        GEMINI_MODEL,
+        "|".join(GEMINI_MODELS),
         sport,
         season,
         week,
@@ -187,14 +235,24 @@ def _fmt_book(book):
     return "\n".join(lines) if lines else "No odds posted yet"
 
 
-def _build_prompt(sport, season, week, away_team, home_team, odds, away_pitcher=None, home_pitcher=None):
-    league_label = {"nfl": "NFL", "mlb": "MLB"}.get(sport, "college football")
 
-    # For MLB, `week` is the game's actual calendar date (see
-    # attach_gemini_predictions) -- MLB plays every day, so "week 5" is
-    # meaningless; the model needs the specific date to know which of
-    # possibly several games between these two teams this is.
-    period_label = f"on {week}" if sport == "mlb" else f"(week {week})"
+# Sports whose builder passes the game's actual calendar date as `week`
+# (day-based boards -- MLB/NBA/NCAAMB all play/schedule day-to-day rather
+# than in a real "week N" sense), as opposed to CFB/NFL's real week
+# numbers.
+DATE_BASED_SPORTS = {"mlb", "nba", "ncaamb"}
+
+
+def _build_prompt(sport, season, week, away_team, home_team, odds, away_pitcher=None, home_pitcher=None):
+    league_label = {
+        "nfl": "NFL", "mlb": "MLB", "nba": "NBA", "ncaamb": "college basketball",
+    }.get(sport, "college football")
+
+    # For date-based sports, `week` is the game's actual calendar date (see
+    # attach_gemini_predictions) -- these play/schedule day-to-day, so
+    # "week 5" is meaningless; the model needs the specific date to know
+    # which of possibly several games between these two teams this is.
+    period_label = f"on {week}" if sport in DATE_BASED_SPORTS else f"(week {week})"
 
     margin_unit = "runs" if sport == "mlb" else "points"
 
@@ -364,7 +422,15 @@ def _normalize_prediction(raw):
 # Gemini API call
 #---------------------------------------------------------------------------
 
-def _call_gemini(prompt, gemini_key):
+def _call_gemini_single(prompt, gemini_key, model):
+    """Try exactly one model. Raises _ModelUnavailable immediately (no
+    retry) on any 4xx response -- rate limited, quota exhausted, or the
+    model itself doesn't exist/was retired -- so the caller can fall
+    back to the next model in the chain without burning this model's
+    retry budget on a request that's never going to succeed. Network
+    errors, 5xx, and unusable responses still retry the SAME model up to
+    MAX_RETRIES times, same as before."""
+    api_url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
     last_err = None
 
     for attempt in range(MAX_RETRIES):
@@ -372,7 +438,7 @@ def _call_gemini(prompt, gemini_key):
 
         try:
             resp = requests.post(
-                GEMINI_API_URL,
+                api_url,
                 params={"key": gemini_key},
                 json={
                     "contents": [{"parts": [{"text": prompt}]}],
@@ -389,22 +455,21 @@ def _call_gemini(prompt, gemini_key):
                 break
 
             log(
-                f"  Gemini request error -- retrying in {RETRY_DELAY_SECONDS:.0f}s "
+                f"  {model}: request error -- retrying in {RETRY_DELAY_SECONDS:.0f}s "
                 f"(attempt {attempt + 1}/{MAX_RETRIES}): {e}"
             )
             time.sleep(RETRY_DELAY_SECONDS)
             continue
 
-        if resp.status_code == 429 or resp.status_code >= 500:
-            # Daily quota exhausted -> retrying today is pointless. Stop now;
-            # the cache keeps progress and the next run finishes the slate.
-            if resp.status_code == 429 and "RequestsPerDay" in resp.text:
-                _daily_quota_exhausted.set()
-                raise DailyQuotaExceeded(
-                    "daily request quota (RPD) exhausted -- remaining games "
-                    "will be picked up on a future run"
-                )
+        if 400 <= resp.status_code < 500:
+            # Rate limited (429, RPM or RPD), some other quota/permission
+            # rejection, or a 404 for a model name that no longer exists
+            # (e.g. gemini-2.0-flash-lite, retired June 2026) -- none of
+            # these get better by retrying THIS model, so bail out
+            # immediately and let _call_gemini() move on to the next one.
+            raise _ModelUnavailable(f"{resp.status_code} {resp.reason}: {resp.text[:200]}")
 
+        if resp.status_code >= 500:
             last_err = requests.exceptions.HTTPError(
                 f"{resp.status_code} {resp.reason} for url: {resp.url}",
                 response=resp,
@@ -422,7 +487,7 @@ def _call_gemini(prompt, gemini_key):
                     pass
 
             log(
-                f"  Gemini {resp.status_code} -- retrying in {delay:.0f}s "
+                f"  {model}: {resp.status_code} -- retrying in {delay:.0f}s "
                 f"(attempt {attempt + 1}/{MAX_RETRIES})"
             )
             time.sleep(delay)
@@ -447,7 +512,7 @@ def _call_gemini(prompt, gemini_key):
                 break
 
             log(
-                f"  Gemini returned an unusable response -- retrying in "
+                f"  {model}: returned an unusable response -- retrying in "
                 f"{RETRY_DELAY_SECONDS:.0f}s (attempt {attempt + 1}/{MAX_RETRIES}): {e}"
             )
             time.sleep(RETRY_DELAY_SECONDS)
@@ -456,7 +521,33 @@ def _call_gemini(prompt, gemini_key):
     if last_err is not None:
         raise last_err
 
-    raise RuntimeError("Gemini call failed for unknown reason")
+    raise RuntimeError(f"Gemini call to {model} failed for unknown reason")
+
+
+def _call_gemini(prompt, gemini_key):
+    """Tries each model in GEMINI_MODELS in order, falling back to the
+    next one immediately whenever a model raises _ModelUnavailable (see
+    _call_gemini_single). Returns (prediction_dict, model_used). Only
+    once EVERY model in the chain has been tried and rejected does this
+    raise DailyQuotaExceeded -- at that point there's genuinely nothing
+    left to fall back to for the rest of today's run."""
+    last_unavailable = None
+
+    for model in GEMINI_MODELS:
+        try:
+            result = _call_gemini_single(prompt, gemini_key, model)
+            return result, model
+        except _ModelUnavailable as e:
+            last_unavailable = e
+            log(f"  {model} unavailable ({e}) -- falling back to next model in the chain.")
+            continue
+
+    _daily_quota_exhausted.set()
+    raise DailyQuotaExceeded(
+        f"every model in the fallback chain ({', '.join(GEMINI_MODELS)}) is rate-limited, "
+        f"over quota, or unavailable right now -- remaining games will be picked up on a "
+        f"future run (last error: {last_unavailable})"
+    )
 
 
 #---------------------------------------------------------------------------
@@ -469,18 +560,23 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key, skip_ids=N
     game with at least one posted line.
 
     Reuses cached predictions when the hash hasn't changed; calls Gemini
-    sequentially (~1/min) for new/changed games, then saves the cache.
-    If the daily quota runs out mid-slate, stops calling and leaves the
-    rest for a future run.
+    sequentially (~1/min per model, falling back through GEMINI_MODELS on
+    a rate limit -- see _call_gemini) for new/changed games, then saves
+    the cache. If every model in the chain is rate-limited/unavailable
+    mid-slate, stops calling and leaves the rest for a future run.
 
     skip_ids, if given, is a set of game ids (as strings) to leave
     completely untouched -- no cache lookup, no Gemini call, no
-    force-refresh override even on a Thursday. The caller is expected to
-    have already set g["gemini_prediction"] on these (typically to
-    whatever was frozen from the previous build) before calling this, for
-    a game that's already started: its pregame line is frozen, so there's
-    nothing new to grade the prediction against, and a moving in-game
-    line shouldn't trigger a fresh call anyway.
+    force-refresh override even on that sport's scheduled refresh day.
+    The caller is expected to have already set g["gemini_prediction"] on
+    these (typically to whatever was frozen from the previous build)
+    before calling this, for a game that's already started: its pregame
+    line is frozen, so there's nothing new to grade the prediction
+    against, and a moving in-game line shouldn't trigger a fresh call
+    anyway. This is also exactly what makes the weekly full-refresh below
+    safe -- it forces a refresh for NFL/CFB's not-yet-started games only,
+    since already-started/finished games are always in skip_ids by the
+    time this function sees them.
     """
     if not gemini_key:
         log("No GEMINI_KEY set -- skipping Gemini predictions.")
@@ -488,10 +584,16 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key, skip_ids=N
 
     skip_ids = skip_ids or set()
 
-    # Thursday: always refresh, ignoring the cache entirely. Every other
-    # day of the week, behave as before -- reuse a cached prediction
-    # whenever the odds hash hasn't changed.
-    force_refresh = datetime.now(timezone.utc).weekday() == 3  # Mon=0 ... Thu=3
+    # Weekly full-refresh, one sport at a time so the two busiest boards
+    # each get a clean slate on a different day rather than piling both
+    # onto the same run: NFL every Wednesday (UTC), CFB every Thursday
+    # (UTC). Every other sport, and every other day for NFL/CFB, behaves
+    # as before -- reuse a cached prediction whenever the odds hash
+    # hasn't changed. Games that are already underway or final never see
+    # this override regardless of sport/day, since those game ids are
+    # already excluded via skip_ids above.
+    today_utc = datetime.now(timezone.utc).weekday()  # Mon=0 ... Wed=2, Thu=3
+    force_refresh = (sport == "nfl" and today_utc == 2) or (sport == "cfb" and today_utc == 3)
 
     cache = _load_cache()
     to_call = []
@@ -530,11 +632,15 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key, skip_ids=N
         return
 
     if force_refresh:
-        log("Gemini predictions: today is Thursday -- forcing a refresh for all games with posted odds, cache or not.")
+        refresh_day = "Wednesday" if sport == "nfl" else "Thursday"
+        log(f"Gemini predictions: today is {refresh_day} -- forcing a refresh for every "
+            f"not-yet-started {sport.upper()} game with posted odds, cache or not.")
 
     log(
-        f"Gemini predictions: calling for {len(to_call)} game(s) with new/changed odds "
-        f"on {GEMINI_MODEL} (~{60.0 / MIN_CALL_INTERVAL:.0f}/min, so this may take a while)..."
+        f"Gemini predictions: calling for {len(to_call)} game(s) with new/changed odds, "
+        f"starting with {GEMINI_MODELS[0]} and falling back through "
+        f"{', '.join(GEMINI_MODELS[1:])} if rate-limited "
+        f"(~{60.0 / MIN_CALL_INTERVAL:.0f}/min per model, so this may take a while)..."
     )
 
     called, failed, skipped = 0, 0, 0
@@ -544,14 +650,14 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key, skip_ids=N
 
         if _daily_quota_exhausted.is_set():
             skipped += 1
-            log(f"  Skipping {label} -- daily quota exhausted; will call on a future run.")
+            log(f"  Skipping {label} -- every model in the fallback chain is exhausted; will call on a future run.")
             continue
 
         try:
-            result = _call_gemini(prompt, gemini_key)
+            result, model_used = _call_gemini(prompt, gemini_key)
         except DailyQuotaExceeded as e:
             skipped += 1
-            log(f"  Gemini daily quota hit at {label}: {e}")
+            log(f"  Gemini fallback chain exhausted at {label}: {e}")
             continue
         except Exception as e:  # noqa: BLE001 -- one bad game shouldn't kill the build
             failed += 1
@@ -560,7 +666,7 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key, skip_ids=N
 
         result["generated_at"] = datetime.now(timezone.utc).isoformat()
         result["odds_hash"] = h
-        result["model"] = GEMINI_MODEL
+        result["model"] = model_used
         g["gemini_prediction"] = result
         cache[h] = result
         called += 1
@@ -569,7 +675,7 @@ def attach_gemini_predictions(games, sport, season, week, gemini_key, skip_ids=N
         if called % 5 == 0:
             _save_cache(cache)
 
-    log(f"Gemini predictions: {called} succeeded, {failed} failed, {skipped} skipped (daily quota).")
+    log(f"Gemini predictions: {called} succeeded, {failed} failed, {skipped} skipped (fallback chain exhausted).")
 
     if called:
         _save_cache(cache)
