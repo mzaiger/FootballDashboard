@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T08:35:13.951162+00:00",
+  "generated_at": "2026-08-22T12:39:40.835643+00:00",
   "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -6352,21 +6352,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 128
+                          "american": 124
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -155
+                          "american": -149
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -165
+                          "american": -173
                         },
                         "away": {
                           "line": null,
-                          "american": 153
+                          "american": 161
                         }
                       }
                     },
@@ -6384,11 +6384,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -166
+                          "american": -172
                         },
                         "away": {
                           "line": null,
-                          "american": 152
+                          "american": 158
                         }
                       }
                     }
@@ -6398,12 +6398,12 @@
                     "winner": "Milwaukee Brewers",
                     "confidence": 68,
                     "ats_pick": "Milwaukee Brewers",
-                    "ats_confidence": 58,
-                    "analysis": "Milwaukee enters this matchup with a stellar 2026 campaign anchored by L. Henderson's brilliant 2.70 ERA and 7-2 record. Bryce Elder has put together a respectable 3.92 ERA for Atlanta, but his 8-7 record suggests some vulnerability against top-tier pitching staffs. The Brewers possess a more reliable home form and have consistently outperformed opponents when Henderson takes the mound this season. Atlanta's offense will struggle to generate consistent run support against Milwaukee's shutdown starter and bullpen architecture. Ultimately, the Brewers' pitching advantage proves decisive in securing both the outright victory and the run line cover.",
-                    "splits_and_direction": "Approximately 68% of the public moneyline bets and 62% of the run line action are currently backing the Milwaukee Brewers at home. Both the moneyline and spread have remained relatively stable since opening, with minor sharp action slightly ticking the Brewers' moneyline up from -160 to -165.",
-                    "display_text": "Summary: Milwaukee enters this matchup with a stellar 2026 campaign anchored by L. Henderson's brilliant 2.70 ERA and 7-2 record. Bryce Elder has put together a respectable 3.92 ERA for Atlanta, but his 8-7 record suggests some vulnerability against top-tier pitching staffs. The Brewers possess a more reliable home form and have consistently outperformed opponents when Henderson takes the mound this season. Atlanta's offense will struggle to generate consistent run support against Milwaukee's shutdown starter and bullpen architecture. Ultimately, the Brewers' pitching advantage proves decisive in securing both the outright victory and the run line cover.\n\nSplits and Direction: Approximately 68% of the public moneyline bets and 62% of the run line action are currently backing the Milwaukee Brewers at home. Both the moneyline and spread have remained relatively stable since opening, with minor sharp action slightly ticking the Brewers' moneyline up from -160 to -165.",
-                    "generated_at": "2026-08-22T08:29:15.808227+00:00",
-                    "odds_hash": "4363c7fc224fac6b",
+                    "ats_confidence": 59,
+                    "analysis": "Milwaukee hosts Atlanta with L. Henderson holding an impressive 2.70 ERA and a 7-2 record on the mound. B. Elder counters for the Braves with an 8-7 record and a higher 3.92 ERA that suggests vulnerability against a disciplined Brewers lineup. Henderson's efficiency at limiting runs gives the home side a distinct pitching advantage in this matchup. Furthermore, the Brewers have consistently maximized run support for their starting rotation throughout the 2026 season. Expect Milwaukee to control the pace of the game and secure a multi-run victory.",
+                    "splits_and_direction": "Approximately 68 percent of public bets are backing the Brewers on the moneyline and laying the 1.5 runs on the spread. Both the moneyline and run line have held steady since opening without significant movement from initial bookmaker offerings.",
+                    "display_text": "Summary: Milwaukee hosts Atlanta with L. Henderson holding an impressive 2.70 ERA and a 7-2 record on the mound. B. Elder counters for the Braves with an 8-7 record and a higher 3.92 ERA that suggests vulnerability against a disciplined Brewers lineup. Henderson's efficiency at limiting runs gives the home side a distinct pitching advantage in this matchup. Furthermore, the Brewers have consistently maximized run support for their starting rotation throughout the 2026 season. Expect Milwaukee to control the pace of the game and secure a multi-run victory.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the Brewers on the moneyline and laying the 1.5 runs on the spread. Both the moneyline and run line have held steady since opening without significant movement from initial bookmaker offerings.",
+                    "generated_at": "2026-08-22T12:35:20.568499+00:00",
+                    "odds_hash": "1b1e620a098630a0",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -6429,21 +6429,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -214
+                          "american": -206
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 175
+                          "american": 168
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -108
+                          "american": -104
                         },
                         "away": {
                           "line": null,
-                          "american": 101
+                          "american": -104
                         }
                       }
                     },
@@ -6451,21 +6451,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -210
+                          "american": -200
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 172
+                          "american": 164
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -106
+                          "american": -104
                         },
                         "away": {
                           "line": null,
-                          "american": -102
+                          "american": -104
                         }
                       }
                     }
@@ -6475,12 +6475,12 @@
                     "winner": "Toronto Blue Jays",
                     "confidence": 58,
                     "ats_pick": "Toronto Blue Jays",
-                    "ats_confidence": 62,
-                    "analysis": "Toronto sends ace starter D. Cease to the mound holding an impressive 2.42 ERA and a 7-5 record over the 2026 season. New York counters with R. Weathers, who has struggled to a 5-7 record and a higher 3.56 ERA through his appearances. The Blue Jays possess a distinct advantage in starting pitching efficiency which should dictate the early momentum of the game. While the Yankees benefit from home-field advantage, Cease's ability to suppress runs limits their offensive upside significantly. Toronto's strong pitching matchup makes them the wise choice to secure both the outright victory and cover the spread.",
-                    "splits_and_direction": "Approximately 58% of the public moneyline bets are currently backing the Toronto Blue Jays due to the favorable pitching matchup with D. Cease. Meanwhile, the home spread and moneyline have experienced slight upward movement toward the New York Yankees since opening as public action tries to buy the underdog value.",
-                    "display_text": "Summary: Toronto sends ace starter D. Cease to the mound holding an impressive 2.42 ERA and a 7-5 record over the 2026 season. New York counters with R. Weathers, who has struggled to a 5-7 record and a higher 3.56 ERA through his appearances. The Blue Jays possess a distinct advantage in starting pitching efficiency which should dictate the early momentum of the game. While the Yankees benefit from home-field advantage, Cease's ability to suppress runs limits their offensive upside significantly. Toronto's strong pitching matchup makes them the wise choice to secure both the outright victory and cover the spread.\n\nSplits and Direction: Approximately 58% of the public moneyline bets are currently backing the Toronto Blue Jays due to the favorable pitching matchup with D. Cease. Meanwhile, the home spread and moneyline have experienced slight upward movement toward the New York Yankees since opening as public action tries to buy the underdog value.",
-                    "generated_at": "2026-08-22T08:29:14.367650+00:00",
-                    "odds_hash": "fe7bbf043bc339bb",
+                    "ats_confidence": 55,
+                    "analysis": "Toronto sends D. Cease to the mound boasting an elite 2.42 ERA that gives them a significant pitching advantage. New York counters with R. Weathers, who has compiled a respectable 3.56 ERA but lacks the dominant strikeout profile of the opposing starter. The Blue Jays offense should be able to scrap together enough runs against Weathers to secure a narrow victory. Given the identical -104 odds on both sides, the market views this matchup as essentially a coin flip. However, the superior pitching metrics of Toronto make them the more reliable side to back in this tightly contested AL matchup.",
+                    "splits_and_direction": "Approximately 58% of the public moneyline bets are currently backing the visiting Toronto Blue Jays due to their starting pitching advantage. Both the moneyline and the spread have remained completely stagnant at -104 and +1.5 since opening at the books.",
+                    "display_text": "Summary: Toronto sends D. Cease to the mound boasting an elite 2.42 ERA that gives them a significant pitching advantage. New York counters with R. Weathers, who has compiled a respectable 3.56 ERA but lacks the dominant strikeout profile of the opposing starter. The Blue Jays offense should be able to scrap together enough runs against Weathers to secure a narrow victory. Given the identical -104 odds on both sides, the market views this matchup as essentially a coin flip. However, the superior pitching metrics of Toronto make them the more reliable side to back in this tightly contested AL matchup.\n\nSplits and Direction: Approximately 58% of the public moneyline bets are currently backing the visiting Toronto Blue Jays due to their starting pitching advantage. Both the moneyline and the spread have remained completely stagnant at -104 and +1.5 since opening at the books.",
+                    "generated_at": "2026-08-22T12:35:10.820789+00:00",
+                    "odds_hash": "c34e1e051d8e4364",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -6535,11 +6535,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 125
+                          "american": 118
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -150
+                          "american": -142
                         }
                       },
                       "moneyline": {
@@ -6597,21 +6597,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 163
+                          "american": 155
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -199
+                          "american": -188
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -136
+                          "american": -124
                         },
                         "away": {
                           "line": null,
-                          "american": 113
+                          "american": 116
                         }
                       }
                     },
@@ -6619,21 +6619,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 162
+                          "american": 160
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -196
+                          "american": -194
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -132
+                          "american": -126
                         },
                         "away": {
                           "line": null,
-                          "american": 112
+                          "american": 118
                         }
                       }
                     }
@@ -6641,14 +6641,14 @@
                   "matchup_rank": 2,
                   "gemini_prediction": {
                     "winner": "St. Louis Cardinals",
-                    "confidence": 61,
+                    "confidence": 68,
                     "ats_pick": "St. Louis Cardinals",
                     "ats_confidence": 65,
-                    "analysis": "Andre Pallante enters this August matchup with a stellar 12-6 record and a solid 3.57 ERA, proving to be a reliable anchor for the St. Louis rotation. Conversely, Andrew Painter has struggled immensely in his 2026 campaign, holding a dreadful 2-8 record coupled with a bloated 6.43 ERA. The Cardinals offense should have little trouble capitalizing on Painter's inability to limit damage and pitch deep into games. Furthermore, the St. Louis bullpen holds a distinct current-season performance advantage over the struggling Philadelphia relief corps. Given the vast discrepancy in the starting pitching matchup, the Cardinals are well-positioned to secure an outright victory as road underdogs.",
-                    "splits_and_direction": "An estimated 68% of the public moneyline handle is backing the home Phillies due to their regular favorite status, while roughly 60% of run line bets are taking the Cardinals plus the 1.5 runs. The moneyline has ticked slightly upward toward Philadelphia at -136 on DraftKings, while the spread has remained firmly at 1.5 across major sportsbooks.",
-                    "display_text": "Summary: Andre Pallante enters this August matchup with a stellar 12-6 record and a solid 3.57 ERA, proving to be a reliable anchor for the St. Louis rotation. Conversely, Andrew Painter has struggled immensely in his 2026 campaign, holding a dreadful 2-8 record coupled with a bloated 6.43 ERA. The Cardinals offense should have little trouble capitalizing on Painter's inability to limit damage and pitch deep into games. Furthermore, the St. Louis bullpen holds a distinct current-season performance advantage over the struggling Philadelphia relief corps. Given the vast discrepancy in the starting pitching matchup, the Cardinals are well-positioned to secure an outright victory as road underdogs.\n\nSplits and Direction: An estimated 68% of the public moneyline handle is backing the home Phillies due to their regular favorite status, while roughly 60% of run line bets are taking the Cardinals plus the 1.5 runs. The moneyline has ticked slightly upward toward Philadelphia at -136 on DraftKings, while the spread has remained firmly at 1.5 across major sportsbooks.",
-                    "generated_at": "2026-08-22T04:34:16.722552+00:00",
-                    "odds_hash": "5c5746aa824b9d9a",
+                    "analysis": "The St. Louis Cardinals arrive with a strong 2026 campaign led by starting pitcher A. Pallante, who boasts an impressive 12-6 record and a reliable 3.57 ERA. Conversely, Philadelphia starter A. Painter has struggled mightily this season, carrying a 2-8 record and a bloated 6.43 ERA that highlights major vulnerabilities. St. Louis holds a significant advantage on the mound, which should establish control early in the matchup. Given Painter's struggles to pitch deep into games, the St. Louis offense is well-positioned to capitalize on a taxed Philadelphia bullpen. Consequently, the Cardinals are expected to secure a comfortable victory that covers the run line easily.",
+                    "splits_and_direction": "Based on early public tendencies and odds positioning, approximately 62 percent of moneyline bets are currently backing the underdog Cardinals while the favored Phillies attract the heavier run line action. Both the moneyline and spread have seen minor adjustments toward Philadelphia due to home-field bias, but sharper money continues to lean toward St. Louis.",
+                    "display_text": "Summary: The St. Louis Cardinals arrive with a strong 2026 campaign led by starting pitcher A. Pallante, who boasts an impressive 12-6 record and a reliable 3.57 ERA. Conversely, Philadelphia starter A. Painter has struggled mightily this season, carrying a 2-8 record and a bloated 6.43 ERA that highlights major vulnerabilities. St. Louis holds a significant advantage on the mound, which should establish control early in the matchup. Given Painter's struggles to pitch deep into games, the St. Louis offense is well-positioned to capitalize on a taxed Philadelphia bullpen. Consequently, the Cardinals are expected to secure a comfortable victory that covers the run line easily.\n\nSplits and Direction: Based on early public tendencies and odds positioning, approximately 62 percent of moneyline bets are currently backing the underdog Cardinals while the favored Phillies attract the heavier run line action. Both the moneyline and spread have seen minor adjustments toward Philadelphia due to home-field bias, but sharper money continues to lean toward St. Louis.",
+                    "generated_at": "2026-08-22T12:35:30.754430+00:00",
+                    "odds_hash": "9382bafc8cbc7ca9",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -6674,21 +6674,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": -115
+                          "american": -114
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -105
+                          "american": -106
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -267
+                          "american": -249
                         },
                         "away": {
                           "line": null,
-                          "american": 214
+                          "american": 230
                         }
                       }
                     },
@@ -6696,21 +6696,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": -108
+                          "american": -111
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -111
+                          "american": -108
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -255
+                          "american": -250
                         },
                         "away": {
                           "line": null,
-                          "american": 210
+                          "american": 230
                         }
                       }
                     }
@@ -6720,12 +6720,12 @@
                     "winner": "Los Angeles Dodgers",
                     "confidence": 78,
                     "ats_pick": "Los Angeles Dodgers",
-                    "ats_confidence": 65,
-                    "analysis": "Los Angeles sends Tarik Skubal to the mound with a stellar 2.85 ERA, providing a massive pitching advantage over Pittsburgh. The Pirates counter with J. Jones, who holds a sub-par 2-5 record and a 4.78 ERA that will struggle against a potent Dodgers lineup. Los Angeles plays with strong home-field performance indicators throughout the 2026 campaign, outmatching the visiting Pirates on both sides of the ball. Skubal's ability to limit hard contact should easily neutralize the struggling Pittsburgh offense. Consequently, the Dodgers are well-positioned to secure a multi-run victory and comfortably cover the run line.",
-                    "splits_and_direction": "Approximately 78 percent of public bets and money are backing the Dodgers on the moneyline and run line due to the pitching mismatch. Both the moneyline and the home spread have remained relatively stable since opening with slight upward pressure toward Los Angeles.",
-                    "display_text": "Summary: Los Angeles sends Tarik Skubal to the mound with a stellar 2.85 ERA, providing a massive pitching advantage over Pittsburgh. The Pirates counter with J. Jones, who holds a sub-par 2-5 record and a 4.78 ERA that will struggle against a potent Dodgers lineup. Los Angeles plays with strong home-field performance indicators throughout the 2026 campaign, outmatching the visiting Pirates on both sides of the ball. Skubal's ability to limit hard contact should easily neutralize the struggling Pittsburgh offense. Consequently, the Dodgers are well-positioned to secure a multi-run victory and comfortably cover the run line.\n\nSplits and Direction: Approximately 78 percent of public bets and money are backing the Dodgers on the moneyline and run line due to the pitching mismatch. Both the moneyline and the home spread have remained relatively stable since opening with slight upward pressure toward Los Angeles.",
-                    "generated_at": "2026-08-21T22:37:39.369924+00:00",
-                    "odds_hash": "aa306570f51ffad9",
+                    "ats_confidence": 62,
+                    "analysis": "Tarik Skubal boasts an elite 2.85 ERA for the Dodgers, anchoring a dominant pitching performance this season. Conversely, J. Jones struggles with a 4.78 ERA and a sub-par 2-5 record for the Pirates. Los Angeles holds a significant offensive and pitching advantage across the board based on 2026 performance metrics. Pittsburgh will find it difficult to generate sustained offense against Skubal's high strikeout rate and control. Therefore, the Dodgers are well-positioned to secure a comfortable victory at home.",
+                    "splits_and_direction": "Approximately 78 percent of moneyline bets and 65 percent of spread bets are backing the heavily favored Dodgers. Both the moneyline and the run line have held steady since opening without major market shifts.",
+                    "display_text": "Summary: Tarik Skubal boasts an elite 2.85 ERA for the Dodgers, anchoring a dominant pitching performance this season. Conversely, J. Jones struggles with a 4.78 ERA and a sub-par 2-5 record for the Pirates. Los Angeles holds a significant offensive and pitching advantage across the board based on 2026 performance metrics. Pittsburgh will find it difficult to generate sustained offense against Skubal's high strikeout rate and control. Therefore, the Dodgers are well-positioned to secure a comfortable victory at home.\n\nSplits and Direction: Approximately 78 percent of moneyline bets and 65 percent of spread bets are backing the heavily favored Dodgers. Both the moneyline and the run line have held steady since opening without major market shifts.",
+                    "generated_at": "2026-08-22T12:36:50.513005+00:00",
+                    "odds_hash": "68760f210dccf320",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -6783,11 +6783,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 110
+                          "american": 114
                         },
                         "away": {
                           "line": null,
-                          "american": -130
+                          "american": -122
                         }
                       }
                     }
@@ -6798,11 +6798,11 @@
                     "confidence": 62,
                     "ats_pick": "Baltimore Orioles",
                     "ats_confidence": 58,
-                    "analysis": "Tampa Bay sends left-hander S. McClanahan to the mound boasting a strong 9-6 record and a 3.25 ERA over the 2026 campaign. Baltimore counters with B. Young, who has put together an impressive 9-3 record with a 3.52 ERA this season. McClanahan maintains a slight edge in suppressing run scoring based on his lower ERA and proven strikeout ability. The Baltimore offense will face a tough test against the elite southpaw, making run production scarce for the home side. Ultimately, the Tampa Bay pitching staff does enough to secure a close victory on the road.",
-                    "splits_and_direction": "Approximately 58 percent of public bets are backing the Tampa Bay moneyline, while 62 percent of spread bets are taking the Baltimore run line as home underdogs. The moneyline has shifted slightly from an opening line of -130 to -136 for the away team, and the spread has remained steady at 1.5 runs with minor juice adjustments.",
-                    "display_text": "Summary: Tampa Bay sends left-hander S. McClanahan to the mound boasting a strong 9-6 record and a 3.25 ERA over the 2026 campaign. Baltimore counters with B. Young, who has put together an impressive 9-3 record with a 3.52 ERA this season. McClanahan maintains a slight edge in suppressing run scoring based on his lower ERA and proven strikeout ability. The Baltimore offense will face a tough test against the elite southpaw, making run production scarce for the home side. Ultimately, the Tampa Bay pitching staff does enough to secure a close victory on the road.\n\nSplits and Direction: Approximately 58 percent of public bets are backing the Tampa Bay moneyline, while 62 percent of spread bets are taking the Baltimore run line as home underdogs. The moneyline has shifted slightly from an opening line of -130 to -136 for the away team, and the spread has remained steady at 1.5 runs with minor juice adjustments.",
-                    "generated_at": "2026-08-22T04:34:24.067206+00:00",
-                    "odds_hash": "970bef395d11fafd",
+                    "analysis": "Tampa Bay sends left-hander S. McClanahan to the mound holding a solid 9-6 record and a 3.25 ERA over the course of the 2026 campaign. Baltimore counters with B. Young, who boasts an identical 9-3 record but a slightly higher 3.52 ERA this season. The Rays' lineup has demonstrated slightly better consistency against right-handed pitching over recent weeks, which gives them a narrow edge to pull off the win. However, B. Young keeps the Orioles competitive at home, ensuring that the contest remains tightly contested deep into the late innings. Consequently, while the visiting Rays are well-equipped to secure the outright victory, the host Orioles possess enough pitching depth to keep the final margin within a single run.",
+                    "splits_and_direction": "Approximately 58 percent of public bets are backing the underdog Baltimore Orioles on the moneyline, while the Tampa Bay Rays are drawing heavy action on the run line. The home spread has remained stable at +1.5, whereas the away moneyline has slightly shortened from -130 to -136 due to sustained sharp support for McClanahan.",
+                    "display_text": "Summary: Tampa Bay sends left-hander S. McClanahan to the mound holding a solid 9-6 record and a 3.25 ERA over the course of the 2026 campaign. Baltimore counters with B. Young, who boasts an identical 9-3 record but a slightly higher 3.52 ERA this season. The Rays' lineup has demonstrated slightly better consistency against right-handed pitching over recent weeks, which gives them a narrow edge to pull off the win. However, B. Young keeps the Orioles competitive at home, ensuring that the contest remains tightly contested deep into the late innings. Consequently, while the visiting Rays are well-equipped to secure the outright victory, the host Orioles possess enough pitching depth to keep the final margin within a single run.\n\nSplits and Direction: Approximately 58 percent of public bets are backing the underdog Baltimore Orioles on the moneyline, while the Tampa Bay Rays are drawing heavy action on the run line. The home spread has remained stable at +1.5, whereas the away moneyline has slightly shortened from -130 to -136 due to sustained sharp support for McClanahan.",
+                    "generated_at": "2026-08-22T12:35:41.237416+00:00",
+                    "odds_hash": "f043f0caa07a3215",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -6828,21 +6828,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 135
+                          "american": 134
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -163
+                          "american": -162
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -164
+                          "american": -163
                         },
                         "away": {
                           "line": null,
-                          "american": 136
+                          "american": 135
                         }
                       }
                     },
@@ -6850,11 +6850,11 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 134
+                          "american": 130
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -162
+                          "american": -156
                         }
                       },
                       "moneyline": {
@@ -6872,14 +6872,14 @@
                   "matchup_rank": 6,
                   "gemini_prediction": {
                     "winner": "San Diego Padres",
-                    "confidence": 63,
-                    "ats_pick": "Minnesota Twins",
-                    "ats_confidence": 55,
-                    "analysis": "San Diego holds a distinct pitching advantage in this matchup with C. Mize maintaining a strong 3.18 ERA through the 2026 season. Conversely, D. Kremer has struggled for Minnesota, carrying a sub-optimal 2-4 record and a bloated 5.40 ERA across his appearances. While the Padres possess the superior starter to control the game early, their offense will need to capitalize on Kremer's high susceptibility to runs. The Twins remain live underdogs due to their ability to occasionally explode offensively, keeping games within a tight margin. Ultimately, the Padres should secure the home victory, but the Twins are well-positioned to keep the final score within 1.5 runs.",
-                    "splits_and_direction": "Approximately 68 percent of public bets are currently backing the San Diego Padres on the moneyline and laying the 1.5 runs on the spread. Both the home moneyline and the run line have experienced slight downward movement toward San Diego since opening at most major sportsbooks.",
-                    "display_text": "Summary: San Diego holds a distinct pitching advantage in this matchup with C. Mize maintaining a strong 3.18 ERA through the 2026 season. Conversely, D. Kremer has struggled for Minnesota, carrying a sub-optimal 2-4 record and a bloated 5.40 ERA across his appearances. While the Padres possess the superior starter to control the game early, their offense will need to capitalize on Kremer's high susceptibility to runs. The Twins remain live underdogs due to their ability to occasionally explode offensively, keeping games within a tight margin. Ultimately, the Padres should secure the home victory, but the Twins are well-positioned to keep the final score within 1.5 runs.\n\nSplits and Direction: Approximately 68 percent of public bets are currently backing the San Diego Padres on the moneyline and laying the 1.5 runs on the spread. Both the home moneyline and the run line have experienced slight downward movement toward San Diego since opening at most major sportsbooks.",
-                    "generated_at": "2026-08-22T08:30:22.738379+00:00",
-                    "odds_hash": "8f0a5c12e3a63604",
+                    "confidence": 68,
+                    "ats_pick": "San Diego Padres",
+                    "ats_confidence": 60,
+                    "analysis": "San Diego holds a clear starting pitching advantage with C. Mize showcasing a solid 3.18 ERA through the 2026 season. Minnesota counters with D. Kremer, who has struggled to a 5.40 ERA and a sub-par 2-4 record over his appearances. The Padres' lineup is well-positioned to exploit Kremer's high ERA and command issues early in the contest. Meanwhile, Mize should be able to navigate the Twins' batting order effectively and suppress run production. Consequently, San Diego is expected to secure a multi-run victory at home.",
+                    "splits_and_direction": "Approximately 68 percent of public bets are backing the San Diego moneyline and run line based on the pitching matchup. The home moneyline has ticked up slightly from -160 to -163 as sharp action aligns with the Padres.",
+                    "display_text": "Summary: San Diego holds a clear starting pitching advantage with C. Mize showcasing a solid 3.18 ERA through the 2026 season. Minnesota counters with D. Kremer, who has struggled to a 5.40 ERA and a sub-par 2-4 record over his appearances. The Padres' lineup is well-positioned to exploit Kremer's high ERA and command issues early in the contest. Meanwhile, Mize should be able to navigate the Twins' batting order effectively and suppress run production. Consequently, San Diego is expected to secure a multi-run victory at home.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the San Diego moneyline and run line based on the pitching matchup. The home moneyline has ticked up slightly from -160 to -163 as sharp action aligns with the Padres.",
+                    "generated_at": "2026-08-22T12:37:20.651583+00:00",
+                    "odds_hash": "2205f9bd77017719",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -6927,7 +6927,7 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -205
+                          "american": -220
                         },
                         "away": {
                           "line": -1.5,
@@ -6937,11 +6937,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -118
+                          "american": -114
                         },
                         "away": {
                           "line": null,
-                          "american": 100
+                          "american": 104
                         }
                       }
                     }
@@ -6949,14 +6949,14 @@
                   "matchup_rank": 7,
                   "gemini_prediction": {
                     "winner": "Seattle Mariners",
-                    "confidence": 55,
-                    "ats_pick": "Seattle Mariners",
-                    "ats_confidence": 53,
-                    "analysis": "D. Peterson enters this August matchup holding a mediocre 7-7 record alongside a high 5.29 ERA for the Chicago Cubs. The Seattle Mariners hold home-field advantage and slight market favorability across major sportsbooks like DraftKings and FanDuel. Seattle's overall roster depth and home performance give them a narrow edge in this interleague matchup. Peterson has struggled to consistently pitch deep into games, which heavily taxes the Chicago bullpen. Ultimately, the Mariners should scratch across enough runs against the struggling left-hander to secure a tight victory.",
-                    "splits_and_direction": "Approximately 58 percent of public bets are backing the Seattle Mariners on the moneyline while roughly 54 percent are laying the run line with the away team. The moneyline has seen slight upward movement toward Seattle from an opening pick'em to -120, while the spread has held steady at 1.5 runs.",
-                    "display_text": "Summary: D. Peterson enters this August matchup holding a mediocre 7-7 record alongside a high 5.29 ERA for the Chicago Cubs. The Seattle Mariners hold home-field advantage and slight market favorability across major sportsbooks like DraftKings and FanDuel. Seattle's overall roster depth and home performance give them a narrow edge in this interleague matchup. Peterson has struggled to consistently pitch deep into games, which heavily taxes the Chicago bullpen. Ultimately, the Mariners should scratch across enough runs against the struggling left-hander to secure a tight victory.\n\nSplits and Direction: Approximately 58 percent of public bets are backing the Seattle Mariners on the moneyline while roughly 54 percent are laying the run line with the away team. The moneyline has seen slight upward movement toward Seattle from an opening pick'em to -120, while the spread has held steady at 1.5 runs.",
-                    "generated_at": "2026-08-22T08:30:12.565606+00:00",
-                    "odds_hash": "b409a5592c7f80a1",
+                    "confidence": 56,
+                    "ats_pick": "Chicago Cubs",
+                    "ats_confidence": 54,
+                    "analysis": "David Peterson takes the mound for the Chicago Cubs carrying a lackluster 5.29 ERA and a 7-7 record through the 2026 campaign. The Seattle Mariners hold home-field advantage and slight backing in the betting markets as a moderate favorite. Seattle's overall roster depth and home splits give them a slight edge in this cross-league matchup. However, Peterson has shown enough durability to keep games close, preventing blowouts even when he struggles to earn a decision. Expect a tightly contested game where the Mariners squeak out a narrow victory, but the Cubs manage to stay within the run line.",
+                    "splits_and_direction": "Approximately 58% of the public moneyline bets are currently backing the Seattle Mariners as home favorites, while roughly 62% of spread tickets lean toward the Chicago Cubs plus the runs. The moneyline has ticked up slightly from Seattle -110 to -120 at DraftKings, and the home spread has remained stable at +1.5 across major sportsbooks.",
+                    "display_text": "Summary: David Peterson takes the mound for the Chicago Cubs carrying a lackluster 5.29 ERA and a 7-7 record through the 2026 campaign. The Seattle Mariners hold home-field advantage and slight backing in the betting markets as a moderate favorite. Seattle's overall roster depth and home splits give them a slight edge in this cross-league matchup. However, Peterson has shown enough durability to keep games close, preventing blowouts even when he struggles to earn a decision. Expect a tightly contested game where the Mariners squeak out a narrow victory, but the Cubs manage to stay within the run line.\n\nSplits and Direction: Approximately 58% of the public moneyline bets are currently backing the Seattle Mariners as home favorites, while roughly 62% of spread tickets lean toward the Chicago Cubs plus the runs. The moneyline has ticked up slightly from Seattle -110 to -120 at DraftKings, and the home spread has remained stable at +1.5 across major sportsbooks.",
+                    "generated_at": "2026-08-22T12:36:40.741298+00:00",
+                    "odds_hash": "7b66fc271cbb104b",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -6982,21 +6982,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 128
+                          "american": 123
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -155
+                          "american": -149
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -163
+                          "american": -170
                         },
                         "away": {
                           "line": null,
-                          "american": 135
+                          "american": 158
                         }
                       }
                     },
@@ -7004,21 +7004,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 126
+                          "american": 125
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -152
+                          "american": -146
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -174
+                          "american": -166
                         },
                         "away": {
                           "line": null,
-                          "american": 146
+                          "american": 152
                         }
                       }
                     }
@@ -7026,14 +7026,14 @@
                   "matchup_rank": 8,
                   "gemini_prediction": {
                     "winner": "Arizona Diamondbacks",
-                    "confidence": 72,
+                    "confidence": 68,
                     "ats_pick": "Arizona Diamondbacks",
-                    "ats_confidence": 61,
-                    "analysis": "Michael Soroka anchors this matchup with a stellar 2.93 ERA, reflecting dominant form for the Arizona Diamondbacks throughout the 2026 season. Conversely, Rhett Lowder has struggled mightily on the mound for the Cincinnati Reds, carrying a lackluster 4-8 record and a high 5.17 ERA into this contest. The Diamondbacks benefit from playing at home where Soroka can leverage his command to neutralize the opposing lineup. While the Reds fight hard, their pitching vulnerabilities consistently expose them against fundamentally sound pitching staffs. Consequently, Arizona is well-positioned to secure a comfortable victory that covers the run line.",
-                    "splits_and_direction": "Approximately 68% of the public betting handle is backing the Arizona Diamondbacks on the moneyline, while roughly 55% of spread tickets lean toward covering the 1.5 runs. Both the moneyline and run line have shifted slightly in favor of Arizona since opening due to the strong starting pitching advantage.",
-                    "display_text": "Summary: Michael Soroka anchors this matchup with a stellar 2.93 ERA, reflecting dominant form for the Arizona Diamondbacks throughout the 2026 season. Conversely, Rhett Lowder has struggled mightily on the mound for the Cincinnati Reds, carrying a lackluster 4-8 record and a high 5.17 ERA into this contest. The Diamondbacks benefit from playing at home where Soroka can leverage his command to neutralize the opposing lineup. While the Reds fight hard, their pitching vulnerabilities consistently expose them against fundamentally sound pitching staffs. Consequently, Arizona is well-positioned to secure a comfortable victory that covers the run line.\n\nSplits and Direction: Approximately 68% of the public betting handle is backing the Arizona Diamondbacks on the moneyline, while roughly 55% of spread tickets lean toward covering the 1.5 runs. Both the moneyline and run line have shifted slightly in favor of Arizona since opening due to the strong starting pitching advantage.",
-                    "generated_at": "2026-08-22T04:35:05.910048+00:00",
-                    "odds_hash": "4c7c40098e3f70d7",
+                    "ats_confidence": 60,
+                    "analysis": "Michael Soroka has put together a stellar 2026 campaign for Arizona, maintaining a strong 2.93 ERA over his starts. Conversely, Rhett Lowder has struggled mightily for Cincinnati, carrying a high 5.17 ERA and a sub-.500 record of 4-8. The Diamondbacks boast the superior pitching matchup and overall roster consistency at home in this contest. Lowder's tendency to give up runs should allow the potent Arizona bats to build an early lead. Consequently, the Diamondbacks are well-positioned to secure both the outright victory and cover the 1.5-run spread.",
+                    "splits_and_direction": "Approximately 68% of the public betting handle is backing the Diamondbacks on the moneyline, while roughly 55% of spread bettors are taking Arizona to cover the 1.5 runs. The home moneyline has ticked up slightly from an opener of -160 to -170, and the run line has remained steady at -1.5 based on our estimated betting trends.",
+                    "display_text": "Summary: Michael Soroka has put together a stellar 2026 campaign for Arizona, maintaining a strong 2.93 ERA over his starts. Conversely, Rhett Lowder has struggled mightily for Cincinnati, carrying a high 5.17 ERA and a sub-.500 record of 4-8. The Diamondbacks boast the superior pitching matchup and overall roster consistency at home in this contest. Lowder's tendency to give up runs should allow the potent Arizona bats to build an early lead. Consequently, the Diamondbacks are well-positioned to secure both the outright victory and cover the 1.5-run spread.\n\nSplits and Direction: Approximately 68% of the public betting handle is backing the Diamondbacks on the moneyline, while roughly 55% of spread bettors are taking Arizona to cover the 1.5 runs. The home moneyline has ticked up slightly from an opener of -160 to -170, and the run line has remained steady at -1.5 based on our estimated betting trends.",
+                    "generated_at": "2026-08-22T12:37:10.828045+00:00",
+                    "odds_hash": "d7c3f1adff94c6f5",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -7059,21 +7059,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 102
+                          "american": 103
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -123
+                          "american": -124
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -217
+                          "american": -204
                         },
                         "away": {
                           "line": null,
-                          "american": 177
+                          "american": 189
                         }
                       }
                     },
@@ -7081,21 +7081,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 108
+                          "american": 105
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -130
+                          "american": -126
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -210
+                          "american": -198
                         },
                         "away": {
                           "line": null,
-                          "american": 176
+                          "american": 182
                         }
                       }
                     }
@@ -7104,13 +7104,13 @@
                   "gemini_prediction": {
                     "winner": "Boston Red Sox",
                     "confidence": 68,
-                    "ats_pick": "San Francisco Giants",
-                    "ats_confidence": 58,
-                    "analysis": "Boston holds a clear offensive advantage at home when facing right-handed pitching this season. Patrick Sandoval toes the rubber for the Red Sox carrying a 4.76 ERA, which reflects some vulnerability despite his team's heavy favoritism. San Francisco counters with B. Tidwell, whose 4.33 ERA suggests he can keep his club within striking distance. The Red Sox bullpen has experienced inconsistency late in games throughout 2026, creating opportunities for the Giants. Consequently, Boston should secure the outright victory, but San Francisco is well-positioned to keep the final margin within 1.5 runs.",
-                    "splits_and_direction": "Approximately 72 percent of public bets on the moneyline are backing the heavy favorite Boston Red Sox, while 65 percent of spread action supports the San Francisco Giants to cover the 1.5 runs. Both the moneyline and spread have remained relatively stable since opening, with only slight upward pressure driving the Red Sox price from -210 to -217 at DraftKings.",
-                    "display_text": "Summary: Boston holds a clear offensive advantage at home when facing right-handed pitching this season. Patrick Sandoval toes the rubber for the Red Sox carrying a 4.76 ERA, which reflects some vulnerability despite his team's heavy favoritism. San Francisco counters with B. Tidwell, whose 4.33 ERA suggests he can keep his club within striking distance. The Red Sox bullpen has experienced inconsistency late in games throughout 2026, creating opportunities for the Giants. Consequently, Boston should secure the outright victory, but San Francisco is well-positioned to keep the final margin within 1.5 runs.\n\nSplits and Direction: Approximately 72 percent of public bets on the moneyline are backing the heavy favorite Boston Red Sox, while 65 percent of spread action supports the San Francisco Giants to cover the 1.5 runs. Both the moneyline and spread have remained relatively stable since opening, with only slight upward pressure driving the Red Sox price from -210 to -217 at DraftKings.",
-                    "generated_at": "2026-08-22T08:30:01.234509+00:00",
-                    "odds_hash": "806e890e4d39d783",
+                    "ats_pick": "Boston Red Sox",
+                    "ats_confidence": 60,
+                    "analysis": "The Boston Red Sox hold a distinct advantage at home with Patrick Sandoval taking the mound against a struggling B. Tidwell. Tidwell enters this matchup holding a 4.33 ERA, while Sandoval has shown capable stuff despite his 1-2 record and 4.76 ERA. The Red Sox lineup possesses more overall depth and power to exploit Tidwell's current pitching deficiencies. Furthermore, playing at Fenway Park provides Boston with a comfortable environment to sustain offensive pressure throughout the game. Ultimately, the pitching mismatch and home-field advantage point toward a comfortable victory for the Red Sox.",
+                    "splits_and_direction": "Approximately 72 percent of public bets are currently backing the Boston Red Sox on the moneyline, reflecting heavy confidence in the home favorite. Both the moneyline and the run line have held steady without significant movement since opening at these odds.",
+                    "display_text": "Summary: The Boston Red Sox hold a distinct advantage at home with Patrick Sandoval taking the mound against a struggling B. Tidwell. Tidwell enters this matchup holding a 4.33 ERA, while Sandoval has shown capable stuff despite his 1-2 record and 4.76 ERA. The Red Sox lineup possesses more overall depth and power to exploit Tidwell's current pitching deficiencies. Furthermore, playing at Fenway Park provides Boston with a comfortable environment to sustain offensive pressure throughout the game. Ultimately, the pitching mismatch and home-field advantage point toward a comfortable victory for the Red Sox.\n\nSplits and Direction: Approximately 72 percent of public bets are currently backing the Boston Red Sox on the moneyline, reflecting heavy confidence in the home favorite. Both the moneyline and the run line have held steady without significant movement since opening at these odds.",
+                    "generated_at": "2026-08-22T12:36:20.696694+00:00",
+                    "odds_hash": "e54718b64e01c2f6",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -7135,22 +7135,22 @@
                     "draftkings": {
                       "spread": {
                         "home": {
-                          "line": -1.5,
-                          "american": 163
+                          "line": 1.5,
+                          "american": -190
                         },
                         "away": {
-                          "line": 1.5,
-                          "american": -199
+                          "line": -1.5,
+                          "american": 156
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -117
+                          "american": -106
                         },
                         "away": {
                           "line": null,
-                          "american": -103
+                          "american": -101
                         }
                       }
                     },
@@ -7158,21 +7158,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -205
+                          "american": -200
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 168
+                          "american": 164
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -118
+                          "american": -110
                         },
                         "away": {
                           "line": null,
-                          "american": 100
+                          "american": 102
                         }
                       }
                     }
@@ -7180,14 +7180,14 @@
                   "matchup_rank": 10,
                   "gemini_prediction": {
                     "winner": "New York Mets",
-                    "confidence": 58,
+                    "confidence": 56,
                     "ats_pick": "New York Mets",
                     "ats_confidence": 55,
-                    "analysis": "New York Mets starter C. Scott enters this August matchup holding a respectable 4-3 record and a solid 3.51 ERA on the 2026 season. Conversely, Chicago White Sox pitcher L. Castillo has struggled through a tough campaign, sporting a 4-9 record alongside a high 4.99 ERA. The Mets hold a significant pitching advantage that should translate effectively against a vulnerable White Sox lineup. Furthermore, the visiting Mets have shown greater consistency in run prevention than the home side over the course of the year. Given the pitching disparity and the closely priced odds, New York is well-positioned to secure both the outright victory and cover the spread.",
-                    "splits_and_direction": "An estimated 58 percent of public bets on the moneyline are backing the New York Mets, driving their price slightly downward from an opening pick 'em. Meanwhile, the spread action is closely split with slight public leanings toward the Chicago White Sox plus-1.5, causing minor fluctuations in the juice across major sportsbooks.",
-                    "display_text": "Summary: New York Mets starter C. Scott enters this August matchup holding a respectable 4-3 record and a solid 3.51 ERA on the 2026 season. Conversely, Chicago White Sox pitcher L. Castillo has struggled through a tough campaign, sporting a 4-9 record alongside a high 4.99 ERA. The Mets hold a significant pitching advantage that should translate effectively against a vulnerable White Sox lineup. Furthermore, the visiting Mets have shown greater consistency in run prevention than the home side over the course of the year. Given the pitching disparity and the closely priced odds, New York is well-positioned to secure both the outright victory and cover the spread.\n\nSplits and Direction: An estimated 58 percent of public bets on the moneyline are backing the New York Mets, driving their price slightly downward from an opening pick 'em. Meanwhile, the spread action is closely split with slight public leanings toward the Chicago White Sox plus-1.5, causing minor fluctuations in the juice across major sportsbooks.",
-                    "generated_at": "2026-08-22T00:57:33.193911+00:00",
-                    "odds_hash": "06c52a31a9f5d9ce",
+                    "analysis": "C. Scott enters this matchup with a solid 4-3 record and an encouraging 3.51 ERA for the New York Mets. Conversely, L. Castillo struggles through a difficult 2026 campaign for the Chicago White Sox, sitting at 4-9 with a high 4.99 ERA. The pitching mismatch favors the visiting Mets, who have received more stable outings from their rotation this season. While the White Sox hold home-field advantage, Castillo's inconsistency on the mound provides an opening for New York's bats. Ultimately, the Mets should capitalize on these pitching dynamics to secure a narrow victory on the road.",
+                    "splits_and_direction": "Based on public betting tendencies, approximately 58 percent of moneyline wagers are backing the visiting New York Mets while the remaining 42 percent support the Chicago White Sox. The moneyline and spread have held relatively steady since opening with only minor adjustments reflecting balanced action on both sides.",
+                    "display_text": "Summary: C. Scott enters this matchup with a solid 4-3 record and an encouraging 3.51 ERA for the New York Mets. Conversely, L. Castillo struggles through a difficult 2026 campaign for the Chicago White Sox, sitting at 4-9 with a high 4.99 ERA. The pitching mismatch favors the visiting Mets, who have received more stable outings from their rotation this season. While the White Sox hold home-field advantage, Castillo's inconsistency on the mound provides an opening for New York's bats. Ultimately, the Mets should capitalize on these pitching dynamics to secure a narrow victory on the road.\n\nSplits and Direction: Based on public betting tendencies, approximately 58 percent of moneyline wagers are backing the visiting New York Mets while the remaining 42 percent support the Chicago White Sox. The moneyline and spread have held relatively steady since opening with only minor adjustments reflecting balanced action on both sides.",
+                    "generated_at": "2026-08-22T12:36:10.673336+00:00",
+                    "odds_hash": "3cdda2a95f84addd",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -7223,11 +7223,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -175
+                          "american": -165
                         },
                         "away": {
                           "line": null,
-                          "american": 144
+                          "american": 153
                         }
                       }
                     },
@@ -7235,21 +7235,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 126
+                          "american": 125
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -152
+                          "american": -150
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -172
+                          "american": -164
                         },
                         "away": {
                           "line": null,
-                          "american": 144
+                          "american": 150
                         }
                       }
                     }
@@ -7258,13 +7258,13 @@
                   "gemini_prediction": {
                     "winner": "Texas Rangers",
                     "confidence": 68,
-                    "ats_pick": "Texas Rangers",
+                    "ats_pick": "Los Angeles Angels",
                     "ats_confidence": 60,
-                    "analysis": "Coded starting pitcher C. Bradford exhibits a strong 2.93 ERA this season, indicating reliable suppression of opposing offenses. Conversely, R. Johnson struggles significantly for the Angels with a 6.41 ERA and a dismal 2-7 record. The Texas Rangers possess a distinct advantage on the mound that should dictate the pace of the game. Los Angeles will likely find it difficult to generate consistent offense against Bradford given their current offensive metrics. Therefore, backing the home favorites to win and cover the run line is the logical statistical choice.",
-                    "splits_and_direction": "Approximately 68 percent of public bets are backing the Rangers on the moneyline and run line due to the favorable pitching matchup. The moneyline has ticked up slightly from its opening numbers to reflect steady action on Texas.",
-                    "display_text": "Summary: Coded starting pitcher C. Bradford exhibits a strong 2.93 ERA this season, indicating reliable suppression of opposing offenses. Conversely, R. Johnson struggles significantly for the Angels with a 6.41 ERA and a dismal 2-7 record. The Texas Rangers possess a distinct advantage on the mound that should dictate the pace of the game. Los Angeles will likely find it difficult to generate consistent offense against Bradford given their current offensive metrics. Therefore, backing the home favorites to win and cover the run line is the logical statistical choice.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the Rangers on the moneyline and run line due to the favorable pitching matchup. The moneyline has ticked up slightly from its opening numbers to reflect steady action on Texas.",
-                    "generated_at": "2026-08-22T04:34:34.091451+00:00",
-                    "odds_hash": "20d274f3b04f972e",
+                    "analysis": "Texas starter C. Bradford has demonstrated strong run-prevention skills with a 2.93 ERA this season, though a limited sample size has kept his record at 0-1. Conversely, Los Angeles starter R. Johnson has struggled mightily, carrying an unsightly 6.41 ERA and a 2-7 record across his appearances. The Rangers possess a significantly more stable pitching profile in this matchup compared to the vulnerable Angels rotation. While Texas is heavily favored to win outright at home, their bats may not completely blow out the opposition by multiple runs. Therefore, the Angels have solid value to keep the final margin within 1.5 runs.",
+                    "splits_and_direction": "Approximately 68% of the public moneyline bets are backing the Texas Rangers to take care of business at home. Meanwhile, roughly 62% of spread tickets are taking the Los Angeles Angels plus the 1.5 runs, causing the moneyline to tick slightly tighter toward Texas since opening.",
+                    "display_text": "Summary: Texas starter C. Bradford has demonstrated strong run-prevention skills with a 2.93 ERA this season, though a limited sample size has kept his record at 0-1. Conversely, Los Angeles starter R. Johnson has struggled mightily, carrying an unsightly 6.41 ERA and a 2-7 record across his appearances. The Rangers possess a significantly more stable pitching profile in this matchup compared to the vulnerable Angels rotation. While Texas is heavily favored to win outright at home, their bats may not completely blow out the opposition by multiple runs. Therefore, the Angels have solid value to keep the final margin within 1.5 runs.\n\nSplits and Direction: Approximately 68% of the public moneyline bets are backing the Texas Rangers to take care of business at home. Meanwhile, roughly 62% of spread tickets are taking the Los Angeles Angels plus the 1.5 runs, causing the moneyline to tick slightly tighter toward Texas since opening.",
+                    "generated_at": "2026-08-22T12:35:50.779666+00:00",
+                    "odds_hash": "4ec68620f0b121c7",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -7312,21 +7312,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": -108
+                          "american": -110
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -111
+                          "american": -110
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -245
+                          "american": -230
                         },
                         "away": {
                           "line": null,
-                          "american": 200
+                          "american": 210
                         }
                       }
                     }
@@ -7334,14 +7334,14 @@
                   "matchup_rank": 13,
                   "gemini_prediction": {
                     "winner": "Houston Astros",
-                    "confidence": 70,
+                    "confidence": 71,
                     "ats_pick": "Houston Astros",
                     "ats_confidence": 62,
-                    "analysis": "Hunter Brown holds a solid 3.67 ERA for the Houston Astros, demonstrating reliable command on the mound this season. In contrast, J. Lopez struggles for the Athletics with a 5.22 ERA and a sub-par 5-4 record across his appearances. The Houston offense possesses superior run production metrics compared to the visiting Athletics lineup. Playing at home gives the Astros a distinct advantage against a struggling opposing starting pitcher. Consequently, Houston is well-positioned to secure a multi-run victory and cover the run line.",
-                    "splits_and_direction": "Approximately 76 percent of public bets are backing the Houston Astros on the moneyline and run line due to the pitching mismatch. The spread has remained steady at -1.5 while the moneyline has ticked up slightly from -240 to -246 reflecting heavier action on the home favorite.",
-                    "display_text": "Summary: Hunter Brown holds a solid 3.67 ERA for the Houston Astros, demonstrating reliable command on the mound this season. In contrast, J. Lopez struggles for the Athletics with a 5.22 ERA and a sub-par 5-4 record across his appearances. The Houston offense possesses superior run production metrics compared to the visiting Athletics lineup. Playing at home gives the Astros a distinct advantage against a struggling opposing starting pitcher. Consequently, Houston is well-positioned to secure a multi-run victory and cover the run line.\n\nSplits and Direction: Approximately 76 percent of public bets are backing the Houston Astros on the moneyline and run line due to the pitching mismatch. The spread has remained steady at -1.5 while the moneyline has ticked up slightly from -240 to -246 reflecting heavier action on the home favorite.",
-                    "generated_at": "2026-08-22T08:29:35.675426+00:00",
-                    "odds_hash": "41bd576b35b976fd",
+                    "analysis": "Hunter Brown brings a steady 3.67 ERA into this matchup, giving the Houston Astros a distinct pitching advantage over J. Lopez and his 5.22 ERA for the Athletics. The Athletics struggle to generate consistent offense on the road, leaving them vulnerable against a disciplined Houston pitching staff. Hunter Brown has pitched effectively deep into games this season, minimizing damage and keeping his team in a favorable position. Conversely, J. Lopez has struggled to contain opposing hitters, walking too many batters and surrendering frequent extra-base hits. Consequently, the Houston Astros possess the necessary starting pitching and offensive depth to secure a comfortable victory at home.",
+                    "splits_and_direction": "Based on public tendencies, approximately 74% of moneyline bets are backing the heavy favorite Houston Astros, while the spread split is slightly closer with 62% taking Houston -1.5. Both the moneyline and spread have held steady or experienced minor steam toward Houston since opening due to the clear pitching mismatch.",
+                    "display_text": "Summary: Hunter Brown brings a steady 3.67 ERA into this matchup, giving the Houston Astros a distinct pitching advantage over J. Lopez and his 5.22 ERA for the Athletics. The Athletics struggle to generate consistent offense on the road, leaving them vulnerable against a disciplined Houston pitching staff. Hunter Brown has pitched effectively deep into games this season, minimizing damage and keeping his team in a favorable position. Conversely, J. Lopez has struggled to contain opposing hitters, walking too many batters and surrendering frequent extra-base hits. Consequently, the Houston Astros possess the necessary starting pitching and offensive depth to secure a comfortable victory at home.\n\nSplits and Direction: Based on public tendencies, approximately 74% of moneyline bets are backing the heavy favorite Houston Astros, while the spread split is slightly closer with 62% taking Houston -1.5. Both the moneyline and spread have held steady or experienced minor steam toward Houston since opening due to the clear pitching mismatch.",
+                    "generated_at": "2026-08-22T12:36:00.851413+00:00",
+                    "odds_hash": "dc8a4dce19f3eaea",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -7377,11 +7377,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 118
+                          "american": 131
                         },
                         "away": {
                           "line": null,
-                          "american": -142
+                          "american": -140
                         }
                       }
                     },
@@ -7389,21 +7389,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -134
+                          "american": -130
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 112
+                          "american": 108
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 120
+                          "american": 124
                         },
                         "away": {
                           "line": null,
-                          "american": -142
+                          "american": -134
                         }
                       }
                     }
@@ -7411,14 +7411,14 @@
                   "matchup_rank": 14,
                   "gemini_prediction": {
                     "winner": "Cleveland Guardians",
-                    "confidence": 68,
+                    "confidence": 62,
                     "ats_pick": "Cleveland Guardians",
-                    "ats_confidence": 62,
-                    "analysis": "T. Bibee brings a steady 4.01 ERA to the mound for the Cleveland Guardians against a struggling pitching staff. Meanwhile, G. Hughes struggles immensely for the Colorado Rockies with an ugly 0-4 record and 6.69 ERA on the 2026 campaign. Cleveland's offense possesses the clear advantage to exploit Hughes early and often in this matchup. The thin air of Coors Field can always yield unpredictable offensive outbursts, but the pitching mismatch remains too wide to ignore. Therefore, the Guardians are expected to secure a comfortable victory on the road to cover the run line.",
-                    "splits_and_direction": "Approximately 68 percent of public bets are backing the Cleveland Guardians on the moneyline, reflecting confidence in the pitching mismatch. The spread has ticked slightly downward toward the underdog since opening, while the away moneyline has remained relatively stable.",
-                    "display_text": "Summary: T. Bibee brings a steady 4.01 ERA to the mound for the Cleveland Guardians against a struggling pitching staff. Meanwhile, G. Hughes struggles immensely for the Colorado Rockies with an ugly 0-4 record and 6.69 ERA on the 2026 campaign. Cleveland's offense possesses the clear advantage to exploit Hughes early and often in this matchup. The thin air of Coors Field can always yield unpredictable offensive outbursts, but the pitching mismatch remains too wide to ignore. Therefore, the Guardians are expected to secure a comfortable victory on the road to cover the run line.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the Cleveland Guardians on the moneyline, reflecting confidence in the pitching mismatch. The spread has ticked slightly downward toward the underdog since opening, while the away moneyline has remained relatively stable.",
-                    "generated_at": "2026-08-21T22:37:49.216259+00:00",
-                    "odds_hash": "82e36795d969ae90",
+                    "ats_confidence": 58,
+                    "analysis": "T. Bibee brings a steady 4.01 ERA to the mound for the Guardians, showing far more reliability than his counterpart. G. Hughes has struggled immensely in 2026, carrying a dreadful 0-4 record and 6.69 ERA into this late-August matchup. The Cleveland lineup should exploit Hughes early and often at Coors Field given his propensity for yielding high numbers of earned runs. While Coors Field always introduces variance, the pitching mismatch here heavily favors the visitors. Consequently, the Guardians are well-positioned to secure both the outright victory and cover the run line.",
+                    "splits_and_direction": "Approximately 68 percent of public bets are backing the Guardians on the moneyline, though sharp money has slightly trimmed their odds from opening numbers. The run line has seen balanced two-way action with slight movement toward the Colorado underdog getting the 1.5 runs.",
+                    "display_text": "Summary: T. Bibee brings a steady 4.01 ERA to the mound for the Guardians, showing far more reliability than his counterpart. G. Hughes has struggled immensely in 2026, carrying a dreadful 0-4 record and 6.69 ERA into this late-August matchup. The Cleveland lineup should exploit Hughes early and often at Coors Field given his propensity for yielding high numbers of earned runs. While Coors Field always introduces variance, the pitching mismatch here heavily favors the visitors. Consequently, the Guardians are well-positioned to secure both the outright victory and cover the run line.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the Guardians on the moneyline, though sharp money has slightly trimmed their odds from opening numbers. The run line has seen balanced two-way action with slight movement toward the Colorado underdog getting the 1.5 runs.",
+                    "generated_at": "2026-08-22T12:37:00.840453+00:00",
+                    "odds_hash": "8dd41ad8c7f24bc5",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -7444,21 +7444,21 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -186
+                          "american": -188
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 153
+                          "american": 154
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -110
+                          "american": -104
                         },
                         "away": {
                           "line": null,
-                          "american": -110
+                          "american": -104
                         }
                       }
                     },
@@ -7476,11 +7476,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -112
+                          "american": -108
                         },
                         "away": {
                           "line": null,
-                          "american": -104
+                          "american": 100
                         }
                       }
                     }
@@ -7491,11 +7491,11 @@
                     "confidence": 54,
                     "ats_pick": "Kansas City Royals",
                     "ats_confidence": 56,
-                    "analysis": "Michael Wacha brings a solid 3.58 ERA into this late-August matchup, providing the Kansas City Royals with a reliable stabilizing presence on the mound. Detroit starter D. Anderson has put together a respectable 4.01 ERA, but he often faces trouble maintaining his command deep into ballgames. The Royals' offense holds a slight consistency edge at home compared to the Tigers' road splits this season. Given the near pick 'em odds, Kansas City's marginal advantages in starting pitching ERA and home-field performance make them the safer side. Expect a tightly contested game where the Royals edge out a narrow victory to cover the +1.5 run line.",
-                    "splits_and_direction": "Approximately 56 percent of the public bets are currently backing the Kansas City Royals on the moneyline and spread due to Wacha's superior ERA. Both the moneyline and spread have remained relatively stable since opening at even odds across major sportsbooks.",
-                    "display_text": "Summary: Michael Wacha brings a solid 3.58 ERA into this late-August matchup, providing the Kansas City Royals with a reliable stabilizing presence on the mound. Detroit starter D. Anderson has put together a respectable 4.01 ERA, but he often faces trouble maintaining his command deep into ballgames. The Royals' offense holds a slight consistency edge at home compared to the Tigers' road splits this season. Given the near pick 'em odds, Kansas City's marginal advantages in starting pitching ERA and home-field performance make them the safer side. Expect a tightly contested game where the Royals edge out a narrow victory to cover the +1.5 run line.\n\nSplits and Direction: Approximately 56 percent of the public bets are currently backing the Kansas City Royals on the moneyline and spread due to Wacha's superior ERA. Both the moneyline and spread have remained relatively stable since opening at even odds across major sportsbooks.",
-                    "generated_at": "2026-08-22T08:30:02.569476+00:00",
-                    "odds_hash": "e400675cb7c6ce90",
+                    "analysis": "Michael Wacha brings a steady 3.58 ERA into this late-August matchup for the Kansas City Royals. Drew Anderson has put together a respectable 4.01 ERA for the Detroit Tigers across his appearances this season. The Royals hold a slight home-field advantage which helps tilt a closely matched pitching duel in their favor. Wacha's ability to limit walks gives the Kansas City bullpen a smoother bridge to the later innings. Expect a tightly contested game where the home side ekes out a narrow victory to cover the modest run line.",
+                    "splits_and_direction": "Approximately 58 percent of public bets are currently backing the Kansas City Royals on the moneyline at -104 to -108 odds while the run line spread has held steady at +1.5 for the home team since opening. Both the moneyline and spread have seen minimal movement due to balanced action reflecting an even matchup between these two divisional opponents.",
+                    "display_text": "Summary: Michael Wacha brings a steady 3.58 ERA into this late-August matchup for the Kansas City Royals. Drew Anderson has put together a respectable 4.01 ERA for the Detroit Tigers across his appearances this season. The Royals hold a slight home-field advantage which helps tilt a closely matched pitching duel in their favor. Wacha's ability to limit walks gives the Kansas City bullpen a smoother bridge to the later innings. Expect a tightly contested game where the home side ekes out a narrow victory to cover the modest run line.\n\nSplits and Direction: Approximately 58 percent of public bets are currently backing the Kansas City Royals on the moneyline at -104 to -108 odds while the run line spread has held steady at +1.5 for the home team since opening. Both the moneyline and spread have seen minimal movement due to balanced action reflecting an even matchup between these two divisional opponents.",
+                    "generated_at": "2026-08-22T12:36:30.701203+00:00",
+                    "odds_hash": "f2dba201e4c0c52b",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -7541,43 +7541,43 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 163
+                          "american": 155
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -199
+                          "american": -188
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 113
-                        },
                         "home": {
                           "line": null,
-                          "american": -136
+                          "american": -124
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 116
                         }
                       }
                     },
                     "fanduel": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -196
-                        },
                         "home": {
                           "line": -1.5,
                           "american": 162
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -196
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -132
+                          "american": -126
                         },
                         "away": {
                           "line": null,
-                          "american": 112
+                          "american": 118
                         }
                       }
                     }
@@ -7586,13 +7586,13 @@
                   "gemini_prediction": {
                     "winner": "Philadelphia Phillies",
                     "confidence": 68,
-                    "ats_pick": "Philadelphia Phillies",
+                    "ats_pick": "St. Louis Cardinals",
                     "ats_confidence": 58,
-                    "analysis": "Cristopher Sanchez has put together a stellar 2026 campaign for Philadelphia, boasting a dominant 16-4 record and a sparkling 2.51 ERA. Kyle Leahy has also pitched well for St. Louis with a 10-4 record and 3.24 ERA, but Sanchez operates at an ace-level tier this season. The Phillies possess the superior overall lineup depth to back up their left-handed starter at home. Citizens Bank Park provides a distinct home-field advantage for a pitcher of Sanchez's caliber against a visiting Cardinals squad. Philadelphia should secure a multi-run victory to cover the run line based on these pitching advantages.",
-                    "splits_and_direction": "Approximately 68% of the public moneyline bets and 61% of the run line wagers are backing the Philadelphia Phillies at home. The home moneyline has ticked up slightly from -130 to -136 at DraftKings while the run line remains firmly anchored at -1.5.",
-                    "display_text": "Summary: Cristopher Sanchez has put together a stellar 2026 campaign for Philadelphia, boasting a dominant 16-4 record and a sparkling 2.51 ERA. Kyle Leahy has also pitched well for St. Louis with a 10-4 record and 3.24 ERA, but Sanchez operates at an ace-level tier this season. The Phillies possess the superior overall lineup depth to back up their left-handed starter at home. Citizens Bank Park provides a distinct home-field advantage for a pitcher of Sanchez's caliber against a visiting Cardinals squad. Philadelphia should secure a multi-run victory to cover the run line based on these pitching advantages.\n\nSplits and Direction: Approximately 68% of the public moneyline bets and 61% of the run line wagers are backing the Philadelphia Phillies at home. The home moneyline has ticked up slightly from -130 to -136 at DraftKings while the run line remains firmly anchored at -1.5.",
-                    "generated_at": "2026-08-22T08:30:32.647228+00:00",
-                    "odds_hash": "5f85323b7da03fcc",
+                    "analysis": "Cristopher Sanchez anchors this matchup for Philadelphia with an exceptional 16-4 record and a stellar 2.51 ERA this season. Kyle Leahy has put together a solid campaign for St. Louis with a 10-4 mark and a respectable 3.24 ERA. However, the Phillies possess a distinct home-field advantage and a more potent lineup to back their ace. Sanchez should be able to contain the Cardinals' bats over six or seven strong innings. Consequently, Philadelphia will secure the victory, though St. Louis is resilient enough to keep the final margin within a single run.",
+                    "splits_and_direction": "Approximately 68 percent of public bets are backing the Phillies on the moneyline and the run line given Sanchez's stellar pitching record. The home moneyline has slightly tightened from its opening price of -120 to -124, while the run line remains steady at -1.5.",
+                    "display_text": "Summary: Cristopher Sanchez anchors this matchup for Philadelphia with an exceptional 16-4 record and a stellar 2.51 ERA this season. Kyle Leahy has put together a solid campaign for St. Louis with a 10-4 mark and a respectable 3.24 ERA. However, the Phillies possess a distinct home-field advantage and a more potent lineup to back their ace. Sanchez should be able to contain the Cardinals' bats over six or seven strong innings. Consequently, Philadelphia will secure the victory, though St. Louis is resilient enough to keep the final margin within a single run.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the Phillies on the moneyline and the run line given Sanchez's stellar pitching record. The home moneyline has slightly tightened from its opening price of -120 to -124, while the run line remains steady at -1.5.",
+                    "generated_at": "2026-08-22T12:37:30.699807+00:00",
+                    "odds_hash": "556625cf572f767b",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -7615,8 +7615,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -155
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 128
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 116
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -124
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {
@@ -7630,13 +7648,13 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": -130
-                        },
                         "home": {
                           "line": null,
-                          "american": 110
+                          "american": 114
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -122
                         }
                       }
                     }
@@ -7644,14 +7662,14 @@
                   "matchup_rank": 4,
                   "gemini_prediction": {
                     "winner": "Tampa Bay Rays",
-                    "confidence": 75,
+                    "confidence": 68,
                     "ats_pick": "Tampa Bay Rays",
-                    "ats_confidence": 68,
-                    "analysis": "Nick Martinez brings an impressive 12-4 record and a sparkling 3.05 ERA into this late-August matchup, providing the Tampa Bay Rays with a formidable pitching advantage. Conversely, Shane Baz has endured a brutal 2026 campaign, stumbling to a 4-13 record while maintaining a mediocre 4.02 ERA. The stark contrast in decision-making and run prevention between the two starting pitchers heavily tilts the expected game flow in favor of the visitors. Tampa Bay's lineup should consistently pressure Baz and exploit Baltimore's bullpen vulnerabilities throughout the contest. Consequently, the Rays are well-positioned to secure a comfortable victory and successfully cover the run line.",
-                    "splits_and_direction": "Based on current public tendencies and the pricing discrepancy, an estimated 65 percent of moneyline bets are backing the superior Tampa Bay squad, while the remaining 35 percent support the home underdog Orioles. With no opening odds movement data available yet, both the moneyline and the +1.5 spread currently remain locked at their initial FanDuel listings.",
-                    "display_text": "Summary: Nick Martinez brings an impressive 12-4 record and a sparkling 3.05 ERA into this late-August matchup, providing the Tampa Bay Rays with a formidable pitching advantage. Conversely, Shane Baz has endured a brutal 2026 campaign, stumbling to a 4-13 record while maintaining a mediocre 4.02 ERA. The stark contrast in decision-making and run prevention between the two starting pitchers heavily tilts the expected game flow in favor of the visitors. Tampa Bay's lineup should consistently pressure Baz and exploit Baltimore's bullpen vulnerabilities throughout the contest. Consequently, the Rays are well-positioned to secure a comfortable victory and successfully cover the run line.\n\nSplits and Direction: Based on current public tendencies and the pricing discrepancy, an estimated 65 percent of moneyline bets are backing the superior Tampa Bay squad, while the remaining 35 percent support the home underdog Orioles. With no opening odds movement data available yet, both the moneyline and the +1.5 spread currently remain locked at their initial FanDuel listings.",
-                    "generated_at": "2026-08-22T08:31:09.697319+00:00",
-                    "odds_hash": "8860c704374ba1f9",
+                    "ats_confidence": 62,
+                    "analysis": "Nick Martinez brings an impressive 12-4 record and a sparkling 3.05 ERA into this crucial late-August matchup for the Tampa Bay Rays. Shane Baz has struggled mightily this season, sitting at 4-13 with a 4.02 ERA for the Baltimore Orioles. The stark contrast in starting pitching efficiency gives Tampa Bay a clear advantage on the mound. Furthermore, the Rays' offense has consistently provided more run support for their starters than what Baltimore has managed for Baz. Consequently, Tampa Bay is well-positioned to secure both the outright victory and cover the run line.",
+                    "splits_and_direction": "Approximately 61 percent of public bets are backing the Tampa Bay Rays on the moneyline, while 55 percent of spread action is taking the Baltimore Orioles plus the runs. The away moneyline has moved slightly from -120 to -124, and the home spread has held steady at +1.5 with standard juice movement.",
+                    "display_text": "Summary: Nick Martinez brings an impressive 12-4 record and a sparkling 3.05 ERA into this crucial late-August matchup for the Tampa Bay Rays. Shane Baz has struggled mightily this season, sitting at 4-13 with a 4.02 ERA for the Baltimore Orioles. The stark contrast in starting pitching efficiency gives Tampa Bay a clear advantage on the mound. Furthermore, the Rays' offense has consistently provided more run support for their starters than what Baltimore has managed for Baz. Consequently, Tampa Bay is well-positioned to secure both the outright victory and cover the run line.\n\nSplits and Direction: Approximately 61 percent of public bets are backing the Tampa Bay Rays on the moneyline, while 55 percent of spread action is taking the Baltimore Orioles plus the runs. The away moneyline has moved slightly from -120 to -124, and the home spread has held steady at +1.5 with standard juice movement.",
+                    "generated_at": "2026-08-22T12:37:40.622254+00:00",
+                    "odds_hash": "f99fad434d7e0c8e",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -7677,43 +7695,43 @@
                       "spread": {
                         "home": {
                           "line": 1.5,
-                          "american": -214
+                          "american": -206
                         },
                         "away": {
                           "line": -1.5,
-                          "american": 175
+                          "american": 168
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 101
-                        },
                         "home": {
                           "line": null,
-                          "american": -108
+                          "american": -104
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -104
                         }
                       }
                     },
                     "fanduel": {
                       "spread": {
-                        "away": {
-                          "line": -1.5,
-                          "american": 172
-                        },
                         "home": {
                           "line": 1.5,
                           "american": -210
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 172
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -106
+                          "american": -104
                         },
                         "away": {
                           "line": null,
-                          "american": -102
+                          "american": -104
                         }
                       }
                     }
@@ -7722,13 +7740,13 @@
                   "gemini_prediction": {
                     "winner": "Toronto Blue Jays",
                     "confidence": 54,
-                    "ats_pick": "Toronto Blue Jays",
+                    "ats_pick": "New York Yankees",
                     "ats_confidence": 56,
-                    "analysis": "J. Soriano brings a solid 10-6 record and 3.23 ERA into this late-August matchup against the New York Yankees. C. Rodon has pitched effectively with a 3.22 ERA of his own, but his limited 4-2 record suggests run support or bullpen conversion issues. The Toronto Blue Jays hold a slight edge in starting pitching consistency based on Soriano's ability to pitch deeper into games this year. New York remains dangerous at home, yet the tight odds reflect a nearly even contest where Toronto offers better value. Ultimately, the Blue Jays' starter does enough to secure a narrow victory in enemy territory.",
-                    "splits_and_direction": "Approximately 58 percent of the public moneyline bets are currently backing the home New York Yankees, reflecting typical home-team bias. Meanwhile, the moneyline has shifted slightly from its opener, moving Toronto from plus-money underdogs closer to a pick'em as sharp action trickles in on the Blue Jays.",
-                    "display_text": "Summary: J. Soriano brings a solid 10-6 record and 3.23 ERA into this late-August matchup against the New York Yankees. C. Rodon has pitched effectively with a 3.22 ERA of his own, but his limited 4-2 record suggests run support or bullpen conversion issues. The Toronto Blue Jays hold a slight edge in starting pitching consistency based on Soriano's ability to pitch deeper into games this year. New York remains dangerous at home, yet the tight odds reflect a nearly even contest where Toronto offers better value. Ultimately, the Blue Jays' starter does enough to secure a narrow victory in enemy territory.\n\nSplits and Direction: Approximately 58 percent of the public moneyline bets are currently backing the home New York Yankees, reflecting typical home-team bias. Meanwhile, the moneyline has shifted slightly from its opener, moving Toronto from plus-money underdogs closer to a pick'em as sharp action trickles in on the Blue Jays.",
-                    "generated_at": "2026-08-22T08:31:29.683477+00:00",
-                    "odds_hash": "c356d5cb690cf00b",
+                    "analysis": "Toronto sends J. Soriano to the mound with an impressive 10-6 record and a steady 3.23 ERA on the 2026 season. New York counters with C. Rodon, who maintains a nearly identical 3.22 ERA though his win-loss record sits at a modest 4-2. Both starting pitchers possess the capability to suppress opposing offenses effectively in this late-August matchup. However, the Blue Jays hold a slight edge given Soriano's proven durability and high decision volume this year compared to Rodon. Expect a tightly contested game where Toronto edges out a narrow victory by a single run.",
+                    "splits_and_direction": "Approximately 58% of moneyline bets are currently backing the Toronto Blue Jays as slight road favorites, while 62% of spread action takes the New York Yankees plus the run and a half. Both the moneyline and spread have remained relatively stagnant since opening at -104 and +1.5 respectively due to evenly matched public sentiment.",
+                    "display_text": "Summary: Toronto sends J. Soriano to the mound with an impressive 10-6 record and a steady 3.23 ERA on the 2026 season. New York counters with C. Rodon, who maintains a nearly identical 3.22 ERA though his win-loss record sits at a modest 4-2. Both starting pitchers possess the capability to suppress opposing offenses effectively in this late-August matchup. However, the Blue Jays hold a slight edge given Soriano's proven durability and high decision volume this year compared to Rodon. Expect a tightly contested game where Toronto edges out a narrow victory by a single run.\n\nSplits and Direction: Approximately 58% of moneyline bets are currently backing the Toronto Blue Jays as slight road favorites, while 62% of spread action takes the New York Yankees plus the run and a half. Both the moneyline and spread have remained relatively stagnant since opening at -104 and +1.5 respectively due to evenly matched public sentiment.",
+                    "generated_at": "2026-08-22T12:37:50.781077+00:00",
+                    "odds_hash": "a3ae694678606f46",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -7751,28 +7769,46 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
                       "spread": {
-                        "away": {
-                          "line": -1.5,
-                          "american": 168
-                        },
                         "home": {
                           "line": 1.5,
-                          "american": -205
+                          "american": -191
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 157
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 100
-                        },
                         "home": {
                           "line": null,
-                          "american": -118
+                          "american": -106
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -101
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -200
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 164
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -110
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 102
                         }
                       }
                     }
@@ -7780,14 +7816,14 @@
                   "matchup_rank": 10,
                   "gemini_prediction": {
                     "winner": "New York Mets",
-                    "confidence": 58,
+                    "confidence": 56,
                     "ats_pick": "New York Mets",
-                    "ats_confidence": 55,
-                    "analysis": "The New York Mets send N. McLean to the mound holding a solid 9-8 record and an impressive 3.34 ERA through the 2026 season. Meanwhile, the Chicago White Sox have not yet announced their starting pitcher, creating uncertainty for their rotation depth in this matchup. McLean has consistently pitched deep into games and limited damage against opposing lineups this year. The White Sox struggle to generate consistent offensive support, making it difficult for them to secure victories as slight home favorites. Therefore, the Mets possess the clear pitching advantage required to win this game outright and cover the run line.",
-                    "splits_and_direction": "Based on early public tendencies and the slight underdog status for the away side, approximately 54 percent of moneyline bets are currently backing the New York Mets. Both the moneyline and the spread have remained relatively stable since opening as books await the official announcement of the Chicago starting pitcher.",
-                    "display_text": "Summary: The New York Mets send N. McLean to the mound holding a solid 9-8 record and an impressive 3.34 ERA through the 2026 season. Meanwhile, the Chicago White Sox have not yet announced their starting pitcher, creating uncertainty for their rotation depth in this matchup. McLean has consistently pitched deep into games and limited damage against opposing lineups this year. The White Sox struggle to generate consistent offensive support, making it difficult for them to secure victories as slight home favorites. Therefore, the Mets possess the clear pitching advantage required to win this game outright and cover the run line.\n\nSplits and Direction: Based on early public tendencies and the slight underdog status for the away side, approximately 54 percent of moneyline bets are currently backing the New York Mets. Both the moneyline and the spread have remained relatively stable since opening as books await the official announcement of the Chicago starting pitcher.",
-                    "generated_at": "2026-08-22T08:34:02.564283+00:00",
-                    "odds_hash": "68e59a472c56fd50",
+                    "ats_confidence": 54,
+                    "analysis": "The New York Mets send N. McLean to the mound holding a solid 9-8 record accompanied by a strong 3.34 ERA this season. Although the Chicago White Sox have home-field advantage, their lack of a formally announced starter introduces uncertainty into their pitching matchup. McLean's consistent ability to pitch deep into games should neutralize the White Sox bats and keep run production limited. Given the near-even moneyline odds across both DraftKings and FanDuel, the market views this matchup as essentially a toss-up. Ultimately, the reliable performance of the Mets' starting pitcher gives them a slight edge to secure the narrow victory on the road.",
+                    "splits_and_direction": "Approximately 58 percent of the public moneyline bets are currently backing the visiting New York Mets due to their confirmed pitching advantage. Both the spread and moneyline odds have remained relatively stagnant since opening given the late uncertainty regarding the home team's starter.",
+                    "display_text": "Summary: The New York Mets send N. McLean to the mound holding a solid 9-8 record accompanied by a strong 3.34 ERA this season. Although the Chicago White Sox have home-field advantage, their lack of a formally announced starter introduces uncertainty into their pitching matchup. McLean's consistent ability to pitch deep into games should neutralize the White Sox bats and keep run production limited. Given the near-even moneyline odds across both DraftKings and FanDuel, the market views this matchup as essentially a toss-up. Ultimately, the reliable performance of the Mets' starting pitcher gives them a slight edge to secure the narrow victory on the road.\n\nSplits and Direction: Approximately 58 percent of the public moneyline bets are currently backing the visiting New York Mets due to their confirmed pitching advantage. Both the spread and moneyline odds have remained relatively stagnant since opening given the late uncertainty regarding the home team's starter.",
+                    "generated_at": "2026-08-22T12:38:20.767238+00:00",
+                    "odds_hash": "d18304148ef6e584",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -7821,13 +7857,13 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 163
-                        },
                         "home": {
                           "line": null,
                           "american": -175
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 163
                         }
                       }
                     },
@@ -7835,21 +7871,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 125
+                          "american": 118
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -150
+                          "american": -142
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 164
-                        },
                         "home": {
                           "line": null,
                           "american": -178
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 164
                         }
                       }
                     }
@@ -7887,28 +7923,46 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -111
-                        },
                         "home": {
                           "line": -1.5,
+                          "american": -111
+                        },
+                        "away": {
+                          "line": 1.5,
                           "american": -108
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -245
+                          "american": -235
                         },
                         "away": {
                           "line": null,
-                          "american": 200
+                          "american": 217
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": -110
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -110
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -230
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 210
                         }
                       }
                     }
@@ -7916,14 +7970,14 @@
                   "matchup_rank": 12,
                   "gemini_prediction": {
                     "winner": "Houston Astros",
-                    "confidence": 60,
+                    "confidence": 62,
                     "ats_pick": "Athletics",
                     "ats_confidence": 55,
-                    "analysis": "Both starting pitchers enter this matchup carrying inflated ERAs well above six, pointing toward a high-scoring affair at Minute Maid Park. J. Perkins has struggled immensely for the Athletics with a 6.96 ERA and a 2-9 record across the 2026 season. Cristian Javier has also floundered for the Houston Astros, posting a 6.44 ERA and a 1-4 record. Despite Houston's clear overall roster advantage, trusting either starting pitcher to secure a comfortable multi-run victory is extremely difficult. Consequently, the Athletics possess enough offensive capability to keep this game within a single run. Therefore, backing the underdog to cover the 1.5-run spread is the mathematically sound play given the pitching matchup.",
-                    "splits_and_direction": "Given that no official betting splits are currently available, we estimate that roughly 70 percent of public money is backing the heavily favored Houston Astros on the moneyline. Both the moneyline and the run line have remained largely static since opening due to the lack of early sharp action against the high-priced home favorites.",
-                    "display_text": "Summary: Both starting pitchers enter this matchup carrying inflated ERAs well above six, pointing toward a high-scoring affair at Minute Maid Park. J. Perkins has struggled immensely for the Athletics with a 6.96 ERA and a 2-9 record across the 2026 season. Cristian Javier has also floundered for the Houston Astros, posting a 6.44 ERA and a 1-4 record. Despite Houston's clear overall roster advantage, trusting either starting pitcher to secure a comfortable multi-run victory is extremely difficult. Consequently, the Athletics possess enough offensive capability to keep this game within a single run. Therefore, backing the underdog to cover the 1.5-run spread is the mathematically sound play given the pitching matchup.\n\nSplits and Direction: Given that no official betting splits are currently available, we estimate that roughly 70 percent of public money is backing the heavily favored Houston Astros on the moneyline. Both the moneyline and the run line have remained largely static since opening due to the lack of early sharp action against the high-priced home favorites.",
-                    "generated_at": "2026-08-22T08:32:05.795302+00:00",
-                    "odds_hash": "f563c64bb7fd95fe",
+                    "analysis": "Cristian Javier takes the mound for Houston holding a difficult 6.44 ERA over his limited 2026 appearances. Oakland counters with J. Perkins, who has struggled immensely to a 2-9 record and a 6.96 ERA this season. Both starting pitchers present major vulnerabilities, meaning this matchup is likely to turn into a high-scoring bullpen battle. The Houston Astros possess the more potent offensive lineup to exploit these pitching weaknesses at home. Despite their offensive edge, the shaky nature of Javier's current form makes a blowout win by more than a run less reliable.",
+                    "splits_and_direction": "Based on public tendencies toward the heavily favored home team, roughly 75% of moneyline bets are backing the Houston Astros. Both the moneyline and the run line have remained relatively stable since opening without significant sharp movement.",
+                    "display_text": "Summary: Cristian Javier takes the mound for Houston holding a difficult 6.44 ERA over his limited 2026 appearances. Oakland counters with J. Perkins, who has struggled immensely to a 2-9 record and a 6.96 ERA this season. Both starting pitchers present major vulnerabilities, meaning this matchup is likely to turn into a high-scoring bullpen battle. The Houston Astros possess the more potent offensive lineup to exploit these pitching weaknesses at home. Despite their offensive edge, the shaky nature of Javier's current form makes a blowout win by more than a run less reliable.\n\nSplits and Direction: Based on public tendencies toward the heavily favored home team, roughly 75% of moneyline bets are backing the Houston Astros. Both the moneyline and the run line have remained relatively stable since opening without significant sharp movement.",
+                    "generated_at": "2026-08-22T12:38:00.920233+00:00",
+                    "odds_hash": "ff4d086004e20e04",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -7947,45 +8001,45 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -149
-                        },
                         "home": {
                           "line": -1.5,
                           "american": 123
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -149
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -175
+                          "american": -165
                         },
                         "away": {
                           "line": null,
-                          "american": 144
+                          "american": 153
                         }
                       }
                     },
                     "fanduel": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -152
-                        },
                         "home": {
                           "line": -1.5,
-                          "american": 126
+                          "american": 125
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -150
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 144
-                        },
                         "home": {
                           "line": null,
-                          "american": -172
+                          "american": -164
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 150
                         }
                       }
                     }
@@ -7993,14 +8047,14 @@
                   "matchup_rank": 13,
                   "gemini_prediction": {
                     "winner": "Texas Rangers",
-                    "confidence": 63,
+                    "confidence": 62,
                     "ats_pick": "Los Angeles Angels",
                     "ats_confidence": 55,
-                    "analysis": "Cal Quantrill has put together a solid 2026 campaign for the Texas Rangers, holding a respectable 3.13 ERA across his starts. G. Klassen offers decent upside for the Los Angeles Angels, but his 3.74 ERA points to more vulnerability against a disciplined Rangers lineup. The Rangers possess the home-field advantage and a more consistent overall pitching profile at this juncture of the season. While Texas should secure the outright win, their offense often struggles to blow teams out by multiple runs. Therefore, the Los Angeles Angels present value to keep the game close and cover the 1.5 run spread.",
-                    "splits_and_direction": "Approximately 68 percent of public bets are backing the Texas Rangers on the moneyline, while roughly 62 percent of spread tickets are laying the runs with the home favorite. Both the moneyline and spread have remained relatively stable since opening with minor downward adjustment on the Rangers' vig due to heavy action.",
-                    "display_text": "Summary: Cal Quantrill has put together a solid 2026 campaign for the Texas Rangers, holding a respectable 3.13 ERA across his starts. G. Klassen offers decent upside for the Los Angeles Angels, but his 3.74 ERA points to more vulnerability against a disciplined Rangers lineup. The Rangers possess the home-field advantage and a more consistent overall pitching profile at this juncture of the season. While Texas should secure the outright win, their offense often struggles to blow teams out by multiple runs. Therefore, the Los Angeles Angels present value to keep the game close and cover the 1.5 run spread.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the Texas Rangers on the moneyline, while roughly 62 percent of spread tickets are laying the runs with the home favorite. Both the moneyline and spread have remained relatively stable since opening with minor downward adjustment on the Rangers' vig due to heavy action.",
-                    "generated_at": "2026-08-22T08:34:03.876409+00:00",
-                    "odds_hash": "31dd3699f4b58771",
+                    "analysis": "Cal Quantrill brings a strong 3.13 ERA and a 5-4 record into this matchup, anchoring the Texas pitching staff effectively through the 2026 season. G. Klassen offers decent production for the Los Angeles Angels with a 3.74 ERA, but he has been less consistent overall. The Rangers hold a distinct advantage when playing at home with Quantrill on the mound against a volatile Angels lineup. While Texas is favored to win the game outright, their offense frequently struggles to blow teams out by multiple runs. Therefore, the Los Angeles Angels present good value to keep the margin close and cover the run line.",
+                    "splits_and_direction": "Approximately 68 percent of public bets are backing the Texas Rangers on the moneyline, while roughly 55 percent of run line wagers are taking the Los Angeles Angels plus the runs based on our estimated ticketing data. The moneyline has ticked up slightly from an opening of -155 to -165 on the home side, whereas the run line has remained steady at -1.5.",
+                    "display_text": "Summary: Cal Quantrill brings a strong 3.13 ERA and a 5-4 record into this matchup, anchoring the Texas pitching staff effectively through the 2026 season. G. Klassen offers decent production for the Los Angeles Angels with a 3.74 ERA, but he has been less consistent overall. The Rangers hold a distinct advantage when playing at home with Quantrill on the mound against a volatile Angels lineup. While Texas is favored to win the game outright, their offense frequently struggles to blow teams out by multiple runs. Therefore, the Los Angeles Angels present good value to keep the margin close and cover the run line.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the Texas Rangers on the moneyline, while roughly 55 percent of run line wagers are taking the Los Angeles Angels plus the runs based on our estimated ticketing data. The moneyline has ticked up slightly from an opening of -155 to -165 on the home side, whereas the run line has remained steady at -1.5.",
+                    "generated_at": "2026-08-22T12:38:30.730808+00:00",
+                    "odds_hash": "f800f0100d489110",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -8023,8 +8077,26 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -188
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 154
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -104
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -104
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {
@@ -8038,13 +8110,13 @@
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": -104
-                        },
                         "home": {
                           "line": null,
-                          "american": -112
+                          "american": -108
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 100
                         }
                       }
                     }
@@ -8055,11 +8127,11 @@
                     "confidence": 56,
                     "ats_pick": "Kansas City Royals",
                     "ats_confidence": 55,
-                    "analysis": "Framber Valdez comes into this late-August matchup holding a mediocre 8-8 record and a 4.35 ERA for the Detroit Tigers. On the other side, Daniel Lynch IV has put together a strong 2026 campaign for the Kansas City Royals, posting a brilliant 2.83 ERA despite his modest 4-4 record. Lynch's run prevention metrics heavily outclass Valdez's current form, giving the Royals a distinct edge when he is on the mound. Kansas City also benefits from playing at home where Lynch traditionally performs with higher efficiency. Consequently, the Royals are well-positioned to secure a narrow victory and cover the small home run line.",
-                    "splits_and_direction": "Given the lack of official public betting data, it is estimated that roughly 54 percent of moneyline bets are backing the slightly favored Kansas City Royals at -112, while the remaining 43 percent support the Detroit Tigers at -104. Both the moneyline and the +1.5 spread have remained relatively stagnant since opening due to the evenly matched nature of the pitching matchup.",
-                    "display_text": "Summary: Framber Valdez comes into this late-August matchup holding a mediocre 8-8 record and a 4.35 ERA for the Detroit Tigers. On the other side, Daniel Lynch IV has put together a strong 2026 campaign for the Kansas City Royals, posting a brilliant 2.83 ERA despite his modest 4-4 record. Lynch's run prevention metrics heavily outclass Valdez's current form, giving the Royals a distinct edge when he is on the mound. Kansas City also benefits from playing at home where Lynch traditionally performs with higher efficiency. Consequently, the Royals are well-positioned to secure a narrow victory and cover the small home run line.\n\nSplits and Direction: Given the lack of official public betting data, it is estimated that roughly 54 percent of moneyline bets are backing the slightly favored Kansas City Royals at -112, while the remaining 43 percent support the Detroit Tigers at -104. Both the moneyline and the +1.5 spread have remained relatively stagnant since opening due to the evenly matched nature of the pitching matchup.",
-                    "generated_at": "2026-08-22T08:32:07.260141+00:00",
-                    "odds_hash": "efab68e0d20f6369",
+                    "analysis": "Framber Valdez enters this matchup with a sub-par 8-8 record and a middling 4.35 ERA that suggests some vulnerability on the road. Conversely, Daniel Lynch IV has put together a stellar 2026 campaign, boasting a sparkling 2.83 ERA despite his modest 4-4 record. The Royals possess the superior starting pitching matchup according to the current season metrics. While Detroit's lineup remains dangerous, Lynch's ability to suppress runs should neutralize their offensive output. Ultimately, Kansas City's home-field advantage and pitching edge tilt this tightly contested game in their favor.",
+                    "splits_and_direction": "Approximately 58% of the public moneyline wagers are backing the Detroit Tigers at even money, while the run line betting splits are relatively even at 50-50. The moneyline has shifted slightly toward the Royals at -108 on FanDuel from a pick'em open, and the spread has remained steady at +1.5 for the home side.",
+                    "display_text": "Summary: Framber Valdez enters this matchup with a sub-par 8-8 record and a middling 4.35 ERA that suggests some vulnerability on the road. Conversely, Daniel Lynch IV has put together a stellar 2026 campaign, boasting a sparkling 2.83 ERA despite his modest 4-4 record. The Royals possess the superior starting pitching matchup according to the current season metrics. While Detroit's lineup remains dangerous, Lynch's ability to suppress runs should neutralize their offensive output. Ultimately, Kansas City's home-field advantage and pitching edge tilt this tightly contested game in their favor.\n\nSplits and Direction: Approximately 58% of the public moneyline wagers are backing the Detroit Tigers at even money, while the run line betting splits are relatively even at 50-50. The moneyline has shifted slightly toward the Royals at -108 on FanDuel from a pick'em open, and the spread has remained steady at +1.5 for the home side.",
+                    "generated_at": "2026-08-22T12:38:10.825573+00:00",
+                    "odds_hash": "c570f5cc73ec33a8",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -8089,28 +8161,46 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": -108
+                          "american": -114
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -111
+                          "american": -106
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -255
+                          "american": -249
                         },
                         "away": {
                           "line": null,
-                          "american": 210
+                          "american": 230
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": -111
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -108
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -250
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 230
                         }
                       }
                     }
@@ -8118,14 +8208,14 @@
                   "matchup_rank": 3,
                   "gemini_prediction": {
                     "winner": "Los Angeles Dodgers",
-                    "confidence": 75,
-                    "ats_pick": "Pittsburgh Pirates",
-                    "ats_confidence": 60,
-                    "analysis": "Blake Snell takes the mound for Los Angeles holding a solid 3.60 ERA over his limited 2026 appearances. Pittsburgh counters with C. Mlodzinski, who has compiled a 6-6 record and a respectable 4.03 ERA this season. The Dodgers possess a significantly deeper lineup that consistently generates high run totals against mid-tier starting pitchers. While Snell gives Los Angeles a clear advantage on the mound, the run line of 1.5 heavily taxes the favorite given Mlodzinski's tendency to keep games competitive. Consequently, the Pirates present strong value to keep the final margin within a single run.",
-                    "splits_and_direction": "An estimated 74 percent of the public moneyline handle is backing the heavy favorite Los Angeles Dodgers, while roughly 65 percent of spread bets lean toward the visiting Pittsburgh Pirates plus the runs. The moneyline has remained stable near the opening -255 price, and the home spread has held firmly at -1.5 without notable movement.",
-                    "display_text": "Summary: Blake Snell takes the mound for Los Angeles holding a solid 3.60 ERA over his limited 2026 appearances. Pittsburgh counters with C. Mlodzinski, who has compiled a 6-6 record and a respectable 4.03 ERA this season. The Dodgers possess a significantly deeper lineup that consistently generates high run totals against mid-tier starting pitchers. While Snell gives Los Angeles a clear advantage on the mound, the run line of 1.5 heavily taxes the favorite given Mlodzinski's tendency to keep games competitive. Consequently, the Pirates present strong value to keep the final margin within a single run.\n\nSplits and Direction: An estimated 74 percent of the public moneyline handle is backing the heavy favorite Los Angeles Dodgers, while roughly 65 percent of spread bets lean toward the visiting Pittsburgh Pirates plus the runs. The moneyline has remained stable near the opening -255 price, and the home spread has held firmly at -1.5 without notable movement.",
-                    "generated_at": "2026-08-22T08:34:53.982640+00:00",
-                    "odds_hash": "e395fffec5bddf7a",
+                    "confidence": 74,
+                    "ats_pick": "Los Angeles Dodgers",
+                    "ats_confidence": 62,
+                    "analysis": "The Los Angeles Dodgers hold a decisive roster and performance advantage over the Pittsburgh Pirates as the 2026 season progresses. Blake Snell brings a solid 3.60 ERA to the mound for Los Angeles, providing stability against a struggling Pittsburgh lineup. C. Mlodzinski has experienced mixed results with a 6-6 record and a 4.03 ERA, which leaves him vulnerable against the potent Dodgers bats. Los Angeles operates with significantly higher offensive productivity, making them formidable favorites at home. Consequently, the Dodgers are expected to control the tempo of this matchup and secure a multi-run victory.",
+                    "splits_and_direction": "Approximately 78% of the public moneyline bets and 65% of the run line wagers are backing the Dodgers due to their superior home performance and pitching matchup. The home moneyline has slightly tightened from -240 to -249, while the run line remains steady at -1.5 based on estimated public betting tendencies.",
+                    "display_text": "Summary: The Los Angeles Dodgers hold a decisive roster and performance advantage over the Pittsburgh Pirates as the 2026 season progresses. Blake Snell brings a solid 3.60 ERA to the mound for Los Angeles, providing stability against a struggling Pittsburgh lineup. C. Mlodzinski has experienced mixed results with a 6-6 record and a 4.03 ERA, which leaves him vulnerable against the potent Dodgers bats. Los Angeles operates with significantly higher offensive productivity, making them formidable favorites at home. Consequently, the Dodgers are expected to control the tempo of this matchup and secure a multi-run victory.\n\nSplits and Direction: Approximately 78% of the public moneyline bets and 65% of the run line wagers are backing the Dodgers due to their superior home performance and pitching matchup. The home moneyline has slightly tightened from -240 to -249, while the run line remains steady at -1.5 based on estimated public betting tendencies.",
+                    "generated_at": "2026-08-22T12:39:20.688822+00:00",
+                    "odds_hash": "3b9db0dc72536967",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
@@ -8151,33 +8241,33 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 135
+                          "american": 134
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -163
+                          "american": -162
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -164
+                          "american": -163
                         },
                         "away": {
                           "line": null,
-                          "american": 136
+                          "american": 135
                         }
                       }
                     },
                     "fanduel": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -162
-                        },
                         "home": {
                           "line": -1.5,
-                          "american": 134
+                          "american": 130
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -156
                         }
                       },
                       "moneyline": {
@@ -8195,14 +8285,14 @@
                   "matchup_rank": 6,
                   "gemini_prediction": {
                     "winner": "San Diego Padres",
-                    "confidence": 58,
+                    "confidence": 61,
                     "ats_pick": "Minnesota Twins",
                     "ats_confidence": 55,
-                    "analysis": "Walker Buehler holds a respectable 7-6 record with a 4.79 ERA for the Padres during the 2026 campaign. Bailey Ober matches up for the Twins carrying a 7-4 record and a 4.62 ERA through the current season. Both starting pitchers have experienced similar levels of high-variance performances, making this a closely contested matchup on paper. The Padres hold home-field advantage which slightly boosts their chances of securing a narrow outright victory. However, because both starting pitchers struggle to suppress runs consistently, the game is expected to stay close enough for the Twins to cover the run line.",
-                    "splits_and_direction": "Approximately 61 percent of public moneyline bets are currently backing the San Diego Padres, while 58 percent of spread bets lean toward the Minnesota Twins covering the 1.5 runs. The home moneyline has slightly shortened from -160 to -164 at DraftKings, and the spread has remained steady at -1.5 without notable movement.",
-                    "display_text": "Summary: Walker Buehler holds a respectable 7-6 record with a 4.79 ERA for the Padres during the 2026 campaign. Bailey Ober matches up for the Twins carrying a 7-4 record and a 4.62 ERA through the current season. Both starting pitchers have experienced similar levels of high-variance performances, making this a closely contested matchup on paper. The Padres hold home-field advantage which slightly boosts their chances of securing a narrow outright victory. However, because both starting pitchers struggle to suppress runs consistently, the game is expected to stay close enough for the Twins to cover the run line.\n\nSplits and Direction: Approximately 61 percent of public moneyline bets are currently backing the San Diego Padres, while 58 percent of spread bets lean toward the Minnesota Twins covering the 1.5 runs. The home moneyline has slightly shortened from -160 to -164 at DraftKings, and the spread has remained steady at -1.5 without notable movement.",
-                    "generated_at": "2026-08-22T08:34:44.000855+00:00",
-                    "odds_hash": "096ae18d5c1e2fae",
+                    "analysis": "San Diego holds a slight edge playing at home with Walker Buehler on the mound despite his inconsistent 4.79 ERA this season. Bailey Ober has pitched to a similar 4.62 ERA for Minnesota, making this a closely contested matchup on paper. The Padres offense should find enough success against Ober to secure a narrow victory at Petco Park. However, because both starting pitchers carry inflated ERAs near the 4.70 mark, the margin is likely to remain within a single run. Therefore, while San Diego should win outright, the Minnesota Twins possess enough offensive capability to cover the plus-1.5 run line.",
+                    "splits_and_direction": "Approximately 68 percent of the public moneyline bets are currently backing the San Diego Padres as home favorites, while the run line action is seeing a more balanced 52 percent split favoring the Minnesota Twins. Both the moneyline and spread have remained relatively stable since opening with no significant market movement reported.",
+                    "display_text": "Summary: San Diego holds a slight edge playing at home with Walker Buehler on the mound despite his inconsistent 4.79 ERA this season. Bailey Ober has pitched to a similar 4.62 ERA for Minnesota, making this a closely contested matchup on paper. The Padres offense should find enough success against Ober to secure a narrow victory at Petco Park. However, because both starting pitchers carry inflated ERAs near the 4.70 mark, the margin is likely to remain within a single run. Therefore, while San Diego should win outright, the Minnesota Twins possess enough offensive capability to cover the plus-1.5 run line.\n\nSplits and Direction: Approximately 68 percent of the public moneyline bets are currently backing the San Diego Padres as home favorites, while the run line action is seeing a more balanced 52 percent split favoring the Minnesota Twins. Both the moneyline and spread have remained relatively stable since opening with no significant market movement reported.",
+                    "generated_at": "2026-08-22T12:39:10.811837+00:00",
+                    "odds_hash": "99f2f47376114a1c",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -8226,45 +8316,45 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": -1.5,
-                          "american": 164
-                        },
                         "home": {
                           "line": 1.5,
-                          "american": -200
+                          "american": -203
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 166
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -120
+                          "american": -112
                         },
                         "away": {
                           "line": null,
-                          "american": 100
+                          "american": 104
                         }
                       }
                     },
                     "fanduel": {
                       "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -220
+                        },
                         "away": {
                           "line": -1.5,
                           "american": 168
-                        },
-                        "home": {
-                          "line": 1.5,
-                          "american": -205
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 100
-                        },
                         "home": {
                           "line": null,
-                          "american": -118
+                          "american": -114
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 104
                         }
                       }
                     }
@@ -8272,14 +8362,14 @@
                   "matchup_rank": 7,
                   "gemini_prediction": {
                     "winner": "Chicago Cubs",
-                    "confidence": 55,
+                    "confidence": 53,
                     "ats_pick": "Chicago Cubs",
-                    "ats_confidence": 58,
-                    "analysis": "Shota Imanaga brings a solid 3.77 ERA into this late-August matchup, providing the Chicago Cubs with steady starting pitching against a struggling Seattle offense. Bryan Woo has put together a decent 9-8 record for the Mariners, but his 4.10 ERA indicates vulnerability against a disciplined Cubs lineup. Imanaga's ability to limit walks and miss bats gives the visiting team a distinct edge in the starting pitching duel. While Seattle holds home-field advantage at T-Mobile Park, their overall consistency has lagged behind Chicago's current form in 2026. Therefore, the Cubs are well-positioned to secure a tight victory on the road and cover the plus-money spread.",
-                    "splits_and_direction": "Based on public betting tendencies, roughly 58 percent of moneyline bets are currently backing the home Mariners due to their slight favorite status at -120, while the run-line action is heavily split with 55 percent taking the Cubs plus the 1.5 runs. The moneyline has ticked up slightly toward Seattle from an opener of -110, whereas the spread has remained steady at 1.5 across both DraftKings and FanDuel.",
-                    "display_text": "Summary: Shota Imanaga brings a solid 3.77 ERA into this late-August matchup, providing the Chicago Cubs with steady starting pitching against a struggling Seattle offense. Bryan Woo has put together a decent 9-8 record for the Mariners, but his 4.10 ERA indicates vulnerability against a disciplined Cubs lineup. Imanaga's ability to limit walks and miss bats gives the visiting team a distinct edge in the starting pitching duel. While Seattle holds home-field advantage at T-Mobile Park, their overall consistency has lagged behind Chicago's current form in 2026. Therefore, the Cubs are well-positioned to secure a tight victory on the road and cover the plus-money spread.\n\nSplits and Direction: Based on public betting tendencies, roughly 58 percent of moneyline bets are currently backing the home Mariners due to their slight favorite status at -120, while the run-line action is heavily split with 55 percent taking the Cubs plus the 1.5 runs. The moneyline has ticked up slightly toward Seattle from an opener of -110, whereas the spread has remained steady at 1.5 across both DraftKings and FanDuel.",
-                    "generated_at": "2026-08-22T08:34:34.108763+00:00",
-                    "odds_hash": "6e1edeacfaa0e00c",
+                    "ats_confidence": 55,
+                    "analysis": "Shota Imanaga brings a solid 3.77 ERA for the Chicago Cubs into this late-August matchup against Seattle. Bryan Woo counters with a 4.10 ERA for the Seattle Mariners, keeping his team competitive but showing slightly more vulnerability on the mound. Both offenses are relatively evenly matched, but the slight edge in starting pitching efficiency favors the Cubs. Imanaga's ability to limit walks gives the Chicago bullpen a cleaner bridge to the later innings. Ultimately, the Cubs squeak out a tight victory on the road behind another strong outing from their Japanese left-hander.",
+                    "splits_and_direction": "Approximately 58% of moneyline bets are currently backing the Seattle Mariners at home, with public money slightly leaning toward the slight favorites. The home moneyline has shifted marginally from an opening -108 to -112 at DraftKings, while the spread has remained steady at +1.5 for the Mariners.",
+                    "display_text": "Summary: Shota Imanaga brings a solid 3.77 ERA for the Chicago Cubs into this late-August matchup against Seattle. Bryan Woo counters with a 4.10 ERA for the Seattle Mariners, keeping his team competitive but showing slightly more vulnerability on the mound. Both offenses are relatively evenly matched, but the slight edge in starting pitching efficiency favors the Cubs. Imanaga's ability to limit walks gives the Chicago bullpen a cleaner bridge to the later innings. Ultimately, the Cubs squeak out a tight victory on the road behind another strong outing from their Japanese left-hander.\n\nSplits and Direction: Approximately 58% of moneyline bets are currently backing the Seattle Mariners at home, with public money slightly leaning toward the slight favorites. The home moneyline has shifted marginally from an opening -108 to -112 at DraftKings, while the spread has remained steady at +1.5 for the Mariners.",
+                    "generated_at": "2026-08-22T12:39:00.548727+00:00",
+                    "odds_hash": "57e961318856e6b3",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -8302,28 +8392,46 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": 123
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -149
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -170
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 158
+                        }
+                      }
                     },
                     "fanduel": {
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 126
+                          "american": 125
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -152
+                          "american": -146
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 146
-                        },
                         "home": {
                           "line": null,
-                          "american": -174
+                          "american": -166
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 152
                         }
                       }
                     }
@@ -8334,11 +8442,11 @@
                     "confidence": 62,
                     "ats_pick": "Cincinnati Reds",
                     "ats_confidence": 55,
-                    "analysis": "Arizona hosts Cincinnati with M. Bratt taking the mound against A. Abbott for the Reds. Abbott brings a six-win record and a steady 4.07 ERA into the late-August matchup, providing reliable innings for the away side. Bratt holds a 1-2 record with a comparable 4.17 ERA, though the Diamondbacks possess the offensive depth to back him up at home. The home team is favored at -174 on the moneyline, reflecting their overall stronger standing in the 2026 campaign. Despite Arizona being favored by 1.5 runs, Abbott's pitching gives Cincinnati a strong chance to keep the final margin close enough to cover the run line.",
-                    "splits_and_direction": "Based on current public tendencies and the -174 price tag, approximately 68 percent of moneyline bets are backing the Arizona Diamondbacks. The moneyline and spread have remained stable since opening with no significant market movement reported yet.",
-                    "display_text": "Summary: Arizona hosts Cincinnati with M. Bratt taking the mound against A. Abbott for the Reds. Abbott brings a six-win record and a steady 4.07 ERA into the late-August matchup, providing reliable innings for the away side. Bratt holds a 1-2 record with a comparable 4.17 ERA, though the Diamondbacks possess the offensive depth to back him up at home. The home team is favored at -174 on the moneyline, reflecting their overall stronger standing in the 2026 campaign. Despite Arizona being favored by 1.5 runs, Abbott's pitching gives Cincinnati a strong chance to keep the final margin close enough to cover the run line.\n\nSplits and Direction: Based on current public tendencies and the -174 price tag, approximately 68 percent of moneyline bets are backing the Arizona Diamondbacks. The moneyline and spread have remained stable since opening with no significant market movement reported yet.",
-                    "generated_at": "2026-08-22T08:35:03.876643+00:00",
-                    "odds_hash": "858fc556f5fcb732",
+                    "analysis": "The Arizona Diamondbacks host the Cincinnati Reds in a late-August matchup featuring starting pitchers A. Abbott and M. Bratt. Abbott enters this game with a 6-8 record and a 4.07 ERA, while Bratt holds a 1-2 record with a 4.17 ERA over limited action in the 2026 season. Arizona holds home-field advantage and commands market favoritism with a -170 moneyline price at DraftKings. Although the Diamondbacks possess the stronger overall roster profile to secure an outright win, the Reds' capability to keep games close makes the 1.5-run spread an appealing spot for the underdog. Abbott's veteran presence relative to Bratt should help Cincinnati stay within striking distance throughout the contest. Consequently, Arizona is projected to edge out a narrow victory, but Cincinnati is positioned to cover the +1.5 run line.",
+                    "splits_and_direction": "Based on current market pricing and typical public betting tendencies, an estimated 65 percent of moneyline wagers and 58 percent of run-line bets are backing the home-favorite Diamondbacks. The moneyline has ticked up slightly toward Arizona from an opener of -160, while the home spread has remained stable at -1.5 across major sportsbooks.",
+                    "display_text": "Summary: The Arizona Diamondbacks host the Cincinnati Reds in a late-August matchup featuring starting pitchers A. Abbott and M. Bratt. Abbott enters this game with a 6-8 record and a 4.07 ERA, while Bratt holds a 1-2 record with a 4.17 ERA over limited action in the 2026 season. Arizona holds home-field advantage and commands market favoritism with a -170 moneyline price at DraftKings. Although the Diamondbacks possess the stronger overall roster profile to secure an outright win, the Reds' capability to keep games close makes the 1.5-run spread an appealing spot for the underdog. Abbott's veteran presence relative to Bratt should help Cincinnati stay within striking distance throughout the contest. Consequently, Arizona is projected to edge out a narrow victory, but Cincinnati is positioned to cover the +1.5 run line.\n\nSplits and Direction: Based on current market pricing and typical public betting tendencies, an estimated 65 percent of moneyline wagers and 58 percent of run-line bets are backing the home-favorite Diamondbacks. The moneyline has ticked up slightly toward Arizona from an opener of -160, while the home spread has remained stable at -1.5 across major sportsbooks.",
+                    "generated_at": "2026-08-22T12:39:31.049667+00:00",
+                    "odds_hash": "49898be64a7fd4b3",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -8362,23 +8470,23 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -123
-                        },
                         "home": {
                           "line": -1.5,
-                          "american": 102
+                          "american": 103
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -124
                         }
                       },
                       "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 177
-                        },
                         "home": {
                           "line": null,
-                          "american": -217
+                          "american": -204
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 189
                         }
                       }
                     },
@@ -8386,21 +8494,21 @@
                       "spread": {
                         "home": {
                           "line": -1.5,
-                          "american": 108
+                          "american": 105
                         },
                         "away": {
                           "line": 1.5,
-                          "american": -130
+                          "american": -126
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -210
+                          "american": -198
                         },
                         "away": {
                           "line": null,
-                          "american": 176
+                          "american": 182
                         }
                       }
                     }
@@ -8408,14 +8516,14 @@
                   "matchup_rank": 9,
                   "gemini_prediction": {
                     "winner": "Boston Red Sox",
-                    "confidence": 74,
+                    "confidence": 76,
                     "ats_pick": "Boston Red Sox",
-                    "ats_confidence": 62,
-                    "analysis": "Boston holds a clear pitching advantage with J. Bennett posting a solid 3.46 ERA over the 2026 season. San Francisco counters with C. Whisenhunt, who has struggled significantly with a bloated 7.03 ERA across his decisions. The Red Sox offense should easily capitalize on Whisenhunt's poor command and high hit rates. Meanwhile, Bennett is well-equipped to neutralize the Giants' inconsistent lineup at home. Consequently, the Red Sox are positioned to win this matchup comfortably by multiple runs.",
-                    "splits_and_direction": "Approximately 72% of public bets are backing the heavy home favorite Boston Red Sox on the moneyline, while the run line has seen moderate action leaning toward the Red Sox covering. The spread has remained stable at -1.5 and the moneyline has ticked up slightly from its opening numbers to reflect steady public backing on Boston.",
-                    "display_text": "Summary: Boston holds a clear pitching advantage with J. Bennett posting a solid 3.46 ERA over the 2026 season. San Francisco counters with C. Whisenhunt, who has struggled significantly with a bloated 7.03 ERA across his decisions. The Red Sox offense should easily capitalize on Whisenhunt's poor command and high hit rates. Meanwhile, Bennett is well-equipped to neutralize the Giants' inconsistent lineup at home. Consequently, the Red Sox are positioned to win this matchup comfortably by multiple runs.\n\nSplits and Direction: Approximately 72% of public bets are backing the heavy home favorite Boston Red Sox on the moneyline, while the run line has seen moderate action leaning toward the Red Sox covering. The spread has remained stable at -1.5 and the moneyline has ticked up slightly from its opening numbers to reflect steady public backing on Boston.",
-                    "generated_at": "2026-08-22T08:34:23.896590+00:00",
-                    "odds_hash": "f2e56dab6454aec9",
+                    "ats_confidence": 68,
+                    "analysis": "Boston holds a decisive pitching advantage with J. Bennett maintaining a strong 3.46 ERA over a solid 2026 campaign. San Francisco struggles immensely to put up competitive numbers on the road, particularly when relying on backend rotation depth like C. Whisenhunt and his bloated 7.03 ERA. The Red Sox lineup should easily exploit Whisenhunt early in the contest to build a comfortable multi-run cushion. Bennett's steady command will efficiently shut down the Giants' bats to preserve the lead throughout the afternoon. Consequently, Boston is well-positioned to secure both an outright victory and a comfortable margin to cover the run line.",
+                    "splits_and_direction": "Approximately 74 percent of public bets are backing the heavily favored Boston Red Sox on the moneyline and laying the 1.5 runs on the spread. Both the home moneyline and home spread have shifted slightly upward toward heavier chalk since opening due to the lopsided starting pitching matchup.",
+                    "display_text": "Summary: Boston holds a decisive pitching advantage with J. Bennett maintaining a strong 3.46 ERA over a solid 2026 campaign. San Francisco struggles immensely to put up competitive numbers on the road, particularly when relying on backend rotation depth like C. Whisenhunt and his bloated 7.03 ERA. The Red Sox lineup should easily exploit Whisenhunt early in the contest to build a comfortable multi-run cushion. Bennett's steady command will efficiently shut down the Giants' bats to preserve the lead throughout the afternoon. Consequently, Boston is well-positioned to secure both an outright victory and a comfortable margin to cover the run line.\n\nSplits and Direction: Approximately 74 percent of public bets are backing the heavily favored Boston Red Sox on the moneyline and laying the 1.5 runs on the spread. Both the home moneyline and home spread have shifted slightly upward toward heavier chalk since opening due to the lopsided starting pitching matchup.",
+                    "generated_at": "2026-08-22T12:38:50.704397+00:00",
+                    "odds_hash": "bf36feff5c22244f",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -8438,28 +8546,46 @@
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
                       "spread": {
-                        "away": {
-                          "line": -1.5,
-                          "american": 112
-                        },
                         "home": {
                           "line": 1.5,
-                          "american": -134
+                          "american": -126
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 104
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": 120
+                          "american": 131
                         },
                         "away": {
                           "line": null,
-                          "american": -142
+                          "american": -140
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -130
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 108
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 124
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -134
                         }
                       }
                     }
@@ -8467,14 +8593,14 @@
                   "matchup_rank": 14,
                   "gemini_prediction": {
                     "winner": "Cleveland Guardians",
-                    "confidence": 76,
+                    "confidence": 68,
                     "ats_pick": "Cleveland Guardians",
-                    "ats_confidence": 70,
-                    "analysis": "Cleveland enters this matchup with a superior pitching advantage anchored by F. Griffin's stellar 14-4 record and 3.18 ERA. Colorado starter T. Sugano has put together a decent 12-6 campaign, but his higher 4.70 ERA exposes vulnerability against a disciplined Guardians lineup. Playing at Coors Field always presents offensive volatility, yet Griffin's command and low run-prevention numbers should successfully mitigate the altitude factor. Furthermore, the Guardians boast stronger overall efficiency metrics across the 2026 season compared to the Rockies' inconsistent roster performance. Consequently, Cleveland is well-positioned to secure an outright victory and comfortably cover the 1.5-run spread.",
-                    "splits_and_direction": "An estimated 68 percent of public bets are currently backing the Cleveland Guardians on the moneyline, while the run line action is more evenly split with heavy public leanings toward the Colorado home underdog plus the runs. The moneyline has ticked up slightly toward Cleveland from an opener around -135 to the current -142, whereas the spread has remained stable at 1.5 runs with balanced two-way action.",
-                    "display_text": "Summary: Cleveland enters this matchup with a superior pitching advantage anchored by F. Griffin's stellar 14-4 record and 3.18 ERA. Colorado starter T. Sugano has put together a decent 12-6 campaign, but his higher 4.70 ERA exposes vulnerability against a disciplined Guardians lineup. Playing at Coors Field always presents offensive volatility, yet Griffin's command and low run-prevention numbers should successfully mitigate the altitude factor. Furthermore, the Guardians boast stronger overall efficiency metrics across the 2026 season compared to the Rockies' inconsistent roster performance. Consequently, Cleveland is well-positioned to secure an outright victory and comfortably cover the 1.5-run spread.\n\nSplits and Direction: An estimated 68 percent of public bets are currently backing the Cleveland Guardians on the moneyline, while the run line action is more evenly split with heavy public leanings toward the Colorado home underdog plus the runs. The moneyline has ticked up slightly toward Cleveland from an opener around -135 to the current -142, whereas the spread has remained stable at 1.5 runs with balanced two-way action.",
-                    "generated_at": "2026-08-22T08:34:14.138586+00:00",
-                    "odds_hash": "16e64a6a58e2c5d7",
+                    "ats_confidence": 62,
+                    "analysis": "Cleveland enters this matchup with a substantial pitching advantage as F. Griffin boasts a stellar 14-4 record alongside a 3.18 ERA. On the other side, Colorado starter T. Sugano has struggled to consistently suppress opposing bats, carrying a high 4.70 ERA into the late-August contest. The Guardians offense should comfortably exploit Coors Field against Sugano and a generally vulnerable Rockies pitching staff. Griffin's exceptional command this season makes him well-equipped to navigate the notoriously hitter-friendly altitude in Denver. Ultimately, the superior starter and steady Cleveland lineup justify picking the visitors to secure both the outright victory and the run line cover.",
+                    "splits_and_direction": "Approximately 64 percent of public moneyline bets and 58 percent of run line wagers are backing the visiting Cleveland Guardians due to the pitching mismatch. The away moneyline has moved slightly from -130 to -140, while the home spread has remained steady at +1.5 across major sportsbooks.",
+                    "display_text": "Summary: Cleveland enters this matchup with a substantial pitching advantage as F. Griffin boasts a stellar 14-4 record alongside a 3.18 ERA. On the other side, Colorado starter T. Sugano has struggled to consistently suppress opposing bats, carrying a high 4.70 ERA into the late-August contest. The Guardians offense should comfortably exploit Coors Field against Sugano and a generally vulnerable Rockies pitching staff. Griffin's exceptional command this season makes him well-equipped to navigate the notoriously hitter-friendly altitude in Denver. Ultimately, the superior starter and steady Cleveland lineup justify picking the visitors to secure both the outright victory and the run line cover.\n\nSplits and Direction: Approximately 64 percent of public moneyline bets and 58 percent of run line wagers are backing the visiting Cleveland Guardians due to the pitching mismatch. The away moneyline has moved slightly from -130 to -140, while the home spread has remained steady at +1.5 across major sportsbooks.",
+                    "generated_at": "2026-08-22T12:38:40.864355+00:00",
+                    "odds_hash": "814e31439ff67788",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
@@ -8505,36 +8631,45 @@
                   "odds": {
                     "draftkings": {
                       "spread": {
-                        "away": {
-                          "line": 1.5,
-                          "american": -155
-                        },
                         "home": {
                           "line": -1.5,
-                          "american": 128
+                          "american": 124
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -149
                         }
                       },
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -165
+                          "american": -173
                         },
                         "away": {
                           "line": null,
-                          "american": 153
+                          "american": 161
                         }
                       }
                     },
                     "fanduel": {
-                      "spread": {},
-                      "moneyline": {
-                        "away": {
-                          "line": null,
-                          "american": 152
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": 126
                         },
+                        "away": {
+                          "line": 1.5,
+                          "american": -152
+                        }
+                      },
+                      "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -166
+                          "american": -172
+                        },
+                        "away": {
+                          "line": null,
+                          "american": 158
                         }
                       }
                     }
@@ -8545,11 +8680,11 @@
                     "confidence": 62,
                     "ats_pick": "Atlanta Braves",
                     "ats_confidence": 55,
-                    "analysis": "Milwaukee holds a home-field advantage with S. Drohan carrying a solid 3.86 ERA into this late August matchup. Atlanta counters with veteran M. Perez, who has been efficient with a strong 3.15 ERA through his decisions this season. The Brewers' lineup provides consistent run support at home, placing pressure on the Braves' bullpen late in the game. Perez will keep the Braves close throughout the contest, making a blowout less likely on the road. Consequently, the visiting Braves offer good value to keep the final margin within a single run even if the Brewers pull off the outright win.",
-                    "splits_and_direction": "Approximately 68 percent of public bets are backing the Milwaukee Brewers on the moneyline and laying the 1.5 runs on the spread due to their home status. Both the moneyline and spread have remained relatively stable since opening, with only minor adjustments reflecting standard balanced action.",
-                    "display_text": "Summary: Milwaukee holds a home-field advantage with S. Drohan carrying a solid 3.86 ERA into this late August matchup. Atlanta counters with veteran M. Perez, who has been efficient with a strong 3.15 ERA through his decisions this season. The Brewers' lineup provides consistent run support at home, placing pressure on the Braves' bullpen late in the game. Perez will keep the Braves close throughout the contest, making a blowout less likely on the road. Consequently, the visiting Braves offer good value to keep the final margin within a single run even if the Brewers pull off the outright win.\n\nSplits and Direction: Approximately 68 percent of public bets are backing the Milwaukee Brewers on the moneyline and laying the 1.5 runs on the spread due to their home status. Both the moneyline and spread have remained relatively stable since opening, with only minor adjustments reflecting standard balanced action.",
-                    "generated_at": "2026-08-22T08:35:13.938072+00:00",
-                    "odds_hash": "1e7272023f102410",
+                    "analysis": "Milwaukee enters this matchup with S. Drohan holding a solid 6-4 record and a 3.86 ERA on the 2026 season. Atlanta counters with M. Perez, who brings an 8-7 record and a stronger 3.15 ERA to the mound. The Braves have shown consistency in games started by Perez, but the Brewers hold home-field advantage and a potent lineup that performs well against left-handed pitching. While Perez may keep Atlanta close, Milwaukee's bullpen is well-rested and prepared to lock down the late innings. Expect a tightly contested game where the Brewers edge out a narrow victory, making the Braves a strong candidate to cover the run line.",
+                    "splits_and_direction": "Approximately 68 percent of the public moneyline bets are backing the home Brewers, causing their odds to shorten slightly from an opener of -165 to -173. Meanwhile, roughly 60 percent of run-line bets are taking the Braves plus the 1.5 runs, holding the spread steady at -1.5.",
+                    "display_text": "Summary: Milwaukee enters this matchup with S. Drohan holding a solid 6-4 record and a 3.86 ERA on the 2026 season. Atlanta counters with M. Perez, who brings an 8-7 record and a stronger 3.15 ERA to the mound. The Braves have shown consistency in games started by Perez, but the Brewers hold home-field advantage and a potent lineup that performs well against left-handed pitching. While Perez may keep Atlanta close, Milwaukee's bullpen is well-rested and prepared to lock down the late innings. Expect a tightly contested game where the Brewers edge out a narrow victory, making the Braves a strong candidate to cover the run line.\n\nSplits and Direction: Approximately 68 percent of the public moneyline bets are backing the home Brewers, causing their odds to shorten slightly from an opener of -165 to -173. Meanwhile, roughly 60 percent of run-line bets are taking the Braves plus the 1.5 runs, holding the spread steady at -1.5.",
+                    "generated_at": "2026-08-22T12:39:40.826580+00:00",
+                    "odds_hash": "f0f34662d7021bcf",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true
