@@ -137,43 +137,55 @@ def calendar_game_dates(scoreboard):
     return sorted(set(dates))
 
 
-def resolve_effective_today(default_today):
-    """Off-season guard: if today falls BEFORE the FIRST date on ESPN's
-    calendar -- i.e. the entire published schedule is still ahead of us --
-    snap the build window forward to that first calendar date instead of
-    building three empty days around a dead calendar date.
+def get_scoreboard_undated():
+    """Fetch the default (undated) scoreboard. CRITICAL difference vs.
+    get_scoreboard(): a DATED request for a dead off-season date makes
+    ESPN anchor the whole response to the previously COMPLETED season --
+    its leagues[].calendar then lists only PAST dates (MLB's sparse
+    calendar: once the 2026 World Series date passes, a dated request
+    returns the finished 2026 calendar ending 2026-11-12, events []). The
+    UNDATED request instead snaps forward to the next game day and ships
+    the UPCOMING season's calendar -- which is the only place the next
+    season's first date exists. The off-season resolver therefore reads
+    THIS payload, never the dated one. (limit=200 matches the dated
+    call's limit for consistency.)"""
+    resp = requests.get(
+        ESPN_MLB_SCOREBOARD_URL,
+        params={"limit": 200},
+        timeout=REQUEST_TIMEOUT,
+    )
+    resp.raise_for_status()
+    return resp.json()
 
-    IMPORTANT: this keys off the season's FIRST calendar date only --
-    NOT "the next calendar date at or after today". Those differ once a
-    season is underway: MLB's calendar is sparse (spring-training opener,
-    All-Star break, postseason dates), so from roughly August onward the
-    only entries still in the future are the postseason ones -- testing
-    "any upcoming date" reads a live August slate as pre-season and snaps
-    the board to late September. Even the NBA/NCAAMB's dense
-    every-game-day calendars have mid-season dark days where the same
-    wrong test fires. Today >= first date means the season has started,
-    so the real date always wins from then on. Falls back to the real
-    date on any network/parse failure so a bad calendar never breaks a
-    normal mid-season build."""
+
+def resolve_effective_today(default_today):
+    """Off-season guard: if today falls BEFORE the FIRST date of the
+    UPCOMING season's calendar, snap the build window forward to that
+    first date. Fetches the UNDATED scoreboard for the calendar (see
+    get_scoreboard_undated -- a dated request anchors to the completed
+    season and makes every upcoming-date test silently fail). Every
+    branch logs loudly so a silent fallback can never hide a problem
+    again."""
     try:
-        scoreboard = get_scoreboard(default_today.strftime("%Y%m%d"))
+        scoreboard = get_scoreboard_undated()
     except (requests.RequestException, ValueError) as exc:
         log(f"  NOTE: couldn't fetch ESPN calendar ({exc}) -- keeping {default_today} as 'today'.")
         return default_today
 
     all_dates = calendar_game_dates(scoreboard)
     if not all_dates:
-        return default_today  # no calendar published at all
+        log(f"  NOTE: ESPN's scoreboard carries no league calendar -- keeping {default_today} as 'today'.")
+        return default_today
 
-    first_day = all_dates[0]  # sorted ascending -- the season's first date
+    first_day = all_dates[0]  # sorted ascending -- upcoming season's first date
     if default_today >= first_day:
-        return default_today  # season started (live or finished) -- real date wins
+        log(f"  Season underway (calendar starts {first_day}, on/before today) -- keeping {default_today} as 'today'.")
+        return default_today
 
     log(f"  Off-season detected: today is before the season's first calendar date "
         f"({first_day}) -- treating {first_day} as 'today' for this build.")
     return first_day
-
-
+    
 def broadcast_label(event):
     """Join all national broadcast names for a game across all ESPN payload structures."""
     names = []
