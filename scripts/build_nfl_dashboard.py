@@ -35,7 +35,7 @@ import argparse
 import json
 import os
 import sys
-from datetime import datetime, timezone, date
+from datetime import datetime, timezone, date, timedelta
 from zoneinfo import ZoneInfo
 
 import requests
@@ -75,6 +75,14 @@ REQUEST_TIMEOUT = 20
 # moved on to P3/regular season -- season type now comes from ESPN itself,
 # fresh, every run, unless --season-type is explicitly passed.
 SEASON_TYPE_FALLBACK = 1
+
+# How many days AFTER the last stored game's kickoff (the Super Bowl, in
+# practice) to keep showing that game on the board before the off-season
+# guard (resolve_effective_today, below) snaps the board forward to next
+# season's HOF-game preview. Without this grace period the championship
+# would vanish from the board's current-week window the very next day --
+# see resolve_effective_today()'s docstring for the full rationale.
+OFFSEASON_GRACE_DAYS = 7
 
 
 def current_season_year():
@@ -263,20 +271,28 @@ def _extract_season_type(payload):
     return None
 
 
-def get_espn_current_state():
+def get_espn_current_state(as_of_date=None):
     """Ask ESPN what NFL week AND season type (preseason/regular/post)
-    "today" falls under, letting ESPN's own response decide the season
-    type instead of us assuming one.
+    `as_of_date` (default: real today) falls under, letting ESPN's own
+    response decide the season type instead of us assuming one.
 
-    Passing an explicit `dates=YYYYMMDD` for today (with NO seasontype
-    filter) is what makes ESPN resolve BOTH values off the real calendar
-    date, the same way the site itself does -- this is what a season-type
-    transition (e.g. the last preseason week ending and the regular season
-    starting) needs in order to actually be picked up automatically,
-    rather than being stuck on whatever --season-type was pinned to.
+    Passing an explicit `dates=YYYYMMDD` (with NO seasontype filter) is
+    what makes ESPN resolve BOTH values off that calendar date, the same
+    way the site itself does -- this is what a season-type transition
+    (e.g. the last preseason week ending and the regular season starting)
+    needs in order to actually be picked up automatically, rather than
+    being stuck on whatever --season-type was pinned to.
+
+    `as_of_date` lets a caller ask what week/season_type will be current
+    on some OTHER date -- specifically, resolve_effective_today() passes
+    in a future date (next season's HOF-game date) once the off-season
+    grace period has elapsed, so the board can preview the new season
+    before it's actually underway.
+
     Returns (week_number, season_type).
     """
-    today_str = datetime.now(timezone.utc).strftime("%Y%m%d")
+    as_of_date = as_of_date or datetime.now(timezone.utc).date()
+    today_str = as_of_date.strftime("%Y%m%d")
     resp = requests.get(
         ESPN_SCOREBOARD_URL,
         params={"dates": today_str},
@@ -349,15 +365,18 @@ def earliest_unelapsed_stored_week(existing_data):
     return None
 
 
-def resolve_current(existing_data, forced_season_type=None):
+def resolve_current(existing_data, forced_season_type=None, effective_today=None):
     """Figure out which NFL week (and season type) to treat as "current"
     for this build.
 
-    Primary source is ESPN's own answer (get_espn_current_state). On top
-    of that, two safety nets guard against ESPN's answer stalling on an
-    old week (observed happening -- most likely during a multi-day gap
-    between two weeks, when "today" has no games of its own for ESPN to
-    resolve "current" against):
+    Primary source is ESPN's own answer (get_espn_current_state), asked
+    about `effective_today` (default: real today) -- see
+    resolve_effective_today() for when that's a future off-season-preview
+    date rather than the real date. On top of that, three safety nets
+    guard against ESPN's answer stalling on an old week (observed
+    happening -- most likely during a multi-day gap between two weeks,
+    when "today" has no games of its own for ESPN to resolve "current"
+    against):
 
     1. Floor check (earliest_unelapsed_stored_week): if a LATER week is
        already built with games still ahead of us, current is never
@@ -369,16 +388,25 @@ def resolve_current(existing_data, forced_season_type=None):
     2. Anti-regression: current is never allowed to drop below whatever
        current_week this exact season_type was already confirmed at on a
        previous run -- weeks only move forward during a season.
+    3. Elapsed-kickoff bump: if every game in the highest-numbered stored
+       week has already kicked off but ESPN still reports an old week,
+       bump forward -- gated to the SAME season_type as what's already
+       stored, so a postseason-to-preseason transition (where week
+       numbers reset low, e.g. Super Bowl week ~4 vs. preseason week 1)
+       can't misfire and invent a nonsensical "week N" that was never
+       real (this gate is new; the old version compared raw week numbers
+       across season types, which this off-season/grace-period path
+       would otherwise have tripped up).
 
     `forced_season_type`, when given (via --season-type), skips
     auto-detection entirely and only resolves the week for that season
     type -- useful for manually rebuilding an older season type on demand.
     """
     if forced_season_type is not None:
-        espn_week = get_espn_current_week_for(forced_season_type)
+        espn_week = get_espn_current_week_for(forced_season_type, as_of_date=effective_today)
         season_type = forced_season_type
     else:
-        espn_week, season_type = get_espn_current_state()
+        espn_week, season_type = get_espn_current_state(as_of_date=effective_today)
 
     floor_week = earliest_unelapsed_stored_week(existing_data)
     if floor_week is not None and espn_week < floor_week - 1:
@@ -400,7 +428,8 @@ def resolve_current(existing_data, forced_season_type=None):
     highest_week, highest_last_kickoff = highest_stored_week_info(existing_data)
     now = datetime.now(timezone.utc)
     if (highest_week is not None and highest_last_kickoff is not None
-            and highest_last_kickoff < now and espn_week <= highest_week):
+            and highest_last_kickoff < now and espn_week <= highest_week
+            and stored_season_type == season_type):
         fallback_week = highest_week + 1
         log(f"  NOTE: every game in stored week {highest_week} has already kicked off, but ESPN "
             f"still reports week {espn_week} as current -- using week {fallback_week} instead.")
@@ -409,11 +438,12 @@ def resolve_current(existing_data, forced_season_type=None):
     return espn_week, season_type
 
 
-def get_espn_current_week_for(season_type):
+def get_espn_current_week_for(season_type, as_of_date=None):
     """Same as get_espn_current_state(), but for an explicitly-forced
     season type (--season-type was passed) rather than letting ESPN
     auto-detect one. Only the week number is used from this path."""
-    today_str = datetime.now(timezone.utc).strftime("%Y%m%d")
+    as_of_date = as_of_date or datetime.now(timezone.utc).date()
+    today_str = as_of_date.strftime("%Y%m%d")
     resp = requests.get(
         ESPN_SCOREBOARD_URL,
         params={"seasontype": season_type, "dates": today_str},
@@ -423,6 +453,118 @@ def get_espn_current_week_for(season_type):
     week = resp.json().get("week", {}).get("number", 1)
     log(f"ESPN reports current week as {week} for {today_str} (forced season_type {season_type}).")
     return week
+
+
+def get_scoreboard_undated():
+    """Fetch ESPN's default (undated) scoreboard. CRITICAL difference vs.
+    a dated request: a DATED request for a dead off-season date makes
+    ESPN anchor the whole response to the just-COMPLETED season -- its
+    leagues[].calendar then lists only PAST dates (the season that just
+    ended). The UNDATED request instead snaps forward to the next season
+    and ships ITS calendar -- which is the only place next season's first
+    date (the HOF game) exists before that season is underway. See
+    resolve_effective_today(), the only caller."""
+    resp = requests.get(
+        ESPN_SCOREBOARD_URL,
+        params={"limit": 100},
+        timeout=REQUEST_TIMEOUT,
+    )
+    resp.raise_for_status()
+    return resp.json()
+
+
+def calendar_game_dates(scoreboard):
+    """Every scheduled game date on the scoreboard payload's
+    leagues[].calendar array, as date objects -- the FIRST entry (sorted
+    ascending) is that calendar's season-opening date (the HOF game, for
+    an upcoming-season payload). Parses only the leading YYYY-MM-DD (the
+    stamps are midnight ET, so the date component IS the game date -- no
+    timezone conversion wanted, same reasoning as the MLB/NBA/NCAAMB
+    builders' own calendar_game_dates())."""
+    dates = []
+    for league in scoreboard.get("leagues") or []:
+        for entry in league.get("calendar") or []:
+            if isinstance(entry, str) and len(entry) >= 10:
+                try:
+                    dates.append(date.fromisoformat(entry[:10]))
+                except ValueError:
+                    continue
+        if dates:
+            break
+    return sorted(set(dates))
+
+
+def latest_kickoff_overall(existing_data):
+    """The single latest kickoff (UTC) among EVERY game currently stored,
+    across every week and season_type -- unlike highest_stored_week_info()
+    below (which only looks at whichever week has the highest raw `week`
+    number), this doesn't get confused by postseason week numbers
+    resetting low (wild card = 1, Super Bowl = 4-ish) well below the
+    regular season's own week 18. Used to anchor the off-season grace
+    period on the actual last game played (the championship), not on
+    whichever stored week happens to have the highest number."""
+    latest = None
+    for w in (existing_data or {}).get("weeks", []):
+        for day in w.get("days", []):
+            for slot in day.get("time_slots", []):
+                for g in slot.get("games", []):
+                    raw = g.get("start_time")
+                    if not raw:
+                        continue
+                    try:
+                        kickoff = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+                    except ValueError:
+                        continue
+                    if latest is None or kickoff > latest:
+                        latest = kickoff
+    return latest
+
+
+def resolve_effective_today(default_today, existing_data):
+    """Off-season guard WITH a grace period: once the season is truly
+    over, keep the board's "today" pinned at the real date -- so the
+    just-finished championship keeps showing via resolve_current()'s own
+    anti-regression check -- for OFFSEASON_GRACE_DAYS after the
+    championship's kickoff. Only once that grace period elapses does
+    "today" get snapped forward to next season's HOF-game date, so the
+    board previews the new season instead of sitting on stale playoff
+    weeks (or an empty week+1) for months.
+
+    Without this function at all, NFL had no off-season handling -- it
+    relied entirely on ESPN's own `dates=today` answer, which is
+    unverified for deep off-season dates. Without the grace period
+    specifically, the championship would vanish from the board's
+    current-week window the very day after it's played, since "today"
+    would already be before next season's first date.
+    """
+    last_kickoff = latest_kickoff_overall(existing_data)
+    if last_kickoff is not None:
+        grace_until = last_kickoff + timedelta(days=OFFSEASON_GRACE_DAYS)
+        now_utc = datetime.now(timezone.utc)
+        if now_utc < grace_until:
+            log(f"  Championship grace period active (last kickoff {last_kickoff.isoformat()}, "
+                f"holding until {grace_until.isoformat()}) -- keeping {default_today} as 'today'.")
+            return default_today
+
+    try:
+        scoreboard = get_scoreboard_undated()
+    except (requests.RequestException, ValueError) as exc:
+        log(f"  NOTE: couldn't fetch ESPN calendar ({exc}) -- keeping {default_today} as 'today'.")
+        return default_today
+
+    all_dates = calendar_game_dates(scoreboard)
+    if not all_dates:
+        log(f"  NOTE: ESPN's scoreboard carries no league calendar -- keeping {default_today} as 'today'.")
+        return default_today
+
+    first_day = all_dates[0]  # sorted ascending -- next season's HOF-game date
+    if default_today >= first_day:
+        log(f"  Season underway (calendar starts {first_day}, on/before today) -- keeping {default_today} as 'today'.")
+        return default_today
+
+    log(f"  Off-season detected (grace period elapsed): today is before next season's "
+        f"first calendar date ({first_day}) -- previewing {first_day} as 'today' for this build.")
+    return first_day
 
 
 # ---------------------------------------------------------------------------
@@ -672,9 +814,22 @@ def main():
 
     existing_data = load_existing_dashboard(out_path)
 
+    # Off-season guard (skipped when --week forces a specific week): if the
+    # championship's grace period has elapsed and today is still before
+    # next season's HOF game, "today" gets moved forward to that date so
+    # the board previews the new season instead of sitting on a stale/
+    # empty week. During the season (or during the grace period right
+    # after the championship) this is always a no-op -- see
+    # resolve_effective_today().
+    effective_today = None
+    if week is None:
+        real_today = datetime.now(timezone.utc).date()
+        effective_today = resolve_effective_today(real_today, existing_data)
+
     season_type = args.season_type
     if week is None:
-        week, season_type = resolve_current(existing_data, forced_season_type=args.season_type)
+        week, season_type = resolve_current(existing_data, forced_season_type=args.season_type,
+                                             effective_today=effective_today)
     elif season_type is None:
         # An explicit --week with no --season-type: still need SOME season
         # type to build with -- ask ESPN what's current rather than

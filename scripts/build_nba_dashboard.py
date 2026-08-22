@@ -77,6 +77,14 @@ REQUEST_TIMEOUT = 20
 
 NUM_DAYS_DEFAULT = 3  # "yesterday" + "today" + "tomorrow", same window MLB uses.
 
+# How many days AFTER the last stored game's kickoff (the Finals finale,
+# in practice) to keep the board centered on real "today" before the
+# off-season guard (resolve_effective_today, below) snaps it forward to
+# next season's opening-night preview. Without this grace period the
+# Finals finale would vanish from the board's yesterday/today/tomorrow
+# window the very next day -- see resolve_effective_today()'s docstring.
+OFFSEASON_GRACE_DAYS = 7
+
 # A team with no games played yet gets this win-rank value -- one worse
 # than the worst possible real rank (30 teams in the NBA) -- so it never
 # outranks a team that actually has a record, same convention as
@@ -173,14 +181,49 @@ def get_scoreboard_undated():
     return resp.json()
 
 
-def resolve_effective_today(default_today):
-    """Off-season guard: if today falls BEFORE the FIRST date of the
-    UPCOMING season's calendar, snap the build window forward to that
-    first date. Fetches the UNDATED scoreboard for the calendar (see
-    get_scoreboard_undated -- a dated request anchors to the completed
-    season and makes every upcoming-date test silently fail). Every
-    branch logs loudly so a silent fallback can never hide a problem
-    again."""
+def latest_kickoff_overall(existing_data):
+    """The single latest game start time (UTC) among EVERY game currently
+    stored, across every day -- used to anchor the off-season grace
+    period on the actual last game played (the Finals finale), not on
+    whatever day happens to be labeled highest."""
+    latest = None
+    for w in (existing_data or {}).get("weeks", []):
+        for day in w.get("days", []):
+            for slot in day.get("time_slots", []):
+                for g in slot.get("games", []):
+                    raw = g.get("start_time")
+                    if not raw:
+                        continue
+                    try:
+                        kickoff = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+                    except ValueError:
+                        continue
+                    if latest is None or kickoff > latest:
+                        latest = kickoff
+    return latest
+
+
+def resolve_effective_today(default_today, existing_data=None):
+    """Off-season guard WITH a grace period: once the season is truly
+    over, keep the build window centered on the real "today" -- so the
+    Finals finale keeps showing in the yesterday/today/tomorrow window --
+    for OFFSEASON_GRACE_DAYS after its last kickoff. Only once that grace
+    period elapses does "today" get snapped forward to next season's
+    opening night, so the board previews the new season instead of
+    drifting through months of empty days. Fetches the UNDATED
+    scoreboard for the calendar (see get_scoreboard_undated -- a dated
+    request anchors to the completed season and makes every
+    upcoming-date test silently fail). Every branch logs loudly so a
+    silent fallback can never hide a problem again."""
+    last_kickoff = latest_kickoff_overall(existing_data)
+    if last_kickoff is not None:
+        grace_until = last_kickoff + timedelta(days=OFFSEASON_GRACE_DAYS)
+        now_utc = datetime.now(timezone.utc)
+        if now_utc < grace_until:
+            log(f"  Season-finale grace period active (last kickoff {last_kickoff.isoformat()}, "
+                f"holding until {grace_until.isoformat()}) -- keeping {default_today} as 'today'.")
+            return default_today
+
     try:
         scoreboard = get_scoreboard_undated()
     except (requests.RequestException, ValueError) as exc:
@@ -197,8 +240,8 @@ def resolve_effective_today(default_today):
         log(f"  Season underway (calendar starts {first_day}, on/before today) -- keeping {default_today} as 'today'.")
         return default_today
 
-    log(f"  Off-season detected: today is before the season's first calendar date "
-        f"({first_day}) -- treating {first_day} as 'today' for this build.")
+    log(f"  Off-season detected (grace period elapsed): today is before the season's first "
+        f"calendar date ({first_day}) -- previewing {first_day} as 'today' for this build.")
     return first_day
     
 def broadcast_label(event):
@@ -483,12 +526,6 @@ def main():
     start_date = date.fromisoformat(args.start_date) if args.start_date else None
     resolved_today = start_date or datetime.now(ZoneInfo(DISPLAY_TIMEZONE)).date()
 
-    # Off-season clamp (skipped when --start-date forces a date): if ESPN's
-    # calendar says nothing happens until some future opening date, build
-    # around THAT date so the board shows the opener instead of blank.
-    if start_date is None:
-        resolved_today = resolve_effective_today(resolved_today)
-
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "nba_dashboard.json")
     out_path = os.path.abspath(out_path)
@@ -496,6 +533,14 @@ def main():
     scores_path = os.path.abspath(scores_path)
 
     existing_data = load_existing_dashboard(out_path)
+
+    # Off-season clamp (skipped when --start-date forces a date): if ESPN's
+    # calendar says nothing happens until some future opening date (and the
+    # grace period past the Finals finale has elapsed), build around THAT
+    # date so the board shows the opener instead of blank.
+    if start_date is None:
+        resolved_today = resolve_effective_today(resolved_today, existing_data)
+
     previous_odds_by_id = load_previous_odds_by_game(out_path)
     if previous_odds_by_id:
         log(f"Loaded odds for {len(previous_odds_by_id)} game(s) from the previous build "

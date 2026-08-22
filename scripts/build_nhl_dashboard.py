@@ -1,48 +1,62 @@
 #!/usr/bin/env python3
 """
-MLB Betting Dashboard builder.
+NHL Betting Dashboard builder.
 
-Pulls the day's schedule + broadcast + probable starting pitchers from
-ESPN's public (unofficial, no-key-required) baseball scoreboard API, then
-attaches DraftKings / FanDuel run-line (spread) + moneyline odds from
-SharpAPI (via common.py). Exports everything to data/mlb_dashboard.json
-for the static mlb.html front-end.
+Pulls the day's schedule + broadcast + team records from ESPN's public
+(unofficial, no-key-required) hockey scoreboard API, then attaches
+DraftKings / FanDuel puck-line (spread) + moneyline odds from SharpAPI
+(via common.py). Exports everything to data/nhl_dashboard.json for the
+static nhl.html front-end.
 
-MLB plays every day (no bye weeks, no single "week N" concept), so unlike
-build_dashboard.py (CFB) / build_nfl_dashboard.py (NFL) this script moves
-one day at a time instead of one week at a time. To reuse the exact same
-JSON shape and front-end/merge code those two already have (weeks -> days
--> time_slots -> games), each "week" entry in mlb_dashboard.json actually
-holds exactly one calendar day, and the "week" number is that day's date
-as an integer (YYYYMMDD, e.g. 20260815) rather than a real week number.
-common.py's merge_weeks() and picks-store.js's filter/record helpers all
-key off that same "week" field, so they work unchanged -- they just end
-up merging/filtering by day instead of by week for MLB. mlb.html and
-picks.html know to format that "week" number back into a date rather
-than a "Week N" label (see formatMlbDayLabel() in picks-store.js).
+Like MLB/NBA, the NHL plays most days of the week (no real "week N"
+concept during the regular season), so this script -- like
+build_mlb_dashboard.py / build_nba_dashboard.py -- moves one calendar day
+at a time instead of one week at a time. To reuse the exact same JSON
+shape and front-end/merge code CFB/NFL/MLB/NBA/NCAAMB already share
+(weeks -> days -> time_slots -> games), each "week" entry in
+nhl_dashboard.json actually holds exactly one calendar day, and the
+"week" number is that day's date as an integer (YYYYMMDD) rather than a
+real week number. See build_mlb_dashboard.py's own module docstring for
+the full rationale -- this script follows it exactly.
+
+The puck line (NHL's version of a point spread) is, like MLB's run line,
+almost always fixed at +/-1.5 goals and doesn't discriminate between
+games the way a football point spread does -- so, like build_mlb_
+dashboard.py, the matchup score here is combined win rank ONLY, no
+spread blending (unlike build_nba_dashboard.py, whose spread genuinely
+varies game to game and IS blended in).
+
+NHL records come back from ESPN as a three-part "W-L-OTL" summary (wins-
+losses-overtime losses), not the two-part "W-L" NBA/MLB use -- an
+overtime/shootout loss still earns a point in the standings, so ranking
+teams by raw win percentage alone (ignoring OTL entirely) would
+understate a team that's lost several close overtime games. This script
+instead ranks by standings POINTS percentage (2 pts per win, 1 pt per
+OTL, out of 2 pts possible per game), same as the NHL's own standings
+formula -- see build_win_rank_lookup() below.
+
+NOTE ON SHARPAPI'S NHL MARKET NAME: SharpAPI's spread-equivalent market
+is called "run_line" for MLB and "point_spread" for football; this
+script assumes NHL's is "puck_line" by analogy (added to common.py's
+_SPREAD_MARKET_ALIASES), since there was no network access to SharpAPI
+itself while writing this. If the spread column comes back empty on the
+very first real run, check the raw market_type strings in a
+fetch_all_odds(league="nhl") response and fix that mapping in common.py.
 
 Off-season handling: if today falls BEFORE the first date on ESPN's
-calendar (leagues[].calendar), the build window snaps forward to that
-first game date -- so as soon as ESPN publishes the next season's
-calendar, the board centers on its first day instead of sitting blank
-from the final out of the World Series until the eve of the new slate.
-The check is against the season's FIRST calendar date only (never "the
-next upcoming date"), since MLB's calendar is sparse and its remaining
-future entries mid-season are postseason dates. See
-resolve_effective_today() below.
-
-The run line (MLB's version of a point spread) is almost always fixed at
-+/-1.5 runs -- SharpAPI's own posted spread line is used as-is rather
-than hardcoded, since alternate run lines do occasionally appear, but
-+/-1.5 is what you should expect to see on nearly every game.
+calendar (leagues[].calendar), the build window stays centered on real
+"today" (so the Stanley Cup Final finale keeps showing) for
+OFFSEASON_GRACE_DAYS after its last kickoff, then snaps forward to that
+first game date -- so the board previews next season's opener instead of
+sitting blank for months. See resolve_effective_today() below.
 
 Env vars required:
     SHARPAPI_KEY - key from https://sharpapi.io
     (no key needed for ESPN's public scoreboard endpoint)
 
 Usage:
-    python scripts/build_mlb_dashboard.py
-    python scripts/build_mlb_dashboard.py --start-date 2026-08-15 --num-days 2
+    python scripts/build_nhl_dashboard.py
+    python scripts/build_nhl_dashboard.py --start-date 2026-11-15 --num-days 2
 """
 
 import argparse
@@ -76,28 +90,25 @@ from gemini_predictions import attach_gemini_predictions
 # Config
 # ---------------------------------------------------------------------------
 
-ESPN_MLB_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard"
+ESPN_NHL_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard"
 REQUEST_TIMEOUT = 20
 
-NUM_DAYS_DEFAULT = 3  # "yesterday" + "today" + "tomorrow" -- baseball plays
-                       # daily, so unlike NFL/CFB's 2 weeks this shows one
-                       # day back (so last night's final scores are still
-                       # visible after they wrap up) through one day ahead.
+NUM_DAYS_DEFAULT = 3  # "yesterday" + "today" + "tomorrow", same window MLB/NBA use.
 
-# How many days AFTER the last stored game's kickoff (the World Series
-# finale, in practice) to keep the board centered on real "today" before
-# the off-season guard (resolve_effective_today, below) snaps it forward
-# to next season's Opening Day preview. Without this grace period the
-# World Series finale would vanish from the board's yesterday/today/
-# tomorrow window the very next day -- see resolve_effective_today()'s
+# How many days AFTER the last stored game's kickoff (the Stanley Cup
+# Final finale, in practice) to keep the board centered on real "today"
+# before the off-season guard (resolve_effective_today, below) snaps it
+# forward to next season's opening-night preview. Without this grace
+# period the Final's finale would vanish from the board's yesterday/
+# today/tomorrow window the very next day -- see resolve_effective_today()'s
 # docstring for the full rationale.
 OFFSEASON_GRACE_DAYS = 7
 
 # A team with no games played yet gets this win-rank value -- one worse
-# than the worst possible real rank (30 teams in MLB) -- so it never
-# outranks a team that actually has a record, same convention as NFL's
-# UNRANKED_WIN_RANK / CFB's unranked-AP-poll rank.
-UNRANKED_WIN_RANK = 31
+# than the worst possible real rank (32 teams in the NHL) -- so it never
+# outranks a team that actually has a record, same convention as
+# NFL/MLB/NBA/NCAAF's own "unranked" win-rank values.
+UNRANKED_WIN_RANK = 33
 
 
 # ---------------------------------------------------------------------------
@@ -105,16 +116,21 @@ UNRANKED_WIN_RANK = 31
 # ---------------------------------------------------------------------------
 
 def get_scoreboard(date_str):
-    """Fetch one day's scoreboard. Unlike the NBA endpoint, MLB's does
-    NOT silently snap forward to the next date with games when the
-    requested date has none -- it simply returns an empty events list
-    (verified live: a mid-winter date comes back with "events": [] and
-    no `day` field at all). That means off-season/zero-game days need no
-    echo guard here, and the two neighboring days around an off-season-
-    clamped build window correctly come back as honest zero-game days."""
+    """Fetch one day's scoreboard. Matches build_mlb_dashboard.py's own
+    get_scoreboard(): unverified live for NHL specifically (no network
+    access to ESPN's hockey endpoint while writing this), but ESPN's
+    scoreboard endpoints are one shared implementation across sports, and
+    MLB's confirmed behavior is to return an honest empty "events": []
+    for a date with no games rather than silently snapping forward to
+    the next date that has one (unlike the NBA endpoint, which DOES snap
+    forward -- see build_nba_dashboard.py's own get_scoreboard()). Worth
+    a quick sanity check against a real off-season date on the first live
+    run; if NHL's endpoint turns out to behave like the NBA one instead,
+    port that function's "returned date doesn't match requested date"
+    guard over here too."""
     resp = requests.get(
-        ESPN_MLB_SCOREBOARD_URL,
-        params={"dates": date_str, "limit": 200},
+        ESPN_NHL_SCOREBOARD_URL,
+        params={"dates": date_str, "limit": 100},
         timeout=REQUEST_TIMEOUT,
     )
     resp.raise_for_status()
@@ -123,16 +139,10 @@ def get_scoreboard(date_str):
 
 def calendar_game_dates(scoreboard):
     """Every date listed in the scoreboard payload's leagues[].calendar
-    array, as date objects. NOTE: unlike the NBA's calendar (which lists
-    literally every game day), MLB's calendar is SPARSE -- it carries
-    only the special dates: the season's first day (spring training
-    opener), the All-Star break, and the postseason through the World
-    Series (e.g. 2026's runs 2026-02-19 -> 2026-11-12 across ~20
-    entries). The FIRST entry is exactly the anchor the off-season clamp
-    wants: day one of anything scheduled. Parse only the leading
-    YYYY-MM-DD: the stamps are midnight ET, so the date component IS the
-    game date (no timezone conversion wanted -- converting would shift
-    late-night ET stamps back a day for Pacific viewers)."""
+    array, as date objects. Parses only the leading YYYY-MM-DD: the
+    stamps are midnight ET, so the date component IS the game date (no
+    timezone conversion wanted -- converting would shift late-night ET
+    stamps back a day for Pacific viewers)."""
     dates = []
     for league in scoreboard.get("leagues") or []:
         for entry in league.get("calendar") or []:
@@ -150,17 +160,14 @@ def get_scoreboard_undated():
     """Fetch the default (undated) scoreboard. CRITICAL difference vs.
     get_scoreboard(): a DATED request for a dead off-season date makes
     ESPN anchor the whole response to the previously COMPLETED season --
-    its leagues[].calendar then lists only PAST dates (MLB's sparse
-    calendar: once the 2026 World Series date passes, a dated request
-    returns the finished 2026 calendar ending 2026-11-12, events []). The
-    UNDATED request instead snaps forward to the next game day and ships
-    the UPCOMING season's calendar -- which is the only place the next
+    its leagues[].calendar then lists only PAST dates. The UNDATED
+    request instead snaps forward to the next game day and ships the
+    UPCOMING season's calendar -- which is the only place the next
     season's first date exists. The off-season resolver therefore reads
-    THIS payload, never the dated one. (limit=200 matches the dated
-    call's limit for consistency.)"""
+    THIS payload, never the dated one."""
     resp = requests.get(
-        ESPN_MLB_SCOREBOARD_URL,
-        params={"limit": 200},
+        ESPN_NHL_SCOREBOARD_URL,
+        params={"limit": 100},
         timeout=REQUEST_TIMEOUT,
     )
     resp.raise_for_status()
@@ -170,8 +177,8 @@ def get_scoreboard_undated():
 def latest_kickoff_overall(existing_data):
     """The single latest game start time (UTC) among EVERY game currently
     stored, across every day -- used to anchor the off-season grace
-    period on the actual last game played (the World Series finale), not
-    on whatever day happens to be labeled highest."""
+    period on the actual last game played (the Stanley Cup Final
+    finale), not on whatever day happens to be labeled highest."""
     latest = None
     for w in (existing_data or {}).get("weeks", []):
         for day in w.get("days", []):
@@ -192,15 +199,15 @@ def latest_kickoff_overall(existing_data):
 def resolve_effective_today(default_today, existing_data=None):
     """Off-season guard WITH a grace period: once the season is truly
     over, keep the build window centered on the real "today" -- so the
-    World Series finale keeps showing in the yesterday/today/tomorrow
-    window -- for OFFSEASON_GRACE_DAYS after its last kickoff. Only once
-    that grace period elapses does "today" get snapped forward to next
-    season's Opening Day, so the board previews the new season instead of
-    drifting through months of empty days. Fetches the UNDATED scoreboard
-    for the calendar (see get_scoreboard_undated -- a dated request
-    anchors to the completed season and makes every upcoming-date test
-    silently fail). Every branch logs loudly so a silent fallback can
-    never hide a problem again."""
+    Stanley Cup Final finale keeps showing in the yesterday/today/
+    tomorrow window -- for OFFSEASON_GRACE_DAYS after its last kickoff.
+    Only once that grace period elapses does "today" get snapped forward
+    to next season's opening night, so the board previews the new season
+    instead of drifting through months of empty days. Fetches the
+    UNDATED scoreboard for the calendar (see get_scoreboard_undated -- a
+    dated request anchors to the completed season and makes every
+    upcoming-date test silently fail). Every branch logs loudly so a
+    silent fallback can never hide a problem again."""
     last_kickoff = latest_kickoff_overall(existing_data)
     if last_kickoff is not None:
         grace_until = last_kickoff + timedelta(days=OFFSEASON_GRACE_DAYS)
@@ -229,7 +236,8 @@ def resolve_effective_today(default_today, existing_data=None):
     log(f"  Off-season detected (grace period elapsed): today is before the season's first "
         f"calendar date ({first_day}) -- previewing {first_day} as 'today' for this build.")
     return first_day
-    
+
+
 def broadcast_label(event):
     """Join all national broadcast names for a game across all ESPN payload structures."""
     names = []
@@ -253,16 +261,19 @@ def broadcast_label(event):
         if short and short not in names:
             names.append(short)
 
-    # ", " instead of "/" between multiple networks -- "/" was wrapping
-    # awkwardly inside the TV pill and reading as a fraction/path rather
-    # than a list.
     return ", ".join(names) if names else "TBD"
 
 
 def _parse_espn_record(competitor):
-    """Extract (wins, losses, summary) from an ESPN scoreboard competitor's
-    `records` list, or (None, None, None) if no overall record is present
-    yet (e.g. before Opening Day)."""
+    """Extract (wins, losses, otl, summary) from an ESPN scoreboard
+    competitor's `records` list, or (None, None, None, None) if no
+    overall record is present yet (e.g. before opening night).
+
+    NHL's summary is three-part ("21-14-5", wins-losses-OTL) once a team
+    has at least one overtime/shootout loss on the books, but early in
+    the season (or for a team that hasn't lost in OT/SO yet) it can come
+    back as plain two-part "W-L" -- handle both rather than assuming a
+    fixed part count."""
     for rec in competitor.get("records", []):
         if rec.get("type") == "total" or rec.get("name") == "overall":
             summary = rec.get("summary")
@@ -271,69 +282,38 @@ def _parse_espn_record(competitor):
             parts = summary.split("-")
             try:
                 wins, losses = int(parts[0]), int(parts[1])
-                return wins, losses, summary
+                otl = int(parts[2]) if len(parts) > 2 else 0
+                return wins, losses, otl, summary
             except (ValueError, IndexError):
-                return None, None, summary
-    return None, None, None
-
-
-def _probable_pitcher(competitor):
-    """Return "K. Bradish (7-11, 3.69)" for a home/away competitor dict, or
-    None if no probable pitcher is posted yet (common more than a day or
-    two out).
-
-    `probables` lives directly on each COMPETITOR (home/away), not on the
-    competition object as a whole, and holds one entry for that
-    competitor's own starter: `{"name": "probableStartingPitcher",
-    "athlete": {...}, "record": "(7-1, 1.71)"}`. An earlier version of
-    this looked for `comp["probables"]` (competition-level) and tried to
-    match entries back to a team by id -- that key never existed at all in
-    the real payload (confirmed against an actual ESPN scoreboard dump),
-    which is why pitchers never showed up; since each competitor's own
-    probable is already scoped to that team, no id matching is needed.
-    """
-    probables = competitor.get("probables") or []
-    if not probables:
-        return None
-    p = probables[0]
-    athlete = p.get("athlete") or {}
-    name = athlete.get("shortName") or athlete.get("displayName") or athlete.get("fullName")
-    if not name:
-        return None
-    record = p.get("record")  # e.g. "(7-1, 1.71)"
-    return f"{name} {record}" if record else name
+                return None, None, None, summary
+    return None, None, None, None
 
 
 # ---------------------------------------------------------------------------
-# Odds helpers (same shape as NFL's)
-# ---------------------------------------------------------------------------
-
-def _dk_home_spread(odds):
-    return odds.get("draftkings", {}).get("spread", {}).get("home", {}).get("line")
-
-
-def _fd_home_spread(odds):
-    return odds.get("fanduel", {}).get("spread", {}).get("home", {}).get("line")
-
-
-# ---------------------------------------------------------------------------
-# Matchup ranking -- combined win count only (no spread blending for MLB;
-# the run line is nearly always a fixed +/-1.5, so it doesn't discriminate
-# between games the way a point spread does for football).
+# Matchup ranking -- standings-points rank only (no spread blending; like
+# MLB's run line, the NHL puck line is nearly always a fixed +/-1.5 and
+# doesn't discriminate between games the way a football point spread does).
 # ---------------------------------------------------------------------------
 
 def build_win_rank_lookup(team_records):
-    """Rank every team with a known record by win percentage (rank 1 =
-    best record on the board). Ties broken by raw win total, then by team
-    name for a stable, deterministic order. `team_records` is
-    {team_name: (wins, losses)}. Returns {team_name: rank}."""
+    """Rank every team with a known record by NHL standings points
+    percentage (2 pts per win, 1 pt per OTL, out of 2 possible per game
+    played) -- rank 1 = best points percentage on the board. This is the
+    NHL's own standings formula, and matters here specifically because a
+    team with several close overtime losses banks real points for them;
+    ranking by raw win percentage alone (ignoring OTL) would understate
+    that team relative to one with the same win total but more regulation
+    losses. Ties broken by raw point total, then by team name for a
+    stable, deterministic order. `team_records` is {team_name: (wins,
+    losses, otl)}. Returns {team_name: rank}."""
     entries = []
-    for team, (wins, losses) in team_records.items():
-        games_played = wins + losses
-        pct = wins / games_played if games_played else -1
-        entries.append((team, pct, wins, team))
+    for team, (wins, losses, otl) in team_records.items():
+        games_played = wins + losses + otl
+        points = 2 * wins + otl
+        pct = points / (2 * games_played) if games_played else -1
+        entries.append((team, pct, points, team))
     entries.sort(key=lambda e: (-e[1], -e[2], e[3]))
-    return {team: i + 1 for i, (team, pct, wins, _) in enumerate(entries)}
+    return {team: i + 1 for i, (team, pct, points, _) in enumerate(entries)}
 
 
 # ---------------------------------------------------------------------------
@@ -344,28 +324,20 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None,
               previous_entries_by_id=None, started_game_ids=None):
     """Build a single day's worth of games. Returns a "week"-shaped dict
     (week=YYYYMMDD int, days=[<this single day>]) so it slots into the
-    same merge_weeks()/front-end code the NFL/CFB dashboards use."""
+    same merge_weeks()/front-end code the other dashboards use."""
     date_str = day.strftime("%Y%m%d")
-    log(f"Fetching MLB schedule for {date_str}...")
+    log(f"Fetching NHL schedule for {date_str}...")
     scoreboard = get_scoreboard(date_str)
     events = scoreboard.get("events", [])
     log(f"  {len(events)} games")
 
-    log("Fetching DraftKings/FanDuel MLB odds from SharpAPI...")
-    # SharpAPI's spread-equivalent market for baseball is called
-    # "run_line", not "spread"/"point_spread" (those are the football
-    # names) -- requesting "spread" here returned zero rows for MLB, which
-    # is why the board's spread/run-line column was always empty. See
-    # common.py's _SPREAD_MARKET_ALIASES, which maps "run_line" back to
-    # our internal "spread" bucket once the rows come back.
-    # date_from/date_to scope the request to just this one day -- without
-    # them SharpAPI returns everything currently posted across every date
-    # (thousands of rows on a busy day, per-player prop markets included),
-    # relying entirely on this script's own pagination to walk through all
-    # of it; narrowing server-side means fewer pages and less exposure to
-    # any pagination edge case cutting a page short.
+    log("Fetching DraftKings/FanDuel NHL odds from SharpAPI...")
+    # SharpAPI's spread-equivalent market for hockey is assumed to be
+    # called "puck_line" (see this module's docstring for why that's
+    # unconfirmed) -- see common.py's _SPREAD_MARKET_ALIASES, which maps
+    # it back to our internal "spread" bucket once the rows come back.
     day_str = day.isoformat()
-    odds_rows = fetch_all_odds(sharp_key, league="mlb", markets=("run_line", "moneyline"),
+    odds_rows = fetch_all_odds(sharp_key, league="nhl", markets=("puck_line", "moneyline"),
                                 date_from=day_str, date_to=day_str)
     log(f"  {len(odds_rows)} odds rows returned")
     team_cache = {}
@@ -373,7 +345,7 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None,
 
     slots = {}  # slot_name -> list of game entries
     all_games = []
-    team_records = {}  # {team_name: (wins, losses)}
+    team_records = {}  # {team_name: (wins, losses, otl)}
     started_game_ids = started_game_ids or set()
     previous_entries_by_id = previous_entries_by_id or {}
     frozen_prediction_skip_ids = set()  # passed to attach_gemini_predictions below
@@ -396,25 +368,19 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None,
             start_dt_utc = datetime.fromisoformat(start_raw.replace("Z", "+00:00"))
         except (TypeError, ValueError):
             continue
-        status = event.get("status", {}).get("type", {})
         is_tbd = "TBD" in (event.get("shortName") or "")
         local_dt = start_dt_utc.astimezone(ZoneInfo(DISPLAY_TIMEZONE))
         slot = time_slot_for(local_dt, is_tbd)
 
         home_team = home["team"]["displayName"]
         away_team = away["team"]["displayName"]
-        home_id = home["team"].get("id")
-        away_id = away["team"].get("id")
 
-        home_wins, home_losses, home_record = _parse_espn_record(home)
-        away_wins, away_losses, away_record = _parse_espn_record(away)
+        home_wins, home_losses, home_otl, home_record = _parse_espn_record(home)
+        away_wins, away_losses, away_otl, away_record = _parse_espn_record(away)
         if home_wins is not None:
-            team_records[home_team] = (home_wins, home_losses)
+            team_records[home_team] = (home_wins, home_losses, home_otl)
         if away_wins is not None:
-            team_records[away_team] = (away_wins, away_losses)
-
-        home_pitcher = _probable_pitcher(home)
-        away_pitcher = _probable_pitcher(away)
+            team_records[away_team] = (away_wins, away_losses, away_otl)
 
         game_id = event.get("id")
         gid_str = str(game_id)
@@ -442,12 +408,10 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None,
             "home_team": home_team,
             "home_abbr": home["team"].get("abbreviation"),
             "home_record": home_record,
-            "home_pitcher": home_pitcher,
             "away_team": away_team,
             "away_abbr": away["team"].get("abbreviation"),
             "away_record": away_record,
-            "away_pitcher": away_pitcher,
-            "matchup_score": None,  # filled in below, once every team's win rank is known
+            "matchup_score": None,  # filled in below, once every team's points rank is known
             "channel": outlet,
             "venue": comp.get("venue", {}).get("fullName"),
             "neutral_site": comp.get("neutralSite", False),
@@ -458,11 +422,12 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None,
         slots.setdefault(slot, []).append(game_entry)
         all_games.append(game_entry)
 
-    # Rank every team on the board by today's win percentage (rank 1 = best
-    # record), then use each game's combined win rank (lower = better/more
-    # marquee matchup) as the matchup score -- no spread blending, since the
-    # MLB run line is nearly always a fixed +/-1.5 and doesn't discriminate
-    # between games the way a football point spread does.
+    # Rank every team on the board by today's standings points percentage
+    # (rank 1 = best), then use each game's combined points rank (lower =
+    # better/more marquee matchup) as the matchup score -- no spread
+    # blending, since the NHL puck line is nearly always a fixed +/-1.5
+    # and doesn't discriminate between games the way a football point
+    # spread does.
     win_rank_lookup = build_win_rank_lookup(team_records)
     win_components = []
     for g in all_games:
@@ -476,12 +441,12 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None,
     for g, wn in zip(all_games, win_norm):
         g["matchup_score"] = round(100 * wn, 1)
 
-    # Rank spans the WHOLE DAY (e.g. 1-16 across a full 16-game slate),
-    # not just whichever time slot a game lands in -- computed here, once
-    # per day, before games get split up into time_slots below.
+    # Rank spans the WHOLE DAY, not just whichever time slot a game lands
+    # in -- computed here, once per day, before games get split up into
+    # time_slots below.
     assign_matchup_ranks(all_games)
 
-    attach_gemini_predictions(all_games, sport="mlb", season=day.year,
+    attach_gemini_predictions(all_games, sport="nhl", season=day.year,
                                week=day.isoformat(), gemini_key=gemini_key,
                                skip_ids=frozen_prediction_skip_ids)
 
@@ -496,7 +461,7 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None,
         time_slots.append({
             "slot": slot_name,
             "best_matchup_score": best_score,
-            "pick_reason": "combined_wins" if games_sorted else None,
+            "pick_reason": "combined_points" if games_sorted else None,
             "games": games_sorted,
         })
 
@@ -519,21 +484,10 @@ def build(sharp_key, gemini_key=None, start_date=None, num_days=NUM_DAYS_DEFAULT
           previous_entries_by_id=None, started_game_ids=None):
     """Build `num_days` consecutive calendar days centered on `start_date`
     (default: today, in DISPLAY_TIMEZONE) and wrap them into the full
-    output payload, "week"-shaped the same way NFL/CFB are.
-
-    `start_date` itself always means "today" to the caller (main() below
-    records it as current_week) -- with the default num_days=3 the actual
-    build window starts one day BEFORE it (so yesterday's final scores are
-    still on the board) and runs through one day after.
-    """
+    output payload, "week"-shaped the same way CFB/NFL/MLB/NBA are."""
     if start_date is None:
         start_date = datetime.now(ZoneInfo(DISPLAY_TIMEZONE)).date()
 
-    # Center the window on start_date rather than starting AT it -- with
-    # num_days=3 that's [start_date - 1, start_date, start_date + 1]; with
-    # an odd override it's still centered, and with an even override it
-    # leans one extra day into the future (matches "yesterday today
-    # tomorrow" reading naturally for the default case).
     window_start = start_date - timedelta(days=(num_days - 1) // 2)
 
     days_out = []
@@ -544,18 +498,18 @@ def build(sharp_key, gemini_key=None, start_date=None, num_days=NUM_DAYS_DEFAULT
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "season": start_date.year,
+        "season": start_date.year if start_date.month >= 9 else start_date.year - 1,
         "display_timezone": DISPLAY_TIMEZONE,
         "weeks": days_out,
     }
 
 
 def parse_args():
-    p = argparse.ArgumentParser(description="Build the MLB betting dashboard JSON.")
-    p.add_argument("--start-date", default=None, help="The 'today' date to center the build window on, YYYY-MM-DD (default: today, or the season's first calendar date during the off-season)")
+    p = argparse.ArgumentParser(description="Build the NHL betting dashboard JSON.")
+    p.add_argument("--start-date", default=None, help="The 'today' date to center the build window on, YYYY-MM-DD (default: today, or the season's first game date during the off-season)")
     p.add_argument("--num-days", type=int, default=NUM_DAYS_DEFAULT,
                     help=f"How many consecutive days to build, centered on --start-date (default: {NUM_DAYS_DEFAULT})")
-    p.add_argument("--out", default=None, help="Output path (default: data/mlb_dashboard.json)")
+    p.add_argument("--out", default=None, help="Output path (default: data/nhl_dashboard.json)")
     p.add_argument("--scores", default=None, help="Path to scores.json, used to freeze odds/Gemini predictions for started games (default: data/scores.json)")
     return p.parse_args()
 
@@ -574,7 +528,7 @@ def main():
     start_date = date.fromisoformat(args.start_date) if args.start_date else None
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    out_path = args.out or os.path.join(script_dir, "..", "data", "mlb_dashboard.json")
+    out_path = args.out or os.path.join(script_dir, "..", "data", "nhl_dashboard.json")
     out_path = os.path.abspath(out_path)
     scores_path = args.scores or os.path.join(script_dir, "..", "data", "scores.json")
     scores_path = os.path.abspath(scores_path)
@@ -584,15 +538,17 @@ def main():
     # Resolve "today" here (not inside build()) so we can record it as
     # current_week below -- with num_days=3 the build window is centered
     # on this date (yesterday/today/tomorrow), so the FIRST day in
-    # output["weeks"] is now yesterday, not today; using that directly (as
-    # an earlier version of this script did) recorded current_week as
-    # yesterday's date, which broke mlb.html's "which day is current"
-    # resolution once the window stopped starting exactly at today.
+    # output["weeks"] is now yesterday, not today; using that directly
+    # would record current_week as yesterday's date, which would break
+    # nhl.html's "which day is current" resolution once the window
+    # stopped starting exactly at today (same lesson build_mlb_dashboard.py
+    # already learned the hard way -- see its own main() comment).
     resolved_today = start_date or datetime.now(ZoneInfo(DISPLAY_TIMEZONE)).date()
 
     # Off-season clamp (skipped when --start-date forces a date): only when
     # today is before the season's FIRST calendar date (and the grace
-    # period past the World Series finale has elapsed) -- never mid-season.
+    # period past the Stanley Cup Final finale has elapsed) -- never
+    # mid-season.
     if start_date is None:
         resolved_today = resolve_effective_today(resolved_today, existing_data)
 
@@ -602,9 +558,9 @@ def main():
             f"to carry forward if today's fetch comes back blank for any of them.")
 
     previous_entries_by_id = load_previous_game_entries(out_path)
-    started_game_ids = load_started_game_ids(scores_path, "mlb")
+    started_game_ids = load_started_game_ids(scores_path, "nhl")
     if started_game_ids:
-        log(f"{len(started_game_ids)} MLB game(s) already have a score recorded in {scores_path} -- "
+        log(f"{len(started_game_ids)} NHL game(s) already have a score recorded in {scores_path} -- "
             f"freezing odds and Gemini predictions for those instead of updating them.")
 
     output = build(sharp_key, gemini_key, start_date=resolved_today, num_days=args.num_days,
@@ -612,7 +568,7 @@ def main():
                     previous_entries_by_id=previous_entries_by_id, started_game_ids=started_game_ids)
     fresh_day_nums = [w["week"] for w in output["weeks"]]
 
-    # Record which day is "today" -- mlb.html uses this (plus the day
+    # Record which day is "today" -- nhl.html uses this (plus the day
     # immediately before and after it in the file) to decide what to
     # display, instead of re-deriving "today" client-side.
     output["current_week"] = int(resolved_today.strftime("%Y%m%d"))
@@ -620,7 +576,7 @@ def main():
     # Never drop old days -- merge today's freshly-built days on top of
     # whatever days were already on disk instead of replacing the file
     # wholesale, so odds/scores/predictions from every past day stay
-    # available (Picks shows all of them; mlb.html only shows yesterday
+    # available (Picks shows all of them; nhl.html only shows yesterday
     # through tomorrow).
     output["weeks"] = merge_weeks(existing_data, output["weeks"])
 

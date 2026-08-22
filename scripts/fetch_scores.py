@@ -4,21 +4,22 @@ Live score poller -- run hourly via .github/workflows/fetch-scores.yml.
 
 Overlays home/away scores + game status onto the games already listed in
 data/ncaaf_dashboard.json (CFB), data/nfl_dashboard.json (NFL),
-data/mlb_dashboard.json (MLB), data/nba_dashboard.json (NBA), and
-data/ncaamb_dashboard.json (NCAAMB), which build_ncaaf_dashboard.py /
-build_nfl_dashboard.py / build_mlb_dashboard.py / build_nba_dashboard.py /
-build_ncaamb_dashboard.py produce once a day. This script is
-intentionally lightweight and kept separate from those daily builds: it
-does NOT touch odds, AP rankings, probable pitchers, or Gemini
-predictions -- it just looks up each game's current score by the same
-game id the daily build already assigned, and writes a small overlay
-file, data/scores.json, that index.html / nfl.html / mlb.html / nba.html
-/ ncaamb.html / picks.html fetch and merge in client-side. Keeping this
-separate means scores can refresh hourly (or more) without hitting
-SharpAPI's or Gemini's much tighter rate limits.
+data/mlb_dashboard.json (MLB), data/nba_dashboard.json (NBA),
+data/ncaamb_dashboard.json (NCAAMB), and data/nhl_dashboard.json (NHL),
+which build_ncaaf_dashboard.py / build_nfl_dashboard.py /
+build_mlb_dashboard.py / build_nba_dashboard.py /
+build_ncaamb_dashboard.py / build_nhl_dashboard.py produce once a day.
+This script is intentionally lightweight and kept separate from those
+daily builds: it does NOT touch odds, AP rankings, probable pitchers, or
+Gemini predictions -- it just looks up each game's current score by the
+same game id the daily build already assigned, and writes a small
+overlay file, data/scores.json, that index.html / nfl.html / mlb.html /
+nba.html / ncaamb.html / nhl.html / picks.html fetch and merge in
+client-side. Keeping this separate means scores can refresh hourly (or
+more) without hitting SharpAPI's or Gemini's much tighter rate limits.
 
 Score sources (matched by the exact game id already in each dashboard for
-NFL/MLB/NBA/NCAAMB; matched by team name + date for CFB -- see note below):
+NFL/MLB/NBA/NCAAMB/NHL; matched by team name + date for CFB -- see note below):
     CFB    - ESPN's public college-football scoreboard endpoint (no key
              required). Matched back to our game ids by fuzzy team-name
              matching (same matcher common.py uses for odds) plus date,
@@ -41,8 +42,11 @@ NFL/MLB/NBA/NCAAMB; matched by team name + date for CFB -- see note below):
              (same one build_ncaamb_dashboard.py uses for schedule; no
              key required). Matched directly by event id, day-based like
              MLB/NBA.
+    NHL    - ESPN's public hockey scoreboard endpoint (same one
+             build_nhl_dashboard.py uses for schedule; no key required).
+             Matched directly by event id, day-based like MLB/NBA/NCAAMB.
 
-Env vars required: none -- all five sources use ESPN's public endpoints.
+Env vars required: none -- all six sources use ESPN's public endpoints.
 
 Usage:
     python scripts/fetch_scores.py
@@ -50,7 +54,8 @@ Usage:
         --nfl-dashboard data/nfl_dashboard.json \\
         --mlb-dashboard data/mlb_dashboard.json \\
         --nba-dashboard data/nba_dashboard.json \\
-        --ncaamb-dashboard data/ncaamb_dashboard.json --out data/scores.json
+        --ncaamb-dashboard data/ncaamb_dashboard.json \\
+        --nhl-dashboard data/nhl_dashboard.json --out data/scores.json
 """
 
 import argparse
@@ -67,6 +72,7 @@ ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nf
 ESPN_MLB_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard"
 ESPN_NBA_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard"
 ESPN_NCAAMB_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
+ESPN_NHL_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard"
 REQUEST_TIMEOUT = 20
 
 
@@ -92,13 +98,14 @@ def load_previous_scores(path):
     """
     data = load_json(path)
     if not data:
-        return {"cfb": {}, "nfl": {}, "mlb": {}, "nba": {}, "ncaamb": {}}
+        return {"cfb": {}, "nfl": {}, "mlb": {}, "nba": {}, "ncaamb": {}, "nhl": {}}
     return {
         "cfb": data.get("cfb", {}) or {},
         "nfl": data.get("nfl", {}) or {},
         "mlb": data.get("mlb", {}) or {},
         "nba": data.get("nba", {}) or {},
         "ncaamb": data.get("ncaamb", {}) or {},
+        "nhl": data.get("nhl", {}) or {},
     }
 
 
@@ -425,6 +432,10 @@ def fetch_ncaamb_scores(dashboard, weeks_to_fetch=None):
                                    weeks_to_fetch=weeks_to_fetch, extra_params={"groups": 50})
 
 
+def fetch_nhl_scores(dashboard, weeks_to_fetch=None):
+    return fetch_day_based_scores(dashboard, "NHL", ESPN_NHL_SCOREBOARD_URL, weeks_to_fetch=weeks_to_fetch)
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -438,6 +449,7 @@ def main():
     parser.add_argument("--mlb-dashboard", default=None, help="Path to data/mlb_dashboard.json")
     parser.add_argument("--nba-dashboard", default=None, help="Path to data/nba_dashboard.json")
     parser.add_argument("--ncaamb-dashboard", default=None, help="Path to data/ncaamb_dashboard.json")
+    parser.add_argument("--nhl-dashboard", default=None, help="Path to data/nhl_dashboard.json")
     parser.add_argument("--out", default=None, help="Output path (default: data/scores.json)")
     args = parser.parse_args()
 
@@ -457,6 +469,9 @@ def main():
     ncaamb_dashboard_path = os.path.abspath(
         args.ncaamb_dashboard or os.path.join(script_dir, "..", "data", "ncaamb_dashboard.json")
     )
+    nhl_dashboard_path = os.path.abspath(
+        args.nhl_dashboard or os.path.join(script_dir, "..", "data", "nhl_dashboard.json")
+    )
     out_path = os.path.abspath(args.out or os.path.join(script_dir, "..", "data", "scores.json"))
 
     dashboard = load_json(dashboard_path)
@@ -464,6 +479,7 @@ def main():
     mlb_dashboard = load_json(mlb_dashboard_path)
     nba_dashboard = load_json(nba_dashboard_path)
     ncaamb_dashboard = load_json(ncaamb_dashboard_path)
+    nhl_dashboard = load_json(nhl_dashboard_path)
 
     previous = load_previous_scores(out_path)
 
@@ -472,17 +488,20 @@ def main():
     mlb_days = weeks_needing_refresh(mlb_dashboard, previous["mlb"])
     nba_days = weeks_needing_refresh(nba_dashboard, previous["nba"])
     ncaamb_days = weeks_needing_refresh(ncaamb_dashboard, previous["ncaamb"])
+    nhl_days = weeks_needing_refresh(nhl_dashboard, previous["nhl"])
     log(f"CFB weeks needing a refresh: {cfb_weeks} (skipping any week where every game is already final)")
     log(f"NFL weeks needing a refresh: {nfl_weeks} (skipping any week where every game is already final)")
     log(f"MLB days needing a refresh: {mlb_days} (skipping any day where every game is already final)")
     log(f"NBA days needing a refresh: {nba_days} (skipping any day where every game is already final)")
     log(f"NCAAMB days needing a refresh: {ncaamb_days} (skipping any day where every game is already final)")
+    log(f"NHL days needing a refresh: {nhl_days} (skipping any day where every game is already final)")
 
     cfb_scores = fetch_cfb_scores(dashboard, weeks_to_fetch=cfb_weeks)
     nfl_scores = fetch_nfl_scores(nfl_dashboard, weeks_to_fetch=nfl_weeks)
     mlb_scores = fetch_mlb_scores(mlb_dashboard, weeks_to_fetch=mlb_days)
     nba_scores = fetch_nba_scores(nba_dashboard, weeks_to_fetch=nba_days)
     ncaamb_scores = fetch_ncaamb_scores(ncaamb_dashboard, weeks_to_fetch=ncaamb_days)
+    nhl_scores = fetch_nhl_scores(nhl_dashboard, weeks_to_fetch=nhl_days)
 
     # Merge onto the previous file rather than replacing it -- a game whose
     # week/day has aged out of the dashboard's rolling window isn't
@@ -495,6 +514,7 @@ def main():
     merged_mlb = {**previous["mlb"], **mlb_scores}
     merged_nba = {**previous["nba"], **nba_scores}
     merged_ncaamb = {**previous["ncaamb"], **ncaamb_scores}
+    merged_nhl = {**previous["nhl"], **nhl_scores}
 
     output = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -503,6 +523,7 @@ def main():
         "mlb": merged_mlb,
         "nba": merged_nba,
         "ncaamb": merged_ncaamb,
+        "nhl": merged_nhl,
     }
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
@@ -512,8 +533,9 @@ def main():
     log(f"Wrote {len(merged_cfb)} CFB score(s) ({len(cfb_scores)} fresh), "
         f"{len(merged_nfl)} NFL score(s) ({len(nfl_scores)} fresh), "
         f"{len(merged_mlb)} MLB score(s) ({len(mlb_scores)} fresh), "
-        f"{len(merged_nba)} NBA score(s) ({len(nba_scores)} fresh), and "
-        f"{len(merged_ncaamb)} NCAAMB score(s) ({len(ncaamb_scores)} fresh) to {out_path}")
+        f"{len(merged_nba)} NBA score(s) ({len(nba_scores)} fresh), "
+        f"{len(merged_ncaamb)} NCAAMB score(s) ({len(ncaamb_scores)} fresh), and "
+        f"{len(merged_nhl)} NHL score(s) ({len(nhl_scores)} fresh) to {out_path}")
 
 
 if __name__ == "__main__":

@@ -411,9 +411,16 @@ def _fuzzy_team(normalized_target, candidate_raw):
 
 # SharpAPI's spread-equivalent market is named differently per sport --
 # football's is "point_spread", baseball's is "run_line" (the MLB run line
-# is effectively always the fixed +/-1.5). Both map back to our internal
-# "spread" bucket.
-_SPREAD_MARKET_ALIASES = {"point_spread": "spread", "run_line": "spread", "spread": "spread"}
+# is effectively always the fixed +/-1.5), hockey's is "puck_line" (NHL's
+# puck line is likewise effectively always fixed at +/-1.5 -- see
+# build_nhl_dashboard.py's own module docstring). NOTE: "puck_line" is
+# inferred by analogy with SharpAPI's other two sport-specific spread
+# names, not confirmed against a live response (no network access to
+# SharpAPI while building this) -- if NHL's spread column comes back
+# empty on the first real run, check the raw market_type strings in a
+# fetch_all_odds(league="nhl") response and fix this mapping. All map
+# back to our internal "spread" bucket.
+_SPREAD_MARKET_ALIASES = {"point_spread": "spread", "run_line": "spread", "puck_line": "spread", "spread": "spread"}
 
 
 def match_odds_for_game(home_team, away_team, odds_rows, team_cache, row_claims):
