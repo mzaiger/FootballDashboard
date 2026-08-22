@@ -24,6 +24,7 @@
   .mlb-theme{ --turf: #8f4a2f; --turf-bright: #c17a43; }
   .nba-theme{ --turf: #8f2f6a; --turf-bright: #c1439a; }
   .ncaamb-theme{ --turf: #2f6a8f; --turf-bright: #43a0c1; }
+  .nhl-theme{ --turf: #1f7a8c; --turf-bright: #2fb8cf; }
 
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -640,6 +641,7 @@
     <a href="nfl.html">NFL</a>
     <a href="mlb.html">MLB</a>
     <a href="nba.html">NBA</a>
+    <a href="nhl.html">NHL</a>
     <a href="accuracy.html">Accuracy</a>
     <a href="export.html">Export</a>
     <a href="picks.html" class="active">Picks</a>
@@ -715,6 +717,9 @@
         <div class="stat-title">Gemini<span>Accuracy</span></div>
       </div>
     </div>
+    <div class="meta-row">
+      <span>Plus Nebraska's game every week, picked or not</span>
+    </div>
   </div>
 </div>
 
@@ -748,8 +753,9 @@ const NFL_URL = 'data/nfl_dashboard.json';
 const MLB_URL = 'data/mlb_dashboard.json';
 const NBA_URL = 'data/nba_dashboard.json';
 const NCAAMB_URL = 'data/ncaamb_dashboard.json';
-const SPORT_URLS = { cfb: NCAAF_URL, nfl: NFL_URL, mlb: MLB_URL, nba: NBA_URL, ncaamb: NCAAMB_URL };
-let SCORES = { cfb: {}, nfl: {}, mlb: {}, nba: {}, ncaamb: {} };
+const NHL_URL = 'data/nhl_dashboard.json';
+const SPORT_URLS = { cfb: NCAAF_URL, nfl: NFL_URL, mlb: MLB_URL, nba: NBA_URL, ncaamb: NCAAMB_URL, nhl: NHL_URL };
+let SCORES = { cfb: {}, nfl: {}, mlb: {}, nba: {}, ncaamb: {}, nhl: {} };
 
 function fmtAmerican(n) {
   if (n === null || n === undefined || n === '') return null;
@@ -905,9 +911,9 @@ function renderGame(sport, g) {
 }
 
 const SLOT_ORDER = ['Morning', 'Noon', 'Afternoon', 'Prime Time', 'Late Night', 'Time TBD'];
-const SPORT_ORDER = ['cfb', 'nfl', 'mlb', 'nba', 'ncaamb'];
-const SPORT_LABEL = { cfb: 'NCAAF', nfl: 'NFL', mlb: 'MLB', nba: 'NBA', ncaamb: 'NCAAMB' };
-const SPORT_THEME = { cfb: 'cfb-theme', nfl: 'nfl-theme', mlb: 'mlb-theme', nba: 'nba-theme', ncaamb: 'ncaamb-theme' };
+const SPORT_ORDER = ['cfb', 'nfl', 'mlb', 'nba', 'ncaamb', 'nhl'];
+const SPORT_LABEL = { cfb: 'NCAAF', nfl: 'NFL', mlb: 'MLB', nba: 'NBA', ncaamb: 'NCAAMB', nhl: 'NHL' };
+const SPORT_THEME = { cfb: 'cfb-theme', nfl: 'nfl-theme', mlb: 'mlb-theme', nba: 'nba-theme', ncaamb: 'ncaamb-theme', nhl: 'nhl-theme' };
 
 // Flattens { cfb: filteredData, nfl: ..., mlb: ... } (each already run through
 // filterDataset() + applyStatusFilterToWeeks(), same weeks->days->time_slots
@@ -993,7 +999,7 @@ function renderUnifiedDay(dayGroup) {
   </section>`;
 }
 
-let DATA = { cfb: null, nfl: null, mlb: null, nba: null, ncaamb: null };
+let DATA = { cfb: null, nfl: null, mlb: null, nba: null, ncaamb: null, nhl: null };
 let statusPills;
 
 function renderBoard() {
@@ -1058,7 +1064,7 @@ function renderBoard() {
   if (!dayGroups.length) {
     sectionsEl.innerHTML = '';
     statusEl.style.display = 'block';
-    statusEl.textContent = "No picks yet. Head to NCAAF, NFL, MLB, NBA, or NCAAMB, pick a spread or moneyline on any game, and it'll show up here.";
+    statusEl.textContent = "No picks yet. Head to NCAAF, NFL, MLB, NBA, NCAAMB, or NHL, pick a spread or moneyline on any game, and it'll show up here.";
     return;
   }
   statusEl.style.display = 'none';

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sports Dashboard - NCAAMB</title>
+<title>Sports Dashboard - NHL</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -11,8 +11,8 @@
     --bg: #0a0d10;
     --bg-panel: #12161b;
     --line: #232a31;
-    --turf: #2f6a8f;
-    --turf-bright: #43a0c1;
+    --turf: #1f7a8c;
+    --turf-bright: #2fb8cf;
     --chalk: #e8ecef;
     --dim: #8a95a1;
     --gold: #e0a63c;
@@ -300,13 +300,6 @@
     color:var(--dim); font-size:0.82rem; margin-top:0.5rem;
   }
   .meta-row b{color:var(--chalk); font-weight:600;}
-  .channels{
-    display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.9rem;
-  }
-  .chan-pill{
-    border:1px solid var(--line); border-radius:999px;
-    padding:0.15rem 0.65rem; font-size:0.72rem; color:var(--dim);
-  }
 
   main{max-width:1180px;margin:0 auto; padding:0 1.5rem;}
 
@@ -445,11 +438,6 @@
     font-family:'Oswald',sans-serif; font-weight:500; font-size:0.76rem;
     letter-spacing:0.01em; color:var(--dim); opacity:0.85;
   }
-  .rank{
-    font-size:0.68rem; color:var(--gold); border:1px solid rgba(224,166,60,0.4);
-    border-radius:4px; padding:0.05rem 0.3rem; min-width:1.6rem; text-align:center;
-    flex-shrink:0;
-  }
   .at{color:var(--dim); font-size:0.72rem; font-family:'JetBrains Mono',monospace; flex-shrink:0;}
 
   @media (max-width: 480px){
@@ -584,11 +572,11 @@
   <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">&#9776;</button>
   <div class="nav-links" id="navLinks">
     <a href="index.html">NCAAF</a>
-    <a href="ncaamb.html" class="active">NCAAMB</a>
+    <a href="ncaamb.html">NCAAMB</a>
     <a href="nfl.html">NFL</a>
     <a href="mlb.html">MLB</a>
     <a href="nba.html">NBA</a>
-    <a href="nhl.html">NHL</a>
+    <a href="nhl.html" class="active">NHL</a>
     <a href="accuracy.html">Accuracy</a>
     <a href="export.html">Export</a>
     <a href="picks.html">Picks</a>
@@ -643,13 +631,12 @@
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">NCAAMB &middot; TV Schedule + Odds Board</div>
+    <div class="eyebrow">NHL &middot; Puck Line + Moneyline Board</div>
     <h1 id="pageTitle">Loading day&hellip;</h1>
     <div class="meta-row">
       <span>Last updated: <b id="generatedAt">—</b></span>
-      <span><b id="totalGames">—</b> games on main channels</span>
+      <span><b id="totalGames">—</b> games today</span>
     </div>
-    <div class="channels" id="channelList"></div>
   </div>
 </div>
 
@@ -658,11 +645,14 @@
 <div class="status" id="statusMsg" style="display:none;"></div>
 
 <footer>
-  Matchup: N badge = this game's rank among every game that day (1 = most marquee), based on 50% DraftKings/FanDuel point spread + 50% combined win rank (teams ranked by record, best record = rank 1) -- both normalized 0-100 and blended before ranking.
-  &#11088; Time Slot Best Matchup = the game with the best blended matchup score in that window.
-  Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule, broadcast network, &amp; records via ESPN's public scoreboard API.
+  Matchup: N badge = this game's rank among every game that day (1 = most marquee), based on combined standings-points rank of both teams (teams ranked by points percentage -- 2 pts per win, 1 pt per OT/shootout loss -- best = rank 1) -- the puck line is essentially always &plusmn;1.5 goals so it isn't
+  factored in the way a football point spread is.
+  &#11088; Time Slot Best Matchup = the game with the best combined-points matchup score in that window.
+  Odds via DraftKings &amp; FanDuel through SharpAPI. Schedule, broadcast network, and records
+  via ESPN's public scoreboard API.
   <br><br>
-  &#10024; Gemini Prediction Summary is AI-generated from current-season stats and posted odds -- informational only, not betting advice.
+  &#10024; Gemini Prediction Summary is AI-generated from current-season stats and posted odds --
+  informational only, not betting advice.
   <br><br>
   &#11088; Best Matchup Only shows just each window's starred pick. Conf filters to games where Gemini's confidence
   (ML or ATS, whichever is selected) is at least that number; a game with no Gemini prediction, or no ATS pick posted
@@ -680,8 +670,8 @@
 })();
 </script>
 <script>
-const SPORT = 'ncaamb';
-const DATA_URL = 'data/ncaamb_dashboard.json';
+const SPORT = 'nhl';
+const DATA_URL = 'data/nhl_dashboard.json';
 let SCORES = {};
 let CURRENT_SEASON = null;
 
@@ -712,13 +702,14 @@ function oddsCell(entry) {
   return '<span class="empty-cell">—</span>';
 }
 
-function rankBadge(rank) {
-  return rank ? `<span class="rank">#${rank}</span> ` : '';
-}
-
-function teamNameBlock(name, record, scoreBadge) {
+function teamNameBlock(name, record, scoreBadge, pitcher) {
+  // Pitcher and record each get their own line (pitcher directly under
+  // the team name, record under that) instead of being crammed onto one
+  // line together separated by a dot -- long pitcher names + a W-L/ERA
+  // record was overflowing a single line.
+  const pitcherHtml = pitcher ? `<span class="team-pitcher">${pitcher}</span>` : '';
   const recordHtml = record ? `<span class="team-record">${record}</span>` : '';
-  return `<span class="team-name-wrap"><span class="team-name-line"><span class="team-name">${name}</span>${scoreBadge || ''}</span>${recordHtml}</span>`;
+  return `<span class="team-name-wrap"><span class="team-name-line"><span class="team-name">${name}</span>${scoreBadge || ''}</span>${pitcherHtml}${recordHtml}</span>`;
 }
 
 function kickoffTime(iso, tbd) {
@@ -730,9 +721,10 @@ function kickoffTime(iso, tbd) {
 }
 
 function renderGame(g) {
-  // matchup_score is a blended 0-100 score (50% spread + 50% win rank,
-  // both normalized) -- treat the bottom ~1/5th of the 0-100 scale as a
-  // "close/marquee" game. Adjust to taste.
+  // matchup_score here is purely a normalized combined-standings-points score
+  // (no spread blending -- the NHL puck line is almost always a fixed
+  // +/-1.5, so it doesn't discriminate between games); treat the bottom
+  // ~1/5th of the 0-100 scale as a "close/marquee" game. Adjust to taste.
   const closeGame = g.matchup_score !== null && g.matchup_score !== undefined && g.matchup_score <= 20;
   const isPick = !!g.is_slot_pick;
   const gScore = SCORES[String(g.id)];
@@ -762,7 +754,7 @@ function renderGame(g) {
 
   const oddsBlock = hasAnyOdds
     ? `<table class="odds">
-        <thead><tr><th></th><th>Away Spd</th><th>Home Spd</th><th>Away ML</th><th>Home ML</th></tr></thead>
+        <thead><tr><th></th><th>Away Line</th><th>Home Line</th><th>Away ML</th><th>Home ML</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>`
     : `<div class="no-odds">Odds not yet posted</div>`;
@@ -776,9 +768,9 @@ function renderGame(g) {
       <span class="channel-pill">${formatChannelForPill(g.channel)}</span>
     </div>
     <div class="matchup">
-      <span class="team">${rankBadge(g.away_rank)}${teamNameBlock(g.away_team, g.away_record, teamScoreBadge(gScore?.away_score, gScore?.status))}</span>
+      <span class="team">${teamNameBlock(g.away_team, g.away_record, teamScoreBadge(gScore?.away_score, gScore?.status))}</span>
       <span class="at">@</span>
-      <span class="team">${rankBadge(g.home_rank)}${teamNameBlock(g.home_team, g.home_record, teamScoreBadge(gScore?.home_score, gScore?.status))}</span>
+      <span class="team">${teamNameBlock(g.home_team, g.home_record, teamScoreBadge(gScore?.home_score, gScore?.status))}</span>
     </div>
     <div class="subline">
       <span>${kickoffTime(g.start_time, g.start_time_tbd)}</span>
@@ -854,7 +846,7 @@ async function init() {
     const res = await fetch(DATA_URL, { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    SCORES = await fetchScores('ncaamb');
+    SCORES = await fetchScores('nhl');
     CURRENT_SEASON = data.season;
 
     // mlb_dashboard.json holds every day ever built; only show the day
@@ -866,13 +858,11 @@ async function init() {
       ? dayLabels.join(' \u2014 ')
       : `${data.season}`;
     document.getElementById('generatedAt').textContent = new Date(data.generated_at).toLocaleString();
-    document.getElementById('channelList').innerHTML =
-      (data.main_channels || []).map(c => `<span class="chan-pill">${c}</span>`).join('');
 
     const daysEl = document.getElementById('days');
     if (!displayWeeks.some(w => w.days.length)) {
       statusEl.style.display = 'block';
-      statusEl.textContent = 'No main-channel games found for yesterday through tomorrow — check back closer to tip-off.';
+      statusEl.textContent = 'No games found for yesterday through tomorrow — check back closer to puck drop.';
       return;
     }
     let statusPills;
@@ -883,14 +873,14 @@ async function init() {
       document.getElementById('totalGames').textContent = shownWeeks.reduce((n, w) => n + w.total_games, 0);
       daysEl.innerHTML = shownWeeks.map(renderWeek).join('');
     };
-    statusPills = initStatusPills('ncaamb', 'all', renderBoard);
+    statusPills = initStatusPills('nhl', 'all', renderBoard);
     renderBoard();
     attachPickHandlers(daysEl, renderBoard);
     attachGeminiHandlers(daysEl);
     initFilterBar(renderBoard);
   } catch (err) {
     statusEl.style.display = 'block';
-    statusEl.textContent = `Couldn't load data/ncaamb_dashboard.json (${err.message}). Run scripts/build_ncaamb_dashboard.py first.`;
+    statusEl.textContent = `Couldn't load data/nhl_dashboard.json (${err.message}). Run scripts/build_nhl_dashboard.py first.`;
   }
 }
 

@@ -260,6 +260,7 @@
     <a href="nfl.html">NFL</a>
     <a href="mlb.html">MLB</a>
     <a href="nba.html">NBA</a>
+    <a href="nhl.html">NHL</a>
     <a href="accuracy.html" class="active">Accuracy</a>
     <a href="export.html">Export</a>
     <a href="picks.html">Picks</a>
@@ -423,8 +424,9 @@ const NFL_URL = 'data/nfl_dashboard.json';
 const MLB_URL = 'data/mlb_dashboard.json';
 const NBA_URL = 'data/nba_dashboard.json';
 const NCAAMB_URL = 'data/ncaamb_dashboard.json';
-const SPORT_URLS = { cfb: NCAAF_URL, nfl: NFL_URL, mlb: MLB_URL, nba: NBA_URL, ncaamb: NCAAMB_URL };
-const SPORT_ORDER = ['cfb', 'nfl', 'mlb', 'nba', 'ncaamb'];
+const NHL_URL = 'data/nhl_dashboard.json';
+const SPORT_URLS = { cfb: NCAAF_URL, nfl: NFL_URL, mlb: MLB_URL, nba: NBA_URL, ncaamb: NCAAMB_URL, nhl: NHL_URL };
+const SPORT_ORDER = ['cfb', 'nfl', 'mlb', 'nba', 'ncaamb', 'nhl'];
 const SCORES_ALL_URL = 'data/scores.json';
 
 // This page's own filter state -- deliberately a separate localStorage key
@@ -584,7 +586,7 @@ function renderAccuracy(datasets, scores, state) {
   document.getElementById('geminiByMlHeader').innerHTML = buildLabelHTML('ML Accuracy', state, mlApplies, true);
   document.getElementById('geminiByAtsHeader').innerHTML = buildLabelHTML('ATS Accuracy', state, atsApplies, true);
 
-  const sportLabels = { cfb: 'NCAAF', nfl: 'NFL', mlb: 'MLB', nba: 'NBA', ncaamb: 'NCAAMB' };
+  const sportLabels = { cfb: 'NCAAF', nfl: 'NFL', mlb: 'MLB', nba: 'NBA', ncaamb: 'NCAAMB', nhl: 'NHL' };
 
   // Small helper: formats a {net, graded} money result as a signed,
   // colored line for placement under a cell's correct-picks fraction.
