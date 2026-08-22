@@ -154,30 +154,40 @@ def calendar_game_dates(scoreboard):
 
 
 def resolve_effective_today(default_today):
-    """Off-season guard: if today falls BEFORE the first date on ESPN's
-    calendar -- i.e. the entire schedule is still ahead of us -- snap the
-    build window forward to that first game date instead of building three
-    empty days around a dead calendar date. Without this, the board sits
-    blank from the final buzzer of the Finals until the day before
-    opening night; with it, the board centers on the opener as soon as
-    ESPN publishes the schedule. Falls back to the real date on any
-    network/parse failure so a bad calendar never breaks a normal
-    mid-season build."""
+    """Off-season guard: if today falls BEFORE the FIRST date on ESPN's
+    calendar -- i.e. the entire published schedule is still ahead of us --
+    snap the build window forward to that first calendar date instead of
+    building three empty days around a dead calendar date.
+
+    IMPORTANT: this keys off the season's FIRST calendar date only --
+    NOT "the next calendar date at or after today". Those differ once a
+    season is underway: MLB's calendar is sparse (spring-training opener,
+    All-Star break, postseason dates), so from roughly August onward the
+    only entries still in the future are the postseason ones -- testing
+    "any upcoming date" reads a live August slate as pre-season and snaps
+    the board to late September. Even the NBA/NCAAMB's dense
+    every-game-day calendars have mid-season dark days where the same
+    wrong test fires. Today >= first date means the season has started,
+    so the real date always wins from then on. Falls back to the real
+    date on any network/parse failure so a bad calendar never breaks a
+    normal mid-season build."""
     try:
         scoreboard = get_scoreboard(default_today.strftime("%Y%m%d"))
     except (requests.RequestException, ValueError) as exc:
         log(f"  NOTE: couldn't fetch ESPN calendar ({exc}) -- keeping {default_today} as 'today'.")
         return default_today
 
-    upcoming = [d for d in calendar_game_dates(scoreboard) if d >= default_today]
-    if not upcoming or min(upcoming) == default_today:
-        return default_today  # season live, or over with no new schedule posted yet
+    all_dates = calendar_game_dates(scoreboard)
+    if not all_dates:
+        return default_today  # no calendar published at all
 
-    first_game_day = min(upcoming)
-    log(f"  Off-season detected: ESPN's calendar has nothing until {first_game_day} "
-        f"-- treating {first_game_day} (season's first game date) as 'today' for this build.")
-    return first_game_day
+    first_day = all_dates[0]  # sorted ascending -- the season's first date
+    if default_today >= first_day:
+        return default_today  # season started (live or finished) -- real date wins
 
+    log(f"  Off-season detected: today is before the season's first calendar date "
+        f"({first_day}) -- treating {first_day} as 'today' for this build.")
+    return first_day
 
 def broadcast_label(event):
     """Join all national broadcast names for a game across all ESPN payload structures."""
