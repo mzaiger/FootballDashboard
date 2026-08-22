@@ -85,6 +85,13 @@ NUM_DAYS_DEFAULT = 3  # "yesterday" + "today" + "tomorrow", same window NBA/MLB 
 D1_GROUP = "50"
 SCOREBOARD_LIMIT = 500
 
+# SharpAPI's league id for Division I men's college basketball is "ncaam"
+# -- NOT "ncaamb". "ncaamb" is this dashboard's own file/JSON name; the
+# odds API rejects it with invalid_filter (its did_you_mean suggests
+# "ncaam"). Keep this distinct from the sport keys used for scores.json /
+# gemini_predictions below, which are local and separate.
+SHARPAPI_LEAGUE = "ncaam"
+
 # "Main channels" = national broadcast + flagship/national cable. This is
 # WIDER than the CFB board's set: college hoops' national footprint also
 # includes the CBS Sports Network package, NBC/USA's Big Ten national
@@ -411,7 +418,7 @@ def build_day(day, sharp_key, gemini_key=None, previous_odds_by_id=None,
 
     log("Fetching DraftKings/FanDuel NCAAMB odds from SharpAPI...")
     day_str = day.isoformat()
-    odds_rows = fetch_all_odds(sharp_key, league="ncaamb", markets=("spread", "moneyline"),
+    odds_rows = fetch_all_odds(sharp_key, league=SHARPAPI_LEAGUE, markets=("spread", "moneyline"),
                                 date_from=day_str, date_to=day_str)
     log(f"  {len(odds_rows)} odds rows returned")
     team_cache = {}
