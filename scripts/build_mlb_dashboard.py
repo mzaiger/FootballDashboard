@@ -21,6 +21,13 @@ up merging/filtering by day instead of by week for MLB. mlb.html and
 picks.html know to format that "week" number back into a date rather
 than a "Week N" label (see formatMlbDayLabel() in picks-store.js).
 
+Off-season handling: if today falls BEFORE the first date on ESPN's
+calendar (leagues[].calendar), the build window snaps forward to that
+first game date -- so as soon as ESPN publishes the next season's
+calendar, the board centers on its first day instead of sitting blank
+from the final out of the World Series until the eve of the new slate.
+See resolve_effective_today() below.
+
 The run line (MLB's version of a point spread) is almost always fixed at
 +/-1.5 runs -- SharpAPI's own posted spread line is used as-is rather
 than hardcoded, since alternate run lines do occasionally appear, but
@@ -86,6 +93,13 @@ UNRANKED_WIN_RANK = 31
 # ---------------------------------------------------------------------------
 
 def get_scoreboard(date_str):
+    """Fetch one day's scoreboard. Unlike the NBA endpoint, MLB's does
+    NOT silently snap forward to the next date with games when the
+    requested date has none -- it simply returns an empty events list
+    (verified live: a mid-winter date comes back with "events": [] and
+    no `day` field at all). That means off-season/zero-game days need no
+    echo guard here, and the two neighboring days around an off-season-
+    clamped build window correctly come back as honest zero-game days."""
     resp = requests.get(
         ESPN_MLB_SCOREBOARD_URL,
         params={"dates": date_str, "limit": 200},
@@ -93,6 +107,57 @@ def get_scoreboard(date_str):
     )
     resp.raise_for_status()
     return resp.json()
+
+
+def calendar_game_dates(scoreboard):
+    """Every date listed in the scoreboard payload's leagues[].calendar
+    array, as date objects. NOTE: unlike the NBA's calendar (which lists
+    literally every game day), MLB's calendar is SPARSE -- it carries
+    only the special dates: the season's first day (spring training
+    opener), the All-Star break, and the postseason through the World
+    Series (e.g. 2026's runs 2026-02-19 -> 2026-11-12 across ~20
+    entries). The FIRST entry is still exactly the anchor the off-season
+    clamp wants: day one of anything scheduled. Parse only the leading
+    YYYY-MM-DD: the stamps are midnight ET, so the date component IS the
+    game date (no timezone conversion wanted -- converting would shift
+    late-night ET stamps back a day for Pacific viewers)."""
+    dates = []
+    for league in scoreboard.get("leagues") or []:
+        for entry in league.get("calendar") or []:
+            if isinstance(entry, str) and len(entry) >= 10:
+                try:
+                    dates.append(date.fromisoformat(entry[:10]))
+                except ValueError:
+                    continue
+        if dates:
+            break
+    return sorted(set(dates))
+
+
+def resolve_effective_today(default_today):
+    """Off-season guard: if today falls BEFORE the first date on ESPN's
+    calendar -- i.e. the entire schedule is still ahead of us -- snap the
+    build window forward to that first calendar date instead of building
+    three empty days around a dead calendar date. Without this, the board
+    sits blank from the final out of the World Series until the day
+    before the new slate opens; with it, the board centers on the new
+    season's first day as soon as ESPN publishes its calendar. Falls
+    back to the real date on any network/parse failure so a bad calendar
+    never breaks a normal mid-season build."""
+    try:
+        scoreboard = get_scoreboard(default_today.strftime("%Y%m%d"))
+    except (requests.RequestException, ValueError) as exc:
+        log(f"  NOTE: couldn't fetch ESPN calendar ({exc}) -- keeping {default_today} as 'today'.")
+        return default_today
+
+    upcoming = [d for d in calendar_game_dates(scoreboard) if d >= default_today]
+    if not upcoming or min(upcoming) == default_today:
+        return default_today  # season live, or over with no new calendar posted yet
+
+    first_calendar_day = min(upcoming)
+    log(f"  Off-season detected: ESPN's calendar has nothing until {first_calendar_day} "
+        f"-- treating {first_calendar_day} (season's first calendar date) as 'today' for this build.")
+    return first_calendar_day
 
 
 def broadcast_label(event):
@@ -417,7 +482,7 @@ def build(sharp_key, gemini_key=None, start_date=None, num_days=NUM_DAYS_DEFAULT
 
 def parse_args():
     p = argparse.ArgumentParser(description="Build the MLB betting dashboard JSON.")
-    p.add_argument("--start-date", default=None, help="The 'today' date to center the build window on, YYYY-MM-DD (default: today)")
+    p.add_argument("--start-date", default=None, help="The 'today' date to center the build window on, YYYY-MM-DD (default: today, or the season's first calendar date during the off-season)")
     p.add_argument("--num-days", type=int, default=NUM_DAYS_DEFAULT,
                     help=f"How many consecutive days to build, centered on --start-date (default: {NUM_DAYS_DEFAULT})")
     p.add_argument("--out", default=None, help="Output path (default: data/mlb_dashboard.json)")
@@ -445,6 +510,13 @@ def main():
     # yesterday's date, which broke mlb.html's "which day is current"
     # resolution once the window stopped starting exactly at today.
     resolved_today = start_date or datetime.now(ZoneInfo(DISPLAY_TIMEZONE)).date()
+
+    # Off-season clamp (skipped when --start-date forces a date): if ESPN's
+    # calendar says nothing happens until some future first date, build
+    # around THAT date so the board shows the new season's opening day
+    # instead of blank.
+    if start_date is None:
+        resolved_today = resolve_effective_today(resolved_today)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     out_path = args.out or os.path.join(script_dir, "..", "data", "mlb_dashboard.json")
@@ -488,7 +560,7 @@ def main():
     total_games = sum(w["total_games"] for w in output["weeks"])
     day_nums = [w["week"] for w in output["weeks"]]
     log(f"Wrote {total_games} games across {len(day_nums)} day(s) total ({day_nums}) to {out_path}; "
-        f"freshly built this run: {fresh_day_nums}")
+        f"freshly built this run: {fresh_day_nums} (current_day={output['current_week']})")
 
 
 if __name__ == "__main__":
