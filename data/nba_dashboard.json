@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-22T00:58:05.849862+00:00",
-  "season": 2025,
+  "generated_at": "2026-08-22T01:19:00.634718+00:00",
+  "season": 2026,
   "display_timezone": "America/Chicago",
   "weeks": [
     {
@@ -38,7 +38,78 @@
           "time_slots": []
         }
       ]
+    },
+    {
+      "week": 20261002,
+      "total_games": 0,
+      "days": [
+        {
+          "date": "2026-10-02",
+          "weekday": "Friday",
+          "game_count": 0,
+          "time_slots": []
+        }
+      ]
+    },
+    {
+      "week": 20261003,
+      "total_games": 1,
+      "days": [
+        {
+          "date": "2026-10-03",
+          "weekday": "Saturday",
+          "game_count": 1,
+          "time_slots": [
+            {
+              "slot": "Prime Time",
+              "best_matchup_score": 50.0,
+              "pick_reason": "spread_and_wins",
+              "games": [
+                {
+                  "id": "401902644",
+                  "start_time": "2026-10-03T23:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Toronto Raptors",
+                  "home_abbr": "TOR",
+                  "home_record": null,
+                  "away_team": "Miami Heat",
+                  "away_abbr": "MIA",
+                  "away_record": null,
+                  "matchup_score": 50.0,
+                  "channel": "TBD",
+                  "venue": "Videotron Centre",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 1,
+                  "is_slot_pick": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 20261004,
+      "total_games": 0,
+      "days": [
+        {
+          "date": "2026-10-04",
+          "weekday": "Sunday",
+          "game_count": 0,
+          "time_slots": []
+        }
+      ]
     }
   ],
-  "current_week": 20260821
+  "current_week": 20261003
 }

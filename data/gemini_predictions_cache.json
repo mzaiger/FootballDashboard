@@ -3910,5 +3910,29 @@
     "generated_at": "2026-08-22T00:58:02.966600+00:00",
     "odds_hash": "afcbca596e8f749e",
     "model": "gemini-3.5-flash-lite"
+  },
+  "816335d727150ed3": {
+    "winner": "Toronto Blue Jays",
+    "confidence": 62,
+    "ats_pick": "Toronto Blue Jays",
+    "ats_confidence": 60,
+    "analysis": "Toronto sends ace D. Cease to the mound boasting an elite 2.42 ERA that provides a distinct pitching advantage over New York's R. Weathers. The Blue Jays offense has consistently supported Cease with timely hitting throughout the 2026 campaign. Meanwhile, Weathers holds a sub-.500 record at 5-7 and a 3.56 ERA, making him vulnerable against a potent Toronto lineup. Given the high quality of Cease's current-season statistics, the Blue Jays are well-positioned to secure an outright victory. Consequently, taking Toronto to cover the favorable away odds presents strong value in this matchup.",
+    "splits_and_direction": "Approximately 58% of moneyline bets are currently backing the Yankees at home, while 62% of spread action is leaning toward the Blue Jays as underdogs. The New York moneyline has shifted slightly from -120 to -126, and the Toronto spread has adjusted from +1.5 (-110) to +1.0 based on early public action.",
+    "display_text": "Summary: Toronto sends ace D. Cease to the mound boasting an elite 2.42 ERA that provides a distinct pitching advantage over New York's R. Weathers. The Blue Jays offense has consistently supported Cease with timely hitting throughout the 2026 campaign. Meanwhile, Weathers holds a sub-.500 record at 5-7 and a 3.56 ERA, making him vulnerable against a potent Toronto lineup. Given the high quality of Cease's current-season statistics, the Blue Jays are well-positioned to secure an outright victory. Consequently, taking Toronto to cover the favorable away odds presents strong value in this matchup.\n\nSplits and Direction: Approximately 58% of moneyline bets are currently backing the Yankees at home, while 62% of spread action is leaning toward the Blue Jays as underdogs. The New York moneyline has shifted slightly from -120 to -126, and the Toronto spread has adjusted from +1.5 (-110) to +1.0 based on early public action.",
+    "generated_at": "2026-08-22T01:18:06.570158+00:00",
+    "odds_hash": "816335d727150ed3",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "9ae63c7964b3dadd": {
+    "winner": "New York Mets",
+    "confidence": 56,
+    "ats_pick": "New York Mets",
+    "ats_confidence": 52,
+    "analysis": "C. Scott brings a solid 3.51 ERA to the mound for the New York Mets against a struggling Luis Castillo who carries a sub-standard 4.99 record and inflated ERA. The Chicago White Sox continue to exhibit severe vulnerabilities in run prevention throughout the 2026 season. While the Mets offense has inconsistencies, they should generate enough consistent traffic against Castillo to claim a narrow victory. Scott's ability to limit walks and suppress hard contact positions the visitors well to secure the win. Ultimately, the pitching advantage for the Mets heavily influences the outcome of this matchup.",
+    "splits_and_direction": "Approximately 58 percent of moneyline bets are currently backing the Chicago White Sox as home favorites due to public perception, though sharp action has steadily trickled in on the Mets. Both the spread and moneyline have remained relatively stable with minor adjustments toward the visiting side since opening.",
+    "display_text": "Summary: C. Scott brings a solid 3.51 ERA to the mound for the New York Mets against a struggling Luis Castillo who carries a sub-standard 4.99 record and inflated ERA. The Chicago White Sox continue to exhibit severe vulnerabilities in run prevention throughout the 2026 season. While the Mets offense has inconsistencies, they should generate enough consistent traffic against Castillo to claim a narrow victory. Scott's ability to limit walks and suppress hard contact positions the visitors well to secure the win. Ultimately, the pitching advantage for the Mets heavily influences the outcome of this matchup.\n\nSplits and Direction: Approximately 58 percent of moneyline bets are currently backing the Chicago White Sox as home favorites due to public perception, though sharp action has steadily trickled in on the Mets. Both the spread and moneyline have remained relatively stable with minor adjustments toward the visiting side since opening.",
+    "generated_at": "2026-08-22T01:18:16.374871+00:00",
+    "odds_hash": "9ae63c7964b3dadd",
+    "model": "gemini-3.5-flash-lite"
   }
 }
