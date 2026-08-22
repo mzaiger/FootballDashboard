@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T00:17:04.518771+00:00",
+  "generated_at": "2026-08-22T00:52:03.123791+00:00",
   "season": 2026,
   "season_type": 2,
   "main_channels": [
@@ -169,7 +169,7 @@
                       "spread": {
                         "home": {
                           "line": -38.5,
-                          "american": -105
+                          "american": -102
                         },
                         "away": {
                           "line": 38.5,
