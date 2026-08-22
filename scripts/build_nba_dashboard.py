@@ -27,9 +27,10 @@ games.
 
 Off-season handling: if today falls BEFORE the first date on ESPN's
 calendar (leagues[].calendar), the build window snaps forward to that
-first game date -- so as soon as ESPN publishes the schedule, the board
-centers on opening night instead of sitting blank until the day before
-tip-off. See resolve_effective_today() below.
+first game date -- so as soon as ESPN publishes the new season's
+schedule, the board centers on opening night instead of sitting blank
+from the Finals until the day before tip-off. See
+resolve_effective_today() below.
 
 Env vars required:
     SHARPAPI_KEY - key from https://sharpapi.io
@@ -133,7 +134,7 @@ def get_scoreboard(date_str):
 def calendar_game_dates(scoreboard):
     """Every scheduled game date in the scoreboard payload's
     leagues[].calendar array, as date objects. ESPN ships this as a flat
-    list of ISO timestamps ("2026-10-21T07:00Z") -- one per day the league
+    list of ISO timestamps ("2026-10-03T07:00Z") -- one per day the league
     has anything scheduled -- so the FIRST entry is the season's first
     game date. Parse only the leading YYYY-MM-DD: the stamps are midnight
     ET, so the date component IS the game date (no timezone conversion
@@ -157,24 +158,24 @@ def resolve_effective_today(default_today):
     calendar -- i.e. the entire schedule is still ahead of us -- snap the
     build window forward to that first game date instead of building three
     empty days around a dead calendar date. Without this, the board sits
-    blank from the final buzzer of last season until the day before
+    blank from the final buzzer of the Finals until the day before
     opening night; with it, the board centers on the opener as soon as
     ESPN publishes the schedule. Falls back to the real date on any
     network/parse failure so a bad calendar never breaks a normal
     mid-season build."""
     try:
         scoreboard = get_scoreboard(default_today.strftime("%Y%m%d"))
-    except requests.RequestException as exc:
+    except (requests.RequestException, ValueError) as exc:
         log(f"  NOTE: couldn't fetch ESPN calendar ({exc}) -- keeping {default_today} as 'today'.")
         return default_today
 
     upcoming = [d for d in calendar_game_dates(scoreboard) if d >= default_today]
     if not upcoming or min(upcoming) == default_today:
-        return default_today  # season live or over-and-no-new-schedule yet
+        return default_today  # season live, or over with no new schedule posted yet
 
     first_game_day = min(upcoming)
     log(f"  Off-season detected: ESPN's calendar has nothing until {first_game_day} "
-        f"-- treating {first_game_day} as 'today' for this build.")
+        f"-- treating {first_game_day} (season's first game date) as 'today' for this build.")
     return first_game_day
 
 
@@ -438,7 +439,7 @@ def build(sharp_key, gemini_key=None, start_date=None, num_days=NUM_DAYS_DEFAULT
 
 def parse_args():
     p = argparse.ArgumentParser(description="Build the NBA betting dashboard JSON.")
-    p.add_argument("--start-date", default=None, help="The 'today' date to center the build window on, YYYY-MM-DD (default: today)")
+    p.add_argument("--start-date", default=None, help="The 'today' date to center the build window on, YYYY-MM-DD (default: today, or the season's first game date during the off-season)")
     p.add_argument("--num-days", type=int, default=NUM_DAYS_DEFAULT,
                     help=f"How many consecutive days to build, centered on --start-date (default: {NUM_DAYS_DEFAULT})")
     p.add_argument("--out", default=None, help="Output path (default: data/nba_dashboard.json)")
@@ -499,7 +500,7 @@ def main():
     total_games = sum(w["total_games"] for w in output["weeks"])
     day_nums = [w["week"] for w in output["weeks"]]
     log(f"Wrote {total_games} games across {len(day_nums)} day(s) total ({day_nums}) to {out_path}; "
-        f"freshly built this run: {fresh_day_nums}")
+        f"freshly built this run: {fresh_day_nums} (current_day={output['current_week']})")
 
 
 if __name__ == "__main__":
