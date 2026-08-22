@@ -1,14 +1,19 @@
 {
-  "generated_at": "2026-08-21T22:50:06.598575+00:00",
+  "generated_at": "2026-08-22T00:24:05.256200+00:00",
   "season": 2026,
   "main_channels": [
     "ABC",
     "CBS",
+    "CBSSN",
     "ESPN",
     "ESPN2",
     "FOX",
     "FS1",
-    "NBC"
+    "NBC",
+    "TBS",
+    "TNT",
+    "USA",
+    "truTV"
   ],
   "display_timezone": "America/Chicago",
   "weeks": [
@@ -47,7 +52,43 @@
           "time_slots": []
         }
       ]
+    },
+    {
+      "week": 20261101,
+      "total_games": 0,
+      "days": [
+        {
+          "date": "2026-11-01",
+          "weekday": "Sunday",
+          "game_count": 0,
+          "time_slots": []
+        }
+      ]
+    },
+    {
+      "week": 20261102,
+      "total_games": 0,
+      "days": [
+        {
+          "date": "2026-11-02",
+          "weekday": "Monday",
+          "game_count": 0,
+          "time_slots": []
+        }
+      ]
+    },
+    {
+      "week": 20261103,
+      "total_games": 0,
+      "days": [
+        {
+          "date": "2026-11-03",
+          "weekday": "Tuesday",
+          "game_count": 0,
+          "time_slots": []
+        }
+      ]
     }
   ],
-  "current_week": 20260821
+  "current_week": 20261102
 }
