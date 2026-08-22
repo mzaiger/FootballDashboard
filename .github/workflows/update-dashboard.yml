@@ -61,11 +61,17 @@ jobs:
           GEMINI_KEY: ${{ secrets.GEMINI_KEY }}
         run: python scripts/build_ncaamb_dashboard.py
 
+      - name: Build NHL nhl_dashboard.json
+        env:
+          SHARPAPI_KEY: ${{ secrets.SHARPAPI_KEY }}
+          GEMINI_KEY: ${{ secrets.GEMINI_KEY }}
+        run: python scripts/build_nhl_dashboard.py
+
       - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/ncaaf_dashboard.json data/nfl_dashboard.json data/mlb_dashboard.json data/nba_dashboard.json data/ncaamb_dashboard.json
+          git add data/ncaaf_dashboard.json data/nfl_dashboard.json data/mlb_dashboard.json data/nba_dashboard.json data/ncaamb_dashboard.json data/nhl_dashboard.json
           # Only exists once a Gemini call has actually happened (e.g. GEMINI_KEY
           # unset, or every game was already cached) -- don't fail the step over it.
           if [ -f data/gemini_predictions_cache.json ]; then
