@@ -20,7 +20,8 @@ Differences from the NBA builder:
   * Only "main channel" national-TV games make the board (same idea as
     build_ncaaf_dashboard.py; ESPN sometimes packs multiple networks into
     ONE string inside a broadcast object, so names are split on "/" and
-    "," before being checked against MAIN_CHANNELS).
+    "," before being checked against MAIN_CHANNELS). The channel set is
+    wider than CFB's -- see MAIN_CHANNELS below.
   * Games are ranked with college football's three-component blend --
     50% combined AP Top 25 rank + 25% combined win-rank + 25% posted
     spread -- instead of the NBA's two-component blend, since AP rank is
@@ -84,13 +85,25 @@ NUM_DAYS_DEFAULT = 3  # "yesterday" + "today" + "tomorrow", same window NBA/MLB 
 D1_GROUP = "50"
 SCOREBOARD_LIMIT = 500
 
-# "Main channels" = national broadcast + flagship cable, same set
-# build_ncaaf_dashboard.py uses. Games on ESPNU, ACCN, ESPN+, streaming-
-# only, etc. are filtered out. During conference-tournament / March
-# Madness weeks you may want to widen this, e.g.:
-#   MAIN_CHANNELS |= {"TNT", "TBS", "truTV", "CBSSN"}
-# (ESPN's shortName for CBS Sports Network is "CBSSN".)
-MAIN_CHANNELS = {"ABC", "CBS", "NBC", "FOX", "ESPN", "ESPN2", "FS1"}
+# "Main channels" = national broadcast + flagship/national cable. This is
+# WIDER than the CFB board's set: college hoops' national footprint also
+# includes the CBS Sports Network package, NBC/USA's Big Ten national
+# windows, and the CBS-Turner March Madness trio (TNT/TBS/truTV), so those
+# count as "main" here too. Games on ESPNU, ACCN, SECN, BTN, ESPN+, and
+# other streaming/regional outlets are still filtered out -- add any of
+# those tokens to this set to widen the board further. Tokens must match
+# ESPN's shortName spellings exactly ("CBSSN", not "CBS Sports Network").
+MAIN_CHANNELS = {
+    # National broadcast
+    "ABC", "CBS", "NBC", "FOX",
+    # Flagship cable
+    "ESPN", "ESPN2", "FS1",
+    # National cable -- college hoops additions vs. the CFB set
+    "CBSSN",   # CBS Sports Network regular-season + tournament package
+    "USA",     # NBC/USA's Big Ten national window
+    # March Madness / major neutral-site package (CBS-Turner)
+    "TNT", "TBS", "truTV",
+}
 
 # A team with no AP-poll ranking gets this value -- one worse than the
 # worst possible AP Top 25 rank -- so it never outranks a team that's
@@ -197,17 +210,17 @@ def resolve_effective_today(default_today):
     a bad calendar never breaks a normal mid-season build."""
     try:
         scoreboard = get_scoreboard(default_today.strftime("%Y%m%d"))
-    except requests.RequestException as exc:
+    except (requests.RequestException, ValueError) as exc:
         log(f"  NOTE: couldn't fetch ESPN calendar ({exc}) -- keeping {default_today} as 'today'.")
         return default_today
 
     upcoming = [d for d in calendar_game_dates(scoreboard) if d >= default_today]
     if not upcoming or min(upcoming) == default_today:
-        return default_today  # season live or over-and-no-new-schedule yet
+        return default_today  # season live, or over with no new schedule posted yet
 
     first_game_day = min(upcoming)
     log(f"  Off-season detected: ESPN's calendar has nothing until {first_game_day} "
-        f"-- treating {first_game_day} as 'today' for this build.")
+        f"-- treating {first_game_day} (season's first game date) as 'today' for this build.")
     return first_game_day
 
 
@@ -601,7 +614,7 @@ def build(sharp_key, gemini_key=None, start_date=None, num_days=NUM_DAYS_DEFAULT
 
 def parse_args():
     p = argparse.ArgumentParser(description="Build the NCAAMB betting dashboard JSON.")
-    p.add_argument("--start-date", default=None, help="The 'today' date to center the build window on, YYYY-MM-DD (default: today)")
+    p.add_argument("--start-date", default=None, help="The 'today' date to center the build window on, YYYY-MM-DD (default: today, or the season's first game date during the off-season)")
     p.add_argument("--num-days", type=int, default=NUM_DAYS_DEFAULT,
                     help=f"How many consecutive days to build, centered on --start-date (default: {NUM_DAYS_DEFAULT})")
     p.add_argument("--out", default=None, help="Output path (default: data/ncaamb_dashboard.json)")
@@ -662,7 +675,7 @@ def main():
     total_games = sum(w["total_games"] for w in output["weeks"])
     day_nums = [w["week"] for w in output["weeks"]]
     log(f"Wrote {total_games} games across {len(day_nums)} day(s) total ({day_nums}) to {out_path}; "
-        f"freshly built this run: {fresh_day_nums}")
+        f"freshly built this run: {fresh_day_nums} (current_day={output['current_week']})")
 
 
 if __name__ == "__main__":
