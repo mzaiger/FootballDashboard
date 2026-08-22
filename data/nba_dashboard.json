@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-22T12:39:42.859863+00:00",
-  "season": 2026,
+  "generated_at": "2026-08-22T15:09:48.100934+00:00",
+  "season": 2025,
   "display_timezone": "America/Chicago",
   "weeks": [
     {
@@ -34,6 +34,18 @@
         {
           "date": "2026-08-22",
           "weekday": "Saturday",
+          "game_count": 0,
+          "time_slots": []
+        }
+      ]
+    },
+    {
+      "week": 20260823,
+      "total_games": 0,
+      "days": [
+        {
+          "date": "2026-08-23",
+          "weekday": "Sunday",
           "game_count": 0,
           "time_slots": []
         }
@@ -111,5 +123,5 @@
       ]
     }
   ],
-  "current_week": 20261003
+  "current_week": 20260822
 }

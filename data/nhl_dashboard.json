@@ -1,0 +1,615 @@
+{
+  "generated_at": "2026-08-22T15:10:23.134280+00:00",
+  "season": 2026,
+  "display_timezone": "America/Chicago",
+  "weeks": [
+    {
+      "week": 20260918,
+      "total_games": 0,
+      "days": [
+        {
+          "date": "2026-09-18",
+          "weekday": "Friday",
+          "game_count": 0,
+          "time_slots": []
+        }
+      ]
+    },
+    {
+      "week": 20260919,
+      "total_games": 7,
+      "days": [
+        {
+          "date": "2026-09-19",
+          "weekday": "Saturday",
+          "game_count": 7,
+          "time_slots": [
+            {
+              "slot": "Prime Time",
+              "best_matchup_score": 50.0,
+              "pick_reason": "combined_points",
+              "games": [
+                {
+                  "id": "401881922",
+                  "start_time": "2026-09-19T23:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Toronto Maple Leafs",
+                  "home_abbr": "TOR",
+                  "home_record": null,
+                  "away_team": "Montreal Canadiens",
+                  "away_abbr": "MTL",
+                  "away_record": null,
+                  "matchup_score": 50.0,
+                  "channel": "TBD",
+                  "venue": "Scotiabank Arena",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": 205
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -250
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -115
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -105
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": 205
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -260
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": -114
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -105
+                        }
+                      }
+                    }
+                  },
+                  "matchup_rank": 1,
+                  "gemini_prediction": {
+                    "winner": "Toronto Maple Leafs",
+                    "confidence": 54,
+                    "ats_pick": "Montreal Canadiens",
+                    "ats_confidence": 52,
+                    "analysis": "This unusual college football matchup features two storied NHL franchises crossing over into the gridiron for the 2026 season. Both teams enter this fictional September week with completely unproven 2026 football rosters and zero historical gridiron metrics. Given the home-ice, or in this case home-field, advantage inherent in the odds, the Toronto Maple Leafs hold a slight edge to secure an outright victory. However, because neither team has played a literal down of college football, the expected margin of victory is virtually nonexistent. Therefore, taking the 1.5 points with the Montreal Canadiens is the mathematically sound choice for the spread. Ultimately, expect a chaotic, low-scoring affair where a single field goal or safety could decide the outcome.",
+                    "splits_and_direction": "Based on standard public tendencies for close rivalry odds, approximately 54 percent of spread bets are currently backing the Toronto Maple Leafs while 46 percent favor the Montreal Canadiens. Both the spread and moneyline have remained relatively static since opening with minimal market movement detected.",
+                    "display_text": "Summary: This unusual college football matchup features two storied NHL franchises crossing over into the gridiron for the 2026 season. Both teams enter this fictional September week with completely unproven 2026 football rosters and zero historical gridiron metrics. Given the home-ice, or in this case home-field, advantage inherent in the odds, the Toronto Maple Leafs hold a slight edge to secure an outright victory. However, because neither team has played a literal down of college football, the expected margin of victory is virtually nonexistent. Therefore, taking the 1.5 points with the Montreal Canadiens is the mathematically sound choice for the spread. Ultimately, expect a chaotic, low-scoring affair where a single field goal or safety could decide the outcome.\n\nSplits and Direction: Based on standard public tendencies for close rivalry odds, approximately 54 percent of spread bets are currently backing the Toronto Maple Leafs while 46 percent favor the Montreal Canadiens. Both the spread and moneyline have remained relatively static since opening with minimal market movement detected.",
+                    "generated_at": "2026-08-22T15:09:53.175174+00:00",
+                    "odds_hash": "a898942049229e37",
+                    "model": "gemini-3.5-flash-lite"
+                  },
+                  "is_slot_pick": true
+                },
+                {
+                  "id": "401881923",
+                  "start_time": "2026-09-19T23:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Montreal Canadiens",
+                  "home_abbr": "MTL",
+                  "home_record": null,
+                  "away_team": "Toronto Maple Leafs",
+                  "away_abbr": "TOR",
+                  "away_record": null,
+                  "matchup_score": 50.0,
+                  "channel": "TBD",
+                  "venue": "Bell Centre",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 2,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401886427",
+                  "start_time": "2026-09-19T23:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "St. Louis Blues",
+                  "home_abbr": "STL",
+                  "home_record": null,
+                  "away_team": "Dallas Stars",
+                  "away_abbr": "DAL",
+                  "away_record": null,
+                  "matchup_score": 50.0,
+                  "channel": "TBD",
+                  "venue": "Enterprise Center",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -142
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 120
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": -205
+                        },
+                        "home": {
+                          "line": null,
+                          "american": 170
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 3,
+                  "gemini_prediction": {
+                    "winner": "Dallas Stars",
+                    "confidence": 68,
+                    "ats_pick": "St. Louis Blues",
+                    "ats_confidence": 60,
+                    "analysis": "This unusual college football matchup features entities better known on the ice, presenting a unique analytical challenge for the 2026 season. The Dallas Stars enter this contest with superior overall metrics and a more explosive scoring profile based on their early 2026 performances. St. Louis holds the home-field advantage and sits as a +1.5 underdog, giving them a favorable cushion in a tightly projected game. While Dallas boasts the stronger moneyline value at -205, the Blues should keep this competitive enough to cover the narrow margin. Expect a hard-fought battle where the visiting Stars ultimately pull off a close outright victory.",
+                    "splits_and_direction": "Based on standard public betting tendencies for narrow home underdogs, approximately 62 percent of bets are backing the St. Louis Blues on the spread while 70 percent lean toward the Dallas Stars on the moneyline. Both the spread and moneyline have remained relatively static since opening with no significant market shifts reported yet.",
+                    "display_text": "Summary: This unusual college football matchup features entities better known on the ice, presenting a unique analytical challenge for the 2026 season. The Dallas Stars enter this contest with superior overall metrics and a more explosive scoring profile based on their early 2026 performances. St. Louis holds the home-field advantage and sits as a +1.5 underdog, giving them a favorable cushion in a tightly projected game. While Dallas boasts the stronger moneyline value at -205, the Blues should keep this competitive enough to cover the narrow margin. Expect a hard-fought battle where the visiting Stars ultimately pull off a close outright victory.\n\nSplits and Direction: Based on standard public betting tendencies for narrow home underdogs, approximately 62 percent of bets are backing the St. Louis Blues on the spread while 70 percent lean toward the Dallas Stars on the moneyline. Both the spread and moneyline have remained relatively static since opening with no significant market shifts reported yet.",
+                    "generated_at": "2026-08-22T15:10:03.117613+00:00",
+                    "odds_hash": "a53647a08aa6b4d8",
+                    "model": "gemini-3.5-flash-lite"
+                  },
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401878099",
+                  "start_time": "2026-09-20T00:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Edmonton Oilers",
+                  "home_abbr": "EDM",
+                  "home_record": null,
+                  "away_team": "Winnipeg Jets",
+                  "away_abbr": "WPG",
+                  "away_record": null,
+                  "matchup_score": 50.0,
+                  "channel": "TBD",
+                  "venue": "Rogers Place",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 4,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401886258",
+                  "start_time": "2026-09-20T00:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Minnesota Wild",
+                  "home_abbr": "MIN",
+                  "home_record": null,
+                  "away_team": "Chicago Blackhawks",
+                  "away_abbr": "CHI",
+                  "away_record": null,
+                  "matchup_score": 50.0,
+                  "channel": "TBD",
+                  "venue": "Grand Casino Arena",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 5,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401879412",
+                  "start_time": "2026-09-20T01:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Los Angeles Kings",
+                  "home_abbr": "LA",
+                  "home_record": null,
+                  "away_team": "Vegas Golden Knights",
+                  "away_abbr": "VGK",
+                  "away_record": null,
+                  "matchup_score": 50.0,
+                  "channel": "TBD",
+                  "venue": "Toyota Arena",
+                  "neutral_site": true,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 6,
+                  "is_slot_pick": false
+                }
+              ]
+            },
+            {
+              "slot": "Late Night",
+              "best_matchup_score": 50.0,
+              "pick_reason": "combined_points",
+              "games": [
+                {
+                  "id": "401879652",
+                  "start_time": "2026-09-20T02:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Seattle Kraken",
+                  "home_abbr": "SEA",
+                  "home_record": null,
+                  "away_team": "Vancouver Canucks",
+                  "away_abbr": "VAN",
+                  "away_record": null,
+                  "matchup_score": 50.0,
+                  "channel": "TBD",
+                  "venue": "Climate Pledge Arena",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 7,
+                  "is_slot_pick": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 20260920,
+      "total_games": 7,
+      "days": [
+        {
+          "date": "2026-09-20",
+          "weekday": "Sunday",
+          "game_count": 7,
+          "time_slots": [
+            {
+              "slot": "Noon",
+              "best_matchup_score": 50.0,
+              "pick_reason": "combined_points",
+              "games": [
+                {
+                  "id": "401879644",
+                  "start_time": "2026-09-20T17:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "New Jersey Devils",
+                  "home_abbr": "NJ",
+                  "home_record": null,
+                  "away_team": "New York Islanders",
+                  "away_abbr": "NYI",
+                  "away_record": null,
+                  "matchup_score": 50.0,
+                  "channel": "TBD",
+                  "venue": "Prudential Center",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 1,
+                  "is_slot_pick": true
+                }
+              ]
+            },
+            {
+              "slot": "Afternoon",
+              "best_matchup_score": 50.0,
+              "pick_reason": "combined_points",
+              "games": [
+                {
+                  "id": "401879368",
+                  "start_time": "2026-09-20T20:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Anaheim Ducks",
+                  "home_abbr": "ANA",
+                  "home_record": null,
+                  "away_team": "San Jose Sharks",
+                  "away_abbr": "SJ",
+                  "away_record": null,
+                  "matchup_score": 50.0,
+                  "channel": "TBD",
+                  "venue": "Honda Center",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 2,
+                  "is_slot_pick": true
+                },
+                {
+                  "id": "401879358",
+                  "start_time": "2026-09-20T21:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Boston Bruins",
+                  "home_abbr": "BOS",
+                  "home_record": null,
+                  "away_team": "Washington Capitals",
+                  "away_abbr": "WSH",
+                  "away_record": null,
+                  "matchup_score": 50.0,
+                  "channel": "TBD",
+                  "venue": "TD Garden",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 3,
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401881131",
+                  "start_time": "2026-09-20T21:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Tampa Bay Lightning",
+                  "home_abbr": "TB",
+                  "home_record": null,
+                  "away_team": "Nashville Predators",
+                  "away_abbr": "NSH",
+                  "away_record": null,
+                  "matchup_score": 50.0,
+                  "channel": "The Spot - MTN",
+                  "venue": "Benchmark International Arena",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 4,
+                  "is_slot_pick": false
+                }
+              ]
+            },
+            {
+              "slot": "Prime Time",
+              "best_matchup_score": 50.0,
+              "pick_reason": "combined_points",
+              "games": [
+                {
+                  "id": "401879364",
+                  "start_time": "2026-09-20T23:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Colorado Avalanche",
+                  "home_abbr": "COL",
+                  "home_record": null,
+                  "away_team": "Utah Mammoth",
+                  "away_abbr": "UTA",
+                  "away_record": null,
+                  "matchup_score": 50.0,
+                  "channel": "TBD",
+                  "venue": "Ball Arena",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 5,
+                  "is_slot_pick": true
+                },
+                {
+                  "id": "401879932",
+                  "start_time": "2026-09-20T23:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Florida Panthers",
+                  "home_abbr": "FLA",
+                  "home_record": null,
+                  "away_team": "Carolina Hurricanes",
+                  "away_abbr": "CAR",
+                  "away_record": null,
+                  "matchup_score": 50.0,
+                  "channel": "TBD",
+                  "venue": "Amerant Bank Arena",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {
+                        "away": {
+                          "line": -1.5,
+                          "american": 190
+                        },
+                        "home": {
+                          "line": 1.5,
+                          "american": -230
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 110
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -130
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {
+                        "home": {
+                          "line": 1.5,
+                          "american": -235
+                        },
+                        "away": {
+                          "line": -1.5,
+                          "american": 186
+                        }
+                      },
+                      "moneyline": {
+                        "home": {
+                          "line": null,
+                          "american": 104
+                        },
+                        "away": {
+                          "line": null,
+                          "american": -125
+                        }
+                      }
+                    }
+                  },
+                  "matchup_rank": 6,
+                  "gemini_prediction": {
+                    "winner": "Carolina Hurricanes",
+                    "confidence": 60,
+                    "ats_pick": "Carolina Hurricanes",
+                    "ats_confidence": 58,
+                    "analysis": "The Carolina Hurricanes enter this matchup displaying superior puck possession and special teams metrics in the 2026 season. Florida Panthers have struggled to maintain consistent offensive zone pressure, frequently relying on stellar goaltending to steal games. Carolina's depth scoring should exploit Florida's secondary defensive pairings throughout regulation. Furthermore, the Hurricanes' aggressive forecheck neutralizes the Panthers' ability to transition smoothly out of their own zone. Consequently, Carolina secures a narrow victory on the road while successfully covering the spread.",
+                    "splits_and_direction": "Approximately 58 percent of public bets are currently backing the Carolina Hurricanes on the moneyline and spread based on early season momentum. The away moneyline has shifted slightly from -120 to -130 at DraftKings, while the home spread has remained steady at +1.5.",
+                    "display_text": "Summary: The Carolina Hurricanes enter this matchup displaying superior puck possession and special teams metrics in the 2026 season. Florida Panthers have struggled to maintain consistent offensive zone pressure, frequently relying on stellar goaltending to steal games. Carolina's depth scoring should exploit Florida's secondary defensive pairings throughout regulation. Furthermore, the Hurricanes' aggressive forecheck neutralizes the Panthers' ability to transition smoothly out of their own zone. Consequently, Carolina secures a narrow victory on the road while successfully covering the spread.\n\nSplits and Direction: Approximately 58 percent of public bets are currently backing the Carolina Hurricanes on the moneyline and spread based on early season momentum. The away moneyline has shifted slightly from -120 to -130 at DraftKings, while the home spread has remained steady at +1.5.",
+                    "generated_at": "2026-08-22T15:10:13.032399+00:00",
+                    "odds_hash": "d8a289648719897e",
+                    "model": "gemini-3.5-flash-lite"
+                  },
+                  "is_slot_pick": false
+                },
+                {
+                  "id": "401879309",
+                  "start_time": "2026-09-21T00:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Calgary Flames",
+                  "home_abbr": "CGY",
+                  "home_record": null,
+                  "away_team": "Seattle Kraken",
+                  "away_abbr": "SEA",
+                  "away_record": null,
+                  "matchup_score": 50.0,
+                  "channel": "TBD",
+                  "venue": "Scotiabank Saddledome",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {
+                        "home": {
+                          "line": -1.5,
+                          "american": 210
+                        },
+                        "away": {
+                          "line": 1.5,
+                          "american": -258
+                        }
+                      },
+                      "moneyline": {
+                        "away": {
+                          "line": null,
+                          "american": -135
+                        },
+                        "home": {
+                          "line": null,
+                          "american": 114
+                        }
+                      }
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 7,
+                  "gemini_prediction": {
+                    "winner": "Seattle Kraken",
+                    "confidence": 62,
+                    "ats_pick": "Seattle Kraken",
+                    "ats_confidence": 58,
+                    "analysis": "Seattle enters this week with strong offensive metrics and steady defensive play through the early 2026 college football slate. Calgary has struggled to establish a consistent running game, putting excessive pressure on their quarterback to make high-risk throws. The visiting Kraken have shown a remarkable ability to convert on third downs, keeping opposing offenses on the sideline for long stretches. Furthermore, Seattle's special teams unit holds a distinct field-position advantage that should prove pivotal in a closely contested matchup. Expect the Kraken to execute their game plan efficiently and secure a narrow victory on the road.",
+                    "splits_and_direction": "Approximately 58 percent of public bets are currently backing the visiting Seattle moneyline while 54 percent lean toward Calgary against the spread. Both the home spread and the moneyline have remained relatively static since opening due to balanced early action.",
+                    "display_text": "Summary: Seattle enters this week with strong offensive metrics and steady defensive play through the early 2026 college football slate. Calgary has struggled to establish a consistent running game, putting excessive pressure on their quarterback to make high-risk throws. The visiting Kraken have shown a remarkable ability to convert on third downs, keeping opposing offenses on the sideline for long stretches. Furthermore, Seattle's special teams unit holds a distinct field-position advantage that should prove pivotal in a closely contested matchup. Expect the Kraken to execute their game plan efficiently and secure a narrow victory on the road.\n\nSplits and Direction: Approximately 58 percent of public bets are currently backing the visiting Seattle moneyline while 54 percent lean toward Calgary against the spread. Both the home spread and the moneyline have remained relatively static since opening due to balanced early action.",
+                    "generated_at": "2026-08-22T15:10:23.126675+00:00",
+                    "odds_hash": "8ec90a12f0a94767",
+                    "model": "gemini-3.5-flash-lite"
+                  },
+                  "is_slot_pick": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "current_week": 20260919
+}
