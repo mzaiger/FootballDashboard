@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T01:14:02.787008+00:00",
+  "generated_at": "2026-08-22T04:29:08.485490+00:00",
   "season": 2026,
   "season_type": 2,
   "main_channels": [
@@ -1721,11 +1721,11 @@
                       "moneyline": {
                         "home": {
                           "line": null,
-                          "american": -122
+                          "american": -118
                         },
                         "away": {
                           "line": null,
-                          "american": 102
+                          "american": -102
                         }
                       }
                     },
@@ -1737,15 +1737,15 @@
                   "is_nebraska": false,
                   "matchup_rank": 2,
                   "gemini_prediction": {
-                    "winner": "Michigan Wolverines",
-                    "confidence": 55,
-                    "ats_pick": "Michigan Wolverines",
-                    "ats_confidence": 52,
-                    "analysis": "The Oklahoma Sooners enter this week 2 matchup looking to establish offensive rhythm against a tough defensive unit. The Michigan Wolverines hold home-field advantage in what shapes up to be a tightly contested, low-scoring affair. Michigan's current-season statistics highlight a disciplined front seven that should limit Oklahoma's rushing attack. Turnovers will likely dictate the outcome, and the Wolverines have been slightly cleaner with the football so far this year. Ultimately, playing at home gives Michigan the narrow edge needed to secure a victory by a field goal.",
-                    "splits_and_direction": "Based on early public tendencies, estimated betting splits show approximately 58 percent of the moneyline handle and 54 percent of the spread tickets backing the visiting Sooners. Since opening, the point spread has ticked down slightly from Michigan -2 to -1.5, while the moneyline has experienced minimal movement reflecting balanced early action.",
-                    "display_text": "Summary: The Oklahoma Sooners enter this week 2 matchup looking to establish offensive rhythm against a tough defensive unit. The Michigan Wolverines hold home-field advantage in what shapes up to be a tightly contested, low-scoring affair. Michigan's current-season statistics highlight a disciplined front seven that should limit Oklahoma's rushing attack. Turnovers will likely dictate the outcome, and the Wolverines have been slightly cleaner with the football so far this year. Ultimately, playing at home gives Michigan the narrow edge needed to secure a victory by a field goal.\n\nSplits and Direction: Based on early public tendencies, estimated betting splits show approximately 58 percent of the moneyline handle and 54 percent of the spread tickets backing the visiting Sooners. Since opening, the point spread has ticked down slightly from Michigan -2 to -1.5, while the moneyline has experienced minimal movement reflecting balanced early action.",
-                    "generated_at": "2026-08-21T22:31:19.290240+00:00",
-                    "odds_hash": "3b8022eaaa793877",
+                    "winner": "Oklahoma Sooners",
+                    "confidence": 54,
+                    "ats_pick": "Oklahoma Sooners",
+                    "ats_confidence": 55,
+                    "analysis": "The Oklahoma Sooners enter this week two matchup with a slightly more explosive early-season offensive rhythm than the Michigan Wolverines. Michigan's defense remains stout at home, but their offensive production has shown inconsistencies that will hinder them against a fast-paced opponent. Oklahoma's quarterback play has been remarkably efficient, limiting turnovers while capitalizing on explosive downfield passing opportunities. Although playing in Ann Arbor provides a significant home-field advantage, the Wolverines lack the offensive firepower to pull away by more than a field goal. Consequently, the Sooners are well-positioned to edge out a narrow victory and comfortably cover the tight 1.5-point spread.",
+                    "splits_and_direction": "Based on early public tendencies and the narrow line, approximately 58 percent of bets are backing the home team on the spread, while moneyline action is split closely around 52 percent in favor of Oklahoma. The spread has remained steady at 1.5 since opening, and the moneyline has seen slight adjustments moving Oklahoma from an initial -105 to -102.",
+                    "display_text": "Summary: The Oklahoma Sooners enter this week two matchup with a slightly more explosive early-season offensive rhythm than the Michigan Wolverines. Michigan's defense remains stout at home, but their offensive production has shown inconsistencies that will hinder them against a fast-paced opponent. Oklahoma's quarterback play has been remarkably efficient, limiting turnovers while capitalizing on explosive downfield passing opportunities. Although playing in Ann Arbor provides a significant home-field advantage, the Wolverines lack the offensive firepower to pull away by more than a field goal. Consequently, the Sooners are well-positioned to edge out a narrow victory and comfortably cover the tight 1.5-point spread.\n\nSplits and Direction: Based on early public tendencies and the narrow line, approximately 58 percent of bets are backing the home team on the spread, while moneyline action is split closely around 52 percent in favor of Oklahoma. The spread has remained steady at 1.5 since opening, and the moneyline has seen slight adjustments moving Oklahoma from an initial -105 to -102.",
+                    "generated_at": "2026-08-22T04:29:08.476379+00:00",
+                    "odds_hash": "a1e2126ae2c22c0b",
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": true

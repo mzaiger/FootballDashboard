@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T01:17:07.580566+00:00",
+  "generated_at": "2026-08-22T04:33:08.251457+00:00",
   "season": 2026,
   "season_type": 1,
   "display_timezone": "America/Chicago",
@@ -600,7 +600,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 59.7,
+              "best_matchup_score": 59.3,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -613,7 +613,7 @@
                   "away_team": "Las Vegas Raiders",
                   "away_abbr": "LV",
                   "away_record": "1-1",
-                  "matchup_score": 59.7,
+                  "matchup_score": 59.3,
                   "channel": "ESPN, KTRK (ABC), Fox 5 Vegas",
                   "venue": "Reliant Stadium",
                   "neutral_site": false,
@@ -634,7 +634,7 @@
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 53.6,
+              "best_matchup_score": 54.4,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -647,7 +647,7 @@
                   "away_team": "San Francisco 49ers",
                   "away_abbr": "SF",
                   "away_record": "1-1",
-                  "matchup_score": 53.6,
+                  "matchup_score": 54.4,
                   "channel": "NFL Net, CBS LA, KPIX",
                   "venue": "SoFi Stadium",
                   "neutral_site": false,
@@ -682,7 +682,7 @@
                     "odds_hash": "b7a52e0f94f7d84e",
                     "model": "gemini-3.5-flash-lite"
                   },
-                  "matchup_rank": 7,
+                  "matchup_rank": 10,
                   "is_slot_pick": true
                 }
               ]
@@ -696,7 +696,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 40.3,
+              "best_matchup_score": 43.6,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -705,11 +705,11 @@
                   "start_time_tbd": false,
                   "home_team": "Jacksonville Jaguars",
                   "home_abbr": "JAX",
-                  "home_record": "1-0",
+                  "home_record": "1-1",
                   "away_team": "Carolina Panthers",
                   "away_abbr": "CAR",
-                  "away_record": "1-1",
-                  "matchup_score": 40.3,
+                  "away_record": "2-1",
+                  "matchup_score": 43.6,
                   "channel": "ESPN Unlmtd, CBS47",
                   "venue": "EverBank Stadium",
                   "neutral_site": false,
@@ -723,7 +723,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 4,
+                  "matchup_rank": 5,
                   "is_slot_pick": true
                 },
                 {
@@ -732,11 +732,11 @@
                   "start_time_tbd": false,
                   "home_team": "Denver Broncos",
                   "home_abbr": "DEN",
-                  "home_record": "1-0",
+                  "home_record": "1-1",
                   "away_team": "Green Bay Packers",
                   "away_abbr": "GB",
-                  "away_record": "0-1",
-                  "matchup_score": 48.5,
+                  "away_record": "1-1",
+                  "matchup_score": 44.6,
                   "channel": "NFL Net, Packers TV Network, KUSA-TV (9NEWS)",
                   "venue": "Empower Field at Mile High",
                   "neutral_site": false,
@@ -759,11 +759,11 @@
                   "start_time_tbd": false,
                   "home_team": "Pittsburgh Steelers",
                   "home_abbr": "PIT",
-                  "home_record": "1-0",
+                  "home_record": "1-1",
                   "away_team": "New York Jets",
                   "away_abbr": "NYJ",
-                  "away_record": "0-1",
-                  "matchup_score": 58.7,
+                  "away_record": "1-1",
+                  "matchup_score": 54.4,
                   "channel": "NFL Net, WCBS, KDKA-TV",
                   "venue": "Acrisure Stadium",
                   "neutral_site": false,
@@ -791,7 +791,7 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 28.1,
+              "best_matchup_score": 26.0,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -804,7 +804,7 @@
                   "away_team": "Baltimore Ravens",
                   "away_abbr": "BAL",
                   "away_record": "1-0",
-                  "matchup_score": 28.1,
+                  "matchup_score": 26.0,
                   "channel": "ESPN Unlmtd, WBAL-TV",
                   "venue": "U.S. Bank Stadium",
                   "neutral_site": false,
@@ -831,7 +831,7 @@
                   "away_team": "Buffalo Bills",
                   "away_abbr": "BUF",
                   "away_record": "1-0",
-                  "matchup_score": 42.3,
+                  "matchup_score": 43.6,
                   "channel": "NFL Net",
                   "venue": "Huntington Bank Field",
                   "neutral_site": false,
@@ -845,7 +845,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 5,
+                  "matchup_rank": 4,
                   "is_slot_pick": false
                 },
                 {
@@ -858,7 +858,7 @@
                   "away_team": "Washington Commanders",
                   "away_abbr": "WSH",
                   "away_record": "1-0",
-                  "matchup_score": 54.6,
+                  "matchup_score": 52.5,
                   "channel": "Lions TV Network, WUSA9",
                   "venue": "Ford Field",
                   "neutral_site": false,
@@ -872,7 +872,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 8,
+                  "matchup_rank": 7,
                   "is_slot_pick": false
                 },
                 {
@@ -885,7 +885,7 @@
                   "away_team": "Atlanta Falcons",
                   "away_abbr": "ATL",
                   "away_record": "0-1",
-                  "matchup_score": 58.7,
+                  "matchup_score": 61.3,
                   "channel": "CBS4",
                   "venue": "Lucas Oil Stadium",
                   "neutral_site": false,
@@ -899,14 +899,14 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 12,
+                  "matchup_rank": 14,
                   "is_slot_pick": false
                 }
               ]
             },
             {
               "slot": "Afternoon",
-              "best_matchup_score": 54.6,
+              "best_matchup_score": 52.5,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -919,7 +919,7 @@
                   "away_team": "New Orleans Saints",
                   "away_abbr": "NO",
                   "away_record": "0-1",
-                  "matchup_score": 54.6,
+                  "matchup_score": 52.5,
                   "channel": "ESPN Unlmtd, KCBS-TV, Fox 8",
                   "venue": "SoFi Stadium",
                   "neutral_site": false,
@@ -933,7 +933,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 9,
+                  "matchup_rank": 8,
                   "is_slot_pick": true
                 },
                 {
@@ -1028,7 +1028,7 @@
                   "away_team": "Kansas City Chiefs",
                   "away_abbr": "KC",
                   "away_record": "0-1",
-                  "matchup_score": 55.6,
+                  "matchup_score": 52.5,
                   "channel": "ESPN Unlmtd, KSHB",
                   "venue": "Raymond James Stadium",
                   "neutral_site": false,
@@ -1042,7 +1042,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 10,
+                  "matchup_rank": 9,
                   "is_slot_pick": false
                 },
                 {
@@ -1055,7 +1055,7 @@
                   "away_team": "Philadelphia Eagles",
                   "away_abbr": "PHI",
                   "away_record": "0-1",
-                  "matchup_score": 69.9,
+                  "matchup_score": 70.1,
                   "channel": "NFL Net, WBZ, NBC 10",
                   "venue": "Gillette Stadium",
                   "neutral_site": false,
@@ -1076,7 +1076,7 @@
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 37.2,
+              "best_matchup_score": 34.8,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -1089,7 +1089,7 @@
                   "away_team": "Dallas Cowboys",
                   "away_abbr": "DAL",
                   "away_record": "1-0",
-                  "matchup_score": 37.2,
+                  "matchup_score": 34.8,
                   "channel": "NFL Net",
                   "venue": "State Farm Stadium",
                   "neutral_site": false,
@@ -1138,7 +1138,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 62.8,
+              "best_matchup_score": 58.3,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -1151,7 +1151,7 @@
                   "away_team": "Seattle Seahawks",
                   "away_abbr": "SEA",
                   "away_record": "0-1",
-                  "matchup_score": 62.8,
+                  "matchup_score": 58.3,
                   "channel": "FOX",
                   "venue": "Nissan Stadium",
                   "neutral_site": false,
@@ -1165,7 +1165,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 14,
+                  "matchup_rank": 12,
                   "is_slot_pick": true
                 }
               ]
@@ -1185,7 +1185,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 25.0,
+              "best_matchup_score": 35.4,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -1197,8 +1197,8 @@
                   "home_record": "1-0",
                   "away_team": "Pittsburgh Steelers",
                   "away_abbr": "PIT",
-                  "away_record": "1-0",
-                  "matchup_score": 25.0,
+                  "away_record": "1-1",
+                  "matchup_score": 35.4,
                   "channel": "NFL Net, KDKA-TV",
                   "venue": "Highmark Stadium",
                   "neutral_site": false,
@@ -1212,7 +1212,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 1,
+                  "matchup_rank": 4,
                   "is_slot_pick": true
                 },
                 {
@@ -1225,7 +1225,7 @@
                   "away_team": "San Francisco 49ers",
                   "away_abbr": "SF",
                   "away_record": "1-1",
-                  "matchup_score": 48.4,
+                  "matchup_score": 51.0,
                   "channel": "ESPN Unlmtd, Fox 5 Vegas, KPIX",
                   "venue": "Allegiant Stadium",
                   "neutral_site": false,
@@ -1248,7 +1248,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 8,
+                  "matchup_rank": 10,
                   "gemini_prediction": {
                     "winner": "San Francisco 49ers",
                     "confidence": 85,
@@ -1273,7 +1273,7 @@
                   "away_team": "New England Patriots",
                   "away_abbr": "NE",
                   "away_record": "0-0-1",
-                  "matchup_score": 56.9,
+                  "matchup_score": 61.5,
                   "channel": "Prime Video",
                   "venue": "Huntington Bank Field",
                   "neutral_site": false,
@@ -1294,7 +1294,7 @@
             },
             {
               "slot": "Late Night",
-              "best_matchup_score": 38.8,
+              "best_matchup_score": 37.5,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -1307,7 +1307,7 @@
                   "away_team": "Los Angeles Rams",
                   "away_abbr": "LAR",
                   "away_record": "1-0",
-                  "matchup_score": 38.8,
+                  "matchup_score": 37.5,
                   "channel": "NFL Net, CBS LA, KCAL",
                   "venue": "SoFi Stadium",
                   "neutral_site": false,
@@ -1330,7 +1330,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 6,
+                  "matchup_rank": 5,
                   "gemini_prediction": {
                     "winner": "Los Angeles Rams",
                     "confidence": 68,
@@ -1356,7 +1356,7 @@
           "time_slots": [
             {
               "slot": "Prime Time",
-              "best_matchup_score": 27.1,
+              "best_matchup_score": 25.0,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -1369,7 +1369,7 @@
                   "away_team": "Washington Commanders",
                   "away_abbr": "WSH",
                   "away_record": "1-0",
-                  "matchup_score": 27.1,
+                  "matchup_score": 25.0,
                   "channel": "NFL Net, WBAL-TV, WUSA9",
                   "venue": "M&T Bank Stadium",
                   "neutral_site": false,
@@ -1383,7 +1383,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 2,
+                  "matchup_rank": 1,
                   "is_slot_pick": true
                 },
                 {
@@ -1392,11 +1392,11 @@
                   "start_time_tbd": false,
                   "home_team": "Denver Broncos",
                   "home_abbr": "DEN",
-                  "home_record": "1-0",
+                  "home_record": "1-1",
                   "away_team": "Minnesota Vikings",
                   "away_abbr": "MIN",
                   "away_record": "1-0",
-                  "matchup_score": 28.2,
+                  "matchup_score": 34.4,
                   "channel": "NFL Net, KUSA-TV (9NEWS)",
                   "venue": "Empower Field at Mile High",
                   "neutral_site": false,
@@ -1419,11 +1419,11 @@
                   "start_time_tbd": false,
                   "home_team": "Jacksonville Jaguars",
                   "home_abbr": "JAX",
-                  "home_record": "1-0",
+                  "home_record": "1-1",
                   "away_team": "Tampa Bay Buccaneers",
                   "away_abbr": "TB",
                   "away_record": "1-0",
-                  "matchup_score": 31.4,
+                  "matchup_score": 37.5,
                   "channel": "FOX30",
                   "venue": "EverBank Stadium",
                   "neutral_site": false,
@@ -1437,22 +1437,22 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 5,
+                  "matchup_rank": 6,
                   "is_slot_pick": false
                 },
                 {
-                  "id": "401874048",
+                  "id": "401874102",
                   "start_time": "2026-08-29T00:00Z",
                   "start_time_tbd": false,
-                  "home_team": "Dallas Cowboys",
-                  "home_abbr": "DAL",
-                  "home_record": "1-0",
-                  "away_team": "New Orleans Saints",
-                  "away_abbr": "NO",
-                  "away_record": "0-1",
-                  "matchup_score": 47.3,
-                  "channel": "ESPN Unlmtd, Fox 8",
-                  "venue": "AT&T Stadium",
+                  "home_team": "Green Bay Packers",
+                  "home_abbr": "GB",
+                  "home_record": "1-1",
+                  "away_team": "Arizona Cardinals",
+                  "away_abbr": "ARI",
+                  "away_record": "1-1",
+                  "matchup_score": 40.6,
+                  "channel": "Packers TV Network",
+                  "venue": "Lambeau Field",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
@@ -1468,6 +1468,33 @@
                   "is_slot_pick": false
                 },
                 {
+                  "id": "401874048",
+                  "start_time": "2026-08-29T00:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Dallas Cowboys",
+                  "home_abbr": "DAL",
+                  "home_record": "1-0",
+                  "away_team": "New Orleans Saints",
+                  "away_abbr": "NO",
+                  "away_record": "0-1",
+                  "matchup_score": 49.0,
+                  "channel": "ESPN Unlmtd, Fox 8",
+                  "venue": "AT&T Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 8,
+                  "is_slot_pick": false
+                },
+                {
                   "id": "401873301",
                   "start_time": "2026-08-29T00:00Z",
                   "start_time_tbd": false,
@@ -1477,7 +1504,7 @@
                   "away_team": "Cincinnati Bengals",
                   "away_abbr": "CIN",
                   "away_record": "1-0",
-                  "matchup_score": 49.5,
+                  "matchup_score": 50.0,
                   "channel": "CBS",
                   "venue": "Lincoln Financial Field",
                   "neutral_site": false,
@@ -1495,43 +1522,16 @@
                   "is_slot_pick": false
                 },
                 {
-                  "id": "401874102",
-                  "start_time": "2026-08-29T00:00Z",
-                  "start_time_tbd": false,
-                  "home_team": "Green Bay Packers",
-                  "home_abbr": "GB",
-                  "home_record": "0-1",
-                  "away_team": "Arizona Cardinals",
-                  "away_abbr": "ARI",
-                  "away_record": "1-1",
-                  "matchup_score": 52.7,
-                  "channel": "Packers TV Network",
-                  "venue": "Lambeau Field",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "matchup_rank": 10,
-                  "is_slot_pick": false
-                },
-                {
                   "id": "401873307",
                   "start_time": "2026-08-28T23:00Z",
                   "start_time_tbd": false,
                   "home_team": "Carolina Panthers",
                   "home_abbr": "CAR",
-                  "home_record": "1-1",
+                  "home_record": "2-1",
                   "away_team": "Houston Texans",
                   "away_abbr": "HOU",
                   "away_record": "0-2",
-                  "matchup_score": 54.8,
+                  "matchup_score": 52.1,
                   "channel": "KTRK (ABC)",
                   "venue": "Bank of America Stadium",
                   "neutral_site": false,
@@ -1549,18 +1549,18 @@
                   "is_slot_pick": false
                 },
                 {
-                  "id": "401873304",
-                  "start_time": "2026-08-28T23:00Z",
+                  "id": "401873303",
+                  "start_time": "2026-08-28T23:30Z",
                   "start_time_tbd": false,
-                  "home_team": "Miami Dolphins",
-                  "home_abbr": "MIA",
-                  "home_record": "0-1",
-                  "away_team": "Atlanta Falcons",
-                  "away_abbr": "ATL",
+                  "home_team": "New York Jets",
+                  "home_abbr": "NYJ",
+                  "home_record": "1-1",
+                  "away_team": "New York Giants",
+                  "away_abbr": "NYG",
                   "away_record": "0-1",
-                  "matchup_score": 63.3,
-                  "channel": "CBS Miami",
-                  "venue": "Hard Rock Stadium",
+                  "matchup_score": 63.5,
+                  "channel": "WCBS",
+                  "venue": "MetLife Stadium",
                   "neutral_site": false,
                   "odds": {
                     "draftkings": {
@@ -1576,6 +1576,33 @@
                   "is_slot_pick": false
                 },
                 {
+                  "id": "401873304",
+                  "start_time": "2026-08-28T23:00Z",
+                  "start_time_tbd": false,
+                  "home_team": "Miami Dolphins",
+                  "home_abbr": "MIA",
+                  "home_record": "0-1",
+                  "away_team": "Atlanta Falcons",
+                  "away_abbr": "ATL",
+                  "away_record": "0-1",
+                  "matchup_score": 66.7,
+                  "channel": "CBS Miami",
+                  "venue": "Hard Rock Stadium",
+                  "neutral_site": false,
+                  "odds": {
+                    "draftkings": {
+                      "spread": {},
+                      "moneyline": {}
+                    },
+                    "fanduel": {
+                      "spread": {},
+                      "moneyline": {}
+                    }
+                  },
+                  "matchup_rank": 15,
+                  "is_slot_pick": false
+                },
+                {
                   "id": "401873305",
                   "start_time": "2026-08-29T00:00Z",
                   "start_time_tbd": false,
@@ -1585,7 +1612,7 @@
                   "away_team": "Seattle Seahawks",
                   "away_abbr": "SEA",
                   "away_record": "0-1",
-                  "matchup_score": 73.9,
+                  "matchup_score": 75.0,
                   "channel": "ESPN Unlmtd, KSHB, KING 5",
                   "venue": "Arrowhead Stadium",
                   "neutral_site": false,
@@ -1608,7 +1635,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 15,
+                  "matchup_rank": 16,
                   "gemini_prediction": {
                     "winner": "Seattle Seahawks",
                     "confidence": 68,
@@ -1622,33 +1649,6 @@
                     "model": "gemini-3.5-flash-lite"
                   },
                   "is_slot_pick": false
-                },
-                {
-                  "id": "401873303",
-                  "start_time": "2026-08-28T23:30Z",
-                  "start_time_tbd": false,
-                  "home_team": "New York Jets",
-                  "home_abbr": "NYJ",
-                  "home_record": "0-1",
-                  "away_team": "New York Giants",
-                  "away_abbr": "NYG",
-                  "away_record": "0-1",
-                  "matchup_score": 75.0,
-                  "channel": "WCBS",
-                  "venue": "MetLife Stadium",
-                  "neutral_site": false,
-                  "odds": {
-                    "draftkings": {
-                      "spread": {},
-                      "moneyline": {}
-                    },
-                    "fanduel": {
-                      "spread": {},
-                      "moneyline": {}
-                    }
-                  },
-                  "matchup_rank": 16,
-                  "is_slot_pick": false
                 }
               ]
             }
@@ -1661,7 +1661,7 @@
           "time_slots": [
             {
               "slot": "Noon",
-              "best_matchup_score": 56.9,
+              "best_matchup_score": 61.5,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -1674,7 +1674,7 @@
                   "away_team": "Detroit Lions",
                   "away_abbr": "DET",
                   "away_record": "0-1",
-                  "matchup_score": 56.9,
+                  "matchup_score": 61.5,
                   "channel": "NFL Net, CBS4, Lions TV Network",
                   "venue": "Lucas Oil Stadium",
                   "neutral_site": false,
@@ -1695,7 +1695,7 @@
             },
             {
               "slot": "Prime Time",
-              "best_matchup_score": 28.2,
+              "best_matchup_score": 26.0,
               "pick_reason": "blended_score",
               "games": [
                 {
@@ -1708,7 +1708,7 @@
                   "away_team": "Chicago Bears",
                   "away_abbr": "CHI",
                   "away_record": "1-0",
-                  "matchup_score": 28.2,
+                  "matchup_score": 26.0,
                   "channel": "NFL Net, FOX32",
                   "venue": "Nissan Stadium",
                   "neutral_site": false,
@@ -1722,7 +1722,7 @@
                       "moneyline": {}
                     }
                   },
-                  "matchup_rank": 4,
+                  "matchup_rank": 2,
                   "is_slot_pick": true
                 }
               ]
